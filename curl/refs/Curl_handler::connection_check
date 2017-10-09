@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='690' type='unsigned int (*)(struct connectdata *, unsigned int)'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/urldata.h' l='687'>/* This function can perform various checks on the connection. See
+     CONNCHECK_* for more information about the checks that can be performed,
+     and CONNRESULT_* for the results that can be returned. */</doc>
+<use f='codebrowser/lib/url.c' l='3413' u='r' c='disconnect_if_dead'/>
+<use f='codebrowser/lib/url.c' l='3418' u='r' c='disconnect_if_dead'/>

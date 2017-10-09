@@ -1,0 +1,2 @@
+<dec f='codebrowser/include/curl/curl.h' l='219'/>
+<doc f='codebrowser/include/curl/curl.h' l='218'>/* The maximum receive buffer size configurable via CURLOPT_BUFFERSIZE. */</doc>

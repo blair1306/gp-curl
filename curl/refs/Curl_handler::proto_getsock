@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='652' type='int (*)(struct connectdata *, curl_socket_t *, int)'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/urldata.h' l='650'>/* Called from the multi interface during the PROTOCONNECT phase, and it
+     should then return a proper fd set */</doc>
+<use f='codebrowser/lib/url.c' l='3976' u='r' c='Curl_protocol_getsock'/>
+<use f='codebrowser/lib/url.c' l='3977' u='r' c='Curl_protocol_getsock'/>

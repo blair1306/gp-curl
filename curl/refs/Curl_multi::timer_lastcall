@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/multihandle.h' l='151' type='struct curltime'/>
+<offset>3712</offset>
+<doc f='codebrowser/lib/multihandle.h' l='151'>/* the fixed time for the timeout for the
+                                    previous callback */</doc>
+<use f='codebrowser/lib/multi.c' l='457' u='a' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='457' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='2641' u='a' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2641' u='r' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2839' u='m' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2839' u='m' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2839' u='m' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2839' u='m' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2840' u='w' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2852' u='m' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2852' u='m' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2852' u='m' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2852' u='m' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2855' u='w' c='update_timer'/>

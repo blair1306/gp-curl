@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/hostip.h' l='105' type='_Bool Curl_ipvalid(struct connectdata * conn)'/>
+<use f='codebrowser/lib/hostip.c' l='478' u='c' c='Curl_resolv'/>
+<def f='codebrowser/lib/hostip6.c' l='122' ll='128' macro='1' type='_Bool Curl_ipvalid(struct connectdata * conn)'/>

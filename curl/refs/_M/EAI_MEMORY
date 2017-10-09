@@ -1,0 +1,4 @@
+<dec f='include/netdb.h' l='625'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='153' u='c'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='171' u='c'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='180' u='c'/>

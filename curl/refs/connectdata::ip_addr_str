@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='827' type='char [46]'/>
+<offset>1152</offset>
+<doc f='codebrowser/lib/urldata.h' l='824'>/* &apos;ip_addr_str&apos; is the ip_addr data as a human readable string.
+     It remains available as long as the connection does, which is longer than
+     the ip_addr itself. */</doc>
+<use f='codebrowser/lib/connect.c' l='699' u='r' c='Curl_updateconninfo'/>
+<use f='codebrowser/lib/ftp.c' l='1816' u='r' c='control_address'/>
+<use f='codebrowser/lib/url.c' l='3607' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3968' c='Curl_verboseconnect'/>

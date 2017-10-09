@@ -1,0 +1,4 @@
+<dec f='include/utime.h' l='40' type='__time_t'/>
+<use f='codebrowser/src/tool_operate.c' l='238' u='w' c='setfiletime'/>
+<offset>64</offset>
+<doc f='include/utime.h' l='40'>/* Modification time.  */</doc>

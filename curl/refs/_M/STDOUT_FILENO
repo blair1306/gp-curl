@@ -1,0 +1,6 @@
+<dec f='include/unistd.h' l='214'/>
+<use f='codebrowser/src/tool_main.h' l='35' u='a'/>
+<use f='codebrowser/src/tool_main.c' l='88' u='c'/>
+<use f='codebrowser/src/tool_main.c' l='91' u='c'/>
+<use f='codebrowser/tests/libtest/lib556.c' l='31' u='a'/>
+<use f='codebrowser/tests/libtest/lib556.c' l='91' u='c'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='2565' type='3'/>
+<doc f='codebrowser/include/curl/curl.h' l='2565'>/* 3 */</doc>
+<use f='codebrowser/lib/share.c' l='177' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='219' u='r' c='Curl_share_lock'/>
+<use f='codebrowser/lib/share.c' l='236' u='r' c='Curl_share_unlock'/>
+<use f='codebrowser/lib/strerror.c' l='410' c='curl_share_strerror'/>

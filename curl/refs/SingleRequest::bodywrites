@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='576' type='long'/>
+<offset>2688</offset>
+<use f='codebrowser/lib/transfer.c' l='498' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='582' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='648' u='w' c='readwrite_data'/>

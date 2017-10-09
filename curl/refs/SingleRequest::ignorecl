@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='587' type='_Bool'/>
+<offset>2896</offset>
+<use f='codebrowser/lib/http.c' l='3487' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3506' u='r' c='Curl_http_readwrite_headers'/>

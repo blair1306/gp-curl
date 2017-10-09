@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='590' type='char *'/>
+<offset>2944</offset>
+<doc f='codebrowser/lib/urldata.h' l='590'>/* This points to an allocated version of the Location:
+                       header data */</doc>
+<use f='codebrowser/lib/http.c' l='3759' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3768' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3772' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/multi.c' l='545' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='546' u='w' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='1984' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1986' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1987' u='w' c='multi_runsingle'/>

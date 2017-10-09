@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1312' type='int'/>
+<offset>139424</offset>
+<doc f='codebrowser/lib/urldata.h' l='1312'>/* the lowest HTTP version*10 reported by any server
+                            involved in this request */</doc>
+<use f='codebrowser/lib/http.c' l='1500' u='r' c='use_http_1_1plus'/>
+<use f='codebrowser/lib/http.c' l='3411' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3412' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3414' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='1349' u='w' c='Curl_pretransfer'/>

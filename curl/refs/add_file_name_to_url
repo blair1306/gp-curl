@@ -1,0 +1,7 @@
+<dec f='codebrowser/src/tool_operhlp.h' l='34' type='char * add_file_name_to_url(CURL * curl, char * url, const char * filename)'/>
+<use f='codebrowser/src/tool_operate.c' l='693' u='c' c='operate_do'/>
+<def f='codebrowser/src/tool_operhlp.c' l='74' ll='124' type='char * add_file_name_to_url(CURL * curl, char * url, const char * filename)'/>
+<doc f='codebrowser/src/tool_operhlp.c' l='70'>/*
+ * Adds the file name to the URL if it doesn&apos;t already have one.
+ * url will be freed before return if the returned pointer is different
+ */</doc>

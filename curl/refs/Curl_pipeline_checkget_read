@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/pipeline.h' l='47' type='_Bool Curl_pipeline_checkget_read(struct Curl_easy * data, struct connectdata * conn)'/>
+<use f='codebrowser/lib/multi.c' l='1822' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/pipeline.c' l='348' ll='361' macro='1' type='_Bool Curl_pipeline_checkget_read(struct Curl_easy * data, struct connectdata * conn)'/>

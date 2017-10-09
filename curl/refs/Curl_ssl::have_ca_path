@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='36' type='unsigned int'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/vtls/vtls.h' l='36'>/* supports CAPATH */</doc>
+<use f='codebrowser/lib/url.c' l='2288' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2302' u='r' c='Curl_setopt'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/smb.c' l='177' type='7'/>
+<use f='codebrowser/lib/smb.c' l='740' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='860' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='891' c='smb_request_state'/>

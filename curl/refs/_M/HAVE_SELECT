@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/curl_config.h' l='513'/>
+<doc f='codebrowser/lib/curl_config.h' l='512'>/* Define to 1 if you have the select function. */</doc>
+<use f='codebrowser/lib/select.c' l='29' u='a'/>

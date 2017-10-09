@@ -1,0 +1,12 @@
+<dec f='include/openssl/conf.h' l='77' type='char *'/>
+<dec f='include/openssl/pkcs12.h' l='122' type='union (anonymous union at /usr/include/openssl/pkcs12.h:116:5)'/>
+<offset>64</offset>
+<dec f='codebrowser/src/tool_setopt.h' l='41' type='long'/>
+<dec f='codebrowser/src/tool_setopt.h' l='46' type='unsigned long'/>
+<offset>64</offset>
+<use f='codebrowser/src/tool_setopt.c' l='280' u='r' c='tool_setopt_enum'/>
+<use f='codebrowser/src/tool_setopt.c' l='317' u='r' c='tool_setopt_flags'/>
+<use f='codebrowser/src/tool_setopt.c' l='319' u='r' c='tool_setopt_flags'/>
+<use f='codebrowser/src/tool_setopt.c' l='360' u='r' c='tool_setopt_bitmask'/>
+<use f='codebrowser/src/tool_setopt.c' l='362' u='r' c='tool_setopt_bitmask'/>
+<use f='codebrowser/src/tool_setopt.c' l='627' u='r' c='tool_setopt'/>

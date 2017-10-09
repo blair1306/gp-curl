@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='777' type='0'/>
+<doc f='codebrowser/lib/urldata.h' l='777'>/* init/default/no tunnel state */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='165' u='r' c='connect_init'/>
+<use f='codebrowser/lib/http_proxy.c' l='204' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='617' u='r' c='CONNECT'/>

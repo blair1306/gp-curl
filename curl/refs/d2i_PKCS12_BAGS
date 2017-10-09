@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='249' macro='1' type='PKCS12_BAGS * d2i_PKCS12_BAGS(PKCS12_BAGS ** a, const unsigned char ** in, long len)'/>

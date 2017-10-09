@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_config.h' l='978'/>
+<use f='include/features.h' l='312' u='a'/>
+<use f='include/features.h' l='312' u='c'/>
+<doc f='codebrowser/lib/curl_config.h' l='977'>/* Number of bits in a file offset, on hosts where this is settable. */</doc>
+<use f='include/zconf.h' l='470' u='a'/>
+<use f='include/zconf.h' l='470' u='c'/>

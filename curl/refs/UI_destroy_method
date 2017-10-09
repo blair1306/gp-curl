@@ -1,0 +1,2 @@
+<dec f='include/openssl/ui.h' l='322' type='void UI_destroy_method(UI_METHOD * ui_method)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='791' u='c' c='cert_stuff'/>

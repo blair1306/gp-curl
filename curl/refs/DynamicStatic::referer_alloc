@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1375' type='_Bool'/>
+<offset>192</offset>
+<use f='codebrowser/lib/easy.c' l='932' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/transfer.c' l='1765' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1767' u='w' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1773' u='w' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='292' u='r' c='Curl_freeset'/>
+<use f='codebrowser/lib/url.c' l='294' u='w' c='Curl_freeset'/>
+<use f='codebrowser/lib/url.c' l='455' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='457' u='w' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='1173' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1175' u='w' c='Curl_setopt'/>

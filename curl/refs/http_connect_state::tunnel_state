@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='780' type='enum (anonymous enum at /home/jon/workspace/curl/lib/urldata.h:776:3)'/>
+<offset>131360</offset>
+<use f='codebrowser/lib/http_proxy.c' l='141' u='r' c='Curl_connect_complete'/>
+<use f='codebrowser/lib/http_proxy.c' l='147' u='r' c='Curl_connect_ongoing'/>
+<use f='codebrowser/lib/http_proxy.c' l='165' u='w' c='connect_init'/>
+<use f='codebrowser/lib/http_proxy.c' l='176' u='w' c='connect_done'/>
+<use f='codebrowser/lib/http_proxy.c' l='204' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='312' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='380' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='398' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='482' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='496' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='595' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='617' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='627' u='w' c='CONNECT'/>

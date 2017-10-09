@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1599' type='curl_off_t'/>
+<offset>11200</offset>
+<doc f='codebrowser/lib/urldata.h' l='1599'>/* Maximum file size to download */</doc>
+<use f='codebrowser/lib/ftp.c' l='2183' u='r' c='ftp_state_retr'/>
+<use f='codebrowser/lib/ftp.c' l='2183' u='r' c='ftp_state_retr'/>
+<use f='codebrowser/lib/http.c' l='3510' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3511' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/url.c' l='2449' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2488' u='w' c='Curl_setopt'/>

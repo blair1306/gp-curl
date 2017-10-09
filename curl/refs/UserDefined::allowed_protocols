@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1665' type='long'/>
+<offset>16000</offset>
+<use f='codebrowser/lib/url.c' l='579' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2669' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4366' u='r' c='findprotocol'/>

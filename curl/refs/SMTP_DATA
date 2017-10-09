@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/smtp.h' l='44' type='10'/>
+<use f='codebrowser/lib/smtp.c' l='926' u='r' c='smtp_state_rcpt_resp'/>
+<use f='codebrowser/lib/smtp.c' l='1044' c='smtp_statemach_act'/>

@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/pop3.h' l='93' type='CURLcode Curl_pop3_write(struct connectdata * conn, char * str, size_t nread)'/>
+<doc f='codebrowser/lib/pop3.h' l='91'>/* This function scans the body after the end-of-body and writes everything
+ * until the end is found */</doc>
+<use f='codebrowser/lib/pop3.c' l='908' u='c' c='pop3_state_command_resp'/>
+<def f='codebrowser/lib/pop3.c' l='1416' ll='1535' type='CURLcode Curl_pop3_write(struct connectdata * conn, char * str, size_t nread)'/>
+<doc f='codebrowser/lib/pop3.c' l='1409'>/***********************************************************************
+ *
+ * Curl_pop3_write()
+ *
+ * This function scans the body after the end-of-body and writes everything
+ * until the end is found.
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='792' u='c' c='readwrite_data'/>

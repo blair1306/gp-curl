@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/curlx.h' l='75'/>
+<doc f='codebrowser/lib/curlx.h' l='66'>/* Now setup curlx_ * names for the functions that are to become curlx_ and
+   be removed from a future libcurl official API:
+   curlx_getenv
+   curlx_mprintf (and its variations)
+   curlx_strcasecompare
+   curlx_strncasecompare
+
+*/</doc>
+<use f='codebrowser/src/tool_cb_prg.c' l='126' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='310' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='321' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='333' u='c'/>

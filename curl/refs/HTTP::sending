@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/http.h' l='155' type='enum (anonymous enum at /home/jon/workspace/curl/lib/http.h:150:3)'/>
+<offset>4288</offset>
+<use f='codebrowser/lib/http.c' l='993' u='r' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1006' u='w' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1172' u='w' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1176' u='w' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='2560' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2677' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/transfer.c' l='922' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='937' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='2049' u='r' c='Curl_setup_transfer'/>

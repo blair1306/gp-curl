@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/smtp.h' l='56' type='char *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/smtp.h' l='56'>/* Custom Request */</doc>
+<use f='codebrowser/lib/smtp.c' l='479' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='479' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='480' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='484' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='484' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='485' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='1250' u='r' c='smtp_done'/>
+<use f='codebrowser/lib/smtp.c' l='1250' u='w' c='smtp_done'/>
+<use f='codebrowser/lib/smtp.c' l='1528' u='a' c='smtp_parse_custom_request'/>

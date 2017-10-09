@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/hash.h' l='94' type='struct curl_hash_element * Curl_hash_next_element(struct curl_hash_iterator * iter)'/>
+<use f='codebrowser/lib/conncache.c' l='178' u='c' c='conncache_remove_bundle'/>
+<use f='codebrowser/lib/conncache.c' l='187' u='c' c='conncache_remove_bundle'/>
+<use f='codebrowser/lib/conncache.c' l='277' u='c' c='Curl_conncache_foreach'/>
+<use f='codebrowser/lib/conncache.c' l='282' u='c' c='Curl_conncache_foreach'/>
+<use f='codebrowser/lib/conncache.c' l='308' u='c' c='Curl_conncache_find_first_connection'/>
+<use f='codebrowser/lib/conncache.c' l='318' u='c' c='Curl_conncache_find_first_connection'/>
+<def f='codebrowser/lib/hash.c' l='291' ll='318' type='struct curl_hash_element * Curl_hash_next_element(struct curl_hash_iterator * iter)'/>
+<use f='codebrowser/lib/url.c' l='3315' u='c' c='Curl_oldest_idle_connection'/>
+<use f='codebrowser/lib/url.c' l='3337' u='c' c='Curl_oldest_idle_connection'/>

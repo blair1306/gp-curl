@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='228' type='void Curl_ssl_delsessionid(struct connectdata * conn, void * ssl_sessionid)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='222'>/* delete a session from the cache
+ * Sessionid mutex must be locked (see Curl_ssl_sessionid_lock).
+ * This will call engine-specific curlssl_session_free function, which must
+ * take sessionid object ownership from sessionid cache
+ * (e.g. decrement refcount).
+ */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='3210' u='c' c='ossl_connect_step3'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='386' ll='399' type='void Curl_ssl_delsessionid(struct connectdata * conn, void * ssl_sessionid)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='383'>/*
+ * Delete the given session ID from the cache.
+ */</doc>

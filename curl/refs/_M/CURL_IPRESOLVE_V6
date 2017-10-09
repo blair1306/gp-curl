@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='1856'/>
+<use f='codebrowser/lib/asyn-thread.c' l='641' u='c'/>
+<use f='codebrowser/lib/connect.c' l='351' u='c'/>
+<use f='codebrowser/lib/hostip6.c' l='124' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1319' u='c'/>

@@ -1,0 +1,19 @@
+<dec f='codebrowser/include/curl/curl.h' l='301' type='size_t'/>
+<offset>960</offset>
+<use f='codebrowser/lib/ftplistparser.c' l='379' u='w' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='381' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='411' u='w' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='419' u='w' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='436' u='w' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='514' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='551' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='573' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='596' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='637' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='721' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='764' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='826' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='925' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='962' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='971' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='975' u='r' c='Curl_ftp_parselist'/>

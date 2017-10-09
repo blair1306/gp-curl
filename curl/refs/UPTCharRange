@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='28' type='2'/>
+<use f='codebrowser/src/tool_urlglob.c' l='198' u='r' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='533' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='572' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='648' c='glob_match_url'/>

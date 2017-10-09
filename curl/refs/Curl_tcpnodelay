@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/connect.h' l='110' type='void Curl_tcpnodelay(struct connectdata * conn, curl_socket_t sockfd)'/>
+<def f='codebrowser/lib/connect.c' l='870' ll='893' type='void Curl_tcpnodelay(struct connectdata * conn, curl_socket_t sockfd)'/>
+<use f='codebrowser/lib/connect.c' l='1009' u='c' c='singleipconnect'/>

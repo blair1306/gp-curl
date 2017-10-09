@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='103' type='saslstate'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/curl_sasl.h' l='103'>/* Current machine state */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='181' u='w' c='Curl_sasl_init'/>
+<use f='codebrowser/lib/curl_sasl.c' l='228' u='w' c='state'/>
+<use f='codebrowser/lib/curl_sasl.c' l='435' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='443' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='443' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='450' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='599' u='r' c='Curl_sasl_continue'/>

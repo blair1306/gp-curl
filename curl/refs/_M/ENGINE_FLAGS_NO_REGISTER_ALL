@@ -1,0 +1,6 @@
+<dec f='include/openssl/engine.h' l='162'/>
+<doc f='include/openssl/engine.h' l='156'>/*
+ * This flag if for an ENGINE that does not want its methods registered as
+ * part of ENGINE_register_all_complete() for example if the methods are not
+ * usable as default methods.
+ */</doc>

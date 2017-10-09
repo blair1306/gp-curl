@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_homedir.h' l='26' type='char * homedir()'/>
+<def f='codebrowser/src/tool_homedir.c' l='63' ll='95' type='char * homedir()'/>
+<doc f='codebrowser/src/tool_homedir.c' l='62'>/* return the home directory of the current user as an allocated string */</doc>
+<use f='codebrowser/src/tool_operate.c' l='1185' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='62' u='c' c='parseconfig'/>

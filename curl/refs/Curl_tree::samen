@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/splay.h' l='30' type='struct Curl_tree *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/splay.h' l='30'>/* points to the next node with identical key */</doc>
+<use f='codebrowser/lib/splay.c' l='120' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='122' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='146' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='175' u='r' c='Curl_splaygetbest'/>
+<use f='codebrowser/lib/splay.c' l='185' u='w' c='Curl_splaygetbest'/>
+<use f='codebrowser/lib/splay.c' l='225' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='229' u='w' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='229' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='230' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='233' u='w' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='253' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='262' u='w' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='55' u='r' c='splayprint'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='55' u='r' c='splayprint'/>

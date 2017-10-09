@@ -1,0 +1,9 @@
+<dec f='codebrowser/include/curl/multi.h' l='264'/>
+<use f='codebrowser/lib/connect.c' l='1409' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='419' u='c'/>
+<use f='codebrowser/lib/rtsp.c' l='164' u='c'/>
+<use f='codebrowser/lib/select.c' l='241' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='856' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1120' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1137' u='c'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='323' u='c'/>

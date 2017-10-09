@@ -1,0 +1,7 @@
+<dec f='codebrowser/src/tool_operhlp.h' l='36' type='CURLcode get_url_file_name(char ** filename, const char * url)'/>
+<use f='codebrowser/src/tool_operate.c' l='608' u='c' c='operate_do'/>
+<def f='codebrowser/src/tool_operhlp.c' l='130' ll='190' type='CURLcode get_url_file_name(char ** filename, const char * url)'/>
+<doc f='codebrowser/src/tool_operhlp.c' l='126'>/* Extracts the name portion of the URL.
+ * Returns a pointer to a heap-allocated string or NULL if
+ * no name part, at location indicated by first argument.
+ */</doc>

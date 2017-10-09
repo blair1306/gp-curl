@@ -1,0 +1,3 @@
+<dec f='codebrowser/include/curl/curl.h' l='1926' type='0'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1959' u='r' c='set_ssl_version_min_max'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='192' c='ssl_prefs_check'/>

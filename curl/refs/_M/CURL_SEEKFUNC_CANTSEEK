@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='342'/>
+<use f='codebrowser/lib/ftp.c' l='1626' u='c'/>
+<use f='codebrowser/lib/http.c' l='1768' u='c'/>
+<use f='codebrowser/lib/http.c' l='2194' u='c'/>
+<use f='codebrowser/lib/mime.c' l='696' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1025' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1031' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1034' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1057' u='c'/>
+<use f='codebrowser/src/tool_cb_see.c' l='86' u='c'/>

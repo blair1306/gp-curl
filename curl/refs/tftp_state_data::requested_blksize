@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/tftp.c' l='142' type='int'/>
+<use f='codebrowser/lib/tftp.c' l='373' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='384' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='520' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='1010' u='w' c='tftp_connect'/>
+<offset>2752</offset>

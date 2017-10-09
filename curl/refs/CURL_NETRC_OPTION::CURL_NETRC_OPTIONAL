@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/curl.h' l='1904' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='1904'>/* A user:password in the URL will be preferred
+                           * to one in the .netrc. */</doc>
+<use f='codebrowser/src/tool_operate.c' l='972' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_setopt.c' l='132'/>
+<use f='codebrowser/src/tool_setopt.c' l='132'/>
+<use f='codebrowser/src/tool_setopt.c' l='132'/>
+<use f='codebrowser/src/tool_setopt.c' l='132'/>

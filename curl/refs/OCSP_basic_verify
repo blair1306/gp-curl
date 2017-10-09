@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='569' type='int OCSP_basic_verify(OCSP_BASICRESP * bs, struct stack_st_X509 * certs, X509_STORE * st, unsigned long flags)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1607' u='c' c='verifystatus'/>

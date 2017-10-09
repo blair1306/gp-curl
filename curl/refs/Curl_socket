@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/connect.h' l='105' type='CURLcode Curl_socket(struct connectdata * conn, const Curl_addrinfo * ai, struct Curl_sockaddr_ex * addr, curl_socket_t * sockfd)'/>
+<doc f='codebrowser/lib/connect.h' l='98'>/*
+ * Create a socket based on info from &apos;conn&apos; and &apos;ai&apos;.
+ *
+ * Fill in &apos;addr&apos; and &apos;sockfd&apos; accordingly if OK is returned. If the open
+ * socket callback is set, used that!
+ *
+ */</doc>
+<use f='codebrowser/lib/connect.c' l='984' u='c' c='singleipconnect'/>
+<def f='codebrowser/lib/connect.c' l='1314' ll='1373' type='CURLcode Curl_socket(struct connectdata * conn, const Curl_addrinfo * ai, struct Curl_sockaddr_ex * addr, curl_socket_t * sockfd)'/>
+<doc f='codebrowser/lib/connect.c' l='1305'>/*
+ * Create a socket based on info from &apos;conn&apos; and &apos;ai&apos;.
+ *
+ * &apos;addr&apos; should be a pointer to the correct struct to get data back, or NULL.
+ * &apos;sockfd&apos; must be a pointer to a socket descriptor.
+ *
+ * If the open socket callback is set, used that!
+ *
+ */</doc>
+<use f='codebrowser/lib/ftp.c' l='1113' u='c' c='ftp_state_use_port'/>

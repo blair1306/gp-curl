@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/cookie.h' l='82' type='struct Cookie * Curl_cookie_add(struct Curl_easy * data, struct CookieInfo * , _Bool header, char * lineptr, const char * domain, const char * path)'/>
+<doc f='codebrowser/lib/cookie.h' l='77'>/*
+ * Add a cookie to the internal list of cookies. The domain and path arguments
+ * are only used if the header boolean is TRUE.
+ */</doc>
+<def f='codebrowser/lib/cookie.c' l='363' ll='933' type='struct Cookie * Curl_cookie_add(struct Curl_easy * data, struct CookieInfo * c, _Bool httpheader, char * lineptr, const char * domain, const char * path)'/>
+<use f='codebrowser/lib/cookie.c' l='1032' u='c' c='Curl_cookie_init'/>
+<doc f='codebrowser/lib/cookie.c' l='350'>/****************************************************************************
+ *
+ * Curl_cookie_add()
+ *
+ * Add a single cookie line to the cookie keeping object.
+ *
+ * Be aware that sometimes we get an IP-only host name, and that might also be
+ * a numerical IPv6 address.
+ *
+ * Returns NULL on out of memory or invalid cookie. This is suboptimal,
+ * as they should be treated separately.
+ ***************************************************************************/</doc>
+<use f='codebrowser/lib/http.c' l='3722' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/url.c' l='1337' u='c' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1341' u='c' c='Curl_setopt'/>

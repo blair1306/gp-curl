@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='167' type='size_t Curl_ssl_version(char * buffer, size_t size)'/>
+<use f='codebrowser/lib/version.c' l='94' u='c' c='curl_version'/>
+<use f='codebrowser/lib/version.c' l='356' u='c' c='curl_version_info'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='614' ll='621' type='size_t Curl_ssl_version(char * buffer, size_t size)'/>

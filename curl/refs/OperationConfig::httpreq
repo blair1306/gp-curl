@@ -1,0 +1,8 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='178' type='HttpReq'/>
+<offset>6656</offset>
+<use f='codebrowser/src/tool_getparam.c' l='1613' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1691' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='369' u='a' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='375' u='a' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='989' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1237' u='r' c='operate_do'/>

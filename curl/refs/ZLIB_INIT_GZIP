@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='472' type='4'/>
+<doc f='codebrowser/lib/urldata.h' l='472'>/* initialized in transparent gzip mode */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='294' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='305' u='r' c='Curl_unencode_gzip_write'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/pipeline.h' l='50' type='void Curl_pipeline_leave_read(struct connectdata * conn)'/>
+<use f='codebrowser/lib/multi.c' l='1902' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2087' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/pipeline.c' l='374' ll='377' type='void Curl_pipeline_leave_read(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/pipeline.c' l='371'>/*
+ * The current user of the pipeline read channel gives it up.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='3259' u='c' c='Curl_getoff_all_pipelines'/>

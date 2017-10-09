@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/curl_sec.h' l='29' type='int (*)(void *, struct connectdata *)'/>
+<offset>192</offset>

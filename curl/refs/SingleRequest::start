@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='536' type='struct curltime'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/urldata.h' l='536'>/* transfer started at this time */</doc>
+<use f='codebrowser/lib/url.c' l='7082' u='w' c='Curl_init_do'/>
+<use f='codebrowser/lib/url.c' l='7083' u='r' c='Curl_init_do'/>

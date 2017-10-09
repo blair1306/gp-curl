@@ -1,0 +1,27 @@
+<dec f='codebrowser/lib/pingpong.h' l='49' type='char *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/pingpong.h' l='49'>/* data cache between getresponse()-calls */</doc>
+<use f='codebrowser/lib/ftp.c' l='396' u='r' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='396' u='r' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='681' u='r' c='Curl_GetFTPResponse'/>
+<use f='codebrowser/lib/ftp.c' l='709' u='r' c='Curl_GetFTPResponse'/>
+<use f='codebrowser/lib/imap.c' l='1119' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1129' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1143' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1143' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1148' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1148' u='w' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/pingpong.c' l='299' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='308' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='310' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='311' u='w' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='440' u='w' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='441' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='442' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='509' u='r' c='Curl_pp_disconnect'/>
+<use f='codebrowser/lib/pingpong.c' l='510' u='w' c='Curl_pp_disconnect'/>
+<use f='codebrowser/lib/pingpong.c' l='516' u='r' c='Curl_pp_moredata'/>
+<use f='codebrowser/lib/pop3.c' l='902' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='908' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='914' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='914' u='w' c='pop3_state_command_resp'/>

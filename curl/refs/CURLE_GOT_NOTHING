@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='520' type='52'/>
+<doc f='codebrowser/include/curl/curl.h' l='520'>/* 52 - when this is a specific error */</doc>
+<use f='codebrowser/lib/http.c' l='1482' u='r' c='Curl_http_done'/>
+<use f='codebrowser/lib/strerror.c' l='197' c='curl_easy_strerror'/>

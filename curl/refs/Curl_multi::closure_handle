@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/multihandle.h' l='119' type='struct Curl_easy *'/>
+<offset>2624</offset>
+<doc f='codebrowser/lib/multihandle.h' l='117'>/* This handle will be used for closing the cached connections in
+     curl_multi_cleanup() */</doc>
+<use f='codebrowser/lib/multi.c' l='328' u='w' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='329' u='r' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='332' u='r' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='333' u='r' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='346' u='r' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='347' u='w' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='463' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='464' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='2203' u='r' c='close_all_connections'/>
+<use f='codebrowser/lib/multi.c' l='2252' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2253' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2256' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2257' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2258' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2260' u='r' c='curl_multi_cleanup'/>

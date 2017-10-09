@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='32' type='1'/>
+<doc f='codebrowser/src/tool_cfgable.h' l='32'>/* binary to terminal detected */</doc>
+<use f='codebrowser/src/tool_cb_wrt.c' l='153' u='r' c='tool_write_cb'/>

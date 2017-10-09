@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='194' type='void *'/>
+<offset>768</offset>
+<doc f='codebrowser/include/curl/curl.h' l='194'>/* custom pointer used for
+                                       HTTPPOST_CALLBACK posts */</doc>
+<use f='codebrowser/lib/formdata.c' l='94' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='949' u='r' c='Curl_getformdata'/>

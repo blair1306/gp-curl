@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='426' type='void _ossl_old_des_random_key(unsigned char * ret)'/>

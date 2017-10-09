@@ -1,0 +1,14 @@
+<def f='include/openssl/ocsp.h' l='245' ll='251'/>
+<size>40</size>
+<doc f='include/openssl/ocsp.h' l='238'>/*-  SingleResponse ::= SEQUENCE {
+ *      certID                       CertID,
+ *      certStatus                   CertStatus,
+ *      thisUpdate                   GeneralizedTime,
+ *      nextUpdate           [0]     EXPLICIT GeneralizedTime OPTIONAL,
+ *      singleExtensions     [1]     EXPLICIT Extensions OPTIONAL }
+ */</doc>
+<mbr r='ocsp_single_response_st::certId' o='0' t='OCSP_CERTID *'/>
+<mbr r='ocsp_single_response_st::certStatus' o='64' t='OCSP_CERTSTATUS *'/>
+<mbr r='ocsp_single_response_st::thisUpdate' o='128' t='ASN1_GENERALIZEDTIME *'/>
+<mbr r='ocsp_single_response_st::nextUpdate' o='192' t='ASN1_GENERALIZEDTIME *'/>
+<mbr r='ocsp_single_response_st::singleExtensions' o='256' t='struct stack_st_X509_EXTENSION *'/>

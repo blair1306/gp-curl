@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/ftplistparser.h' l='34' type='CURLcode Curl_ftp_parselist_geterror(struct ftp_parselist_data * pl_data)'/>
+<use f='codebrowser/lib/ftp.c' l='3857' u='c' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3936' u='c' c='wc_statemach'/>
+<def f='codebrowser/lib/ftplistparser.c' l='194' ll='197' type='CURLcode Curl_ftp_parselist_geterror(struct ftp_parselist_data * pl_data)'/>

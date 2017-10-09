@@ -1,0 +1,2 @@
+<dec f='include/openssl/x509v3.h' l='541' macro='1' type='void GENERAL_NAMES_free(GENERAL_NAMES * a)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1429' u='c' c='verifyhost'/>

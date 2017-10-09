@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/urldata.h' l='1290' type='struct auth'/>
+<offset>134208</offset>
+<doc f='codebrowser/lib/urldata.h' l='1290'>/* auth details for proxy */</doc>
+<use f='codebrowser/lib/easy.c' l='994' u='a' c='curl_easy_reset'/>
+<use f='codebrowser/lib/http.c' l='425' u='m' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='427' u='m' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='500' u='a' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='674' u='a' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='751' u='a' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='1424' u='m' c='Curl_http_done'/>
+<use f='codebrowser/lib/http.c' l='1875' u='m' c='Curl_http'/>
+<use f='codebrowser/lib/http_digest.c' l='100' u='a' c='Curl_output_digest'/>
+<use f='codebrowser/lib/http_ntlm.c' l='145' u='a' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_proxy.c' l='355' u='m' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='635' u='m' c='CONNECT'/>
+<use f='codebrowser/lib/transfer.c' l='1353' u='m' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1401' u='m' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1401' u='m' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='1481' u='m' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='3505' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='6880' u='m' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6881' u='m' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6883' u='m' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6884' u='m' c='create_conn'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='429' type='int OCSP_copy_nonce(OCSP_BASICRESP * resp, OCSP_REQUEST * req)'/>

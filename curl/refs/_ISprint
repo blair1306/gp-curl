@@ -1,0 +1,11 @@
+<dec f='include/ctype.h' l='54' type='16384'/>
+<doc f='include/ctype.h' l='54'>/* Printing.  */</doc>
+<use f='codebrowser/lib/curl_fnmatch.c' l='189' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='224' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='240' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='248' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='283' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='335' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='368' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='400' macro='1' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='253' macro='1' u='r'/>

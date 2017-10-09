@@ -1,0 +1,2 @@
+<dec f='include/openssl/x509v3.h' l='701' type='int X509_check_issued(X509 * issuer, X509 * subject)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3119' u='c' c='servercert'/>

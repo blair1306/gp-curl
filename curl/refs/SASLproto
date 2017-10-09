@@ -1,0 +1,10 @@
+<def f='codebrowser/lib/curl_sasl.h' l='86' ll='98'/>
+<size>48</size>
+<doc f='codebrowser/lib/curl_sasl.h' l='85'>/* Protocol dependent SASL parameters */</doc>
+<mbr r='SASLproto::service' o='0' t='const char *'/>
+<mbr r='SASLproto::contcode' o='64' t='int'/>
+<mbr r='SASLproto::finalcode' o='96' t='int'/>
+<mbr r='SASLproto::maxirlen' o='128' t='size_t'/>
+<mbr r='SASLproto::sendauth' o='192' t='CURLcode (*)(struct connectdata *, const char *, const char *)'/>
+<mbr r='SASLproto::sendcont' o='256' t='CURLcode (*)(struct connectdata *, const char *)'/>
+<mbr r='SASLproto::getmessage' o='320' t='void (*)(char *, char **)'/>

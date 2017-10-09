@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='259' type='long'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/urldata.h' l='259'>/* just a number, the higher the more recent */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='350' u='w' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='374' u='w' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='415' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='460' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='461' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='474' u='w' c='Curl_ssl_addsessionid'/>

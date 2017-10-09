@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='2712'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='166' u='c'/>
+<use f='codebrowser/tests/libtest/lib1533.c' l='92' u='c'/>
+<use f='codebrowser/tests/libtest/lib1540.c' l='50' u='c'/>

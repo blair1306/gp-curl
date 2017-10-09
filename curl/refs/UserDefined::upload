@@ -1,0 +1,27 @@
+<dec f='codebrowser/lib/urldata.h' l='1632' type='_Bool'/>
+<offset>11600</offset>
+<use f='codebrowser/lib/file.c' l='257' u='r' c='file_connect'/>
+<use f='codebrowser/lib/file.c' l='451' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='1384' u='r' c='ftp_state_prepare_transfer'/>
+<use f='codebrowser/lib/ftp.c' l='3302' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3626' u='r' c='ftp_do_more'/>
+<use f='codebrowser/lib/ftp.c' l='4289' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/http.c' l='1826' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1988' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='1457' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1460' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1530' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/rtsp.c' l='530' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='548' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/smb.c' l='525' u='r' c='smb_send_open'/>
+<use f='codebrowser/lib/smb.c' l='791' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smtp.c' l='1196' u='r' c='smtp_done'/>
+<use f='codebrowser/lib/smtp.c' l='1286' u='r' c='smtp_perform'/>
+<use f='codebrowser/lib/tftp.c' l='394' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='474' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='508' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='549' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/transfer.c' l='1946' u='r' c='Curl_retry_request'/>
+<use f='codebrowser/lib/url.c' l='830' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='831' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1357' u='w' c='Curl_setopt'/>

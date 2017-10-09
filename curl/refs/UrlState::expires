@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1304' type='struct time_node [10]'/>
+<offset>135488</offset>
+<doc f='codebrowser/lib/urldata.h' l='1304'>/* nodes for each expire type */</doc>
+<use f='codebrowser/lib/multi.c' l='2898' u='a' c='multi_addtimeout'/>

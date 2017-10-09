@@ -1,0 +1,628 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_paramhlp.c source code [codebrowser/src/tool_paramhlp.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_paramhlp.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_paramhlp.c.html'>tool_paramhlp.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../lib/strcase.h.html">"strcase.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/ENABLE_CURLX_PRINTF" data-ref="_M/ENABLE_CURLX_PRINTF">ENABLE_CURLX_PRINTF</dfn></u></td></tr>
+<tr><th id="27">27</th><td><i>/* use our own printf() functions */</i></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="../lib/curlx.h.html">"curlx.h"</a></u></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="tool_cfgable.h.html">"tool_cfgable.h"</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="tool_getparam.h.html">"tool_getparam.h"</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="tool_getpass.h.html">"tool_getpass.h"</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#include <a href="tool_homedir.h.html">"tool_homedir.h"</a></u></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="tool_msgs.h.html">"tool_msgs.h"</a></u></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="tool_paramhlp.h.html">"tool_paramhlp.h"</a></u></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="tool_version.h.html">"tool_version.h"</a></u></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="../lib/memdebug.h.html">"memdebug.h"</a> /* keep this as LAST include */</u></td></tr>
+<tr><th id="39">39</th><td></td></tr>
+<tr><th id="40">40</th><td><b>struct</b> <a class="type" href="tool_sdecls.h.html#getout" title='getout' data-ref="getout">getout</a> *<dfn class="decl def" id="new_getout" title='new_getout' data-ref="new_getout">new_getout</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col1 decl" id="1config" title='config' data-type='struct OperationConfig *' data-ref="1config">config</dfn>)</td></tr>
+<tr><th id="41">41</th><td>{</td></tr>
+<tr><th id="42">42</th><td>  <b>struct</b> <a class="type" href="tool_sdecls.h.html#getout" title='getout' data-ref="getout">getout</a> *<dfn class="local col2 decl" id="2node" title='node' data-type='struct getout *' data-ref="2node">node</dfn> = <a class="ref" href="../../include/stdlib.h.html#calloc" title='calloc' data-ref="calloc">calloc</a>(<var>1</var>, <b>sizeof</b>(<b>struct</b> <a class="type" href="tool_sdecls.h.html#getout" title='getout' data-ref="getout">getout</a>));</td></tr>
+<tr><th id="43">43</th><td>  <b>struct</b> <a class="type" href="tool_sdecls.h.html#getout" title='getout' data-ref="getout">getout</a> *<dfn class="local col3 decl" id="3last" title='last' data-type='struct getout *' data-ref="3last">last</dfn> = <a class="local col1 ref" href="#1config" title='config' data-ref="1config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::url_last" title='OperationConfig::url_last' data-ref="OperationConfig::url_last">url_last</a>;</td></tr>
+<tr><th id="44">44</th><td>  <b>if</b>(<a class="local col2 ref" href="#2node" title='node' data-ref="2node">node</a>) {</td></tr>
+<tr><th id="45">45</th><td>    <i>/* append this new node last in the list */</i></td></tr>
+<tr><th id="46">46</th><td>    <b>if</b>(<a class="local col3 ref" href="#3last" title='last' data-ref="3last">last</a>)</td></tr>
+<tr><th id="47">47</th><td>      <a class="local col3 ref" href="#3last" title='last' data-ref="3last">last</a>-&gt;<a class="ref" href="tool_sdecls.h.html#getout::next" title='getout::next' data-ref="getout::next">next</a> = <a class="local col2 ref" href="#2node" title='node' data-ref="2node">node</a>;</td></tr>
+<tr><th id="48">48</th><td>    <b>else</b></td></tr>
+<tr><th id="49">49</th><td>      <a class="local col1 ref" href="#1config" title='config' data-ref="1config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::url_list" title='OperationConfig::url_list' data-ref="OperationConfig::url_list">url_list</a> = <a class="local col2 ref" href="#2node" title='node' data-ref="2node">node</a>; <i>/* first node */</i></td></tr>
+<tr><th id="50">50</th><td></td></tr>
+<tr><th id="51">51</th><td>    <i>/* move the last pointer */</i></td></tr>
+<tr><th id="52">52</th><td>    <a class="local col1 ref" href="#1config" title='config' data-ref="1config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::url_last" title='OperationConfig::url_last' data-ref="OperationConfig::url_last">url_last</a> = <a class="local col2 ref" href="#2node" title='node' data-ref="2node">node</a>;</td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td>    <a class="local col2 ref" href="#2node" title='node' data-ref="2node">node</a>-&gt;<a class="ref" href="tool_sdecls.h.html#getout::flags" title='getout::flags' data-ref="getout::flags">flags</a> = <a class="local col1 ref" href="#1config" title='config' data-ref="1config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::default_node_flags" title='OperationConfig::default_node_flags' data-ref="OperationConfig::default_node_flags">default_node_flags</a>;</td></tr>
+<tr><th id="55">55</th><td>  }</td></tr>
+<tr><th id="56">56</th><td>  <b>return</b> <a class="local col2 ref" href="#2node" title='node' data-ref="2node">node</a>;</td></tr>
+<tr><th id="57">57</th><td>}</td></tr>
+<tr><th id="58">58</th><td></td></tr>
+<tr><th id="59">59</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl def" id="file2string" title='file2string' data-ref="file2string">file2string</dfn>(<em>char</em> **<dfn class="local col4 decl" id="4bufp" title='bufp' data-type='char **' data-ref="4bufp">bufp</dfn>, <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col5 decl" id="5file" title='file' data-type='FILE *' data-ref="5file">file</dfn>)</td></tr>
+<tr><th id="60">60</th><td>{</td></tr>
+<tr><th id="61">61</th><td>  <em>char</em> <dfn class="local col6 decl" id="6buffer" title='buffer' data-type='char [256]' data-ref="6buffer">buffer</dfn>[<var>256</var>];</td></tr>
+<tr><th id="62">62</th><td>  <em>char</em> *<dfn class="local col7 decl" id="7ptr" title='ptr' data-type='char *' data-ref="7ptr">ptr</dfn>;</td></tr>
+<tr><th id="63">63</th><td>  <em>char</em> *<dfn class="local col8 decl" id="8string" title='string' data-type='char *' data-ref="8string">string</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="64">64</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="9stringlen" title='stringlen' data-type='size_t' data-ref="9stringlen">stringlen</dfn> = <var>0</var>;</td></tr>
+<tr><th id="65">65</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="10buflen" title='buflen' data-type='size_t' data-ref="10buflen">buflen</dfn>;</td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td>  <b>if</b>(<a class="local col5 ref" href="#5file" title='file' data-ref="5file">file</a>) {</td></tr>
+<tr><th id="68">68</th><td>    <b>while</b>(<a class="ref" href="../../include/stdio.h.html#fgets" title='fgets' data-ref="fgets">fgets</a>(<a class="local col6 ref" href="#6buffer" title='buffer' data-ref="6buffer">buffer</a>, <b>sizeof</b>(<a class="local col6 ref" href="#6buffer" title='buffer' data-ref="6buffer">buffer</a>), <a class="local col5 ref" href="#5file" title='file' data-ref="5file">file</a>)) {</td></tr>
+<tr><th id="69">69</th><td>      <a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a> = <a class="ref" href="../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(<a class="local col6 ref" href="#6buffer" title='buffer' data-ref="6buffer">buffer</a>, <kbd>'\r'</kbd>);</td></tr>
+<tr><th id="70">70</th><td>      <b>if</b>(<a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a>)</td></tr>
+<tr><th id="71">71</th><td>        *<a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a> = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="72">72</th><td>      <a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a> = <a class="ref" href="../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(<a class="local col6 ref" href="#6buffer" title='buffer' data-ref="6buffer">buffer</a>, <kbd>'\n'</kbd>);</td></tr>
+<tr><th id="73">73</th><td>      <b>if</b>(<a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a>)</td></tr>
+<tr><th id="74">74</th><td>        *<a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a> = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="75">75</th><td>      <a class="local col0 ref" href="#10buflen" title='buflen' data-ref="10buflen">buflen</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col6 ref" href="#6buffer" title='buffer' data-ref="6buffer">buffer</a>);</td></tr>
+<tr><th id="76">76</th><td>      <a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a> = <a class="ref" href="../../include/stdlib.h.html#realloc" title='realloc' data-ref="realloc">realloc</a>(<a class="local col8 ref" href="#8string" title='string' data-ref="8string">string</a>, <a class="local col9 ref" href="#9stringlen" title='stringlen' data-ref="9stringlen">stringlen</a> + <a class="local col0 ref" href="#10buflen" title='buflen' data-ref="10buflen">buflen</a> + <var>1</var>);</td></tr>
+<tr><th id="77">77</th><td>      <b>if</b>(!<a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a>) {</td></tr>
+<tr><th id="78">78</th><td>        <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((string)); (string) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col8 ref" href="#8string" title='string' data-ref="8string">string</a>);</td></tr>
+<tr><th id="79">79</th><td>        <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NO_MEM" title='PARAM_NO_MEM' data-ref="PARAM_NO_MEM">PARAM_NO_MEM</a>;</td></tr>
+<tr><th id="80">80</th><td>      }</td></tr>
+<tr><th id="81">81</th><td>      <a class="local col8 ref" href="#8string" title='string' data-ref="8string">string</a> = <a class="local col7 ref" href="#7ptr" title='ptr' data-ref="7ptr">ptr</a>;</td></tr>
+<tr><th id="82">82</th><td>      <a class="ref" href="../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col8 ref" href="#8string" title='string' data-ref="8string">string</a> + <a class="local col9 ref" href="#9stringlen" title='stringlen' data-ref="9stringlen">stringlen</a>, <a class="local col6 ref" href="#6buffer" title='buffer' data-ref="6buffer">buffer</a>);</td></tr>
+<tr><th id="83">83</th><td>      <a class="local col9 ref" href="#9stringlen" title='stringlen' data-ref="9stringlen">stringlen</a> += <a class="local col0 ref" href="#10buflen" title='buflen' data-ref="10buflen">buflen</a>;</td></tr>
+<tr><th id="84">84</th><td>    }</td></tr>
+<tr><th id="85">85</th><td>  }</td></tr>
+<tr><th id="86">86</th><td>  *<a class="local col4 ref" href="#4bufp" title='bufp' data-ref="4bufp">bufp</a> = <a class="local col8 ref" href="#8string" title='string' data-ref="8string">string</a>;</td></tr>
+<tr><th id="87">87</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;</td></tr>
+<tr><th id="88">88</th><td>}</td></tr>
+<tr><th id="89">89</th><td></td></tr>
+<tr><th id="90">90</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl def" id="file2memory" title='file2memory' data-ref="file2memory">file2memory</dfn>(<em>char</em> **<dfn class="local col1 decl" id="11bufp" title='bufp' data-type='char **' data-ref="11bufp">bufp</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col2 decl" id="12size" title='size' data-type='size_t *' data-ref="12size">size</dfn>, <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col3 decl" id="13file" title='file' data-type='FILE *' data-ref="13file">file</dfn>)</td></tr>
+<tr><th id="91">91</th><td>{</td></tr>
+<tr><th id="92">92</th><td>  <em>char</em> *<dfn class="local col4 decl" id="14newbuf" title='newbuf' data-type='char *' data-ref="14newbuf">newbuf</dfn>;</td></tr>
+<tr><th id="93">93</th><td>  <em>char</em> *<dfn class="local col5 decl" id="15buffer" title='buffer' data-type='char *' data-ref="15buffer">buffer</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="94">94</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="16alloc" title='alloc' data-type='size_t' data-ref="16alloc">alloc</dfn> = <var>512</var>;</td></tr>
+<tr><th id="95">95</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="17nused" title='nused' data-type='size_t' data-ref="17nused">nused</dfn> = <var>0</var>;</td></tr>
+<tr><th id="96">96</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="18nread" title='nread' data-type='size_t' data-ref="18nread">nread</dfn>;</td></tr>
+<tr><th id="97">97</th><td></td></tr>
+<tr><th id="98">98</th><td>  <b>if</b>(<a class="local col3 ref" href="#13file" title='file' data-ref="13file">file</a>) {</td></tr>
+<tr><th id="99">99</th><td>    <b>do</b> {</td></tr>
+<tr><th id="100">100</th><td>      <b>if</b>(!<a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a> || (<a class="local col6 ref" href="#16alloc" title='alloc' data-ref="16alloc">alloc</a> == <a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a>)) {</td></tr>
+<tr><th id="101">101</th><td>        <i>/* size_t overflow detection for huge files */</i></td></tr>
+<tr><th id="102">102</th><td>        <b>if</b>(<a class="local col6 ref" href="#16alloc" title='alloc' data-ref="16alloc">alloc</a> + <var>1</var> &gt; ((<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)-<var>1</var>)/<var>2</var>) {</td></tr>
+<tr><th id="103">103</th><td>          <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((buffer)); (buffer) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a>);</td></tr>
+<tr><th id="104">104</th><td>          <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NO_MEM" title='PARAM_NO_MEM' data-ref="PARAM_NO_MEM">PARAM_NO_MEM</a>;</td></tr>
+<tr><th id="105">105</th><td>        }</td></tr>
+<tr><th id="106">106</th><td>        <a class="local col6 ref" href="#16alloc" title='alloc' data-ref="16alloc">alloc</a> *= <var>2</var>;</td></tr>
+<tr><th id="107">107</th><td>        <i>/* allocate an extra char, reserved space, for null termination */</i></td></tr>
+<tr><th id="108">108</th><td>        <a class="local col4 ref" href="#14newbuf" title='newbuf' data-ref="14newbuf">newbuf</a> = <a class="ref" href="../../include/stdlib.h.html#realloc" title='realloc' data-ref="realloc">realloc</a>(<a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a>, <a class="local col6 ref" href="#16alloc" title='alloc' data-ref="16alloc">alloc</a> + <var>1</var>);</td></tr>
+<tr><th id="109">109</th><td>        <b>if</b>(!<a class="local col4 ref" href="#14newbuf" title='newbuf' data-ref="14newbuf">newbuf</a>) {</td></tr>
+<tr><th id="110">110</th><td>          <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((buffer)); (buffer) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a>);</td></tr>
+<tr><th id="111">111</th><td>          <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NO_MEM" title='PARAM_NO_MEM' data-ref="PARAM_NO_MEM">PARAM_NO_MEM</a>;</td></tr>
+<tr><th id="112">112</th><td>        }</td></tr>
+<tr><th id="113">113</th><td>        <a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a> = <a class="local col4 ref" href="#14newbuf" title='newbuf' data-ref="14newbuf">newbuf</a>;</td></tr>
+<tr><th id="114">114</th><td>      }</td></tr>
+<tr><th id="115">115</th><td>      <a class="local col8 ref" href="#18nread" title='nread' data-ref="18nread">nread</a> = <a class="ref" href="../../include/stdio.h.html#fread" title='fread' data-ref="fread">fread</a>(<a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a> + <a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a>, <var>1</var>, <a class="local col6 ref" href="#16alloc" title='alloc' data-ref="16alloc">alloc</a>-<a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a>, <a class="local col3 ref" href="#13file" title='file' data-ref="13file">file</a>);</td></tr>
+<tr><th id="116">116</th><td>      <a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a> += <a class="local col8 ref" href="#18nread" title='nread' data-ref="18nread">nread</a>;</td></tr>
+<tr><th id="117">117</th><td>    } <b>while</b>(<a class="local col8 ref" href="#18nread" title='nread' data-ref="18nread">nread</a>);</td></tr>
+<tr><th id="118">118</th><td>    <i>/* null terminate the buffer in case it's used as a string later */</i></td></tr>
+<tr><th id="119">119</th><td>    <a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a>[<a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="120">120</th><td>    <i>/* free trailing slack space, if possible */</i></td></tr>
+<tr><th id="121">121</th><td>    <b>if</b>(<a class="local col6 ref" href="#16alloc" title='alloc' data-ref="16alloc">alloc</a> != <a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a>) {</td></tr>
+<tr><th id="122">122</th><td>      <a class="local col4 ref" href="#14newbuf" title='newbuf' data-ref="14newbuf">newbuf</a> = <a class="ref" href="../../include/stdlib.h.html#realloc" title='realloc' data-ref="realloc">realloc</a>(<a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a>, <a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a> + <var>1</var>);</td></tr>
+<tr><th id="123">123</th><td>      <b>if</b>(!<a class="local col4 ref" href="#14newbuf" title='newbuf' data-ref="14newbuf">newbuf</a>) {</td></tr>
+<tr><th id="124">124</th><td>        <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((buffer)); (buffer) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a>);</td></tr>
+<tr><th id="125">125</th><td>        <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NO_MEM" title='PARAM_NO_MEM' data-ref="PARAM_NO_MEM">PARAM_NO_MEM</a>;</td></tr>
+<tr><th id="126">126</th><td>      }</td></tr>
+<tr><th id="127">127</th><td>      <a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a> = <a class="local col4 ref" href="#14newbuf" title='newbuf' data-ref="14newbuf">newbuf</a>;</td></tr>
+<tr><th id="128">128</th><td>    }</td></tr>
+<tr><th id="129">129</th><td>    <i>/* discard buffer if nothing was read */</i></td></tr>
+<tr><th id="130">130</th><td>    <b>if</b>(!<a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a>) {</td></tr>
+<tr><th id="131">131</th><td>      <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((buffer)); (buffer) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a>); <i>/* no string */</i></td></tr>
+<tr><th id="132">132</th><td>    }</td></tr>
+<tr><th id="133">133</th><td>  }</td></tr>
+<tr><th id="134">134</th><td>  *<a class="local col2 ref" href="#12size" title='size' data-ref="12size">size</a> = <a class="local col7 ref" href="#17nused" title='nused' data-ref="17nused">nused</a>;</td></tr>
+<tr><th id="135">135</th><td>  *<a class="local col1 ref" href="#11bufp" title='bufp' data-ref="11bufp">bufp</a> = <a class="local col5 ref" href="#15buffer" title='buffer' data-ref="15buffer">buffer</a>;</td></tr>
+<tr><th id="136">136</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;</td></tr>
+<tr><th id="137">137</th><td>}</td></tr>
+<tr><th id="138">138</th><td></td></tr>
+<tr><th id="139">139</th><td><em>void</em> <dfn class="decl def" id="cleanarg" title='cleanarg' data-ref="cleanarg">cleanarg</dfn>(<em>char</em> *<dfn class="local col9 decl" id="19str" title='str' data-type='char *' data-ref="19str">str</dfn>)</td></tr>
+<tr><th id="140">140</th><td>{</td></tr>
+<tr><th id="141">141</th><td><u>#<span data-ppcond="141">ifdef</span> <span class="macro" data-ref="_M/HAVE_WRITABLE_ARGV">HAVE_WRITABLE_ARGV</span></u></td></tr>
+<tr><th id="142">142</th><td>  <i>/* now that GetStr has copied the contents of nextarg, wipe the next</i></td></tr>
+<tr><th id="143">143</th><td><i>   * argument out so that the username:password isn't displayed in the</i></td></tr>
+<tr><th id="144">144</th><td><i>   * system process list */</i></td></tr>
+<tr><th id="145">145</th><td>  <b>if</b>(str) {</td></tr>
+<tr><th id="146">146</th><td>    size_t len = strlen(str);</td></tr>
+<tr><th id="147">147</th><td>    memset(str, <kbd>' '</kbd>, len);</td></tr>
+<tr><th id="148">148</th><td>  }</td></tr>
+<tr><th id="149">149</th><td><u>#<span data-ppcond="141">else</span></u></td></tr>
+<tr><th id="150">150</th><td>  (<em>void</em>)<a class="local col9 ref" href="#19str" title='str' data-ref="19str">str</a>;</td></tr>
+<tr><th id="151">151</th><td><u>#<span data-ppcond="141">endif</span></u></td></tr>
+<tr><th id="152">152</th><td>}</td></tr>
+<tr><th id="153">153</th><td></td></tr>
+<tr><th id="154">154</th><td><i>/*</i></td></tr>
+<tr><th id="155">155</th><td><i> * Parse the string and write the long in the given address. Return PARAM_OK</i></td></tr>
+<tr><th id="156">156</th><td><i> * on success, otherwise a parameter specific error enum.</i></td></tr>
+<tr><th id="157">157</th><td><i> *</i></td></tr>
+<tr><th id="158">158</th><td><i> * Since this function gets called with the 'nextarg' pointer from within the</i></td></tr>
+<tr><th id="159">159</th><td><i> * getparameter a lot, we must check it for NULL before accessing the str</i></td></tr>
+<tr><th id="160">160</th><td><i> * data.</i></td></tr>
+<tr><th id="161">161</th><td><i> */</i></td></tr>
+<tr><th id="162">162</th><td></td></tr>
+<tr><th id="163">163</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl def" id="str2num" title='str2num' data-ref="str2num">str2num</dfn>(<em>long</em> *<dfn class="local col0 decl" id="20val" title='val' data-type='long *' data-ref="20val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="21str" title='str' data-type='const char *' data-ref="21str">str</dfn>)</td></tr>
+<tr><th id="164">164</th><td>{</td></tr>
+<tr><th id="165">165</th><td>  <b>if</b>(<a class="local col1 ref" href="#21str" title='str' data-ref="21str">str</a>) {</td></tr>
+<tr><th id="166">166</th><td>    <em>char</em> *<dfn class="local col2 decl" id="22endptr" title='endptr' data-type='char *' data-ref="22endptr">endptr</dfn>;</td></tr>
+<tr><th id="167">167</th><td>    <em>long</em> <dfn class="local col3 decl" id="23num" title='num' data-type='long' data-ref="23num">num</dfn>;</td></tr>
+<tr><th id="168">168</th><td>    <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <var>0</var>;</td></tr>
+<tr><th id="169">169</th><td>    <a class="local col3 ref" href="#23num" title='num' data-ref="23num">num</a> = <a class="ref" href="../../include/stdlib.h.html#strtol" title='strtol' data-ref="strtol">strtol</a>(<a class="local col1 ref" href="#21str" title='str' data-ref="21str">str</a>, &amp;<a class="local col2 ref" href="#22endptr" title='endptr' data-ref="22endptr">endptr</a>, <var>10</var>);</td></tr>
+<tr><th id="170">170</th><td>    <b>if</b>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> == <a class="macro" href="../../include/asm-generic/errno-base.h.html#37" title="34" data-ref="_M/ERANGE">ERANGE</a>)</td></tr>
+<tr><th id="171">171</th><td>      <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NUMBER_TOO_LARGE" title='PARAM_NUMBER_TOO_LARGE' data-ref="PARAM_NUMBER_TOO_LARGE">PARAM_NUMBER_TOO_LARGE</a>;</td></tr>
+<tr><th id="172">172</th><td>    <b>if</b>((<a class="local col2 ref" href="#22endptr" title='endptr' data-ref="22endptr">endptr</a> != <a class="local col1 ref" href="#21str" title='str' data-ref="21str">str</a>) &amp;&amp; (<a class="local col2 ref" href="#22endptr" title='endptr' data-ref="22endptr">endptr</a> == <a class="local col1 ref" href="#21str" title='str' data-ref="21str">str</a> + <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col1 ref" href="#21str" title='str' data-ref="21str">str</a>))) {</td></tr>
+<tr><th id="173">173</th><td>      *<a class="local col0 ref" href="#20val" title='val' data-ref="20val">val</a> = <a class="local col3 ref" href="#23num" title='num' data-ref="23num">num</a>;</td></tr>
+<tr><th id="174">174</th><td>      <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;  <i>/* Ok */</i></td></tr>
+<tr><th id="175">175</th><td>    }</td></tr>
+<tr><th id="176">176</th><td>  }</td></tr>
+<tr><th id="177">177</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_BAD_NUMERIC" title='PARAM_BAD_NUMERIC' data-ref="PARAM_BAD_NUMERIC">PARAM_BAD_NUMERIC</a>; <i>/* badness */</i></td></tr>
+<tr><th id="178">178</th><td>}</td></tr>
+<tr><th id="179">179</th><td></td></tr>
+<tr><th id="180">180</th><td><i>/*</i></td></tr>
+<tr><th id="181">181</th><td><i> * Parse the string and write the long in the given address. Return PARAM_OK</i></td></tr>
+<tr><th id="182">182</th><td><i> * on success, otherwise a parameter error enum. ONLY ACCEPTS POSITIVE NUMBERS!</i></td></tr>
+<tr><th id="183">183</th><td><i> *</i></td></tr>
+<tr><th id="184">184</th><td><i> * Since this function gets called with the 'nextarg' pointer from within the</i></td></tr>
+<tr><th id="185">185</th><td><i> * getparameter a lot, we must check it for NULL before accessing the str</i></td></tr>
+<tr><th id="186">186</th><td><i> * data.</i></td></tr>
+<tr><th id="187">187</th><td><i> */</i></td></tr>
+<tr><th id="188">188</th><td></td></tr>
+<tr><th id="189">189</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl def" id="str2unum" title='str2unum' data-ref="str2unum">str2unum</dfn>(<em>long</em> *<dfn class="local col4 decl" id="24val" title='val' data-type='long *' data-ref="24val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="25str" title='str' data-type='const char *' data-ref="25str">str</dfn>)</td></tr>
+<tr><th id="190">190</th><td>{</td></tr>
+<tr><th id="191">191</th><td>  <a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="local col6 decl" id="26result" title='result' data-type='ParameterError' data-ref="26result">result</dfn> = <a class="ref" href="#str2num" title='str2num' data-ref="str2num">str2num</a>(<a class="local col4 ref" href="#24val" title='val' data-ref="24val">val</a>, <a class="local col5 ref" href="#25str" title='str' data-ref="25str">str</a>);</td></tr>
+<tr><th id="192">192</th><td>  <b>if</b>(<a class="local col6 ref" href="#26result" title='result' data-ref="26result">result</a> != <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>)</td></tr>
+<tr><th id="193">193</th><td>    <b>return</b> <a class="local col6 ref" href="#26result" title='result' data-ref="26result">result</a>;</td></tr>
+<tr><th id="194">194</th><td>  <b>if</b>(*<a class="local col4 ref" href="#24val" title='val' data-ref="24val">val</a> &lt; <var>0</var>)</td></tr>
+<tr><th id="195">195</th><td>    <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NEGATIVE_NUMERIC" title='PARAM_NEGATIVE_NUMERIC' data-ref="PARAM_NEGATIVE_NUMERIC">PARAM_NEGATIVE_NUMERIC</a>;</td></tr>
+<tr><th id="196">196</th><td></td></tr>
+<tr><th id="197">197</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;</td></tr>
+<tr><th id="198">198</th><td>}</td></tr>
+<tr><th id="199">199</th><td></td></tr>
+<tr><th id="200">200</th><td><i  data-doc="str2double">/*</i></td></tr>
+<tr><th id="201">201</th><td><i  data-doc="str2double"> * Parse the string and write the double in the given address. Return PARAM_OK</i></td></tr>
+<tr><th id="202">202</th><td><i  data-doc="str2double"> * on success, otherwise a parameter specific error enum.</i></td></tr>
+<tr><th id="203">203</th><td><i  data-doc="str2double"> *</i></td></tr>
+<tr><th id="204">204</th><td><i  data-doc="str2double"> * The 'max' argument is the maximum value allowed, as the numbers are often</i></td></tr>
+<tr><th id="205">205</th><td><i  data-doc="str2double"> * multiplied when later used.</i></td></tr>
+<tr><th id="206">206</th><td><i  data-doc="str2double"> *</i></td></tr>
+<tr><th id="207">207</th><td><i  data-doc="str2double"> * Since this function gets called with the 'nextarg' pointer from within the</i></td></tr>
+<tr><th id="208">208</th><td><i  data-doc="str2double"> * getparameter a lot, we must check it for NULL before accessing the str</i></td></tr>
+<tr><th id="209">209</th><td><i  data-doc="str2double"> * data.</i></td></tr>
+<tr><th id="210">210</th><td><i  data-doc="str2double"> */</i></td></tr>
+<tr><th id="211">211</th><td></td></tr>
+<tr><th id="212">212</th><td><em>static</em> <a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="tu decl def" id="str2double" title='str2double' data-type='ParameterError str2double(double * val, const char * str, long max)' data-ref="str2double">str2double</dfn>(<em>double</em> *<dfn class="local col7 decl" id="27val" title='val' data-type='double *' data-ref="27val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="28str" title='str' data-type='const char *' data-ref="28str">str</dfn>, <em>long</em> <dfn class="local col9 decl" id="29max" title='max' data-type='long' data-ref="29max">max</dfn>)</td></tr>
+<tr><th id="213">213</th><td>{</td></tr>
+<tr><th id="214">214</th><td>  <b>if</b>(<a class="local col8 ref" href="#28str" title='str' data-ref="28str">str</a>) {</td></tr>
+<tr><th id="215">215</th><td>    <em>char</em> *<dfn class="local col0 decl" id="30endptr" title='endptr' data-type='char *' data-ref="30endptr">endptr</dfn>;</td></tr>
+<tr><th id="216">216</th><td>    <em>double</em> <dfn class="local col1 decl" id="31num" title='num' data-type='double' data-ref="31num">num</dfn>;</td></tr>
+<tr><th id="217">217</th><td>    <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <var>0</var>;</td></tr>
+<tr><th id="218">218</th><td>    <a class="local col1 ref" href="#31num" title='num' data-ref="31num">num</a> = <a class="ref" href="../../include/stdlib.h.html#strtod" title='strtod' data-ref="strtod">strtod</a>(<a class="local col8 ref" href="#28str" title='str' data-ref="28str">str</a>, &amp;<a class="local col0 ref" href="#30endptr" title='endptr' data-ref="30endptr">endptr</a>);</td></tr>
+<tr><th id="219">219</th><td>    <b>if</b>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> == <a class="macro" href="../../include/asm-generic/errno-base.h.html#37" title="34" data-ref="_M/ERANGE">ERANGE</a>)</td></tr>
+<tr><th id="220">220</th><td>      <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NUMBER_TOO_LARGE" title='PARAM_NUMBER_TOO_LARGE' data-ref="PARAM_NUMBER_TOO_LARGE">PARAM_NUMBER_TOO_LARGE</a>;</td></tr>
+<tr><th id="221">221</th><td>    <b>if</b>(<a class="local col1 ref" href="#31num" title='num' data-ref="31num">num</a> &gt; <a class="local col9 ref" href="#29max" title='max' data-ref="29max">max</a>) {</td></tr>
+<tr><th id="222">222</th><td>      <i>/* too large */</i></td></tr>
+<tr><th id="223">223</th><td>      <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NUMBER_TOO_LARGE" title='PARAM_NUMBER_TOO_LARGE' data-ref="PARAM_NUMBER_TOO_LARGE">PARAM_NUMBER_TOO_LARGE</a>;</td></tr>
+<tr><th id="224">224</th><td>    }</td></tr>
+<tr><th id="225">225</th><td>    <b>if</b>((<a class="local col0 ref" href="#30endptr" title='endptr' data-ref="30endptr">endptr</a> != <a class="local col8 ref" href="#28str" title='str' data-ref="28str">str</a>) &amp;&amp; (<a class="local col0 ref" href="#30endptr" title='endptr' data-ref="30endptr">endptr</a> == <a class="local col8 ref" href="#28str" title='str' data-ref="28str">str</a> + <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col8 ref" href="#28str" title='str' data-ref="28str">str</a>))) {</td></tr>
+<tr><th id="226">226</th><td>      *<a class="local col7 ref" href="#27val" title='val' data-ref="27val">val</a> = <a class="local col1 ref" href="#31num" title='num' data-ref="31num">num</a>;</td></tr>
+<tr><th id="227">227</th><td>      <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;  <i>/* Ok */</i></td></tr>
+<tr><th id="228">228</th><td>    }</td></tr>
+<tr><th id="229">229</th><td>  }</td></tr>
+<tr><th id="230">230</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_BAD_NUMERIC" title='PARAM_BAD_NUMERIC' data-ref="PARAM_BAD_NUMERIC">PARAM_BAD_NUMERIC</a>; <i>/* badness */</i></td></tr>
+<tr><th id="231">231</th><td>}</td></tr>
+<tr><th id="232">232</th><td></td></tr>
+<tr><th id="233">233</th><td><i>/*</i></td></tr>
+<tr><th id="234">234</th><td><i> * Parse the string and write the double in the given address. Return PARAM_OK</i></td></tr>
+<tr><th id="235">235</th><td><i> * on success, otherwise a parameter error enum. ONLY ACCEPTS POSITIVE NUMBERS!</i></td></tr>
+<tr><th id="236">236</th><td><i> *</i></td></tr>
+<tr><th id="237">237</th><td><i> * The 'max' argument is the maximum value allowed, as the numbers are often</i></td></tr>
+<tr><th id="238">238</th><td><i> * multiplied when later used.</i></td></tr>
+<tr><th id="239">239</th><td><i> *</i></td></tr>
+<tr><th id="240">240</th><td><i> * Since this function gets called with the 'nextarg' pointer from within the</i></td></tr>
+<tr><th id="241">241</th><td><i> * getparameter a lot, we must check it for NULL before accessing the str</i></td></tr>
+<tr><th id="242">242</th><td><i> * data.</i></td></tr>
+<tr><th id="243">243</th><td><i> */</i></td></tr>
+<tr><th id="244">244</th><td></td></tr>
+<tr><th id="245">245</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl def" id="str2udouble" title='str2udouble' data-ref="str2udouble">str2udouble</dfn>(<em>double</em> *<dfn class="local col2 decl" id="32valp" title='valp' data-type='double *' data-ref="32valp">valp</dfn>, <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="33str" title='str' data-type='const char *' data-ref="33str">str</dfn>, <em>long</em> <dfn class="local col4 decl" id="34max" title='max' data-type='long' data-ref="34max">max</dfn>)</td></tr>
+<tr><th id="246">246</th><td>{</td></tr>
+<tr><th id="247">247</th><td>  <em>double</em> <dfn class="local col5 decl" id="35value" title='value' data-type='double' data-ref="35value">value</dfn>;</td></tr>
+<tr><th id="248">248</th><td>  <a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="local col6 decl" id="36result" title='result' data-type='ParameterError' data-ref="36result">result</dfn> = <a class="tu ref" href="#str2double" title='str2double' data-use='c' data-ref="str2double">str2double</a>(&amp;<a class="local col5 ref" href="#35value" title='value' data-ref="35value">value</a>, <a class="local col3 ref" href="#33str" title='str' data-ref="33str">str</a>, <a class="local col4 ref" href="#34max" title='max' data-ref="34max">max</a>);</td></tr>
+<tr><th id="249">249</th><td>  <b>if</b>(<a class="local col6 ref" href="#36result" title='result' data-ref="36result">result</a> != <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>)</td></tr>
+<tr><th id="250">250</th><td>    <b>return</b> <a class="local col6 ref" href="#36result" title='result' data-ref="36result">result</a>;</td></tr>
+<tr><th id="251">251</th><td>  <b>if</b>(<a class="local col5 ref" href="#35value" title='value' data-ref="35value">value</a> &lt; <var>0</var>)</td></tr>
+<tr><th id="252">252</th><td>    <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NEGATIVE_NUMERIC" title='PARAM_NEGATIVE_NUMERIC' data-ref="PARAM_NEGATIVE_NUMERIC">PARAM_NEGATIVE_NUMERIC</a>;</td></tr>
+<tr><th id="253">253</th><td></td></tr>
+<tr><th id="254">254</th><td>  *<a class="local col2 ref" href="#32valp" title='valp' data-ref="32valp">valp</a> = <a class="local col5 ref" href="#35value" title='value' data-ref="35value">value</a>;</td></tr>
+<tr><th id="255">255</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;</td></tr>
+<tr><th id="256">256</th><td>}</td></tr>
+<tr><th id="257">257</th><td></td></tr>
+<tr><th id="258">258</th><td><i>/*</i></td></tr>
+<tr><th id="259">259</th><td><i> * Parse the string and modify the long in the given address. Return</i></td></tr>
+<tr><th id="260">260</th><td><i> * non-zero on failure, zero on success.</i></td></tr>
+<tr><th id="261">261</th><td><i> *</i></td></tr>
+<tr><th id="262">262</th><td><i> * The string is a list of protocols</i></td></tr>
+<tr><th id="263">263</th><td><i> *</i></td></tr>
+<tr><th id="264">264</th><td><i> * Since this function gets called with the 'nextarg' pointer from within the</i></td></tr>
+<tr><th id="265">265</th><td><i> * getparameter a lot, we must check it for NULL before accessing the str</i></td></tr>
+<tr><th id="266">266</th><td><i> * data.</i></td></tr>
+<tr><th id="267">267</th><td><i> */</i></td></tr>
+<tr><th id="268">268</th><td></td></tr>
+<tr><th id="269">269</th><td><em>long</em> <dfn class="decl def" id="proto2num" title='proto2num' data-ref="proto2num">proto2num</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col7 decl" id="37config" title='config' data-type='struct OperationConfig *' data-ref="37config">config</dfn>, <em>long</em> *<dfn class="local col8 decl" id="38val" title='val' data-type='long *' data-ref="38val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="39str" title='str' data-type='const char *' data-ref="39str">str</dfn>)</td></tr>
+<tr><th id="270">270</th><td>{</td></tr>
+<tr><th id="271">271</th><td>  <em>char</em> *<dfn class="local col0 decl" id="40buffer" title='buffer' data-type='char *' data-ref="40buffer">buffer</dfn>;</td></tr>
+<tr><th id="272">272</th><td>  <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="41sep" title='sep' data-type='const char *' data-ref="41sep">sep</dfn> = <q>","</q>;</td></tr>
+<tr><th id="273">273</th><td>  <em>char</em> *<dfn class="local col2 decl" id="42token" title='token' data-type='char *' data-ref="42token">token</dfn>;</td></tr>
+<tr><th id="274">274</th><td></td></tr>
+<tr><th id="275">275</th><td>  <em>static</em> <b>struct</b> <dfn class="local col3 type" id="43sprotos" title='sprotos' data-ref="43sprotos"><a class="local col3 type" href="#43sprotos" title='sprotos' data-ref="43sprotos">sprotos</a></dfn> {</td></tr>
+<tr><th id="276">276</th><td>    <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="44name" title='name' data-type='const char *' data-ref="44name">name</dfn>;</td></tr>
+<tr><th id="277">277</th><td>    <em>long</em> <dfn class="local col5 decl" id="45bit" title='bit' data-type='long' data-ref="45bit">bit</dfn>;</td></tr>
+<tr><th id="278">278</th><td>  } <em>const</em> <dfn class="local col6 decl" id="46protos" title='protos' data-type='const struct sprotos [24]' data-ref="46protos">protos</dfn>[] = {</td></tr>
+<tr><th id="279">279</th><td>    { <q>"all"</q>, <a class="macro" href="../include/curl/curl.h.html#872" title="(~0)" data-ref="_M/CURLPROTO_ALL">CURLPROTO_ALL</a> },</td></tr>
+<tr><th id="280">280</th><td>    { <q>"http"</q>, <a class="macro" href="../include/curl/curl.h.html#844" title="(1&lt;&lt;0)" data-ref="_M/CURLPROTO_HTTP">CURLPROTO_HTTP</a> },</td></tr>
+<tr><th id="281">281</th><td>    { <q>"https"</q>, <a class="macro" href="../include/curl/curl.h.html#845" title="(1&lt;&lt;1)" data-ref="_M/CURLPROTO_HTTPS">CURLPROTO_HTTPS</a> },</td></tr>
+<tr><th id="282">282</th><td>    { <q>"ftp"</q>, <a class="macro" href="../include/curl/curl.h.html#846" title="(1&lt;&lt;2)" data-ref="_M/CURLPROTO_FTP">CURLPROTO_FTP</a> },</td></tr>
+<tr><th id="283">283</th><td>    { <q>"ftps"</q>, <a class="macro" href="../include/curl/curl.h.html#847" title="(1&lt;&lt;3)" data-ref="_M/CURLPROTO_FTPS">CURLPROTO_FTPS</a> },</td></tr>
+<tr><th id="284">284</th><td>    { <q>"scp"</q>, <a class="macro" href="../include/curl/curl.h.html#848" title="(1&lt;&lt;4)" data-ref="_M/CURLPROTO_SCP">CURLPROTO_SCP</a> },</td></tr>
+<tr><th id="285">285</th><td>    { <q>"sftp"</q>, <a class="macro" href="../include/curl/curl.h.html#849" title="(1&lt;&lt;5)" data-ref="_M/CURLPROTO_SFTP">CURLPROTO_SFTP</a> },</td></tr>
+<tr><th id="286">286</th><td>    { <q>"telnet"</q>, <a class="macro" href="../include/curl/curl.h.html#850" title="(1&lt;&lt;6)" data-ref="_M/CURLPROTO_TELNET">CURLPROTO_TELNET</a> },</td></tr>
+<tr><th id="287">287</th><td>    { <q>"ldap"</q>, <a class="macro" href="../include/curl/curl.h.html#851" title="(1&lt;&lt;7)" data-ref="_M/CURLPROTO_LDAP">CURLPROTO_LDAP</a> },</td></tr>
+<tr><th id="288">288</th><td>    { <q>"ldaps"</q>, <a class="macro" href="../include/curl/curl.h.html#852" title="(1&lt;&lt;8)" data-ref="_M/CURLPROTO_LDAPS">CURLPROTO_LDAPS</a> },</td></tr>
+<tr><th id="289">289</th><td>    { <q>"dict"</q>, <a class="macro" href="../include/curl/curl.h.html#853" title="(1&lt;&lt;9)" data-ref="_M/CURLPROTO_DICT">CURLPROTO_DICT</a> },</td></tr>
+<tr><th id="290">290</th><td>    { <q>"file"</q>, <a class="macro" href="../include/curl/curl.h.html#854" title="(1&lt;&lt;10)" data-ref="_M/CURLPROTO_FILE">CURLPROTO_FILE</a> },</td></tr>
+<tr><th id="291">291</th><td>    { <q>"tftp"</q>, <a class="macro" href="../include/curl/curl.h.html#855" title="(1&lt;&lt;11)" data-ref="_M/CURLPROTO_TFTP">CURLPROTO_TFTP</a> },</td></tr>
+<tr><th id="292">292</th><td>    { <q>"imap"</q>, <a class="macro" href="../include/curl/curl.h.html#856" title="(1&lt;&lt;12)" data-ref="_M/CURLPROTO_IMAP">CURLPROTO_IMAP</a> },</td></tr>
+<tr><th id="293">293</th><td>    { <q>"imaps"</q>, <a class="macro" href="../include/curl/curl.h.html#857" title="(1&lt;&lt;13)" data-ref="_M/CURLPROTO_IMAPS">CURLPROTO_IMAPS</a> },</td></tr>
+<tr><th id="294">294</th><td>    { <q>"pop3"</q>, <a class="macro" href="../include/curl/curl.h.html#858" title="(1&lt;&lt;14)" data-ref="_M/CURLPROTO_POP3">CURLPROTO_POP3</a> },</td></tr>
+<tr><th id="295">295</th><td>    { <q>"pop3s"</q>, <a class="macro" href="../include/curl/curl.h.html#859" title="(1&lt;&lt;15)" data-ref="_M/CURLPROTO_POP3S">CURLPROTO_POP3S</a> },</td></tr>
+<tr><th id="296">296</th><td>    { <q>"smtp"</q>, <a class="macro" href="../include/curl/curl.h.html#860" title="(1&lt;&lt;16)" data-ref="_M/CURLPROTO_SMTP">CURLPROTO_SMTP</a> },</td></tr>
+<tr><th id="297">297</th><td>    { <q>"smtps"</q>, <a class="macro" href="../include/curl/curl.h.html#861" title="(1&lt;&lt;17)" data-ref="_M/CURLPROTO_SMTPS">CURLPROTO_SMTPS</a> },</td></tr>
+<tr><th id="298">298</th><td>    { <q>"rtsp"</q>, <a class="macro" href="../include/curl/curl.h.html#862" title="(1&lt;&lt;18)" data-ref="_M/CURLPROTO_RTSP">CURLPROTO_RTSP</a> },</td></tr>
+<tr><th id="299">299</th><td>    { <q>"gopher"</q>, <a class="macro" href="../include/curl/curl.h.html#869" title="(1&lt;&lt;25)" data-ref="_M/CURLPROTO_GOPHER">CURLPROTO_GOPHER</a> },</td></tr>
+<tr><th id="300">300</th><td>    { <q>"smb"</q>, <a class="macro" href="../include/curl/curl.h.html#870" title="(1&lt;&lt;26)" data-ref="_M/CURLPROTO_SMB">CURLPROTO_SMB</a> },</td></tr>
+<tr><th id="301">301</th><td>    { <q>"smbs"</q>, <a class="macro" href="../include/curl/curl.h.html#871" title="(1&lt;&lt;27)" data-ref="_M/CURLPROTO_SMBS">CURLPROTO_SMBS</a> },</td></tr>
+<tr><th id="302">302</th><td>    { <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>0</var> }</td></tr>
+<tr><th id="303">303</th><td>  };</td></tr>
+<tr><th id="304">304</th><td></td></tr>
+<tr><th id="305">305</th><td>  <b>if</b>(!<a class="local col9 ref" href="#39str" title='str' data-ref="39str">str</a>)</td></tr>
+<tr><th id="306">306</th><td>    <b>return</b> <var>1</var>;</td></tr>
+<tr><th id="307">307</th><td></td></tr>
+<tr><th id="308">308</th><td>  <a class="local col0 ref" href="#40buffer" title='buffer' data-ref="40buffer">buffer</a> = <a class="ref" href="../../include/string.h.html#strdup" title='strdup' data-ref="strdup">strdup</a>(<a class="local col9 ref" href="#39str" title='str' data-ref="39str">str</a>); <i>/* because strtok corrupts it */</i></td></tr>
+<tr><th id="309">309</th><td>  <b>if</b>(!<a class="local col0 ref" href="#40buffer" title='buffer' data-ref="40buffer">buffer</a>)</td></tr>
+<tr><th id="310">310</th><td>    <b>return</b> <var>1</var>;</td></tr>
+<tr><th id="311">311</th><td></td></tr>
+<tr><th id="312">312</th><td>  <i>/* Allow strtok() here since this isn't used threaded */</i></td></tr>
+<tr><th id="313">313</th><td>  <i>/* !checksrc! disable BANNEDFUNC 2 */</i></td></tr>
+<tr><th id="314">314</th><td>  <b>for</b>(<a class="local col2 ref" href="#42token" title='token' data-ref="42token">token</a> = <a class="ref" href="../../include/string.h.html#strtok" title='strtok' data-ref="strtok">strtok</a>(<a class="local col0 ref" href="#40buffer" title='buffer' data-ref="40buffer">buffer</a>, <a class="local col1 ref" href="#41sep" title='sep' data-ref="41sep">sep</a>);</td></tr>
+<tr><th id="315">315</th><td>      <a class="local col2 ref" href="#42token" title='token' data-ref="42token">token</a>;</td></tr>
+<tr><th id="316">316</th><td>      <a class="local col2 ref" href="#42token" title='token' data-ref="42token">token</a> = <a class="ref" href="../../include/string.h.html#strtok" title='strtok' data-ref="strtok">strtok</a>(<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <a class="local col1 ref" href="#41sep" title='sep' data-ref="41sep">sep</a>)) {</td></tr>
+<tr><th id="317">317</th><td>    <b>enum</b> <dfn class="local col7 type" id="47e_action" title='e_action' data-ref="47e_action"><a class="local col7 type" href="#47e_action" title='e_action' data-ref="47e_action">e_action</a></dfn> { <dfn class="local col8 enum" id="48allow" title='allow' data-type='0' data-ref="48allow">allow</dfn>, <dfn class="local col9 enum" id="49deny" title='deny' data-type='1' data-ref="49deny">deny</dfn>, <dfn class="local col0 enum" id="50set" title='set' data-type='2' data-ref="50set">set</dfn> } <dfn class="local col1 decl" id="51action" title='action' data-type='enum e_action' data-ref="51action">action</dfn> = <a class="local col8 enum" href="#48allow" title='allow' data-ref="48allow">allow</a>;</td></tr>
+<tr><th id="318">318</th><td></td></tr>
+<tr><th id="319">319</th><td>    <b>struct</b> <a class="local col3 type" href="#43sprotos" title='sprotos' data-ref="43sprotos">sprotos</a> <em>const</em> *<dfn class="local col2 decl" id="52pp" title='pp' data-type='const struct sprotos *' data-ref="52pp">pp</dfn>;</td></tr>
+<tr><th id="320">320</th><td></td></tr>
+<tr><th id="321">321</th><td>    <i>/* Process token modifiers */</i></td></tr>
+<tr><th id="322">322</th><td>    <b>while</b>(!<a class="macro" href="../lib/curl_setup_once.h.html#284" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)*token)))] &amp; (unsigned short int) _ISalnum))" data-ref="_M/ISALNUM">ISALNUM</a>(*<a class="local col2 ref" href="#42token" title='token' data-ref="42token">token</a>)) { <i>/* may be NULL if token is all modifiers */</i></td></tr>
+<tr><th id="323">323</th><td>      <b>switch</b> (*<a class="local col2 ref" href="#42token" title='token' data-ref="42token">token</a>++) {</td></tr>
+<tr><th id="324">324</th><td>      <b>case</b> <kbd>'='</kbd>:</td></tr>
+<tr><th id="325">325</th><td>        <a class="local col1 ref" href="#51action" title='action' data-ref="51action">action</a> = <a class="local col0 enum" href="#50set" title='set' data-ref="50set">set</a>;</td></tr>
+<tr><th id="326">326</th><td>        <b>break</b>;</td></tr>
+<tr><th id="327">327</th><td>      <b>case</b> <kbd>'-'</kbd>:</td></tr>
+<tr><th id="328">328</th><td>        <a class="local col1 ref" href="#51action" title='action' data-ref="51action">action</a> = <a class="local col9 enum" href="#49deny" title='deny' data-ref="49deny">deny</a>;</td></tr>
+<tr><th id="329">329</th><td>        <b>break</b>;</td></tr>
+<tr><th id="330">330</th><td>      <b>case</b> <kbd>'+'</kbd>:</td></tr>
+<tr><th id="331">331</th><td>        <a class="local col1 ref" href="#51action" title='action' data-ref="51action">action</a> = <a class="local col8 enum" href="#48allow" title='allow' data-ref="48allow">allow</a>;</td></tr>
+<tr><th id="332">332</th><td>        <b>break</b>;</td></tr>
+<tr><th id="333">333</th><td>      <b>default</b>: <i>/* Includes case of terminating NULL */</i></td></tr>
+<tr><th id="334">334</th><td>        <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((buffer)); (buffer) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col0 ref" href="#40buffer" title='buffer' data-ref="40buffer">buffer</a>);</td></tr>
+<tr><th id="335">335</th><td>        <b>return</b> <var>1</var>;</td></tr>
+<tr><th id="336">336</th><td>      }</td></tr>
+<tr><th id="337">337</th><td>    }</td></tr>
+<tr><th id="338">338</th><td></td></tr>
+<tr><th id="339">339</th><td>    <b>for</b>(<a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a> = <a class="local col6 ref" href="#46protos" title='protos' data-ref="46protos">protos</a>; <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="local col4 ref" href="#44name" title='name' data-ref="44name">name</a>; <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>++) {</td></tr>
+<tr><th id="340">340</th><td>      <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<a class="local col2 ref" href="#42token" title='token' data-ref="42token">token</a>, <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="local col4 ref" href="#44name" title='name' data-ref="44name">name</a>)) {</td></tr>
+<tr><th id="341">341</th><td>        <b>switch</b>(<a class="local col1 ref" href="#51action" title='action' data-ref="51action">action</a>) {</td></tr>
+<tr><th id="342">342</th><td>        <b>case</b> <a class="local col9 enum" href="#49deny" title='deny' data-ref="49deny">deny</a>:</td></tr>
+<tr><th id="343">343</th><td>          *<a class="local col8 ref" href="#38val" title='val' data-ref="38val">val</a> &amp;= ~(<a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="local col5 ref" href="#45bit" title='bit' data-ref="45bit">bit</a>);</td></tr>
+<tr><th id="344">344</th><td>          <b>break</b>;</td></tr>
+<tr><th id="345">345</th><td>        <b>case</b> <a class="local col8 enum" href="#48allow" title='allow' data-ref="48allow">allow</a>:</td></tr>
+<tr><th id="346">346</th><td>          *<a class="local col8 ref" href="#38val" title='val' data-ref="38val">val</a> |= <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="local col5 ref" href="#45bit" title='bit' data-ref="45bit">bit</a>;</td></tr>
+<tr><th id="347">347</th><td>          <b>break</b>;</td></tr>
+<tr><th id="348">348</th><td>        <b>case</b> <a class="local col0 enum" href="#50set" title='set' data-ref="50set">set</a>:</td></tr>
+<tr><th id="349">349</th><td>          *<a class="local col8 ref" href="#38val" title='val' data-ref="38val">val</a> = <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="local col5 ref" href="#45bit" title='bit' data-ref="45bit">bit</a>;</td></tr>
+<tr><th id="350">350</th><td>          <b>break</b>;</td></tr>
+<tr><th id="351">351</th><td>        }</td></tr>
+<tr><th id="352">352</th><td>        <b>break</b>;</td></tr>
+<tr><th id="353">353</th><td>      }</td></tr>
+<tr><th id="354">354</th><td>    }</td></tr>
+<tr><th id="355">355</th><td></td></tr>
+<tr><th id="356">356</th><td>    <b>if</b>(!(<a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="local col4 ref" href="#44name" title='name' data-ref="44name">name</a>)) { <i>/* unknown protocol */</i></td></tr>
+<tr><th id="357">357</th><td>      <i>/* If they have specified only this protocol, we say treat it as</i></td></tr>
+<tr><th id="358">358</th><td><i>         if no protocols are allowed */</i></td></tr>
+<tr><th id="359">359</th><td>      <b>if</b>(<a class="local col1 ref" href="#51action" title='action' data-ref="51action">action</a> == <a class="local col0 enum" href="#50set" title='set' data-ref="50set">set</a>)</td></tr>
+<tr><th id="360">360</th><td>        *<a class="local col8 ref" href="#38val" title='val' data-ref="38val">val</a> = <var>0</var>;</td></tr>
+<tr><th id="361">361</th><td>      <a class="ref" href="tool_msgs.h.html#warnf" title='warnf' data-ref="warnf">warnf</a>(<a class="local col7 ref" href="#37config" title='config' data-ref="37config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::global" title='OperationConfig::global' data-ref="OperationConfig::global">global</a>, <q>"unrecognized protocol '%s'\n"</q>, <a class="local col2 ref" href="#42token" title='token' data-ref="42token">token</a>);</td></tr>
+<tr><th id="362">362</th><td>    }</td></tr>
+<tr><th id="363">363</th><td>  }</td></tr>
+<tr><th id="364">364</th><td>  <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((buffer)); (buffer) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col0 ref" href="#40buffer" title='buffer' data-ref="40buffer">buffer</a>);</td></tr>
+<tr><th id="365">365</th><td>  <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="366">366</th><td>}</td></tr>
+<tr><th id="367">367</th><td></td></tr>
+<tr><th id="368">368</th><td><i class="doc">/**</i></td></tr>
+<tr><th id="369">369</th><td><i class="doc"> * Check if the given string is a protocol supported by libcurl</i></td></tr>
+<tr><th id="370">370</th><td><i class="doc"> *</i></td></tr>
+<tr><th id="371">371</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">str</span>  the protocol name</i></td></tr>
+<tr><th id="372">372</th><td><i class="doc"> * <span class="command">@return</span> PARAM_OK  protocol supported</i></td></tr>
+<tr><th id="373">373</th><td><i class="doc"> * <span class="command">@return</span> PARAM_LIBCURL_UNSUPPORTED_PROTOCOL  protocol not supported</i></td></tr>
+<tr><th id="374">374</th><td><i class="doc"> * <span class="command">@return</span> PARAM_REQUIRES_PARAMETER   missing parameter</i></td></tr>
+<tr><th id="375">375</th><td><i class="doc"> */</i></td></tr>
+<tr><th id="376">376</th><td><em>int</em> <dfn class="decl def" id="check_protocol" title='check_protocol' data-ref="check_protocol">check_protocol</dfn>(<em>const</em> <em>char</em> *<dfn class="local col3 decl" id="53str" title='str' data-type='const char *' data-ref="53str">str</dfn>)</td></tr>
+<tr><th id="377">377</th><td>{</td></tr>
+<tr><th id="378">378</th><td>  <em>const</em> <em>char</em> * <em>const</em> *<dfn class="local col4 decl" id="54pp" title='pp' data-type='const char *const *' data-ref="54pp">pp</dfn>;</td></tr>
+<tr><th id="379">379</th><td>  <em>const</em> <a class="typedef" href="../include/curl/curl.h.html#curl_version_info_data" title='curl_version_info_data' data-type='struct curl_version_info_data' data-ref="curl_version_info_data">curl_version_info_data</a> *<dfn class="local col5 decl" id="55curlinfo" title='curlinfo' data-type='const curl_version_info_data *' data-ref="55curlinfo">curlinfo</dfn> = <a class="ref" href="../include/curl/curl.h.html#curl_version_info" title='curl_version_info' data-ref="curl_version_info">curl_version_info</a>(<a class="macro" href="../include/curl/curl.h.html#2603" title="CURLVERSION_FOURTH" data-ref="_M/CURLVERSION_NOW">CURLVERSION_NOW</a>);</td></tr>
+<tr><th id="380">380</th><td>  <b>if</b>(!<a class="local col3 ref" href="#53str" title='str' data-ref="53str">str</a>)</td></tr>
+<tr><th id="381">381</th><td>    <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_REQUIRES_PARAMETER" title='PARAM_REQUIRES_PARAMETER' data-ref="PARAM_REQUIRES_PARAMETER">PARAM_REQUIRES_PARAMETER</a>;</td></tr>
+<tr><th id="382">382</th><td>  <b>for</b>(<a class="local col4 ref" href="#54pp" title='pp' data-ref="54pp">pp</a> = <a class="local col5 ref" href="#55curlinfo" title='curlinfo' data-ref="55curlinfo">curlinfo</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#(anonymous)::protocols" title='(anonymous struct)::protocols' data-ref="(anonymous)::protocols">protocols</a>; *<a class="local col4 ref" href="#54pp" title='pp' data-ref="54pp">pp</a>; <a class="local col4 ref" href="#54pp" title='pp' data-ref="54pp">pp</a>++) {</td></tr>
+<tr><th id="383">383</th><td>    <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(*<a class="local col4 ref" href="#54pp" title='pp' data-ref="54pp">pp</a>, <a class="local col3 ref" href="#53str" title='str' data-ref="53str">str</a>))</td></tr>
+<tr><th id="384">384</th><td>      <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;</td></tr>
+<tr><th id="385">385</th><td>  }</td></tr>
+<tr><th id="386">386</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_LIBCURL_UNSUPPORTED_PROTOCOL" title='PARAM_LIBCURL_UNSUPPORTED_PROTOCOL' data-ref="PARAM_LIBCURL_UNSUPPORTED_PROTOCOL">PARAM_LIBCURL_UNSUPPORTED_PROTOCOL</a>;</td></tr>
+<tr><th id="387">387</th><td>}</td></tr>
+<tr><th id="388">388</th><td></td></tr>
+<tr><th id="389">389</th><td><i class="doc">/**</i></td></tr>
+<tr><th id="390">390</th><td><i class="doc"> * Parses the given string looking for an offset (which may be a</i></td></tr>
+<tr><th id="391">391</th><td><i class="doc"> * larger-than-integer value). The offset CANNOT be negative!</i></td></tr>
+<tr><th id="392">392</th><td><i class="doc"> *</i></td></tr>
+<tr><th id="393">393</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">val</span>  the offset to populate</i></td></tr>
+<tr><th id="394">394</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">str</span>  the buffer containing the offset</i></td></tr>
+<tr><th id="395">395</th><td><i class="doc"> * <span class="command">@return</span> PARAM_OK if successful, a parameter specific error enum if failure.</i></td></tr>
+<tr><th id="396">396</th><td><i class="doc"> */</i></td></tr>
+<tr><th id="397">397</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl def" id="str2offset" title='str2offset' data-ref="str2offset">str2offset</dfn>(<a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> *<dfn class="local col6 decl" id="56val" title='val' data-type='curl_off_t *' data-ref="56val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="57str" title='str' data-type='const char *' data-ref="57str">str</dfn>)</td></tr>
+<tr><th id="398">398</th><td>{</td></tr>
+<tr><th id="399">399</th><td>  <em>char</em> *<dfn class="local col8 decl" id="58endptr" title='endptr' data-type='char *' data-ref="58endptr">endptr</dfn>;</td></tr>
+<tr><th id="400">400</th><td>  <b>if</b>(<a class="local col7 ref" href="#57str" title='str' data-ref="57str">str</a>[<var>0</var>] == <kbd>'-'</kbd>)</td></tr>
+<tr><th id="401">401</th><td>    <i>/* offsets aren't negative, this indicates weird input */</i></td></tr>
+<tr><th id="402">402</th><td>    <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NEGATIVE_NUMERIC" title='PARAM_NEGATIVE_NUMERIC' data-ref="PARAM_NEGATIVE_NUMERIC">PARAM_NEGATIVE_NUMERIC</a>;</td></tr>
+<tr><th id="403">403</th><td></td></tr>
+<tr><th id="404">404</th><td><u>#<span data-ppcond="404">if</span>(<a class="macro" href="../lib/curl_config.h.html#892" title="8" data-ref="_M/SIZEOF_CURL_OFF_T">SIZEOF_CURL_OFF_T</a> &gt; <a class="macro" href="../lib/curl_config.h.html#886" title="8" data-ref="_M/SIZEOF_LONG">SIZEOF_LONG</a>)</u></td></tr>
+<tr><th id="405">405</th><td>  {</td></tr>
+<tr><th id="406">406</th><td>    CURLofft offt = curlx_strtoofft(str, &amp;endptr, <var>0</var>, val);</td></tr>
+<tr><th id="407">407</th><td>    <b>if</b>(CURL_OFFT_FLOW == offt)</td></tr>
+<tr><th id="408">408</th><td>      <b>return</b> PARAM_NUMBER_TOO_LARGE;</td></tr>
+<tr><th id="409">409</th><td>    <b>else</b> <b>if</b>(CURL_OFFT_INVAL == offt)</td></tr>
+<tr><th id="410">410</th><td>      <b>return</b> PARAM_BAD_NUMERIC;</td></tr>
+<tr><th id="411">411</th><td>  }</td></tr>
+<tr><th id="412">412</th><td><u>#<span data-ppcond="404">else</span></u></td></tr>
+<tr><th id="413">413</th><td>  <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <var>0</var>;</td></tr>
+<tr><th id="414">414</th><td>  *<a class="local col6 ref" href="#56val" title='val' data-ref="56val">val</a> = <a class="ref" href="../../include/stdlib.h.html#strtol" title='strtol' data-ref="strtol">strtol</a>(<a class="local col7 ref" href="#57str" title='str' data-ref="57str">str</a>, &amp;<a class="local col8 ref" href="#58endptr" title='endptr' data-ref="58endptr">endptr</a>, <var>0</var>);</td></tr>
+<tr><th id="415">415</th><td>  <b>if</b>((*<a class="local col6 ref" href="#56val" title='val' data-ref="56val">val</a> == <span class="macro" title="(-9223372036854775807L -1L)" data-ref="_M/LONG_MIN">LONG_MIN</span> || *<a class="local col6 ref" href="#56val" title='val' data-ref="56val">val</a> == <span class="macro" title="9223372036854775807L" data-ref="_M/LONG_MAX">LONG_MAX</span>) &amp;&amp; <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> == <a class="macro" href="../../include/asm-generic/errno-base.h.html#37" title="34" data-ref="_M/ERANGE">ERANGE</a>)</td></tr>
+<tr><th id="416">416</th><td>    <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NUMBER_TOO_LARGE" title='PARAM_NUMBER_TOO_LARGE' data-ref="PARAM_NUMBER_TOO_LARGE">PARAM_NUMBER_TOO_LARGE</a>;</td></tr>
+<tr><th id="417">417</th><td><u>#<span data-ppcond="404">endif</span></u></td></tr>
+<tr><th id="418">418</th><td>  <b>if</b>((<a class="local col8 ref" href="#58endptr" title='endptr' data-ref="58endptr">endptr</a> != <a class="local col7 ref" href="#57str" title='str' data-ref="57str">str</a>) &amp;&amp; (<a class="local col8 ref" href="#58endptr" title='endptr' data-ref="58endptr">endptr</a> == <a class="local col7 ref" href="#57str" title='str' data-ref="57str">str</a> + <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col7 ref" href="#57str" title='str' data-ref="57str">str</a>)))</td></tr>
+<tr><th id="419">419</th><td>    <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;</td></tr>
+<tr><th id="420">420</th><td></td></tr>
+<tr><th id="421">421</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_BAD_NUMERIC" title='PARAM_BAD_NUMERIC' data-ref="PARAM_BAD_NUMERIC">PARAM_BAD_NUMERIC</a>;</td></tr>
+<tr><th id="422">422</th><td>}</td></tr>
+<tr><th id="423">423</th><td></td></tr>
+<tr><th id="424">424</th><td><em>static</em> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="checkpasswd" title='checkpasswd' data-type='CURLcode checkpasswd(const char * kind, const size_t i, const _Bool last, char ** userpwd)' data-ref="checkpasswd">checkpasswd</dfn>(<em>const</em> <em>char</em> *<dfn class="local col9 decl" id="59kind" title='kind' data-type='const char *' data-ref="59kind">kind</dfn>, <i  data-doc="checkpasswd">/* for what purpose */</i></td></tr>
+<tr><th id="425">425</th><td>                            <em>const</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="60i" title='i' data-type='const size_t' data-ref="60i">i</dfn>,   <i>/* operation index */</i></td></tr>
+<tr><th id="426">426</th><td>                            <em>const</em> <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col1 decl" id="61last" title='last' data-type='const _Bool' data-ref="61last">last</dfn>,  <i>/* TRUE if last operation */</i></td></tr>
+<tr><th id="427">427</th><td>                            <em>char</em> **<dfn class="local col2 decl" id="62userpwd" title='userpwd' data-type='char **' data-ref="62userpwd">userpwd</dfn>)   <i>/* pointer to allocated string */</i></td></tr>
+<tr><th id="428">428</th><td>{</td></tr>
+<tr><th id="429">429</th><td>  <em>char</em> *<dfn class="local col3 decl" id="63psep" title='psep' data-type='char *' data-ref="63psep">psep</dfn>;</td></tr>
+<tr><th id="430">430</th><td>  <em>char</em> *<dfn class="local col4 decl" id="64osep" title='osep' data-type='char *' data-ref="64osep">osep</dfn>;</td></tr>
+<tr><th id="431">431</th><td></td></tr>
+<tr><th id="432">432</th><td>  <b>if</b>(!*<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a>)</td></tr>
+<tr><th id="433">433</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="434">434</th><td></td></tr>
+<tr><th id="435">435</th><td>  <i>/* Attempt to find the password separator */</i></td></tr>
+<tr><th id="436">436</th><td>  <a class="local col3 ref" href="#63psep" title='psep' data-ref="63psep">psep</a> = <a class="ref" href="../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(*<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a>, <kbd>':'</kbd>);</td></tr>
+<tr><th id="437">437</th><td></td></tr>
+<tr><th id="438">438</th><td>  <i>/* Attempt to find the options separator */</i></td></tr>
+<tr><th id="439">439</th><td>  <a class="local col4 ref" href="#64osep" title='osep' data-ref="64osep">osep</a> = <a class="ref" href="../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(*<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a>, <kbd>';'</kbd>);</td></tr>
+<tr><th id="440">440</th><td></td></tr>
+<tr><th id="441">441</th><td>  <b>if</b>(!<a class="local col3 ref" href="#63psep" title='psep' data-ref="63psep">psep</a> &amp;&amp; **<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a> != <kbd>';'</kbd>) {</td></tr>
+<tr><th id="442">442</th><td>    <i>/* no password present, prompt for one */</i></td></tr>
+<tr><th id="443">443</th><td>    <em>char</em> <dfn class="local col5 decl" id="65passwd" title='passwd' data-type='char [256]' data-ref="65passwd">passwd</dfn>[<var>256</var>] = <q>""</q>;</td></tr>
+<tr><th id="444">444</th><td>    <em>char</em> <dfn class="local col6 decl" id="66prompt" title='prompt' data-type='char [256]' data-ref="66prompt">prompt</dfn>[<var>256</var>];</td></tr>
+<tr><th id="445">445</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="67passwdlen" title='passwdlen' data-type='size_t' data-ref="67passwdlen">passwdlen</dfn>;</td></tr>
+<tr><th id="446">446</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="68userlen" title='userlen' data-type='size_t' data-ref="68userlen">userlen</dfn> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(*<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a>);</td></tr>
+<tr><th id="447">447</th><td>    <em>char</em> *<dfn class="local col9 decl" id="69passptr" title='passptr' data-type='char *' data-ref="69passptr">passptr</dfn>;</td></tr>
+<tr><th id="448">448</th><td></td></tr>
+<tr><th id="449">449</th><td>    <b>if</b>(<a class="local col4 ref" href="#64osep" title='osep' data-ref="64osep">osep</a>)</td></tr>
+<tr><th id="450">450</th><td>      *<a class="local col4 ref" href="#64osep" title='osep' data-ref="64osep">osep</a> = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="451">451</th><td></td></tr>
+<tr><th id="452">452</th><td>    <i>/* build a nice-looking prompt */</i></td></tr>
+<tr><th id="453">453</th><td>    <b>if</b>(!<a class="local col0 ref" href="#60i" title='i' data-ref="60i">i</a> &amp;&amp; <a class="local col1 ref" href="#61last" title='last' data-ref="61last">last</a>)</td></tr>
+<tr><th id="454">454</th><td>      <a class="macro" href="../lib/curlx.h.html#77" title="curl_msnprintf" data-ref="_M/curlx_msnprintf">curlx_msnprintf</a>(<a class="local col6 ref" href="#66prompt" title='prompt' data-ref="66prompt">prompt</a>, <b>sizeof</b>(<a class="local col6 ref" href="#66prompt" title='prompt' data-ref="66prompt">prompt</a>),</td></tr>
+<tr><th id="455">455</th><td>                      <q>"Enter %s password for user '%s':"</q>,</td></tr>
+<tr><th id="456">456</th><td>                      <a class="local col9 ref" href="#59kind" title='kind' data-ref="59kind">kind</a>, *<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a>);</td></tr>
+<tr><th id="457">457</th><td>    <b>else</b></td></tr>
+<tr><th id="458">458</th><td>      <a class="macro" href="../lib/curlx.h.html#77" title="curl_msnprintf" data-ref="_M/curlx_msnprintf">curlx_msnprintf</a>(<a class="local col6 ref" href="#66prompt" title='prompt' data-ref="66prompt">prompt</a>, <b>sizeof</b>(<a class="local col6 ref" href="#66prompt" title='prompt' data-ref="66prompt">prompt</a>),</td></tr>
+<tr><th id="459">459</th><td>                      <q>"Enter %s password for user '%s' on URL #%"</q></td></tr>
+<tr><th id="460">460</th><td>                      <a class="macro" href="../include/curl/system.h.html#362" title="&quot;lu&quot;" data-ref="_M/CURL_FORMAT_CURL_OFF_TU">CURL_FORMAT_CURL_OFF_TU</a> <q>":"</q>,</td></tr>
+<tr><th id="461">461</th><td>                      <a class="local col9 ref" href="#59kind" title='kind' data-ref="59kind">kind</a>, *<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a>, (<a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a>) (<a class="local col0 ref" href="#60i" title='i' data-ref="60i">i</a> + <var>1</var>));</td></tr>
+<tr><th id="462">462</th><td></td></tr>
+<tr><th id="463">463</th><td>    <i>/* get password */</i></td></tr>
+<tr><th id="464">464</th><td>    <a class="ref" href="tool_getpass.h.html#getpass_r" title='getpass_r' data-ref="getpass_r">getpass_r</a>(<a class="local col6 ref" href="#66prompt" title='prompt' data-ref="66prompt">prompt</a>, <a class="local col5 ref" href="#65passwd" title='passwd' data-ref="65passwd">passwd</a>, <b>sizeof</b>(<a class="local col5 ref" href="#65passwd" title='passwd' data-ref="65passwd">passwd</a>));</td></tr>
+<tr><th id="465">465</th><td>    <a class="local col7 ref" href="#67passwdlen" title='passwdlen' data-ref="67passwdlen">passwdlen</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col5 ref" href="#65passwd" title='passwd' data-ref="65passwd">passwd</a>);</td></tr>
+<tr><th id="466">466</th><td></td></tr>
+<tr><th id="467">467</th><td>    <b>if</b>(<a class="local col4 ref" href="#64osep" title='osep' data-ref="64osep">osep</a>)</td></tr>
+<tr><th id="468">468</th><td>      *<a class="local col4 ref" href="#64osep" title='osep' data-ref="64osep">osep</a> = <kbd>';'</kbd>;</td></tr>
+<tr><th id="469">469</th><td></td></tr>
+<tr><th id="470">470</th><td>    <i>/* extend the allocated memory area to fit the password too */</i></td></tr>
+<tr><th id="471">471</th><td>    <a class="local col9 ref" href="#69passptr" title='passptr' data-ref="69passptr">passptr</a> = <a class="ref" href="../../include/stdlib.h.html#realloc" title='realloc' data-ref="realloc">realloc</a>(*<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a>,</td></tr>
+<tr><th id="472">472</th><td>                      <a class="local col7 ref" href="#67passwdlen" title='passwdlen' data-ref="67passwdlen">passwdlen</a> + <var>1</var> + <i>/* an extra for the colon */</i></td></tr>
+<tr><th id="473">473</th><td>                      <a class="local col8 ref" href="#68userlen" title='userlen' data-ref="68userlen">userlen</a> + <var>1</var>);   <i>/* an extra for the zero */</i></td></tr>
+<tr><th id="474">474</th><td>    <b>if</b>(!<a class="local col9 ref" href="#69passptr" title='passptr' data-ref="69passptr">passptr</a>)</td></tr>
+<tr><th id="475">475</th><td>      <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="476">476</th><td></td></tr>
+<tr><th id="477">477</th><td>    <i>/* append the password separated with a colon */</i></td></tr>
+<tr><th id="478">478</th><td>    <a class="local col9 ref" href="#69passptr" title='passptr' data-ref="69passptr">passptr</a>[<a class="local col8 ref" href="#68userlen" title='userlen' data-ref="68userlen">userlen</a>] = <kbd>':'</kbd>;</td></tr>
+<tr><th id="479">479</th><td>    <a class="ref" href="../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(&amp;<a class="local col9 ref" href="#69passptr" title='passptr' data-ref="69passptr">passptr</a>[<a class="local col8 ref" href="#68userlen" title='userlen' data-ref="68userlen">userlen</a> + <var>1</var>], <a class="local col5 ref" href="#65passwd" title='passwd' data-ref="65passwd">passwd</a>, <a class="local col7 ref" href="#67passwdlen" title='passwdlen' data-ref="67passwdlen">passwdlen</a> + <var>1</var>);</td></tr>
+<tr><th id="480">480</th><td>    *<a class="local col2 ref" href="#62userpwd" title='userpwd' data-ref="62userpwd">userpwd</a> = <a class="local col9 ref" href="#69passptr" title='passptr' data-ref="69passptr">passptr</a>;</td></tr>
+<tr><th id="481">481</th><td>  }</td></tr>
+<tr><th id="482">482</th><td></td></tr>
+<tr><th id="483">483</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="484">484</th><td>}</td></tr>
+<tr><th id="485">485</th><td></td></tr>
+<tr><th id="486">486</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl def" id="add2list" title='add2list' data-ref="add2list">add2list</dfn>(<b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> **<dfn class="local col0 decl" id="70list" title='list' data-type='struct curl_slist **' data-ref="70list">list</dfn>, <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="71ptr" title='ptr' data-type='const char *' data-ref="71ptr">ptr</dfn>)</td></tr>
+<tr><th id="487">487</th><td>{</td></tr>
+<tr><th id="488">488</th><td>  <b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="local col2 decl" id="72newlist" title='newlist' data-type='struct curl_slist *' data-ref="72newlist">newlist</dfn> = <a class="ref" href="../include/curl/curl.h.html#curl_slist_append" title='curl_slist_append' data-ref="curl_slist_append">curl_slist_append</a>(*<a class="local col0 ref" href="#70list" title='list' data-ref="70list">list</a>, <a class="local col1 ref" href="#71ptr" title='ptr' data-ref="71ptr">ptr</a>);</td></tr>
+<tr><th id="489">489</th><td>  <b>if</b>(<a class="local col2 ref" href="#72newlist" title='newlist' data-ref="72newlist">newlist</a>)</td></tr>
+<tr><th id="490">490</th><td>    *<a class="local col0 ref" href="#70list" title='list' data-ref="70list">list</a> = <a class="local col2 ref" href="#72newlist" title='newlist' data-ref="72newlist">newlist</a>;</td></tr>
+<tr><th id="491">491</th><td>  <b>else</b></td></tr>
+<tr><th id="492">492</th><td>    <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_NO_MEM" title='PARAM_NO_MEM' data-ref="PARAM_NO_MEM">PARAM_NO_MEM</a>;</td></tr>
+<tr><th id="493">493</th><td></td></tr>
+<tr><th id="494">494</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;</td></tr>
+<tr><th id="495">495</th><td>}</td></tr>
+<tr><th id="496">496</th><td></td></tr>
+<tr><th id="497">497</th><td><em>int</em> <dfn class="decl def" id="ftpfilemethod" title='ftpfilemethod' data-ref="ftpfilemethod">ftpfilemethod</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col3 decl" id="73config" title='config' data-type='struct OperationConfig *' data-ref="73config">config</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="74str" title='str' data-type='const char *' data-ref="74str">str</dfn>)</td></tr>
+<tr><th id="498">498</th><td>{</td></tr>
+<tr><th id="499">499</th><td>  <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<q>"singlecwd"</q>, <a class="local col4 ref" href="#74str" title='str' data-ref="74str">str</a>))</td></tr>
+<tr><th id="500">500</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLFTPMETHOD_SINGLECWD" title='CURLFTPMETHOD_SINGLECWD' data-ref="CURLFTPMETHOD_SINGLECWD">CURLFTPMETHOD_SINGLECWD</a>;</td></tr>
+<tr><th id="501">501</th><td>  <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<q>"nocwd"</q>, <a class="local col4 ref" href="#74str" title='str' data-ref="74str">str</a>))</td></tr>
+<tr><th id="502">502</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLFTPMETHOD_NOCWD" title='CURLFTPMETHOD_NOCWD' data-ref="CURLFTPMETHOD_NOCWD">CURLFTPMETHOD_NOCWD</a>;</td></tr>
+<tr><th id="503">503</th><td>  <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<q>"multicwd"</q>, <a class="local col4 ref" href="#74str" title='str' data-ref="74str">str</a>))</td></tr>
+<tr><th id="504">504</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLFTPMETHOD_MULTICWD" title='CURLFTPMETHOD_MULTICWD' data-ref="CURLFTPMETHOD_MULTICWD">CURLFTPMETHOD_MULTICWD</a>;</td></tr>
+<tr><th id="505">505</th><td></td></tr>
+<tr><th id="506">506</th><td>  <a class="ref" href="tool_msgs.h.html#warnf" title='warnf' data-ref="warnf">warnf</a>(<a class="local col3 ref" href="#73config" title='config' data-ref="73config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::global" title='OperationConfig::global' data-ref="OperationConfig::global">global</a>, <q>"unrecognized ftp file method '%s', using default\n"</q>,</td></tr>
+<tr><th id="507">507</th><td>        <a class="local col4 ref" href="#74str" title='str' data-ref="74str">str</a>);</td></tr>
+<tr><th id="508">508</th><td></td></tr>
+<tr><th id="509">509</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLFTPMETHOD_MULTICWD" title='CURLFTPMETHOD_MULTICWD' data-ref="CURLFTPMETHOD_MULTICWD">CURLFTPMETHOD_MULTICWD</a>;</td></tr>
+<tr><th id="510">510</th><td>}</td></tr>
+<tr><th id="511">511</th><td></td></tr>
+<tr><th id="512">512</th><td><em>int</em> <dfn class="decl def" id="ftpcccmethod" title='ftpcccmethod' data-ref="ftpcccmethod">ftpcccmethod</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col5 decl" id="75config" title='config' data-type='struct OperationConfig *' data-ref="75config">config</dfn>, <em>const</em> <em>char</em> *<dfn class="local col6 decl" id="76str" title='str' data-type='const char *' data-ref="76str">str</dfn>)</td></tr>
+<tr><th id="513">513</th><td>{</td></tr>
+<tr><th id="514">514</th><td>  <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<q>"passive"</q>, <a class="local col6 ref" href="#76str" title='str' data-ref="76str">str</a>))</td></tr>
+<tr><th id="515">515</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLFTPSSL_CCC_PASSIVE" title='CURLFTPSSL_CCC_PASSIVE' data-ref="CURLFTPSSL_CCC_PASSIVE">CURLFTPSSL_CCC_PASSIVE</a>;</td></tr>
+<tr><th id="516">516</th><td>  <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<q>"active"</q>, <a class="local col6 ref" href="#76str" title='str' data-ref="76str">str</a>))</td></tr>
+<tr><th id="517">517</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLFTPSSL_CCC_ACTIVE" title='CURLFTPSSL_CCC_ACTIVE' data-ref="CURLFTPSSL_CCC_ACTIVE">CURLFTPSSL_CCC_ACTIVE</a>;</td></tr>
+<tr><th id="518">518</th><td></td></tr>
+<tr><th id="519">519</th><td>  <a class="ref" href="tool_msgs.h.html#warnf" title='warnf' data-ref="warnf">warnf</a>(<a class="local col5 ref" href="#75config" title='config' data-ref="75config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::global" title='OperationConfig::global' data-ref="OperationConfig::global">global</a>, <q>"unrecognized ftp CCC method '%s', using default\n"</q>,</td></tr>
+<tr><th id="520">520</th><td>        <a class="local col6 ref" href="#76str" title='str' data-ref="76str">str</a>);</td></tr>
+<tr><th id="521">521</th><td></td></tr>
+<tr><th id="522">522</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLFTPSSL_CCC_PASSIVE" title='CURLFTPSSL_CCC_PASSIVE' data-ref="CURLFTPSSL_CCC_PASSIVE">CURLFTPSSL_CCC_PASSIVE</a>;</td></tr>
+<tr><th id="523">523</th><td>}</td></tr>
+<tr><th id="524">524</th><td></td></tr>
+<tr><th id="525">525</th><td><em>long</em> <dfn class="decl def" id="delegation" title='delegation' data-ref="delegation">delegation</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col7 decl" id="77config" title='config' data-type='struct OperationConfig *' data-ref="77config">config</dfn>, <em>char</em> *<dfn class="local col8 decl" id="78str" title='str' data-type='char *' data-ref="78str">str</dfn>)</td></tr>
+<tr><th id="526">526</th><td>{</td></tr>
+<tr><th id="527">527</th><td>  <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<q>"none"</q>, <a class="local col8 ref" href="#78str" title='str' data-ref="78str">str</a>))</td></tr>
+<tr><th id="528">528</th><td>    <b>return</b> <a class="macro" href="../include/curl/curl.h.html#720" title="0" data-ref="_M/CURLGSSAPI_DELEGATION_NONE">CURLGSSAPI_DELEGATION_NONE</a>;</td></tr>
+<tr><th id="529">529</th><td>  <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<q>"policy"</q>, <a class="local col8 ref" href="#78str" title='str' data-ref="78str">str</a>))</td></tr>
+<tr><th id="530">530</th><td>    <b>return</b> <a class="macro" href="../include/curl/curl.h.html#721" title="(1&lt;&lt;0)" data-ref="_M/CURLGSSAPI_DELEGATION_POLICY_FLAG">CURLGSSAPI_DELEGATION_POLICY_FLAG</a>;</td></tr>
+<tr><th id="531">531</th><td>  <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<q>"always"</q>, <a class="local col8 ref" href="#78str" title='str' data-ref="78str">str</a>))</td></tr>
+<tr><th id="532">532</th><td>    <b>return</b> <a class="macro" href="../include/curl/curl.h.html#722" title="(1&lt;&lt;1)" data-ref="_M/CURLGSSAPI_DELEGATION_FLAG">CURLGSSAPI_DELEGATION_FLAG</a>;</td></tr>
+<tr><th id="533">533</th><td></td></tr>
+<tr><th id="534">534</th><td>  <a class="ref" href="tool_msgs.h.html#warnf" title='warnf' data-ref="warnf">warnf</a>(<a class="local col7 ref" href="#77config" title='config' data-ref="77config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::global" title='OperationConfig::global' data-ref="OperationConfig::global">global</a>, <q>"unrecognized delegation method '%s', using none\n"</q>,</td></tr>
+<tr><th id="535">535</th><td>        <a class="local col8 ref" href="#78str" title='str' data-ref="78str">str</a>);</td></tr>
+<tr><th id="536">536</th><td></td></tr>
+<tr><th id="537">537</th><td>  <b>return</b> <a class="macro" href="../include/curl/curl.h.html#720" title="0" data-ref="_M/CURLGSSAPI_DELEGATION_NONE">CURLGSSAPI_DELEGATION_NONE</a>;</td></tr>
+<tr><th id="538">538</th><td>}</td></tr>
+<tr><th id="539">539</th><td></td></tr>
+<tr><th id="540">540</th><td><i  data-doc="my_useragent">/*</i></td></tr>
+<tr><th id="541">541</th><td><i  data-doc="my_useragent"> * my_useragent: returns allocated string with default user agent</i></td></tr>
+<tr><th id="542">542</th><td><i  data-doc="my_useragent"> */</i></td></tr>
+<tr><th id="543">543</th><td><em>static</em> <em>char</em> *<dfn class="tu decl def" id="my_useragent" title='my_useragent' data-type='char * my_useragent()' data-ref="my_useragent">my_useragent</dfn>(<em>void</em>)</td></tr>
+<tr><th id="544">544</th><td>{</td></tr>
+<tr><th id="545">545</th><td>  <b>return</b> <a class="ref" href="../../include/string.h.html#strdup" title='strdup' data-ref="strdup">strdup</a>(<a class="macro" href="tool_version.h.html#26" title="&quot;curl&quot;" data-ref="_M/CURL_NAME">CURL_NAME</a> <q>"/"</q> <a class="macro" href="tool_version.h.html#28" title="&quot;7.57.0-DEV&quot;" data-ref="_M/CURL_VERSION">CURL_VERSION</a>);</td></tr>
+<tr><th id="546">546</th><td>}</td></tr>
+<tr><th id="547">547</th><td></td></tr>
+<tr><th id="548">548</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="get_args" title='get_args' data-ref="get_args">get_args</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col9 decl" id="79config" title='config' data-type='struct OperationConfig *' data-ref="79config">config</dfn>, <em>const</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="80i" title='i' data-type='const size_t' data-ref="80i">i</dfn>)</td></tr>
+<tr><th id="549">549</th><td>{</td></tr>
+<tr><th id="550">550</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col1 decl" id="81result" title='result' data-type='CURLcode' data-ref="81result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="551">551</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col2 decl" id="82last" title='last' data-type='_Bool' data-ref="82last">last</dfn> = (<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::next" title='OperationConfig::next' data-ref="OperationConfig::next">next</a> ? <a class="macro" href="../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a> : <a class="macro" href="../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>);</td></tr>
+<tr><th id="552">552</th><td></td></tr>
+<tr><th id="553">553</th><td>  <i>/* Check we have a password for the given host user */</i></td></tr>
+<tr><th id="554">554</th><td>  <b>if</b>(<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::userpwd" title='OperationConfig::userpwd' data-ref="OperationConfig::userpwd">userpwd</a> &amp;&amp; !<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::oauth_bearer" title='OperationConfig::oauth_bearer' data-ref="OperationConfig::oauth_bearer">oauth_bearer</a>) {</td></tr>
+<tr><th id="555">555</th><td>    <a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a> = <a class="tu ref" href="#checkpasswd" title='checkpasswd' data-use='c' data-ref="checkpasswd">checkpasswd</a>(<q>"host"</q>, <a class="local col0 ref" href="#80i" title='i' data-ref="80i">i</a>, <a class="local col2 ref" href="#82last" title='last' data-ref="82last">last</a>, &amp;<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::userpwd" title='OperationConfig::userpwd' data-ref="OperationConfig::userpwd">userpwd</a>);</td></tr>
+<tr><th id="556">556</th><td>    <b>if</b>(<a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a>)</td></tr>
+<tr><th id="557">557</th><td>      <b>return</b> <a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a>;</td></tr>
+<tr><th id="558">558</th><td>  }</td></tr>
+<tr><th id="559">559</th><td></td></tr>
+<tr><th id="560">560</th><td>  <i>/* Check we have a password for the given proxy user */</i></td></tr>
+<tr><th id="561">561</th><td>  <b>if</b>(<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::proxyuserpwd" title='OperationConfig::proxyuserpwd' data-ref="OperationConfig::proxyuserpwd">proxyuserpwd</a>) {</td></tr>
+<tr><th id="562">562</th><td>    <a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a> = <a class="tu ref" href="#checkpasswd" title='checkpasswd' data-use='c' data-ref="checkpasswd">checkpasswd</a>(<q>"proxy"</q>, <a class="local col0 ref" href="#80i" title='i' data-ref="80i">i</a>, <a class="local col2 ref" href="#82last" title='last' data-ref="82last">last</a>, &amp;<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::proxyuserpwd" title='OperationConfig::proxyuserpwd' data-ref="OperationConfig::proxyuserpwd">proxyuserpwd</a>);</td></tr>
+<tr><th id="563">563</th><td>    <b>if</b>(<a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a>)</td></tr>
+<tr><th id="564">564</th><td>      <b>return</b> <a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a>;</td></tr>
+<tr><th id="565">565</th><td>  }</td></tr>
+<tr><th id="566">566</th><td></td></tr>
+<tr><th id="567">567</th><td>  <i>/* Check we have a user agent */</i></td></tr>
+<tr><th id="568">568</th><td>  <b>if</b>(!<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::useragent" title='OperationConfig::useragent' data-ref="OperationConfig::useragent">useragent</a>) {</td></tr>
+<tr><th id="569">569</th><td>    <a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::useragent" title='OperationConfig::useragent' data-ref="OperationConfig::useragent">useragent</a> = <a class="tu ref" href="#my_useragent" title='my_useragent' data-use='c' data-ref="my_useragent">my_useragent</a>();</td></tr>
+<tr><th id="570">570</th><td>    <b>if</b>(!<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::useragent" title='OperationConfig::useragent' data-ref="OperationConfig::useragent">useragent</a>) {</td></tr>
+<tr><th id="571">571</th><td>      <a class="ref" href="tool_msgs.h.html#helpf" title='helpf' data-ref="helpf">helpf</a>(<a class="local col9 ref" href="#79config" title='config' data-ref="79config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::global" title='OperationConfig::global' data-ref="OperationConfig::global">global</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::errors" title='GlobalConfig::errors' data-ref="GlobalConfig::errors">errors</a>, <q>"out of memory\n"</q>);</td></tr>
+<tr><th id="572">572</th><td>      <a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="573">573</th><td>    }</td></tr>
+<tr><th id="574">574</th><td>  }</td></tr>
+<tr><th id="575">575</th><td></td></tr>
+<tr><th id="576">576</th><td>  <b>return</b> <a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a>;</td></tr>
+<tr><th id="577">577</th><td>}</td></tr>
+<tr><th id="578">578</th><td></td></tr>
+<tr><th id="579">579</th><td><i>/*</i></td></tr>
+<tr><th id="580">580</th><td><i> * Parse the string and modify ssl_version in the val argument. Return PARAM_OK</i></td></tr>
+<tr><th id="581">581</th><td><i> * on success, otherwise a parameter error enum. ONLY ACCEPTS POSITIVE NUMBERS!</i></td></tr>
+<tr><th id="582">582</th><td><i> *</i></td></tr>
+<tr><th id="583">583</th><td><i> * Since this function gets called with the 'nextarg' pointer from within the</i></td></tr>
+<tr><th id="584">584</th><td><i> * getparameter a lot, we must check it for NULL before accessing the str</i></td></tr>
+<tr><th id="585">585</th><td><i> * data.</i></td></tr>
+<tr><th id="586">586</th><td><i> */</i></td></tr>
+<tr><th id="587">587</th><td></td></tr>
+<tr><th id="588">588</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl def" id="str2tls_max" title='str2tls_max' data-ref="str2tls_max">str2tls_max</dfn>(<em>long</em> *<dfn class="local col3 decl" id="83val" title='val' data-type='long *' data-ref="83val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="84str" title='str' data-type='const char *' data-ref="84str">str</dfn>)</td></tr>
+<tr><th id="589">589</th><td>{</td></tr>
+<tr><th id="590">590</th><td>   <em>static</em> <b>struct</b> <dfn class="local col5 type" id="85s_tls_max" title='s_tls_max' data-ref="85s_tls_max"><a class="local col5 type" href="#85s_tls_max" title='s_tls_max' data-ref="85s_tls_max">s_tls_max</a></dfn> {</td></tr>
+<tr><th id="591">591</th><td>    <em>const</em> <em>char</em> *<dfn class="local col6 decl" id="86tls_max_str" title='tls_max_str' data-type='const char *' data-ref="86tls_max_str">tls_max_str</dfn>;</td></tr>
+<tr><th id="592">592</th><td>    <em>long</em> <dfn class="local col7 decl" id="87tls_max" title='tls_max' data-type='long' data-ref="87tls_max">tls_max</dfn>;</td></tr>
+<tr><th id="593">593</th><td>  } <em>const</em> <dfn class="local col8 decl" id="88tls_max_array" title='tls_max_array' data-type='const struct s_tls_max [5]' data-ref="88tls_max_array">tls_max_array</dfn>[] = {</td></tr>
+<tr><th id="594">594</th><td>    { <q>"default"</q>, <a class="enum" href="../include/curl/curl.h.html#CURL_SSLVERSION_MAX_DEFAULT" title='CURL_SSLVERSION_MAX_DEFAULT' data-ref="CURL_SSLVERSION_MAX_DEFAULT">CURL_SSLVERSION_MAX_DEFAULT</a> },</td></tr>
+<tr><th id="595">595</th><td>    { <q>"1.0"</q>,     <a class="enum" href="../include/curl/curl.h.html#CURL_SSLVERSION_MAX_TLSv1_0" title='CURL_SSLVERSION_MAX_TLSv1_0' data-ref="CURL_SSLVERSION_MAX_TLSv1_0">CURL_SSLVERSION_MAX_TLSv1_0</a> },</td></tr>
+<tr><th id="596">596</th><td>    { <q>"1.1"</q>,     <a class="enum" href="../include/curl/curl.h.html#CURL_SSLVERSION_MAX_TLSv1_1" title='CURL_SSLVERSION_MAX_TLSv1_1' data-ref="CURL_SSLVERSION_MAX_TLSv1_1">CURL_SSLVERSION_MAX_TLSv1_1</a> },</td></tr>
+<tr><th id="597">597</th><td>    { <q>"1.2"</q>,     <a class="enum" href="../include/curl/curl.h.html#CURL_SSLVERSION_MAX_TLSv1_2" title='CURL_SSLVERSION_MAX_TLSv1_2' data-ref="CURL_SSLVERSION_MAX_TLSv1_2">CURL_SSLVERSION_MAX_TLSv1_2</a> },</td></tr>
+<tr><th id="598">598</th><td>    { <q>"1.3"</q>,     <a class="enum" href="../include/curl/curl.h.html#CURL_SSLVERSION_MAX_TLSv1_3" title='CURL_SSLVERSION_MAX_TLSv1_3' data-ref="CURL_SSLVERSION_MAX_TLSv1_3">CURL_SSLVERSION_MAX_TLSv1_3</a> }</td></tr>
+<tr><th id="599">599</th><td>  };</td></tr>
+<tr><th id="600">600</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="89i" title='i' data-type='size_t' data-ref="89i">i</dfn> = <var>0</var>;</td></tr>
+<tr><th id="601">601</th><td>  <b>if</b>(!<a class="local col4 ref" href="#84str" title='str' data-ref="84str">str</a>)</td></tr>
+<tr><th id="602">602</th><td>    <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_REQUIRES_PARAMETER" title='PARAM_REQUIRES_PARAMETER' data-ref="PARAM_REQUIRES_PARAMETER">PARAM_REQUIRES_PARAMETER</a>;</td></tr>
+<tr><th id="603">603</th><td>  <b>for</b>(<a class="local col9 ref" href="#89i" title='i' data-ref="89i">i</a> = <var>0</var>; <a class="local col9 ref" href="#89i" title='i' data-ref="89i">i</a> &lt; <b>sizeof</b>(<a class="local col8 ref" href="#88tls_max_array" title='tls_max_array' data-ref="88tls_max_array">tls_max_array</a>)/<b>sizeof</b>(<a class="local col8 ref" href="#88tls_max_array" title='tls_max_array' data-ref="88tls_max_array">tls_max_array</a>[<var>0</var>]); <a class="local col9 ref" href="#89i" title='i' data-ref="89i">i</a>++) {</td></tr>
+<tr><th id="604">604</th><td>    <b>if</b>(!<a class="ref" href="../../include/string.h.html#strcmp" title='strcmp' data-ref="strcmp">strcmp</a>(<a class="local col4 ref" href="#84str" title='str' data-ref="84str">str</a>, <a class="local col8 ref" href="#88tls_max_array" title='tls_max_array' data-ref="88tls_max_array">tls_max_array</a>[<a class="local col9 ref" href="#89i" title='i' data-ref="89i">i</a>].<a class="local col6 ref" href="#86tls_max_str" title='tls_max_str' data-ref="86tls_max_str">tls_max_str</a>)) {</td></tr>
+<tr><th id="605">605</th><td>      *<a class="local col3 ref" href="#83val" title='val' data-ref="83val">val</a> = <a class="local col8 ref" href="#88tls_max_array" title='tls_max_array' data-ref="88tls_max_array">tls_max_array</a>[<a class="local col9 ref" href="#89i" title='i' data-ref="89i">i</a>].<a class="local col7 ref" href="#87tls_max" title='tls_max' data-ref="87tls_max">tls_max</a>;</td></tr>
+<tr><th id="606">606</th><td>      <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_OK" title='PARAM_OK' data-ref="PARAM_OK">PARAM_OK</a>;</td></tr>
+<tr><th id="607">607</th><td>    }</td></tr>
+<tr><th id="608">608</th><td>  }</td></tr>
+<tr><th id="609">609</th><td>  <b>return</b> <a class="enum" href="tool_getparam.h.html#PARAM_BAD_USE" title='PARAM_BAD_USE' data-ref="PARAM_BAD_USE">PARAM_BAD_USE</a>;</td></tr>
+<tr><th id="610">610</th><td>}</td></tr>
+<tr><th id="611">611</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='1492' type='void *'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/urldata.h' l='1492'>/* CURLOPT_WRITEDATA */</doc>
+<use f='codebrowser/lib/ftp.c' l='3824' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3826' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3852' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/rtsp.c' l='770' u='r' c='rtp_client_write'/>
+<use f='codebrowser/lib/sendf.c' l='574' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/url.c' l='511' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1620' u='w' c='Curl_setopt'/>

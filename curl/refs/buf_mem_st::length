@@ -1,0 +1,8 @@
+<dec f='include/openssl/buffer.h' l='78' type='size_t'/>
+<offset>0</offset>
+<doc f='include/openssl/buffer.h' l='78'>/* current number of bytes */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='887' u='r' c='x509_name_oneline'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='888' u='r' c='x509_name_oneline'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2722' u='r' c='X509V3_ext'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2728' u='r' c='X509V3_ext'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2730' u='r' c='X509V3_ext'/>

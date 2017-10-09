@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='131'/>
+<use f='codebrowser/lib/curl_setup.h' l='705' u='a'/>
+<use f='codebrowser/lib/mime.c' l='1302' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='745' u='c'/>

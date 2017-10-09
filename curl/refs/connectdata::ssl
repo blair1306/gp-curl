@@ -1,0 +1,40 @@
+<dec f='codebrowser/lib/urldata.h' l='887' type='struct ssl_connect_data [2]'/>
+<offset>5248</offset>
+<doc f='codebrowser/lib/urldata.h' l='887'>/* this is for ssl-stuff */</doc>
+<use f='codebrowser/lib/connect.c' l='1254' u='m' c='Curl_connalive'/>
+<use f='codebrowser/lib/ftp.c' l='2502' u='m' c='ftp_state_loggedin'/>
+<use f='codebrowser/lib/ftp.c' l='2649' u='m' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3244' u='m' c='ftp_done'/>
+<use f='codebrowser/lib/getinfo.c' l='374' u='r' c='getinfo_slist'/>
+<use f='codebrowser/lib/getinfo.c' l='374' u='r' c='getinfo_slist'/>
+<use f='codebrowser/lib/getinfo.c' l='375' u='m' c='getinfo_slist'/>
+<use f='codebrowser/lib/getinfo.c' l='376' u='a' c='getinfo_slist'/>
+<use f='codebrowser/lib/imap.c' l='906' u='m' c='imap_state_capability_resp'/>
+<use f='codebrowser/lib/pop3.c' l='715' u='m' c='pop3_state_capa_resp'/>
+<use f='codebrowser/lib/smtp.c' l='705' u='m' c='smtp_state_ehlo_resp'/>
+<use f='codebrowser/lib/smtp.c' l='765' u='m' c='smtp_state_ehlo_resp'/>
+<use f='codebrowser/lib/url.c' l='3694' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3763' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='4293' u='m' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4294' u='m' c='allocate_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1170' u='a' c='Curl_ossl_close'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1181' u='a' c='Curl_ossl_shutdown'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2035' u='a' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2500' u='a' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3189' u='a' c='ossl_connect_step3'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3260' u='a' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3387' u='a' c='Curl_ossl_data_pending'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3413' u='a' c='ossl_send'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3442' u='m' c='ossl_send'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3475' u='a' c='ossl_recv'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='210' u='m' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='220' u='r' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='222' u='a' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='222' u='r' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='225' u='m' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='245' u='m' c='Curl_ssl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='246' u='m' c='Curl_ssl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='271' u='m' c='Curl_ssl_connect_nonblocking'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='518' u='a' c='Curl_ssl_getsock'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='560' u='m' c='Curl_ssl_shutdown'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='561' u='m' c='Curl_ssl_shutdown'/>

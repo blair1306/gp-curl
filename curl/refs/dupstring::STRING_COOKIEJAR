@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1399' type='5'/>
+<doc f='codebrowser/lib/urldata.h' l='1399'>/* dump all cookies to this file */</doc>
+<use f='codebrowser/lib/cookie.c' l='1448' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1459' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1461' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/url.c' l='1261' u='a' c='Curl_setopt'/>

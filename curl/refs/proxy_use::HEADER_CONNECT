@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/http.c' l='1556' type='2'/>
+<use f='codebrowser/lib/http.c' l='1573' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1589' c='Curl_add_custom_headers'/>
+<doc f='codebrowser/lib/http.c' l='1556'>/* sending CONNECT to a proxy */</doc>

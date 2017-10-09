@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/imap.h' l='32' type='0'/>
+<doc f='codebrowser/lib/imap.h' l='32'>/* do nothing state, stops the state machine */</doc>
+<use f='codebrowser/lib/imap.c' l='492' u='r' c='imap_perform_login'/>
+<use f='codebrowser/lib/imap.c' l='571' u='r' c='imap_perform_authentication'/>
+<use f='codebrowser/lib/imap.c' l='968' u='r' c='imap_state_auth_resp'/>
+<use f='codebrowser/lib/imap.c' l='1002' u='r' c='imap_state_login_resp'/>
+<use f='codebrowser/lib/imap.c' l='1028' u='r' c='imap_state_listsearch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1096' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1171' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1189' u='r' c='imap_state_fetch_final_resp'/>
+<use f='codebrowser/lib/imap.c' l='1214' u='r' c='imap_state_append_resp'/>
+<use f='codebrowser/lib/imap.c' l='1233' u='r' c='imap_state_append_final_resp'/>
+<use f='codebrowser/lib/imap.c' l='1322' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1325' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1343' u='r' c='imap_multi_statemach'/>
+<use f='codebrowser/lib/imap.c' l='1353' u='r' c='imap_block_statemach'/>

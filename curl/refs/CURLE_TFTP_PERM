@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='540' type='69'/>
+<doc f='codebrowser/include/curl/curl.h' l='540'>/* 69 - permission problem on server */</doc>
+<use f='codebrowser/lib/strerror.c' l='258' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/tftp.c' l='866' u='r' c='tftp_translate_code'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='1204' type='char *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/urldata.h' l='1204'>/* allocated buffer to keep data in when a write callback
+                 returns to make the connection paused */</doc>
+<use f='codebrowser/lib/easy.c' l='1032' u='w' c='curl_easy_pause'/>
+<use f='codebrowser/lib/easy.c' l='1042' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/easy.c' l='1044' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/multi.c' l='596' u='r' c='multi_done'/>
+<use f='codebrowser/lib/sendf.c' l='501' u='r' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='508' u='w' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='517' u='w' c='pausewrite'/>

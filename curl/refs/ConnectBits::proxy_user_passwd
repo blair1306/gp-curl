@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='386' type='_Bool'/>
+<offset>64</offset>
+<use f='codebrowser/lib/http.c' l='497' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='617' u='r' c='output_auth_headers'/>
+<use f='codebrowser/lib/http.c' l='676' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='965' u='r' c='http_should_fail'/>
+<use f='codebrowser/lib/http.c' l='3426' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/url.c' l='3504' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='4266' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='5259' u='w' c='parse_proxy'/>
+<use f='codebrowser/lib/url.c' l='5325' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5465' u='w' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='6312' u='w' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6312' u='r' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6313' u='r' c='reuse_conn'/>

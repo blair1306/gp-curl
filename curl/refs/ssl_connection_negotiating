@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/urldata.h' l='187' type='1'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='246' u='r' c='Curl_ssl_connect'/>

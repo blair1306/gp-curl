@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1351' type='_Bool'/>
+<offset>140224</offset>
+<use f='codebrowser/lib/multi.c' l='536' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='585' u='w' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='2232' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/url.c' l='7068' u='w' c='Curl_init_do'/>

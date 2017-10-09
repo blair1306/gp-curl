@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2283' type='void SSL_CTX_set_default_passwd_cb_userdata(SSL_CTX * ctx, void * u)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='563' u='c' c='cert_stuff'/>

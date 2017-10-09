@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='114' type='void Curl_auth_digest_cleanup(struct digestdata * digest)'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='113'>/* This is used to clean up the digest specific data */</doc>
+<use f='codebrowser/lib/http_digest.c' l='176' u='c' c='Curl_digest_cleanup'/>
+<use f='codebrowser/lib/http_digest.c' l='177' u='c' c='Curl_digest_cleanup'/>
+<use f='codebrowser/lib/vauth/digest.c' l='524' u='c' c='Curl_auth_decode_digest_http_message'/>
+<def f='codebrowser/lib/vauth/digest.c' l='878' ll='890' type='void Curl_auth_digest_cleanup(struct digestdata * digest)'/>
+<doc f='codebrowser/lib/vauth/digest.c' l='868'>/*
+ * Curl_auth_digest_cleanup()
+ *
+ * This is used to clean up the digest specific data.
+ *
+ * Parameters:
+ *
+ * digest    [in/out] - The digest data struct being cleaned up.
+ *
+ */</doc>

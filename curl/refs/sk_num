@@ -1,0 +1,6 @@
+<dec f='include/openssl/stack.h' l='77' type='int sk_num(const _STACK * )'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='712' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1375' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2697' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2701' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2759' macro='1' u='c'/>

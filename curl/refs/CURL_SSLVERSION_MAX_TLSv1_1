@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='1929' type='327680'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2005' c='set_ssl_version_min_max'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='596' u='r' c='str2tls_max'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='596' u='r' c='str2tls_max'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='596' u='r' c='str2tls_max'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='596' u='r' c='str2tls_max'/>

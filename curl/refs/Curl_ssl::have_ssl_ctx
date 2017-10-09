@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='39' type='unsigned int'/>
+<offset>131</offset>
+<doc f='codebrowser/lib/vtls/vtls.h' l='39'>/* supports CURLOPT_SSL_CTX_* */</doc>
+<use f='codebrowser/lib/url.c' l='2205' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2216' u='r' c='Curl_setopt'/>

@@ -1,0 +1,24 @@
+<dec f='codebrowser/include/curl/curl.h' l='1994' type='void curl_mime_free(curl_mime * mime)'/>
+<use f='codebrowser/lib/mime.c' l='1099' u='c' c='mime_subparts_free'/>
+<def f='codebrowser/lib/mime.c' l='1128' ll='1144' type='void curl_mime_free(curl_mime * mime)'/>
+<doc f='codebrowser/lib/mime.c' l='1127'>/* Recursively delete a mime handle and its parts. */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='144' u='c' c='free_config_fields'/>
+<use f='codebrowser/src/tool_formparse.c' l='498' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='505' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='546' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='572' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='582' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='594' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='602' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='609' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='616' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='629' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='635' u='c' c='formparse'/>
+<use f='codebrowser/tests/libtest/lib1553.c' l='99' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='108' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='148' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='165' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='191' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='214' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='249' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='269' u='c' c='cyclic_add'/>

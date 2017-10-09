@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/multiif.h' l='37' type='struct Curl_multi * Curl_multi_handle(int hashsize, int chashsize)'/>
+<doc f='codebrowser/lib/multiif.h' l='35'>/* Internal version of curl_multi_init() accepts size parameters for the
+   socket and connection hashes */</doc>
+<use f='codebrowser/lib/easy.c' l='770' u='c' c='easy_perform'/>
+<def f='codebrowser/lib/multi.c' l='305' ll='353' type='struct Curl_multi * Curl_multi_handle(int hashsize, int chashsize)'/>
+<use f='codebrowser/lib/multi.c' l='357' u='c' c='curl_multi_init'/>
+<doc f='codebrowser/lib/multi.c' l='305'>/* socket hash */</doc>

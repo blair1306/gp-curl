@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/curl_config.h' l='660'/>
+<doc f='codebrowser/lib/curl_config.h' l='659'>/* Define to 1 if you have the &lt;sys/poll.h&gt; header file. */</doc>
+<use f='codebrowser/lib/select.h' l='38' u='a'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='907' type='long'/>
+<use f='codebrowser/lib/asyn-thread.c' l='637' u='r' c='Curl_resolver_getaddrinfo'/>
+<offset>7872</offset>
+<doc f='codebrowser/lib/urldata.h' l='907'>/* copied from the Curl_easy at creation time */</doc>
+<use f='codebrowser/lib/connect.c' l='344' u='r' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='348' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='351' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='357' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/hostip6.c' l='124' u='r' c='Curl_ipvalid'/>
+<use f='codebrowser/lib/url.c' l='4284' u='w' c='allocate_conn'/>

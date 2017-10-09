@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/speedcheck.h' l='30' type='CURLcode Curl_speedcheck(struct Curl_easy * data, struct curltime now)'/>
+<use f='codebrowser/lib/file.c' l='407' u='c' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='592' u='c' c='file_do'/>
+<use f='codebrowser/lib/multi.c' l='1834' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/pingpong.c' l='123' u='c' c='Curl_pp_statemach'/>
+<def f='codebrowser/lib/speedcheck.c' l='39' ll='73' type='CURLcode Curl_speedcheck(struct Curl_easy * data, struct curltime now)'/>
+<doc f='codebrowser/lib/speedcheck.c' l='36'>/*
+ * @unittest: 1606
+ */</doc>
+<use f='codebrowser/lib/tftp.c' l='1296' u='c' c='tftp_doing'/>
+<use f='codebrowser/lib/transfer.c' l='1191' u='c' c='Curl_readwrite'/>

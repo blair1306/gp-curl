@@ -1,0 +1,14 @@
+<def f='codebrowser/lib/pop3.h' l='60' ll='73'/>
+<size>192</size>
+<doc f='codebrowser/lib/pop3.h' l='58'>/* pop3_conn is used for struct connection-oriented data in the connectdata
+   struct */</doc>
+<mbr r='pop3_conn::pp' o='0' t='struct pingpong'/>
+<mbr r='pop3_conn::state' o='896' t='pop3state'/>
+<mbr r='pop3_conn::ssldone' o='928' t='_Bool'/>
+<mbr r='pop3_conn::eob' o='960' t='size_t'/>
+<mbr r='pop3_conn::strip' o='1024' t='size_t'/>
+<mbr r='pop3_conn::sasl' o='1088' t='struct SASL'/>
+<mbr r='pop3_conn::authtypes' o='1344' t='unsigned int'/>
+<mbr r='pop3_conn::preftype' o='1376' t='unsigned int'/>
+<mbr r='pop3_conn::apoptimestamp' o='1408' t='char *'/>
+<mbr r='pop3_conn::tls_supported' o='1472' t='_Bool'/>

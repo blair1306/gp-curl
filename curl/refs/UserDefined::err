@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='1486' type='FILE *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/urldata.h' l='1486'>/* the stderr user data goes here */</doc>
+<use f='codebrowser/lib/progress.c' l='146' u='r' c='Curl_pgrsDone'/>
+<use f='codebrowser/lib/progress.c' l='488' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='492' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='552' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='572' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/sendf.c' l='800' u='r' c='showit'/>
+<use f='codebrowser/lib/sendf.c' l='801' u='r' c='showit'/>
+<use f='codebrowser/lib/url.c' l='513' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1928' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1929' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1930' u='w' c='Curl_setopt'/>

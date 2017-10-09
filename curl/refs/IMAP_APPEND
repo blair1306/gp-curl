@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/imap.h' l='45' type='11'/>
+<use f='codebrowser/lib/imap.c' l='323' c='imap_endofresp'/>
+<use f='codebrowser/lib/imap.c' l='769' u='r' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='1306' c='imap_statemach_act'/>

@@ -1,0 +1,43 @@
+<dec f='codebrowser/lib/sendf.h' l='56' type='CURLcode Curl_client_write(struct connectdata * conn, int type, char * ptr, size_t len)'/>
+<use f='codebrowser/lib/content_encoding.c' l='119' u='c' c='inflate_stream'/>
+<use f='codebrowser/lib/file.c' l='485' u='c' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='489' u='c' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='509' u='c' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='583' u='c' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='2094' u='c' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2277' u='c' c='ftp_state_size_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2310' u='c' c='ftp_state_rest_resp'/>
+<use f='codebrowser/lib/gopher.c' l='122' u='c' c='gopher_do'/>
+<use f='codebrowser/lib/gopher.c' l='159' u='c' c='gopher_do'/>
+<use f='codebrowser/lib/http.c' l='3148' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3802' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_chunks.c' l='123' u='c' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='197' u='c' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='273' u='c' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_proxy.c' l='430' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/imap.c' l='1021' u='c' c='imap_state_listsearch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1129' u='c' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/pingpong.c' l='378' u='c' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pop3.c' l='1443' u='c' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1501' u='c' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1517' u='c' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1530' u='c' c='Curl_pop3_write'/>
+<def f='codebrowser/lib/sendf.c' l='624' ll='653' type='CURLcode Curl_client_write(struct connectdata * conn, int type, char * ptr, size_t len)'/>
+<doc f='codebrowser/lib/sendf.c' l='615'>/* Curl_client_write() sends data to the write callback(s)
+
+   The bit pattern defines to what &quot;streams&quot; to write to. Body and/or header.
+   The defines are in sendf.h of course.
+
+   If CURL_DO_LINEEND_CONV is enabled, data is converted IN PLACE to the
+   local character encoding.  This is a problem and should be changed in
+   the future to leave the original data alone.
+ */</doc>
+<use f='codebrowser/lib/smb.c' l='822' u='c' c='smb_request_state'/>
+<use f='codebrowser/lib/smtp.c' l='856' u='c' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/telnet.c' l='1073' u='c' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1073' u='c' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1073' u='c' c='telrcv'/>
+<use f='codebrowser/lib/tftp.c' l='1137' u='c' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/transfer.c' l='763' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='767' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='796' u='c' c='readwrite_data'/>

@@ -1,0 +1,8 @@
+<def f='codebrowser/lib/urldata.h' l='1179' ll='1191'/>
+<size>32</size>
+<mbr r='auth::want' o='0' t='unsigned long'/>
+<mbr r='auth::picked' o='64' t='unsigned long'/>
+<mbr r='auth::avail' o='128' t='unsigned long'/>
+<mbr r='auth::done' o='192' t='_Bool'/>
+<mbr r='auth::multipass' o='200' t='_Bool'/>
+<mbr r='auth::iestyle' o='208' t='_Bool'/>

@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/llist.h' l='46' type='void Curl_llist_remove(struct curl_llist * , struct curl_llist_element * , void * )'/>
+<use f='codebrowser/lib/conncache.c' l='93' u='c' c='bundle_remove_conn'/>
+<use f='codebrowser/lib/ftp.c' l='3913' u='c' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3926' u='c' c='wc_statemach'/>
+<use f='codebrowser/lib/hash.c' l='119' u='c' c='Curl_hash_add'/>
+<use f='codebrowser/lib/hash.c' l='149' u='c' c='Curl_hash_delete'/>
+<use f='codebrowser/lib/hash.c' l='252' u='c' c='Curl_hash_clean_with_criterium'/>
+<def f='codebrowser/lib/llist.c' l='92' ll='127' type='void Curl_llist_remove(struct curl_llist * list, struct curl_llist_element * e, void * user)'/>
+<use f='codebrowser/lib/llist.c' l='134' u='c' c='Curl_llist_destroy'/>
+<doc f='codebrowser/lib/llist.c' l='89'>/*
+ * @unittest: 1300
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='764' u='c' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2309' u='c' c='curl_multi_info_read'/>
+<use f='codebrowser/lib/multi.c' l='2522' u='c' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2874' u='c' c='multi_deltimeout'/>
+<use f='codebrowser/lib/multi.c' l='3034' u='c' c='Curl_expire_clear'/>
+<use f='codebrowser/lib/multi.c' l='3105' u='c' c='Curl_multi_process_pending_handles'/>
+<use f='codebrowser/lib/url.c' l='3214' u='c' c='Curl_removeHandleFromPipeline'/>
+<use f='codebrowser/lib/url.c' l='3286' u='c' c='signalPipeClose'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='153' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='182' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='201' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='215' u='c' c='test'/>

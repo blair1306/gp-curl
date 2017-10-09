@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='57' type='char *'/>
+<offset>192</offset>
+<use f='codebrowser/lib/curl_addrinfo.c' l='85' u='r' c='Curl_freeaddrinfo'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='166' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='178' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='179' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='304' u='w' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='305' u='r' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='313' u='r' c='Curl_he2ai'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='84' u='w' c='fake_ai'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='85' u='r' c='fake_ai'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='92' u='r' c='fake_ai'/>

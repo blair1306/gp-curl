@@ -1,0 +1,1 @@
+<dec f='include/openssl/des.h' l='232' type='int DES_set_key_checked(const_DES_cblock * key, DES_key_schedule * schedule)'/>

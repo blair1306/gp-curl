@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='42'/>
+<doc f='codebrowser/lib/curl_sasl.h' l='41'>/* Authentication mechanism values */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='157' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='182' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='184' u='c'/>
+<use f='codebrowser/lib/imap.c' l='418' u='c'/>
+<use f='codebrowser/lib/imap.c' l='419' u='c'/>
+<use f='codebrowser/lib/imap.c' l='1910' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='313' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='314' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1345' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1358' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='304' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='305' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='330' u='c'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/tftp.c' l='98' type='6'/>
+<use f='codebrowser/lib/tftp.c' l='548' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='639' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='721' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='1157' c='tftp_receive_packet'/>

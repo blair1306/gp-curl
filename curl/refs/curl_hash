@@ -1,0 +1,8 @@
+<def f='codebrowser/lib/hash.h' l='46' ll='57'/>
+<size>48</size>
+<mbr r='curl_hash::table' o='0' t='struct curl_llist *'/>
+<mbr r='curl_hash::hash_func' o='64' t='hash_function'/>
+<mbr r='curl_hash::comp_func' o='128' t='comp_function'/>
+<mbr r='curl_hash::dtor' o='192' t='curl_hash_dtor'/>
+<mbr r='curl_hash::slots' o='256' t='int'/>
+<mbr r='curl_hash::size' o='320' t='size_t'/>

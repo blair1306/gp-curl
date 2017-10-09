@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/share.h' l='54' type='long'/>
+<offset>832</offset>
+<use f='codebrowser/lib/share.c' l='95' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='329' u='a' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='451' u='a' c='Curl_ssl_addsessionid'/>

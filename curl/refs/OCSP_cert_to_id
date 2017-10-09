@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='417' type='OCSP_CERTID * OCSP_cert_to_id(const EVP_MD * dgst, X509 * subject, X509 * issuer)'/>

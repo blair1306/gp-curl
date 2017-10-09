@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/hash.h' l='62' type='size_t'/>
+<offset>256</offset>
+<use f='codebrowser/lib/conncache.c' l='183' u='r' c='conncache_remove_bundle'/>
+<use f='codebrowser/lib/hash.c' l='45' u='w' c='hash_element_dtor'/>
+<use f='codebrowser/lib/hash.c' l='94' u='w' c='mk_hash_element'/>
+<use f='codebrowser/lib/hash.c' l='118' u='r' c='Curl_hash_add'/>
+<use f='codebrowser/lib/hash.c' l='148' u='r' c='Curl_hash_delete'/>
+<use f='codebrowser/lib/hash.c' l='172' u='r' c='Curl_hash_pick'/>

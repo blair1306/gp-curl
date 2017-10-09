@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='422' type='unsigned int _ossl_old_des_quad_cksum(_ossl_old_des_cblock * input, _ossl_old_des_cblock * output, long length, int out_count, _ossl_old_des_cblock * seed)'/>

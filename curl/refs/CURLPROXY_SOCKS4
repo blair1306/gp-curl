@@ -1,0 +1,17 @@
+<dec f='codebrowser/include/curl/curl.h' l='670' type='4'/>
+<doc f='codebrowser/include/curl/curl.h' l='670'>/* support added in 7.15.2, enum existed already
+                           in 7.10 */</doc>
+<use f='codebrowser/lib/url.c' l='3937' c='Curl_connected_proxy'/>
+<use f='codebrowser/lib/url.c' l='4237' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='5114' u='r' c='parse_proxy'/>
+<use f='codebrowser/lib/url.c' l='5138' u='r' c='parse_proxy'/>
+<use f='codebrowser/src/tool_getparam.c' l='818' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_setopt.c' l='51' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='51' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='51' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='51' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='59'/>
+<use f='codebrowser/src/tool_setopt.c' l='59'/>
+<use f='codebrowser/src/tool_setopt.c' l='59'/>
+<use f='codebrowser/src/tool_setopt.c' l='59'/>
+<use f='codebrowser/tests/libtest/lib564.c' l='48' c='test'/>

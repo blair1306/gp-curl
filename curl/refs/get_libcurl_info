@@ -1,0 +1,10 @@
+<dec f='codebrowser/src/tool_libinfo.h' l='31' type='CURLcode get_libcurl_info()'/>
+<def f='codebrowser/src/tool_libinfo.c' l='47' ll='101' type='CURLcode get_libcurl_info()'/>
+<doc f='codebrowser/src/tool_libinfo.c' l='39'>/*
+ * libcurl_info_init: retrieves run-time information about libcurl,
+ * setting a global pointer &apos;curlinfo&apos; to libcurl&apos;s run-time info
+ * struct, and a global bit pattern &apos;built_in_protos&apos; composed of
+ * CURLPROTO_* bits indicating which protocols are actually built
+ * into library being used.
+ */</doc>
+<use f='codebrowser/src/tool_main.c' l='158' u='c' c='main_init'/>

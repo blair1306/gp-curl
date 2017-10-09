@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/curl_config.h' l='414'/>
+<doc f='codebrowser/lib/curl_config.h' l='413'>/* Define to 1 if the compiler supports the &apos;long long&apos; data type. */</doc>
+<use f='codebrowser/lib/curl_endian.h' l='39' u='a'/>
+<use f='codebrowser/lib/curl_endian.c' l='115' u='a'/>
+<use f='codebrowser/lib/mprintf.c' l='49' u='a'/>
+<use f='codebrowser/lib/smb.c' l='724' u='a'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='113' u='a'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='114' u='a'/>

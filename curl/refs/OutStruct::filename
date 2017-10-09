@@ -1,0 +1,22 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='66' type='char *'/>
+<offset>0</offset>
+<use f='codebrowser/src/tool_cb_hdr.c' l='122' u='w' c='tool_header_cb'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='40' u='r' c='tool_create_output_file'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='40' u='r' c='tool_create_output_file'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='47' u='r' c='tool_create_output_file'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='50' u='r' c='tool_create_output_file'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='57' u='r' c='tool_create_output_file'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='59' u='r' c='tool_create_output_file'/>
+<use f='codebrowser/src/tool_operate.c' l='393' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='683' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1577' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1578' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1674' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1847' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1852' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1877' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1877' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1988' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1988' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_writeout.c' l='271' u='r' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='272' u='r' c='ourWriteOut'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='573'/>
+<doc f='codebrowser/lib/curl_config.h' l='572'>/* Define to 1 if you have the `socket&apos; function. */</doc>
+<use f='codebrowser/lib/transfer.c' l='53' u='a'/>
+<use f='codebrowser/lib/url.c' l='54' u='a'/>

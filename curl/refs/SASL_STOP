@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='59' type='0'/>
+<use f='codebrowser/lib/curl_sasl.c' l='181' u='r' c='Curl_sasl_init'/>
+<use f='codebrowser/lib/curl_sasl.c' l='263' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='439' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='446' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='451' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='576' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='589' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='618' u='r' c='Curl_sasl_continue'/>

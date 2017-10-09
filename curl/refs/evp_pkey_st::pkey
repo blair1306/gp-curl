@@ -1,0 +1,5 @@
+<dec f='include/openssl/evp.h' l='149' type='union (anonymous union at /usr/include/openssl/evp.h:135:5)'/>
+<offset>256</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2848' u='m' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2878' u='m' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2910' u='m' c='get_cert_chain'/>

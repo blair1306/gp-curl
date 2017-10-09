@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/multihandle.h' l='38' type='1'/>
+<doc f='codebrowser/lib/multihandle.h' l='38'>/* 1 - no connections, waiting for one */</doc>
+<use f='codebrowser/lib/multi.c' l='1429' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1442' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='3101' u='r' c='Curl_multi_process_pending_handles'/>

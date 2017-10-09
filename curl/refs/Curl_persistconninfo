@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/connect.h' l='76' type='void Curl_persistconninfo(struct connectdata * conn)'/>
+<def f='codebrowser/lib/connect.c' l='600' ll='608' type='void Curl_persistconninfo(struct connectdata * conn)'/>
+<use f='codebrowser/lib/connect.c' l='711' u='c' c='Curl_updateconninfo'/>
+<doc f='codebrowser/lib/connect.c' l='598'>/* Copies connection info into the session handle to make it available
+   when the session handle is no longer associated with a connection. */</doc>
+<use f='codebrowser/lib/url.c' l='6341' u='c' c='reuse_conn'/>

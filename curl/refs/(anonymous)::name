@@ -1,0 +1,25 @@
+<dec f='codebrowser/include/curl/curl.h' l='2368' type='const char *'/>
+<offset>64</offset>
+<dec f='codebrowser/lib/mime.h' l='66' type='const char *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/mime.h' l='66'>/* Encoding name. */</doc>
+<use f='codebrowser/lib/mime.c' l='1361' u='r' c='curl_mime_encoder'/>
+<use f='codebrowser/lib/mime.c' l='1362' u='r' c='curl_mime_encoder'/>
+<use f='codebrowser/lib/mime.c' l='1717' u='r' c='Curl_mime_prepare_headers'/>
+<dec f='include/openssl/conf.h' l='76' type='char *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/vtls/vtls.c' l='1283' u='r' c='multissl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1305' u='r' c='curl_global_sslset'/>
+<dec f='codebrowser/src/tool_setopt.h' l='40' type='const char *'/>
+<dec f='codebrowser/src/tool_setopt.h' l='45' type='const char *'/>
+<offset>0</offset>
+<use f='codebrowser/src/tool_setopt.c' l='279' u='r' c='tool_setopt_enum'/>
+<use f='codebrowser/src/tool_setopt.c' l='282' u='r' c='tool_setopt_enum'/>
+<use f='codebrowser/src/tool_setopt.c' l='289' u='r' c='tool_setopt_enum'/>
+<use f='codebrowser/src/tool_setopt.c' l='316' u='r' c='tool_setopt_flags'/>
+<use f='codebrowser/src/tool_setopt.c' l='321' u='r' c='tool_setopt_flags'/>
+<use f='codebrowser/src/tool_setopt.c' l='359' u='r' c='tool_setopt_bitmask'/>
+<use f='codebrowser/src/tool_setopt.c' l='364' u='r' c='tool_setopt_bitmask'/>
+<use f='codebrowser/src/tool_setopt.c' l='512' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='625' u='r' c='tool_setopt'/>
+<use f='codebrowser/src/tool_setopt.c' l='626' u='r' c='tool_setopt'/>

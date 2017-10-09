@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/pingpong.h' l='50' type='size_t'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/pingpong.h' l='50'>/* size of cache in bytes */</doc>
+<use f='codebrowser/lib/ftp.c' l='396' u='r' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/imap.c' l='1123' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1141' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1143' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1144' u='w' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1151' u='w' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/pingpong.c' l='308' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='309' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='312' u='w' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='439' u='w' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='440' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='442' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='516' u='r' c='Curl_pp_moredata'/>
+<use f='codebrowser/lib/pop3.c' l='908' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='917' u='w' c='pop3_state_command_resp'/>

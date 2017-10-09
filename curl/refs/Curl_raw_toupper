@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/strcase.h' l='42' type='char Curl_raw_toupper(char in)'/>
+<dec f='codebrowser/lib/strcase.h' l='49' type='char Curl_raw_toupper(char in)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='544' u='c' c='ascii_uppercase_to_unicode_le'/>
+<use f='codebrowser/lib/ftp.c' l='4440' u='c' c='ftp_setup_connection'/>
+<use f='codebrowser/lib/http.c' l='2134' u='c' c='Curl_http'/>
+<def f='codebrowser/lib/strcase.c' l='31' ll='94' type='char Curl_raw_toupper(char in)'/>
+<use f='codebrowser/lib/strcase.c' l='112' u='c' c='Curl_strcasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='112' u='c' c='Curl_strcasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='121' u='c' c='Curl_strcasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='121' u='c' c='Curl_strcasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='140' u='c' c='Curl_strncasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='140' u='c' c='Curl_strncasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='150' u='c' c='Curl_strncasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='150' u='c' c='Curl_strncasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='164' u='c' c='Curl_strntoupper'/>
+<doc f='codebrowser/lib/strcase.c' l='29'>/* Portable, consistent toupper (remember EBCDIC). Do not use toupper() because
+   its behavior is altered by the current locale. */</doc>
+<use f='codebrowser/lib/tftp.c' l='1384' u='c' c='tftp_setup_connection'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='267' type='FILE *'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='75' u='r' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='78' u='w' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='81' u='w' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='83' u='w' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='88' u='r' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='89' u='r' c='tool_debug_cb'/>
+<offset>320</offset>
+<use f='codebrowser/src/tool_main.c' l='201' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_main.c' l='202' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_main.c' l='203' u='w' c='free_config_fields'/>

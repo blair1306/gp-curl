@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/netrc.c' l='43' type='1'/>
+<use f='codebrowser/lib/netrc.c' l='140' u='r' c='Curl_parsenetrc'/>
+<use f='codebrowser/lib/netrc.c' l='147' c='Curl_parsenetrc'/>
+<use f='codebrowser/lib/netrc.c' l='190' u='r' c='Curl_parsenetrc'/>
+<doc f='codebrowser/lib/netrc.c' l='43'>/* the &apos;machine&apos; keyword was found */</doc>

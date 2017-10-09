@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>lib650.c source code [codebrowser/tests/libtest/lib650.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/lib650.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='lib650.c.html'>lib650.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="test.h.html">"test.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../../lib/memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><em>static</em> <em>char</em> <dfn class="tu decl def" id="data" title='data' data-type='char [45]' data-ref="data">data</dfn>[] =</td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">ifdef</span> <span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span></u></td></tr>
+<tr><th id="28">28</th><td>  <i>/* ASCII representation with escape sequences for non-ASCII platforms */</i></td></tr>
+<tr><th id="29">29</th><td>  <q>"\x74\x68\x69\x73\x20\x69\x73\x20\x77\x68\x61\x74\x20\x77\x65\x20\x70"</q></td></tr>
+<tr><th id="30">30</th><td>  <q>"\x6f\x73\x74\x20\x74\x6f\x20\x74\x68\x65\x20\x73\x69\x6c\x6c\x79\x20"</q></td></tr>
+<tr><th id="31">31</th><td>  <q>"\x77\x65\x62\x20\x73\x65\x72\x76\x65\x72"</q>;</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="27">else</span></u></td></tr>
+<tr><th id="33">33</th><td>  <q>"this is what we post to the silly web server"</q>;</td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="27">endif</span></u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><em>static</em> <em>char</em> <dfn class="tu decl def" id="name" title='name' data-type='char [10]' data-ref="name">name</dfn>[] = <q>"fieldname"</q>;</td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><i>/* This test attempts to use all form API features that are not</i></td></tr>
+<tr><th id="40">40</th><td><i> * used elsewhere.</i></td></tr>
+<tr><th id="41">41</th><td><i> */</i></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><i  data-doc="count_chars">/* curl_formget callback to count characters. */</i></td></tr>
+<tr><th id="44">44</th><td><em>static</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="tu decl def" id="count_chars" title='count_chars' data-type='size_t count_chars(void * userp, const char * buf, size_t len)' data-ref="count_chars">count_chars</dfn>(<em>void</em> *<dfn class="local col1 decl" id="1userp" title='userp' data-type='void *' data-ref="1userp">userp</dfn>, <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="2buf" title='buf' data-type='const char *' data-ref="2buf">buf</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="3len" title='len' data-type='size_t' data-ref="3len">len</dfn>)</td></tr>
+<tr><th id="45">45</th><td>{</td></tr>
+<tr><th id="46">46</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col4 decl" id="4pcounter" title='pcounter' data-type='size_t *' data-ref="4pcounter">pcounter</dfn> = (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *) <a class="local col1 ref" href="#1userp" title='userp' data-ref="1userp">userp</a>;</td></tr>
+<tr><th id="47">47</th><td></td></tr>
+<tr><th id="48">48</th><td>  (<em>void</em>) <a class="local col2 ref" href="#2buf" title='buf' data-ref="2buf">buf</a>;</td></tr>
+<tr><th id="49">49</th><td>  *<a class="local col4 ref" href="#4pcounter" title='pcounter' data-ref="4pcounter">pcounter</a> += <a class="local col3 ref" href="#3len" title='len' data-ref="3len">len</a>;</td></tr>
+<tr><th id="50">50</th><td>  <b>return</b> <a class="local col3 ref" href="#3len" title='len' data-ref="3len">len</a>;</td></tr>
+<tr><th id="51">51</th><td>}</td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td><em>int</em> <dfn class="decl def" id="test" title='test' data-ref="test">test</dfn>(<em>char</em> *<dfn class="local col5 decl" id="5URL" title='URL' data-type='char *' data-ref="5URL">URL</dfn>)</td></tr>
+<tr><th id="55">55</th><td>{</td></tr>
+<tr><th id="56">56</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col6 decl" id="6curl" title='curl' data-type='CURL *' data-ref="6curl">curl</dfn>;</td></tr>
+<tr><th id="57">57</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col7 decl" id="7res" title='res' data-type='CURLcode' data-ref="7res">res</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="58">58</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLFORMcode" title='CURLFORMcode' data-type='enum CURLFORMcode' data-ref="CURLFORMcode">CURLFORMcode</a> <dfn class="local col8 decl" id="8formrc" title='formrc' data-type='CURLFORMcode' data-ref="8formrc">formrc</dfn>;</td></tr>
+<tr><th id="59">59</th><td>  <b>struct</b> <a class="type" href="../../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="local col9 decl" id="9headers" title='headers' data-type='struct curl_slist *' data-ref="9headers">headers</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="60">60</th><td>  <b>struct</b> <a class="type" href="../../include/curl/curl.h.html#curl_httppost" title='curl_httppost' data-ref="curl_httppost">curl_httppost</a> *<dfn class="local col0 decl" id="10formpost" title='formpost' data-type='struct curl_httppost *' data-ref="10formpost">formpost</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="61">61</th><td>  <b>struct</b> <a class="type" href="../../include/curl/curl.h.html#curl_httppost" title='curl_httppost' data-ref="curl_httppost">curl_httppost</a> *<dfn class="local col1 decl" id="11lastptr" title='lastptr' data-type='struct curl_httppost *' data-ref="11lastptr">lastptr</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="62">62</th><td>  <b>struct</b> <a class="type" href="../../include/curl/curl.h.html#curl_forms" title='curl_forms' data-ref="curl_forms">curl_forms</a> <dfn class="local col2 decl" id="12formarray" title='formarray' data-type='struct curl_forms [3]' data-ref="12formarray">formarray</dfn>[<var>3</var>];</td></tr>
+<tr><th id="63">63</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="13formlength" title='formlength' data-type='size_t' data-ref="13formlength">formlength</dfn> = <var>0</var>;</td></tr>
+<tr><th id="64">64</th><td>  <em>char</em> <dfn class="local col4 decl" id="14flbuf" title='flbuf' data-type='char [32]' data-ref="14flbuf">flbuf</dfn>[<var>32</var>];</td></tr>
+<tr><th id="65">65</th><td></td></tr>
+<tr><th id="66">66</th><td>  <b>if</b>(<a class="ref" href="../../include/curl/curl.h.html#curl_global_init" title='curl_global_init' data-ref="curl_global_init">curl_global_init</a>(<a class="macro" href="../../include/curl/curl.h.html#2519" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_ALL">CURL_GLOBAL_ALL</a>) != <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>) {</td></tr>
+<tr><th id="67">67</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"curl_global_init() failed\n"</q>);</td></tr>
+<tr><th id="68">68</th><td>    <b>return</b> <a class="macro" href="test.h.html#85" title="126" data-ref="_M/TEST_ERR_MAJOR_BAD">TEST_ERR_MAJOR_BAD</a>;</td></tr>
+<tr><th id="69">69</th><td>  }</td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td>  <i>/* Check proper name and data copying. */</i></td></tr>
+<tr><th id="72">72</th><td>  <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_formadd" title='curl_formadd' data-ref="curl_formadd">curl_formadd</a>(&amp;<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>, &amp;<a class="local col1 ref" href="#11lastptr" title='lastptr' data-ref="11lastptr">lastptr</a>,</td></tr>
+<tr><th id="73">73</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2115" title='CURLFORM_COPYNAME' data-ref="CURLFORM_COPYNAME">CURLFORM_COPYNAME</a>, &amp;<a class="tu ref" href="#name" title='name' data-use='a' data-ref="name">name</a>,</td></tr>
+<tr><th id="74">74</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2118" title='CURLFORM_COPYCONTENTS' data-ref="CURLFORM_COPYCONTENTS">CURLFORM_COPYCONTENTS</a>, &amp;<a class="tu ref" href="#data" title='data' data-use='a' data-ref="data">data</a>,</td></tr>
+<tr><th id="75">75</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2133" title='CURLFORM_END' data-ref="CURLFORM_END">CURLFORM_END</a>);</td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td>  <b>if</b>(<a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>)</td></tr>
+<tr><th id="78">78</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"curl_formadd(1) = %d\n"</q>, (<em>int</em>) <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>);</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td>  <i>/* Use a form array for the non-copy test. */</i></td></tr>
+<tr><th id="81">81</th><td>  <a class="local col2 ref" href="#12formarray" title='formarray' data-ref="12formarray">formarray</a>[<var>0</var>].<a class="ref" href="../../include/curl/curl.h.html#curl_forms::option" title='curl_forms::option' data-ref="curl_forms::option">option</a> = <a class="enum" href="../../include/curl/curl.h.html#2119" title='CURLFORM_PTRCONTENTS' data-ref="CURLFORM_PTRCONTENTS">CURLFORM_PTRCONTENTS</a>;</td></tr>
+<tr><th id="82">82</th><td>  <a class="local col2 ref" href="#12formarray" title='formarray' data-ref="12formarray">formarray</a>[<var>0</var>].<a class="ref" href="../../include/curl/curl.h.html#curl_forms::value" title='curl_forms::value' data-ref="curl_forms::value">value</a> = <a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>;</td></tr>
+<tr><th id="83">83</th><td>  <a class="local col2 ref" href="#12formarray" title='formarray' data-ref="12formarray">formarray</a>[<var>1</var>].<a class="ref" href="../../include/curl/curl.h.html#curl_forms::option" title='curl_forms::option' data-ref="curl_forms::option">option</a> = <a class="enum" href="../../include/curl/curl.h.html#2120" title='CURLFORM_CONTENTSLENGTH' data-ref="CURLFORM_CONTENTSLENGTH">CURLFORM_CONTENTSLENGTH</a>;</td></tr>
+<tr><th id="84">84</th><td>  <a class="local col2 ref" href="#12formarray" title='formarray' data-ref="12formarray">formarray</a>[<var>1</var>].<a class="ref" href="../../include/curl/curl.h.html#curl_forms::value" title='curl_forms::value' data-ref="curl_forms::value">value</a> = (<em>char</em> *) <a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>) - <var>1</var>;</td></tr>
+<tr><th id="85">85</th><td>  <a class="local col2 ref" href="#12formarray" title='formarray' data-ref="12formarray">formarray</a>[<var>2</var>].<a class="ref" href="../../include/curl/curl.h.html#curl_forms::option" title='curl_forms::option' data-ref="curl_forms::option">option</a> = <a class="enum" href="../../include/curl/curl.h.html#2133" title='CURLFORM_END' data-ref="CURLFORM_END">CURLFORM_END</a>;</td></tr>
+<tr><th id="86">86</th><td>  <a class="local col2 ref" href="#12formarray" title='formarray' data-ref="12formarray">formarray</a>[<var>2</var>].<a class="ref" href="../../include/curl/curl.h.html#curl_forms::value" title='curl_forms::value' data-ref="curl_forms::value">value</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="87">87</th><td>  <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_formadd" title='curl_formadd' data-ref="curl_formadd">curl_formadd</a>(&amp;<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>,</td></tr>
+<tr><th id="88">88</th><td>                        &amp;<a class="local col1 ref" href="#11lastptr" title='lastptr' data-ref="11lastptr">lastptr</a>,</td></tr>
+<tr><th id="89">89</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2116" title='CURLFORM_PTRNAME' data-ref="CURLFORM_PTRNAME">CURLFORM_PTRNAME</a>, <a class="tu ref" href="#name" title='name' data-ref="name">name</a>,</td></tr>
+<tr><th id="90">90</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2117" title='CURLFORM_NAMELENGTH' data-ref="CURLFORM_NAMELENGTH">CURLFORM_NAMELENGTH</a>, <a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="tu ref" href="#name" title='name' data-use='r' data-ref="name">name</a>) - <var>1</var>,</td></tr>
+<tr><th id="91">91</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2122" title='CURLFORM_ARRAY' data-ref="CURLFORM_ARRAY">CURLFORM_ARRAY</a>, <a class="local col2 ref" href="#12formarray" title='formarray' data-ref="12formarray">formarray</a>,</td></tr>
+<tr><th id="92">92</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2132" title='CURLFORM_FILENAME' data-ref="CURLFORM_FILENAME">CURLFORM_FILENAME</a>, <q>"remotefile.txt"</q>,</td></tr>
+<tr><th id="93">93</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2133" title='CURLFORM_END' data-ref="CURLFORM_END">CURLFORM_END</a>);</td></tr>
+<tr><th id="94">94</th><td></td></tr>
+<tr><th id="95">95</th><td>  <b>if</b>(<a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>)</td></tr>
+<tr><th id="96">96</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"curl_formadd(2) = %d\n"</q>, (<em>int</em>) <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>);</td></tr>
+<tr><th id="97">97</th><td></td></tr>
+<tr><th id="98">98</th><td>  <i>/* Now change in-memory data to affect CURLOPT_PTRCONTENTS value.</i></td></tr>
+<tr><th id="99">99</th><td><i>     Copied values (first field) must not be affected.</i></td></tr>
+<tr><th id="100">100</th><td><i>     CURLOPT_PTRNAME actually copies the name thus we do not test this here. */</i></td></tr>
+<tr><th id="101">101</th><td>  <a class="tu ref" href="#data" title='data' data-use='w' data-ref="data">data</a>[<var>0</var>]++;</td></tr>
+<tr><th id="102">102</th><td></td></tr>
+<tr><th id="103">103</th><td>  <i>/* Check multi-files and content type propagation. */</i></td></tr>
+<tr><th id="104">104</th><td>  <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_formadd" title='curl_formadd' data-ref="curl_formadd">curl_formadd</a>(&amp;<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>,</td></tr>
+<tr><th id="105">105</th><td>                        &amp;<a class="local col1 ref" href="#11lastptr" title='lastptr' data-ref="11lastptr">lastptr</a>,</td></tr>
+<tr><th id="106">106</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2115" title='CURLFORM_COPYNAME' data-ref="CURLFORM_COPYNAME">CURLFORM_COPYNAME</a>, <q>"multifile"</q>,</td></tr>
+<tr><th id="107">107</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2124" title='CURLFORM_FILE' data-ref="CURLFORM_FILE">CURLFORM_FILE</a>, <a class="ref" href="test.h.html#libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</a>,    <i>/* Set in first.c. */</i></td></tr>
+<tr><th id="108">108</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2124" title='CURLFORM_FILE' data-ref="CURLFORM_FILE">CURLFORM_FILE</a>, <a class="ref" href="test.h.html#libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</a>,</td></tr>
+<tr><th id="109">109</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2130" title='CURLFORM_CONTENTTYPE' data-ref="CURLFORM_CONTENTTYPE">CURLFORM_CONTENTTYPE</a>, <q>"text/whatever"</q>,</td></tr>
+<tr><th id="110">110</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2124" title='CURLFORM_FILE' data-ref="CURLFORM_FILE">CURLFORM_FILE</a>, <a class="ref" href="test.h.html#libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</a>,</td></tr>
+<tr><th id="111">111</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2133" title='CURLFORM_END' data-ref="CURLFORM_END">CURLFORM_END</a>);</td></tr>
+<tr><th id="112">112</th><td></td></tr>
+<tr><th id="113">113</th><td>  <b>if</b>(<a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>)</td></tr>
+<tr><th id="114">114</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"curl_formadd(3) = %d\n"</q>, (<em>int</em>) <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>);</td></tr>
+<tr><th id="115">115</th><td></td></tr>
+<tr><th id="116">116</th><td>  <i>/* Check data from file content and headers. */</i></td></tr>
+<tr><th id="117">117</th><td>  <a class="local col9 ref" href="#9headers" title='headers' data-ref="9headers">headers</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_slist_append" title='curl_slist_append' data-ref="curl_slist_append">curl_slist_append</a>(<a class="local col9 ref" href="#9headers" title='headers' data-ref="9headers">headers</a>, <q>"X-customheader-1: Header 1 data"</q>);</td></tr>
+<tr><th id="118">118</th><td>  <a class="local col9 ref" href="#9headers" title='headers' data-ref="9headers">headers</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_slist_append" title='curl_slist_append' data-ref="curl_slist_append">curl_slist_append</a>(<a class="local col9 ref" href="#9headers" title='headers' data-ref="9headers">headers</a>, <q>"X-customheader-2: Header 2 data"</q>);</td></tr>
+<tr><th id="119">119</th><td>  <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_formadd" title='curl_formadd' data-ref="curl_formadd">curl_formadd</a>(&amp;<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>,</td></tr>
+<tr><th id="120">120</th><td>                        &amp;<a class="local col1 ref" href="#11lastptr" title='lastptr' data-ref="11lastptr">lastptr</a>,</td></tr>
+<tr><th id="121">121</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2115" title='CURLFORM_COPYNAME' data-ref="CURLFORM_COPYNAME">CURLFORM_COPYNAME</a>, <q>"filecontents"</q>,</td></tr>
+<tr><th id="122">122</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2121" title='CURLFORM_FILECONTENT' data-ref="CURLFORM_FILECONTENT">CURLFORM_FILECONTENT</a>, <a class="ref" href="test.h.html#libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</a>,</td></tr>
+<tr><th id="123">123</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2131" title='CURLFORM_CONTENTHEADER' data-ref="CURLFORM_CONTENTHEADER">CURLFORM_CONTENTHEADER</a>, <a class="local col9 ref" href="#9headers" title='headers' data-ref="9headers">headers</a>,</td></tr>
+<tr><th id="124">124</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2133" title='CURLFORM_END' data-ref="CURLFORM_END">CURLFORM_END</a>);</td></tr>
+<tr><th id="125">125</th><td></td></tr>
+<tr><th id="126">126</th><td>  <b>if</b>(<a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>)</td></tr>
+<tr><th id="127">127</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"curl_formadd(3) = %d\n"</q>, (<em>int</em>) <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>);</td></tr>
+<tr><th id="128">128</th><td></td></tr>
+<tr><th id="129">129</th><td>  <i>/* Measure the current form length.</i></td></tr>
+<tr><th id="130">130</th><td><i>   * This is done before including stdin data because we want to reuse it</i></td></tr>
+<tr><th id="131">131</th><td><i>   * and stdin cannot be rewound.</i></td></tr>
+<tr><th id="132">132</th><td><i>   */</i></td></tr>
+<tr><th id="133">133</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_formget" title='curl_formget' data-ref="curl_formget">curl_formget</a>(<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>, (<em>void</em> *) &amp;<a class="local col3 ref" href="#13formlength" title='formlength' data-ref="13formlength">formlength</a>, <a class="tu ref" href="#count_chars" title='count_chars' data-use='r' data-ref="count_chars">count_chars</a>);</td></tr>
+<tr><th id="134">134</th><td></td></tr>
+<tr><th id="135">135</th><td>  <i>/* Include length in data for external check. */</i></td></tr>
+<tr><th id="136">136</th><td>  <a class="ref" href="../../include/curl/mprintf.h.html#curl_msnprintf" title='curl_msnprintf' data-ref="curl_msnprintf">curl_msnprintf</a>(<a class="local col4 ref" href="#14flbuf" title='flbuf' data-ref="14flbuf">flbuf</a>, <b>sizeof</b> <a class="local col4 ref" href="#14flbuf" title='flbuf' data-ref="14flbuf">flbuf</a>, <q>"%lu"</q>, (<em>unsigned</em> <em>long</em>) <a class="local col3 ref" href="#13formlength" title='formlength' data-ref="13formlength">formlength</a>);</td></tr>
+<tr><th id="137">137</th><td>  <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_formadd" title='curl_formadd' data-ref="curl_formadd">curl_formadd</a>(&amp;<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>,</td></tr>
+<tr><th id="138">138</th><td>                        &amp;<a class="local col1 ref" href="#11lastptr" title='lastptr' data-ref="11lastptr">lastptr</a>,</td></tr>
+<tr><th id="139">139</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2115" title='CURLFORM_COPYNAME' data-ref="CURLFORM_COPYNAME">CURLFORM_COPYNAME</a>, <q>"formlength"</q>,</td></tr>
+<tr><th id="140">140</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2118" title='CURLFORM_COPYCONTENTS' data-ref="CURLFORM_COPYCONTENTS">CURLFORM_COPYCONTENTS</a>, &amp;<a class="local col4 ref" href="#14flbuf" title='flbuf' data-ref="14flbuf">flbuf</a>,</td></tr>
+<tr><th id="141">141</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2133" title='CURLFORM_END' data-ref="CURLFORM_END">CURLFORM_END</a>);</td></tr>
+<tr><th id="142">142</th><td></td></tr>
+<tr><th id="143">143</th><td>  <i>/* Check stdin (may be problematic on some platforms). */</i></td></tr>
+<tr><th id="144">144</th><td>  <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_formadd" title='curl_formadd' data-ref="curl_formadd">curl_formadd</a>(&amp;<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>,</td></tr>
+<tr><th id="145">145</th><td>                        &amp;<a class="local col1 ref" href="#11lastptr" title='lastptr' data-ref="11lastptr">lastptr</a>,</td></tr>
+<tr><th id="146">146</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2115" title='CURLFORM_COPYNAME' data-ref="CURLFORM_COPYNAME">CURLFORM_COPYNAME</a>, <q>"standardinput"</q>,</td></tr>
+<tr><th id="147">147</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2124" title='CURLFORM_FILE' data-ref="CURLFORM_FILE">CURLFORM_FILE</a>, <q>"-"</q>,</td></tr>
+<tr><th id="148">148</th><td>                        <a class="enum" href="../../include/curl/curl.h.html#2133" title='CURLFORM_END' data-ref="CURLFORM_END">CURLFORM_END</a>);</td></tr>
+<tr><th id="149">149</th><td></td></tr>
+<tr><th id="150">150</th><td>  <b>if</b>(<a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>)</td></tr>
+<tr><th id="151">151</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"curl_formadd(4) = %d\n"</q>, (<em>int</em>) <a class="local col8 ref" href="#8formrc" title='formrc' data-ref="8formrc">formrc</a>);</td></tr>
+<tr><th id="152">152</th><td></td></tr>
+<tr><th id="153">153</th><td>  <a class="local col6 ref" href="#6curl" title='curl' data-ref="6curl">curl</a> = <a class="ref" href="../../include/curl/easy.h.html#curl_easy_init" title='curl_easy_init' data-ref="curl_easy_init">curl_easy_init</a>();</td></tr>
+<tr><th id="154">154</th><td>  <b>if</b>(!<a class="local col6 ref" href="#6curl" title='curl' data-ref="6curl">curl</a>) {</td></tr>
+<tr><th id="155">155</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"curl_easy_init() failed\n"</q>);</td></tr>
+<tr><th id="156">156</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_slist_free_all" title='curl_slist_free_all' data-ref="curl_slist_free_all">curl_slist_free_all</a>(<a class="local col9 ref" href="#9headers" title='headers' data-ref="9headers">headers</a>);</td></tr>
+<tr><th id="157">157</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_formfree" title='curl_formfree' data-ref="curl_formfree">curl_formfree</a>(<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>);</td></tr>
+<tr><th id="158">158</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="159">159</th><td>    <b>return</b> <a class="macro" href="test.h.html#85" title="126" data-ref="_M/TEST_ERR_MAJOR_BAD">TEST_ERR_MAJOR_BAD</a>;</td></tr>
+<tr><th id="160">160</th><td>  }</td></tr>
+<tr><th id="161">161</th><td></td></tr>
+<tr><th id="162">162</th><td>  <i>/* First set the URL that is about to receive our POST. */</i></td></tr>
+<tr><th id="163">163</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_URL),(URL))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col6 ref" href="#6curl" title='curl' data-ref="6curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#915" title='CURLOPT_URL' data-ref="CURLOPT_URL">CURLOPT_URL</a>, <a class="local col5 ref" href="#5URL" title='URL' data-ref="5URL">URL</a>);</td></tr>
+<tr><th id="164">164</th><td></td></tr>
+<tr><th id="165">165</th><td>  <i>/* send a multi-part formpost */</i></td></tr>
+<tr><th id="166">166</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_HTTPPOST),(formpost))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col6 ref" href="#6curl" title='curl' data-ref="6curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1004" title='CURLOPT_HTTPPOST' data-ref="CURLOPT_HTTPPOST">CURLOPT_HTTPPOST</a>, <a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>);</td></tr>
+<tr><th id="167">167</th><td></td></tr>
+<tr><th id="168">168</th><td>  <i>/* get verbose debug output please */</i></td></tr>
+<tr><th id="169">169</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_VERBOSE),(1L))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col6 ref" href="#6curl" title='curl' data-ref="6curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1055" title='CURLOPT_VERBOSE' data-ref="CURLOPT_VERBOSE">CURLOPT_VERBOSE</a>, <var>1L</var>);</td></tr>
+<tr><th id="170">170</th><td></td></tr>
+<tr><th id="171">171</th><td>  <i>/* include headers in the output */</i></td></tr>
+<tr><th id="172">172</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_HEADER),(1L))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col6 ref" href="#6curl" title='curl' data-ref="6curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1056" title='CURLOPT_HEADER' data-ref="CURLOPT_HEADER">CURLOPT_HEADER</a>, <var>1L</var>);</td></tr>
+<tr><th id="173">173</th><td></td></tr>
+<tr><th id="174">174</th><td>  <i>/* Perform the request, res will get the return code */</i></td></tr>
+<tr><th id="175">175</th><td>  <a class="local col7 ref" href="#7res" title='res' data-ref="7res">res</a> = <a class="ref" href="../../include/curl/easy.h.html#curl_easy_perform" title='curl_easy_perform' data-ref="curl_easy_perform">curl_easy_perform</a>(<a class="local col6 ref" href="#6curl" title='curl' data-ref="6curl">curl</a>);</td></tr>
+<tr><th id="176">176</th><td></td></tr>
+<tr><th id="177">177</th><td><dfn class="lbl" id="15test_cleanup" data-ref="15test_cleanup">test_cleanup</dfn>:</td></tr>
+<tr><th id="178">178</th><td></td></tr>
+<tr><th id="179">179</th><td>  <i>/* always cleanup */</i></td></tr>
+<tr><th id="180">180</th><td>  <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="local col6 ref" href="#6curl" title='curl' data-ref="6curl">curl</a>);</td></tr>
+<tr><th id="181">181</th><td></td></tr>
+<tr><th id="182">182</th><td>  <i>/* now cleanup the formpost chain */</i></td></tr>
+<tr><th id="183">183</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_formfree" title='curl_formfree' data-ref="curl_formfree">curl_formfree</a>(<a class="local col0 ref" href="#10formpost" title='formpost' data-ref="10formpost">formpost</a>);</td></tr>
+<tr><th id="184">184</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_slist_free_all" title='curl_slist_free_all' data-ref="curl_slist_free_all">curl_slist_free_all</a>(<a class="local col9 ref" href="#9headers" title='headers' data-ref="9headers">headers</a>);</td></tr>
+<tr><th id="185">185</th><td></td></tr>
+<tr><th id="186">186</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="187">187</th><td></td></tr>
+<tr><th id="188">188</th><td>  <b>return</b> <a class="local col7 ref" href="#7res" title='res' data-ref="7res">res</a>;</td></tr>
+<tr><th id="189">189</th><td>}</td></tr>
+<tr><th id="190">190</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

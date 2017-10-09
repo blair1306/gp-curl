@@ -1,0 +1,15 @@
+<dec f='codebrowser/src/slist_wc.h' l='42' type='struct slist_wc * slist_wc_append(struct slist_wc * , const char * )'/>
+<def f='codebrowser/src/slist_wc.c' l='36' ll='60' type='struct slist_wc * slist_wc_append(struct slist_wc * list, const char * data)'/>
+<doc f='codebrowser/src/slist_wc.c' l='32'>/*
+ * slist_wc_append() appends a string to the linked list. This function can be
+ * used as an initialization function as well as an append function.
+ */</doc>
+<doc f='codebrowser/src/slist_wc.h' l='34'>/*
+ * NAME curl_slist_wc_append()
+ *
+ * DESCRIPTION
+ *
+ * Appends a string to a linked list. If no list exists, it will be created
+ * first. Returns the new list, after appending.
+ */</doc>
+<use f='codebrowser/src/tool_easysrc.c' l='98' u='c' c='easysrc_add'/>

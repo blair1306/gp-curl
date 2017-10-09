@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='248' macro='1' type='void PKCS12_SAFEBAG_free(PKCS12_SAFEBAG * a)'/>

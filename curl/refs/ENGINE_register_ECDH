@@ -1,0 +1,1 @@
+<dec f='include/openssl/engine.h' l='443' type='int ENGINE_register_ECDH(ENGINE * e)'/>

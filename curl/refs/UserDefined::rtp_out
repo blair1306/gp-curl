@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1495' type='void *'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/urldata.h' l='1495'>/* write RTP to this if non-NULL */</doc>
+<use f='codebrowser/lib/rtsp.c' l='765' u='r' c='rtp_client_write'/>
+<use f='codebrowser/lib/url.c' l='2810' u='w' c='Curl_setopt'/>

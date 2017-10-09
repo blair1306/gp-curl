@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='476' type='15'/>
+<doc f='codebrowser/include/curl/curl.h' l='476'>/* 15 */</doc>
+<use f='codebrowser/lib/ftp.c' l='1964' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/strerror.c' l='110' c='curl_easy_strerror'/>

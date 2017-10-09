@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='927' type='char *'/>
+<offset>512</offset>
+<use f='codebrowser/lib/rtsp.c' l='364' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='364' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='366' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='369' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='378' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='3060' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3060' u='w' c='conn_free'/>

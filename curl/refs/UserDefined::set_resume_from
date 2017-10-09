@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1559' type='curl_off_t'/>
+<offset>3264</offset>
+<doc f='codebrowser/lib/urldata.h' l='1559'>/* continue [ftp] transfer from here */</doc>
+<use f='codebrowser/lib/http.c' l='2251' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='1899' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1905' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4845' u='r' c='setup_range'/>

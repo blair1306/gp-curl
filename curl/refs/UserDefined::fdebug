@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1524' type='curl_debug_callback'/>
+<offset>1664</offset>
+<doc f='codebrowser/lib/urldata.h' l='1524'>/* function that write informational data */</doc>
+<use f='codebrowser/lib/sendf.c' l='793' u='r' c='showit'/>
+<use f='codebrowser/lib/sendf.c' l='794' u='r' c='showit'/>
+<use f='codebrowser/lib/url.c' l='1911' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1764' u='r' c='ssl_tls_trace'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2134' u='r' c='ossl_connect_step1'/>

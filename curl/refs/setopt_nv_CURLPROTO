@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_setopt.h' l='58' type='const NameValue []'/>
+<use f='codebrowser/src/tool_operate.c' l='1419' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='1421' macro='1' u='r'/>
+<def f='codebrowser/src/tool_setopt.c' l='139' ll='164' type='const NameValue [24]'/>
+<doc f='codebrowser/src/tool_setopt.c' l='137'>/* These mappings essentially triplicated - see
+ * tool_libinfo.c and tool_paramhlp.c */</doc>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='746' type='3'/>
+<doc f='codebrowser/include/curl/curl.h' l='746'>/* do not accept it, but we can&apos;t answer right now so
+                        this causes a CURLE_DEFER error but otherwise the
+                        connection will be left intact etc */</doc>

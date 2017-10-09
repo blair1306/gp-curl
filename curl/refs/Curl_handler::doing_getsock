@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='658' type='int (*)(struct connectdata *, curl_socket_t *, int)'/>
+<offset>576</offset>
+<doc f='codebrowser/lib/urldata.h' l='656'>/* Called from the multi interface during the DOING phase, and it should
+     then return a proper fd set */</doc>
+<use f='codebrowser/lib/url.c' l='3985' u='r' c='Curl_doing_getsock'/>
+<use f='codebrowser/lib/url.c' l='3986' u='r' c='Curl_doing_getsock'/>

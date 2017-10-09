@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='469' type='OCSP_CERTID * OCSP_onereq_get0_id(OCSP_ONEREQ * one)'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/curl.h' l='1059' macro='1' type='45'/>
+<use f='codebrowser/lib/url.c' l='813' c='Curl_setopt'/>
+<use f='codebrowser/src/tool_operate.c' l='965' u='r' c='operate_do'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='119' u='r' c='setup_handle'/>
+<use f='codebrowser/tests/libtest/lib533.c' l='50' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib533.c' l='81' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='95' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='114' u='r' c='test'/>

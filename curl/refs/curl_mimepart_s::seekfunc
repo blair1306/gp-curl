@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/mime.h' l='105' type='curl_seek_callback'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/mime.h' l='105'>/* Seek function. */</doc>
+<use f='codebrowser/lib/mime.c' l='1026' u='r' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1027' u='r' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1081' u='w' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1272' u='w' c='curl_mime_data'/>
+<use f='codebrowser/lib/mime.c' l='1304' u='w' c='curl_mime_filedata'/>
+<use f='codebrowser/lib/mime.c' l='1401' u='w' c='curl_mime_data_cb'/>
+<use f='codebrowser/lib/mime.c' l='1448' u='w' c='Curl_mime_set_subparts'/>

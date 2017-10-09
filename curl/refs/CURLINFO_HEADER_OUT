@@ -1,0 +1,11 @@
+<dec f='codebrowser/include/curl/curl.h' l='432' type='2'/>
+<doc f='codebrowser/include/curl/curl.h' l='432'>/* 2 */</doc>
+<use f='codebrowser/lib/ftp.c' l='4029' u='r' c='Curl_ftpsend'/>
+<use f='codebrowser/lib/http.c' l='1131' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/pingpong.c' l='225' u='r' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/sendf.c' l='798' c='showit'/>
+<use f='codebrowser/lib/sendf.c' l='835' c='Curl_debug'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='110' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='194' c='tool_debug_cb'/>
+<use f='codebrowser/tests/libtest/lib552.c' l='101' c='my_trace'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='122' c='libtest_debug_cb'/>

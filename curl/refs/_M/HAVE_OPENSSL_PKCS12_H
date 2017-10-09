@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='456'/>
+<doc f='codebrowser/lib/curl_config.h' l='455'>/* Define to 1 if you have the &lt;openssl/pkcs12.h&gt; header file. */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='72' u='a'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='656' u='a'/>

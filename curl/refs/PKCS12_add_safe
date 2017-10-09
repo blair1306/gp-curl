@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='265' type='int PKCS12_add_safe(struct stack_st_PKCS7 ** psafes, struct stack_st_PKCS12_SAFEBAG * bags, int safe_nid, int iter, char * pass)'/>

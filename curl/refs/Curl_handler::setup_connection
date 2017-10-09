@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='626' type='CURLcode (*)(struct connectdata *)'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/urldata.h' l='625'>/* Complement to setup_connection_internals(). */</doc>
+<use f='codebrowser/lib/url.c' l='4900' u='r' c='setup_connection_internals'/>
+<use f='codebrowser/lib/url.c' l='4901' u='r' c='setup_connection_internals'/>

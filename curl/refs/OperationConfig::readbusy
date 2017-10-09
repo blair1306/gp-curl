@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='145' type='_Bool'/>
+<offset>5448</offset>
+<use f='codebrowser/src/tool_cb_rea.c' l='46' u='w' c='tool_read_cb'/>
+<use f='codebrowser/src/tool_cb_rea.c' l='52' u='w' c='tool_read_cb'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='164' u='r' c='tool_write_cb'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='165' u='w' c='tool_write_cb'/>

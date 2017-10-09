@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='423'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='122' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='422'>/* Define to 1 if you have the MSG_NOSIGNAL flag. */</doc>
+<use f='codebrowser/lib/transfer.c' l='1379' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='1421' u='a'/>

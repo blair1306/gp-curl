@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>warnless.h source code [codebrowser/lib/warnless.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/warnless.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='warnless.h.html'>warnless.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_WARNLESS_H">HEADER_CURL_WARNLESS_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_WARNLESS_H" data-ref="_M/HEADER_CURL_WARNLESS_H">HEADER_CURL_WARNLESS_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="26">26</th><td><u>#include &lt;curl/curl.h&gt; /* for curl_socket_t */</u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><em>unsigned</em> <em>short</em> <dfn class="decl" id="curlx_ultous" title='curlx_ultous' data-ref="curlx_ultous">curlx_ultous</dfn>(<em>unsigned</em> <em>long</em> <dfn class="local col1 decl" id="1ulnum" title='ulnum' data-type='unsigned long' data-ref="1ulnum">ulnum</dfn>);</td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><em>unsigned</em> <em>char</em> <dfn class="decl" id="curlx_ultouc" title='curlx_ultouc' data-ref="curlx_ultouc">curlx_ultouc</dfn>(<em>unsigned</em> <em>long</em> <dfn class="local col2 decl" id="2ulnum" title='ulnum' data-type='unsigned long' data-ref="2ulnum">ulnum</dfn>);</td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><em>int</em> <dfn class="decl" id="curlx_ultosi" title='curlx_ultosi' data-ref="curlx_ultosi">curlx_ultosi</dfn>(<em>unsigned</em> <em>long</em> <dfn class="local col3 decl" id="3ulnum" title='ulnum' data-type='unsigned long' data-ref="3ulnum">ulnum</dfn>);</td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td><em>int</em> <dfn class="decl" id="curlx_uztosi" title='curlx_uztosi' data-ref="curlx_uztosi">curlx_uztosi</dfn>(<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="4uznum" title='uznum' data-type='size_t' data-ref="4uznum">uznum</dfn>);</td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td><a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="curlx_uztoso" title='curlx_uztoso' data-ref="curlx_uztoso">curlx_uztoso</dfn>(<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="5uznum" title='uznum' data-type='size_t' data-ref="5uznum">uznum</dfn>);</td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><em>unsigned</em> <em>long</em> <dfn class="decl" id="curlx_uztoul" title='curlx_uztoul' data-ref="curlx_uztoul">curlx_uztoul</dfn>(<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="6uznum" title='uznum' data-type='size_t' data-ref="6uznum">uznum</dfn>);</td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td><em>unsigned</em> <em>int</em> <dfn class="decl" id="curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</dfn>(<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="7uznum" title='uznum' data-type='size_t' data-ref="7uznum">uznum</dfn>);</td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><em>int</em> <dfn class="decl" id="curlx_sltosi" title='curlx_sltosi' data-ref="curlx_sltosi">curlx_sltosi</dfn>(<em>long</em> <dfn class="local col8 decl" id="8slnum" title='slnum' data-type='long' data-ref="8slnum">slnum</dfn>);</td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><em>unsigned</em> <em>int</em> <dfn class="decl" id="curlx_sltoui" title='curlx_sltoui' data-ref="curlx_sltoui">curlx_sltoui</dfn>(<em>long</em> <dfn class="local col9 decl" id="9slnum" title='slnum' data-type='long' data-ref="9slnum">slnum</dfn>);</td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><em>unsigned</em> <em>short</em> <dfn class="decl" id="curlx_sltous" title='curlx_sltous' data-ref="curlx_sltous">curlx_sltous</dfn>(<em>long</em> <dfn class="local col0 decl" id="10slnum" title='slnum' data-type='long' data-ref="10slnum">slnum</dfn>);</td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td><a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl" id="curlx_uztosz" title='curlx_uztosz' data-ref="curlx_uztosz">curlx_uztosz</dfn>(<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="11uznum" title='uznum' data-type='size_t' data-ref="11uznum">uznum</dfn>);</td></tr>
+<tr><th id="50">50</th><td></td></tr>
+<tr><th id="51">51</th><td><span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="curlx_sotouz" title='curlx_sotouz' data-ref="curlx_sotouz">curlx_sotouz</dfn>(<a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col2 decl" id="12sonum" title='sonum' data-type='curl_off_t' data-ref="12sonum">sonum</dfn>);</td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td><em>int</em> <dfn class="decl" id="curlx_sztosi" title='curlx_sztosi' data-ref="curlx_sztosi">curlx_sztosi</dfn>(<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col3 decl" id="13sznum" title='sznum' data-type='ssize_t' data-ref="13sznum">sznum</dfn>);</td></tr>
+<tr><th id="54">54</th><td></td></tr>
+<tr><th id="55">55</th><td><em>unsigned</em> <em>short</em> <dfn class="decl" id="curlx_uitous" title='curlx_uitous' data-ref="curlx_uitous">curlx_uitous</dfn>(<em>unsigned</em> <em>int</em> <dfn class="local col4 decl" id="14uinum" title='uinum' data-type='unsigned int' data-ref="14uinum">uinum</dfn>);</td></tr>
+<tr><th id="56">56</th><td></td></tr>
+<tr><th id="57">57</th><td><em>unsigned</em> <em>char</em> <dfn class="decl" id="curlx_uitouc" title='curlx_uitouc' data-ref="curlx_uitouc">curlx_uitouc</dfn>(<em>unsigned</em> <em>int</em> <dfn class="local col5 decl" id="15uinum" title='uinum' data-type='unsigned int' data-ref="15uinum">uinum</dfn>);</td></tr>
+<tr><th id="58">58</th><td></td></tr>
+<tr><th id="59">59</th><td><em>int</em> <dfn class="decl" id="curlx_uitosi" title='curlx_uitosi' data-ref="curlx_uitosi">curlx_uitosi</dfn>(<em>unsigned</em> <em>int</em> <dfn class="local col6 decl" id="16uinum" title='uinum' data-type='unsigned int' data-ref="16uinum">uinum</dfn>);</td></tr>
+<tr><th id="60">60</th><td></td></tr>
+<tr><th id="61">61</th><td><span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="curlx_sitouz" title='curlx_sitouz' data-ref="curlx_sitouz">curlx_sitouz</dfn>(<em>int</em> <dfn class="local col7 decl" id="17sinum" title='sinum' data-type='int' data-ref="17sinum">sinum</dfn>);</td></tr>
+<tr><th id="62">62</th><td></td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="63">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="64">64</th><td></td></tr>
+<tr><th id="65">65</th><td><em>int</em> curlx_sktosi(curl_socket_t s);</td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td>curl_socket_t curlx_sitosk(<em>int</em> i);</td></tr>
+<tr><th id="68">68</th><td></td></tr>
+<tr><th id="69">69</th><td><u>#<span data-ppcond="63">endif</span> /* USE_WINSOCK */</u></td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td><u>#<span data-ppcond="71">if</span> defined(<span class="macro" data-ref="_M/WIN32">WIN32</span>) || defined(<span class="macro" data-ref="_M/_WIN32">_WIN32</span>)</u></td></tr>
+<tr><th id="72">72</th><td></td></tr>
+<tr><th id="73">73</th><td>ssize_t curlx_read(<em>int</em> fd, <em>void</em> *buf, size_t count);</td></tr>
+<tr><th id="74">74</th><td></td></tr>
+<tr><th id="75">75</th><td>ssize_t curlx_write(<em>int</em> fd, <em>const</em> <em>void</em> *buf, size_t count);</td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td><u>#ifndef BUILDING_WARNLESS_C</u></td></tr>
+<tr><th id="78">78</th><td><u>#  undef  read</u></td></tr>
+<tr><th id="79">79</th><td><u>#  define read(fd, buf, count)  curlx_read(fd, buf, count)</u></td></tr>
+<tr><th id="80">80</th><td><u>#  undef  write</u></td></tr>
+<tr><th id="81">81</th><td><u>#  define write(fd, buf, count) curlx_write(fd, buf, count)</u></td></tr>
+<tr><th id="82">82</th><td><u>#endif</u></td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td><u>#<span data-ppcond="71">endif</span> /* WIN32 || _WIN32 */</u></td></tr>
+<tr><th id="85">85</th><td></td></tr>
+<tr><th id="86">86</th><td><u>#<span data-ppcond="86">if</span> defined(<span class="macro" data-ref="_M/__INTEL_COMPILER">__INTEL_COMPILER</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/__unix__">__unix__</span>)</u></td></tr>
+<tr><th id="87">87</th><td></td></tr>
+<tr><th id="88">88</th><td><em>int</em> curlx_FD_ISSET(<em>int</em> fd, fd_set *fdset);</td></tr>
+<tr><th id="89">89</th><td></td></tr>
+<tr><th id="90">90</th><td><em>void</em> curlx_FD_SET(<em>int</em> fd, fd_set *fdset);</td></tr>
+<tr><th id="91">91</th><td></td></tr>
+<tr><th id="92">92</th><td><em>void</em> curlx_FD_ZERO(fd_set *fdset);</td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td><em>unsigned</em> <em>short</em> curlx_htons(<em>unsigned</em> <em>short</em> usnum);</td></tr>
+<tr><th id="95">95</th><td></td></tr>
+<tr><th id="96">96</th><td><em>unsigned</em> <em>short</em> curlx_ntohs(<em>unsigned</em> <em>short</em> usnum);</td></tr>
+<tr><th id="97">97</th><td></td></tr>
+<tr><th id="98">98</th><td><u>#ifndef BUILDING_WARNLESS_C</u></td></tr>
+<tr><th id="99">99</th><td><u>#  undef  FD_ISSET</u></td></tr>
+<tr><th id="100">100</th><td><u>#  define FD_ISSET(a,b) curlx_FD_ISSET((a),(b))</u></td></tr>
+<tr><th id="101">101</th><td><u>#  undef  FD_SET</u></td></tr>
+<tr><th id="102">102</th><td><u>#  define FD_SET(a,b)   curlx_FD_SET((a),(b))</u></td></tr>
+<tr><th id="103">103</th><td><u>#  undef  FD_ZERO</u></td></tr>
+<tr><th id="104">104</th><td><u>#  define FD_ZERO(a)    curlx_FD_ZERO((a))</u></td></tr>
+<tr><th id="105">105</th><td><u>#  undef  htons</u></td></tr>
+<tr><th id="106">106</th><td><u>#  define htons(a)      curlx_htons((a))</u></td></tr>
+<tr><th id="107">107</th><td><u>#  undef  ntohs</u></td></tr>
+<tr><th id="108">108</th><td><u>#  define ntohs(a)      curlx_ntohs((a))</u></td></tr>
+<tr><th id="109">109</th><td><u>#endif</u></td></tr>
+<tr><th id="110">110</th><td></td></tr>
+<tr><th id="111">111</th><td><u>#<span data-ppcond="86">endif</span> /* __INTEL_COMPILER &amp;&amp; __unix__ */</u></td></tr>
+<tr><th id="112">112</th><td></td></tr>
+<tr><th id="113">113</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_WARNLESS_H */</u></td></tr>
+<tr><th id="114">114</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='base64.c.html'>codebrowser/lib/base64.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/urldata.h' l='325' type='curlntlm'/>
+<offset>0</offset>
+<use f='codebrowser/lib/http.c' l='430' u='r' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='431' u='r' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='3122' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3124' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_ntlm.c' l='86' u='w' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='89' u='r' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='93' u='r' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='96' u='w' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='99' u='r' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='104' u='w' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='172' u='r' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='212' u='w' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='220' u='w' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/multi.c' l='617' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='618' u='r' c='multi_done'/>
+<use f='codebrowser/lib/url.c' l='3793' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3809' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3819' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3821' u='r' c='ConnectionExists'/>

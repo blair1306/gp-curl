@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='548' macro='1' type='int i2d_OCSP_REVOKEDINFO(OCSP_REVOKEDINFO * a, unsigned char ** out)'/>

@@ -1,0 +1,9 @@
+<def f='codebrowser/lib/pop3.h' l='52' ll='56'/>
+<size>24</size>
+<doc f='codebrowser/lib/pop3.h' l='48'>/* This POP3 struct is used in the Curl_easy. All POP3 data that is
+   connection-oriented must be in pop3_conn to properly deal with the fact that
+   perhaps the Curl_easy is changed between the times the connection is
+   used. */</doc>
+<mbr r='POP3::transfer' o='0' t='curl_pp_transfer'/>
+<mbr r='POP3::id' o='64' t='char *'/>
+<mbr r='POP3::custom' o='128' t='char *'/>

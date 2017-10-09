@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1548' type='long'/>
+<offset>2624</offset>
+<doc f='codebrowser/lib/urldata.h' l='1548'>/* in milliseconds, 0 means no timeout */</doc>
+<use f='codebrowser/lib/connect.c' l='194' u='r' c='Curl_timeleft'/>
+<use f='codebrowser/lib/connect.c' l='202' u='r' c='Curl_timeleft'/>
+<use f='codebrowser/lib/connect.c' l='205' u='r' c='Curl_timeleft'/>
+<use f='codebrowser/lib/connect.c' l='208' u='r' c='Curl_timeleft'/>
+<use f='codebrowser/lib/transfer.c' l='1394' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1395' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='1739' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1743' u='w' c='Curl_setopt'/>
+<use f='codebrowser/tests/unit/unit1303.c' l='54' u='w' c='test'/>

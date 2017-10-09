@@ -1,0 +1,12 @@
+<dec f='codebrowser/include/curl/curl.h' l='2214' type='int curl_formget(struct curl_httppost * form, void * arg, curl_formget_callback append)'/>
+<def f='codebrowser/lib/formdata.c' l='762' ll='794' type='int curl_formget(struct curl_httppost * form, void * arg, curl_formget_callback append)'/>
+<doc f='codebrowser/lib/formdata.c' l='755'>/*
+ * curl_formget()
+ * Serialize a curl_httppost struct.
+ * Returns 0 on success.
+ *
+ * @unittest: 1308
+ */</doc>
+<use f='codebrowser/tests/libtest/lib650.c' l='133' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='70' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='89' u='c' c='test'/>

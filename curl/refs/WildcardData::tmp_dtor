@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/wildcard.h' l='52' type='curl_wildcard_tmp_dtor'/>
+<offset>512</offset>
+<use f='codebrowser/lib/ftp.c' l='3794' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3804' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3805' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3813' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3814' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/wildcard.c' l='46' u='r' c='Curl_wildcard_dtor'/>
+<use f='codebrowser/lib/wildcard.c' l='47' u='r' c='Curl_wildcard_dtor'/>
+<use f='codebrowser/lib/wildcard.c' l='48' u='w' c='Curl_wildcard_dtor'/>

@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/pingpong.h' l='117' type='CURLcode Curl_pp_vsendf(struct pingpong * pp, const char * fmt, struct __va_list_tag * args)'/>
+<doc f='codebrowser/lib/pingpong.h' l='107'>/***********************************************************************
+ *
+ * Curl_pp_vsendf()
+ *
+ * Send the formatted string as a command to a pingpong server. Note that
+ * the string should not have any CRLF appended, as this function will
+ * append the necessary things itself.
+ *
+ * made to never block
+ */</doc>
+<use f='codebrowser/lib/imap.c' l='1740' u='c' c='imap_sendf'/>
+<def f='codebrowser/lib/pingpong.c' l='161' ll='242' type='CURLcode Curl_pp_vsendf(struct pingpong * pp, const char * fmt, struct __va_list_tag * args)'/>
+<use f='codebrowser/lib/pingpong.c' l='262' u='c' c='Curl_pp_sendf'/>
+<doc f='codebrowser/lib/pingpong.c' l='151'>/***********************************************************************
+ *
+ * Curl_pp_vsendf()
+ *
+ * Send the formatted string as a command to a pingpong server. Note that
+ * the string should not have any CRLF appended, as this function will
+ * append the necessary things itself.
+ *
+ * made to never block
+ */</doc>

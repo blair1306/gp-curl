@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/tftp.c' l='138' type='curl_socklen_t'/>
+<use f='codebrowser/lib/tftp.c' l='623' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='648' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='674' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='688' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='748' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='792' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='818' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='835' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='1116' u='r' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1118' u='w' c='tftp_receive_packet'/>
+<offset>2624</offset>

@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='280' type='void config_free(struct OperationConfig * config)'/>
+<def f='codebrowser/src/tool_cfgable.c' l='161' ll='174' type='void config_free(struct OperationConfig * config)'/>
+<use f='codebrowser/src/tool_main.c' l='233' u='c' c='main_free'/>

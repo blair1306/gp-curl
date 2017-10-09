@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='543' type='2'/>
+<doc f='codebrowser/lib/urldata.h' l='543'>/* all was believed to be header */</doc>
+<use f='codebrowser/lib/http.c' l='2980' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3018' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='774' u='r' c='readwrite_data'/>

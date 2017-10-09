@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='152'/>
+<doc f='codebrowser/lib/urldata.h' l='150'>/* Some convenience macros to get the larger/smaller value out of two given.
+   We prefix with CURL to prevent name collisions. */</doc>
+<use f='codebrowser/lib/http.c' l='2889' u='c'/>

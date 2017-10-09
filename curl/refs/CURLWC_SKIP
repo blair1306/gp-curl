@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/wildcard.h' l='37' type='5'/>
+<doc f='codebrowser/lib/wildcard.h' l='37'>/* skip over concrete file */</doc>
+<use f='codebrowser/lib/ftp.c' l='3893' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3901' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3923' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3969' u='r' c='ftp_do'/>
+<use f='codebrowser/lib/multi.c' l='1666' u='r' c='multi_runsingle'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='89' type='int'/>
+<offset>96</offset>
+<doc f='codebrowser/lib/curl_sasl.h' l='89'>/* Code to receive upon authentication success */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='436' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='573' u='r' c='Curl_sasl_continue'/>

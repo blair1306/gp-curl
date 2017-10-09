@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/multihandle.h' l='80' type='int'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/multihandle.h' l='80'>/* amount of entries in the linked list above. */</doc>
+<use f='codebrowser/lib/multi.c' l='442' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='494' u='r' c='ConnectionDone'/>
+<use f='codebrowser/lib/multi.c' l='784' u='w' c='curl_multi_remove_handle'/>

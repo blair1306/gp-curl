@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='217' type='void * PKCS12_item_decrypt_d2i(X509_ALGOR * algor, const ASN1_ITEM * it, const char * pass, int passlen, ASN1_OCTET_STRING * oct, int zbuf)'/>

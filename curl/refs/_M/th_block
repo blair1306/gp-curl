@@ -1,0 +1,13 @@
+<dec f='include/arpa/tftp.h' l='64'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1256' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1288' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1288' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1296' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1301' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1331' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1357' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1357' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1361' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1366' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1384' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1399' u='c'/>

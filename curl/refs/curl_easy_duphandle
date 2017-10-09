@@ -1,0 +1,12 @@
+<dec f='codebrowser/include/curl/easy.h' l='61' type='CURL * curl_easy_duphandle(CURL * curl)'/>
+<def f='codebrowser/lib/easy.c' l='869' ll='964' type='CURL * curl_easy_duphandle(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/easy.c' l='864'>/*
+ * curl_easy_duphandle() is an external interface to allow duplication of a
+ * given input easy handle. The returned handle will be a new working handle
+ * with all options set exactly as the input source handle.
+ */</doc>
+<use f='codebrowser/tests/libtest/lib1534.c' l='84' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1535.c' l='83' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1536.c' l='84' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib512.c' l='45' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib575.c' l='64' u='c' c='test'/>

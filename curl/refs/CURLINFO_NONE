@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='2440' type='0'/>
+<doc f='codebrowser/include/curl/curl.h' l='2440'>/* first, never use this */</doc>
+<use f='codebrowser/src/tool_xattr.c' l='49' u='r'/>
+<use f='codebrowser/src/tool_xattr.c' l='49' u='r'/>
+<use f='codebrowser/src/tool_xattr.c' l='49' u='r'/>
+<use f='codebrowser/src/tool_xattr.c' l='49' u='r'/>

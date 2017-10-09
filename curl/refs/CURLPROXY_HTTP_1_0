@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='667' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='667'>/* added in 7.19.4, force to use CONNECT
+                               HTTP/1.0  */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='239' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/url.c' l='4255' u='r' c='allocate_conn'/>
+<use f='codebrowser/src/tool_getparam.c' l='962' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_setopt.c' l='49' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='49' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='49' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='49' u='r'/>

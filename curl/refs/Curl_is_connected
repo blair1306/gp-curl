@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/connect.h' l='29' type='CURLcode Curl_is_connected(struct connectdata * conn, int sockindex, _Bool * connected)'/>
+<def f='codebrowser/lib/connect.c' l='718' ll='868' type='CURLcode Curl_is_connected(struct connectdata * conn, int sockindex, _Bool * connected)'/>
+<doc f='codebrowser/lib/connect.c' l='714'>/*
+ * Curl_is_connected() checks if the socket has connected.
+ */</doc>
+<use f='codebrowser/lib/ftp.c' l='3554' u='c' c='ftp_do_more'/>
+<use f='codebrowser/lib/multi.c' l='1579' u='c' c='multi_runsingle'/>

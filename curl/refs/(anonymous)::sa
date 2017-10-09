@@ -1,0 +1,24 @@
+<dec f='codebrowser/tests/server/server_sockaddr.h' l='31' type='struct sockaddr'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1315' u='a' c='main'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1323' u='a' c='main'/>
+<offset>0</offset>
+<use f='codebrowser/tests/server/sockfilt.c' l='1253' u='a' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1261' u='a' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1285' u='a' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1286' u='a' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1293' u='m' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1492' u='a' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1503' u='a' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='1373' u='a' c='connect_to'/>
+<use f='codebrowser/tests/server/sws.c' l='1386' u='a' c='connect_to'/>
+<use f='codebrowser/tests/server/sws.c' l='2154' u='a' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2162' u='a' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2170' u='a' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2182' u='a' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2211' u='a' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='659' u='a' c='synchnet'/>
+<use f='codebrowser/tests/server/tftpd.c' l='797' u='a' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='805' u='a' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='835' u='a' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='857' u='a' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='872' u='a' c='main'/>

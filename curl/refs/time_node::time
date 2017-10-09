@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1231' type='struct curltime'/>
+<offset>192</offset>
+<use f='codebrowser/lib/multi.c' l='2519' u='r' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2537' u='a' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2901' u='a' c='multi_addtimeout'/>
+<use f='codebrowser/lib/multi.c' l='2909' u='r' c='multi_addtimeout'/>
+<use f='codebrowser/lib/multi.c' l='2909' u='r' c='multi_addtimeout'/>

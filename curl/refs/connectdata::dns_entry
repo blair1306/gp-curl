@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='816' type='struct Curl_dns_entry *'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/urldata.h' l='812'>/* &apos;dns_entry&apos; is the particular host we use. This points to an entry in the
+     DNS cache and it will not get pruned while locked. It gets unlocked in
+     Curl_done(). This entry will be NULL if the connection is re-used as then
+     there is no name resolve done. */</doc>
+<use f='codebrowser/lib/hostasyn.c' l='125' u='w' c='Curl_async_resolved'/>
+<use f='codebrowser/lib/multi.c' l='588' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='589' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='590' u='w' c='multi_done'/>
+<use f='codebrowser/lib/url.c' l='3119' u='r' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3120' u='r' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3121' u='w' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='6272' u='w' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6978' u='r' c='Curl_setup_conn'/>

@@ -1,0 +1,17 @@
+<def f='codebrowser/lib/sigpipe.h' l='29' ll='32'/>
+<def f='codebrowser/lib/sigpipe.h' l='41' ll='57' type='void sigpipe_ignore(struct Curl_easy * data, struct sigpipe_ignore * ig)'/>
+<use f='codebrowser/lib/easy.c' l='787' u='c' c='easy_perform'/>
+<use f='codebrowser/lib/easy.c' l='839' u='c' c='curl_easy_cleanup'/>
+<size>160</size>
+<doc f='codebrowser/lib/sigpipe.h' l='36'>/*
+ * sigpipe_ignore() makes sure we ignore SIGPIPE while running libcurl
+ * internals, and then sigpipe_restore() will restore the situation when we
+ * return from libcurl again.
+ */</doc>
+<mbr r='sigpipe_ignore::old_pipe_act' o='0' t='struct sigaction'/>
+<mbr r='sigpipe_ignore::no_signal' o='1216' t='_Bool'/>
+<use f='codebrowser/lib/multi.c' l='2160' u='c' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='2205' u='c' c='close_all_connections'/>
+<use f='codebrowser/lib/multi.c' l='2253' u='c' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2612' u='c' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2654' u='c' c='multi_socket'/>

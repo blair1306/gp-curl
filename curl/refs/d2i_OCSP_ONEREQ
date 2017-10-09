@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='554' macro='1' type='OCSP_ONEREQ * d2i_OCSP_ONEREQ(OCSP_ONEREQ ** a, const unsigned char ** in, long len)'/>

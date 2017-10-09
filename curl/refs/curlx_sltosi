@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/warnless.h' l='43' type='int curlx_sltosi(long slnum)'/>
+<use f='codebrowser/lib/connect.c' l='135' u='c' c='tcpkeepalive'/>
+<use f='codebrowser/lib/connect.c' l='143' u='c' c='tcpkeepalive'/>
+<use f='codebrowser/lib/ftp.c' l='553' u='c' c='ftp_endofresp'/>
+<use f='codebrowser/lib/imap.c' l='1731' u='c' c='imap_sendf'/>
+<use f='codebrowser/lib/parsedate.c' l='422' u='c' c='parsedate'/>
+<use f='codebrowser/lib/smtp.c' l='211' u='c' c='smtp_endofresp'/>
+<use f='codebrowser/lib/url.c' l='2122' u='c' c='Curl_setopt'/>
+<def f='codebrowser/lib/warnless.c' l='264' ll='280' type='int curlx_sltosi(long slnum)'/>
+<doc f='codebrowser/lib/warnless.c' l='260'>/*
+** signed long to signed int
+*/</doc>

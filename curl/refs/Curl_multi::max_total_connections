@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/multihandle.h' l='127' type='long'/>
+<offset>2816</offset>
+<doc f='codebrowser/lib/multihandle.h' l='127'>/* if &gt;0, a fixed limit of the maximum number
+                                 of connections in total */</doc>
+<use f='codebrowser/lib/multi.c' l='2737' u='w' c='curl_multi_setopt'/>
+<use f='codebrowser/lib/multi.c' l='3070' u='r' c='Curl_multi_max_total_connections'/>

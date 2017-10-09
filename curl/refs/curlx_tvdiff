@@ -1,0 +1,48 @@
+<dec f='codebrowser/lib/timeval.h' l='45' type='time_t curlx_tvdiff(struct curltime t1, struct curltime t2)'/>
+<use f='codebrowser/lib/asyn-thread.c' l='538' macro='1' u='c'/>
+<doc f='codebrowser/lib/timeval.h' l='39'>/*
+ * Make sure that the first argument (t1) is the more recent time and t2 is
+ * the older time, as otherwise you get a weird negative time-diff back...
+ *
+ * Returns: the time difference in number of milliseconds.
+ */</doc>
+<use f='codebrowser/lib/connect.c' l='228' macro='1' u='c'/>
+<use f='codebrowser/lib/connect.c' l='231' macro='1' u='c'/>
+<use f='codebrowser/lib/connect.c' l='768' u='c' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='776' u='c' c='Curl_is_connected'/>
+<use f='codebrowser/lib/easy.c' l='693' u='c' c='easy_transfer'/>
+<use f='codebrowser/lib/ftp.c' l='354' macro='1' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1383' macro='1' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1386' macro='1' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1393' macro='1' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1399' macro='1' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2519' u='c' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2793' u='c' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2909' u='c' c='multi_addtimeout'/>
+<use f='codebrowser/lib/multi.c' l='2968' u='c' c='Curl_expire'/>
+<use f='codebrowser/lib/pingpong.c' l='64' macro='1' u='c'/>
+<use f='codebrowser/lib/pingpong.c' l='69' macro='1' u='c'/>
+<use f='codebrowser/lib/progress.c' l='277' macro='1' u='c'/>
+<use f='codebrowser/lib/progress.c' l='425' macro='1' u='c'/>
+<use f='codebrowser/lib/select.c' l='54' u='c' c='Curl_wait_ms'/>
+<use f='codebrowser/lib/select.c' l='54' u='c' c='Curl_socket_check'/>
+<use f='codebrowser/lib/select.c' l='54' u='c' c='Curl_poll'/>
+<use f='codebrowser/lib/speedcheck.c' l='49' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='1682' macro='1' u='c'/>
+<def f='codebrowser/lib/timeval.c' l='128' ll='139' type='time_t curlx_tvdiff(struct curltime newer, struct curltime older)'/>
+<doc f='codebrowser/lib/timeval.c' l='119'>/*
+ * Make sure that the first argument is the more recent time, as otherwise
+ * we&apos;ll get a weird negative time-diff back...
+ *
+ * Returns: the time difference in number of milliseconds. For large diffs it
+ * returns 0x7fffffff on 32bit time_t systems.
+ *
+ * @unittest: 1323
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='1177' macro='1' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1201' macro='1' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1207' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='3327' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='3384' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='3459' macro='1' u='c'/>
+<use f='codebrowser/tests/server/util.c' l='248' u='c' c='wait_ms'/>

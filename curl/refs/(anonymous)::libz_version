@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='2613' type='const char *'/>
+<offset>448</offset>
+<doc f='codebrowser/include/curl/curl.h' l='2613'>/* human readable string */</doc>
+<use f='codebrowser/lib/version.c' l='365' u='w' c='curl_version_info'/>

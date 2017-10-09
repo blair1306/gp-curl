@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='174' type='void Curl_ssl_free_certinfo(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='172'>/* Certificate information list handling. */</doc>
+<use f='codebrowser/lib/getinfo.c' l='86' u='c' c='Curl_initinfo'/>
+<use f='codebrowser/lib/url.c' l='449' u='c' c='Curl_close'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='642' ll='658' type='void Curl_ssl_free_certinfo(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='666' u='c' c='Curl_ssl_init_certinfo'/>

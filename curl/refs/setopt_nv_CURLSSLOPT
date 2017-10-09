@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_setopt.h' l='56' type='const NameValueUnsigned []'/>
+<use f='codebrowser/src/tool_operate.c' l='1475' macro='1' u='r'/>
+<def f='codebrowser/src/tool_setopt.c' l='124' ll='128' type='const NameValueUnsigned [3]'/>

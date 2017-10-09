@@ -1,0 +1,17 @@
+<dec f='include/x86_64-linux-gnu/bits/socket.h' l='155' macro='1' type='sa_family_t'/>
+<offset>0</offset>
+<use f='codebrowser/lib/connect.c' l='453' u='r' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='624' u='r' c='getaddressinfo'/>
+<use f='codebrowser/lib/connect.c' l='627' u='r' c='getaddressinfo'/>
+<use f='codebrowser/lib/connect.c' l='637' u='r' c='getaddressinfo'/>
+<use f='codebrowser/lib/ftp.c' l='1072' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1075' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1079' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1131' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1217' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1221' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1244' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/if2ip.c' l='69' u='r' c='Curl_ipv6_scope'/>
+<use f='codebrowser/lib/if2ip.c' l='234' u='w' c='Curl_if2ip'/>
+<use f='codebrowser/lib/tftp.c' l='1012' u='w' c='tftp_connect'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1293' u='r' c='sockdaemon'/>

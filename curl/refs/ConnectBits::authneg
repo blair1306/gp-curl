@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/urldata.h' l='404' type='_Bool'/>
+<offset>136</offset>
+<use f='codebrowser/lib/http.c' l='391' u='r' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='436' u='r' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='492' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='499' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='524' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='1626' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1880' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1883' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1989' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2443' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2449' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2488' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2511' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2580' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2590' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2695' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2712' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3169' u='r' c='Curl_http_readwrite_headers'/>

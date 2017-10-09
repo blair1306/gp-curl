@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='714'/>
+<doc f='codebrowser/lib/curl_config.h' l='713'>/* Define to 1 if you have the `utime&apos; function. */</doc>
+<use f='codebrowser/src/tool_operate.c' l='177' u='a'/>
+<use f='codebrowser/src/tool_operate.c' l='235' u='a'/>
+<use f='codebrowser/src/tool_operate.c' l='1844' u='a'/>

@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/ftp.h' l='120' type='char *'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/ftp.h' l='120'>/* the PWD reply when we logged on */</doc>
+<use f='codebrowser/lib/ftp.c' l='893' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='899' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='2845' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2845' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2846' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2847' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2849' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2854' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2854' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2855' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2856' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2858' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='4101' u='r' c='ftp_disconnect'/>
+<use f='codebrowser/lib/ftp.c' l='4103' u='r' c='ftp_disconnect'/>
+<use f='codebrowser/lib/ftp.c' l='4106' u='r' c='ftp_disconnect'/>
+<use f='codebrowser/lib/ftp.c' l='4107' u='w' c='ftp_disconnect'/>

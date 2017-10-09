@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='510' type='int OCSP_ONEREQ_get_ext_by_critical(OCSP_ONEREQ * x, int crit, int lastpos)'/>

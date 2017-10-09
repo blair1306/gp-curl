@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/llist.h' l='39' type='curl_llist_dtor'/>
+<offset>128</offset>
+<use f='codebrowser/lib/llist.c' l='40' u='w' c='Curl_llist_init'/>
+<use f='codebrowser/lib/llist.c' l='125' u='r' c='Curl_llist_remove'/>
+<use f='codebrowser/lib/llist.c' l='126' u='r' c='Curl_llist_remove'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='80' u='r' c='test'/>

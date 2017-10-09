@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/curl_config.h' l='402'/>
+<doc f='codebrowser/lib/curl_config.h' l='401'>/* Define to 1 if you have the &lt;limits.h&gt; header file. */</doc>
+<use f='codebrowser/lib/asyn-ares.c' l='25' u='a'/>
+<use f='codebrowser/lib/parsedate.c' l='78' u='a'/>
+<use f='codebrowser/lib/url.c' l='58' u='a'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='37' u='a'/>
+<use f='codebrowser/tests/libtest/lib1502.c' l='32' u='a'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='30' u='a'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='30' u='a'/>
+<use f='codebrowser/tests/libtest/lib540.c' l='33' u='a'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='30' u='a'/>
+<use f='codebrowser/tests/libtest/lib591.c' l='26' u='a'/>
+<use f='codebrowser/tests/libtest/lib597.c' l='24' u='a'/>
+<use f='codebrowser/tests/libtest/libntlmconnect.c' l='24' u='a'/>

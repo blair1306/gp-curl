@@ -1,0 +1,28 @@
+<dec f='codebrowser/lib/urldata.h' l='1373' type='_Bool'/>
+<offset>64</offset>
+<use f='codebrowser/lib/easy.c' l='925' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/http.c' l='2117' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2119' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2122' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/transfer.c' l='1332' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1335' u='w' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1821' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1823' u='w' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1827' u='w' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='297' u='r' c='Curl_freeset'/>
+<use f='codebrowser/lib/url.c' l='299' u='w' c='Curl_freeset'/>
+<use f='codebrowser/lib/url.c' l='461' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='463' u='w' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='1708' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1711' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4608' u='r' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4615' u='w' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4734' u='r' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4736' u='w' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4742' u='w' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='5801' u='r' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5803' u='w' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5807' u='w' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='6502' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6504' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6508' u='w' c='create_conn'/>

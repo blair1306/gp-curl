@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='109' type='_Bool'/>
+<offset>208</offset>
+<use f='codebrowser/lib/curl_sasl.c' l='187' u='w' c='Curl_sasl_init'/>
+<use f='codebrowser/lib/curl_sasl.c' l='274' u='w' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='598' u='r' c='Curl_sasl_continue'/>

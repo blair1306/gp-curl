@@ -1,0 +1,30 @@
+<dec f='codebrowser/lib/http.h' l='62' type='CURLcode Curl_add_bufferf(Curl_send_buffer * in, const char * fmt)'/>
+<def f='codebrowser/lib/http.c' l='1201' ll='1218' type='CURLcode Curl_add_bufferf(Curl_send_buffer * in, const char * fmt)'/>
+<use f='codebrowser/lib/http.c' l='1543' u='c' c='expect100'/>
+<use f='codebrowser/lib/http.c' l='1641' u='c' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1665' u='c' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='2293' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2302' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2311' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2392' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2396' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2409' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2411' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2451' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2490' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2514' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2526' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2593' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2601' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2653' u='c' c='Curl_http'/>
+<doc f='codebrowser/lib/http.c' l='1198'>/*
+ * add_bufferf() add the formatted input to the buffer.
+ */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='271' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='294' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/rtsp.c' l='467' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='479' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='487' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='546' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='556' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='565' u='c' c='rtsp_do'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='365' type='void _ossl_old_des_ecb_encrypt(_ossl_old_des_cblock * input, _ossl_old_des_cblock * output, struct _ossl_old_des_ks_struct * ks, int enc)'/>

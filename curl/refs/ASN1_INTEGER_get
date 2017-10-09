@@ -1,0 +1,2 @@
+<dec f='include/openssl/asn1.h' l='936' type='long ASN1_INTEGER_get(const ASN1_INTEGER * a)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2782' macro='1' u='c'/>

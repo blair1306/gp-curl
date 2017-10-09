@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='575' type='time_t'/>
+<offset>2624</offset>
+<use f='codebrowser/lib/http.c' l='3735' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3738' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='631' u='r' c='readwrite_data'/>

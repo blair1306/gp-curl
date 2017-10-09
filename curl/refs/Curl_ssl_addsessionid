@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='211' type='CURLcode Curl_ssl_addsessionid(struct connectdata * conn, void * ssl_sessionid, size_t idsize, int sockindex)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='206'>/* add a new session ID
+ * Sessionid mutex must be locked (see Curl_ssl_sessionid_lock).
+ * Caller must ensure that it has properly shared ownership of this sessionid
+ * object with cache (e.g. incrementing refcount on success)
+ */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='3216' u='c' c='ossl_connect_step3'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='407' ll='493' type='CURLcode Curl_ssl_addsessionid(struct connectdata * conn, void * ssl_sessionid, size_t idsize, int sockindex)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='401'>/*
+ * Store session id in the session cache. The ID passed on to this function
+ * must already have been extracted and allocated the proper way for the SSL
+ * layer. Curl_XXXX_session_free() will be called to free/kill the session ID
+ * later on.
+ */</doc>

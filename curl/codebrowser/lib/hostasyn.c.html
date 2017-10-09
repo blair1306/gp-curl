@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>hostasyn.c source code [codebrowser/lib/hostasyn.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/hostasyn.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='hostasyn.c.html'>hostasyn.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2015, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <a class="macro" href="curl_config.h.html#429" data-ref="_M/HAVE_NETINET_IN_H">HAVE_NETINET_IN_H</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../include/netinet/in.h.html">&lt;netinet/in.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="28">ifdef</span> <a class="macro" href="curl_config.h.html#426" data-ref="_M/HAVE_NETDB_H">HAVE_NETDB_H</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../../include/netdb.h.html">&lt;netdb.h&gt;</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="28">endif</span></u></td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="31">ifdef</span> <a class="macro" href="curl_config.h.html#116" data-ref="_M/HAVE_ARPA_INET_H">HAVE_ARPA_INET_H</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="../../include/arpa/inet.h.html">&lt;arpa/inet.h&gt;</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="31">endif</span></u></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifdef</span> <span class="macro" data-ref="_M/__VMS">__VMS</span></u></td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;in.h&gt;</u></td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;inet.h&gt;</u></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="34">endif</span></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">ifdef</span> <span class="macro" data-ref="_M/HAVE_PROCESS_H">HAVE_PROCESS_H</span></u></td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;process.h&gt;</u></td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="39">endif</span></u></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="45">45</th><td><u>#include <a href="hostip.h.html">"hostip.h"</a></u></td></tr>
+<tr><th id="46">46</th><td><u>#include <a href="hash.h.html">"hash.h"</a></u></td></tr>
+<tr><th id="47">47</th><td><u>#include <a href="share.h.html">"share.h"</a></u></td></tr>
+<tr><th id="48">48</th><td><u>#include <a href="strerror.h.html">"strerror.h"</a></u></td></tr>
+<tr><th id="49">49</th><td><u>#include <a href="url.h.html">"url.h"</a></u></td></tr>
+<tr><th id="50">50</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="51">51</th><td><i>/* The last #include file should be: */</i></td></tr>
+<tr><th id="52">52</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td><i>/***********************************************************************</i></td></tr>
+<tr><th id="55">55</th><td><i> * Only for builds using asynchronous name resolves</i></td></tr>
+<tr><th id="56">56</th><td><i> **********************************************************************/</i></td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="57">ifdef</span> <a class="macro" href="curl_setup.h.html#534" data-ref="_M/CURLRES_ASYNCH">CURLRES_ASYNCH</a></u></td></tr>
+<tr><th id="58">58</th><td></td></tr>
+<tr><th id="59">59</th><td><i>/*</i></td></tr>
+<tr><th id="60">60</th><td><i> * Curl_addrinfo_callback() gets called by ares, gethostbyname_thread()</i></td></tr>
+<tr><th id="61">61</th><td><i> * or getaddrinfo_thread() when we got the name resolved (or not!).</i></td></tr>
+<tr><th id="62">62</th><td><i> *</i></td></tr>
+<tr><th id="63">63</th><td><i> * If the status argument is CURL_ASYNC_SUCCESS, this function takes</i></td></tr>
+<tr><th id="64">64</th><td><i> * ownership of the Curl_addrinfo passed, storing the resolved data</i></td></tr>
+<tr><th id="65">65</th><td><i> * in the DNS cache.</i></td></tr>
+<tr><th id="66">66</th><td><i> *</i></td></tr>
+<tr><th id="67">67</th><td><i> * The storage operation locks and unlocks the DNS cache.</i></td></tr>
+<tr><th id="68">68</th><td><i> */</i></td></tr>
+<tr><th id="69">69</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_addrinfo_callback" title='Curl_addrinfo_callback' data-ref="Curl_addrinfo_callback">Curl_addrinfo_callback</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col1 decl" id="1conn" title='conn' data-type='struct connectdata *' data-ref="1conn">conn</dfn>,</td></tr>
+<tr><th id="70">70</th><td>                                <em>int</em> <dfn class="local col2 decl" id="2status" title='status' data-type='int' data-ref="2status">status</dfn>,</td></tr>
+<tr><th id="71">71</th><td>                                <b>struct</b> <a class="type" href="curl_addrinfo.h.html#Curl_addrinfo" title='Curl_addrinfo' data-ref="Curl_addrinfo">Curl_addrinfo</a> *<dfn class="local col3 decl" id="3ai" title='ai' data-type='struct Curl_addrinfo *' data-ref="3ai">ai</dfn>)</td></tr>
+<tr><th id="72">72</th><td>{</td></tr>
+<tr><th id="73">73</th><td>  <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col4 decl" id="4dns" title='dns' data-type='struct Curl_dns_entry *' data-ref="4dns">dns</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="74">74</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col5 decl" id="5result" title='result' data-type='CURLcode' data-ref="5result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="75">75</th><td></td></tr>
+<tr><th id="76">76</th><td>  <a class="local col1 ref" href="#1conn" title='conn' data-ref="1conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::async" title='connectdata::async' data-ref="connectdata::async">async</a>.<a class="ref" href="urldata.h.html#Curl_async::status" title='Curl_async::status' data-ref="Curl_async::status">status</a> = <a class="local col2 ref" href="#2status" title='status' data-ref="2status">status</a>;</td></tr>
+<tr><th id="77">77</th><td></td></tr>
+<tr><th id="78">78</th><td>  <b>if</b>(<a class="macro" href="hostip.h.html#49" title="CURLE_OK" data-ref="_M/CURL_ASYNC_SUCCESS">CURL_ASYNC_SUCCESS</a> == <a class="local col2 ref" href="#2status" title='status' data-ref="2status">status</a>) {</td></tr>
+<tr><th id="79">79</th><td>    <b>if</b>(<a class="local col3 ref" href="#3ai" title='ai' data-ref="3ai">ai</a>) {</td></tr>
+<tr><th id="80">80</th><td>      <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col6 decl" id="6data" title='data' data-type='struct Curl_easy *' data-ref="6data">data</dfn> = <a class="local col1 ref" href="#1conn" title='conn' data-ref="1conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td>      <b>if</b>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="83">83</th><td>        <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="84">84</th><td></td></tr>
+<tr><th id="85">85</th><td>      <a class="local col4 ref" href="#4dns" title='dns' data-ref="4dns">dns</a> = <a class="ref" href="hostip.h.html#Curl_cache_addr" title='Curl_cache_addr' data-ref="Curl_cache_addr">Curl_cache_addr</a>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>, <a class="local col3 ref" href="#3ai" title='ai' data-ref="3ai">ai</a>,</td></tr>
+<tr><th id="86">86</th><td>                            <a class="local col1 ref" href="#1conn" title='conn' data-ref="1conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::async" title='connectdata::async' data-ref="connectdata::async">async</a>.<a class="ref" href="urldata.h.html#Curl_async::hostname" title='Curl_async::hostname' data-ref="Curl_async::hostname">hostname</a>,</td></tr>
+<tr><th id="87">87</th><td>                            <a class="local col1 ref" href="#1conn" title='conn' data-ref="1conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::async" title='connectdata::async' data-ref="connectdata::async">async</a>.<a class="ref" href="urldata.h.html#Curl_async::port" title='Curl_async::port' data-ref="Curl_async::port">port</a>);</td></tr>
+<tr><th id="88">88</th><td>      <b>if</b>(!<a class="local col4 ref" href="#4dns" title='dns' data-ref="4dns">dns</a>) {</td></tr>
+<tr><th id="89">89</th><td>        <i>/* failed to store, cleanup and return error */</i></td></tr>
+<tr><th id="90">90</th><td>        <a class="ref" href="curl_addrinfo.h.html#Curl_freeaddrinfo" title='Curl_freeaddrinfo' data-ref="Curl_freeaddrinfo">Curl_freeaddrinfo</a>(<a class="local col3 ref" href="#3ai" title='ai' data-ref="3ai">ai</a>);</td></tr>
+<tr><th id="91">91</th><td>        <a class="local col5 ref" href="#5result" title='result' data-ref="5result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="92">92</th><td>      }</td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td>      <b>if</b>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="95">95</th><td>        <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="96">96</th><td>    }</td></tr>
+<tr><th id="97">97</th><td>    <b>else</b> {</td></tr>
+<tr><th id="98">98</th><td>      <a class="local col5 ref" href="#5result" title='result' data-ref="5result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="99">99</th><td>    }</td></tr>
+<tr><th id="100">100</th><td>  }</td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td>  <a class="local col1 ref" href="#1conn" title='conn' data-ref="1conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::async" title='connectdata::async' data-ref="connectdata::async">async</a>.<a class="ref" href="urldata.h.html#Curl_async::dns" title='Curl_async::dns' data-ref="Curl_async::dns">dns</a> = <a class="local col4 ref" href="#4dns" title='dns' data-ref="4dns">dns</a>;</td></tr>
+<tr><th id="103">103</th><td></td></tr>
+<tr><th id="104">104</th><td> <i>/* Set async.done TRUE last in this function since it may be used multi-</i></td></tr>
+<tr><th id="105">105</th><td><i>    threaded and once this is TRUE the other thread may read fields from the</i></td></tr>
+<tr><th id="106">106</th><td><i>    async struct */</i></td></tr>
+<tr><th id="107">107</th><td>  <a class="local col1 ref" href="#1conn" title='conn' data-ref="1conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::async" title='connectdata::async' data-ref="connectdata::async">async</a>.<a class="ref" href="urldata.h.html#Curl_async::done" title='Curl_async::done' data-ref="Curl_async::done">done</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="108">108</th><td></td></tr>
+<tr><th id="109">109</th><td>  <i>/* IPv4: The input hostent struct will be freed by ares when we return from</i></td></tr>
+<tr><th id="110">110</th><td><i>     this function */</i></td></tr>
+<tr><th id="111">111</th><td>  <b>return</b> <a class="local col5 ref" href="#5result" title='result' data-ref="5result">result</a>;</td></tr>
+<tr><th id="112">112</th><td>}</td></tr>
+<tr><th id="113">113</th><td></td></tr>
+<tr><th id="114">114</th><td><i>/* Call this function after Curl_connect() has returned async=TRUE and</i></td></tr>
+<tr><th id="115">115</th><td><i>   then a successful name resolve has been received.</i></td></tr>
+<tr><th id="116">116</th><td><i></i></td></tr>
+<tr><th id="117">117</th><td><i>   Note: this function disconnects and frees the conn data in case of</i></td></tr>
+<tr><th id="118">118</th><td><i>   resolve failure */</i></td></tr>
+<tr><th id="119">119</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_async_resolved" title='Curl_async_resolved' data-ref="Curl_async_resolved">Curl_async_resolved</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="7conn" title='conn' data-type='struct connectdata *' data-ref="7conn">conn</dfn>,</td></tr>
+<tr><th id="120">120</th><td>                             <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> *<dfn class="local col8 decl" id="8protocol_done" title='protocol_done' data-type='_Bool *' data-ref="8protocol_done">protocol_done</dfn>)</td></tr>
+<tr><th id="121">121</th><td>{</td></tr>
+<tr><th id="122">122</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col9 decl" id="9result" title='result' data-type='CURLcode' data-ref="9result">result</dfn>;</td></tr>
+<tr><th id="123">123</th><td></td></tr>
+<tr><th id="124">124</th><td>  <b>if</b>(<a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::async" title='connectdata::async' data-ref="connectdata::async">async</a>.<a class="ref" href="urldata.h.html#Curl_async::dns" title='Curl_async::dns' data-ref="Curl_async::dns">dns</a>) {</td></tr>
+<tr><th id="125">125</th><td>    <a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::dns_entry" title='connectdata::dns_entry' data-ref="connectdata::dns_entry">dns_entry</a> = <a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::async" title='connectdata::async' data-ref="connectdata::async">async</a>.<a class="ref" href="urldata.h.html#Curl_async::dns" title='Curl_async::dns' data-ref="Curl_async::dns">dns</a>;</td></tr>
+<tr><th id="126">126</th><td>    <a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::async" title='connectdata::async' data-ref="connectdata::async">async</a>.<a class="ref" href="urldata.h.html#Curl_async::dns" title='Curl_async::dns' data-ref="Curl_async::dns">dns</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="127">127</th><td>  }</td></tr>
+<tr><th id="128">128</th><td></td></tr>
+<tr><th id="129">129</th><td>  <a class="local col9 ref" href="#9result" title='result' data-ref="9result">result</a> = <a class="ref" href="url.h.html#Curl_setup_conn" title='Curl_setup_conn' data-ref="Curl_setup_conn">Curl_setup_conn</a>(<a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>, <a class="local col8 ref" href="#8protocol_done" title='protocol_done' data-ref="8protocol_done">protocol_done</a>);</td></tr>
+<tr><th id="130">130</th><td></td></tr>
+<tr><th id="131">131</th><td>  <b>if</b>(<a class="local col9 ref" href="#9result" title='result' data-ref="9result">result</a>)</td></tr>
+<tr><th id="132">132</th><td>    <i>/* We're not allowed to return failure with memory left allocated</i></td></tr>
+<tr><th id="133">133</th><td><i>       in the connectdata struct, free those here */</i></td></tr>
+<tr><th id="134">134</th><td>    <a class="ref" href="url.h.html#Curl_disconnect" title='Curl_disconnect' data-ref="Curl_disconnect">Curl_disconnect</a>(<a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>, <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>); <i>/* close the connection */</i></td></tr>
+<tr><th id="135">135</th><td></td></tr>
+<tr><th id="136">136</th><td>  <b>return</b> <a class="local col9 ref" href="#9result" title='result' data-ref="9result">result</a>;</td></tr>
+<tr><th id="137">137</th><td>}</td></tr>
+<tr><th id="138">138</th><td></td></tr>
+<tr><th id="139">139</th><td><i>/*</i></td></tr>
+<tr><th id="140">140</th><td><i> * Curl_getaddrinfo() is the generic low-level name resolve API within this</i></td></tr>
+<tr><th id="141">141</th><td><i> * source file. There are several versions of this function - for different</i></td></tr>
+<tr><th id="142">142</th><td><i> * name resolve layers (selected at build-time). They all take this same set</i></td></tr>
+<tr><th id="143">143</th><td><i> * of arguments</i></td></tr>
+<tr><th id="144">144</th><td><i> */</i></td></tr>
+<tr><th id="145">145</th><td><a class="typedef" href="curl_addrinfo.h.html#Curl_addrinfo" title='Curl_addrinfo' data-type='struct Curl_addrinfo' data-ref="Curl_addrinfo">Curl_addrinfo</a> *<dfn class="decl def" id="Curl_getaddrinfo" title='Curl_getaddrinfo' data-ref="Curl_getaddrinfo">Curl_getaddrinfo</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col0 decl" id="10conn" title='conn' data-type='struct connectdata *' data-ref="10conn">conn</dfn>,</td></tr>
+<tr><th id="146">146</th><td>                                <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="11hostname" title='hostname' data-type='const char *' data-ref="11hostname">hostname</dfn>,</td></tr>
+<tr><th id="147">147</th><td>                                <em>int</em> <dfn class="local col2 decl" id="12port" title='port' data-type='int' data-ref="12port">port</dfn>,</td></tr>
+<tr><th id="148">148</th><td>                                <em>int</em> *<dfn class="local col3 decl" id="13waitp" title='waitp' data-type='int *' data-ref="13waitp">waitp</dfn>)</td></tr>
+<tr><th id="149">149</th><td>{</td></tr>
+<tr><th id="150">150</th><td>  <b>return</b> <a class="ref" href="asyn.h.html#Curl_resolver_getaddrinfo" title='Curl_resolver_getaddrinfo' data-ref="Curl_resolver_getaddrinfo">Curl_resolver_getaddrinfo</a>(<a class="local col0 ref" href="#10conn" title='conn' data-ref="10conn">conn</a>, <a class="local col1 ref" href="#11hostname" title='hostname' data-ref="11hostname">hostname</a>, <a class="local col2 ref" href="#12port" title='port' data-ref="12port">port</a>, <a class="local col3 ref" href="#13waitp" title='waitp' data-ref="13waitp">waitp</a>);</td></tr>
+<tr><th id="151">151</th><td>}</td></tr>
+<tr><th id="152">152</th><td></td></tr>
+<tr><th id="153">153</th><td><u>#<span data-ppcond="57">endif</span> /* CURLRES_ASYNCH */</u></td></tr>
+<tr><th id="154">154</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,5 @@
+<def f='codebrowser/lib/conncache.h' l='38' ll='42'/>
+<size>48</size>
+<mbr r='connectbundle::multiuse' o='0' t='int'/>
+<mbr r='connectbundle::num_connections' o='64' t='size_t'/>
+<mbr r='connectbundle::conn_list' o='128' t='struct curl_llist'/>

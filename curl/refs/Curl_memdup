@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/strdup.h' l='29' type='void * Curl_memdup(const void * src, size_t buffer_length)'/>
+<use f='codebrowser/lib/formdata.c' l='656' u='c' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='674' u='c' c='FormAdd'/>
+<use f='codebrowser/lib/sendf.c' l='512' u='c' c='pausewrite'/>
+<def f='codebrowser/lib/strdup.c' l='68' ll='77' type='void * Curl_memdup(const void * src, size_t length)'/>
+<doc f='codebrowser/lib/strdup.c' l='58'>/***************************************************************************
+ *
+ * Curl_memdup(source, length)
+ *
+ * Copies the &apos;source&apos; data to a newly allocated buffer (that is
+ * returned). Copies &apos;length&apos; bytes.
+ *
+ * Returns the new pointer or NULL on failure.
+ *
+ ***************************************************************************/</doc>
+<use f='codebrowser/lib/url.c' l='385' u='c' c='Curl_dupset'/>

@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/ftp.h' l='142' type='int'/>
+<offset>1440</offset>
+<doc f='codebrowser/lib/ftp.h' l='142'>/* general purpose counter for the state machine */</doc>
+<use f='codebrowser/lib/ftp.c' l='883' u='w' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='1727' u='w' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='1730' u='w' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='2659' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2663' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2702' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2932' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2947' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2949' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2963' u='w' c='ftp_statemach_act'/>

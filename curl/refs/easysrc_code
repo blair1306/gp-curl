@@ -1,0 +1,45 @@
+<dec f='codebrowser/src/tool_easysrc.h' l='31' type='struct slist_wc *'/>
+<def f='codebrowser/src/tool_easysrc.c' l='42' type='struct slist_wc *'/>
+<use f='codebrowser/src/tool_easysrc.c' l='86' u='r' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='87' u='w' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='130' u='a' c='easysrc_init'/>
+<use f='codebrowser/src/tool_easysrc.c' l='142' u='a' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='145' u='a' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='149' u='a' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='151' u='a' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='152' u='a' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='158' u='a' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='159' u='a' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='160' u='a' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='167' u='a' c='easysrc_cleanup'/>
+<use f='codebrowser/src/tool_easysrc.c' l='168' u='a' c='easysrc_cleanup'/>
+<use f='codebrowser/src/tool_easysrc.c' l='210' u='r' c='dumpeasysrc'/>
+<use f='codebrowser/src/tool_easysrc.c' l='211' u='r' c='dumpeasysrc'/>
+<doc f='codebrowser/src/tool_easysrc.c' l='42'>/* Setopt calls */</doc>
+<doc f='codebrowser/src/tool_easysrc.h' l='31'>/* Setopt calls etc. */</doc>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='tool_setopt_enum'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='tool_setopt_enum'/>
+<use f='codebrowser/src/tool_setopt.c' l='202' u='a' c='tool_setopt_flags'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='tool_setopt_flags'/>
+<use f='codebrowser/src/tool_setopt.c' l='202' u='a' c='tool_setopt_bitmask'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='tool_setopt_bitmask'/>
+<use f='codebrowser/src/tool_setopt.c' l='200' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='200' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='200' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='199' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='202' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='200' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='202' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='200' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='tool_setopt_mimepost'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='tool_setopt_slist'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='tool_setopt'/>
+<use f='codebrowser/src/tool_setopt.c' l='201' u='a' c='tool_setopt'/>

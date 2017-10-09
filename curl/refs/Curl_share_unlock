@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/share.h' l='59' type='CURLSHcode Curl_share_unlock(struct Curl_easy * , curl_lock_data )'/>
+<use f='codebrowser/lib/cookie.c' l='283' u='c' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/cookie.c' l='1442' u='c' c='Curl_cookie_list'/>
+<use f='codebrowser/lib/cookie.c' l='1476' u='c' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/hostasyn.c' l='95' u='c' c='Curl_addrinfo_callback'/>
+<use f='codebrowser/lib/hostip.c' l='277' u='c' c='Curl_hostcache_prune'/>
+<use f='codebrowser/lib/hostip.c' l='360' u='c' c='Curl_fetch_addr'/>
+<use f='codebrowser/lib/hostip.c' l='468' u='c' c='Curl_resolv'/>
+<use f='codebrowser/lib/hostip.c' l='514' u='c' c='Curl_resolv'/>
+<use f='codebrowser/lib/hostip.c' l='730' u='c' c='Curl_resolv_unlock'/>
+<use f='codebrowser/lib/hostip.c' l='773' u='c' c='Curl_hostcache_clean'/>
+<use f='codebrowser/lib/hostip.c' l='813' u='c' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/hostip.c' l='871' u='c' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/http.c' l='2384' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3729' u='c' c='Curl_http_readwrite_headers'/>
+<def f='codebrowser/lib/share.c' l='230' ll='244' type='CURLSHcode Curl_share_unlock(struct Curl_easy * data, curl_lock_data type)'/>
+<use f='codebrowser/lib/url.c' l='489' u='c' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='1305' u='c' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1311' u='c' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1343' u='c' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2401' u='c' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2430' u='c' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='294' u='c' c='Curl_ssl_sessionid_unlock'/>

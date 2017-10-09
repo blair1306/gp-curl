@@ -1,0 +1,30 @@
+<dec f='codebrowser/lib/urldata.h' l='878' type='curl_socket_t [2]'/>
+<offset>4864</offset>
+<doc f='codebrowser/lib/urldata.h' l='878'>/* temporary sockets for happy eyeballs */</doc>
+<use f='codebrowser/lib/connect.c' l='551' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='552' u='w' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='580' u='a' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='753' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='764' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='781' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='785' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='787' u='w' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='790' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='791' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='792' u='w' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='813' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='834' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='1162' u='w' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1163' u='w' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1171' u='a' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1177' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/ftp.c' l='852' u='r' c='ftp_domore_getsock'/>
+<use f='codebrowser/lib/ftp.c' l='853' u='r' c='ftp_domore_getsock'/>
+<use f='codebrowser/lib/multi.c' l='818' u='r' c='waitconnect_getsock'/>
+<use f='codebrowser/lib/multi.c' l='819' u='r' c='waitconnect_getsock'/>
+<use f='codebrowser/lib/url.c' l='3033' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3034' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3035' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3036' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='4215' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4216' u='w' c='allocate_conn'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='495' type='int OCSP_REQUEST_get_ext_by_NID(OCSP_REQUEST * x, int nid, int lastpos)'/>

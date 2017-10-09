@@ -1,0 +1,6 @@
+<dec f='include/openssl/x509.h' l='247' type='X509_VAL *'/>
+<offset>256</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2825' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2828' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3060' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3065' macro='1' u='r'/>

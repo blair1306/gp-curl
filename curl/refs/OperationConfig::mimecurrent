@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='174' type='curl_mime *'/>
+<offset>6400</offset>
+<use f='codebrowser/src/tool_cfgable.c' l='147' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='1610' u='a' c='getparameter'/>

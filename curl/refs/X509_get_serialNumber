@@ -1,0 +1,2 @@
+<dec f='include/openssl/x509.h' l='903' type='ASN1_INTEGER * X509_get_serialNumber(X509 * x)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2785' u='c' c='get_cert_chain'/>

@@ -1,0 +1,4 @@
+<def f='codebrowser/lib/parsedate.c' l='275' ll='282'/>
+<size>24</size>
+<doc f='codebrowser/lib/parsedate.c' l='273'>/* this is a clone of &apos;struct tm&apos; but with all fields we don&apos;t need or use
+   cut out */</doc>

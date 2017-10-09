@@ -1,0 +1,29 @@
+<dec f='codebrowser/include/curl/curl.h' l='524' type='55'/>
+<doc f='codebrowser/include/curl/curl.h' l='524'>/* 55 - failed sending network data */</doc>
+<use f='codebrowser/lib/easy.c' l='1132' u='r' c='curl_easy_send'/>
+<use f='codebrowser/lib/file.c' l='396' u='r' c='file_upload'/>
+<use f='codebrowser/lib/gopher.c' l='144' u='r' c='gopher_do'/>
+<use f='codebrowser/lib/http.c' l='1188' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/multi.c' l='1197' u='r' c='multi_reconnect_request'/>
+<use f='codebrowser/lib/multi.c' l='1250' u='r' c='multi_do'/>
+<use f='codebrowser/lib/multi.c' l='1693' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1720' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/pingpong.c' l='183' u='r' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/sendf.c' l='343' u='r' c='Curl_write'/>
+<use f='codebrowser/lib/sendf.c' l='397' u='r' c='Curl_send_plain'/>
+<use f='codebrowser/lib/smtp.c' l='892' u='r' c='smtp_state_mail_resp'/>
+<use f='codebrowser/lib/smtp.c' l='913' u='r' c='smtp_state_rcpt_resp'/>
+<use f='codebrowser/lib/smtp.c' l='944' u='r' c='smtp_state_data_resp'/>
+<use f='codebrowser/lib/strerror.c' l='209' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/telnet.c' l='1264' u='r' c='send_telnet_data'/>
+<use f='codebrowser/lib/tftp.c' l='626' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='651' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='677' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='741' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='752' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='796' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='822' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/transfer.c' l='1130' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3434' u='r' c='ossl_send'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3452' u='r' c='ossl_send'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3458' u='r' c='ossl_send'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/tftp.c' l='132' type='time_t'/>
+<use f='codebrowser/lib/tftp.c' l='206' u='a' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='220' u='r' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='244' u='r' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='266' u='r' c='tftp_set_timeouts'/>
+<offset>320</offset>

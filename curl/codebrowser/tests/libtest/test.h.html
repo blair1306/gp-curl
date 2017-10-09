@@ -1,0 +1,452 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>test.h source code [codebrowser/tests/libtest/test.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/test.h'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='test.h.html'>test.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><i>/* !checksrc! disable ASSIGNWITHINCONDITION all */</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><i>/* Now include the curl_setup.h file from libcurl's private libdir (the source</i></td></tr>
+<tr><th id="26">26</th><td><i>   version, but that might include "curl_config.h" from the build dir so we</i></td></tr>
+<tr><th id="27">27</th><td><i>   need both of them in the include path), so that we get good in-depth</i></td></tr>
+<tr><th id="28">28</th><td><i>   knowledge about the system we're building this on */</i></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/CURL_NO_OLDIES" data-ref="_M/CURL_NO_OLDIES">CURL_NO_OLDIES</dfn></u></td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="../../lib/curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="../../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#666" data-ref="_M/HAVE_SYS_SELECT_H">HAVE_SYS_SELECT_H</a></u></td></tr>
+<tr><th id="37">37</th><td><i>/* since so many tests use select(), we can just as well include it here */</i></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="../../../include/x86_64-linux-gnu/sys/select.h.html">&lt;sys/select.h&gt;</a></u></td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="36">endif</span></u></td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="41">ifdef</span> <span class="macro" data-ref="_M/TPF">TPF</span></u></td></tr>
+<tr><th id="42">42</th><td><u>#  include "select.h"</u></td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="41">endif</span></u></td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><u>#include <a href="../../lib/curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><u>#define <dfn class="macro" id="_M/test_setopt" data-ref="_M/test_setopt">test_setopt</dfn>(A,B,C) \</u></td></tr>
+<tr><th id="48">48</th><td><u>  if((res = curl_easy_setopt((A), (B), (C))) != CURLE_OK) goto test_cleanup</u></td></tr>
+<tr><th id="49">49</th><td></td></tr>
+<tr><th id="50">50</th><td><u>#define <dfn class="macro" id="_M/test_multi_setopt" data-ref="_M/test_multi_setopt">test_multi_setopt</dfn>(A,B,C) \</u></td></tr>
+<tr><th id="51">51</th><td><u>  if((res = curl_multi_setopt((A), (B), (C))) != CURLE_OK) goto test_cleanup</u></td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td><b>extern</b> <em>char</em> *<dfn class="decl" id="libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</dfn>; <i>/* set by first.c to the argv[2] or NULL */</i></td></tr>
+<tr><th id="54">54</th><td><b>extern</b> <em>char</em> *<dfn class="decl" id="libtest_arg3" title='libtest_arg3' data-ref="libtest_arg3">libtest_arg3</dfn>; <i>/* set by first.c to the argv[3] or NULL */</i></td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td><i>/* argc and argv as passed in to the main() function */</i></td></tr>
+<tr><th id="57">57</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="test_argc" title='test_argc' data-ref="test_argc">test_argc</dfn>;</td></tr>
+<tr><th id="58">58</th><td><b>extern</b> <em>char</em> **<dfn class="decl" id="test_argv" title='test_argv' data-ref="test_argv">test_argv</dfn>;</td></tr>
+<tr><th id="59">59</th><td></td></tr>
+<tr><th id="60">60</th><td><b>extern</b> <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="decl" id="tv_test_start" title='tv_test_start' data-ref="tv_test_start">tv_test_start</dfn>; <i>/* for test timing */</i></td></tr>
+<tr><th id="61">61</th><td></td></tr>
+<tr><th id="62">62</th><td><b>extern</b> <em>int</em> <a class="decl" href="first.c.html#select_wrapper" title='select_wrapper' data-ref="select_wrapper" id="select_wrapper">select_wrapper</a>(<em>int</em> <dfn class="local col1 decl" id="1nfds" title='nfds' data-type='int' data-ref="1nfds">nfds</dfn>, <a class="typedef" href="../../../include/x86_64-linux-gnu/sys/select.h.html#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<dfn class="local col2 decl" id="2rd" title='rd' data-type='fd_set *' data-ref="2rd">rd</dfn>, <a class="typedef" href="../../../include/x86_64-linux-gnu/sys/select.h.html#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<dfn class="local col3 decl" id="3wr" title='wr' data-type='fd_set *' data-ref="3wr">wr</dfn>, <a class="typedef" href="../../../include/x86_64-linux-gnu/sys/select.h.html#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<dfn class="local col4 decl" id="4exc" title='exc' data-type='fd_set *' data-ref="4exc">exc</dfn>,</td></tr>
+<tr><th id="63">63</th><td>                          <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> *<dfn class="local col5 decl" id="5tv" title='tv' data-type='struct timeval *' data-ref="5tv">tv</dfn>);</td></tr>
+<tr><th id="64">64</th><td></td></tr>
+<tr><th id="65">65</th><td><b>extern</b> <em>void</em> <a class="decl" href="first.c.html#wait_ms" title='wait_ms' data-ref="wait_ms" id="wait_ms">wait_ms</a>(<em>int</em> <dfn class="local col6 decl" id="6ms" title='ms' data-type='int' data-ref="6ms">ms</dfn>); <i>/* wait this many milliseconds */</i></td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="test" title='test' data-ref="test">test</dfn>(<em>char</em> *<dfn class="local col7 decl" id="7URL" title='URL' data-type='char *' data-ref="7URL">URL</dfn>); <i>/* the actual test function provided by each</i></td></tr>
+<tr><th id="68">68</th><td><i>                               individual libXXX.c file */</i></td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td><b>extern</b> <em>char</em> *<a class="decl" href="first.c.html#hexdump" title='hexdump' data-ref="hexdump" id="hexdump">hexdump</a>(<em>const</em> <em>unsigned</em> <em>char</em> *<dfn class="local col8 decl" id="8buffer" title='buffer' data-type='const unsigned char *' data-ref="8buffer">buffer</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="9len" title='len' data-type='size_t' data-ref="9len">len</dfn>);</td></tr>
+<tr><th id="71">71</th><td></td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="72">ifdef</span> <span class="macro" data-ref="_M/UNITTESTS">UNITTESTS</span></u></td></tr>
+<tr><th id="73">73</th><td><b>extern</b> <em>int</em> unitfail;</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="72">endif</span></u></td></tr>
+<tr><th id="75">75</th><td></td></tr>
+<tr><th id="76">76</th><td><i>/*</i></td></tr>
+<tr><th id="77">77</th><td><i>** TEST_ERR_* values must be greater than CURL_LAST CURLcode in order</i></td></tr>
+<tr><th id="78">78</th><td><i>** to avoid confusion with any CURLcode or CURLMcode. These TEST_ERR_*</i></td></tr>
+<tr><th id="79">79</th><td><i>** codes are returned to signal test specific situations and should</i></td></tr>
+<tr><th id="80">80</th><td><i>** not get mixed with CURLcode or CURLMcode values.</i></td></tr>
+<tr><th id="81">81</th><td><i>**</i></td></tr>
+<tr><th id="82">82</th><td><i>** For portability reasons TEST_ERR_* values should be less than 127.</i></td></tr>
+<tr><th id="83">83</th><td><i>*/</i></td></tr>
+<tr><th id="84">84</th><td></td></tr>
+<tr><th id="85">85</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_MAJOR_BAD" data-ref="_M/TEST_ERR_MAJOR_BAD">TEST_ERR_MAJOR_BAD</dfn>     126</u></td></tr>
+<tr><th id="86">86</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_RUNS_FOREVER" data-ref="_M/TEST_ERR_RUNS_FOREVER">TEST_ERR_RUNS_FOREVER</dfn>  125</u></td></tr>
+<tr><th id="87">87</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_EASY_INIT" data-ref="_M/TEST_ERR_EASY_INIT">TEST_ERR_EASY_INIT</dfn>     124</u></td></tr>
+<tr><th id="88">88</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_MULTI_INIT" data-ref="_M/TEST_ERR_MULTI_INIT">TEST_ERR_MULTI_INIT</dfn>    123</u></td></tr>
+<tr><th id="89">89</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_NUM_HANDLES" data-ref="_M/TEST_ERR_NUM_HANDLES">TEST_ERR_NUM_HANDLES</dfn>   122</u></td></tr>
+<tr><th id="90">90</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_SELECT" data-ref="_M/TEST_ERR_SELECT">TEST_ERR_SELECT</dfn>        121</u></td></tr>
+<tr><th id="91">91</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_SUCCESS" data-ref="_M/TEST_ERR_SUCCESS">TEST_ERR_SUCCESS</dfn>       120</u></td></tr>
+<tr><th id="92">92</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_FAILURE" data-ref="_M/TEST_ERR_FAILURE">TEST_ERR_FAILURE</dfn>       119</u></td></tr>
+<tr><th id="93">93</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_USAGE" data-ref="_M/TEST_ERR_USAGE">TEST_ERR_USAGE</dfn>         118</u></td></tr>
+<tr><th id="94">94</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_FOPEN" data-ref="_M/TEST_ERR_FOPEN">TEST_ERR_FOPEN</dfn>         117</u></td></tr>
+<tr><th id="95">95</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_FSTAT" data-ref="_M/TEST_ERR_FSTAT">TEST_ERR_FSTAT</dfn>         116</u></td></tr>
+<tr><th id="96">96</th><td><u>#define <dfn class="macro" id="_M/TEST_ERR_BAD_TIMEOUT" data-ref="_M/TEST_ERR_BAD_TIMEOUT">TEST_ERR_BAD_TIMEOUT</dfn>   115</u></td></tr>
+<tr><th id="97">97</th><td></td></tr>
+<tr><th id="98">98</th><td><i>/*</i></td></tr>
+<tr><th id="99">99</th><td><i>** Macros for test source code readability/maintainability.</i></td></tr>
+<tr><th id="100">100</th><td><i>**</i></td></tr>
+<tr><th id="101">101</th><td><i>** All of the following macros require that an int data type 'res' variable</i></td></tr>
+<tr><th id="102">102</th><td><i>** exists in scope where macro is used, and that it has been initialized to</i></td></tr>
+<tr><th id="103">103</th><td><i>** zero before the macro is used.</i></td></tr>
+<tr><th id="104">104</th><td><i>**</i></td></tr>
+<tr><th id="105">105</th><td><i>** exe_* and chk_* macros are helper macros not intended to be used from</i></td></tr>
+<tr><th id="106">106</th><td><i>** outside of this header file. Arguments 'Y' and 'Z' of these represent</i></td></tr>
+<tr><th id="107">107</th><td><i>** source code file and line number, while Arguments 'A', 'B', etc, are</i></td></tr>
+<tr><th id="108">108</th><td><i>** the arguments used to actually call a libcurl function.</i></td></tr>
+<tr><th id="109">109</th><td><i>**</i></td></tr>
+<tr><th id="110">110</th><td><i>** All easy_* and multi_* macros call a libcurl function and evaluate if</i></td></tr>
+<tr><th id="111">111</th><td><i>** the function has succeeded or failed. When the function succeeds 'res'</i></td></tr>
+<tr><th id="112">112</th><td><i>** variable is not set nor cleared and program continues normal flow. On</i></td></tr>
+<tr><th id="113">113</th><td><i>** the other hand if function fails 'res' variable is set and a jump to</i></td></tr>
+<tr><th id="114">114</th><td><i>** label 'test_cleanup' is performed.</i></td></tr>
+<tr><th id="115">115</th><td><i>**</i></td></tr>
+<tr><th id="116">116</th><td><i>** Every easy_* and multi_* macros have a res_easy_* and res_multi_* macro</i></td></tr>
+<tr><th id="117">117</th><td><i>** counterpart that operates in the same way with the exception that no</i></td></tr>
+<tr><th id="118">118</th><td><i>** jump takes place in case of failure. res_easy_* and res_multi_* macros</i></td></tr>
+<tr><th id="119">119</th><td><i>** should be immediately followed by checking if 'res' variable has been</i></td></tr>
+<tr><th id="120">120</th><td><i>** set.</i></td></tr>
+<tr><th id="121">121</th><td><i>**</i></td></tr>
+<tr><th id="122">122</th><td><i>** 'res' variable when set will hold a CURLcode, CURLMcode, or any of the</i></td></tr>
+<tr><th id="123">123</th><td><i>** TEST_ERR_* values defined above. It is advisable to return this value</i></td></tr>
+<tr><th id="124">124</th><td><i>** as test result.</i></td></tr>
+<tr><th id="125">125</th><td><i>*/</i></td></tr>
+<tr><th id="126">126</th><td></td></tr>
+<tr><th id="127">127</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="128">128</th><td></td></tr>
+<tr><th id="129">129</th><td><u>#define <dfn class="macro" id="_M/exe_easy_init" data-ref="_M/exe_easy_init">exe_easy_init</dfn>(A,Y,Z) do {                                 \</u></td></tr>
+<tr><th id="130">130</th><td><u>  if(((A) = curl_easy_init()) == NULL) {                          \</u></td></tr>
+<tr><th id="131">131</th><td><u>    fprintf(stderr, "%s:%d curl_easy_init() failed\n", (Y), (Z)); \</u></td></tr>
+<tr><th id="132">132</th><td><u>    res = TEST_ERR_EASY_INIT;                                     \</u></td></tr>
+<tr><th id="133">133</th><td><u>  }                                                               \</u></td></tr>
+<tr><th id="134">134</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="135">135</th><td></td></tr>
+<tr><th id="136">136</th><td><u>#define <dfn class="macro" id="_M/res_easy_init" data-ref="_M/res_easy_init">res_easy_init</dfn>(A) \</u></td></tr>
+<tr><th id="137">137</th><td><u>  exe_easy_init((A), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="138">138</th><td></td></tr>
+<tr><th id="139">139</th><td><u>#define <dfn class="macro" id="_M/chk_easy_init" data-ref="_M/chk_easy_init">chk_easy_init</dfn>(A,Y,Z) do { \</u></td></tr>
+<tr><th id="140">140</th><td><u>  exe_easy_init((A), (Y), (Z));   \</u></td></tr>
+<tr><th id="141">141</th><td><u>  if(res)                         \</u></td></tr>
+<tr><th id="142">142</th><td><u>    goto test_cleanup;            \</u></td></tr>
+<tr><th id="143">143</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="144">144</th><td></td></tr>
+<tr><th id="145">145</th><td><u>#define <dfn class="macro" id="_M/easy_init" data-ref="_M/easy_init">easy_init</dfn>(A) \</u></td></tr>
+<tr><th id="146">146</th><td><u>  chk_easy_init((A), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="147">147</th><td></td></tr>
+<tr><th id="148">148</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="149">149</th><td></td></tr>
+<tr><th id="150">150</th><td><u>#define <dfn class="macro" id="_M/exe_multi_init" data-ref="_M/exe_multi_init">exe_multi_init</dfn>(A,Y,Z) do {                                 \</u></td></tr>
+<tr><th id="151">151</th><td><u>  if(((A) = curl_multi_init()) == NULL) {                          \</u></td></tr>
+<tr><th id="152">152</th><td><u>    fprintf(stderr, "%s:%d curl_multi_init() failed\n", (Y), (Z)); \</u></td></tr>
+<tr><th id="153">153</th><td><u>    res = TEST_ERR_MULTI_INIT;                                     \</u></td></tr>
+<tr><th id="154">154</th><td><u>  }                                                                \</u></td></tr>
+<tr><th id="155">155</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="156">156</th><td></td></tr>
+<tr><th id="157">157</th><td><u>#define <dfn class="macro" id="_M/res_multi_init" data-ref="_M/res_multi_init">res_multi_init</dfn>(A) \</u></td></tr>
+<tr><th id="158">158</th><td><u>  exe_multi_init((A), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td><u>#define <dfn class="macro" id="_M/chk_multi_init" data-ref="_M/chk_multi_init">chk_multi_init</dfn>(A,Y,Z) do { \</u></td></tr>
+<tr><th id="161">161</th><td><u>  exe_multi_init((A), (Y), (Z));   \</u></td></tr>
+<tr><th id="162">162</th><td><u>  if(res)                          \</u></td></tr>
+<tr><th id="163">163</th><td><u>    goto test_cleanup;             \</u></td></tr>
+<tr><th id="164">164</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="165">165</th><td></td></tr>
+<tr><th id="166">166</th><td><u>#define <dfn class="macro" id="_M/multi_init" data-ref="_M/multi_init">multi_init</dfn>(A) \</u></td></tr>
+<tr><th id="167">167</th><td><u>  chk_multi_init((A), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="168">168</th><td></td></tr>
+<tr><th id="169">169</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="170">170</th><td></td></tr>
+<tr><th id="171">171</th><td><u>#define <dfn class="macro" id="_M/exe_easy_setopt" data-ref="_M/exe_easy_setopt">exe_easy_setopt</dfn>(A,B,C,Y,Z) do {                    \</u></td></tr>
+<tr><th id="172">172</th><td><u>  CURLcode ec;                                             \</u></td></tr>
+<tr><th id="173">173</th><td><u>  if((ec = curl_easy_setopt((A), (B), (C))) != CURLE_OK) { \</u></td></tr>
+<tr><th id="174">174</th><td><u>    fprintf(stderr, "%s:%d curl_easy_setopt() failed, "    \</u></td></tr>
+<tr><th id="175">175</th><td><u>            "with code %d (%s)\n",                         \</u></td></tr>
+<tr><th id="176">176</th><td><u>            (Y), (Z), (int)ec, curl_easy_strerror(ec));    \</u></td></tr>
+<tr><th id="177">177</th><td><u>    res = (int)ec;                                         \</u></td></tr>
+<tr><th id="178">178</th><td><u>  }                                                        \</u></td></tr>
+<tr><th id="179">179</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="180">180</th><td></td></tr>
+<tr><th id="181">181</th><td><u>#define <dfn class="macro" id="_M/res_easy_setopt" data-ref="_M/res_easy_setopt">res_easy_setopt</dfn>(A, B, C) \</u></td></tr>
+<tr><th id="182">182</th><td><u>  exe_easy_setopt((A), (B), (C), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="183">183</th><td></td></tr>
+<tr><th id="184">184</th><td><u>#define <dfn class="macro" id="_M/chk_easy_setopt" data-ref="_M/chk_easy_setopt">chk_easy_setopt</dfn>(A, B, C, Y, Z) do { \</u></td></tr>
+<tr><th id="185">185</th><td><u>  exe_easy_setopt((A), (B), (C), (Y), (Z)); \</u></td></tr>
+<tr><th id="186">186</th><td><u>  if(res)                                   \</u></td></tr>
+<tr><th id="187">187</th><td><u>    goto test_cleanup;                      \</u></td></tr>
+<tr><th id="188">188</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="189">189</th><td></td></tr>
+<tr><th id="190">190</th><td><u>#define <dfn class="macro" id="_M/easy_setopt" data-ref="_M/easy_setopt">easy_setopt</dfn>(A, B, C) \</u></td></tr>
+<tr><th id="191">191</th><td><u>  chk_easy_setopt((A), (B), (C), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="192">192</th><td></td></tr>
+<tr><th id="193">193</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="194">194</th><td></td></tr>
+<tr><th id="195">195</th><td><u>#define <dfn class="macro" id="_M/exe_multi_setopt" data-ref="_M/exe_multi_setopt">exe_multi_setopt</dfn>(A, B, C, Y, Z) do {                \</u></td></tr>
+<tr><th id="196">196</th><td><u>  CURLMcode ec;                                             \</u></td></tr>
+<tr><th id="197">197</th><td><u>  if((ec = curl_multi_setopt((A), (B), (C))) != CURLM_OK) { \</u></td></tr>
+<tr><th id="198">198</th><td><u>    fprintf(stderr, "%s:%d curl_multi_setopt() failed, "    \</u></td></tr>
+<tr><th id="199">199</th><td><u>            "with code %d (%s)\n",                          \</u></td></tr>
+<tr><th id="200">200</th><td><u>            (Y), (Z), (int)ec, curl_multi_strerror(ec));    \</u></td></tr>
+<tr><th id="201">201</th><td><u>    res = (int)ec;                                          \</u></td></tr>
+<tr><th id="202">202</th><td><u>  }                                                         \</u></td></tr>
+<tr><th id="203">203</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="204">204</th><td></td></tr>
+<tr><th id="205">205</th><td><u>#define <dfn class="macro" id="_M/res_multi_setopt" data-ref="_M/res_multi_setopt">res_multi_setopt</dfn>(A,B,C) \</u></td></tr>
+<tr><th id="206">206</th><td><u>  exe_multi_setopt((A), (B), (C), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="207">207</th><td></td></tr>
+<tr><th id="208">208</th><td><u>#define <dfn class="macro" id="_M/chk_multi_setopt" data-ref="_M/chk_multi_setopt">chk_multi_setopt</dfn>(A,B,C,Y,Z) do {     \</u></td></tr>
+<tr><th id="209">209</th><td><u>  exe_multi_setopt((A), (B), (C), (Y), (Z)); \</u></td></tr>
+<tr><th id="210">210</th><td><u>  if(res)                                    \</u></td></tr>
+<tr><th id="211">211</th><td><u>    goto test_cleanup;                       \</u></td></tr>
+<tr><th id="212">212</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="213">213</th><td></td></tr>
+<tr><th id="214">214</th><td><u>#define <dfn class="macro" id="_M/multi_setopt" data-ref="_M/multi_setopt">multi_setopt</dfn>(A,B,C) \</u></td></tr>
+<tr><th id="215">215</th><td><u>  chk_multi_setopt((A), (B), (C), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="216">216</th><td></td></tr>
+<tr><th id="217">217</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="218">218</th><td></td></tr>
+<tr><th id="219">219</th><td><u>#define <dfn class="macro" id="_M/exe_multi_add_handle" data-ref="_M/exe_multi_add_handle">exe_multi_add_handle</dfn>(A,B,Y,Z) do {                   \</u></td></tr>
+<tr><th id="220">220</th><td><u>  CURLMcode ec;                                              \</u></td></tr>
+<tr><th id="221">221</th><td><u>  if((ec = curl_multi_add_handle((A), (B))) != CURLM_OK) {   \</u></td></tr>
+<tr><th id="222">222</th><td><u>    fprintf(stderr, "%s:%d curl_multi_add_handle() failed, " \</u></td></tr>
+<tr><th id="223">223</th><td><u>            "with code %d (%s)\n",                           \</u></td></tr>
+<tr><th id="224">224</th><td><u>            (Y), (Z), (int)ec, curl_multi_strerror(ec));     \</u></td></tr>
+<tr><th id="225">225</th><td><u>    res = (int)ec;                                           \</u></td></tr>
+<tr><th id="226">226</th><td><u>  }                                                          \</u></td></tr>
+<tr><th id="227">227</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="228">228</th><td></td></tr>
+<tr><th id="229">229</th><td><u>#define <dfn class="macro" id="_M/res_multi_add_handle" data-ref="_M/res_multi_add_handle">res_multi_add_handle</dfn>(A, B) \</u></td></tr>
+<tr><th id="230">230</th><td><u>  exe_multi_add_handle((A), (B), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="231">231</th><td></td></tr>
+<tr><th id="232">232</th><td><u>#define <dfn class="macro" id="_M/chk_multi_add_handle" data-ref="_M/chk_multi_add_handle">chk_multi_add_handle</dfn>(A, B, Y, Z) do { \</u></td></tr>
+<tr><th id="233">233</th><td><u>  exe_multi_add_handle((A), (B), (Y), (Z));   \</u></td></tr>
+<tr><th id="234">234</th><td><u>  if(res)                                     \</u></td></tr>
+<tr><th id="235">235</th><td><u>    goto test_cleanup;                        \</u></td></tr>
+<tr><th id="236">236</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="237">237</th><td></td></tr>
+<tr><th id="238">238</th><td><u>#define <dfn class="macro" id="_M/multi_add_handle" data-ref="_M/multi_add_handle">multi_add_handle</dfn>(A, B) \</u></td></tr>
+<tr><th id="239">239</th><td><u>  chk_multi_add_handle((A), (B), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="240">240</th><td></td></tr>
+<tr><th id="241">241</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="242">242</th><td></td></tr>
+<tr><th id="243">243</th><td><u>#define <dfn class="macro" id="_M/exe_multi_remove_handle" data-ref="_M/exe_multi_remove_handle">exe_multi_remove_handle</dfn>(A,B,Y,Z) do {                   \</u></td></tr>
+<tr><th id="244">244</th><td><u>  CURLMcode ec;                                                 \</u></td></tr>
+<tr><th id="245">245</th><td><u>  if((ec = curl_multi_remove_handle((A), (B))) != CURLM_OK) {   \</u></td></tr>
+<tr><th id="246">246</th><td><u>    fprintf(stderr, "%s:%d curl_multi_remove_handle() failed, " \</u></td></tr>
+<tr><th id="247">247</th><td><u>            "with code %d (%s)\n",                              \</u></td></tr>
+<tr><th id="248">248</th><td><u>            (Y), (Z), (int)ec, curl_multi_strerror(ec));        \</u></td></tr>
+<tr><th id="249">249</th><td><u>    res = (int)ec;                                              \</u></td></tr>
+<tr><th id="250">250</th><td><u>  }                                                             \</u></td></tr>
+<tr><th id="251">251</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="252">252</th><td></td></tr>
+<tr><th id="253">253</th><td><u>#define <dfn class="macro" id="_M/res_multi_remove_handle" data-ref="_M/res_multi_remove_handle">res_multi_remove_handle</dfn>(A, B) \</u></td></tr>
+<tr><th id="254">254</th><td><u>  exe_multi_remove_handle((A), (B), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="255">255</th><td></td></tr>
+<tr><th id="256">256</th><td><u>#define <dfn class="macro" id="_M/chk_multi_remove_handle" data-ref="_M/chk_multi_remove_handle">chk_multi_remove_handle</dfn>(A, B, Y, Z) do { \</u></td></tr>
+<tr><th id="257">257</th><td><u>  exe_multi_remove_handle((A), (B), (Y), (Z));   \</u></td></tr>
+<tr><th id="258">258</th><td><u>  if(res)                                        \</u></td></tr>
+<tr><th id="259">259</th><td><u>    goto test_cleanup;                           \</u></td></tr>
+<tr><th id="260">260</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="261">261</th><td></td></tr>
+<tr><th id="262">262</th><td></td></tr>
+<tr><th id="263">263</th><td><u>#define <dfn class="macro" id="_M/multi_remove_handle" data-ref="_M/multi_remove_handle">multi_remove_handle</dfn>(A, B) \</u></td></tr>
+<tr><th id="264">264</th><td><u>  chk_multi_remove_handle((A), (B), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="265">265</th><td></td></tr>
+<tr><th id="266">266</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="267">267</th><td></td></tr>
+<tr><th id="268">268</th><td><u>#define <dfn class="macro" id="_M/exe_multi_perform" data-ref="_M/exe_multi_perform">exe_multi_perform</dfn>(A,B,Y,Z) do {                          \</u></td></tr>
+<tr><th id="269">269</th><td><u>  CURLMcode ec;                                                  \</u></td></tr>
+<tr><th id="270">270</th><td><u>  if((ec = curl_multi_perform((A), (B))) != CURLM_OK) {          \</u></td></tr>
+<tr><th id="271">271</th><td><u>    fprintf(stderr, "%s:%d curl_multi_perform() failed, "        \</u></td></tr>
+<tr><th id="272">272</th><td><u>            "with code %d (%s)\n",                               \</u></td></tr>
+<tr><th id="273">273</th><td><u>            (Y), (Z), (int)ec, curl_multi_strerror(ec));         \</u></td></tr>
+<tr><th id="274">274</th><td><u>    res = (int)ec;                                               \</u></td></tr>
+<tr><th id="275">275</th><td><u>  }                                                              \</u></td></tr>
+<tr><th id="276">276</th><td><u>  else if(*((B)) &lt; 0) {                                          \</u></td></tr>
+<tr><th id="277">277</th><td><u>    fprintf(stderr, "%s:%d curl_multi_perform() succeeded, "     \</u></td></tr>
+<tr><th id="278">278</th><td><u>            "but returned invalid running_handles value (%d)\n", \</u></td></tr>
+<tr><th id="279">279</th><td><u>            (Y), (Z), (int)*((B)));                              \</u></td></tr>
+<tr><th id="280">280</th><td><u>    res = TEST_ERR_NUM_HANDLES;                                  \</u></td></tr>
+<tr><th id="281">281</th><td><u>  }                                                              \</u></td></tr>
+<tr><th id="282">282</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="283">283</th><td></td></tr>
+<tr><th id="284">284</th><td><u>#define <dfn class="macro" id="_M/res_multi_perform" data-ref="_M/res_multi_perform">res_multi_perform</dfn>(A, B) \</u></td></tr>
+<tr><th id="285">285</th><td><u>  exe_multi_perform((A), (B), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="286">286</th><td></td></tr>
+<tr><th id="287">287</th><td><u>#define <dfn class="macro" id="_M/chk_multi_perform" data-ref="_M/chk_multi_perform">chk_multi_perform</dfn>(A, B, Y, Z) do { \</u></td></tr>
+<tr><th id="288">288</th><td><u>  exe_multi_perform((A), (B), (Y), (Z));   \</u></td></tr>
+<tr><th id="289">289</th><td><u>  if(res)                                  \</u></td></tr>
+<tr><th id="290">290</th><td><u>    goto test_cleanup;                     \</u></td></tr>
+<tr><th id="291">291</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="292">292</th><td></td></tr>
+<tr><th id="293">293</th><td><u>#define <dfn class="macro" id="_M/multi_perform" data-ref="_M/multi_perform">multi_perform</dfn>(A,B) \</u></td></tr>
+<tr><th id="294">294</th><td><u>  chk_multi_perform((A), (B), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="295">295</th><td></td></tr>
+<tr><th id="296">296</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="297">297</th><td></td></tr>
+<tr><th id="298">298</th><td><u>#define <dfn class="macro" id="_M/exe_multi_fdset" data-ref="_M/exe_multi_fdset">exe_multi_fdset</dfn>(A, B, C, D, E, Y, Z) do {                    \</u></td></tr>
+<tr><th id="299">299</th><td><u>  CURLMcode ec;                                                      \</u></td></tr>
+<tr><th id="300">300</th><td><u>  if((ec = curl_multi_fdset((A), (B), (C), (D), (E))) != CURLM_OK) { \</u></td></tr>
+<tr><th id="301">301</th><td><u>    fprintf(stderr, "%s:%d curl_multi_fdset() failed, "              \</u></td></tr>
+<tr><th id="302">302</th><td><u>            "with code %d (%s)\n",                                   \</u></td></tr>
+<tr><th id="303">303</th><td><u>            (Y), (Z), (int)ec, curl_multi_strerror(ec));             \</u></td></tr>
+<tr><th id="304">304</th><td><u>    res = (int)ec;                                                   \</u></td></tr>
+<tr><th id="305">305</th><td><u>  }                                                                  \</u></td></tr>
+<tr><th id="306">306</th><td><u>  else if(*((E)) &lt; -1) {                                             \</u></td></tr>
+<tr><th id="307">307</th><td><u>    fprintf(stderr, "%s:%d curl_multi_fdset() succeeded, "           \</u></td></tr>
+<tr><th id="308">308</th><td><u>            "but returned invalid max_fd value (%d)\n",              \</u></td></tr>
+<tr><th id="309">309</th><td><u>            (Y), (Z), (int)*((E)));                                  \</u></td></tr>
+<tr><th id="310">310</th><td><u>    res = TEST_ERR_NUM_HANDLES;                                      \</u></td></tr>
+<tr><th id="311">311</th><td><u>  }                                                                  \</u></td></tr>
+<tr><th id="312">312</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="313">313</th><td></td></tr>
+<tr><th id="314">314</th><td><u>#define <dfn class="macro" id="_M/res_multi_fdset" data-ref="_M/res_multi_fdset">res_multi_fdset</dfn>(A, B, C, D, E) \</u></td></tr>
+<tr><th id="315">315</th><td><u>  exe_multi_fdset((A), (B), (C), (D), (E), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="316">316</th><td></td></tr>
+<tr><th id="317">317</th><td><u>#define <dfn class="macro" id="_M/chk_multi_fdset" data-ref="_M/chk_multi_fdset">chk_multi_fdset</dfn>(A, B, C, D, E, Y, Z) do {       \</u></td></tr>
+<tr><th id="318">318</th><td><u>    exe_multi_fdset((A), (B), (C), (D), (E), (Y), (Z)); \</u></td></tr>
+<tr><th id="319">319</th><td><u>    if(res)                                             \</u></td></tr>
+<tr><th id="320">320</th><td><u>      goto test_cleanup;                                \</u></td></tr>
+<tr><th id="321">321</th><td><u>  } WHILE_FALSE</u></td></tr>
+<tr><th id="322">322</th><td></td></tr>
+<tr><th id="323">323</th><td><u>#define <dfn class="macro" id="_M/multi_fdset" data-ref="_M/multi_fdset">multi_fdset</dfn>(A, B, C, D, E) \</u></td></tr>
+<tr><th id="324">324</th><td><u>  chk_multi_fdset((A), (B), (C), (D), (E), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="325">325</th><td></td></tr>
+<tr><th id="326">326</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="327">327</th><td></td></tr>
+<tr><th id="328">328</th><td><u>#define <dfn class="macro" id="_M/exe_multi_timeout" data-ref="_M/exe_multi_timeout">exe_multi_timeout</dfn>(A,B,Y,Z) do {                      \</u></td></tr>
+<tr><th id="329">329</th><td><u>  CURLMcode ec;                                              \</u></td></tr>
+<tr><th id="330">330</th><td><u>  if((ec = curl_multi_timeout((A), (B))) != CURLM_OK) {      \</u></td></tr>
+<tr><th id="331">331</th><td><u>    fprintf(stderr, "%s:%d curl_multi_timeout() failed, "    \</u></td></tr>
+<tr><th id="332">332</th><td><u>            "with code %d (%s)\n",                           \</u></td></tr>
+<tr><th id="333">333</th><td><u>            (Y), (Z), (int)ec, curl_multi_strerror(ec));     \</u></td></tr>
+<tr><th id="334">334</th><td><u>    res = (int)ec;                                           \</u></td></tr>
+<tr><th id="335">335</th><td><u>  }                                                          \</u></td></tr>
+<tr><th id="336">336</th><td><u>  else if(*((B)) &lt; -1L) {                                    \</u></td></tr>
+<tr><th id="337">337</th><td><u>    fprintf(stderr, "%s:%d curl_multi_timeout() succeeded, " \</u></td></tr>
+<tr><th id="338">338</th><td><u>            "but returned invalid timeout value (%ld)\n",    \</u></td></tr>
+<tr><th id="339">339</th><td><u>            (Y), (Z), (long)*((B)));                         \</u></td></tr>
+<tr><th id="340">340</th><td><u>    res = TEST_ERR_BAD_TIMEOUT;                              \</u></td></tr>
+<tr><th id="341">341</th><td><u>  }                                                          \</u></td></tr>
+<tr><th id="342">342</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="343">343</th><td></td></tr>
+<tr><th id="344">344</th><td><u>#define <dfn class="macro" id="_M/res_multi_timeout" data-ref="_M/res_multi_timeout">res_multi_timeout</dfn>(A, B) \</u></td></tr>
+<tr><th id="345">345</th><td><u>  exe_multi_timeout((A), (B), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="346">346</th><td></td></tr>
+<tr><th id="347">347</th><td><u>#define <dfn class="macro" id="_M/chk_multi_timeout" data-ref="_M/chk_multi_timeout">chk_multi_timeout</dfn>(A, B, Y, Z) do { \</u></td></tr>
+<tr><th id="348">348</th><td><u>    exe_multi_timeout((A), (B), (Y), (Z)); \</u></td></tr>
+<tr><th id="349">349</th><td><u>    if(res)                                \</u></td></tr>
+<tr><th id="350">350</th><td><u>      goto test_cleanup;                   \</u></td></tr>
+<tr><th id="351">351</th><td><u>  } WHILE_FALSE</u></td></tr>
+<tr><th id="352">352</th><td></td></tr>
+<tr><th id="353">353</th><td><u>#define <dfn class="macro" id="_M/multi_timeout" data-ref="_M/multi_timeout">multi_timeout</dfn>(A, B) \</u></td></tr>
+<tr><th id="354">354</th><td><u>  chk_multi_timeout((A), (B), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="355">355</th><td></td></tr>
+<tr><th id="356">356</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="357">357</th><td></td></tr>
+<tr><th id="358">358</th><td><u>#define <dfn class="macro" id="_M/exe_select_test" data-ref="_M/exe_select_test">exe_select_test</dfn>(A, B, C, D, E, Y, Z) do {               \</u></td></tr>
+<tr><th id="359">359</th><td><u>    int ec;                                                     \</u></td></tr>
+<tr><th id="360">360</th><td><u>    if(select_wrapper((A), (B), (C), (D), (E)) == -1) {         \</u></td></tr>
+<tr><th id="361">361</th><td><u>      ec = SOCKERRNO;                                           \</u></td></tr>
+<tr><th id="362">362</th><td><u>      fprintf(stderr, "%s:%d select() failed, with "            \</u></td></tr>
+<tr><th id="363">363</th><td><u>              "errno %d (%s)\n",                                \</u></td></tr>
+<tr><th id="364">364</th><td><u>              (Y), (Z), ec, strerror(ec));                      \</u></td></tr>
+<tr><th id="365">365</th><td><u>      res = TEST_ERR_SELECT;                                    \</u></td></tr>
+<tr><th id="366">366</th><td><u>    }                                                           \</u></td></tr>
+<tr><th id="367">367</th><td><u>  } WHILE_FALSE</u></td></tr>
+<tr><th id="368">368</th><td></td></tr>
+<tr><th id="369">369</th><td><u>#define <dfn class="macro" id="_M/res_select_test" data-ref="_M/res_select_test">res_select_test</dfn>(A, B, C, D, E) \</u></td></tr>
+<tr><th id="370">370</th><td><u>  exe_select_test((A), (B), (C), (D), (E), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="371">371</th><td></td></tr>
+<tr><th id="372">372</th><td><u>#define <dfn class="macro" id="_M/chk_select_test" data-ref="_M/chk_select_test">chk_select_test</dfn>(A, B, C, D, E, Y, Z) do {       \</u></td></tr>
+<tr><th id="373">373</th><td><u>    exe_select_test((A), (B), (C), (D), (E), (Y), (Z)); \</u></td></tr>
+<tr><th id="374">374</th><td><u>    if(res)                                             \</u></td></tr>
+<tr><th id="375">375</th><td><u>      goto test_cleanup;                                \</u></td></tr>
+<tr><th id="376">376</th><td><u>  } WHILE_FALSE</u></td></tr>
+<tr><th id="377">377</th><td></td></tr>
+<tr><th id="378">378</th><td><u>#define <dfn class="macro" id="_M/select_test" data-ref="_M/select_test">select_test</dfn>(A, B, C, D, E) \</u></td></tr>
+<tr><th id="379">379</th><td><u>  chk_select_test((A), (B), (C), (D), (E), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="380">380</th><td></td></tr>
+<tr><th id="381">381</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="382">382</th><td></td></tr>
+<tr><th id="383">383</th><td><u>#define <dfn class="macro" id="_M/start_test_timing" data-ref="_M/start_test_timing">start_test_timing</dfn>() do { \</u></td></tr>
+<tr><th id="384">384</th><td><u>  tv_test_start = tutil_tvnow(); \</u></td></tr>
+<tr><th id="385">385</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="386">386</th><td></td></tr>
+<tr><th id="387">387</th><td><u>#define <dfn class="macro" id="_M/exe_test_timedout" data-ref="_M/exe_test_timedout">exe_test_timedout</dfn>(Y,Z) do {                                    \</u></td></tr>
+<tr><th id="388">388</th><td><u>  if(tutil_tvdiff(tutil_tvnow(), tv_test_start) &gt; TEST_HANG_TIMEOUT) { \</u></td></tr>
+<tr><th id="389">389</th><td><u>    fprintf(stderr, "%s:%d ABORTING TEST, since it seems "             \</u></td></tr>
+<tr><th id="390">390</th><td><u>                    "that it would have run forever.\n", (Y), (Z));    \</u></td></tr>
+<tr><th id="391">391</th><td><u>    res = TEST_ERR_RUNS_FOREVER;                                       \</u></td></tr>
+<tr><th id="392">392</th><td><u>  }                                                                    \</u></td></tr>
+<tr><th id="393">393</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="394">394</th><td></td></tr>
+<tr><th id="395">395</th><td><u>#define <dfn class="macro" id="_M/res_test_timedout" data-ref="_M/res_test_timedout">res_test_timedout</dfn>() \</u></td></tr>
+<tr><th id="396">396</th><td><u>  exe_test_timedout((__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="397">397</th><td></td></tr>
+<tr><th id="398">398</th><td><u>#define <dfn class="macro" id="_M/chk_test_timedout" data-ref="_M/chk_test_timedout">chk_test_timedout</dfn>(Y, Z) do { \</u></td></tr>
+<tr><th id="399">399</th><td><u>    exe_test_timedout(Y, Z);         \</u></td></tr>
+<tr><th id="400">400</th><td><u>    if(res)                          \</u></td></tr>
+<tr><th id="401">401</th><td><u>      goto test_cleanup;             \</u></td></tr>
+<tr><th id="402">402</th><td><u>  } WHILE_FALSE</u></td></tr>
+<tr><th id="403">403</th><td></td></tr>
+<tr><th id="404">404</th><td><u>#define <dfn class="macro" id="_M/abort_on_test_timeout" data-ref="_M/abort_on_test_timeout">abort_on_test_timeout</dfn>() \</u></td></tr>
+<tr><th id="405">405</th><td><u>  chk_test_timedout((__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="406">406</th><td></td></tr>
+<tr><th id="407">407</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="408">408</th><td></td></tr>
+<tr><th id="409">409</th><td><u>#define <dfn class="macro" id="_M/exe_global_init" data-ref="_M/exe_global_init">exe_global_init</dfn>(A,Y,Z) do {                     \</u></td></tr>
+<tr><th id="410">410</th><td><u>  CURLcode ec;                                          \</u></td></tr>
+<tr><th id="411">411</th><td><u>  if((ec = curl_global_init((A))) != CURLE_OK) {        \</u></td></tr>
+<tr><th id="412">412</th><td><u>    fprintf(stderr, "%s:%d curl_global_init() failed, " \</u></td></tr>
+<tr><th id="413">413</th><td><u>            "with code %d (%s)\n",                      \</u></td></tr>
+<tr><th id="414">414</th><td><u>            (Y), (Z), (int)ec, curl_easy_strerror(ec)); \</u></td></tr>
+<tr><th id="415">415</th><td><u>    res = (int)ec;                                      \</u></td></tr>
+<tr><th id="416">416</th><td><u>  }                                                     \</u></td></tr>
+<tr><th id="417">417</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="418">418</th><td></td></tr>
+<tr><th id="419">419</th><td><u>#define <dfn class="macro" id="_M/res_global_init" data-ref="_M/res_global_init">res_global_init</dfn>(A) \</u></td></tr>
+<tr><th id="420">420</th><td><u>  exe_global_init((A), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="421">421</th><td></td></tr>
+<tr><th id="422">422</th><td><u>#define <dfn class="macro" id="_M/chk_global_init" data-ref="_M/chk_global_init">chk_global_init</dfn>(A, Y, Z) do { \</u></td></tr>
+<tr><th id="423">423</th><td><u>    exe_global_init((A), (Y), (Z));   \</u></td></tr>
+<tr><th id="424">424</th><td><u>    if(res)                           \</u></td></tr>
+<tr><th id="425">425</th><td><u>      return res;                     \</u></td></tr>
+<tr><th id="426">426</th><td><u>  } WHILE_FALSE</u></td></tr>
+<tr><th id="427">427</th><td></td></tr>
+<tr><th id="428">428</th><td><i>/* global_init() is different than other macros. In case of</i></td></tr>
+<tr><th id="429">429</th><td><i>   failure it 'return's instead of going to 'test_cleanup'. */</i></td></tr>
+<tr><th id="430">430</th><td></td></tr>
+<tr><th id="431">431</th><td><u>#define <dfn class="macro" id="_M/global_init" data-ref="_M/global_init">global_init</dfn>(A) \</u></td></tr>
+<tr><th id="432">432</th><td><u>  chk_global_init((A), (__FILE__), (__LINE__))</u></td></tr>
+<tr><th id="433">433</th><td></td></tr>
+<tr><th id="434">434</th><td><i>/* ---------------------------------------------------------------- */</i></td></tr>
+<tr><th id="435">435</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='first.c.html'>codebrowser/tests/libtest/first.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

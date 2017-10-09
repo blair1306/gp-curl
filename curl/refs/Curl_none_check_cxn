@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='86' type='int Curl_none_check_cxn(struct connectdata * conn)'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='998' ll='1002' type='int Curl_none_check_cxn(struct connectdata * conn)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1142'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1142'/>

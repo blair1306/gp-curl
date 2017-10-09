@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='242' type='_Bool Curl_ssl_cert_status_request()'/>
+<use f='codebrowser/lib/url.c' l='2192' u='c' c='Curl_setopt'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='965' ll='968' macro='1' type='_Bool Curl_ssl_cert_status_request()'/>

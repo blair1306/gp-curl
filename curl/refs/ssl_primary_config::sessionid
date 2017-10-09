@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='213' type='_Bool'/>
+<offset>152</offset>
+<use f='codebrowser/lib/url.c' l='569' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2565' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2567' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2567' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2456' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2456' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3193' u='r' c='ossl_connect_step3'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3193' u='r' c='ossl_connect_step3'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='114' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='114' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='323' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='323' u='r' c='Curl_ssl_getsessionid'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/ftp.h' l='96' type='3'/>
+<doc f='codebrowser/lib/ftp.h' l='96'>/* make one CWD, then SIZE / RETR / STOR on the
+                            file */</doc>
+<use f='codebrowser/lib/ftp.c' l='4174' c='ftp_parse_url_path'/>

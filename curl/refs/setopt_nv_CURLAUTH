@@ -1,0 +1,9 @@
+<dec f='codebrowser/src/tool_setopt.h' l='59' type='const NameValueUnsigned []'/>
+<use f='codebrowser/src/tool_operate.c' l='942' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='945' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='948' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='951' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='954' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='1005' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='1347' macro='1' u='r'/>
+<def f='codebrowser/src/tool_setopt.c' l='66' ll='78' type='const NameValueUnsigned [11]'/>

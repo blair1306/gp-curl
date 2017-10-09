@@ -1,0 +1,32 @@
+<dec f='codebrowser/lib/llist.h' l='38' type='struct curl_llist_element *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/conncache.c' l='77' u='r' c='bundle_add_conn'/>
+<use f='codebrowser/lib/ftplistparser.c' l='320' u='r' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/hash.c' l='127' u='r' c='Curl_hash_add'/>
+<use f='codebrowser/lib/llist.c' l='42' u='w' c='Curl_llist_init'/>
+<use f='codebrowser/lib/llist.c' l='66' u='w' c='Curl_llist_insert_next'/>
+<use f='codebrowser/lib/llist.c' l='80' u='w' c='Curl_llist_insert_next'/>
+<use f='codebrowser/lib/llist.c' l='104' u='w' c='Curl_llist_remove'/>
+<use f='codebrowser/lib/llist.c' l='111' u='w' c='Curl_llist_remove'/>
+<use f='codebrowser/lib/llist.c' l='134' u='r' c='Curl_llist_destroy'/>
+<use f='codebrowser/lib/llist.c' l='159' u='w' c='Curl_llist_move'/>
+<use f='codebrowser/lib/llist.c' l='166' u='w' c='Curl_llist_move'/>
+<use f='codebrowser/lib/llist.c' l='178' u='w' c='Curl_llist_move'/>
+<use f='codebrowser/lib/llist.c' l='187' u='w' c='Curl_llist_move'/>
+<use f='codebrowser/lib/multi.c' l='289' u='r' c='multi_addmsg'/>
+<use f='codebrowser/lib/multi.c' l='1445' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='3034' u='r' c='Curl_expire_clear'/>
+<use f='codebrowser/lib/pipeline.c' l='96' u='r' c='addHandleToPipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='141' u='r' c='Curl_move_handle_from_send_to_recv_pipe'/>
+<use f='codebrowser/lib/pipeline.c' l='225' u='r' c='Curl_pipeline_set_site_blacklist'/>
+<use f='codebrowser/lib/pipeline.c' l='283' u='r' c='Curl_pipeline_set_server_blacklist'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='79' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='101' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='117' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='134' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='199' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='202' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='218' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='264' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='267' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='267' u='r' c='test'/>

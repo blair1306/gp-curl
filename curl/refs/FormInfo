@@ -1,0 +1,19 @@
+<def f='codebrowser/lib/formdata.h' l='26' ll='44'/>
+<size>128</size>
+<doc f='codebrowser/lib/formdata.h' l='25'>/* used by FormAdd for temporary storage */</doc>
+<mbr r='FormInfo::name' o='0' t='char *'/>
+<mbr r='FormInfo::name_alloc' o='64' t='_Bool'/>
+<mbr r='FormInfo::namelength' o='128' t='size_t'/>
+<mbr r='FormInfo::value' o='192' t='char *'/>
+<mbr r='FormInfo::value_alloc' o='256' t='_Bool'/>
+<mbr r='FormInfo::contentslength' o='320' t='curl_off_t'/>
+<mbr r='FormInfo::contenttype' o='384' t='char *'/>
+<mbr r='FormInfo::contenttype_alloc' o='448' t='_Bool'/>
+<mbr r='FormInfo::flags' o='512' t='long'/>
+<mbr r='FormInfo::buffer' o='576' t='char *'/>
+<mbr r='FormInfo::bufferlength' o='640' t='size_t'/>
+<mbr r='FormInfo::showfilename' o='704' t='char *'/>
+<mbr r='FormInfo::showfilename_alloc' o='768' t='_Bool'/>
+<mbr r='FormInfo::userp' o='832' t='char *'/>
+<mbr r='FormInfo::contentheader' o='896' t='struct curl_slist *'/>
+<mbr r='FormInfo::more' o='960' t='struct FormInfo *'/>

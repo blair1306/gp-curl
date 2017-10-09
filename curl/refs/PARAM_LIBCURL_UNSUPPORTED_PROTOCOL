@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_getparam.h' l='40' type='13'/>
+<use f='codebrowser/src/tool_helpers.c' l='61' c='param2text'/>
+<use f='codebrowser/src/tool_operate.c' l='2036' u='r' c='operate'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='386' u='r' c='check_protocol'/>

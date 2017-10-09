@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/curl_config.h' l='200'/>
+<doc f='codebrowser/lib/curl_config.h' l='199'>/* gethostbyaddr_r() takes 8 args */</doc>

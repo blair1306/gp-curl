@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/http.h' l='78' type='CURLcode Curl_http_done(struct connectdata * , CURLcode , _Bool premature)'/>
+<use f='codebrowser/lib/http.c' l='112' u='r'/>
+<use f='codebrowser/lib/http.c' l='112' u='r'/>
+<use f='codebrowser/lib/http.c' l='137'/>
+<use f='codebrowser/lib/http.c' l='137'/>
+<def f='codebrowser/lib/http.c' l='1415' ll='1486' type='CURLcode Curl_http_done(struct connectdata * conn, CURLcode status, _Bool premature)'/>
+<doc f='codebrowser/lib/http.c' l='1410'>/*
+ * Curl_http_done() gets called after a single HTTP request has been
+ * performed.
+ */</doc>
+<use f='codebrowser/lib/rtsp.c' l='228' u='c' c='rtsp_done'/>

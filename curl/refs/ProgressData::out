@@ -1,0 +1,8 @@
+<dec f='codebrowser/src/tool_cb_prg.h' l='34' type='FILE *'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='80' u='r' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='94' u='r' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='96' u='r' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='149' u='w' c='progressbarinit'/>
+<offset>320</offset>
+<doc f='codebrowser/src/tool_cb_prg.h' l='34'>/* where to write everything to */</doc>
+<use f='codebrowser/src/tool_operate.c' l='1761' u='r' c='operate_do'/>

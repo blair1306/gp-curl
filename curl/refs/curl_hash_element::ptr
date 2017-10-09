@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/hash.h' l='61' type='void *'/>
+<offset>192</offset>
+<use f='codebrowser/lib/conncache.c' l='180' u='r' c='conncache_remove_bundle'/>
+<use f='codebrowser/lib/conncache.c' l='281' u='r' c='Curl_conncache_foreach'/>
+<use f='codebrowser/lib/conncache.c' l='311' u='r' c='Curl_conncache_find_first_connection'/>
+<use f='codebrowser/lib/hash.c' l='40' u='r' c='hash_element_dtor'/>
+<use f='codebrowser/lib/hash.c' l='41' u='r' c='hash_element_dtor'/>
+<use f='codebrowser/lib/hash.c' l='42' u='w' c='hash_element_dtor'/>
+<use f='codebrowser/lib/hash.c' l='95' u='w' c='mk_hash_element'/>
+<use f='codebrowser/lib/hash.c' l='173' u='r' c='Curl_hash_pick'/>
+<use f='codebrowser/lib/hash.c' l='251' u='r' c='Curl_hash_clean_with_criterium'/>
+<use f='codebrowser/lib/url.c' l='3319' u='r' c='Curl_oldest_idle_connection'/>

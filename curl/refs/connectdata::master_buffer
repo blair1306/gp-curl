@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='959' type='char *'/>
+<offset>9216</offset>
+<doc f='codebrowser/lib/urldata.h' l='959'>/* The master buffer allocated on-demand;
+                          used for pipelining. */</doc>
+<use f='codebrowser/lib/sendf.c' l='716' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='726' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='738' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/url.c' l='3067' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3067' u='w' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='4312' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4314' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4315' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4347' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='6359' u='r' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6359' u='w' c='reuse_conn'/>

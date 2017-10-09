@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/splay.h' l='33' type='void *'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/splay.h' l='33'>/* data the splay code doesn&apos;t care about */</doc>
+<use f='codebrowser/lib/multi.c' l='2184' u='r' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='2669' u='r' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2670' u='r' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2988' u='w' c='Curl_expire'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='89' u='w' c='test'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='101' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='122' u='w' c='test'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='133' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='134' u='r' c='test'/>

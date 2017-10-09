@@ -1,0 +1,13 @@
+<dec f='codebrowser/include/curl/curl.h' l='2233' type='char * curl_getenv(const char * variable)'/>
+<def f='codebrowser/lib/getenv.c' l='51' ll='54' type='char * curl_getenv(const char * v)'/>
+<use f='codebrowser/lib/netrc.c' l='73' u='c' c='Curl_parsenetrc'/>
+<use f='codebrowser/lib/url.c' l='5044' u='c' c='detect_proxy'/>
+<use f='codebrowser/lib/url.c' l='5061' u='c' c='detect_proxy'/>
+<use f='codebrowser/lib/url.c' l='5067' u='c' c='detect_proxy'/>
+<use f='codebrowser/lib/url.c' l='5069' u='c' c='detect_proxy'/>
+<use f='codebrowser/lib/url.c' l='5355' u='c' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5357' u='c' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='126' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='310' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='321' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='333' macro='1' u='c'/>

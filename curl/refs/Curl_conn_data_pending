@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/connect.h' l='145' type='_Bool Curl_conn_data_pending(struct connectdata * conn, int sockindex)'/>
+<def f='codebrowser/lib/connect.c' l='1400' ll='1410' macro='1' type='_Bool Curl_conn_data_pending(struct connectdata * conn, int sockindex)'/>
+<use f='codebrowser/lib/ftp.c' l='689' u='c' c='Curl_GetFTPResponse'/>
+<use f='codebrowser/lib/http_proxy.c' l='322' u='c' c='CONNECT'/>

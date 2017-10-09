@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/curl_config.h' l='561'/>
+<doc f='codebrowser/lib/curl_config.h' l='560'>/* Define to 1 if you have the sigsetjmp function or macro. */</doc>
+<use f='codebrowser/lib/hostip.h' l='200' u='a'/>
+<use f='codebrowser/lib/hostip.c' l='65' u='a'/>
+<use f='codebrowser/lib/hostip.c' l='280' u='a'/>
+<use f='codebrowser/tests/server/tftpd.c' l='215' u='a'/>
+<use f='codebrowser/tests/server/tftpd.c' l='338' u='a'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1258' u='a'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1333' u='a'/>

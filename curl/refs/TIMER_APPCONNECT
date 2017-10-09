@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/progress.h' l='34' type='5'/>
+<use f='codebrowser/lib/progress.c' l='190' c='Curl_pgrsTime'/>
+<use f='codebrowser/lib/url.c' l='6984' u='r' c='Curl_setup_conn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='251' u='r' c='Curl_ssl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='274' u='r' c='Curl_ssl_connect_nonblocking'/>

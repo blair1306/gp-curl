@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/imap.h' l='63' type='char *'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/imap.h' l='63'>/* Query to search for */</doc>
+<use f='codebrowser/lib/imap.c' l='786' u='r' c='imap_perform_search'/>
+<use f='codebrowser/lib/imap.c' l='792' u='r' c='imap_perform_search'/>
+<use f='codebrowser/lib/imap.c' l='1066' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1485' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1485' u='w' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1539' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1543' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='2043' u='a' c='imap_parse_url_path'/>

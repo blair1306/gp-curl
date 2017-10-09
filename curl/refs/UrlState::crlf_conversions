@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1326' type='curl_off_t'/>
+<offset>139520</offset>
+<doc f='codebrowser/lib/urldata.h' l='1325'>/* for FTP downloads: how many CRLFs did we converted to LFs? */</doc>
+<use f='codebrowser/lib/ftp.c' l='3321' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/sendf.c' l='69' u='w' c='convert_lineends'/>
+<use f='codebrowser/lib/sendf.c' l='85' u='w' c='convert_lineends'/>
+<use f='codebrowser/lib/transfer.c' l='1225' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/url.c' l='6969' u='w' c='Curl_setup_conn'/>

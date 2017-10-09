@@ -1,0 +1,3 @@
+<def f='codebrowser/lib/sockaddr.h' l='27' ll='40'/>
+<size>128</size>
+<mbr r='Curl_sockaddr_storage::buffer' o='0' t='union (anonymous union at /home/jon/workspace/curl/lib/sockaddr.h:28:3)'/>

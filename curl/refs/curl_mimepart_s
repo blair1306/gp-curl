@@ -1,0 +1,23 @@
+<def f='codebrowser/lib/mime.h' l='98' ll='119'/>
+<size>448</size>
+<doc f='codebrowser/lib/mime.h' l='97'>/* A mime part. */</doc>
+<mbr r='curl_mimepart_s::easy' o='0' t='struct Curl_easy *'/>
+<mbr r='curl_mimepart_s::parent' o='64' t='curl_mime *'/>
+<mbr r='curl_mimepart_s::nextpart' o='128' t='curl_mimepart *'/>
+<mbr r='curl_mimepart_s::kind' o='192' t='enum mimekind'/>
+<mbr r='curl_mimepart_s::data' o='256' t='char *'/>
+<mbr r='curl_mimepart_s::readfunc' o='320' t='curl_read_callback'/>
+<mbr r='curl_mimepart_s::seekfunc' o='384' t='curl_seek_callback'/>
+<mbr r='curl_mimepart_s::freefunc' o='448' t='curl_free_callback'/>
+<mbr r='curl_mimepart_s::arg' o='512' t='void *'/>
+<mbr r='curl_mimepart_s::fp' o='576' t='FILE *'/>
+<mbr r='curl_mimepart_s::curlheaders' o='640' t='struct curl_slist *'/>
+<mbr r='curl_mimepart_s::userheaders' o='704' t='struct curl_slist *'/>
+<mbr r='curl_mimepart_s::mimetype' o='768' t='char *'/>
+<mbr r='curl_mimepart_s::filename' o='832' t='char *'/>
+<mbr r='curl_mimepart_s::name' o='896' t='char *'/>
+<mbr r='curl_mimepart_s::datasize' o='960' t='curl_off_t'/>
+<mbr r='curl_mimepart_s::flags' o='1024' t='unsigned int'/>
+<mbr r='curl_mimepart_s::state' o='1088' t='mime_state'/>
+<mbr r='curl_mimepart_s::encoder' o='1280' t='const mime_encoder *'/>
+<mbr r='curl_mimepart_s::encstate' o='1344' t='mime_encoder_state'/>

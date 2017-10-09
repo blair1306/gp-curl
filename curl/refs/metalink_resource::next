@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_metalink.h' l='73' type='struct metalink_resource *'/>
+<offset>0</offset>
+<use f='codebrowser/src/tool_operate.c' l='1900' u='r' c='operate_do'/>

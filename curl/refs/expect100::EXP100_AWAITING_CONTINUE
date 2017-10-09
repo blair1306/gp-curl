@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='498' type='1'/>
+<doc f='codebrowser/lib/urldata.h' l='498'>/* waiting for the 100 Continue header */</doc>
+<use f='codebrowser/lib/transfer.c' l='926' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1163' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='2051' u='r' c='Curl_setup_transfer'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1206' type='size_t'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/urldata.h' l='1206'>/* size of the &apos;tempwrite&apos; allocated buffer */</doc>
+<use f='codebrowser/lib/easy.c' l='1043' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/sendf.c' l='499' u='r' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='505' u='r' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='509' u='w' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='518' u='w' c='pausewrite'/>

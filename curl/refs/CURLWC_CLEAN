@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/wildcard.h' l='36' type='4'/>
+<doc f='codebrowser/lib/wildcard.h' l='36'>/* deallocate resources and reset settings */</doc>
+<use f='codebrowser/lib/ftp.c' l='3752' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3769' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3841' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3859' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3864' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3916' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3928' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3932' c='wc_statemach'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/mime.h' l='38' type='3'/>
+<doc f='codebrowser/lib/mime.h' l='38'>/* Data from `read&apos; callback. */</doc>
+<use f='codebrowser/lib/mime.c' l='1405' u='r' c='curl_mime_data_cb'/>
+<use f='codebrowser/src/tool_setopt.c' l='455' c='libcurl_generate_mime'/>

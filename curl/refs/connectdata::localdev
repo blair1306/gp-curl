@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/urldata.h' l='1022' type='char *'/>
+<offset>14528</offset>
+<doc f='codebrowser/lib/urldata.h' l='1017'>/* When this connection is created, store the conditions for the local end
+     bind. This is stored before the actual bind and before any connection is
+     made and will serve the purpose of being used for comparison reasons so
+     that subsequent bound-requested connections aren&apos;t accidentally re-using
+     wrong connections. */</doc>
+<use f='codebrowser/lib/url.c' l='3075' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3075' u='w' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3705' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3719' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3720' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3720' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3720' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='4329' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4330' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4348' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='6354' u='r' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6354' u='w' c='reuse_conn'/>

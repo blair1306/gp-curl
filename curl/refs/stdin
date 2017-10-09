@@ -1,0 +1,23 @@
+<dec f='include/stdio.h' l='168' type='struct _IO_FILE *'/>
+<doc f='include/stdio.h' l='167'>/* Standard streams.  */</doc>
+<doc f='include/stdio.h' l='168'>/* Standard input stream.  */</doc>
+<use f='codebrowser/lib/cookie.c' l='1000' macro='1' u='r'/>
+<use f='codebrowser/lib/formdata.c' l='935' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='512' macro='1' u='r'/>
+<use f='codebrowser/src/tool_formparse.c' l='384' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='1228' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='1241' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='1293' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='1313' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='1642' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='1986' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='1993' macro='1' u='r'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='120' macro='1' u='r'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='273' macro='1' u='r'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='226' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='450' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='955' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='955' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1037' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1037' macro='1' u='r'/>
+<use f='codebrowser/tests/server/testpart.c' l='41' macro='1' u='r'/>

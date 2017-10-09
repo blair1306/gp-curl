@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='64' type='void Curl_freeaddrinfo(Curl_addrinfo * cahead)'/>
+<use f='codebrowser/lib/asyn-thread.c' l='195' u='c' c='destroy_thread_sync_data'/>
+<def f='codebrowser/lib/curl_addrinfo.c' l='77' ll='90' type='void Curl_freeaddrinfo(Curl_addrinfo * cahead)'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='204' u='c' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='360' u='c' c='Curl_he2ai'/>
+<use f='codebrowser/lib/hostasyn.c' l='90' u='c' c='Curl_addrinfo_callback'/>
+<use f='codebrowser/lib/hostip.c' l='518' u='c' c='Curl_resolv'/>
+<use f='codebrowser/lib/hostip.c' l='743' u='c' c='freednsentry'/>
+<use f='codebrowser/lib/hostip.c' l='841' u='c' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/hostip.c' l='868' u='c' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/hostip.c' l='874' u='c' c='Curl_loadhostpairs'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='66' u='c' c='unit_stop'/>

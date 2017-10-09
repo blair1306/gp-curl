@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='274'/>
+<use f='codebrowser/lib/nonblock.c' l='58' u='c'/>
+<use f='codebrowser/lib/nonblock.c' l='60' u='c'/>
+<use f='codebrowser/lib/nonblock.c' l='61' u='c'/>

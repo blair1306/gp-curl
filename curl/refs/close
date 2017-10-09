@@ -1,0 +1,59 @@
+<dec f='include/unistd.h' l='356' type='int close(int __fd)'/>
+<doc f='include/unistd.h' l='352'>/* Close the file descriptor FD.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>
+<use f='codebrowser/lib/connect.c' l='1300' macro='1' u='c'/>
+<use f='codebrowser/lib/file.c' l='278' u='c' c='file_done'/>
+<use f='codebrowser/lib/file.c' l='295' u='c' c='file_disconnect'/>
+<use f='codebrowser/lib/file.c' l='359' u='c' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='412' u='c' c='file_upload'/>
+<use f='codebrowser/lib/if2ip.c' l='237' macro='1' u='c'/>
+<use f='codebrowser/lib/if2ip.c' l='248' macro='1' u='c'/>
+<use f='codebrowser/lib/rand.c' l='83' u='c' c='randit'/>
+<use f='codebrowser/src/tool_getpass.c' l='248' u='c' c='getpass_r'/>
+<use f='codebrowser/src/tool_main.c' l='96' u='c' c='main_checkfds'/>
+<use f='codebrowser/src/tool_main.c' l='97' u='c' c='main_checkfds'/>
+<use f='codebrowser/src/tool_operate.c' l='736' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1891' u='c' c='operate_do'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='72' u='c' c='close_file_descriptors'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='370' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='73' u='c' c='close_file_descriptors'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='363' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='81' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib572.c' l='100' u='c' c='test'/>
+<use f='codebrowser/tests/server/resolve.c' l='118' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1438' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1453' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1456' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1122' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1181' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1223' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1228' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1268' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1290' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1311' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1328' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1548' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1551' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1369' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1382' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1397' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1405' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1610' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1748' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1762' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1800' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1805' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1841' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1860' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1869' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2184' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2347' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2375' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2378' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='890' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='894' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='913' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='916' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='919' macro='1' u='c'/>

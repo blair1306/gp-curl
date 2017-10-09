@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1267' type='long'/>
+<offset>131968</offset>
+<doc f='codebrowser/lib/urldata.h' l='1267'>/* number of the most recent session */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='331' u='a' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='454' u='a' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='608' u='w' c='Curl_ssl_initsessions'/>

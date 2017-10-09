@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/urldata.h' l='211' type='_Bool'/>
+<offset>136</offset>
+<use f='codebrowser/lib/url.c' l='563' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2168' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2186' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4278' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4278' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4282' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4282' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3072' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3072' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3242' u='r' c='ossl_connect_step3'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3242' u='r' c='ossl_connect_step3'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='92' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='92' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='112' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='112' u='r' c='Curl_clone_primary_ssl_config'/>

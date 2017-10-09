@@ -1,0 +1,11 @@
+<def f='codebrowser/lib/curl_sasl.h' l='101' ll='110'/>
+<size>32</size>
+<doc f='codebrowser/lib/curl_sasl.h' l='100'>/* Per-connection parameters */</doc>
+<mbr r='SASL::params' o='0' t='const struct SASLproto *'/>
+<mbr r='SASL::state' o='64' t='saslstate'/>
+<mbr r='SASL::authmechs' o='96' t='unsigned int'/>
+<mbr r='SASL::prefmech' o='128' t='unsigned int'/>
+<mbr r='SASL::authused' o='160' t='unsigned int'/>
+<mbr r='SASL::resetprefs' o='192' t='_Bool'/>
+<mbr r='SASL::mutual_auth' o='200' t='_Bool'/>
+<mbr r='SASL::force_ir' o='208' t='_Bool'/>

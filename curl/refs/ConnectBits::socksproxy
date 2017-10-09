@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/urldata.h' l='384' type='_Bool'/>
+<offset>48</offset>
+<use f='codebrowser/lib/conncache.c' l='128' u='r' c='hashkey'/>
+<use f='codebrowser/lib/connect.c' l='854' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/ftp.c' l='1813' u='r' c='control_address'/>
+<use f='codebrowser/lib/ftp.c' l='1937' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/multi.c' l='636' u='r' c='multi_done'/>
+<use f='codebrowser/lib/url.c' l='3656' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3656' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3659' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3914' u='r' c='Curl_connected_proxy'/>
+<use f='codebrowser/lib/url.c' l='3964' u='r' c='Curl_verboseconnect'/>
+<use f='codebrowser/lib/url.c' l='4258' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4263' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='5449' u='w' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5452' u='w' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5455' u='w' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5458' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5464' u='w' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='6252' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6595' u='r' c='create_conn'/>

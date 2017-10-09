@@ -1,0 +1,11 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='54' type='ParameterError str2tls_max(long * val, const char * str)'/>
+<use f='codebrowser/src/tool_getparam.c' l='1073' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='588' ll='610' type='ParameterError str2tls_max(long * val, const char * str)'/>
+<doc f='codebrowser/src/tool_paramhlp.c' l='579'>/*
+ * Parse the string and modify ssl_version in the val argument. Return PARAM_OK
+ * on success, otherwise a parameter error enum. ONLY ACCEPTS POSITIVE NUMBERS!
+ *
+ * Since this function gets called with the &apos;nextarg&apos; pointer from within the
+ * getparameter a lot, we must check it for NULL before accessing the str
+ * data.
+ */</doc>

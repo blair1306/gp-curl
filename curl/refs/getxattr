@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/xattr.h' l='59' type='ssize_t getxattr(const char * __path, const char * __name, void * __value, size_t __size)'/>
+<doc f='include/x86_64-linux-gnu/sys/xattr.h' l='57'>/* Get the attribute NAME of the file pointed to by PATH to VALUE (which is
+   SIZE bytes long).  Return 0 on success, -1 for errors.  */</doc>

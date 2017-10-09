@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='586' type='_Bool'/>
+<offset>2888</offset>
+<use f='codebrowser/lib/content_encoding.c' l='118' u='r' c='inflate_stream'/>
+<use f='codebrowser/lib/http_chunks.c' l='122' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='195' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_proxy.c' l='466' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='639' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/transfer.c' l='599' u='w' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='604' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='711' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='721' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='757' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='788' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='804' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='810' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/url.c' l='7090' u='w' c='Curl_init_do'/>

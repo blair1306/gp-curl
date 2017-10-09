@@ -1,0 +1,1 @@
+<dec f='include/openssl/des.h' l='224' type='int DES_is_weak_key(const_DES_cblock * key)'/>

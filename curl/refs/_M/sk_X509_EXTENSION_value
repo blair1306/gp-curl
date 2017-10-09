@@ -1,0 +1,2 @@
+<dec f='include/openssl/safestack.h' l='1868'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2703' u='c'/>

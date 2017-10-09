@@ -1,0 +1,27 @@
+<dec f='codebrowser/lib/parsedate.h' l='25' type='const char *const [7]'/>
+<use f='codebrowser/lib/file.c' l='502' u='r' c='file_do'/>
+<doc f='codebrowser/lib/parsedate.h' l='3'>/***************************************************************************
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ &lt;| |___
+ *                             \___|\___/|_| \_\_____|
+ *
+ * Copyright (C) 1998 - 2011, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.
+ *
+ * This software is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution. The terms
+ * are also available at https://curl.haxx.se/docs/copyright.html.
+ *
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the COPYING file.
+ *
+ * This software is distributed on an &quot;AS IS&quot; basis, WITHOUT WARRANTY OF ANY
+ * KIND, either express or implied.
+ *
+ ***************************************************************************/</doc>
+<use f='codebrowser/lib/ftp.c' l='2087' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/http.c' l='1730' u='r' c='Curl_add_timecondition'/>
+<def f='codebrowser/lib/parsedate.c' l='87' ll='88' type='const char *const [7]'/>
+<use f='codebrowser/lib/parsedate.c' l='212' u='a' c='checkday'/>

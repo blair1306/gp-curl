@@ -1,0 +1,9 @@
+<def f='include/openssl/ocsp.h' l='342' ll='345'/>
+<size>16</size>
+<doc f='include/openssl/ocsp.h' l='337'>/*-
+ * ServiceLocator ::= SEQUENCE {
+ *      issuer    Name,
+ *      locator   AuthorityInfoAccessSyntax OPTIONAL }
+ */</doc>
+<mbr r='ocsp_service_locator_st::issuer' o='0' t='X509_NAME *'/>
+<mbr r='ocsp_service_locator_st::locator' o='64' t='struct stack_st_ACCESS_DESCRIPTION *'/>

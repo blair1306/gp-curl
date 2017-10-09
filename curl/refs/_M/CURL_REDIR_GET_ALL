@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='1948'/>
+<doc f='codebrowser/include/curl/curl.h' l='1943'>/* symbols to use with CURLOPT_POSTREDIR.
+   CURL_REDIR_POST_301, CURL_REDIR_POST_302 and CURL_REDIR_POST_303
+   can be bitwise ORed so that CURL_REDIR_POST_301 | CURL_REDIR_POST_302
+   | CURL_REDIR_POST_303 == CURL_REDIR_POST_ALL */</doc>

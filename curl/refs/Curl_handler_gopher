@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/gopher.h' l='26' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/gopher.c' l='53' ll='72' type='const struct Curl_handler'/>
+<doc f='codebrowser/lib/gopher.c' l='47'>/*
+ * Gopher protocol handler.
+ * This is also a nice simple template to build off for simple
+ * connect-command-download protocols.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='244' u='a'/>
+<use f='codebrowser/lib/url.c' l='244' u='a'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='488' type='25'/>
+<doc f='codebrowser/include/curl/curl.h' l='488'>/* 25 - failed upload &quot;command&quot; */</doc>
+<use f='codebrowser/lib/ftp.c' l='2343' u='r' c='ftp_state_stor_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3155' c='ftp_done'/>
+<use f='codebrowser/lib/http.c' l='1998' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='754' u='r' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='1204' u='r' c='imap_state_append_resp'/>
+<use f='codebrowser/lib/imap.c' l='1230' u='r' c='imap_state_append_final_resp'/>
+<use f='codebrowser/lib/smb.c' l='839' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/strerror.c' l='134' c='curl_easy_strerror'/>

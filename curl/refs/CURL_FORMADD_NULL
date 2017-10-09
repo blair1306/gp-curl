@@ -1,0 +1,12 @@
+<dec f='codebrowser/include/curl/curl.h' l='2171' type='3'/>
+<use f='codebrowser/lib/formdata.c' l='321' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='347' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='372' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='403' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='433' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='449' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='467' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='494' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='522' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='536' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='644' u='r' c='FormAdd'/>

@@ -1,0 +1,17 @@
+<dec f='codebrowser/include/curl/multi.h' l='83'/>
+<use f='codebrowser/lib/multi.c' l='1467' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1532' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1609' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1626' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='699' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='547' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='699' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='722' u='c'/>
+<use f='codebrowser/lib/url.c' l='3190' u='c'/>
+<use f='codebrowser/lib/url.c' l='3195' u='c'/>
+<use f='codebrowser/lib/url.c' l='3514' u='c'/>
+<use f='codebrowser/lib/url.c' l='3516' u='c'/>
+<use f='codebrowser/lib/url.c' l='3549' u='c'/>
+<use f='codebrowser/lib/url.c' l='3588' u='c'/>
+<use f='codebrowser/lib/url.c' l='3592' u='c'/>
+<use f='codebrowser/lib/url.c' l='4311' u='c'/>

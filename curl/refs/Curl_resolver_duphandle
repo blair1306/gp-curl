@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/asyn.h' l='82' type='int Curl_resolver_duphandle(void ** to, void * from)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='130' ll='135' type='int Curl_resolver_duphandle(void ** to, void * from)'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='124'>/*
+ * Curl_resolver_duphandle()
+ * Called from curl_easy_duphandle() to duplicate resolver URL state-specific
+ * environment (&apos;resolver&apos; member of the UrlState structure).  Does nothing
+ * here.
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='74'>/*
+ * Curl_resolver_duphandle()
+ * Called from curl_easy_duphandle() to duplicate resolver URL-state specific
+ * environment (&apos;resolver&apos; member of the UrlState structure).  Should
+ * duplicate the &apos;from&apos; handle and pass the resulting handle to the &apos;to&apos;
+ * pointer.  Returning anything else than CURLE_OK causes failed
+ * curl_easy_duphandle() call.
+ */</doc>
+<use f='codebrowser/lib/easy.c' l='936' u='c' c='curl_easy_duphandle'/>

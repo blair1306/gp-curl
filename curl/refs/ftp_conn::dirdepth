@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/ftp.h' l='122' type='int'/>
+<offset>1024</offset>
+<doc f='codebrowser/lib/ftp.h' l='122'>/* number of entries used in the &apos;dirs&apos; array */</doc>
+<use f='codebrowser/lib/ftp.c' l='242' u='r' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='248' u='w' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='903' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='2964' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='4178' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4201' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4210' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4220' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4227' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4237' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4246' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4248' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4249' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4259' u='w' c='ftp_parse_url_path'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='75' type='void (*)(const unsigned char *, size_t, unsigned char *, size_t)'/>
+<offset>1472</offset>
+<use f='codebrowser/lib/vtls/vtls.c' l='825' u='r' c='Curl_pin_peer_pubkey'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='834' u='r' c='Curl_pin_peer_pubkey'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/ftp.h' l='62' type='18'/>
+<doc f='codebrowser/lib/ftp.h' l='62'>/* to figure out the datestamp */</doc>
+<use f='codebrowser/lib/ftp.c' l='1574' u='r' c='ftp_state_mdtm'/>
+<use f='codebrowser/lib/ftp.c' l='2987' c='ftp_statemach_act'/>

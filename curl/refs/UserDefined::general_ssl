@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1588' type='struct ssl_general_config'/>
+<offset>10752</offset>
+<doc f='codebrowser/lib/urldata.h' l='1588'>/* general user defined SSL stuff */</doc>
+<use f='codebrowser/lib/transfer.c' l='1342' u='m' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='545' u='m' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2427' u='m' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='333' u='m' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='391' u='m' c='Curl_ssl_delsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='458' u='m' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='465' u='m' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='501' u='m' c='Curl_ssl_close_all'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='606' u='m' c='Curl_ssl_initsessions'/>

@@ -1,0 +1,3 @@
+<dec f='include/openssl/ssl.h' l='2240' type='void SSL_SESSION_free(SSL_SESSION * ses)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1279' u='c' c='Curl_ossl_session_free'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3229' u='c' c='ossl_connect_step3'/>

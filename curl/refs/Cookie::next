@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/cookie.h' l='29' type='struct Cookie *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/cookie.h' l='29'>/* next in the chain */</doc>
+<use f='codebrowser/lib/cookie.c' l='310' u='r' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='313' u='r' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='316' u='w' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='316' u='r' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='886' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='886' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='907' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='913' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='926' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1176' u='w' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1192' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1209' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1219' u='w' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1220' u='w' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1256' u='r' c='Curl_cookie_freelist'/>
+<use f='codebrowser/lib/cookie.c' l='1280' u='r' c='Curl_cookie_clearsess'/>
+<use f='codebrowser/lib/cookie.c' l='1288' u='w' c='Curl_cookie_clearsess'/>
+<use f='codebrowser/lib/cookie.c' l='1386' u='r' c='cookie_output'/>
+<use f='codebrowser/lib/cookie.c' l='1417' u='r' c='cookie_list'/>
+<use f='codebrowser/lib/http.c' l='2403' u='r' c='Curl_http'/>

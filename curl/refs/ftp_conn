@@ -1,0 +1,29 @@
+<def f='codebrowser/lib/ftp.h' l='118' ll='157'/>
+<size>240</size>
+<doc f='codebrowser/lib/ftp.h' l='116'>/* ftp_conn is used for struct connection-oriented data in the connectdata
+   struct */</doc>
+<mbr r='ftp_conn::pp' o='0' t='struct pingpong'/>
+<mbr r='ftp_conn::entrypath' o='896' t='char *'/>
+<mbr r='ftp_conn::dirs' o='960' t='char **'/>
+<mbr r='ftp_conn::dirdepth' o='1024' t='int'/>
+<mbr r='ftp_conn::diralloc' o='1056' t='int'/>
+<mbr r='ftp_conn::file' o='1088' t='char *'/>
+<mbr r='ftp_conn::dont_check' o='1152' t='_Bool'/>
+<mbr r='ftp_conn::ctl_valid' o='1160' t='_Bool'/>
+<mbr r='ftp_conn::cwddone' o='1168' t='_Bool'/>
+<mbr r='ftp_conn::cwdcount' o='1184' t='int'/>
+<mbr r='ftp_conn::cwdfail' o='1216' t='_Bool'/>
+<mbr r='ftp_conn::wait_data_conn' o='1224' t='_Bool'/>
+<mbr r='ftp_conn::prevpath' o='1280' t='char *'/>
+<mbr r='ftp_conn::prevmethod' o='1344' t='curl_ftpfile'/>
+<mbr r='ftp_conn::transfertype' o='1376' t='char'/>
+<mbr r='ftp_conn::count1' o='1408' t='int'/>
+<mbr r='ftp_conn::count2' o='1440' t='int'/>
+<mbr r='ftp_conn::count3' o='1472' t='int'/>
+<mbr r='ftp_conn::state' o='1504' t='ftpstate'/>
+<mbr r='ftp_conn::state_saved' o='1536' t='ftpstate'/>
+<mbr r='ftp_conn::retr_size_saved' o='1600' t='curl_off_t'/>
+<mbr r='ftp_conn::server_os' o='1664' t='char *'/>
+<mbr r='ftp_conn::known_filesize' o='1728' t='curl_off_t'/>
+<mbr r='ftp_conn::newhost' o='1792' t='char *'/>
+<mbr r='ftp_conn::newport' o='1856' t='unsigned short'/>

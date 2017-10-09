@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='44' type='1'/>
+<doc f='codebrowser/lib/ftp.h' l='44'>/* waiting for the initial 220 response immediately after
+                  a connect */</doc>
+<use f='codebrowser/lib/ftp.c' l='2620' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3114' u='r' c='ftp_connect'/>

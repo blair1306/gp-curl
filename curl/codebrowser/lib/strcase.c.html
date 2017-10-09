@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>strcase.c source code [codebrowser/lib/strcase.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/strcase.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='strcase.c.html'>strcase.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="strcase.h.html">"strcase.h"</a></u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><i>/* Portable, consistent toupper (remember EBCDIC). Do not use toupper() because</i></td></tr>
+<tr><th id="30">30</th><td><i>   its behavior is altered by the current locale. */</i></td></tr>
+<tr><th id="31">31</th><td><em>char</em> <dfn class="decl def" id="Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</dfn>(<em>char</em> <dfn class="local col1 decl" id="1in" title='in' data-type='char' data-ref="1in">in</dfn>)</td></tr>
+<tr><th id="32">32</th><td>{</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">if</span> !defined(<span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span>)</u></td></tr>
+<tr><th id="34">34</th><td>  <b>if</b>(<a class="local col1 ref" href="#1in" title='in' data-ref="1in">in</a> &gt;= <kbd>'a'</kbd> &amp;&amp; <a class="local col1 ref" href="#1in" title='in' data-ref="1in">in</a> &lt;= <kbd>'z'</kbd>)</td></tr>
+<tr><th id="35">35</th><td>    <b>return</b> (<em>char</em>)(<kbd>'A'</kbd> + <a class="local col1 ref" href="#1in" title='in' data-ref="1in">in</a> - <kbd>'a'</kbd>);</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="33">else</span></u></td></tr>
+<tr><th id="37">37</th><td>  <b>switch</b>(in) {</td></tr>
+<tr><th id="38">38</th><td>  <b>case</b> <kbd>'a'</kbd>:</td></tr>
+<tr><th id="39">39</th><td>    <b>return</b> <kbd>'A'</kbd>;</td></tr>
+<tr><th id="40">40</th><td>  <b>case</b> <kbd>'b'</kbd>:</td></tr>
+<tr><th id="41">41</th><td>    <b>return</b> <kbd>'B'</kbd>;</td></tr>
+<tr><th id="42">42</th><td>  <b>case</b> <kbd>'c'</kbd>:</td></tr>
+<tr><th id="43">43</th><td>    <b>return</b> <kbd>'C'</kbd>;</td></tr>
+<tr><th id="44">44</th><td>  <b>case</b> <kbd>'d'</kbd>:</td></tr>
+<tr><th id="45">45</th><td>    <b>return</b> <kbd>'D'</kbd>;</td></tr>
+<tr><th id="46">46</th><td>  <b>case</b> <kbd>'e'</kbd>:</td></tr>
+<tr><th id="47">47</th><td>    <b>return</b> <kbd>'E'</kbd>;</td></tr>
+<tr><th id="48">48</th><td>  <b>case</b> <kbd>'f'</kbd>:</td></tr>
+<tr><th id="49">49</th><td>    <b>return</b> <kbd>'F'</kbd>;</td></tr>
+<tr><th id="50">50</th><td>  <b>case</b> <kbd>'g'</kbd>:</td></tr>
+<tr><th id="51">51</th><td>    <b>return</b> <kbd>'G'</kbd>;</td></tr>
+<tr><th id="52">52</th><td>  <b>case</b> <kbd>'h'</kbd>:</td></tr>
+<tr><th id="53">53</th><td>    <b>return</b> <kbd>'H'</kbd>;</td></tr>
+<tr><th id="54">54</th><td>  <b>case</b> <kbd>'i'</kbd>:</td></tr>
+<tr><th id="55">55</th><td>    <b>return</b> <kbd>'I'</kbd>;</td></tr>
+<tr><th id="56">56</th><td>  <b>case</b> <kbd>'j'</kbd>:</td></tr>
+<tr><th id="57">57</th><td>    <b>return</b> <kbd>'J'</kbd>;</td></tr>
+<tr><th id="58">58</th><td>  <b>case</b> <kbd>'k'</kbd>:</td></tr>
+<tr><th id="59">59</th><td>    <b>return</b> <kbd>'K'</kbd>;</td></tr>
+<tr><th id="60">60</th><td>  <b>case</b> <kbd>'l'</kbd>:</td></tr>
+<tr><th id="61">61</th><td>    <b>return</b> <kbd>'L'</kbd>;</td></tr>
+<tr><th id="62">62</th><td>  <b>case</b> <kbd>'m'</kbd>:</td></tr>
+<tr><th id="63">63</th><td>    <b>return</b> <kbd>'M'</kbd>;</td></tr>
+<tr><th id="64">64</th><td>  <b>case</b> <kbd>'n'</kbd>:</td></tr>
+<tr><th id="65">65</th><td>    <b>return</b> <kbd>'N'</kbd>;</td></tr>
+<tr><th id="66">66</th><td>  <b>case</b> <kbd>'o'</kbd>:</td></tr>
+<tr><th id="67">67</th><td>    <b>return</b> <kbd>'O'</kbd>;</td></tr>
+<tr><th id="68">68</th><td>  <b>case</b> <kbd>'p'</kbd>:</td></tr>
+<tr><th id="69">69</th><td>    <b>return</b> <kbd>'P'</kbd>;</td></tr>
+<tr><th id="70">70</th><td>  <b>case</b> <kbd>'q'</kbd>:</td></tr>
+<tr><th id="71">71</th><td>    <b>return</b> <kbd>'Q'</kbd>;</td></tr>
+<tr><th id="72">72</th><td>  <b>case</b> <kbd>'r'</kbd>:</td></tr>
+<tr><th id="73">73</th><td>    <b>return</b> <kbd>'R'</kbd>;</td></tr>
+<tr><th id="74">74</th><td>  <b>case</b> <kbd>'s'</kbd>:</td></tr>
+<tr><th id="75">75</th><td>    <b>return</b> <kbd>'S'</kbd>;</td></tr>
+<tr><th id="76">76</th><td>  <b>case</b> <kbd>'t'</kbd>:</td></tr>
+<tr><th id="77">77</th><td>    <b>return</b> <kbd>'T'</kbd>;</td></tr>
+<tr><th id="78">78</th><td>  <b>case</b> <kbd>'u'</kbd>:</td></tr>
+<tr><th id="79">79</th><td>    <b>return</b> <kbd>'U'</kbd>;</td></tr>
+<tr><th id="80">80</th><td>  <b>case</b> <kbd>'v'</kbd>:</td></tr>
+<tr><th id="81">81</th><td>    <b>return</b> <kbd>'V'</kbd>;</td></tr>
+<tr><th id="82">82</th><td>  <b>case</b> <kbd>'w'</kbd>:</td></tr>
+<tr><th id="83">83</th><td>    <b>return</b> <kbd>'W'</kbd>;</td></tr>
+<tr><th id="84">84</th><td>  <b>case</b> <kbd>'x'</kbd>:</td></tr>
+<tr><th id="85">85</th><td>    <b>return</b> <kbd>'X'</kbd>;</td></tr>
+<tr><th id="86">86</th><td>  <b>case</b> <kbd>'y'</kbd>:</td></tr>
+<tr><th id="87">87</th><td>    <b>return</b> <kbd>'Y'</kbd>;</td></tr>
+<tr><th id="88">88</th><td>  <b>case</b> <kbd>'z'</kbd>:</td></tr>
+<tr><th id="89">89</th><td>    <b>return</b> <kbd>'Z'</kbd>;</td></tr>
+<tr><th id="90">90</th><td>  }</td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="33">endif</span></u></td></tr>
+<tr><th id="92">92</th><td></td></tr>
+<tr><th id="93">93</th><td>  <b>return</b> <a class="local col1 ref" href="#1in" title='in' data-ref="1in">in</a>;</td></tr>
+<tr><th id="94">94</th><td>}</td></tr>
+<tr><th id="95">95</th><td></td></tr>
+<tr><th id="96">96</th><td><i>/*</i></td></tr>
+<tr><th id="97">97</th><td><i> * Curl_strcasecompare() is for doing "raw" case insensitive strings. This is</i></td></tr>
+<tr><th id="98">98</th><td><i> * meant to be locale independent and only compare strings we know are safe</i></td></tr>
+<tr><th id="99">99</th><td><i> * for this.  See</i></td></tr>
+<tr><th id="100">100</th><td><i> * <a href="https://daniel.haxx.se/blog/2008/10/15/strcasecmp-in-turkish/">https://daniel.haxx.se/blog/2008/10/15/strcasecmp-in-turkish/</a> for some</i></td></tr>
+<tr><th id="101">101</th><td><i> * further explanation to why this function is necessary.</i></td></tr>
+<tr><th id="102">102</th><td><i> *</i></td></tr>
+<tr><th id="103">103</th><td><i> * The function is capable of comparing a-z case insensitively even for</i></td></tr>
+<tr><th id="104">104</th><td><i> * non-ascii.</i></td></tr>
+<tr><th id="105">105</th><td><i> *</i></td></tr>
+<tr><th id="106">106</th><td><i> * @unittest: 1301</i></td></tr>
+<tr><th id="107">107</th><td><i> */</i></td></tr>
+<tr><th id="108">108</th><td></td></tr>
+<tr><th id="109">109</th><td><em>int</em> <dfn class="decl def" id="Curl_strcasecompare" title='Curl_strcasecompare' data-ref="Curl_strcasecompare">Curl_strcasecompare</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="2first" title='first' data-type='const char *' data-ref="2first">first</dfn>, <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="3second" title='second' data-type='const char *' data-ref="3second">second</dfn>)</td></tr>
+<tr><th id="110">110</th><td>{</td></tr>
+<tr><th id="111">111</th><td>  <b>while</b>(*<a class="local col2 ref" href="#2first" title='first' data-ref="2first">first</a> &amp;&amp; *<a class="local col3 ref" href="#3second" title='second' data-ref="3second">second</a>) {</td></tr>
+<tr><th id="112">112</th><td>    <b>if</b>(<a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col2 ref" href="#2first" title='first' data-ref="2first">first</a>) != <a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col3 ref" href="#3second" title='second' data-ref="3second">second</a>))</td></tr>
+<tr><th id="113">113</th><td>      <i>/* get out of the loop as soon as they don't match */</i></td></tr>
+<tr><th id="114">114</th><td>      <b>break</b>;</td></tr>
+<tr><th id="115">115</th><td>    <a class="local col2 ref" href="#2first" title='first' data-ref="2first">first</a>++;</td></tr>
+<tr><th id="116">116</th><td>    <a class="local col3 ref" href="#3second" title='second' data-ref="3second">second</a>++;</td></tr>
+<tr><th id="117">117</th><td>  }</td></tr>
+<tr><th id="118">118</th><td>  <i>/* we do the comparison here (possibly again), just to make sure that if the</i></td></tr>
+<tr><th id="119">119</th><td><i>     loop above is skipped because one of the strings reached zero, we must not</i></td></tr>
+<tr><th id="120">120</th><td><i>     return this as a successful match */</i></td></tr>
+<tr><th id="121">121</th><td>  <b>return</b> (<a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col2 ref" href="#2first" title='first' data-ref="2first">first</a>) == <a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col3 ref" href="#3second" title='second' data-ref="3second">second</a>));</td></tr>
+<tr><th id="122">122</th><td>}</td></tr>
+<tr><th id="123">123</th><td></td></tr>
+<tr><th id="124">124</th><td><em>int</em> <dfn class="decl def" id="Curl_safe_strcasecompare" title='Curl_safe_strcasecompare' data-ref="Curl_safe_strcasecompare">Curl_safe_strcasecompare</dfn>(<em>const</em> <em>char</em> *<dfn class="local col4 decl" id="4first" title='first' data-type='const char *' data-ref="4first">first</dfn>, <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="5second" title='second' data-type='const char *' data-ref="5second">second</dfn>)</td></tr>
+<tr><th id="125">125</th><td>{</td></tr>
+<tr><th id="126">126</th><td>  <b>if</b>(<a class="local col4 ref" href="#4first" title='first' data-ref="4first">first</a> &amp;&amp; <a class="local col5 ref" href="#5second" title='second' data-ref="5second">second</a>)</td></tr>
+<tr><th id="127">127</th><td>    <i>/* both pointers point to something then compare them */</i></td></tr>
+<tr><th id="128">128</th><td>    <b>return</b> <a class="ref" href="#Curl_strcasecompare" title='Curl_strcasecompare' data-ref="Curl_strcasecompare">Curl_strcasecompare</a>(<a class="local col4 ref" href="#4first" title='first' data-ref="4first">first</a>, <a class="local col5 ref" href="#5second" title='second' data-ref="5second">second</a>);</td></tr>
+<tr><th id="129">129</th><td></td></tr>
+<tr><th id="130">130</th><td>  <i>/* if both pointers are NULL then treat them as equal */</i></td></tr>
+<tr><th id="131">131</th><td>  <b>return</b> (<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span> == <a class="local col4 ref" href="#4first" title='first' data-ref="4first">first</a> &amp;&amp; <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span> == <a class="local col5 ref" href="#5second" title='second' data-ref="5second">second</a>);</td></tr>
+<tr><th id="132">132</th><td>}</td></tr>
+<tr><th id="133">133</th><td></td></tr>
+<tr><th id="134">134</th><td><i>/*</i></td></tr>
+<tr><th id="135">135</th><td><i> * @unittest: 1301</i></td></tr>
+<tr><th id="136">136</th><td><i> */</i></td></tr>
+<tr><th id="137">137</th><td><em>int</em> <dfn class="decl def" id="Curl_strncasecompare" title='Curl_strncasecompare' data-ref="Curl_strncasecompare">Curl_strncasecompare</dfn>(<em>const</em> <em>char</em> *<dfn class="local col6 decl" id="6first" title='first' data-type='const char *' data-ref="6first">first</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="7second" title='second' data-type='const char *' data-ref="7second">second</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="8max" title='max' data-type='size_t' data-ref="8max">max</dfn>)</td></tr>
+<tr><th id="138">138</th><td>{</td></tr>
+<tr><th id="139">139</th><td>  <b>while</b>(*<a class="local col6 ref" href="#6first" title='first' data-ref="6first">first</a> &amp;&amp; *<a class="local col7 ref" href="#7second" title='second' data-ref="7second">second</a> &amp;&amp; <a class="local col8 ref" href="#8max" title='max' data-ref="8max">max</a>) {</td></tr>
+<tr><th id="140">140</th><td>    <b>if</b>(<a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col6 ref" href="#6first" title='first' data-ref="6first">first</a>) != <a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col7 ref" href="#7second" title='second' data-ref="7second">second</a>)) {</td></tr>
+<tr><th id="141">141</th><td>      <b>break</b>;</td></tr>
+<tr><th id="142">142</th><td>    }</td></tr>
+<tr><th id="143">143</th><td>    <a class="local col8 ref" href="#8max" title='max' data-ref="8max">max</a>--;</td></tr>
+<tr><th id="144">144</th><td>    <a class="local col6 ref" href="#6first" title='first' data-ref="6first">first</a>++;</td></tr>
+<tr><th id="145">145</th><td>    <a class="local col7 ref" href="#7second" title='second' data-ref="7second">second</a>++;</td></tr>
+<tr><th id="146">146</th><td>  }</td></tr>
+<tr><th id="147">147</th><td>  <b>if</b>(<var>0</var> == <a class="local col8 ref" href="#8max" title='max' data-ref="8max">max</a>)</td></tr>
+<tr><th id="148">148</th><td>    <b>return</b> <var>1</var>; <i>/* they are equal this far */</i></td></tr>
+<tr><th id="149">149</th><td></td></tr>
+<tr><th id="150">150</th><td>  <b>return</b> <a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col6 ref" href="#6first" title='first' data-ref="6first">first</a>) == <a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col7 ref" href="#7second" title='second' data-ref="7second">second</a>);</td></tr>
+<tr><th id="151">151</th><td>}</td></tr>
+<tr><th id="152">152</th><td></td></tr>
+<tr><th id="153">153</th><td><i>/* Copy an upper case version of the string from src to dest.  The</i></td></tr>
+<tr><th id="154">154</th><td><i> * strings may overlap.  No more than n characters of the string are copied</i></td></tr>
+<tr><th id="155">155</th><td><i> * (including any NUL) and the destination string will NOT be</i></td></tr>
+<tr><th id="156">156</th><td><i> * NUL-terminated if that limit is reached.</i></td></tr>
+<tr><th id="157">157</th><td><i> */</i></td></tr>
+<tr><th id="158">158</th><td><em>void</em> <dfn class="decl def" id="Curl_strntoupper" title='Curl_strntoupper' data-ref="Curl_strntoupper">Curl_strntoupper</dfn>(<em>char</em> *<dfn class="local col9 decl" id="9dest" title='dest' data-type='char *' data-ref="9dest">dest</dfn>, <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="10src" title='src' data-type='const char *' data-ref="10src">src</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="11n" title='n' data-type='size_t' data-ref="11n">n</dfn>)</td></tr>
+<tr><th id="159">159</th><td>{</td></tr>
+<tr><th id="160">160</th><td>  <b>if</b>(<a class="local col1 ref" href="#11n" title='n' data-ref="11n">n</a> &lt; <var>1</var>)</td></tr>
+<tr><th id="161">161</th><td>    <b>return</b>;</td></tr>
+<tr><th id="162">162</th><td></td></tr>
+<tr><th id="163">163</th><td>  <b>do</b> {</td></tr>
+<tr><th id="164">164</th><td>    *<a class="local col9 ref" href="#9dest" title='dest' data-ref="9dest">dest</a>++ = <a class="ref" href="#Curl_raw_toupper" title='Curl_raw_toupper' data-ref="Curl_raw_toupper">Curl_raw_toupper</a>(*<a class="local col0 ref" href="#10src" title='src' data-ref="10src">src</a>);</td></tr>
+<tr><th id="165">165</th><td>  } <b>while</b>(*<a class="local col0 ref" href="#10src" title='src' data-ref="10src">src</a>++ &amp;&amp; --<a class="local col1 ref" href="#11n" title='n' data-ref="11n">n</a>);</td></tr>
+<tr><th id="166">166</th><td>}</td></tr>
+<tr><th id="167">167</th><td></td></tr>
+<tr><th id="168">168</th><td><i>/* --- public functions --- */</i></td></tr>
+<tr><th id="169">169</th><td></td></tr>
+<tr><th id="170">170</th><td><em>int</em> <dfn class="decl def" id="curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="12first" title='first' data-type='const char *' data-ref="12first">first</dfn>, <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="13second" title='second' data-type='const char *' data-ref="13second">second</dfn>)</td></tr>
+<tr><th id="171">171</th><td>{</td></tr>
+<tr><th id="172">172</th><td>  <b>return</b> <a class="ref" href="#Curl_strcasecompare" title='Curl_strcasecompare' data-ref="Curl_strcasecompare">Curl_strcasecompare</a>(<a class="local col2 ref" href="#12first" title='first' data-ref="12first">first</a>, <a class="local col3 ref" href="#13second" title='second' data-ref="13second">second</a>);</td></tr>
+<tr><th id="173">173</th><td>}</td></tr>
+<tr><th id="174">174</th><td><em>int</em> <dfn class="decl def" id="curl_strnequal" title='curl_strnequal' data-ref="curl_strnequal">curl_strnequal</dfn>(<em>const</em> <em>char</em> *<dfn class="local col4 decl" id="14first" title='first' data-type='const char *' data-ref="14first">first</dfn>, <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="15second" title='second' data-type='const char *' data-ref="15second">second</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="16max" title='max' data-type='size_t' data-ref="16max">max</dfn>)</td></tr>
+<tr><th id="175">175</th><td>{</td></tr>
+<tr><th id="176">176</th><td>  <b>return</b> <a class="ref" href="#Curl_strncasecompare" title='Curl_strncasecompare' data-ref="Curl_strncasecompare">Curl_strncasecompare</a>(<a class="local col4 ref" href="#14first" title='first' data-ref="14first">first</a>, <a class="local col5 ref" href="#15second" title='second' data-ref="15second">second</a>, <a class="local col6 ref" href="#16max" title='max' data-ref="16max">max</a>);</td></tr>
+<tr><th id="177">177</th><td>}</td></tr>
+<tr><th id="178">178</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

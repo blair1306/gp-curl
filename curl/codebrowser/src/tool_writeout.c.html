@@ -1,0 +1,388 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_writeout.c source code [codebrowser/src/tool_writeout.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="variable "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_writeout.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_writeout.c.html'>tool_writeout.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="23">23</th><td><u>#define <dfn class="macro" id="_M/ENABLE_CURLX_PRINTF" data-ref="_M/ENABLE_CURLX_PRINTF">ENABLE_CURLX_PRINTF</dfn></u></td></tr>
+<tr><th id="24">24</th><td><i>/* use our own printf() functions */</i></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../lib/curlx.h.html">"curlx.h"</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="tool_cfgable.h.html">"tool_cfgable.h"</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="tool_writeout.h.html">"tool_writeout.h"</a></u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../lib/memdebug.h.html">"memdebug.h"</a> /* keep this as LAST include */</u></td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><b>typedef</b> <b>enum</b> {</td></tr>
+<tr><th id="32">32</th><td>  <dfn class="enum" id="VAR_NONE" title='VAR_NONE' data-ref="VAR_NONE">VAR_NONE</dfn>,       <i>/* must be the first */</i></td></tr>
+<tr><th id="33">33</th><td>  <dfn class="enum" id="VAR_TOTAL_TIME" title='VAR_TOTAL_TIME' data-ref="VAR_TOTAL_TIME">VAR_TOTAL_TIME</dfn>,</td></tr>
+<tr><th id="34">34</th><td>  <dfn class="enum" id="VAR_NAMELOOKUP_TIME" title='VAR_NAMELOOKUP_TIME' data-ref="VAR_NAMELOOKUP_TIME">VAR_NAMELOOKUP_TIME</dfn>,</td></tr>
+<tr><th id="35">35</th><td>  <dfn class="enum" id="VAR_CONNECT_TIME" title='VAR_CONNECT_TIME' data-ref="VAR_CONNECT_TIME">VAR_CONNECT_TIME</dfn>,</td></tr>
+<tr><th id="36">36</th><td>  <dfn class="enum" id="VAR_APPCONNECT_TIME" title='VAR_APPCONNECT_TIME' data-ref="VAR_APPCONNECT_TIME">VAR_APPCONNECT_TIME</dfn>,</td></tr>
+<tr><th id="37">37</th><td>  <dfn class="enum" id="VAR_PRETRANSFER_TIME" title='VAR_PRETRANSFER_TIME' data-ref="VAR_PRETRANSFER_TIME">VAR_PRETRANSFER_TIME</dfn>,</td></tr>
+<tr><th id="38">38</th><td>  <dfn class="enum" id="VAR_STARTTRANSFER_TIME" title='VAR_STARTTRANSFER_TIME' data-ref="VAR_STARTTRANSFER_TIME">VAR_STARTTRANSFER_TIME</dfn>,</td></tr>
+<tr><th id="39">39</th><td>  <dfn class="enum" id="VAR_SIZE_DOWNLOAD" title='VAR_SIZE_DOWNLOAD' data-ref="VAR_SIZE_DOWNLOAD">VAR_SIZE_DOWNLOAD</dfn>,</td></tr>
+<tr><th id="40">40</th><td>  <dfn class="enum" id="VAR_SIZE_UPLOAD" title='VAR_SIZE_UPLOAD' data-ref="VAR_SIZE_UPLOAD">VAR_SIZE_UPLOAD</dfn>,</td></tr>
+<tr><th id="41">41</th><td>  <dfn class="enum" id="VAR_SPEED_DOWNLOAD" title='VAR_SPEED_DOWNLOAD' data-ref="VAR_SPEED_DOWNLOAD">VAR_SPEED_DOWNLOAD</dfn>,</td></tr>
+<tr><th id="42">42</th><td>  <dfn class="enum" id="VAR_SPEED_UPLOAD" title='VAR_SPEED_UPLOAD' data-ref="VAR_SPEED_UPLOAD">VAR_SPEED_UPLOAD</dfn>,</td></tr>
+<tr><th id="43">43</th><td>  <dfn class="enum" id="VAR_HTTP_CODE" title='VAR_HTTP_CODE' data-ref="VAR_HTTP_CODE">VAR_HTTP_CODE</dfn>,</td></tr>
+<tr><th id="44">44</th><td>  <dfn class="enum" id="VAR_HTTP_CODE_PROXY" title='VAR_HTTP_CODE_PROXY' data-ref="VAR_HTTP_CODE_PROXY">VAR_HTTP_CODE_PROXY</dfn>,</td></tr>
+<tr><th id="45">45</th><td>  <dfn class="enum" id="VAR_HEADER_SIZE" title='VAR_HEADER_SIZE' data-ref="VAR_HEADER_SIZE">VAR_HEADER_SIZE</dfn>,</td></tr>
+<tr><th id="46">46</th><td>  <dfn class="enum" id="VAR_REQUEST_SIZE" title='VAR_REQUEST_SIZE' data-ref="VAR_REQUEST_SIZE">VAR_REQUEST_SIZE</dfn>,</td></tr>
+<tr><th id="47">47</th><td>  <dfn class="enum" id="VAR_EFFECTIVE_URL" title='VAR_EFFECTIVE_URL' data-ref="VAR_EFFECTIVE_URL">VAR_EFFECTIVE_URL</dfn>,</td></tr>
+<tr><th id="48">48</th><td>  <dfn class="enum" id="VAR_CONTENT_TYPE" title='VAR_CONTENT_TYPE' data-ref="VAR_CONTENT_TYPE">VAR_CONTENT_TYPE</dfn>,</td></tr>
+<tr><th id="49">49</th><td>  <dfn class="enum" id="VAR_NUM_CONNECTS" title='VAR_NUM_CONNECTS' data-ref="VAR_NUM_CONNECTS">VAR_NUM_CONNECTS</dfn>,</td></tr>
+<tr><th id="50">50</th><td>  <dfn class="enum" id="VAR_REDIRECT_TIME" title='VAR_REDIRECT_TIME' data-ref="VAR_REDIRECT_TIME">VAR_REDIRECT_TIME</dfn>,</td></tr>
+<tr><th id="51">51</th><td>  <dfn class="enum" id="VAR_REDIRECT_COUNT" title='VAR_REDIRECT_COUNT' data-ref="VAR_REDIRECT_COUNT">VAR_REDIRECT_COUNT</dfn>,</td></tr>
+<tr><th id="52">52</th><td>  <dfn class="enum" id="VAR_FTP_ENTRY_PATH" title='VAR_FTP_ENTRY_PATH' data-ref="VAR_FTP_ENTRY_PATH">VAR_FTP_ENTRY_PATH</dfn>,</td></tr>
+<tr><th id="53">53</th><td>  <dfn class="enum" id="VAR_REDIRECT_URL" title='VAR_REDIRECT_URL' data-ref="VAR_REDIRECT_URL">VAR_REDIRECT_URL</dfn>,</td></tr>
+<tr><th id="54">54</th><td>  <dfn class="enum" id="VAR_SSL_VERIFY_RESULT" title='VAR_SSL_VERIFY_RESULT' data-ref="VAR_SSL_VERIFY_RESULT">VAR_SSL_VERIFY_RESULT</dfn>,</td></tr>
+<tr><th id="55">55</th><td>  <dfn class="enum" id="VAR_PROXY_SSL_VERIFY_RESULT" title='VAR_PROXY_SSL_VERIFY_RESULT' data-ref="VAR_PROXY_SSL_VERIFY_RESULT">VAR_PROXY_SSL_VERIFY_RESULT</dfn>,</td></tr>
+<tr><th id="56">56</th><td>  <dfn class="enum" id="VAR_EFFECTIVE_FILENAME" title='VAR_EFFECTIVE_FILENAME' data-ref="VAR_EFFECTIVE_FILENAME">VAR_EFFECTIVE_FILENAME</dfn>,</td></tr>
+<tr><th id="57">57</th><td>  <dfn class="enum" id="VAR_PRIMARY_IP" title='VAR_PRIMARY_IP' data-ref="VAR_PRIMARY_IP">VAR_PRIMARY_IP</dfn>,</td></tr>
+<tr><th id="58">58</th><td>  <dfn class="enum" id="VAR_PRIMARY_PORT" title='VAR_PRIMARY_PORT' data-ref="VAR_PRIMARY_PORT">VAR_PRIMARY_PORT</dfn>,</td></tr>
+<tr><th id="59">59</th><td>  <dfn class="enum" id="VAR_LOCAL_IP" title='VAR_LOCAL_IP' data-ref="VAR_LOCAL_IP">VAR_LOCAL_IP</dfn>,</td></tr>
+<tr><th id="60">60</th><td>  <dfn class="enum" id="VAR_LOCAL_PORT" title='VAR_LOCAL_PORT' data-ref="VAR_LOCAL_PORT">VAR_LOCAL_PORT</dfn>,</td></tr>
+<tr><th id="61">61</th><td>  <dfn class="enum" id="VAR_HTTP_VERSION" title='VAR_HTTP_VERSION' data-ref="VAR_HTTP_VERSION">VAR_HTTP_VERSION</dfn>,</td></tr>
+<tr><th id="62">62</th><td>  <dfn class="enum" id="VAR_SCHEME" title='VAR_SCHEME' data-ref="VAR_SCHEME">VAR_SCHEME</dfn>,</td></tr>
+<tr><th id="63">63</th><td>  <dfn class="enum" id="VAR_NUM_OF_VARS" title='VAR_NUM_OF_VARS' data-ref="VAR_NUM_OF_VARS">VAR_NUM_OF_VARS</dfn> <i>/* must be the last */</i></td></tr>
+<tr><th id="64">64</th><td>} <dfn class="typedef" id="replaceid" title='replaceid' data-type='enum replaceid' data-ref="replaceid">replaceid</dfn>;</td></tr>
+<tr><th id="65">65</th><td></td></tr>
+<tr><th id="66">66</th><td><b>struct</b> <dfn class="type def" id="variable" title='variable' data-ref="variable">variable</dfn> {</td></tr>
+<tr><th id="67">67</th><td>  <em>const</em> <em>char</em> *<dfn class="tu decl" id="variable::name" title='variable::name' data-type='const char *' data-ref="variable::name">name</dfn>;</td></tr>
+<tr><th id="68">68</th><td>  <a class="typedef" href="#replaceid" title='replaceid' data-type='enum replaceid' data-ref="replaceid">replaceid</a> <dfn class="tu decl" id="variable::id" title='variable::id' data-type='replaceid' data-ref="variable::id">id</dfn>;</td></tr>
+<tr><th id="69">69</th><td>};</td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td></td></tr>
+<tr><th id="72">72</th><td><em>static</em> <em>const</em> <b>struct</b> <a class="type" href="#variable" title='variable' data-ref="variable">variable</a> <dfn class="tu decl def" id="replacements" title='replacements' data-type='const struct variable [32]' data-ref="replacements">replacements</dfn>[]={</td></tr>
+<tr><th id="73">73</th><td>  {<q>"url_effective"</q>, <a class="enum" href="#VAR_EFFECTIVE_URL" title='VAR_EFFECTIVE_URL' data-ref="VAR_EFFECTIVE_URL">VAR_EFFECTIVE_URL</a>},</td></tr>
+<tr><th id="74">74</th><td>  {<q>"http_code"</q>, <a class="enum" href="#VAR_HTTP_CODE" title='VAR_HTTP_CODE' data-ref="VAR_HTTP_CODE">VAR_HTTP_CODE</a>},</td></tr>
+<tr><th id="75">75</th><td>  {<q>"response_code"</q>, <a class="enum" href="#VAR_HTTP_CODE" title='VAR_HTTP_CODE' data-ref="VAR_HTTP_CODE">VAR_HTTP_CODE</a>},</td></tr>
+<tr><th id="76">76</th><td>  {<q>"http_connect"</q>, <a class="enum" href="#VAR_HTTP_CODE_PROXY" title='VAR_HTTP_CODE_PROXY' data-ref="VAR_HTTP_CODE_PROXY">VAR_HTTP_CODE_PROXY</a>},</td></tr>
+<tr><th id="77">77</th><td>  {<q>"time_total"</q>, <a class="enum" href="#VAR_TOTAL_TIME" title='VAR_TOTAL_TIME' data-ref="VAR_TOTAL_TIME">VAR_TOTAL_TIME</a>},</td></tr>
+<tr><th id="78">78</th><td>  {<q>"time_namelookup"</q>, <a class="enum" href="#VAR_NAMELOOKUP_TIME" title='VAR_NAMELOOKUP_TIME' data-ref="VAR_NAMELOOKUP_TIME">VAR_NAMELOOKUP_TIME</a>},</td></tr>
+<tr><th id="79">79</th><td>  {<q>"time_connect"</q>, <a class="enum" href="#VAR_CONNECT_TIME" title='VAR_CONNECT_TIME' data-ref="VAR_CONNECT_TIME">VAR_CONNECT_TIME</a>},</td></tr>
+<tr><th id="80">80</th><td>  {<q>"time_appconnect"</q>, <a class="enum" href="#VAR_APPCONNECT_TIME" title='VAR_APPCONNECT_TIME' data-ref="VAR_APPCONNECT_TIME">VAR_APPCONNECT_TIME</a>},</td></tr>
+<tr><th id="81">81</th><td>  {<q>"time_pretransfer"</q>, <a class="enum" href="#VAR_PRETRANSFER_TIME" title='VAR_PRETRANSFER_TIME' data-ref="VAR_PRETRANSFER_TIME">VAR_PRETRANSFER_TIME</a>},</td></tr>
+<tr><th id="82">82</th><td>  {<q>"time_starttransfer"</q>, <a class="enum" href="#VAR_STARTTRANSFER_TIME" title='VAR_STARTTRANSFER_TIME' data-ref="VAR_STARTTRANSFER_TIME">VAR_STARTTRANSFER_TIME</a>},</td></tr>
+<tr><th id="83">83</th><td>  {<q>"size_header"</q>, <a class="enum" href="#VAR_HEADER_SIZE" title='VAR_HEADER_SIZE' data-ref="VAR_HEADER_SIZE">VAR_HEADER_SIZE</a>},</td></tr>
+<tr><th id="84">84</th><td>  {<q>"size_request"</q>, <a class="enum" href="#VAR_REQUEST_SIZE" title='VAR_REQUEST_SIZE' data-ref="VAR_REQUEST_SIZE">VAR_REQUEST_SIZE</a>},</td></tr>
+<tr><th id="85">85</th><td>  {<q>"size_download"</q>, <a class="enum" href="#VAR_SIZE_DOWNLOAD" title='VAR_SIZE_DOWNLOAD' data-ref="VAR_SIZE_DOWNLOAD">VAR_SIZE_DOWNLOAD</a>},</td></tr>
+<tr><th id="86">86</th><td>  {<q>"size_upload"</q>, <a class="enum" href="#VAR_SIZE_UPLOAD" title='VAR_SIZE_UPLOAD' data-ref="VAR_SIZE_UPLOAD">VAR_SIZE_UPLOAD</a>},</td></tr>
+<tr><th id="87">87</th><td>  {<q>"speed_download"</q>, <a class="enum" href="#VAR_SPEED_DOWNLOAD" title='VAR_SPEED_DOWNLOAD' data-ref="VAR_SPEED_DOWNLOAD">VAR_SPEED_DOWNLOAD</a>},</td></tr>
+<tr><th id="88">88</th><td>  {<q>"speed_upload"</q>, <a class="enum" href="#VAR_SPEED_UPLOAD" title='VAR_SPEED_UPLOAD' data-ref="VAR_SPEED_UPLOAD">VAR_SPEED_UPLOAD</a>},</td></tr>
+<tr><th id="89">89</th><td>  {<q>"content_type"</q>, <a class="enum" href="#VAR_CONTENT_TYPE" title='VAR_CONTENT_TYPE' data-ref="VAR_CONTENT_TYPE">VAR_CONTENT_TYPE</a>},</td></tr>
+<tr><th id="90">90</th><td>  {<q>"num_connects"</q>, <a class="enum" href="#VAR_NUM_CONNECTS" title='VAR_NUM_CONNECTS' data-ref="VAR_NUM_CONNECTS">VAR_NUM_CONNECTS</a>},</td></tr>
+<tr><th id="91">91</th><td>  {<q>"time_redirect"</q>, <a class="enum" href="#VAR_REDIRECT_TIME" title='VAR_REDIRECT_TIME' data-ref="VAR_REDIRECT_TIME">VAR_REDIRECT_TIME</a>},</td></tr>
+<tr><th id="92">92</th><td>  {<q>"num_redirects"</q>, <a class="enum" href="#VAR_REDIRECT_COUNT" title='VAR_REDIRECT_COUNT' data-ref="VAR_REDIRECT_COUNT">VAR_REDIRECT_COUNT</a>},</td></tr>
+<tr><th id="93">93</th><td>  {<q>"ftp_entry_path"</q>, <a class="enum" href="#VAR_FTP_ENTRY_PATH" title='VAR_FTP_ENTRY_PATH' data-ref="VAR_FTP_ENTRY_PATH">VAR_FTP_ENTRY_PATH</a>},</td></tr>
+<tr><th id="94">94</th><td>  {<q>"redirect_url"</q>, <a class="enum" href="#VAR_REDIRECT_URL" title='VAR_REDIRECT_URL' data-ref="VAR_REDIRECT_URL">VAR_REDIRECT_URL</a>},</td></tr>
+<tr><th id="95">95</th><td>  {<q>"ssl_verify_result"</q>, <a class="enum" href="#VAR_SSL_VERIFY_RESULT" title='VAR_SSL_VERIFY_RESULT' data-ref="VAR_SSL_VERIFY_RESULT">VAR_SSL_VERIFY_RESULT</a>},</td></tr>
+<tr><th id="96">96</th><td>  {<q>"proxy_ssl_verify_result"</q>, <a class="enum" href="#VAR_PROXY_SSL_VERIFY_RESULT" title='VAR_PROXY_SSL_VERIFY_RESULT' data-ref="VAR_PROXY_SSL_VERIFY_RESULT">VAR_PROXY_SSL_VERIFY_RESULT</a>},</td></tr>
+<tr><th id="97">97</th><td>  {<q>"filename_effective"</q>, <a class="enum" href="#VAR_EFFECTIVE_FILENAME" title='VAR_EFFECTIVE_FILENAME' data-ref="VAR_EFFECTIVE_FILENAME">VAR_EFFECTIVE_FILENAME</a>},</td></tr>
+<tr><th id="98">98</th><td>  {<q>"remote_ip"</q>, <a class="enum" href="#VAR_PRIMARY_IP" title='VAR_PRIMARY_IP' data-ref="VAR_PRIMARY_IP">VAR_PRIMARY_IP</a>},</td></tr>
+<tr><th id="99">99</th><td>  {<q>"remote_port"</q>, <a class="enum" href="#VAR_PRIMARY_PORT" title='VAR_PRIMARY_PORT' data-ref="VAR_PRIMARY_PORT">VAR_PRIMARY_PORT</a>},</td></tr>
+<tr><th id="100">100</th><td>  {<q>"local_ip"</q>, <a class="enum" href="#VAR_LOCAL_IP" title='VAR_LOCAL_IP' data-ref="VAR_LOCAL_IP">VAR_LOCAL_IP</a>},</td></tr>
+<tr><th id="101">101</th><td>  {<q>"local_port"</q>, <a class="enum" href="#VAR_LOCAL_PORT" title='VAR_LOCAL_PORT' data-ref="VAR_LOCAL_PORT">VAR_LOCAL_PORT</a>},</td></tr>
+<tr><th id="102">102</th><td>  {<q>"http_version"</q>, <a class="enum" href="#VAR_HTTP_VERSION" title='VAR_HTTP_VERSION' data-ref="VAR_HTTP_VERSION">VAR_HTTP_VERSION</a>},</td></tr>
+<tr><th id="103">103</th><td>  {<q>"scheme"</q>, <a class="enum" href="#VAR_SCHEME" title='VAR_SCHEME' data-ref="VAR_SCHEME">VAR_SCHEME</a>},</td></tr>
+<tr><th id="104">104</th><td>  {<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <a class="enum" href="#VAR_NONE" title='VAR_NONE' data-ref="VAR_NONE">VAR_NONE</a>}</td></tr>
+<tr><th id="105">105</th><td>};</td></tr>
+<tr><th id="106">106</th><td></td></tr>
+<tr><th id="107">107</th><td><em>void</em> <dfn class="decl def" id="ourWriteOut" title='ourWriteOut' data-ref="ourWriteOut">ourWriteOut</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col1 decl" id="1curl" title='curl' data-type='CURL *' data-ref="1curl">curl</dfn>, <b>struct</b> <a class="type" href="tool_sdecls.h.html#OutStruct" title='OutStruct' data-ref="OutStruct">OutStruct</a> *<dfn class="local col2 decl" id="2outs" title='outs' data-type='struct OutStruct *' data-ref="2outs">outs</dfn>, <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="3writeinfo" title='writeinfo' data-type='const char *' data-ref="3writeinfo">writeinfo</dfn>)</td></tr>
+<tr><th id="108">108</th><td>{</td></tr>
+<tr><th id="109">109</th><td>  <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col4 decl" id="4stream" title='stream' data-type='FILE *' data-ref="4stream">stream</dfn> = <a class="macro" href="../../include/stdio.h.html#173" title="stdout" data-ref="_M/stdout">stdout</a>;</td></tr>
+<tr><th id="110">110</th><td>  <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="5ptr" title='ptr' data-type='const char *' data-ref="5ptr">ptr</dfn> = <a class="local col3 ref" href="#3writeinfo" title='writeinfo' data-ref="3writeinfo">writeinfo</a>;</td></tr>
+<tr><th id="111">111</th><td>  <em>char</em> *<dfn class="local col6 decl" id="6stringp" title='stringp' data-type='char *' data-ref="6stringp">stringp</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="112">112</th><td>  <em>long</em> <dfn class="local col7 decl" id="7longinfo" title='longinfo' data-type='long' data-ref="7longinfo">longinfo</dfn>;</td></tr>
+<tr><th id="113">113</th><td>  <em>double</em> <dfn class="local col8 decl" id="8doubleinfo" title='doubleinfo' data-type='double' data-ref="8doubleinfo">doubleinfo</dfn>;</td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td>  <b>while</b>(<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a> &amp;&amp; *<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>) {</td></tr>
+<tr><th id="116">116</th><td>    <b>if</b>(<kbd>'%'</kbd> == *<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a> &amp;&amp; <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>[<var>1</var>]) {</td></tr>
+<tr><th id="117">117</th><td>      <b>if</b>(<kbd>'%'</kbd> == <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>[<var>1</var>]) {</td></tr>
+<tr><th id="118">118</th><td>        <i>/* an escaped %-letter */</i></td></tr>
+<tr><th id="119">119</th><td>        <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(<kbd>'%'</kbd>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="120">120</th><td>        <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a> += <var>2</var>;</td></tr>
+<tr><th id="121">121</th><td>      }</td></tr>
+<tr><th id="122">122</th><td>      <b>else</b> {</td></tr>
+<tr><th id="123">123</th><td>        <i>/* this is meant as a variable to output */</i></td></tr>
+<tr><th id="124">124</th><td>        <em>char</em> *<dfn class="local col9 decl" id="9end" title='end' data-type='char *' data-ref="9end">end</dfn>;</td></tr>
+<tr><th id="125">125</th><td>        <em>char</em> <dfn class="local col0 decl" id="10keepit" title='keepit' data-type='char' data-ref="10keepit">keepit</dfn>;</td></tr>
+<tr><th id="126">126</th><td>        <em>int</em> <dfn class="local col1 decl" id="11i" title='i' data-type='int' data-ref="11i">i</dfn>;</td></tr>
+<tr><th id="127">127</th><td>        <b>if</b>(<kbd>'{'</kbd> == <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>[<var>1</var>]) {</td></tr>
+<tr><th id="128">128</th><td>          <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col2 decl" id="12match" title='match' data-type='_Bool' data-ref="12match">match</dfn> = <a class="macro" href="../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="129">129</th><td>          <a class="local col9 ref" href="#9end" title='end' data-ref="9end">end</a> = <a class="ref" href="../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>, <kbd>'}'</kbd>);</td></tr>
+<tr><th id="130">130</th><td>          <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a> += <var>2</var>; <i>/* pass the % and the { */</i></td></tr>
+<tr><th id="131">131</th><td>          <b>if</b>(!<a class="local col9 ref" href="#9end" title='end' data-ref="9end">end</a>) {</td></tr>
+<tr><th id="132">132</th><td>            <a class="ref" href="../../include/stdio.h.html#fputs" title='fputs' data-ref="fputs">fputs</a>(<q>"%{"</q>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="133">133</th><td>            <b>continue</b>;</td></tr>
+<tr><th id="134">134</th><td>          }</td></tr>
+<tr><th id="135">135</th><td>          <a class="local col0 ref" href="#10keepit" title='keepit' data-ref="10keepit">keepit</a> = *<a class="local col9 ref" href="#9end" title='end' data-ref="9end">end</a>;</td></tr>
+<tr><th id="136">136</th><td>          *<a class="local col9 ref" href="#9end" title='end' data-ref="9end">end</a> = <var>0</var>; <i>/* zero terminate */</i></td></tr>
+<tr><th id="137">137</th><td>          <b>for</b>(<a class="local col1 ref" href="#11i" title='i' data-ref="11i">i</a> = <var>0</var>; <a class="tu ref" href="#replacements" title='replacements' data-use='m' data-ref="replacements">replacements</a>[<a class="local col1 ref" href="#11i" title='i' data-ref="11i">i</a>].<a class="tu ref" href="#variable::name" title='variable::name' data-use='r' data-ref="variable::name">name</a>; <a class="local col1 ref" href="#11i" title='i' data-ref="11i">i</a>++) {</td></tr>
+<tr><th id="138">138</th><td>            <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>, <a class="tu ref" href="#replacements" title='replacements' data-use='m' data-ref="replacements">replacements</a>[<a class="local col1 ref" href="#11i" title='i' data-ref="11i">i</a>].<a class="tu ref" href="#variable::name" title='variable::name' data-use='r' data-ref="variable::name">name</a>)) {</td></tr>
+<tr><th id="139">139</th><td>              <a class="local col2 ref" href="#12match" title='match' data-ref="12match">match</a> = <a class="macro" href="../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="140">140</th><td>              <b>switch</b>(<a class="tu ref" href="#replacements" title='replacements' data-use='m' data-ref="replacements">replacements</a>[<a class="local col1 ref" href="#11i" title='i' data-ref="11i">i</a>].<a class="tu ref" href="#variable::id" title='variable::id' data-use='r' data-ref="variable::id">id</a>) {</td></tr>
+<tr><th id="141">141</th><td>              <b>case</b> <a class="enum" href="#VAR_EFFECTIVE_URL" title='VAR_EFFECTIVE_URL' data-ref="VAR_EFFECTIVE_URL">VAR_EFFECTIVE_URL</a>:</td></tr>
+<tr><th id="142">142</th><td>                <b>if</b>((<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="143">143</th><td>                    <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_EFFECTIVE_URL,&amp;stringp)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_EFFECTIVE_URL" title='CURLINFO_EFFECTIVE_URL' data-ref="CURLINFO_EFFECTIVE_URL">CURLINFO_EFFECTIVE_URL</a>, &amp;<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>))</td></tr>
+<tr><th id="144">144</th><td>                   &amp;&amp; <a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>)</td></tr>
+<tr><th id="145">145</th><td>                  <a class="ref" href="../../include/stdio.h.html#fputs" title='fputs' data-ref="fputs">fputs</a>(<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="146">146</th><td>                <b>break</b>;</td></tr>
+<tr><th id="147">147</th><td>              <b>case</b> <a class="enum" href="#VAR_HTTP_CODE" title='VAR_HTTP_CODE' data-ref="VAR_HTTP_CODE">VAR_HTTP_CODE</a>:</td></tr>
+<tr><th id="148">148</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="149">149</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_RESPONSE_CODE,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_RESPONSE_CODE" title='CURLINFO_RESPONSE_CODE' data-ref="CURLINFO_RESPONSE_CODE">CURLINFO_RESPONSE_CODE</a>, &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="150">150</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%03ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="151">151</th><td>                <b>break</b>;</td></tr>
+<tr><th id="152">152</th><td>              <b>case</b> <a class="enum" href="#VAR_HTTP_CODE_PROXY" title='VAR_HTTP_CODE_PROXY' data-ref="VAR_HTTP_CODE_PROXY">VAR_HTTP_CODE_PROXY</a>:</td></tr>
+<tr><th id="153">153</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="154">154</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_HTTP_CONNECTCODE,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HTTP_CONNECTCODE" title='CURLINFO_HTTP_CONNECTCODE' data-ref="CURLINFO_HTTP_CONNECTCODE">CURLINFO_HTTP_CONNECTCODE</a>,</td></tr>
+<tr><th id="155">155</th><td>                                     &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="156">156</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%03ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="157">157</th><td>                <b>break</b>;</td></tr>
+<tr><th id="158">158</th><td>              <b>case</b> <a class="enum" href="#VAR_HEADER_SIZE" title='VAR_HEADER_SIZE' data-ref="VAR_HEADER_SIZE">VAR_HEADER_SIZE</a>:</td></tr>
+<tr><th id="159">159</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="160">160</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_HEADER_SIZE,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HEADER_SIZE" title='CURLINFO_HEADER_SIZE' data-ref="CURLINFO_HEADER_SIZE">CURLINFO_HEADER_SIZE</a>, &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="161">161</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="162">162</th><td>                <b>break</b>;</td></tr>
+<tr><th id="163">163</th><td>              <b>case</b> <a class="enum" href="#VAR_REQUEST_SIZE" title='VAR_REQUEST_SIZE' data-ref="VAR_REQUEST_SIZE">VAR_REQUEST_SIZE</a>:</td></tr>
+<tr><th id="164">164</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="165">165</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_REQUEST_SIZE,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_REQUEST_SIZE" title='CURLINFO_REQUEST_SIZE' data-ref="CURLINFO_REQUEST_SIZE">CURLINFO_REQUEST_SIZE</a>, &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="166">166</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="167">167</th><td>                <b>break</b>;</td></tr>
+<tr><th id="168">168</th><td>              <b>case</b> <a class="enum" href="#VAR_NUM_CONNECTS" title='VAR_NUM_CONNECTS' data-ref="VAR_NUM_CONNECTS">VAR_NUM_CONNECTS</a>:</td></tr>
+<tr><th id="169">169</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="170">170</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_NUM_CONNECTS,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_NUM_CONNECTS" title='CURLINFO_NUM_CONNECTS' data-ref="CURLINFO_NUM_CONNECTS">CURLINFO_NUM_CONNECTS</a>, &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="171">171</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="172">172</th><td>                <b>break</b>;</td></tr>
+<tr><th id="173">173</th><td>              <b>case</b> <a class="enum" href="#VAR_REDIRECT_COUNT" title='VAR_REDIRECT_COUNT' data-ref="VAR_REDIRECT_COUNT">VAR_REDIRECT_COUNT</a>:</td></tr>
+<tr><th id="174">174</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="175">175</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_REDIRECT_COUNT,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_REDIRECT_COUNT" title='CURLINFO_REDIRECT_COUNT' data-ref="CURLINFO_REDIRECT_COUNT">CURLINFO_REDIRECT_COUNT</a>, &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="176">176</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="177">177</th><td>                <b>break</b>;</td></tr>
+<tr><th id="178">178</th><td>              <b>case</b> <a class="enum" href="#VAR_REDIRECT_TIME" title='VAR_REDIRECT_TIME' data-ref="VAR_REDIRECT_TIME">VAR_REDIRECT_TIME</a>:</td></tr>
+<tr><th id="179">179</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="180">180</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_REDIRECT_TIME,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_REDIRECT_TIME" title='CURLINFO_REDIRECT_TIME' data-ref="CURLINFO_REDIRECT_TIME">CURLINFO_REDIRECT_TIME</a>,</td></tr>
+<tr><th id="181">181</th><td>                                     &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="182">182</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.6f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="183">183</th><td>                <b>break</b>;</td></tr>
+<tr><th id="184">184</th><td>              <b>case</b> <a class="enum" href="#VAR_TOTAL_TIME" title='VAR_TOTAL_TIME' data-ref="VAR_TOTAL_TIME">VAR_TOTAL_TIME</a>:</td></tr>
+<tr><th id="185">185</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="186">186</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_TOTAL_TIME,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_TOTAL_TIME" title='CURLINFO_TOTAL_TIME' data-ref="CURLINFO_TOTAL_TIME">CURLINFO_TOTAL_TIME</a>, &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="187">187</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.6f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="188">188</th><td>                <b>break</b>;</td></tr>
+<tr><th id="189">189</th><td>              <b>case</b> <a class="enum" href="#VAR_NAMELOOKUP_TIME" title='VAR_NAMELOOKUP_TIME' data-ref="VAR_NAMELOOKUP_TIME">VAR_NAMELOOKUP_TIME</a>:</td></tr>
+<tr><th id="190">190</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="191">191</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_NAMELOOKUP_TIME,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_NAMELOOKUP_TIME" title='CURLINFO_NAMELOOKUP_TIME' data-ref="CURLINFO_NAMELOOKUP_TIME">CURLINFO_NAMELOOKUP_TIME</a>,</td></tr>
+<tr><th id="192">192</th><td>                                     &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="193">193</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.6f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="194">194</th><td>                <b>break</b>;</td></tr>
+<tr><th id="195">195</th><td>              <b>case</b> <a class="enum" href="#VAR_CONNECT_TIME" title='VAR_CONNECT_TIME' data-ref="VAR_CONNECT_TIME">VAR_CONNECT_TIME</a>:</td></tr>
+<tr><th id="196">196</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="197">197</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_CONNECT_TIME,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_CONNECT_TIME" title='CURLINFO_CONNECT_TIME' data-ref="CURLINFO_CONNECT_TIME">CURLINFO_CONNECT_TIME</a>, &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="198">198</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.6f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="199">199</th><td>                <b>break</b>;</td></tr>
+<tr><th id="200">200</th><td>              <b>case</b> <a class="enum" href="#VAR_APPCONNECT_TIME" title='VAR_APPCONNECT_TIME' data-ref="VAR_APPCONNECT_TIME">VAR_APPCONNECT_TIME</a>:</td></tr>
+<tr><th id="201">201</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="202">202</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_APPCONNECT_TIME,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_APPCONNECT_TIME" title='CURLINFO_APPCONNECT_TIME' data-ref="CURLINFO_APPCONNECT_TIME">CURLINFO_APPCONNECT_TIME</a>,</td></tr>
+<tr><th id="203">203</th><td>                                     &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="204">204</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.6f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="205">205</th><td>                <b>break</b>;</td></tr>
+<tr><th id="206">206</th><td>              <b>case</b> <a class="enum" href="#VAR_PRETRANSFER_TIME" title='VAR_PRETRANSFER_TIME' data-ref="VAR_PRETRANSFER_TIME">VAR_PRETRANSFER_TIME</a>:</td></tr>
+<tr><th id="207">207</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="208">208</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_PRETRANSFER_TIME,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_PRETRANSFER_TIME" title='CURLINFO_PRETRANSFER_TIME' data-ref="CURLINFO_PRETRANSFER_TIME">CURLINFO_PRETRANSFER_TIME</a>,</td></tr>
+<tr><th id="209">209</th><td>                                     &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="210">210</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.6f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="211">211</th><td>                <b>break</b>;</td></tr>
+<tr><th id="212">212</th><td>              <b>case</b> <a class="enum" href="#VAR_STARTTRANSFER_TIME" title='VAR_STARTTRANSFER_TIME' data-ref="VAR_STARTTRANSFER_TIME">VAR_STARTTRANSFER_TIME</a>:</td></tr>
+<tr><th id="213">213</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="214">214</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_STARTTRANSFER_TIME,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_STARTTRANSFER_TIME" title='CURLINFO_STARTTRANSFER_TIME' data-ref="CURLINFO_STARTTRANSFER_TIME">CURLINFO_STARTTRANSFER_TIME</a>,</td></tr>
+<tr><th id="215">215</th><td>                                     &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="216">216</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.6f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="217">217</th><td>                <b>break</b>;</td></tr>
+<tr><th id="218">218</th><td>              <b>case</b> <a class="enum" href="#VAR_SIZE_UPLOAD" title='VAR_SIZE_UPLOAD' data-ref="VAR_SIZE_UPLOAD">VAR_SIZE_UPLOAD</a>:</td></tr>
+<tr><th id="219">219</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="220">220</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_SIZE_UPLOAD,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_SIZE_UPLOAD" title='CURLINFO_SIZE_UPLOAD' data-ref="CURLINFO_SIZE_UPLOAD">CURLINFO_SIZE_UPLOAD</a>, &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="221">221</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.0f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="222">222</th><td>                <b>break</b>;</td></tr>
+<tr><th id="223">223</th><td>              <b>case</b> <a class="enum" href="#VAR_SIZE_DOWNLOAD" title='VAR_SIZE_DOWNLOAD' data-ref="VAR_SIZE_DOWNLOAD">VAR_SIZE_DOWNLOAD</a>:</td></tr>
+<tr><th id="224">224</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="225">225</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_SIZE_DOWNLOAD,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_SIZE_DOWNLOAD" title='CURLINFO_SIZE_DOWNLOAD' data-ref="CURLINFO_SIZE_DOWNLOAD">CURLINFO_SIZE_DOWNLOAD</a>,</td></tr>
+<tr><th id="226">226</th><td>                                     &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="227">227</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.0f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="228">228</th><td>                <b>break</b>;</td></tr>
+<tr><th id="229">229</th><td>              <b>case</b> <a class="enum" href="#VAR_SPEED_DOWNLOAD" title='VAR_SPEED_DOWNLOAD' data-ref="VAR_SPEED_DOWNLOAD">VAR_SPEED_DOWNLOAD</a>:</td></tr>
+<tr><th id="230">230</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="231">231</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_SPEED_DOWNLOAD,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_SPEED_DOWNLOAD" title='CURLINFO_SPEED_DOWNLOAD' data-ref="CURLINFO_SPEED_DOWNLOAD">CURLINFO_SPEED_DOWNLOAD</a>,</td></tr>
+<tr><th id="232">232</th><td>                                     &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="233">233</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.3f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="234">234</th><td>                <b>break</b>;</td></tr>
+<tr><th id="235">235</th><td>              <b>case</b> <a class="enum" href="#VAR_SPEED_UPLOAD" title='VAR_SPEED_UPLOAD' data-ref="VAR_SPEED_UPLOAD">VAR_SPEED_UPLOAD</a>:</td></tr>
+<tr><th id="236">236</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="237">237</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_SPEED_UPLOAD,&amp;doubleinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_SPEED_UPLOAD" title='CURLINFO_SPEED_UPLOAD' data-ref="CURLINFO_SPEED_UPLOAD">CURLINFO_SPEED_UPLOAD</a>, &amp;<a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>))</td></tr>
+<tr><th id="238">238</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%.3f"</q>, <a class="local col8 ref" href="#8doubleinfo" title='doubleinfo' data-ref="8doubleinfo">doubleinfo</a>);</td></tr>
+<tr><th id="239">239</th><td>                <b>break</b>;</td></tr>
+<tr><th id="240">240</th><td>              <b>case</b> <a class="enum" href="#VAR_CONTENT_TYPE" title='VAR_CONTENT_TYPE' data-ref="VAR_CONTENT_TYPE">VAR_CONTENT_TYPE</a>:</td></tr>
+<tr><th id="241">241</th><td>                <b>if</b>((<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="242">242</th><td>                    <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_CONTENT_TYPE,&amp;stringp)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_CONTENT_TYPE" title='CURLINFO_CONTENT_TYPE' data-ref="CURLINFO_CONTENT_TYPE">CURLINFO_CONTENT_TYPE</a>, &amp;<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>))</td></tr>
+<tr><th id="243">243</th><td>                   &amp;&amp; <a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>)</td></tr>
+<tr><th id="244">244</th><td>                  <a class="ref" href="../../include/stdio.h.html#fputs" title='fputs' data-ref="fputs">fputs</a>(<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="245">245</th><td>                <b>break</b>;</td></tr>
+<tr><th id="246">246</th><td>              <b>case</b> <a class="enum" href="#VAR_FTP_ENTRY_PATH" title='VAR_FTP_ENTRY_PATH' data-ref="VAR_FTP_ENTRY_PATH">VAR_FTP_ENTRY_PATH</a>:</td></tr>
+<tr><th id="247">247</th><td>                <b>if</b>((<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="248">248</th><td>                    <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_FTP_ENTRY_PATH,&amp;stringp)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_FTP_ENTRY_PATH" title='CURLINFO_FTP_ENTRY_PATH' data-ref="CURLINFO_FTP_ENTRY_PATH">CURLINFO_FTP_ENTRY_PATH</a>, &amp;<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>))</td></tr>
+<tr><th id="249">249</th><td>                   &amp;&amp; <a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>)</td></tr>
+<tr><th id="250">250</th><td>                  <a class="ref" href="../../include/stdio.h.html#fputs" title='fputs' data-ref="fputs">fputs</a>(<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="251">251</th><td>                <b>break</b>;</td></tr>
+<tr><th id="252">252</th><td>              <b>case</b> <a class="enum" href="#VAR_REDIRECT_URL" title='VAR_REDIRECT_URL' data-ref="VAR_REDIRECT_URL">VAR_REDIRECT_URL</a>:</td></tr>
+<tr><th id="253">253</th><td>                <b>if</b>((<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="254">254</th><td>                    <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_REDIRECT_URL,&amp;stringp)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_REDIRECT_URL" title='CURLINFO_REDIRECT_URL' data-ref="CURLINFO_REDIRECT_URL">CURLINFO_REDIRECT_URL</a>, &amp;<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>))</td></tr>
+<tr><th id="255">255</th><td>                   &amp;&amp; <a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>)</td></tr>
+<tr><th id="256">256</th><td>                  <a class="ref" href="../../include/stdio.h.html#fputs" title='fputs' data-ref="fputs">fputs</a>(<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="257">257</th><td>                <b>break</b>;</td></tr>
+<tr><th id="258">258</th><td>              <b>case</b> <a class="enum" href="#VAR_SSL_VERIFY_RESULT" title='VAR_SSL_VERIFY_RESULT' data-ref="VAR_SSL_VERIFY_RESULT">VAR_SSL_VERIFY_RESULT</a>:</td></tr>
+<tr><th id="259">259</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="260">260</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_SSL_VERIFYRESULT,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_SSL_VERIFYRESULT" title='CURLINFO_SSL_VERIFYRESULT' data-ref="CURLINFO_SSL_VERIFYRESULT">CURLINFO_SSL_VERIFYRESULT</a>,</td></tr>
+<tr><th id="261">261</th><td>                                     &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="262">262</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="263">263</th><td>                <b>break</b>;</td></tr>
+<tr><th id="264">264</th><td>              <b>case</b> <a class="enum" href="#VAR_PROXY_SSL_VERIFY_RESULT" title='VAR_PROXY_SSL_VERIFY_RESULT' data-ref="VAR_PROXY_SSL_VERIFY_RESULT">VAR_PROXY_SSL_VERIFY_RESULT</a>:</td></tr>
+<tr><th id="265">265</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="266">266</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_PROXY_SSL_VERIFYRESULT,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_PROXY_SSL_VERIFYRESULT" title='CURLINFO_PROXY_SSL_VERIFYRESULT' data-ref="CURLINFO_PROXY_SSL_VERIFYRESULT">CURLINFO_PROXY_SSL_VERIFYRESULT</a>,</td></tr>
+<tr><th id="267">267</th><td>                                     &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="268">268</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="269">269</th><td>                <b>break</b>;</td></tr>
+<tr><th id="270">270</th><td>              <b>case</b> <a class="enum" href="#VAR_EFFECTIVE_FILENAME" title='VAR_EFFECTIVE_FILENAME' data-ref="VAR_EFFECTIVE_FILENAME">VAR_EFFECTIVE_FILENAME</a>:</td></tr>
+<tr><th id="271">271</th><td>                <b>if</b>(<a class="local col2 ref" href="#2outs" title='outs' data-ref="2outs">outs</a>-&gt;<a class="ref" href="tool_sdecls.h.html#OutStruct::filename" title='OutStruct::filename' data-ref="OutStruct::filename">filename</a>)</td></tr>
+<tr><th id="272">272</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%s"</q>, <a class="local col2 ref" href="#2outs" title='outs' data-ref="2outs">outs</a>-&gt;<a class="ref" href="tool_sdecls.h.html#OutStruct::filename" title='OutStruct::filename' data-ref="OutStruct::filename">filename</a>);</td></tr>
+<tr><th id="273">273</th><td>                <b>break</b>;</td></tr>
+<tr><th id="274">274</th><td>              <b>case</b> <a class="enum" href="#VAR_PRIMARY_IP" title='VAR_PRIMARY_IP' data-ref="VAR_PRIMARY_IP">VAR_PRIMARY_IP</a>:</td></tr>
+<tr><th id="275">275</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="276">276</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_PRIMARY_IP,&amp;stringp)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_PRIMARY_IP" title='CURLINFO_PRIMARY_IP' data-ref="CURLINFO_PRIMARY_IP">CURLINFO_PRIMARY_IP</a>,</td></tr>
+<tr><th id="277">277</th><td>                                     &amp;<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>))</td></tr>
+<tr><th id="278">278</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%s"</q>, <a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>);</td></tr>
+<tr><th id="279">279</th><td>                <b>break</b>;</td></tr>
+<tr><th id="280">280</th><td>              <b>case</b> <a class="enum" href="#VAR_PRIMARY_PORT" title='VAR_PRIMARY_PORT' data-ref="VAR_PRIMARY_PORT">VAR_PRIMARY_PORT</a>:</td></tr>
+<tr><th id="281">281</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="282">282</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_PRIMARY_PORT,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_PRIMARY_PORT" title='CURLINFO_PRIMARY_PORT' data-ref="CURLINFO_PRIMARY_PORT">CURLINFO_PRIMARY_PORT</a>,</td></tr>
+<tr><th id="283">283</th><td>                                     &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="284">284</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="285">285</th><td>                <b>break</b>;</td></tr>
+<tr><th id="286">286</th><td>              <b>case</b> <a class="enum" href="#VAR_LOCAL_IP" title='VAR_LOCAL_IP' data-ref="VAR_LOCAL_IP">VAR_LOCAL_IP</a>:</td></tr>
+<tr><th id="287">287</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="288">288</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_LOCAL_IP,&amp;stringp)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_LOCAL_IP" title='CURLINFO_LOCAL_IP' data-ref="CURLINFO_LOCAL_IP">CURLINFO_LOCAL_IP</a>,</td></tr>
+<tr><th id="289">289</th><td>                                     &amp;<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>))</td></tr>
+<tr><th id="290">290</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%s"</q>, <a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>);</td></tr>
+<tr><th id="291">291</th><td>                <b>break</b>;</td></tr>
+<tr><th id="292">292</th><td>              <b>case</b> <a class="enum" href="#VAR_LOCAL_PORT" title='VAR_LOCAL_PORT' data-ref="VAR_LOCAL_PORT">VAR_LOCAL_PORT</a>:</td></tr>
+<tr><th id="293">293</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="294">294</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_LOCAL_PORT,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_LOCAL_PORT" title='CURLINFO_LOCAL_PORT' data-ref="CURLINFO_LOCAL_PORT">CURLINFO_LOCAL_PORT</a>,</td></tr>
+<tr><th id="295">295</th><td>                                     &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>))</td></tr>
+<tr><th id="296">296</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%ld"</q>, <a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>);</td></tr>
+<tr><th id="297">297</th><td>                <b>break</b>;</td></tr>
+<tr><th id="298">298</th><td>              <b>case</b> <a class="enum" href="#VAR_HTTP_VERSION" title='VAR_HTTP_VERSION' data-ref="VAR_HTTP_VERSION">VAR_HTTP_VERSION</a>:</td></tr>
+<tr><th id="299">299</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="300">300</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_HTTP_VERSION,&amp;longinfo)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HTTP_VERSION" title='CURLINFO_HTTP_VERSION' data-ref="CURLINFO_HTTP_VERSION">CURLINFO_HTTP_VERSION</a>,</td></tr>
+<tr><th id="301">301</th><td>                                     &amp;<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>)) {</td></tr>
+<tr><th id="302">302</th><td>                  <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="13version" title='version' data-type='const char *' data-ref="13version">version</dfn> = <q>"0"</q>;</td></tr>
+<tr><th id="303">303</th><td>                  <b>switch</b>(<a class="local col7 ref" href="#7longinfo" title='longinfo' data-ref="7longinfo">longinfo</a>) {</td></tr>
+<tr><th id="304">304</th><td>                  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURL_HTTP_VERSION_1_0" title='CURL_HTTP_VERSION_1_0' data-ref="CURL_HTTP_VERSION_1_0">CURL_HTTP_VERSION_1_0</a>:</td></tr>
+<tr><th id="305">305</th><td>                    <a class="local col3 ref" href="#13version" title='version' data-ref="13version">version</a> = <q>"1.0"</q>;</td></tr>
+<tr><th id="306">306</th><td>                    <b>break</b>;</td></tr>
+<tr><th id="307">307</th><td>                  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURL_HTTP_VERSION_1_1" title='CURL_HTTP_VERSION_1_1' data-ref="CURL_HTTP_VERSION_1_1">CURL_HTTP_VERSION_1_1</a>:</td></tr>
+<tr><th id="308">308</th><td>                    <a class="local col3 ref" href="#13version" title='version' data-ref="13version">version</a> = <q>"1.1"</q>;</td></tr>
+<tr><th id="309">309</th><td>                    <b>break</b>;</td></tr>
+<tr><th id="310">310</th><td>                  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURL_HTTP_VERSION_2_0" title='CURL_HTTP_VERSION_2_0' data-ref="CURL_HTTP_VERSION_2_0">CURL_HTTP_VERSION_2_0</a>:</td></tr>
+<tr><th id="311">311</th><td>                    <a class="local col3 ref" href="#13version" title='version' data-ref="13version">version</a> = <q>"2"</q>;</td></tr>
+<tr><th id="312">312</th><td>                    <b>break</b>;</td></tr>
+<tr><th id="313">313</th><td>                  }</td></tr>
+<tr><th id="314">314</th><td></td></tr>
+<tr><th id="315">315</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <a class="local col3 ref" href="#13version" title='version' data-ref="13version">version</a>);</td></tr>
+<tr><th id="316">316</th><td>                }</td></tr>
+<tr><th id="317">317</th><td>                <b>break</b>;</td></tr>
+<tr><th id="318">318</th><td>              <b>case</b> <a class="enum" href="#VAR_SCHEME" title='VAR_SCHEME' data-ref="VAR_SCHEME">VAR_SCHEME</a>:</td></tr>
+<tr><th id="319">319</th><td>                <b>if</b>(<a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a> ==</td></tr>
+<tr><th id="320">320</th><td>                   <a class="macro" href="../include/curl/curl.h.html#2734" title="curl_easy_getinfo(curl,CURLINFO_SCHEME,&amp;stringp)" data-ref="_M/curl_easy_getinfo">curl_easy_getinfo</a>(<a class="local col1 ref" href="#1curl" title='curl' data-ref="1curl">curl</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_SCHEME" title='CURLINFO_SCHEME' data-ref="CURLINFO_SCHEME">CURLINFO_SCHEME</a>,</td></tr>
+<tr><th id="321">321</th><td>                                     &amp;<a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>))</td></tr>
+<tr><th id="322">322</th><td>                  <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>, <q>"%s"</q>, <a class="local col6 ref" href="#6stringp" title='stringp' data-ref="6stringp">stringp</a>);</td></tr>
+<tr><th id="323">323</th><td>                <b>break</b>;</td></tr>
+<tr><th id="324">324</th><td>              <b>default</b>:</td></tr>
+<tr><th id="325">325</th><td>                <b>break</b>;</td></tr>
+<tr><th id="326">326</th><td>              }</td></tr>
+<tr><th id="327">327</th><td>              <b>break</b>;</td></tr>
+<tr><th id="328">328</th><td>            }</td></tr>
+<tr><th id="329">329</th><td>          }</td></tr>
+<tr><th id="330">330</th><td>          <b>if</b>(!<a class="local col2 ref" href="#12match" title='match' data-ref="12match">match</a>) {</td></tr>
+<tr><th id="331">331</th><td>            <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"curl: unknown --write-out variable: '%s'\n"</q>, <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>);</td></tr>
+<tr><th id="332">332</th><td>          }</td></tr>
+<tr><th id="333">333</th><td>          <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a> = <a class="local col9 ref" href="#9end" title='end' data-ref="9end">end</a> + <var>1</var>; <i>/* pass the end */</i></td></tr>
+<tr><th id="334">334</th><td>          *<a class="local col9 ref" href="#9end" title='end' data-ref="9end">end</a> = <a class="local col0 ref" href="#10keepit" title='keepit' data-ref="10keepit">keepit</a>;</td></tr>
+<tr><th id="335">335</th><td>        }</td></tr>
+<tr><th id="336">336</th><td>        <b>else</b> {</td></tr>
+<tr><th id="337">337</th><td>          <i>/* illegal syntax, then just output the characters that are used */</i></td></tr>
+<tr><th id="338">338</th><td>          <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(<kbd>'%'</kbd>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="339">339</th><td>          <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>[<var>1</var>], <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="340">340</th><td>          <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a> += <var>2</var>;</td></tr>
+<tr><th id="341">341</th><td>        }</td></tr>
+<tr><th id="342">342</th><td>      }</td></tr>
+<tr><th id="343">343</th><td>    }</td></tr>
+<tr><th id="344">344</th><td>    <b>else</b> <b>if</b>(<kbd>'\\'</kbd> == *<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a> &amp;&amp; <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>[<var>1</var>]) {</td></tr>
+<tr><th id="345">345</th><td>      <b>switch</b>(<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>[<var>1</var>]) {</td></tr>
+<tr><th id="346">346</th><td>      <b>case</b> <kbd>'r'</kbd>:</td></tr>
+<tr><th id="347">347</th><td>        <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(<kbd>'\r'</kbd>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="348">348</th><td>        <b>break</b>;</td></tr>
+<tr><th id="349">349</th><td>      <b>case</b> <kbd>'n'</kbd>:</td></tr>
+<tr><th id="350">350</th><td>        <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(<kbd>'\n'</kbd>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="351">351</th><td>        <b>break</b>;</td></tr>
+<tr><th id="352">352</th><td>      <b>case</b> <kbd>'t'</kbd>:</td></tr>
+<tr><th id="353">353</th><td>        <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(<kbd>'\t'</kbd>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="354">354</th><td>        <b>break</b>;</td></tr>
+<tr><th id="355">355</th><td>      <b>default</b>:</td></tr>
+<tr><th id="356">356</th><td>        <i>/* unknown, just output this */</i></td></tr>
+<tr><th id="357">357</th><td>        <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(*<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="358">358</th><td>        <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>[<var>1</var>], <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="359">359</th><td>        <b>break</b>;</td></tr>
+<tr><th id="360">360</th><td>      }</td></tr>
+<tr><th id="361">361</th><td>      <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a> += <var>2</var>;</td></tr>
+<tr><th id="362">362</th><td>    }</td></tr>
+<tr><th id="363">363</th><td>    <b>else</b> {</td></tr>
+<tr><th id="364">364</th><td>      <a class="ref" href="../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(*<a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>, <a class="local col4 ref" href="#4stream" title='stream' data-ref="4stream">stream</a>);</td></tr>
+<tr><th id="365">365</th><td>      <a class="local col5 ref" href="#5ptr" title='ptr' data-ref="5ptr">ptr</a>++;</td></tr>
+<tr><th id="366">366</th><td>    }</td></tr>
+<tr><th id="367">367</th><td>  }</td></tr>
+<tr><th id="368">368</th><td></td></tr>
+<tr><th id="369">369</th><td>}</td></tr>
+<tr><th id="370">370</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

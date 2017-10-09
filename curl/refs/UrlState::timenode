@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1302' type='struct Curl_tree'/>
+<offset>134784</offset>
+<doc f='codebrowser/lib/urldata.h' l='1302'>/* for the splay stuff */</doc>
+<use f='codebrowser/lib/multi.c' l='2542' u='a' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2979' u='a' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='2988' u='m' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='2990' u='a' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='3027' u='a' c='Curl_expire_clear'/>

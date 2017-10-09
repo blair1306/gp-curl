@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1655' type='_Bool'/>
+<offset>11968</offset>
+<use f='codebrowser/lib/http_chunks.c' l='122' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='196' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='272' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/url.c' l='2628' u='w' c='Curl_setopt'/>

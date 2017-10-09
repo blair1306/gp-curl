@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='912' type='curl_socket_t'/>
+<offset>7968</offset>
+<doc f='codebrowser/lib/urldata.h' l='912'>/* socket to write to, it may very
+                                well be the same we read from.
+                                CURL_SOCKET_BAD disables */</doc>
+<use f='codebrowser/lib/multi.c' l='1234' u='r' c='do_complete'/>
+<use f='codebrowser/lib/multi.c' l='1235' u='r' c='do_complete'/>
+<use f='codebrowser/lib/multi.c' l='1813' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/smtp.c' l='1218' u='r' c='smtp_done'/>
+<use f='codebrowser/lib/transfer.c' l='1034' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1115' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1292' u='r' c='Curl_single_getsock'/>
+<use f='codebrowser/lib/transfer.c' l='1301' u='r' c='Curl_single_getsock'/>
+<use f='codebrowser/lib/transfer.c' l='2013' u='w' c='Curl_setup_transfer'/>
+<use f='codebrowser/lib/transfer.c' l='2036' u='r' c='Curl_setup_transfer'/>

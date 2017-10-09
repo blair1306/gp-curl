@@ -1,0 +1,4 @@
+<dec f='codebrowser/tests/server/getpart.h' l='26'/>
+<use f='codebrowser/tests/server/getpart.c' l='343' u='c'/>
+<use f='codebrowser/tests/server/getpart.c' l='405' u='c'/>
+<use f='codebrowser/tests/server/getpart.c' l='425' u='c'/>

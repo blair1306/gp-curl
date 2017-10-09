@@ -1,0 +1,13 @@
+<def f='codebrowser/lib/smb.h' l='33' ll='45'/>
+<size>80</size>
+<mbr r='smb_conn::state' o='0' t='enum smb_conn_state'/>
+<mbr r='smb_conn::user' o='64' t='char *'/>
+<mbr r='smb_conn::domain' o='128' t='char *'/>
+<mbr r='smb_conn::challenge' o='192' t='unsigned char [8]'/>
+<mbr r='smb_conn::session_key' o='256' t='unsigned int'/>
+<mbr r='smb_conn::uid' o='288' t='unsigned short'/>
+<mbr r='smb_conn::recv_buf' o='320' t='char *'/>
+<mbr r='smb_conn::upload_size' o='384' t='size_t'/>
+<mbr r='smb_conn::send_size' o='448' t='size_t'/>
+<mbr r='smb_conn::sent' o='512' t='size_t'/>
+<mbr r='smb_conn::got' o='576' t='size_t'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='248' type='curl_error'/>
+<offset>8672</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='248'>/* if non-zero, it overrides any libcurl
+                                     error */</doc>
+<use f='codebrowser/src/tool_cb_wrt.c' l='153' u='w' c='tool_write_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='1783' u='r' c='operate_do'/>

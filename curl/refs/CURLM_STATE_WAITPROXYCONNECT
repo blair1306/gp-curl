@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/multihandle.h' l='42' type='5'/>
+<doc f='codebrowser/lib/multihandle.h' l='42'>/* 5 - awaiting HTTPS proxy SSL initialization
+                                   to complete and/or proxy CONNECT to
+                                   finalize */</doc>
+<use f='codebrowser/lib/multi.c' l='901' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1472' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1537' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1554' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1585' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1591' u='r' c='multi_runsingle'/>

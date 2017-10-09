@@ -1,0 +1,13 @@
+<dec f='include/x86_64-linux-gnu/bits/socket.h' l='90'/>
+<use f='codebrowser/lib/connect.c' l='620' u='a'/>
+<use f='codebrowser/lib/connect.c' l='645' u='a'/>
+<use f='codebrowser/lib/connect.c' l='646' u='c'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='506' u='c'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='517' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='74' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1390' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2054' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2166' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2168' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2174' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2381' u='c'/>

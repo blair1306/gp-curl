@@ -1,0 +1,2 @@
+<dec f='include/openssl/ui.h' l='214' type='const char * UI_get0_result(UI * ui, int i)'/>
+<doc f='include/openssl/ui.h' l='213'>/* Return the result associated with a prompt given with the index i. */</doc>

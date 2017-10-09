@@ -1,0 +1,27 @@
+<dec f='codebrowser/lib/llist.h' l='44' type='void Curl_llist_insert_next(struct curl_llist * , struct curl_llist_element * , const void * , struct curl_llist_element * node)'/>
+<use f='codebrowser/lib/conncache.c' l='77' u='c' c='bundle_add_conn'/>
+<use f='codebrowser/lib/ftplistparser.c' l='320' u='c' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/hash.c' l='127' u='c' c='Curl_hash_add'/>
+<def f='codebrowser/lib/llist.c' l='56' ll='87' type='void Curl_llist_insert_next(struct curl_llist * list, struct curl_llist_element * e, const void * p, struct curl_llist_element * ne)'/>
+<doc f='codebrowser/lib/llist.c' l='45'>/*
+ * Curl_llist_insert_next()
+ *
+ * Inserts a new list element after the given one &apos;e&apos;. If the given existing
+ * entry is NULL and the list already has elements, the new one will be
+ * inserted first in the list.
+ *
+ * The &apos;ne&apos; argument should be a pointer into the object to store.
+ *
+ * @unittest: 1300
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='289' u='c' c='multi_addmsg'/>
+<use f='codebrowser/lib/multi.c' l='1445' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2919' u='c' c='multi_addtimeout'/>
+<use f='codebrowser/lib/pipeline.c' l='96' u='c' c='addHandleToPipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='225' u='c' c='Curl_pipeline_set_site_blacklist'/>
+<use f='codebrowser/lib/pipeline.c' l='283' u='c' c='Curl_pipeline_set_server_blacklist'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='93' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='113' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='129' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='173' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='241' u='c' c='test'/>

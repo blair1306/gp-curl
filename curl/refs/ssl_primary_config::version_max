@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='209' type='long'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/urldata.h' l='209'>/* max supported version the client wants to use*/</doc>
+<use f='codebrowser/lib/url.c' l='956' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='969' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1957' u='r' c='set_ssl_version_min_max'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1957' u='r' c='set_ssl_version_min_max'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='90' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='90' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='110' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='110' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='191' u='r' c='ssl_prefs_check'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='197' u='r' c='ssl_prefs_check'/>

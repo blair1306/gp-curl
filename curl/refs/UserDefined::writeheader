@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1494' type='void *'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/urldata.h' l='1494'>/* write the header to this if non-NULL */</doc>
+<use f='codebrowser/lib/sendf.c' l='560' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/sendf.c' l='593' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/url.c' l='1606' u='w' c='Curl_setopt'/>

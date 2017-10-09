@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/hash.h' l='47' type='struct curl_llist *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/hash.c' l='75' u='w' c='Curl_hash_init'/>
+<use f='codebrowser/lib/hash.c' l='76' u='r' c='Curl_hash_init'/>
+<use f='codebrowser/lib/hash.c' l='78' u='r' c='Curl_hash_init'/>
+<use f='codebrowser/lib/hash.c' l='100' u='r' c='Curl_hash_add'/>
+<use f='codebrowser/lib/hash.c' l='100' u='r' c='Curl_hash_delete'/>
+<use f='codebrowser/lib/hash.c' l='100' u='r' c='Curl_hash_pick'/>
+<use f='codebrowser/lib/hash.c' l='213' u='r' c='Curl_hash_destroy'/>
+<use f='codebrowser/lib/hash.c' l='216' u='r' c='Curl_hash_destroy'/>
+<use f='codebrowser/lib/hash.c' l='216' u='w' c='Curl_hash_destroy'/>
+<use f='codebrowser/lib/hash.c' l='245' u='r' c='Curl_hash_clean_with_criterium'/>
+<use f='codebrowser/lib/hash.c' l='304' u='r' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='305' u='r' c='Curl_hash_next_element'/>

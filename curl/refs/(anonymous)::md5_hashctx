@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/curl_md5.h' l='46' type='void *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/curl_md5.h' l='46'>/* Hash function context */</doc>
+<use f='codebrowser/lib/md5.c' l='530' u='w' c='Curl_MD5_init'/>
+<use f='codebrowser/lib/md5.c' l='532' u='r' c='Curl_MD5_init'/>
+<use f='codebrowser/lib/md5.c' l='539' u='r' c='Curl_MD5_init'/>
+<use f='codebrowser/lib/md5.c' l='548' u='r' c='Curl_MD5_update'/>
+<use f='codebrowser/lib/md5.c' l='555' u='r' c='Curl_MD5_final'/>
+<use f='codebrowser/lib/md5.c' l='557' u='r' c='Curl_MD5_final'/>

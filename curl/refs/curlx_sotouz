@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/warnless.h' l='51' type='size_t curlx_sotouz(curl_off_t sonum)'/>
+<use f='codebrowser/lib/file.c' l='566' u='c' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='1635' u='c' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/http.c' l='2203' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http_chunks.c' l='187' u='c' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='348' u='c' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/url.c' l='386' u='c' c='Curl_dupset'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='904' u='c' c='Curl_pin_peer_pubkey'/>
+<def f='codebrowser/lib/warnless.c' l='347' ll='360' type='size_t curlx_sotouz(curl_off_t sonum)'/>
+<doc f='codebrowser/lib/warnless.c' l='343'>/*
+** signed curl_off_t to unsigned size_t
+*/</doc>

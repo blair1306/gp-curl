@@ -1,0 +1,5 @@
+<dec f='include/openssl/x509_vfy.h' l='315'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2068' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2555' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3119' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3136' u='c'/>

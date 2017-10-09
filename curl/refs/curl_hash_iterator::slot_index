@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/hash.h' l='68' type='int'/>
+<offset>64</offset>
+<use f='codebrowser/lib/hash.c' l='287' u='w' c='Curl_hash_start_iterate'/>
+<use f='codebrowser/lib/hash.c' l='303' u='r' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='306' u='w' c='Curl_hash_next_element'/>

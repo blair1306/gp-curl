@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_getparam.h' l='42' type='15'/>
+<use f='codebrowser/src/tool_getparam.c' l='1092' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='2109' u='r' c='parse_args'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='227' u='r' c='parseconfig'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='253' u='r' c='parseconfig'/>

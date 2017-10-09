@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='62' type='void *(*)(struct ssl_connect_data *, CURLINFO)'/>
+<offset>896</offset>
+<use f='codebrowser/lib/getinfo.c' l='376' u='r' c='getinfo_slist'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1118' u='r' c='Curl_multissl_get_internals'/>

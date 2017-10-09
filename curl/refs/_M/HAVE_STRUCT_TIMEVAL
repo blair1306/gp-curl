@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/curl_config.h' l='648'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='109' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='647'>/* Define to 1 if you have the timeval struct. */</doc>

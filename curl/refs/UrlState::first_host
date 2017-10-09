@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='1259' type='char *'/>
+<offset>131776</offset>
+<doc f='codebrowser/lib/urldata.h' l='1259'>/* host name of the first (not followed) request.
+                       if set, this should be the host name that we will
+                       sent authorization to, no else. Used to make Location:
+                       following not keep sending user+password... This is
+                       strdup() data.
+                    */</doc>
+<use f='codebrowser/lib/http.c' l='717' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='719' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='1815' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1817' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1818' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2014' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='447' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='447' u='w' c='Curl_close'/>

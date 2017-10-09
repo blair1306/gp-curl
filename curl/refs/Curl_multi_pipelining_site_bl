@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/multiif.h' l='71' type='struct curl_llist * Curl_multi_pipelining_site_bl(struct Curl_multi * multi)'/>
+<doc f='codebrowser/lib/multiif.h' l='70'>/* Return the value of the CURLMOPT_PIPELINING_SITE_BL option */</doc>
+<def f='codebrowser/lib/multi.c' l='3083' ll='3086' type='struct curl_llist * Curl_multi_pipelining_site_bl(struct Curl_multi * multi)'/>
+<use f='codebrowser/lib/pipeline.c' l='169' u='c' c='Curl_pipeline_site_blacklisted'/>

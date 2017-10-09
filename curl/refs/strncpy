@@ -1,0 +1,11 @@
+<dec f='include/string.h' l='128' type='char * strncpy(char *restrict __dest, const char *restrict __src, size_t __n)'/>
+<doc f='include/string.h' l='127'>/* Copy no more than N characters of SRC to DEST.  */</doc>
+<use f='codebrowser/lib/ftp.c' l='988' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1010' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/telnet.c' l='852' u='c' c='check_telnet_options'/>
+<use f='codebrowser/lib/telnet.c' l='860' u='c' c='check_telnet_options'/>
+<use f='codebrowser/lib/url.c' l='5294' u='c' c='parse_proxy_auth'/>
+<use f='codebrowser/lib/url.c' l='5299' u='c' c='parse_proxy_auth'/>
+<use f='codebrowser/src/tool_getparam.c' l='351' u='c' c='parse_cert_parameter'/>
+<use f='codebrowser/tests/libtest/sethostname.c' l='34' u='c' c='gethostname'/>
+<use f='codebrowser/tests/server/sws.c' l='2169' u='c' c='main'/>

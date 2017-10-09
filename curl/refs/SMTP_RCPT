@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/smtp.h' l='43' type='9'/>
+<doc f='codebrowser/lib/smtp.h' l='43'>/* RCPT TO */</doc>
+<use f='codebrowser/lib/smtp.c' l='623' u='r' c='smtp_perform_rcpt_to'/>
+<use f='codebrowser/lib/smtp.c' l='1040' c='smtp_statemach_act'/>

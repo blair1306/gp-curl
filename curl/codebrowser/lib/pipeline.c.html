@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>pipeline.c source code [codebrowser/lib/pipeline.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="blacklist_node,site_blacklist_entry "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/pipeline.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='pipeline.c.html'>pipeline.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 2013, Linus Nielsen Feltzing, &lt;linus@haxx.se&gt;</i></td></tr>
+<tr><th id="9">9</th><td><i> * Copyright (C) 2013 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="10">10</th><td><i> *</i></td></tr>
+<tr><th id="11">11</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="12">12</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="13">13</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="14">14</th><td><i> *</i></td></tr>
+<tr><th id="15">15</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="16">16</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="17">17</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="18">18</th><td><i> *</i></td></tr>
+<tr><th id="19">19</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="20">20</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="21">21</th><td><i> *</i></td></tr>
+<tr><th id="22">22</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="url.h.html">"url.h"</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="progress.h.html">"progress.h"</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="multiif.h.html">"multiif.h"</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="pipeline.h.html">"pipeline.h"</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="strcase.h.html">"strcase.h"</a></u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="37">37</th><td><i>/* The last #include file should be: */</i></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="39">39</th><td></td></tr>
+<tr><th id="40">40</th><td><b>struct</b> <dfn class="type def" id="site_blacklist_entry" title='site_blacklist_entry' data-ref="site_blacklist_entry">site_blacklist_entry</dfn> {</td></tr>
+<tr><th id="41">41</th><td>  <b>struct</b> <a class="type" href="llist.h.html#curl_llist_element" title='curl_llist_element' data-ref="curl_llist_element">curl_llist_element</a> <dfn class="tu decl" id="site_blacklist_entry::list" title='site_blacklist_entry::list' data-type='struct curl_llist_element' data-ref="site_blacklist_entry::list">list</dfn>;</td></tr>
+<tr><th id="42">42</th><td>  <em>unsigned</em> <em>short</em> <dfn class="tu decl" id="site_blacklist_entry::port" title='site_blacklist_entry::port' data-type='unsigned short' data-ref="site_blacklist_entry::port">port</dfn>;</td></tr>
+<tr><th id="43">43</th><td>  <em>char</em> <dfn class="tu decl" id="site_blacklist_entry::hostname" title='site_blacklist_entry::hostname' data-type='char [1]' data-ref="site_blacklist_entry::hostname">hostname</dfn>[<var>1</var>];</td></tr>
+<tr><th id="44">44</th><td>};</td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="site_blacklist_llist_dtor" title='site_blacklist_llist_dtor' data-type='void site_blacklist_llist_dtor(void * user, void * element)' data-ref="site_blacklist_llist_dtor">site_blacklist_llist_dtor</dfn>(<em>void</em> *<dfn class="local col1 decl" id="1user" title='user' data-type='void *' data-ref="1user">user</dfn>, <em>void</em> *<dfn class="local col2 decl" id="2element" title='element' data-type='void *' data-ref="2element">element</dfn>)</td></tr>
+<tr><th id="47">47</th><td>{</td></tr>
+<tr><th id="48">48</th><td>  <b>struct</b> <a class="type" href="#site_blacklist_entry" title='site_blacklist_entry' data-ref="site_blacklist_entry">site_blacklist_entry</a> *<dfn class="local col3 decl" id="3entry" title='entry' data-type='struct site_blacklist_entry *' data-ref="3entry">entry</dfn> = <a class="local col2 ref" href="#2element" title='element' data-ref="2element">element</a>;</td></tr>
+<tr><th id="49">49</th><td>  (<em>void</em>)<a class="local col1 ref" href="#1user" title='user' data-ref="1user">user</a>;</td></tr>
+<tr><th id="50">50</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(entry)" data-ref="_M/free">free</a>(<a class="local col3 ref" href="#3entry" title='entry' data-ref="3entry">entry</a>);</td></tr>
+<tr><th id="51">51</th><td>}</td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="server_blacklist_llist_dtor" title='server_blacklist_llist_dtor' data-type='void server_blacklist_llist_dtor(void * user, void * element)' data-ref="server_blacklist_llist_dtor">server_blacklist_llist_dtor</dfn>(<em>void</em> *<dfn class="local col4 decl" id="4user" title='user' data-type='void *' data-ref="4user">user</dfn>, <em>void</em> *<dfn class="local col5 decl" id="5element" title='element' data-type='void *' data-ref="5element">element</dfn>)</td></tr>
+<tr><th id="54">54</th><td>{</td></tr>
+<tr><th id="55">55</th><td>  (<em>void</em>)<a class="local col4 ref" href="#4user" title='user' data-ref="4user">user</a>;</td></tr>
+<tr><th id="56">56</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(element)" data-ref="_M/free">free</a>(<a class="local col5 ref" href="#5element" title='element' data-ref="5element">element</a>);</td></tr>
+<tr><th id="57">57</th><td>}</td></tr>
+<tr><th id="58">58</th><td></td></tr>
+<tr><th id="59">59</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_pipeline_penalized" title='Curl_pipeline_penalized' data-ref="Curl_pipeline_penalized">Curl_pipeline_penalized</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col6 decl" id="6data" title='data' data-type='struct Curl_easy *' data-ref="6data">data</dfn>,</td></tr>
+<tr><th id="60">60</th><td>                             <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="7conn" title='conn' data-type='struct connectdata *' data-ref="7conn">conn</dfn>)</td></tr>
+<tr><th id="61">61</th><td>{</td></tr>
+<tr><th id="62">62</th><td>  <b>if</b>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>) {</td></tr>
+<tr><th id="63">63</th><td>    <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col8 decl" id="8penalized" title='penalized' data-type='_Bool' data-ref="8penalized">penalized</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="64">64</th><td>    <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col9 decl" id="9penalty_size" title='penalty_size' data-type='curl_off_t' data-ref="9penalty_size">penalty_size</dfn> =</td></tr>
+<tr><th id="65">65</th><td>      <a class="ref" href="multiif.h.html#Curl_multi_content_length_penalty_size" title='Curl_multi_content_length_penalty_size' data-ref="Curl_multi_content_length_penalty_size">Curl_multi_content_length_penalty_size</a>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::multi" title='Curl_easy::multi' data-ref="Curl_easy::multi">multi</a>);</td></tr>
+<tr><th id="66">66</th><td>    <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col0 decl" id="10chunk_penalty_size" title='chunk_penalty_size' data-type='curl_off_t' data-ref="10chunk_penalty_size">chunk_penalty_size</dfn> =</td></tr>
+<tr><th id="67">67</th><td>      <a class="ref" href="multiif.h.html#Curl_multi_chunk_length_penalty_size" title='Curl_multi_chunk_length_penalty_size' data-ref="Curl_multi_chunk_length_penalty_size">Curl_multi_chunk_length_penalty_size</a>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::multi" title='Curl_easy::multi' data-ref="Curl_easy::multi">multi</a>);</td></tr>
+<tr><th id="68">68</th><td>    <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col1 decl" id="11recv_size" title='recv_size' data-type='curl_off_t' data-ref="11recv_size">recv_size</dfn> = -<var>2</var>; <i>/* Make it easy to spot in the log */</i></td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td>    <i>/* Find the head of the recv pipe, if any */</i></td></tr>
+<tr><th id="71">71</th><td>    <b>if</b>(<a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::recv_pipe" title='connectdata::recv_pipe' data-ref="connectdata::recv_pipe">recv_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>) {</td></tr>
+<tr><th id="72">72</th><td>      <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col2 decl" id="12recv_handle" title='recv_handle' data-type='struct Curl_easy *' data-ref="12recv_handle">recv_handle</dfn> = <a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::recv_pipe" title='connectdata::recv_pipe' data-ref="connectdata::recv_pipe">recv_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::ptr" title='curl_llist_element::ptr' data-ref="curl_llist_element::ptr">ptr</a>;</td></tr>
+<tr><th id="73">73</th><td></td></tr>
+<tr><th id="74">74</th><td>      <a class="local col1 ref" href="#11recv_size" title='recv_size' data-ref="11recv_size">recv_size</a> = <a class="local col2 ref" href="#12recv_handle" title='recv_handle' data-ref="12recv_handle">recv_handle</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>.<a class="ref" href="urldata.h.html#SingleRequest::size" title='SingleRequest::size' data-ref="SingleRequest::size">size</a>;</td></tr>
+<tr><th id="75">75</th><td></td></tr>
+<tr><th id="76">76</th><td>      <b>if</b>(<a class="local col9 ref" href="#9penalty_size" title='penalty_size' data-ref="9penalty_size">penalty_size</a> &gt; <var>0</var> &amp;&amp; <a class="local col1 ref" href="#11recv_size" title='recv_size' data-ref="11recv_size">recv_size</a> &gt; <a class="local col9 ref" href="#9penalty_size" title='penalty_size' data-ref="9penalty_size">penalty_size</a>)</td></tr>
+<tr><th id="77">77</th><td>        <a class="local col8 ref" href="#8penalized" title='penalized' data-ref="8penalized">penalized</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="78">78</th><td>    }</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td>    <b>if</b>(<a class="local col0 ref" href="#10chunk_penalty_size" title='chunk_penalty_size' data-ref="10chunk_penalty_size">chunk_penalty_size</a> &gt; <var>0</var> &amp;&amp;</td></tr>
+<tr><th id="81">81</th><td>       (<a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a>)<a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::chunk" title='connectdata::chunk' data-ref="connectdata::chunk">chunk</a>.<a class="ref" href="http_chunks.h.html#Curl_chunker::datasize" title='Curl_chunker::datasize' data-ref="Curl_chunker::datasize">datasize</a> &gt; <a class="local col0 ref" href="#10chunk_penalty_size" title='chunk_penalty_size' data-ref="10chunk_penalty_size">chunk_penalty_size</a>)</td></tr>
+<tr><th id="82">82</th><td>      <a class="local col8 ref" href="#8penalized" title='penalized' data-ref="8penalized">penalized</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td>    <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col6 ref" href="#6data" title='data' data-ref="6data">data</a>, <q>"Conn: %ld (%p) Receive pipe weight: (%"</q></td></tr>
+<tr><th id="85">85</th><td>          <a class="macro" href="../include/curl/system.h.html#361" title="&quot;ld&quot;" data-ref="_M/CURL_FORMAT_CURL_OFF_T">CURL_FORMAT_CURL_OFF_T</a> <q>"/%zu), penalized: %s\n"</q>,</td></tr>
+<tr><th id="86">86</th><td>          <a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::connection_id" title='connectdata::connection_id' data-ref="connectdata::connection_id">connection_id</a>, (<em>void</em> *)<a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>, <a class="local col1 ref" href="#11recv_size" title='recv_size' data-ref="11recv_size">recv_size</a>,</td></tr>
+<tr><th id="87">87</th><td>          <a class="local col7 ref" href="#7conn" title='conn' data-ref="7conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::chunk" title='connectdata::chunk' data-ref="connectdata::chunk">chunk</a>.<a class="ref" href="http_chunks.h.html#Curl_chunker::datasize" title='Curl_chunker::datasize' data-ref="Curl_chunker::datasize">datasize</a>, <a class="local col8 ref" href="#8penalized" title='penalized' data-ref="8penalized">penalized</a>?<q>"TRUE"</q>:<q>"FALSE"</q>);</td></tr>
+<tr><th id="88">88</th><td>    <b>return</b> <a class="local col8 ref" href="#8penalized" title='penalized' data-ref="8penalized">penalized</a>;</td></tr>
+<tr><th id="89">89</th><td>  }</td></tr>
+<tr><th id="90">90</th><td>  <b>return</b> <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="91">91</th><td>}</td></tr>
+<tr><th id="92">92</th><td></td></tr>
+<tr><th id="93">93</th><td><em>static</em> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="addHandleToPipeline" title='addHandleToPipeline' data-type='CURLcode addHandleToPipeline(struct Curl_easy * data, struct curl_llist * pipeline)' data-ref="addHandleToPipeline">addHandleToPipeline</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="13data" title='data' data-type='struct Curl_easy *' data-ref="13data">data</dfn>,</td></tr>
+<tr><th id="94">94</th><td>                                    <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col4 decl" id="14pipeline" title='pipeline' data-type='struct curl_llist *' data-ref="14pipeline">pipeline</dfn>)</td></tr>
+<tr><th id="95">95</th><td>{</td></tr>
+<tr><th id="96">96</th><td>  <a class="ref" href="llist.h.html#Curl_llist_insert_next" title='Curl_llist_insert_next' data-ref="Curl_llist_insert_next">Curl_llist_insert_next</a>(<a class="local col4 ref" href="#14pipeline" title='pipeline' data-ref="14pipeline">pipeline</a>, <a class="local col4 ref" href="#14pipeline" title='pipeline' data-ref="14pipeline">pipeline</a>-&gt;<a class="ref" href="llist.h.html#curl_llist::tail" title='curl_llist::tail' data-ref="curl_llist::tail">tail</a>, <a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>,</td></tr>
+<tr><th id="97">97</th><td>                         &amp;<a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::pipeline_queue" title='Curl_easy::pipeline_queue' data-ref="Curl_easy::pipeline_queue">pipeline_queue</a>);</td></tr>
+<tr><th id="98">98</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="99">99</th><td>}</td></tr>
+<tr><th id="100">100</th><td></td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_add_handle_to_pipeline" title='Curl_add_handle_to_pipeline' data-ref="Curl_add_handle_to_pipeline">Curl_add_handle_to_pipeline</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="15handle" title='handle' data-type='struct Curl_easy *' data-ref="15handle">handle</dfn>,</td></tr>
+<tr><th id="103">103</th><td>                                     <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="16conn" title='conn' data-type='struct connectdata *' data-ref="16conn">conn</dfn>)</td></tr>
+<tr><th id="104">104</th><td>{</td></tr>
+<tr><th id="105">105</th><td>  <b>struct</b> <a class="type" href="llist.h.html#curl_llist_element" title='curl_llist_element' data-ref="curl_llist_element">curl_llist_element</a> *<dfn class="local col7 decl" id="17sendhead" title='sendhead' data-type='struct curl_llist_element *' data-ref="17sendhead">sendhead</dfn> = <a class="local col6 ref" href="#16conn" title='conn' data-ref="16conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>;</td></tr>
+<tr><th id="106">106</th><td>  <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col8 decl" id="18pipeline" title='pipeline' data-type='struct curl_llist *' data-ref="18pipeline">pipeline</dfn>;</td></tr>
+<tr><th id="107">107</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col9 decl" id="19result" title='result' data-type='CURLcode' data-ref="19result">result</dfn>;</td></tr>
+<tr><th id="108">108</th><td></td></tr>
+<tr><th id="109">109</th><td>  <a class="local col8 ref" href="#18pipeline" title='pipeline' data-ref="18pipeline">pipeline</a> = &amp;<a class="local col6 ref" href="#16conn" title='conn' data-ref="16conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>;</td></tr>
+<tr><th id="110">110</th><td></td></tr>
+<tr><th id="111">111</th><td>  <a class="local col9 ref" href="#19result" title='result' data-ref="19result">result</a> = <a class="tu ref" href="#addHandleToPipeline" title='addHandleToPipeline' data-use='c' data-ref="addHandleToPipeline">addHandleToPipeline</a>(<a class="local col5 ref" href="#15handle" title='handle' data-ref="15handle">handle</a>, <a class="local col8 ref" href="#18pipeline" title='pipeline' data-ref="18pipeline">pipeline</a>);</td></tr>
+<tr><th id="112">112</th><td></td></tr>
+<tr><th id="113">113</th><td>  <b>if</b>(<a class="local col8 ref" href="#18pipeline" title='pipeline' data-ref="18pipeline">pipeline</a> == &amp;<a class="local col6 ref" href="#16conn" title='conn' data-ref="16conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a> &amp;&amp; <a class="local col7 ref" href="#17sendhead" title='sendhead' data-ref="17sendhead">sendhead</a> != <a class="local col6 ref" href="#16conn" title='conn' data-ref="16conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>) {</td></tr>
+<tr><th id="114">114</th><td>    <i>/* this is a new one as head, expire it */</i></td></tr>
+<tr><th id="115">115</th><td>    <a class="ref" href="#Curl_pipeline_leave_write" title='Curl_pipeline_leave_write' data-ref="Curl_pipeline_leave_write">Curl_pipeline_leave_write</a>(<a class="local col6 ref" href="#16conn" title='conn' data-ref="16conn">conn</a>); <i>/* not in use yet */</i></td></tr>
+<tr><th id="116">116</th><td>    <a class="ref" href="multiif.h.html#Curl_expire" title='Curl_expire' data-ref="Curl_expire">Curl_expire</a>(<a class="local col6 ref" href="#16conn" title='conn' data-ref="16conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::ptr" title='curl_llist_element::ptr' data-ref="curl_llist_element::ptr">ptr</a>, <var>0</var>, <a class="enum" href="urldata.h.html#EXPIRE_RUN_NOW" title='EXPIRE_RUN_NOW' data-ref="EXPIRE_RUN_NOW">EXPIRE_RUN_NOW</a>);</td></tr>
+<tr><th id="117">117</th><td>  }</td></tr>
+<tr><th id="118">118</th><td></td></tr>
+<tr><th id="119">119</th><td><u>#<span data-ppcond="119">if</span> 0 /* enable for pipeline debugging */</u></td></tr>
+<tr><th id="120">120</th><td>  print_pipeline(conn);</td></tr>
+<tr><th id="121">121</th><td><u>#<span data-ppcond="119">endif</span></u></td></tr>
+<tr><th id="122">122</th><td></td></tr>
+<tr><th id="123">123</th><td>  <b>return</b> <a class="local col9 ref" href="#19result" title='result' data-ref="19result">result</a>;</td></tr>
+<tr><th id="124">124</th><td>}</td></tr>
+<tr><th id="125">125</th><td></td></tr>
+<tr><th id="126">126</th><td><i>/* Move this transfer from the sending list to the receiving list.</i></td></tr>
+<tr><th id="127">127</th><td><i></i></td></tr>
+<tr><th id="128">128</th><td><i>   Pay special attention to the new sending list "leader" as it needs to get</i></td></tr>
+<tr><th id="129">129</th><td><i>   checked to update what sockets it acts on.</i></td></tr>
+<tr><th id="130">130</th><td><i></i></td></tr>
+<tr><th id="131">131</th><td><i>*/</i></td></tr>
+<tr><th id="132">132</th><td><em>void</em> <dfn class="decl def" id="Curl_move_handle_from_send_to_recv_pipe" title='Curl_move_handle_from_send_to_recv_pipe' data-ref="Curl_move_handle_from_send_to_recv_pipe">Curl_move_handle_from_send_to_recv_pipe</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col0 decl" id="20handle" title='handle' data-type='struct Curl_easy *' data-ref="20handle">handle</dfn>,</td></tr>
+<tr><th id="133">133</th><td>                                             <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col1 decl" id="21conn" title='conn' data-type='struct connectdata *' data-ref="21conn">conn</dfn>)</td></tr>
+<tr><th id="134">134</th><td>{</td></tr>
+<tr><th id="135">135</th><td>  <b>struct</b> <a class="type" href="llist.h.html#curl_llist_element" title='curl_llist_element' data-ref="curl_llist_element">curl_llist_element</a> *<dfn class="local col2 decl" id="22curr" title='curr' data-type='struct curl_llist_element *' data-ref="22curr">curr</dfn>;</td></tr>
+<tr><th id="136">136</th><td></td></tr>
+<tr><th id="137">137</th><td>  <a class="local col2 ref" href="#22curr" title='curr' data-ref="22curr">curr</a> = <a class="local col1 ref" href="#21conn" title='conn' data-ref="21conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>;</td></tr>
+<tr><th id="138">138</th><td>  <b>while</b>(<a class="local col2 ref" href="#22curr" title='curr' data-ref="22curr">curr</a>) {</td></tr>
+<tr><th id="139">139</th><td>    <b>if</b>(<a class="local col2 ref" href="#22curr" title='curr' data-ref="22curr">curr</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::ptr" title='curl_llist_element::ptr' data-ref="curl_llist_element::ptr">ptr</a> == <a class="local col0 ref" href="#20handle" title='handle' data-ref="20handle">handle</a>) {</td></tr>
+<tr><th id="140">140</th><td>      <a class="ref" href="llist.h.html#Curl_llist_move" title='Curl_llist_move' data-ref="Curl_llist_move">Curl_llist_move</a>(&amp;<a class="local col1 ref" href="#21conn" title='conn' data-ref="21conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>, <a class="local col2 ref" href="#22curr" title='curr' data-ref="22curr">curr</a>,</td></tr>
+<tr><th id="141">141</th><td>                      &amp;<a class="local col1 ref" href="#21conn" title='conn' data-ref="21conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::recv_pipe" title='connectdata::recv_pipe' data-ref="connectdata::recv_pipe">recv_pipe</a>, <a class="local col1 ref" href="#21conn" title='conn' data-ref="21conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::recv_pipe" title='connectdata::recv_pipe' data-ref="connectdata::recv_pipe">recv_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::tail" title='curl_llist::tail' data-ref="curl_llist::tail">tail</a>);</td></tr>
+<tr><th id="142">142</th><td></td></tr>
+<tr><th id="143">143</th><td>      <b>if</b>(<a class="local col1 ref" href="#21conn" title='conn' data-ref="21conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>) {</td></tr>
+<tr><th id="144">144</th><td>        <i>/* Since there's a new easy handle at the start of the send pipeline,</i></td></tr>
+<tr><th id="145">145</th><td><i>           set its timeout value to 1ms to make it trigger instantly */</i></td></tr>
+<tr><th id="146">146</th><td>        <a class="ref" href="#Curl_pipeline_leave_write" title='Curl_pipeline_leave_write' data-ref="Curl_pipeline_leave_write">Curl_pipeline_leave_write</a>(<a class="local col1 ref" href="#21conn" title='conn' data-ref="21conn">conn</a>); <i>/* not used now */</i></td></tr>
+<tr><th id="147">147</th><td><u>#<span data-ppcond="147">ifdef</span> <span class="macro" data-ref="_M/DEBUGBUILD">DEBUGBUILD</span></u></td></tr>
+<tr><th id="148">148</th><td>        infof(conn-&gt;data, <q>"%p is at send pipe head B!\n"</q>,</td></tr>
+<tr><th id="149">149</th><td>              (<em>void</em> *)conn-&gt;send_pipe.head-&gt;ptr);</td></tr>
+<tr><th id="150">150</th><td><u>#<span data-ppcond="147">endif</span></u></td></tr>
+<tr><th id="151">151</th><td>        <a class="ref" href="multiif.h.html#Curl_expire" title='Curl_expire' data-ref="Curl_expire">Curl_expire</a>(<a class="local col1 ref" href="#21conn" title='conn' data-ref="21conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>.<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::ptr" title='curl_llist_element::ptr' data-ref="curl_llist_element::ptr">ptr</a>, <var>0</var>, <a class="enum" href="urldata.h.html#EXPIRE_RUN_NOW" title='EXPIRE_RUN_NOW' data-ref="EXPIRE_RUN_NOW">EXPIRE_RUN_NOW</a>);</td></tr>
+<tr><th id="152">152</th><td>      }</td></tr>
+<tr><th id="153">153</th><td></td></tr>
+<tr><th id="154">154</th><td>      <i>/* The receiver's list is not really interesting here since either this</i></td></tr>
+<tr><th id="155">155</th><td><i>         handle is now first in the list and we'll deal with it soon, or</i></td></tr>
+<tr><th id="156">156</th><td><i>         another handle is already first and thus is already taken care of */</i></td></tr>
+<tr><th id="157">157</th><td></td></tr>
+<tr><th id="158">158</th><td>      <b>break</b>; <i>/* we're done! */</i></td></tr>
+<tr><th id="159">159</th><td>    }</td></tr>
+<tr><th id="160">160</th><td>    <a class="local col2 ref" href="#22curr" title='curr' data-ref="22curr">curr</a> = <a class="local col2 ref" href="#22curr" title='curr' data-ref="22curr">curr</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::next" title='curl_llist_element::next' data-ref="curl_llist_element::next">next</a>;</td></tr>
+<tr><th id="161">161</th><td>  }</td></tr>
+<tr><th id="162">162</th><td>}</td></tr>
+<tr><th id="163">163</th><td></td></tr>
+<tr><th id="164">164</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_pipeline_site_blacklisted" title='Curl_pipeline_site_blacklisted' data-ref="Curl_pipeline_site_blacklisted">Curl_pipeline_site_blacklisted</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="23handle" title='handle' data-type='struct Curl_easy *' data-ref="23handle">handle</dfn>,</td></tr>
+<tr><th id="165">165</th><td>                                    <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col4 decl" id="24conn" title='conn' data-type='struct connectdata *' data-ref="24conn">conn</dfn>)</td></tr>
+<tr><th id="166">166</th><td>{</td></tr>
+<tr><th id="167">167</th><td>  <b>if</b>(<a class="local col3 ref" href="#23handle" title='handle' data-ref="23handle">handle</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::multi" title='Curl_easy::multi' data-ref="Curl_easy::multi">multi</a>) {</td></tr>
+<tr><th id="168">168</th><td>    <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col5 decl" id="25blacklist" title='blacklist' data-type='struct curl_llist *' data-ref="25blacklist">blacklist</dfn> =</td></tr>
+<tr><th id="169">169</th><td>      <a class="ref" href="multiif.h.html#Curl_multi_pipelining_site_bl" title='Curl_multi_pipelining_site_bl' data-ref="Curl_multi_pipelining_site_bl">Curl_multi_pipelining_site_bl</a>(<a class="local col3 ref" href="#23handle" title='handle' data-ref="23handle">handle</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::multi" title='Curl_easy::multi' data-ref="Curl_easy::multi">multi</a>);</td></tr>
+<tr><th id="170">170</th><td></td></tr>
+<tr><th id="171">171</th><td>    <b>if</b>(<a class="local col5 ref" href="#25blacklist" title='blacklist' data-ref="25blacklist">blacklist</a>) {</td></tr>
+<tr><th id="172">172</th><td>      <b>struct</b> <a class="type" href="llist.h.html#curl_llist_element" title='curl_llist_element' data-ref="curl_llist_element">curl_llist_element</a> *<dfn class="local col6 decl" id="26curr" title='curr' data-type='struct curl_llist_element *' data-ref="26curr">curr</dfn>;</td></tr>
+<tr><th id="173">173</th><td></td></tr>
+<tr><th id="174">174</th><td>      <a class="local col6 ref" href="#26curr" title='curr' data-ref="26curr">curr</a> = <a class="local col5 ref" href="#25blacklist" title='blacklist' data-ref="25blacklist">blacklist</a>-&gt;<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>;</td></tr>
+<tr><th id="175">175</th><td>      <b>while</b>(<a class="local col6 ref" href="#26curr" title='curr' data-ref="26curr">curr</a>) {</td></tr>
+<tr><th id="176">176</th><td>        <b>struct</b> <a class="type" href="#site_blacklist_entry" title='site_blacklist_entry' data-ref="site_blacklist_entry">site_blacklist_entry</a> *<dfn class="local col7 decl" id="27site" title='site' data-type='struct site_blacklist_entry *' data-ref="27site">site</dfn>;</td></tr>
+<tr><th id="177">177</th><td></td></tr>
+<tr><th id="178">178</th><td>        <a class="local col7 ref" href="#27site" title='site' data-ref="27site">site</a> = <a class="local col6 ref" href="#26curr" title='curr' data-ref="26curr">curr</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::ptr" title='curl_llist_element::ptr' data-ref="curl_llist_element::ptr">ptr</a>;</td></tr>
+<tr><th id="179">179</th><td>        <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(site-&gt;hostname,conn-&gt;host.name)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col7 ref" href="#27site" title='site' data-ref="27site">site</a>-&gt;<a class="tu ref" href="#site_blacklist_entry::hostname" title='site_blacklist_entry::hostname' data-use='r' data-ref="site_blacklist_entry::hostname">hostname</a>, <a class="local col4 ref" href="#24conn" title='conn' data-ref="24conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::host" title='connectdata::host' data-ref="connectdata::host">host</a>.<a class="ref" href="urldata.h.html#hostname::name" title='hostname::name' data-ref="hostname::name">name</a>) &amp;&amp;</td></tr>
+<tr><th id="180">180</th><td>           <a class="local col7 ref" href="#27site" title='site' data-ref="27site">site</a>-&gt;<a class="tu ref" href="#site_blacklist_entry::port" title='site_blacklist_entry::port' data-use='r' data-ref="site_blacklist_entry::port">port</a> == <a class="local col4 ref" href="#24conn" title='conn' data-ref="24conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::remote_port" title='connectdata::remote_port' data-ref="connectdata::remote_port">remote_port</a>) {</td></tr>
+<tr><th id="181">181</th><td>          <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col3 ref" href="#23handle" title='handle' data-ref="23handle">handle</a>, <q>"Site %s:%d is pipeline blacklisted\n"</q>,</td></tr>
+<tr><th id="182">182</th><td>                <a class="local col4 ref" href="#24conn" title='conn' data-ref="24conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::host" title='connectdata::host' data-ref="connectdata::host">host</a>.<a class="ref" href="urldata.h.html#hostname::name" title='hostname::name' data-ref="hostname::name">name</a>, <a class="local col4 ref" href="#24conn" title='conn' data-ref="24conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::remote_port" title='connectdata::remote_port' data-ref="connectdata::remote_port">remote_port</a>);</td></tr>
+<tr><th id="183">183</th><td>          <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="184">184</th><td>        }</td></tr>
+<tr><th id="185">185</th><td>        <a class="local col6 ref" href="#26curr" title='curr' data-ref="26curr">curr</a> = <a class="local col6 ref" href="#26curr" title='curr' data-ref="26curr">curr</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::next" title='curl_llist_element::next' data-ref="curl_llist_element::next">next</a>;</td></tr>
+<tr><th id="186">186</th><td>      }</td></tr>
+<tr><th id="187">187</th><td>    }</td></tr>
+<tr><th id="188">188</th><td>  }</td></tr>
+<tr><th id="189">189</th><td>  <b>return</b> <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="190">190</th><td>}</td></tr>
+<tr><th id="191">191</th><td></td></tr>
+<tr><th id="192">192</th><td><a class="typedef" href="../include/curl/multi.h.html#CURLMcode" title='CURLMcode' data-type='enum CURLMcode' data-ref="CURLMcode">CURLMcode</a> <dfn class="decl def" id="Curl_pipeline_set_site_blacklist" title='Curl_pipeline_set_site_blacklist' data-ref="Curl_pipeline_set_site_blacklist">Curl_pipeline_set_site_blacklist</dfn>(<em>char</em> **<dfn class="local col8 decl" id="28sites" title='sites' data-type='char **' data-ref="28sites">sites</dfn>,</td></tr>
+<tr><th id="193">193</th><td>                                           <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col9 decl" id="29list" title='list' data-type='struct curl_llist *' data-ref="29list">list</dfn>)</td></tr>
+<tr><th id="194">194</th><td>{</td></tr>
+<tr><th id="195">195</th><td>  <i>/* Free the old list */</i></td></tr>
+<tr><th id="196">196</th><td>  <b>if</b>(<a class="local col9 ref" href="#29list" title='list' data-ref="29list">list</a>-&gt;<a class="ref" href="llist.h.html#curl_llist::size" title='curl_llist::size' data-ref="curl_llist::size">size</a>)</td></tr>
+<tr><th id="197">197</th><td>    <a class="ref" href="llist.h.html#Curl_llist_destroy" title='Curl_llist_destroy' data-ref="Curl_llist_destroy">Curl_llist_destroy</a>(<a class="local col9 ref" href="#29list" title='list' data-ref="29list">list</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="198">198</th><td></td></tr>
+<tr><th id="199">199</th><td>  <b>if</b>(<a class="local col8 ref" href="#28sites" title='sites' data-ref="28sites">sites</a>) {</td></tr>
+<tr><th id="200">200</th><td>    <a class="ref" href="llist.h.html#Curl_llist_init" title='Curl_llist_init' data-ref="Curl_llist_init">Curl_llist_init</a>(<a class="local col9 ref" href="#29list" title='list' data-ref="29list">list</a>, (<a class="typedef" href="llist.h.html#curl_llist_dtor" title='curl_llist_dtor' data-type='void (*)(void *, void *)' data-ref="curl_llist_dtor">curl_llist_dtor</a>) <a class="tu ref" href="#site_blacklist_llist_dtor" title='site_blacklist_llist_dtor' data-use='r' data-ref="site_blacklist_llist_dtor">site_blacklist_llist_dtor</a>);</td></tr>
+<tr><th id="201">201</th><td></td></tr>
+<tr><th id="202">202</th><td>    <i>/* Parse the URLs and populate the list */</i></td></tr>
+<tr><th id="203">203</th><td>    <b>while</b>(*<a class="local col8 ref" href="#28sites" title='sites' data-ref="28sites">sites</a>) {</td></tr>
+<tr><th id="204">204</th><td>      <em>char</em> *<dfn class="local col0 decl" id="30port" title='port' data-type='char *' data-ref="30port">port</dfn>;</td></tr>
+<tr><th id="205">205</th><td>      <b>struct</b> <a class="type" href="#site_blacklist_entry" title='site_blacklist_entry' data-ref="site_blacklist_entry">site_blacklist_entry</a> *<dfn class="local col1 decl" id="31entry" title='entry' data-type='struct site_blacklist_entry *' data-ref="31entry">entry</dfn>;</td></tr>
+<tr><th id="206">206</th><td></td></tr>
+<tr><th id="207">207</th><td>      <a class="local col1 ref" href="#31entry" title='entry' data-ref="31entry">entry</a> = <a class="macro" href="curl_memory.h.html#124" title="Curl_cmalloc(sizeof(struct site_blacklist_entry) + strlen(*sites))" data-ref="_M/malloc">malloc</a>(<b>sizeof</b>(<b>struct</b> <a class="type" href="#site_blacklist_entry" title='site_blacklist_entry' data-ref="site_blacklist_entry">site_blacklist_entry</a>) + <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(*<a class="local col8 ref" href="#28sites" title='sites' data-ref="28sites">sites</a>));</td></tr>
+<tr><th id="208">208</th><td>      <b>if</b>(!<a class="local col1 ref" href="#31entry" title='entry' data-ref="31entry">entry</a>) {</td></tr>
+<tr><th id="209">209</th><td>        <a class="ref" href="llist.h.html#Curl_llist_destroy" title='Curl_llist_destroy' data-ref="Curl_llist_destroy">Curl_llist_destroy</a>(<a class="local col9 ref" href="#29list" title='list' data-ref="29list">list</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="210">210</th><td>        <b>return</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_OUT_OF_MEMORY" title='CURLM_OUT_OF_MEMORY' data-ref="CURLM_OUT_OF_MEMORY">CURLM_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="211">211</th><td>      }</td></tr>
+<tr><th id="212">212</th><td>      <a class="ref" href="../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col1 ref" href="#31entry" title='entry' data-ref="31entry">entry</a>-&gt;<a class="tu ref" href="#site_blacklist_entry::hostname" title='site_blacklist_entry::hostname' data-use='r' data-ref="site_blacklist_entry::hostname">hostname</a>, *<a class="local col8 ref" href="#28sites" title='sites' data-ref="28sites">sites</a>);</td></tr>
+<tr><th id="213">213</th><td></td></tr>
+<tr><th id="214">214</th><td>      <a class="local col0 ref" href="#30port" title='port' data-ref="30port">port</a> = <a class="ref" href="../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(<a class="local col1 ref" href="#31entry" title='entry' data-ref="31entry">entry</a>-&gt;<a class="tu ref" href="#site_blacklist_entry::hostname" title='site_blacklist_entry::hostname' data-use='r' data-ref="site_blacklist_entry::hostname">hostname</a>, <kbd>':'</kbd>);</td></tr>
+<tr><th id="215">215</th><td>      <b>if</b>(<a class="local col0 ref" href="#30port" title='port' data-ref="30port">port</a>) {</td></tr>
+<tr><th id="216">216</th><td>        *<a class="local col0 ref" href="#30port" title='port' data-ref="30port">port</a> = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="217">217</th><td>        <a class="local col0 ref" href="#30port" title='port' data-ref="30port">port</a>++;</td></tr>
+<tr><th id="218">218</th><td>        <a class="local col1 ref" href="#31entry" title='entry' data-ref="31entry">entry</a>-&gt;<a class="tu ref" href="#site_blacklist_entry::port" title='site_blacklist_entry::port' data-use='w' data-ref="site_blacklist_entry::port">port</a> = (<em>unsigned</em> <em>short</em>)<a class="ref" href="../../include/stdlib.h.html#strtol" title='strtol' data-ref="strtol">strtol</a>(<a class="local col0 ref" href="#30port" title='port' data-ref="30port">port</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>10</var>);</td></tr>
+<tr><th id="219">219</th><td>      }</td></tr>
+<tr><th id="220">220</th><td>      <b>else</b> {</td></tr>
+<tr><th id="221">221</th><td>        <i>/* Default port number for HTTP */</i></td></tr>
+<tr><th id="222">222</th><td>        <a class="local col1 ref" href="#31entry" title='entry' data-ref="31entry">entry</a>-&gt;<a class="tu ref" href="#site_blacklist_entry::port" title='site_blacklist_entry::port' data-use='w' data-ref="site_blacklist_entry::port">port</a> = <var>80</var>;</td></tr>
+<tr><th id="223">223</th><td>      }</td></tr>
+<tr><th id="224">224</th><td></td></tr>
+<tr><th id="225">225</th><td>      <a class="ref" href="llist.h.html#Curl_llist_insert_next" title='Curl_llist_insert_next' data-ref="Curl_llist_insert_next">Curl_llist_insert_next</a>(<a class="local col9 ref" href="#29list" title='list' data-ref="29list">list</a>, <a class="local col9 ref" href="#29list" title='list' data-ref="29list">list</a>-&gt;<a class="ref" href="llist.h.html#curl_llist::tail" title='curl_llist::tail' data-ref="curl_llist::tail">tail</a>, <a class="local col1 ref" href="#31entry" title='entry' data-ref="31entry">entry</a>, &amp;<a class="local col1 ref" href="#31entry" title='entry' data-ref="31entry">entry</a>-&gt;<a class="tu ref" href="#site_blacklist_entry::list" title='site_blacklist_entry::list' data-use='a' data-ref="site_blacklist_entry::list">list</a>);</td></tr>
+<tr><th id="226">226</th><td>      <a class="local col8 ref" href="#28sites" title='sites' data-ref="28sites">sites</a>++;</td></tr>
+<tr><th id="227">227</th><td>    }</td></tr>
+<tr><th id="228">228</th><td>  }</td></tr>
+<tr><th id="229">229</th><td></td></tr>
+<tr><th id="230">230</th><td>  <b>return</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_OK" title='CURLM_OK' data-ref="CURLM_OK">CURLM_OK</a>;</td></tr>
+<tr><th id="231">231</th><td>}</td></tr>
+<tr><th id="232">232</th><td></td></tr>
+<tr><th id="233">233</th><td><b>struct</b> <dfn class="type def" id="blacklist_node" title='blacklist_node' data-ref="blacklist_node">blacklist_node</dfn> {</td></tr>
+<tr><th id="234">234</th><td>  <b>struct</b> <a class="type" href="llist.h.html#curl_llist_element" title='curl_llist_element' data-ref="curl_llist_element">curl_llist_element</a> <dfn class="tu decl" id="blacklist_node::list" title='blacklist_node::list' data-type='struct curl_llist_element' data-ref="blacklist_node::list">list</dfn>;</td></tr>
+<tr><th id="235">235</th><td>  <em>char</em> <dfn class="tu decl" id="blacklist_node::server_name" title='blacklist_node::server_name' data-type='char [1]' data-ref="blacklist_node::server_name">server_name</dfn>[<var>1</var>];</td></tr>
+<tr><th id="236">236</th><td>};</td></tr>
+<tr><th id="237">237</th><td></td></tr>
+<tr><th id="238">238</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_pipeline_server_blacklisted" title='Curl_pipeline_server_blacklisted' data-ref="Curl_pipeline_server_blacklisted">Curl_pipeline_server_blacklisted</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col2 decl" id="32handle" title='handle' data-type='struct Curl_easy *' data-ref="32handle">handle</dfn>,</td></tr>
+<tr><th id="239">239</th><td>                                      <em>char</em> *<dfn class="local col3 decl" id="33server_name" title='server_name' data-type='char *' data-ref="33server_name">server_name</dfn>)</td></tr>
+<tr><th id="240">240</th><td>{</td></tr>
+<tr><th id="241">241</th><td>  <b>if</b>(<a class="local col2 ref" href="#32handle" title='handle' data-ref="32handle">handle</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::multi" title='Curl_easy::multi' data-ref="Curl_easy::multi">multi</a> &amp;&amp; <a class="local col3 ref" href="#33server_name" title='server_name' data-ref="33server_name">server_name</a>) {</td></tr>
+<tr><th id="242">242</th><td>    <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col4 decl" id="34list" title='list' data-type='struct curl_llist *' data-ref="34list">list</dfn> =</td></tr>
+<tr><th id="243">243</th><td>      <a class="ref" href="multiif.h.html#Curl_multi_pipelining_server_bl" title='Curl_multi_pipelining_server_bl' data-ref="Curl_multi_pipelining_server_bl">Curl_multi_pipelining_server_bl</a>(<a class="local col2 ref" href="#32handle" title='handle' data-ref="32handle">handle</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::multi" title='Curl_easy::multi' data-ref="Curl_easy::multi">multi</a>);</td></tr>
+<tr><th id="244">244</th><td></td></tr>
+<tr><th id="245">245</th><td>    <b>struct</b> <a class="type" href="llist.h.html#curl_llist_element" title='curl_llist_element' data-ref="curl_llist_element">curl_llist_element</a> *<dfn class="local col5 decl" id="35e" title='e' data-type='struct curl_llist_element *' data-ref="35e">e</dfn> = <a class="local col4 ref" href="#34list" title='list' data-ref="34list">list</a>-&gt;<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>;</td></tr>
+<tr><th id="246">246</th><td>    <b>while</b>(<a class="local col5 ref" href="#35e" title='e' data-ref="35e">e</a>) {</td></tr>
+<tr><th id="247">247</th><td>      <b>struct</b> <a class="type" href="#blacklist_node" title='blacklist_node' data-ref="blacklist_node">blacklist_node</a> *<dfn class="local col6 decl" id="36bl" title='bl' data-type='struct blacklist_node *' data-ref="36bl">bl</dfn> = (<b>struct</b> <a class="type" href="#blacklist_node" title='blacklist_node' data-ref="blacklist_node">blacklist_node</a> *)<a class="local col5 ref" href="#35e" title='e' data-ref="35e">e</a>;</td></tr>
+<tr><th id="248">248</th><td>      <b>if</b>(<a class="macro" href="strcase.h.html#36" title="Curl_strncasecompare(bl-&gt;server_name,server_name,strlen(bl-&gt;server_name))" data-ref="_M/strncasecompare">strncasecompare</a>(<a class="local col6 ref" href="#36bl" title='bl' data-ref="36bl">bl</a>-&gt;<a class="tu ref" href="#blacklist_node::server_name" title='blacklist_node::server_name' data-use='r' data-ref="blacklist_node::server_name">server_name</a>, <a class="local col3 ref" href="#33server_name" title='server_name' data-ref="33server_name">server_name</a>,</td></tr>
+<tr><th id="249">249</th><td>                         <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col6 ref" href="#36bl" title='bl' data-ref="36bl">bl</a>-&gt;<a class="tu ref" href="#blacklist_node::server_name" title='blacklist_node::server_name' data-use='r' data-ref="blacklist_node::server_name">server_name</a>))) {</td></tr>
+<tr><th id="250">250</th><td>        <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col2 ref" href="#32handle" title='handle' data-ref="32handle">handle</a>, <q>"Server %s is blacklisted\n"</q>, <a class="local col3 ref" href="#33server_name" title='server_name' data-ref="33server_name">server_name</a>);</td></tr>
+<tr><th id="251">251</th><td>        <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="252">252</th><td>      }</td></tr>
+<tr><th id="253">253</th><td>      <a class="local col5 ref" href="#35e" title='e' data-ref="35e">e</a> = <a class="local col5 ref" href="#35e" title='e' data-ref="35e">e</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::next" title='curl_llist_element::next' data-ref="curl_llist_element::next">next</a>;</td></tr>
+<tr><th id="254">254</th><td>    }</td></tr>
+<tr><th id="255">255</th><td></td></tr>
+<tr><th id="256">256</th><td>    <a class="macro" href="curl_setup_once.h.html#409" title="do { } while(0)" data-ref="_M/DEBUGF">DEBUGF</a>(infof(handle, <q>"Server %s is not blacklisted\n"</q>, server_name));</td></tr>
+<tr><th id="257">257</th><td>  }</td></tr>
+<tr><th id="258">258</th><td>  <b>return</b> <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="259">259</th><td>}</td></tr>
+<tr><th id="260">260</th><td></td></tr>
+<tr><th id="261">261</th><td><a class="typedef" href="../include/curl/multi.h.html#CURLMcode" title='CURLMcode' data-type='enum CURLMcode' data-ref="CURLMcode">CURLMcode</a> <dfn class="decl def" id="Curl_pipeline_set_server_blacklist" title='Curl_pipeline_set_server_blacklist' data-ref="Curl_pipeline_set_server_blacklist">Curl_pipeline_set_server_blacklist</dfn>(<em>char</em> **<dfn class="local col7 decl" id="37servers" title='servers' data-type='char **' data-ref="37servers">servers</dfn>,</td></tr>
+<tr><th id="262">262</th><td>                                             <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col8 decl" id="38list" title='list' data-type='struct curl_llist *' data-ref="38list">list</dfn>)</td></tr>
+<tr><th id="263">263</th><td>{</td></tr>
+<tr><th id="264">264</th><td>  <i>/* Free the old list */</i></td></tr>
+<tr><th id="265">265</th><td>  <b>if</b>(<a class="local col8 ref" href="#38list" title='list' data-ref="38list">list</a>-&gt;<a class="ref" href="llist.h.html#curl_llist::size" title='curl_llist::size' data-ref="curl_llist::size">size</a>)</td></tr>
+<tr><th id="266">266</th><td>    <a class="ref" href="llist.h.html#Curl_llist_destroy" title='Curl_llist_destroy' data-ref="Curl_llist_destroy">Curl_llist_destroy</a>(<a class="local col8 ref" href="#38list" title='list' data-ref="38list">list</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="267">267</th><td></td></tr>
+<tr><th id="268">268</th><td>  <b>if</b>(<a class="local col7 ref" href="#37servers" title='servers' data-ref="37servers">servers</a>) {</td></tr>
+<tr><th id="269">269</th><td>    <a class="ref" href="llist.h.html#Curl_llist_init" title='Curl_llist_init' data-ref="Curl_llist_init">Curl_llist_init</a>(<a class="local col8 ref" href="#38list" title='list' data-ref="38list">list</a>, (<a class="typedef" href="llist.h.html#curl_llist_dtor" title='curl_llist_dtor' data-type='void (*)(void *, void *)' data-ref="curl_llist_dtor">curl_llist_dtor</a>) <a class="tu ref" href="#server_blacklist_llist_dtor" title='server_blacklist_llist_dtor' data-use='r' data-ref="server_blacklist_llist_dtor">server_blacklist_llist_dtor</a>);</td></tr>
+<tr><th id="270">270</th><td></td></tr>
+<tr><th id="271">271</th><td>    <i>/* Parse the URLs and populate the list */</i></td></tr>
+<tr><th id="272">272</th><td>    <b>while</b>(*<a class="local col7 ref" href="#37servers" title='servers' data-ref="37servers">servers</a>) {</td></tr>
+<tr><th id="273">273</th><td>      <b>struct</b> <a class="type" href="#blacklist_node" title='blacklist_node' data-ref="blacklist_node">blacklist_node</a> *<dfn class="local col9 decl" id="39n" title='n' data-type='struct blacklist_node *' data-ref="39n">n</dfn>;</td></tr>
+<tr><th id="274">274</th><td>      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="40len" title='len' data-type='size_t' data-ref="40len">len</dfn> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(*<a class="local col7 ref" href="#37servers" title='servers' data-ref="37servers">servers</a>);</td></tr>
+<tr><th id="275">275</th><td></td></tr>
+<tr><th id="276">276</th><td>      <a class="local col9 ref" href="#39n" title='n' data-ref="39n">n</a> = <a class="macro" href="curl_memory.h.html#124" title="Curl_cmalloc(sizeof(struct blacklist_node) + len)" data-ref="_M/malloc">malloc</a>(<b>sizeof</b>(<b>struct</b> <a class="type" href="#blacklist_node" title='blacklist_node' data-ref="blacklist_node">blacklist_node</a>) + <a class="local col0 ref" href="#40len" title='len' data-ref="40len">len</a>);</td></tr>
+<tr><th id="277">277</th><td>      <b>if</b>(!<a class="local col9 ref" href="#39n" title='n' data-ref="39n">n</a>) {</td></tr>
+<tr><th id="278">278</th><td>        <a class="ref" href="llist.h.html#Curl_llist_destroy" title='Curl_llist_destroy' data-ref="Curl_llist_destroy">Curl_llist_destroy</a>(<a class="local col8 ref" href="#38list" title='list' data-ref="38list">list</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="279">279</th><td>        <b>return</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_OUT_OF_MEMORY" title='CURLM_OUT_OF_MEMORY' data-ref="CURLM_OUT_OF_MEMORY">CURLM_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="280">280</th><td>      }</td></tr>
+<tr><th id="281">281</th><td>      <a class="ref" href="../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col9 ref" href="#39n" title='n' data-ref="39n">n</a>-&gt;<a class="tu ref" href="#blacklist_node::server_name" title='blacklist_node::server_name' data-use='r' data-ref="blacklist_node::server_name">server_name</a>, *<a class="local col7 ref" href="#37servers" title='servers' data-ref="37servers">servers</a>);</td></tr>
+<tr><th id="282">282</th><td></td></tr>
+<tr><th id="283">283</th><td>      <a class="ref" href="llist.h.html#Curl_llist_insert_next" title='Curl_llist_insert_next' data-ref="Curl_llist_insert_next">Curl_llist_insert_next</a>(<a class="local col8 ref" href="#38list" title='list' data-ref="38list">list</a>, <a class="local col8 ref" href="#38list" title='list' data-ref="38list">list</a>-&gt;<a class="ref" href="llist.h.html#curl_llist::tail" title='curl_llist::tail' data-ref="curl_llist::tail">tail</a>, <a class="local col9 ref" href="#39n" title='n' data-ref="39n">n</a>, &amp;<a class="local col9 ref" href="#39n" title='n' data-ref="39n">n</a>-&gt;<a class="tu ref" href="#blacklist_node::list" title='blacklist_node::list' data-use='a' data-ref="blacklist_node::list">list</a>);</td></tr>
+<tr><th id="284">284</th><td>      <a class="local col7 ref" href="#37servers" title='servers' data-ref="37servers">servers</a>++;</td></tr>
+<tr><th id="285">285</th><td>    }</td></tr>
+<tr><th id="286">286</th><td>  }</td></tr>
+<tr><th id="287">287</th><td></td></tr>
+<tr><th id="288">288</th><td></td></tr>
+<tr><th id="289">289</th><td>  <b>return</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_OK" title='CURLM_OK' data-ref="CURLM_OK">CURLM_OK</a>;</td></tr>
+<tr><th id="290">290</th><td>}</td></tr>
+<tr><th id="291">291</th><td></td></tr>
+<tr><th id="292">292</th><td><em>static</em> <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="tu decl def" id="pipe_head" title='pipe_head' data-type='_Bool pipe_head(struct Curl_easy * data, struct curl_llist * pipeline)' data-ref="pipe_head">pipe_head</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="41data" title='data' data-type='struct Curl_easy *' data-ref="41data">data</dfn>,</td></tr>
+<tr><th id="293">293</th><td>                      <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col2 decl" id="42pipeline" title='pipeline' data-type='struct curl_llist *' data-ref="42pipeline">pipeline</dfn>)</td></tr>
+<tr><th id="294">294</th><td>{</td></tr>
+<tr><th id="295">295</th><td>  <b>if</b>(<a class="local col2 ref" href="#42pipeline" title='pipeline' data-ref="42pipeline">pipeline</a>) {</td></tr>
+<tr><th id="296">296</th><td>    <b>struct</b> <a class="type" href="llist.h.html#curl_llist_element" title='curl_llist_element' data-ref="curl_llist_element">curl_llist_element</a> *<dfn class="local col3 decl" id="43curr" title='curr' data-type='struct curl_llist_element *' data-ref="43curr">curr</dfn> = <a class="local col2 ref" href="#42pipeline" title='pipeline' data-ref="42pipeline">pipeline</a>-&gt;<a class="ref" href="llist.h.html#curl_llist::head" title='curl_llist::head' data-ref="curl_llist::head">head</a>;</td></tr>
+<tr><th id="297">297</th><td>    <b>if</b>(<a class="local col3 ref" href="#43curr" title='curr' data-ref="43curr">curr</a>)</td></tr>
+<tr><th id="298">298</th><td>      <b>return</b> (<a class="local col3 ref" href="#43curr" title='curr' data-ref="43curr">curr</a>-&gt;<a class="ref" href="llist.h.html#curl_llist_element::ptr" title='curl_llist_element::ptr' data-ref="curl_llist_element::ptr">ptr</a> == <a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>) ? <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a> : <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="299">299</th><td>  }</td></tr>
+<tr><th id="300">300</th><td>  <b>return</b> <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="301">301</th><td>}</td></tr>
+<tr><th id="302">302</th><td></td></tr>
+<tr><th id="303">303</th><td><i>/* returns TRUE if the given handle is head of the recv pipe */</i></td></tr>
+<tr><th id="304">304</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_recvpipe_head" title='Curl_recvpipe_head' data-ref="Curl_recvpipe_head">Curl_recvpipe_head</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col4 decl" id="44data" title='data' data-type='struct Curl_easy *' data-ref="44data">data</dfn>,</td></tr>
+<tr><th id="305">305</th><td>                        <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col5 decl" id="45conn" title='conn' data-type='struct connectdata *' data-ref="45conn">conn</dfn>)</td></tr>
+<tr><th id="306">306</th><td>{</td></tr>
+<tr><th id="307">307</th><td>  <b>return</b> <a class="tu ref" href="#pipe_head" title='pipe_head' data-use='c' data-ref="pipe_head">pipe_head</a>(<a class="local col4 ref" href="#44data" title='data' data-ref="44data">data</a>, &amp;<a class="local col5 ref" href="#45conn" title='conn' data-ref="45conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::recv_pipe" title='connectdata::recv_pipe' data-ref="connectdata::recv_pipe">recv_pipe</a>);</td></tr>
+<tr><th id="308">308</th><td>}</td></tr>
+<tr><th id="309">309</th><td></td></tr>
+<tr><th id="310">310</th><td><i>/* returns TRUE if the given handle is head of the send pipe */</i></td></tr>
+<tr><th id="311">311</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_sendpipe_head" title='Curl_sendpipe_head' data-ref="Curl_sendpipe_head">Curl_sendpipe_head</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col6 decl" id="46data" title='data' data-type='struct Curl_easy *' data-ref="46data">data</dfn>,</td></tr>
+<tr><th id="312">312</th><td>                        <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="47conn" title='conn' data-type='struct connectdata *' data-ref="47conn">conn</dfn>)</td></tr>
+<tr><th id="313">313</th><td>{</td></tr>
+<tr><th id="314">314</th><td>  <b>return</b> <a class="tu ref" href="#pipe_head" title='pipe_head' data-use='c' data-ref="pipe_head">pipe_head</a>(<a class="local col6 ref" href="#46data" title='data' data-ref="46data">data</a>, &amp;<a class="local col7 ref" href="#47conn" title='conn' data-ref="47conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send_pipe" title='connectdata::send_pipe' data-ref="connectdata::send_pipe">send_pipe</a>);</td></tr>
+<tr><th id="315">315</th><td>}</td></tr>
+<tr><th id="316">316</th><td></td></tr>
+<tr><th id="317">317</th><td></td></tr>
+<tr><th id="318">318</th><td><i>/*</i></td></tr>
+<tr><th id="319">319</th><td><i> * Check if the write channel is available and this handle as at the head,</i></td></tr>
+<tr><th id="320">320</th><td><i> * then grab the channel and return TRUE.</i></td></tr>
+<tr><th id="321">321</th><td><i> *</i></td></tr>
+<tr><th id="322">322</th><td><i> * If not available, return FALSE.</i></td></tr>
+<tr><th id="323">323</th><td><i> */</i></td></tr>
+<tr><th id="324">324</th><td></td></tr>
+<tr><th id="325">325</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_pipeline_checkget_write" title='Curl_pipeline_checkget_write' data-ref="Curl_pipeline_checkget_write">Curl_pipeline_checkget_write</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col8 decl" id="48data" title='data' data-type='struct Curl_easy *' data-ref="48data">data</dfn>,</td></tr>
+<tr><th id="326">326</th><td>                                  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col9 decl" id="49conn" title='conn' data-type='struct connectdata *' data-ref="49conn">conn</dfn>)</td></tr>
+<tr><th id="327">327</th><td>{</td></tr>
+<tr><th id="328">328</th><td>  <b>if</b>(<a class="local col9 ref" href="#49conn" title='conn' data-ref="49conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::bits" title='connectdata::bits' data-ref="connectdata::bits">bits</a>.<a class="ref" href="urldata.h.html#ConnectBits::multiplex" title='ConnectBits::multiplex' data-ref="ConnectBits::multiplex">multiplex</a>)</td></tr>
+<tr><th id="329">329</th><td>    <i>/* when multiplexing, we can use it at once */</i></td></tr>
+<tr><th id="330">330</th><td>    <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="331">331</th><td></td></tr>
+<tr><th id="332">332</th><td>  <b>if</b>(!<a class="local col9 ref" href="#49conn" title='conn' data-ref="49conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::writechannel_inuse" title='connectdata::writechannel_inuse' data-ref="connectdata::writechannel_inuse">writechannel_inuse</a> &amp;&amp; <a class="ref" href="#Curl_sendpipe_head" title='Curl_sendpipe_head' data-ref="Curl_sendpipe_head">Curl_sendpipe_head</a>(<a class="local col8 ref" href="#48data" title='data' data-ref="48data">data</a>, <a class="local col9 ref" href="#49conn" title='conn' data-ref="49conn">conn</a>)) {</td></tr>
+<tr><th id="333">333</th><td>    <i>/* Grab the channel */</i></td></tr>
+<tr><th id="334">334</th><td>    <a class="local col9 ref" href="#49conn" title='conn' data-ref="49conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::writechannel_inuse" title='connectdata::writechannel_inuse' data-ref="connectdata::writechannel_inuse">writechannel_inuse</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="335">335</th><td>    <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="336">336</th><td>  }</td></tr>
+<tr><th id="337">337</th><td>  <b>return</b> <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="338">338</th><td>}</td></tr>
+<tr><th id="339">339</th><td></td></tr>
+<tr><th id="340">340</th><td></td></tr>
+<tr><th id="341">341</th><td><i>/*</i></td></tr>
+<tr><th id="342">342</th><td><i> * Check if the read channel is available and this handle as at the head, then</i></td></tr>
+<tr><th id="343">343</th><td><i> * grab the channel and return TRUE.</i></td></tr>
+<tr><th id="344">344</th><td><i> *</i></td></tr>
+<tr><th id="345">345</th><td><i> * If not available, return FALSE.</i></td></tr>
+<tr><th id="346">346</th><td><i> */</i></td></tr>
+<tr><th id="347">347</th><td></td></tr>
+<tr><th id="348">348</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_pipeline_checkget_read" title='Curl_pipeline_checkget_read' data-ref="Curl_pipeline_checkget_read">Curl_pipeline_checkget_read</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col0 decl" id="50data" title='data' data-type='struct Curl_easy *' data-ref="50data">data</dfn>,</td></tr>
+<tr><th id="349">349</th><td>                                 <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col1 decl" id="51conn" title='conn' data-type='struct connectdata *' data-ref="51conn">conn</dfn>)</td></tr>
+<tr><th id="350">350</th><td>{</td></tr>
+<tr><th id="351">351</th><td>  <b>if</b>(<a class="local col1 ref" href="#51conn" title='conn' data-ref="51conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::bits" title='connectdata::bits' data-ref="connectdata::bits">bits</a>.<a class="ref" href="urldata.h.html#ConnectBits::multiplex" title='ConnectBits::multiplex' data-ref="ConnectBits::multiplex">multiplex</a>)</td></tr>
+<tr><th id="352">352</th><td>    <i>/* when multiplexing, we can use it at once */</i></td></tr>
+<tr><th id="353">353</th><td>    <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="354">354</th><td></td></tr>
+<tr><th id="355">355</th><td>  <b>if</b>(!<a class="local col1 ref" href="#51conn" title='conn' data-ref="51conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::readchannel_inuse" title='connectdata::readchannel_inuse' data-ref="connectdata::readchannel_inuse">readchannel_inuse</a> &amp;&amp; <a class="ref" href="#Curl_recvpipe_head" title='Curl_recvpipe_head' data-ref="Curl_recvpipe_head">Curl_recvpipe_head</a>(<a class="local col0 ref" href="#50data" title='data' data-ref="50data">data</a>, <a class="local col1 ref" href="#51conn" title='conn' data-ref="51conn">conn</a>)) {</td></tr>
+<tr><th id="356">356</th><td>    <i>/* Grab the channel */</i></td></tr>
+<tr><th id="357">357</th><td>    <a class="local col1 ref" href="#51conn" title='conn' data-ref="51conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::readchannel_inuse" title='connectdata::readchannel_inuse' data-ref="connectdata::readchannel_inuse">readchannel_inuse</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="358">358</th><td>    <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="359">359</th><td>  }</td></tr>
+<tr><th id="360">360</th><td>  <b>return</b> <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="361">361</th><td>}</td></tr>
+<tr><th id="362">362</th><td></td></tr>
+<tr><th id="363">363</th><td><i>/*</i></td></tr>
+<tr><th id="364">364</th><td><i> * The current user of the pipeline write channel gives it up.</i></td></tr>
+<tr><th id="365">365</th><td><i> */</i></td></tr>
+<tr><th id="366">366</th><td><em>void</em> <dfn class="decl def" id="Curl_pipeline_leave_write" title='Curl_pipeline_leave_write' data-ref="Curl_pipeline_leave_write">Curl_pipeline_leave_write</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="52conn" title='conn' data-type='struct connectdata *' data-ref="52conn">conn</dfn>)</td></tr>
+<tr><th id="367">367</th><td>{</td></tr>
+<tr><th id="368">368</th><td>  <a class="local col2 ref" href="#52conn" title='conn' data-ref="52conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::writechannel_inuse" title='connectdata::writechannel_inuse' data-ref="connectdata::writechannel_inuse">writechannel_inuse</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="369">369</th><td>}</td></tr>
+<tr><th id="370">370</th><td></td></tr>
+<tr><th id="371">371</th><td><i>/*</i></td></tr>
+<tr><th id="372">372</th><td><i> * The current user of the pipeline read channel gives it up.</i></td></tr>
+<tr><th id="373">373</th><td><i> */</i></td></tr>
+<tr><th id="374">374</th><td><em>void</em> <dfn class="decl def" id="Curl_pipeline_leave_read" title='Curl_pipeline_leave_read' data-ref="Curl_pipeline_leave_read">Curl_pipeline_leave_read</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col3 decl" id="53conn" title='conn' data-type='struct connectdata *' data-ref="53conn">conn</dfn>)</td></tr>
+<tr><th id="375">375</th><td>{</td></tr>
+<tr><th id="376">376</th><td>  <a class="local col3 ref" href="#53conn" title='conn' data-ref="53conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::readchannel_inuse" title='connectdata::readchannel_inuse' data-ref="connectdata::readchannel_inuse">readchannel_inuse</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="377">377</th><td>}</td></tr>
+<tr><th id="378">378</th><td></td></tr>
+<tr><th id="379">379</th><td></td></tr>
+<tr><th id="380">380</th><td><u>#<span data-ppcond="380">if</span> 0</u></td></tr>
+<tr><th id="381">381</th><td><em>void</em> print_pipeline(<b>struct</b> connectdata *conn)</td></tr>
+<tr><th id="382">382</th><td>{</td></tr>
+<tr><th id="383">383</th><td>  <b>struct</b> curl_llist_element *curr;</td></tr>
+<tr><th id="384">384</th><td>  <b>struct</b> connectbundle *cb_ptr;</td></tr>
+<tr><th id="385">385</th><td>  <b>struct</b> Curl_easy *data = conn-&gt;data;</td></tr>
+<tr><th id="386">386</th><td></td></tr>
+<tr><th id="387">387</th><td>  cb_ptr = conn-&gt;bundle;</td></tr>
+<tr><th id="388">388</th><td></td></tr>
+<tr><th id="389">389</th><td>  <b>if</b>(cb_ptr) {</td></tr>
+<tr><th id="390">390</th><td>    curr = cb_ptr-&gt;conn_list-&gt;head;</td></tr>
+<tr><th id="391">391</th><td>    <b>while</b>(curr) {</td></tr>
+<tr><th id="392">392</th><td>      conn = curr-&gt;ptr;</td></tr>
+<tr><th id="393">393</th><td>      infof(data, <q>"- Conn %ld (%p) send_pipe: %zu, recv_pipe: %zu\n"</q>,</td></tr>
+<tr><th id="394">394</th><td>            conn-&gt;connection_id,</td></tr>
+<tr><th id="395">395</th><td>            (<em>void</em> *)conn,</td></tr>
+<tr><th id="396">396</th><td>            conn-&gt;send_pipe-&gt;size,</td></tr>
+<tr><th id="397">397</th><td>            conn-&gt;recv_pipe-&gt;size);</td></tr>
+<tr><th id="398">398</th><td>      curr = curr-&gt;next;</td></tr>
+<tr><th id="399">399</th><td>    }</td></tr>
+<tr><th id="400">400</th><td>  }</td></tr>
+<tr><th id="401">401</th><td>}</td></tr>
+<tr><th id="402">402</th><td></td></tr>
+<tr><th id="403">403</th><td><u>#<span data-ppcond="380">endif</span></u></td></tr>
+<tr><th id="404">404</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

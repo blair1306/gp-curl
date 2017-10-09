@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/hash.h' l='85' type='void Curl_hash_clean(struct curl_hash * h)'/>
+<def f='codebrowser/lib/hash.c' l='225' ll='229' type='void Curl_hash_clean(struct curl_hash * h)'/>
+<doc f='codebrowser/lib/hash.c' l='221'>/* Removes all the entries in the given hash.
+ *
+ * @unittest: 1602
+ */</doc>
+<use f='codebrowser/lib/hostip.c' l='770' u='c' c='Curl_hostcache_clean'/>
+<use f='codebrowser/tests/unit/unit1603.c' l='148' u='c' c='test'/>

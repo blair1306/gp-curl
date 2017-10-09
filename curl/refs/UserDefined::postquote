@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1568' type='struct curl_slist *'/>
+<offset>7232</offset>
+<doc f='codebrowser/lib/urldata.h' l='1568'>/* after the transfer */</doc>
+<use f='codebrowser/lib/ftp.c' l='1700' u='r' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='3342' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3343' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/url.c' l='1798' u='w' c='Curl_setopt'/>

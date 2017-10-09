@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='537'/>
+<doc f='codebrowser/lib/curl_config.h' l='536'>/* Define to 1 if you have the `setrlimit&apos; function. */</doc>
+<use f='codebrowser/tests/libtest/lib518.c' l='51' u='a'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='52' u='a'/>

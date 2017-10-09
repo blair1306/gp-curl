@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/multihandle.h' l='115' type='struct conncache'/>
+<offset>1984</offset>
+<doc f='codebrowser/lib/multihandle.h' l='114'>/* Shared connection cache (bundles)*/</doc>
+<use f='codebrowser/lib/connect.c' l='1229' u='a' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/connect.c' l='1230' u='a' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/multi.c' l='321' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='333' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='345' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='409' u='a' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='2200' u='a' c='close_all_connections'/>
+<use f='codebrowser/lib/multi.c' l='2213' u='a' c='close_all_connections'/>
+<use f='codebrowser/lib/multi.c' l='2264' u='a' c='curl_multi_cleanup'/>

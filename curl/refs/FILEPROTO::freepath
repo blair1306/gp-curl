@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/file.h' l='31' type='char *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/file.h' l='31'>/* pointer to the allocated block we must free, this might
+                     differ from the &apos;path&apos; pointer */</doc>
+<use f='codebrowser/lib/file.c' l='254' u='w' c='file_connect'/>
+<use f='codebrowser/lib/file.c' l='275' u='r' c='file_done'/>
+<use f='codebrowser/lib/file.c' l='275' u='w' c='file_done'/>
+<use f='codebrowser/lib/file.c' l='292' u='r' c='file_disconnect'/>
+<use f='codebrowser/lib/file.c' l='292' u='w' c='file_disconnect'/>

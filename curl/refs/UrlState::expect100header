@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='1314' type='_Bool'/>
+<offset>139456</offset>
+<use f='codebrowser/lib/http.c' l='1530' u='w' c='expect100'/>
+<use f='codebrowser/lib/http.c' l='1539' u='w' c='expect100'/>
+<use f='codebrowser/lib/http.c' l='1546' u='w' c='expect100'/>
+<use f='codebrowser/lib/http.c' l='2538' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2547' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2614' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2623' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2630' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3207' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/rtsp.c' l='572' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/transfer.c' l='2047' u='r' c='Curl_setup_transfer'/>
+<use f='codebrowser/lib/transfer.c' l='2059' u='r' c='Curl_setup_transfer'/>
+<use f='codebrowser/lib/url.c' l='7069' u='w' c='Curl_init_do'/>

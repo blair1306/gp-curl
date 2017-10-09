@@ -1,0 +1,7 @@
+<dec f='include/openssl/engine.h' l='591' type='void ENGINE_cleanup()'/>
+<doc f='include/openssl/engine.h' l='585'>/*
+ * This function cleans up anything that needs it. Eg. the ENGINE_add()
+ * function automatically ensures the list cleanup function is registered to
+ * be called from ENGINE_cleanup(). Similarly, all ENGINE_register_***
+ * functions ensure ENGINE_cleanup() will clean up after them.
+ */</doc>

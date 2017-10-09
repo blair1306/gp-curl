@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='1096' type='curl_off_t'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/urldata.h' l='1096'>/* total expected size */</doc>
+<use f='codebrowser/lib/getinfo.c' l='274' u='r' c='getinfo_offt'/>
+<use f='codebrowser/lib/getinfo.c' l='323' u='r' c='getinfo_double'/>
+<use f='codebrowser/lib/progress.c' l='337' u='w' c='Curl_pgrsSetUploadSize'/>
+<use f='codebrowser/lib/progress.c' l='341' u='w' c='Curl_pgrsSetUploadSize'/>
+<use f='codebrowser/lib/progress.c' l='461' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='472' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='503' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='505' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='507' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='508' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='510' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='538' u='r' c='Curl_pgrsUpdate'/>

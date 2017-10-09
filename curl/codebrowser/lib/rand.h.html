@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>rand.h source code [codebrowser/lib/rand.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/rand.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='rand.h.html'>rand.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_RAND_H">HEADER_CURL_RAND_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_RAND_H" data-ref="_M/HEADER_CURL_RAND_H">HEADER_CURL_RAND_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><i>/*</i></td></tr>
+<tr><th id="26">26</th><td><i> * Curl_rand() stores 'num' number of random unsigned characters in the buffer</i></td></tr>
+<tr><th id="27">27</th><td><i> * 'rnd' points to.</i></td></tr>
+<tr><th id="28">28</th><td><i> *</i></td></tr>
+<tr><th id="29">29</th><td><i> * If libcurl is built without TLS support or with a TLS backend that lacks a</i></td></tr>
+<tr><th id="30">30</th><td><i> * proper random API (Gskit, PolarSSL or mbedTLS), this function will use</i></td></tr>
+<tr><th id="31">31</th><td><i> * "weak" random.</i></td></tr>
+<tr><th id="32">32</th><td><i> *</i></td></tr>
+<tr><th id="33">33</th><td><i> * When built *with* TLS support and a backend that offers strong random, it</i></td></tr>
+<tr><th id="34">34</th><td><i> * will return error if it cannot provide strong random values.</i></td></tr>
+<tr><th id="35">35</th><td><i> *</i></td></tr>
+<tr><th id="36">36</th><td><i> * NOTE: 'data' may be passed in as NULL when coming from external API without</i></td></tr>
+<tr><th id="37">37</th><td><i> * easy handle!</i></td></tr>
+<tr><th id="38">38</th><td><i> *</i></td></tr>
+<tr><th id="39">39</th><td><i> */</i></td></tr>
+<tr><th id="40">40</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_rand" title='Curl_rand' data-ref="Curl_rand">Curl_rand</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="3data" title='data' data-type='struct Curl_easy *' data-ref="3data">data</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col4 decl" id="4rnd" title='rnd' data-type='unsigned char *' data-ref="4rnd">rnd</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="5num" title='num' data-type='size_t' data-ref="5num">num</dfn>);</td></tr>
+<tr><th id="41">41</th><td></td></tr>
+<tr><th id="42">42</th><td><i>/* Same as above but outputs only random lowercase hex characters.</i></td></tr>
+<tr><th id="43">43</th><td><i>   Does NOT terminate.*/</i></td></tr>
+<tr><th id="44">44</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_rand_hex" title='Curl_rand_hex' data-ref="Curl_rand_hex">Curl_rand_hex</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col6 decl" id="6data" title='data' data-type='struct Curl_easy *' data-ref="6data">data</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col7 decl" id="7rnd" title='rnd' data-type='unsigned char *' data-ref="7rnd">rnd</dfn>,</td></tr>
+<tr><th id="45">45</th><td>                       <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="8num" title='num' data-type='size_t' data-ref="8num">num</dfn>);</td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_RAND_H */</u></td></tr>
+<tr><th id="48">48</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='formdata.c.html'>codebrowser/lib/formdata.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

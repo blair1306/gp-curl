@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/multiif.h' l='65' type='curl_off_t Curl_multi_content_length_penalty_size(struct Curl_multi * multi)'/>
+<doc f='codebrowser/lib/multiif.h' l='64'>/* Return the value of the CURLMOPT_CONTENT_LENGTH_PENALTY_SIZE option */</doc>
+<def f='codebrowser/lib/multi.c' l='3073' ll='3076' type='curl_off_t Curl_multi_content_length_penalty_size(struct Curl_multi * multi)'/>
+<use f='codebrowser/lib/pipeline.c' l='65' u='c' c='Curl_pipeline_penalized'/>

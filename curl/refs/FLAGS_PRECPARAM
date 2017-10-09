@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/mprintf.c' l='142' type='65536'/>
+<use f='codebrowser/lib/mprintf.c' l='302' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='469' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='492' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='671' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='897' u='r' c='dprintf_formatf'/>
+<doc f='codebrowser/lib/mprintf.c' l='142'>/* precision PARAMETER was specified */</doc>

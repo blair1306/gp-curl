@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/cookie.h' l='31' type='char *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/cookie.h' l='31'>/* name = &lt;this&gt; */</doc>
+<use f='codebrowser/lib/cookie.c' l='114' u='r' c='freecookie'/>
+<use f='codebrowser/lib/cookie.c' l='476' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='477' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='785' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='786' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='793' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='794' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='890' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='920' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1102' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1102' u='w' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1102' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1102' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1344' u='r' c='get_netscape_format'/>
+<use f='codebrowser/lib/cookie.c' l='1344' u='r' c='get_netscape_format'/>
+<use f='codebrowser/lib/http.c' l='2390' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2398' u='r' c='Curl_http'/>

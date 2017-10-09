@@ -1,0 +1,25 @@
+<dec f='codebrowser/lib/urldata.h' l='890' type='struct ssl_primary_config'/>
+<offset>6592</offset>
+<use f='codebrowser/lib/url.c' l='3077' u='a' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3684' u='a' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3685' u='a' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='4279' u='m' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4281' u='m' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4282' u='m' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='6295' u='a' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6731' u='a' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1956' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1957' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2049' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2055' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2056' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2057' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2299' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2437' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3072' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3137' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3156' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3241' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3242' macro='1' u='m'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='314' u='a' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='422' u='a' c='Curl_ssl_addsessionid'/>

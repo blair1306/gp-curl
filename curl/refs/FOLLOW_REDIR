@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/transfer.h' l='40' type='3'/>
+<doc f='codebrowser/lib/transfer.h' l='40'>/* a full true redirect */</doc>
+<use f='codebrowser/lib/multi.c' l='1966' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/transfer.c' l='1747' u='r' c='Curl_follow'/>

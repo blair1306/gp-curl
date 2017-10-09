@@ -1,0 +1,2 @@
+<dec f='include/openssl/ui.h' l='327' type='int UI_method_set_reader(UI_METHOD * method, int (*)(UI *, UI_STRING *) reader)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='784' u='c' c='cert_stuff'/>

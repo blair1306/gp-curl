@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='898' type='struct curltime'/>
+<offset>7488</offset>
+<doc f='codebrowser/lib/urldata.h' l='895'>/* connecttime: when connect() is called on the current IP address. Used to
+    be able to track when to move on to try next IP - but only when the multi
+    interface is used. */</doc>
+<use f='codebrowser/lib/connect.c' l='768' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='776' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='1054' u='w' c='singleipconnect'/>

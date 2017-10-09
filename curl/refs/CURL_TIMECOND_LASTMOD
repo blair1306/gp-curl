@@ -1,0 +1,7 @@
+<dec f='codebrowser/include/curl/curl.h' l='1960' type='3'/>
+<use f='codebrowser/lib/http.c' l='1714' c='Curl_add_timecondition'/>
+<use f='codebrowser/src/tool_getparam.c' l='2051' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_setopt.c' l='104'/>
+<use f='codebrowser/src/tool_setopt.c' l='104'/>
+<use f='codebrowser/src/tool_setopt.c' l='104'/>
+<use f='codebrowser/src/tool_setopt.c' l='104'/>

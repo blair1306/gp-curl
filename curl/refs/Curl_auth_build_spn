@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='51' type='char * Curl_auth_build_spn(const char * service, const char * host, const char * realm)'/>
+<use f='codebrowser/lib/vauth/digest.c' l='427' u='c' c='Curl_auth_create_digest_md5_message'/>
+<def f='codebrowser/lib/vauth/vauth.c' l='53' ll='68' type='char * Curl_auth_build_spn(const char * service, const char * host, const char * realm)'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='59'/>
+<use f='codebrowser/src/tool_urlglob.h' l='62' u='c'/>
+<doc f='codebrowser/src/tool_urlglob.h' l='58'>/* the total number of globs supported */</doc>
+<use f='codebrowser/src/tool_urlglob.c' l='424' u='c'/>

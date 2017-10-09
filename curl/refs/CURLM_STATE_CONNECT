@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/multihandle.h' l='39' type='2'/>
+<doc f='codebrowser/lib/multihandle.h' l='39'>/* 2 - resolve/connect has been sent off */</doc>
+<use f='codebrowser/lib/multi.c' l='867' u='r' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1339' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1350' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1364' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1370' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1423' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1434' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1563' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1724' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1974' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2103' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='3102' u='r' c='Curl_multi_process_pending_handles'/>

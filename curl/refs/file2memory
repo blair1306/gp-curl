@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='30' type='ParameterError file2memory(char ** bufp, size_t * size, FILE * file)'/>
+<use f='codebrowser/src/tool_getparam.c' l='1239' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1306' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1646' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='90' ll='137' type='ParameterError file2memory(char ** bufp, size_t * size, FILE * file)'/>

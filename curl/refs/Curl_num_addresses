@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/hostip.h' l='134' type='int Curl_num_addresses(const Curl_addrinfo * addr)'/>
+<doc f='codebrowser/lib/hostip.h' l='133'>/* Return # of addresses in a Curl_addrinfo struct */</doc>
+<use f='codebrowser/lib/connect.c' l='1159' u='c' c='Curl_connecthost'/>
+<def f='codebrowser/lib/hostip.c' l='148' ll='156' type='int Curl_num_addresses(const Curl_addrinfo * addr)'/>
+<doc f='codebrowser/lib/hostip.c' l='145'>/*
+ * Return # of addresses in a Curl_addrinfo struct
+ */</doc>

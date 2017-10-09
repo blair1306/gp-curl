@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/mime.h' l='59' type='0'/>
+<doc f='codebrowser/lib/mime.h' l='59'>/* Mime mail. */</doc>
+<use f='codebrowser/lib/imap.c' l='730' u='r' c='imap_perform_append'/>
+<use f='codebrowser/lib/mime.c' l='1664' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1718' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/smtp.c' l='542' u='r' c='smtp_perform_mail'/>

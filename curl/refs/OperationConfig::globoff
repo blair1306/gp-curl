@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='146' type='_Bool'/>
+<offset>5456</offset>
+<use f='codebrowser/src/tool_getparam.c' l='1618' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='464' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='514' u='r' c='operate_do'/>

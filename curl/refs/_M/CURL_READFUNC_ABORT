@@ -1,0 +1,13 @@
+<dec f='codebrowser/include/curl/curl.h' l='350'/>
+<doc f='codebrowser/include/curl/curl.h' l='348'>/* This is a return code for the read callback that, when returned, will
+   signal libcurl to immediately abort the current transfer. */</doc>
+<use f='codebrowser/lib/formdata.c' l='786' u='c'/>
+<use f='codebrowser/lib/mime.c' l='776' u='c'/>
+<use f='codebrowser/lib/mime.c' l='805' u='c'/>
+<use f='codebrowser/lib/mime.c' l='891' u='c'/>
+<use f='codebrowser/lib/mime.c' l='979' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='1657' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='141' u='c'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='44' u='c'/>
+<use f='codebrowser/tests/libtest/lib513.c' l='32' u='c'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='48' u='c'/>

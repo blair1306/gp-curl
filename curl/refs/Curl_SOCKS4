@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/socks.h' l='48' type='CURLcode Curl_SOCKS4(const char * proxy_name, const char * hostname, int remote_port, int sockindex, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/socks.h' l='44'>/*
+ * This function logs in to a SOCKS4(a) proxy and sends the specifics to the
+ * final destination server.
+ */</doc>
+<def f='codebrowser/lib/socks.c' l='108' ll='347' type='CURLcode Curl_SOCKS4(const char * proxy_user, const char * hostname, int remote_port, int sockindex, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/socks.c' l='97'>/*
+* This function logs in to a SOCKS4 proxy and sends the specifics to the final
+* destination server.
+*
+* Reference :
+*   http://socks.permeo.com/protocol/socks4.protocol
+*
+* Note :
+*   Set protocol4a=true for  &quot;SOCKS 4A (Simple Extension to SOCKS 4 Protocol)&quot;
+*   Nonsupport &quot;Identification Protocol (RFC1413)&quot;
+*/</doc>
+<use f='codebrowser/lib/url.c' l='3939' u='c' c='Curl_connected_proxy'/>

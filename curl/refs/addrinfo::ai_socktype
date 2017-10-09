@@ -1,0 +1,6 @@
+<dec f='include/netdb.h' l='571' type='int'/>
+<offset>64</offset>
+<doc f='include/netdb.h' l='571'>/* Socket type.  */</doc>
+<use f='codebrowser/lib/asyn-thread.c' l='656' u='w' c='Curl_resolver_getaddrinfo'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='162' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/tests/server/resolve.c' l='129' u='w' c='main'/>

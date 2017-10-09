@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/curl_ntlm_core.h' l='94' type='CURLcode Curl_ntlm_core_mk_lmv2_resp(unsigned char * ntlmv2hash, unsigned char * challenge_client, unsigned char * challenge_server, unsigned char * lmresp)'/>
+<def f='codebrowser/lib/curl_ntlm_core.c' l='789' ll='810' type='CURLcode Curl_ntlm_core_mk_lmv2_resp(unsigned char * ntlmv2hash, unsigned char * challenge_client, unsigned char * challenge_server, unsigned char * lmresp)'/>
+<doc f='codebrowser/lib/curl_ntlm_core.c' l='775'>/*
+ * Curl_ntlm_core_mk_lmv2_resp()
+ *
+ * This creates the LMv2 response as used in the ntlm type-3 message.
+ *
+ * Parameters:
+ *
+ * ntlmv2hash        [in] - The ntlmv2 hash (16 bytes)
+ * challenge_client  [in] - The client nonce (8 bytes)
+ * challenge_client  [in] - The server challenge (8 bytes)
+ * lmresp           [out] - The LMv2 response (24 bytes)
+ *
+ * Returns CURLE_OK on success.
+ */</doc>
+<use f='codebrowser/lib/vauth/ntlm.c' l='579' u='c' c='Curl_auth_create_ntlm_type3_message'/>

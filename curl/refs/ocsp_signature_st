@@ -1,0 +1,10 @@
+<def f='include/openssl/ocsp.h' l='141' ll='145'/>
+<size>24</size>
+<doc f='include/openssl/ocsp.h' l='136'>/*-  Signature       ::=     SEQUENCE {
+ *       signatureAlgorithm   AlgorithmIdentifier,
+ *       signature            BIT STRING,
+ *       certs                [0] EXPLICIT SEQUENCE OF Certificate OPTIONAL }
+ */</doc>
+<mbr r='ocsp_signature_st::signatureAlgorithm' o='0' t='X509_ALGOR *'/>
+<mbr r='ocsp_signature_st::signature' o='64' t='ASN1_BIT_STRING *'/>
+<mbr r='ocsp_signature_st::certs' o='128' t='struct stack_st_X509 *'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/des.h' l='233' type='void DES_set_key_unchecked(const_DES_cblock * key, DES_key_schedule * schedule)'/>

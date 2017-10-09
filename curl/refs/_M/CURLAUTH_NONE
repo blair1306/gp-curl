@@ -1,0 +1,28 @@
+<dec f='codebrowser/include/curl/curl.h' l='696'/>
+<doc f='codebrowser/include/curl/curl.h' l='679'>/*
+ * Bitmasks for CURLOPT_HTTPAUTH and CURLOPT_PROXYAUTH options:
+ *
+ * CURLAUTH_NONE         - No HTTP authentication
+ * CURLAUTH_BASIC        - HTTP Basic authentication (default)
+ * CURLAUTH_DIGEST       - HTTP Digest authentication
+ * CURLAUTH_NEGOTIATE    - HTTP Negotiate (SPNEGO) authentication
+ * CURLAUTH_GSSNEGOTIATE - Alias for CURLAUTH_NEGOTIATE (deprecated)
+ * CURLAUTH_NTLM         - HTTP NTLM authentication
+ * CURLAUTH_DIGEST_IE    - HTTP Digest authentication with IE flavour
+ * CURLAUTH_NTLM_WB      - HTTP NTLM authentication delegated to winbind helper
+ * CURLAUTH_ONLY         - Use together with a single other type to force no
+ *                         authentication or just that single type
+ * CURLAUTH_ANY          - All fine types set
+ * CURLAUTH_ANYSAFE      - All fine types except Basic
+ */</doc>
+<use f='codebrowser/lib/http.c' l='341' u='c'/>
+<use f='codebrowser/lib/http.c' l='881' u='c'/>
+<use f='codebrowser/lib/url.c' l='1394' u='c'/>
+<use f='codebrowser/lib/url.c' l='1474' u='c'/>
+<use f='codebrowser/lib/url.c' l='6876' u='c'/>
+<use f='codebrowser/lib/url.c' l='6883' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='76' u='c'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='73' u='c'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='80' u='c'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='91' u='c'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='92' u='c'/>

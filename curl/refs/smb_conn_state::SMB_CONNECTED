@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/smb.h' l='30' type='4'/>
+<use f='codebrowser/lib/smb.c' l='704' u='r' c='smb_connection_state'/>

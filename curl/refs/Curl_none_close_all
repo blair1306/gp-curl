@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='89' type='void Curl_none_close_all(struct Curl_easy * data)'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='1014' ll='1017' type='void Curl_none_close_all(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1151'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1151'/>

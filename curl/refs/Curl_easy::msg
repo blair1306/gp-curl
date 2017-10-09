@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1744' type='struct Curl_message'/>
+<offset>640</offset>
+<doc f='codebrowser/lib/urldata.h' l='1744'>/* A single posted message. */</doc>
+<use f='codebrowser/lib/multi.c' l='2126' u='a' c='multi_runsingle'/>

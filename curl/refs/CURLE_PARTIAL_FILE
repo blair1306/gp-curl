@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='481' type='18'/>
+<doc f='codebrowser/include/curl/curl.h' l='481'>/* 18 */</doc>
+<use f='codebrowser/lib/ftp.c' l='3154' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3293' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3310' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3327' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/http.c' l='2226' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/strerror.c' l='119' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/transfer.c' l='1230' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1244' u='r' c='Curl_readwrite'/>

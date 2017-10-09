@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>lib540.c source code [codebrowser/tests/libtest/lib540.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/lib540.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='lib540.c.html'>lib540.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><i>/* This is the 'proxyauth.c' test app posted by Shmulik Regev on the libcurl</i></td></tr>
+<tr><th id="23">23</th><td><i> * mailing list on 10 Jul 2007, converted to a test case.</i></td></tr>
+<tr><th id="24">24</th><td><i> *</i></td></tr>
+<tr><th id="25">25</th><td><i> * argv1 = URL</i></td></tr>
+<tr><th id="26">26</th><td><i> * argv2 = proxy</i></td></tr>
+<tr><th id="27">27</th><td><i> * argv3 = proxyuser:password</i></td></tr>
+<tr><th id="28">28</th><td><i> * argv4 = host name to use for the custom Host: header</i></td></tr>
+<tr><th id="29">29</th><td><i> */</i></td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="test.h.html">"test.h"</a></u></td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#402" data-ref="_M/HAVE_LIMITS_H">HAVE_LIMITS_H</a></u></td></tr>
+<tr><th id="34">34</th><td><u>#include &lt;limits.h&gt;</u></td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="33">endif</span></u></td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td><u>#include <a href="testutil.h.html">"testutil.h"</a></u></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="../../lib/warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="39">39</th><td><u>#include <a href="../../lib/memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td><u>#define <dfn class="macro" id="_M/TEST_HANG_TIMEOUT" data-ref="_M/TEST_HANG_TIMEOUT">TEST_HANG_TIMEOUT</dfn> 60 * 1000</u></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#define <dfn class="macro" id="_M/PROXY" data-ref="_M/PROXY">PROXY</dfn> <a class="ref" href="test.h.html#libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#define <dfn class="macro" id="_M/PROXYUSERPWD" data-ref="_M/PROXYUSERPWD">PROXYUSERPWD</dfn> <a class="ref" href="test.h.html#libtest_arg3" title='libtest_arg3' data-ref="libtest_arg3">libtest_arg3</a></u></td></tr>
+<tr><th id="45">45</th><td><u>#define <dfn class="macro" id="_M/HOST" data-ref="_M/HOST">HOST</dfn> <a class="ref" href="test.h.html#test_argv" title='test_argv' data-ref="test_argv">test_argv</a>[4]</u></td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><u>#define <dfn class="macro" id="_M/NUM_HANDLES" data-ref="_M/NUM_HANDLES">NUM_HANDLES</dfn> 2</u></td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="tu decl def" id="eh" title='eh' data-type='CURL *[2]' data-ref="eh">eh</dfn>[<a class="macro" href="#47" title="2" data-ref="_M/NUM_HANDLES">NUM_HANDLES</a>];</td></tr>
+<tr><th id="50">50</th><td></td></tr>
+<tr><th id="51">51</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="init" title='init' data-type='int init(int num, CURLM * cm, const char * url, const char * userpwd, struct curl_slist * headers)' data-ref="init">init</dfn>(<em>int</em> <dfn class="local col1 decl" id="1num" title='num' data-type='int' data-ref="1num">num</dfn>, <a class="typedef" href="../../include/curl/multi.h.html#CURLM" title='CURLM' data-type='struct Curl_multi' data-ref="CURLM">CURLM</a> *<dfn class="local col2 decl" id="2cm" title='cm' data-type='CURLM *' data-ref="2cm">cm</dfn>, <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="3url" title='url' data-type='const char *' data-ref="3url">url</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="4userpwd" title='userpwd' data-type='const char *' data-ref="4userpwd">userpwd</dfn>,</td></tr>
+<tr><th id="52">52</th><td>                <b>struct</b> <a class="type" href="../../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="local col5 decl" id="5headers" title='headers' data-type='struct curl_slist *' data-ref="5headers">headers</dfn>)</td></tr>
+<tr><th id="53">53</th><td>{</td></tr>
+<tr><th id="54">54</th><td>  <em>int</em> <dfn class="local col6 decl" id="6res" title='res' data-type='int' data-ref="6res">res</dfn> = <var>0</var>;</td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td>  <a class="macro" href="test.h.html#136" title="do { if((((eh[num])) = curl_easy_init()) == ((void*)0)) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_init() failed\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((56))); res = 124; } } while(0)" data-ref="_M/res_easy_init">res_easy_init</a>(<a class="tu ref" href="#eh" title='eh' data-use='w' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>]);</td></tr>
+<tr><th id="57">57</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="58">58</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="59">59</th><td></td></tr>
+<tr><th id="60">60</th><td>  <a class="macro" href="test.h.html#181" title="do { CURLcode ec; if((ec = curl_easy_setopt(((eh[num])),((CURLOPT_URL)),((url)))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_setopt() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((60)), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_easy_setopt">res_easy_setopt</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>], <a class="enum" href="../../include/curl/curl.h.html#915" title='CURLOPT_URL' data-ref="CURLOPT_URL">CURLOPT_URL</a>, <a class="local col3 ref" href="#3url" title='url' data-ref="3url">url</a>);</td></tr>
+<tr><th id="61">61</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="62">62</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td>  <a class="macro" href="test.h.html#181" title="do { CURLcode ec; if((ec = curl_easy_setopt(((eh[num])),((CURLOPT_PROXY)),((libtest_arg2)))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_setopt() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((64)), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_easy_setopt">res_easy_setopt</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>], <a class="enum" href="../../include/curl/curl.h.html#921" title='CURLOPT_PROXY' data-ref="CURLOPT_PROXY">CURLOPT_PROXY</a>, <a class="macro" href="#43" title="libtest_arg2" data-ref="_M/PROXY">PROXY</a>);</td></tr>
+<tr><th id="65">65</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="66">66</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="67">67</th><td></td></tr>
+<tr><th id="68">68</th><td>  <a class="macro" href="test.h.html#181" title="do { CURLcode ec; if((ec = curl_easy_setopt(((eh[num])),((CURLOPT_PROXYUSERPWD)),((userpwd)))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_setopt() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((68)), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_easy_setopt">res_easy_setopt</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>], <a class="enum" href="../../include/curl/curl.h.html#927" title='CURLOPT_PROXYUSERPWD' data-ref="CURLOPT_PROXYUSERPWD">CURLOPT_PROXYUSERPWD</a>, <a class="local col4 ref" href="#4userpwd" title='userpwd' data-ref="4userpwd">userpwd</a>);</td></tr>
+<tr><th id="69">69</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="70">70</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="71">71</th><td></td></tr>
+<tr><th id="72">72</th><td>  <a class="macro" href="test.h.html#181" title="do { CURLcode ec; if((ec = curl_easy_setopt(((eh[num])),((CURLOPT_PROXYAUTH)),(((long)(~(((unsigned long)1)&lt;&lt;4)))))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_setopt() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((72)), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_easy_setopt">res_easy_setopt</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>], <a class="enum" href="../../include/curl/curl.h.html#1286" title='CURLOPT_PROXYAUTH' data-ref="CURLOPT_PROXYAUTH">CURLOPT_PROXYAUTH</a>, (<em>long</em>)<a class="macro" href="../../include/curl/curl.h.html#708" title="(~(((unsigned long)1)&lt;&lt;4))" data-ref="_M/CURLAUTH_ANY">CURLAUTH_ANY</a>);</td></tr>
+<tr><th id="73">73</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="74">74</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="75">75</th><td></td></tr>
+<tr><th id="76">76</th><td>  <a class="macro" href="test.h.html#181" title="do { CURLcode ec; if((ec = curl_easy_setopt(((eh[num])),((CURLOPT_VERBOSE)),((1L)))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_setopt() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((76)), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_easy_setopt">res_easy_setopt</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>], <a class="enum" href="../../include/curl/curl.h.html#1055" title='CURLOPT_VERBOSE' data-ref="CURLOPT_VERBOSE">CURLOPT_VERBOSE</a>, <var>1L</var>);</td></tr>
+<tr><th id="77">77</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="78">78</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td>  <a class="macro" href="test.h.html#181" title="do { CURLcode ec; if((ec = curl_easy_setopt(((eh[num])),((CURLOPT_HEADER)),((1L)))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_setopt() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((80)), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_easy_setopt">res_easy_setopt</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>], <a class="enum" href="../../include/curl/curl.h.html#1056" title='CURLOPT_HEADER' data-ref="CURLOPT_HEADER">CURLOPT_HEADER</a>, <var>1L</var>);</td></tr>
+<tr><th id="81">81</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="82">82</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td>  <a class="macro" href="test.h.html#181" title="do { CURLcode ec; if((ec = curl_easy_setopt(((eh[num])),((CURLOPT_HTTPHEADER)),((headers)))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_setopt() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((84)), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_easy_setopt">res_easy_setopt</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>], <a class="enum" href="../../include/curl/curl.h.html#1001" title='CURLOPT_HTTPHEADER' data-ref="CURLOPT_HTTPHEADER">CURLOPT_HTTPHEADER</a>, <a class="local col5 ref" href="#5headers" title='headers' data-ref="5headers">headers</a>); <i>/* custom Host: */</i></td></tr>
+<tr><th id="85">85</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="86">86</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="87">87</th><td></td></tr>
+<tr><th id="88">88</th><td>  <a class="macro" href="test.h.html#229" title="do { CURLMcode ec; if((ec = curl_multi_add_handle(((cm)), ((eh[num])))) != CURLM_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_multi_add_handle() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((88)), (int)ec, curl_multi_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_multi_add_handle">res_multi_add_handle</a>(<a class="local col2 ref" href="#2cm" title='cm' data-ref="2cm">cm</a>, <a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>]);</td></tr>
+<tr><th id="89">89</th><td>  <b>if</b>(<a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>)</td></tr>
+<tr><th id="90">90</th><td>    <b>goto</b> <a class="lbl" href="#7init_failed" data-ref="7init_failed">init_failed</a>;</td></tr>
+<tr><th id="91">91</th><td></td></tr>
+<tr><th id="92">92</th><td>  <b>return</b> <var>0</var>; <i>/* success */</i></td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td><dfn class="lbl" id="7init_failed" data-ref="7init_failed">init_failed</dfn>:</td></tr>
+<tr><th id="95">95</th><td></td></tr>
+<tr><th id="96">96</th><td>  <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>]);</td></tr>
+<tr><th id="97">97</th><td>  <a class="tu ref" href="#eh" title='eh' data-use='w' data-ref="eh">eh</a>[<a class="local col1 ref" href="#1num" title='num' data-ref="1num">num</a>] = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="98">98</th><td></td></tr>
+<tr><th id="99">99</th><td>  <b>return</b> <a class="local col6 ref" href="#6res" title='res' data-ref="6res">res</a>; <i>/* failure */</i></td></tr>
+<tr><th id="100">100</th><td>}</td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="loop" title='loop' data-type='int loop(int num, CURLM * cm, const char * url, const char * userpwd, struct curl_slist * headers)' data-ref="loop">loop</dfn>(<em>int</em> <dfn class="local col8 decl" id="8num" title='num' data-type='int' data-ref="8num">num</dfn>, <a class="typedef" href="../../include/curl/multi.h.html#CURLM" title='CURLM' data-type='struct Curl_multi' data-ref="CURLM">CURLM</a> *<dfn class="local col9 decl" id="9cm" title='cm' data-type='CURLM *' data-ref="9cm">cm</dfn>, <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="10url" title='url' data-type='const char *' data-ref="10url">url</dfn>, <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="11userpwd" title='userpwd' data-type='const char *' data-ref="11userpwd">userpwd</dfn>,</td></tr>
+<tr><th id="103">103</th><td>                <b>struct</b> <a class="type" href="../../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="local col2 decl" id="12headers" title='headers' data-type='struct curl_slist *' data-ref="12headers">headers</dfn>)</td></tr>
+<tr><th id="104">104</th><td>{</td></tr>
+<tr><th id="105">105</th><td>  <a class="typedef" href="../../include/curl/multi.h.html#CURLMsg" title='CURLMsg' data-type='struct CURLMsg' data-ref="CURLMsg">CURLMsg</a> *<dfn class="local col3 decl" id="13msg" title='msg' data-type='CURLMsg *' data-ref="13msg">msg</dfn>;</td></tr>
+<tr><th id="106">106</th><td>  <em>long</em> <dfn class="local col4 decl" id="14L" title='L' data-type='long' data-ref="14L">L</dfn>;</td></tr>
+<tr><th id="107">107</th><td>  <em>int</em> <dfn class="local col5 decl" id="15Q" title='Q' data-type='int' data-ref="15Q">Q</dfn>, <dfn class="local col6 decl" id="16U" title='U' data-type='int' data-ref="16U">U</dfn> = -<var>1</var>;</td></tr>
+<tr><th id="108">108</th><td>  <a class="typedef" href="../../../include/x86_64-linux-gnu/sys/select.h.html#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> <dfn class="local col7 decl" id="17R" title='R' data-type='fd_set' data-ref="17R">R</dfn>, <dfn class="local col8 decl" id="18W" title='W' data-type='fd_set' data-ref="18W">W</dfn>, <dfn class="local col9 decl" id="19E" title='E' data-type='fd_set' data-ref="19E">E</dfn>;</td></tr>
+<tr><th id="109">109</th><td>  <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col0 decl" id="20T" title='T' data-type='struct timeval' data-ref="20T">T</dfn>;</td></tr>
+<tr><th id="110">110</th><td>  <em>int</em> <dfn class="local col1 decl" id="21res" title='res' data-type='int' data-ref="21res">res</dfn> = <var>0</var>;</td></tr>
+<tr><th id="111">111</th><td></td></tr>
+<tr><th id="112">112</th><td>  <a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a> = <a class="tu ref" href="#init" title='init' data-use='c' data-ref="init">init</a>(<a class="local col8 ref" href="#8num" title='num' data-ref="8num">num</a>, <a class="local col9 ref" href="#9cm" title='cm' data-ref="9cm">cm</a>, <a class="local col0 ref" href="#10url" title='url' data-ref="10url">url</a>, <a class="local col1 ref" href="#11userpwd" title='userpwd' data-ref="11userpwd">userpwd</a>, <a class="local col2 ref" href="#12headers" title='headers' data-ref="12headers">headers</a>);</td></tr>
+<tr><th id="113">113</th><td>  <b>if</b>(<a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>)</td></tr>
+<tr><th id="114">114</th><td>    <b>return</b> <a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>;</td></tr>
+<tr><th id="115">115</th><td></td></tr>
+<tr><th id="116">116</th><td>  <b>while</b>(<a class="local col6 ref" href="#16U" title='U' data-ref="16U">U</a>) {</td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td>    <em>int</em> <dfn class="local col2 decl" id="22M" title='M' data-type='int' data-ref="22M">M</dfn> = -<var>99</var>;</td></tr>
+<tr><th id="119">119</th><td></td></tr>
+<tr><th id="120">120</th><td>    <a class="macro" href="test.h.html#284" title="do { CURLMcode ec; if((ec = curl_multi_perform(((cm)), ((&amp;U)))) != CURLM_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_multi_perform() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((120)), (int)ec, curl_multi_strerror(ec)); res = (int)ec; } else if(*(((&amp;U))) &lt; 0) { curl_mfprintf(stderr, &quot;%s:%d curl_multi_perform() succeeded, &quot; &quot;but returned invalid running_handles value (%d)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((120)), (int)*(((&amp;U)))); res = 122; } } while(0)" data-ref="_M/res_multi_perform">res_multi_perform</a>(<a class="local col9 ref" href="#9cm" title='cm' data-ref="9cm">cm</a>, &amp;<a class="local col6 ref" href="#16U" title='U' data-ref="16U">U</a>);</td></tr>
+<tr><th id="121">121</th><td>    <b>if</b>(<a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>)</td></tr>
+<tr><th id="122">122</th><td>      <b>return</b> <a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>;</td></tr>
+<tr><th id="123">123</th><td></td></tr>
+<tr><th id="124">124</th><td>    <a class="macro" href="test.h.html#395" title="do { if(tutil_tvdiff(tutil_tvnow(), tv_test_start) &gt; 60 * 1000) { curl_mfprintf(stderr, &quot;%s:%d ABORTING TEST, since it seems &quot; &quot;that it would have run forever.\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((124))); res = 125; } } while(0)" data-ref="_M/res_test_timedout">res_test_timedout</a>();</td></tr>
+<tr><th id="125">125</th><td>    <b>if</b>(<a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>)</td></tr>
+<tr><th id="126">126</th><td>      <b>return</b> <a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>;</td></tr>
+<tr><th id="127">127</th><td></td></tr>
+<tr><th id="128">128</th><td>    <b>if</b>(<a class="local col6 ref" href="#16U" title='U' data-ref="16U">U</a>) {</td></tr>
+<tr><th id="129">129</th><td>      <a class="macro" href="../../../include/x86_64-linux-gnu/sys/select.h.html#93" title="do { int __d0, __d1; __asm__ __volatile__ (&quot;cld; rep; &quot; &quot;stosq&quot; : &quot;=c&quot; (__d0), &quot;=D&quot; (__d1) : &quot;a&quot; (0), &quot;0&quot; (sizeof (fd_set) / sizeof (__fd_mask)), &quot;1&quot; (&amp;((&amp;R)-&gt;__fds_bits)[0]) : &quot;memory&quot;); } while (0)" data-ref="_M/FD_ZERO">FD_ZERO</a>(&amp;<a class="local col7 ref" href="#17R" title='R' data-ref="17R">R</a>);</td></tr>
+<tr><th id="130">130</th><td>      <a class="macro" href="../../../include/x86_64-linux-gnu/sys/select.h.html#93" title="do { int __d0, __d1; __asm__ __volatile__ (&quot;cld; rep; &quot; &quot;stosq&quot; : &quot;=c&quot; (__d0), &quot;=D&quot; (__d1) : &quot;a&quot; (0), &quot;0&quot; (sizeof (fd_set) / sizeof (__fd_mask)), &quot;1&quot; (&amp;((&amp;W)-&gt;__fds_bits)[0]) : &quot;memory&quot;); } while (0)" data-ref="_M/FD_ZERO">FD_ZERO</a>(&amp;<a class="local col8 ref" href="#18W" title='W' data-ref="18W">W</a>);</td></tr>
+<tr><th id="131">131</th><td>      <a class="macro" href="../../../include/x86_64-linux-gnu/sys/select.h.html#93" title="do { int __d0, __d1; __asm__ __volatile__ (&quot;cld; rep; &quot; &quot;stosq&quot; : &quot;=c&quot; (__d0), &quot;=D&quot; (__d1) : &quot;a&quot; (0), &quot;0&quot; (sizeof (fd_set) / sizeof (__fd_mask)), &quot;1&quot; (&amp;((&amp;E)-&gt;__fds_bits)[0]) : &quot;memory&quot;); } while (0)" data-ref="_M/FD_ZERO">FD_ZERO</a>(&amp;<a class="local col9 ref" href="#19E" title='E' data-ref="19E">E</a>);</td></tr>
+<tr><th id="132">132</th><td></td></tr>
+<tr><th id="133">133</th><td>      <a class="macro" href="test.h.html#314" title="do { CURLMcode ec; if((ec = curl_multi_fdset(((cm)), ((&amp;R)), ((&amp;W)), ((&amp;E)), ((&amp;M)))) != CURLM_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_multi_fdset() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((133)), (int)ec, curl_multi_strerror(ec)); res = (int)ec; } else if(*(((&amp;M))) &lt; -1) { curl_mfprintf(stderr, &quot;%s:%d curl_multi_fdset() succeeded, &quot; &quot;but returned invalid max_fd value (%d)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((133)), (int)*(((&amp;M)))); res = 122; } } while(0)" data-ref="_M/res_multi_fdset">res_multi_fdset</a>(<a class="local col9 ref" href="#9cm" title='cm' data-ref="9cm">cm</a>, &amp;<a class="local col7 ref" href="#17R" title='R' data-ref="17R">R</a>, &amp;<a class="local col8 ref" href="#18W" title='W' data-ref="18W">W</a>, &amp;<a class="local col9 ref" href="#19E" title='E' data-ref="19E">E</a>, &amp;<a class="local col2 ref" href="#22M" title='M' data-ref="22M">M</a>);</td></tr>
+<tr><th id="134">134</th><td>      <b>if</b>(<a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>)</td></tr>
+<tr><th id="135">135</th><td>        <b>return</b> <a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>;</td></tr>
+<tr><th id="136">136</th><td></td></tr>
+<tr><th id="137">137</th><td>      <i>/* At this point, M is guaranteed to be greater or equal than -1. */</i></td></tr>
+<tr><th id="138">138</th><td></td></tr>
+<tr><th id="139">139</th><td>      <a class="macro" href="test.h.html#344" title="do { CURLMcode ec; if((ec = curl_multi_timeout(((cm)), ((&amp;L)))) != CURLM_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_multi_timeout() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((139)), (int)ec, curl_multi_strerror(ec)); res = (int)ec; } else if(*(((&amp;L))) &lt; -1L) { curl_mfprintf(stderr, &quot;%s:%d curl_multi_timeout() succeeded, &quot; &quot;but returned invalid timeout value (%ld)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((139)), (long)*(((&amp;L)))); res = 115; } } while(0)" data-ref="_M/res_multi_timeout">res_multi_timeout</a>(<a class="local col9 ref" href="#9cm" title='cm' data-ref="9cm">cm</a>, &amp;<a class="local col4 ref" href="#14L" title='L' data-ref="14L">L</a>);</td></tr>
+<tr><th id="140">140</th><td>      <b>if</b>(<a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>)</td></tr>
+<tr><th id="141">141</th><td>        <b>return</b> <a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>;</td></tr>
+<tr><th id="142">142</th><td></td></tr>
+<tr><th id="143">143</th><td>      <i>/* At this point, L is guaranteed to be greater or equal than -1. */</i></td></tr>
+<tr><th id="144">144</th><td></td></tr>
+<tr><th id="145">145</th><td>      <b>if</b>(<a class="local col4 ref" href="#14L" title='L' data-ref="14L">L</a> != -<var>1</var>) {</td></tr>
+<tr><th id="146">146</th><td>        <em>int</em> <dfn class="local col3 decl" id="23itimeout" title='itimeout' data-type='int' data-ref="23itimeout">itimeout</dfn> = (<a class="local col4 ref" href="#14L" title='L' data-ref="14L">L</a> &gt; (<em>long</em>)<span class="macro" title="2147483647" data-ref="_M/INT_MAX">INT_MAX</span>) ? <span class="macro" title="2147483647" data-ref="_M/INT_MAX">INT_MAX</span> : (<em>int</em>)<a class="local col4 ref" href="#14L" title='L' data-ref="14L">L</a>;</td></tr>
+<tr><th id="147">147</th><td>        <a class="local col0 ref" href="#20T" title='T' data-ref="20T">T</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a> = <a class="local col3 ref" href="#23itimeout" title='itimeout' data-ref="23itimeout">itimeout</a>/<var>1000</var>;</td></tr>
+<tr><th id="148">148</th><td>        <a class="local col0 ref" href="#20T" title='T' data-ref="20T">T</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a> = (<a class="local col3 ref" href="#23itimeout" title='itimeout' data-ref="23itimeout">itimeout</a>%<var>1000</var>)*<var>1000</var>;</td></tr>
+<tr><th id="149">149</th><td>      }</td></tr>
+<tr><th id="150">150</th><td>      <b>else</b> {</td></tr>
+<tr><th id="151">151</th><td>        <a class="local col0 ref" href="#20T" title='T' data-ref="20T">T</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a> = <var>5</var>;</td></tr>
+<tr><th id="152">152</th><td>        <a class="local col0 ref" href="#20T" title='T' data-ref="20T">T</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a> = <var>0</var>;</td></tr>
+<tr><th id="153">153</th><td>      }</td></tr>
+<tr><th id="154">154</th><td></td></tr>
+<tr><th id="155">155</th><td>      <a class="macro" href="test.h.html#369" title="do { int ec; if(select_wrapper(((M + 1)), ((&amp;R)), ((&amp;W)), ((&amp;E)), ((&amp;T))) == -1) { ec = ((*__errno_location ())); curl_mfprintf(stderr, &quot;%s:%d select() failed, with &quot; &quot;errno %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((155)), ec, strerror(ec)); res = 121; } } while(0)" data-ref="_M/res_select_test">res_select_test</a>(<a class="local col2 ref" href="#22M" title='M' data-ref="22M">M</a> + <var>1</var>, &amp;<a class="local col7 ref" href="#17R" title='R' data-ref="17R">R</a>, &amp;<a class="local col8 ref" href="#18W" title='W' data-ref="18W">W</a>, &amp;<a class="local col9 ref" href="#19E" title='E' data-ref="19E">E</a>, &amp;<a class="local col0 ref" href="#20T" title='T' data-ref="20T">T</a>);</td></tr>
+<tr><th id="156">156</th><td>      <b>if</b>(<a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>)</td></tr>
+<tr><th id="157">157</th><td>        <b>return</b> <a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>;</td></tr>
+<tr><th id="158">158</th><td>    }</td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td>    <b>while</b>((<a class="local col3 ref" href="#13msg" title='msg' data-ref="13msg">msg</a> = <a class="ref" href="../../include/curl/multi.h.html#curl_multi_info_read" title='curl_multi_info_read' data-ref="curl_multi_info_read">curl_multi_info_read</a>(<a class="local col9 ref" href="#9cm" title='cm' data-ref="9cm">cm</a>, &amp;<a class="local col5 ref" href="#15Q" title='Q' data-ref="15Q">Q</a>)) != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) {</td></tr>
+<tr><th id="161">161</th><td>      <b>if</b>(<a class="local col3 ref" href="#13msg" title='msg' data-ref="13msg">msg</a>-&gt;<a class="ref" href="../../include/curl/multi.h.html#CURLMsg::msg" title='CURLMsg::msg' data-ref="CURLMsg::msg">msg</a> == <a class="enum" href="../../include/curl/multi.h.html#CURLMSG_DONE" title='CURLMSG_DONE' data-ref="CURLMSG_DONE">CURLMSG_DONE</a>) {</td></tr>
+<tr><th id="162">162</th><td>        <em>int</em> <dfn class="local col4 decl" id="24i" title='i' data-type='int' data-ref="24i">i</dfn>;</td></tr>
+<tr><th id="163">163</th><td>        <a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col5 decl" id="25e" title='e' data-type='CURL *' data-ref="25e">e</dfn> = <a class="local col3 ref" href="#13msg" title='msg' data-ref="13msg">msg</a>-&gt;<a class="ref" href="../../include/curl/multi.h.html#CURLMsg::easy_handle" title='CURLMsg::easy_handle' data-ref="CURLMsg::easy_handle">easy_handle</a>;</td></tr>
+<tr><th id="164">164</th><td>        <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"R: %d - %s\n"</q>, (<em>int</em>)<a class="local col3 ref" href="#13msg" title='msg' data-ref="13msg">msg</a>-&gt;<a class="ref" href="../../include/curl/multi.h.html#CURLMsg::data" title='CURLMsg::data' data-ref="CURLMsg::data">data</a>.<a class="ref" href="../../include/curl/multi.h.html#CURLMsg::(anonymous)::result" title='CURLMsg::(anonymous union)::result' data-ref="CURLMsg::(anonymous)::result">result</a>,</td></tr>
+<tr><th id="165">165</th><td>                <a class="ref" href="../../include/curl/curl.h.html#curl_easy_strerror" title='curl_easy_strerror' data-ref="curl_easy_strerror">curl_easy_strerror</a>(<a class="local col3 ref" href="#13msg" title='msg' data-ref="13msg">msg</a>-&gt;<a class="ref" href="../../include/curl/multi.h.html#CURLMsg::data" title='CURLMsg::data' data-ref="CURLMsg::data">data</a>.<a class="ref" href="../../include/curl/multi.h.html#CURLMsg::(anonymous)::result" title='CURLMsg::(anonymous union)::result' data-ref="CURLMsg::(anonymous)::result">result</a>));</td></tr>
+<tr><th id="166">166</th><td>        <a class="ref" href="../../include/curl/multi.h.html#curl_multi_remove_handle" title='curl_multi_remove_handle' data-ref="curl_multi_remove_handle">curl_multi_remove_handle</a>(<a class="local col9 ref" href="#9cm" title='cm' data-ref="9cm">cm</a>, <a class="local col5 ref" href="#25e" title='e' data-ref="25e">e</a>);</td></tr>
+<tr><th id="167">167</th><td>        <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="local col5 ref" href="#25e" title='e' data-ref="25e">e</a>);</td></tr>
+<tr><th id="168">168</th><td>        <b>for</b>(<a class="local col4 ref" href="#24i" title='i' data-ref="24i">i</a> = <var>0</var>; <a class="local col4 ref" href="#24i" title='i' data-ref="24i">i</a> &lt; <a class="macro" href="#47" title="2" data-ref="_M/NUM_HANDLES">NUM_HANDLES</a>; <a class="local col4 ref" href="#24i" title='i' data-ref="24i">i</a>++) {</td></tr>
+<tr><th id="169">169</th><td>          <b>if</b>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col4 ref" href="#24i" title='i' data-ref="24i">i</a>] == <a class="local col5 ref" href="#25e" title='e' data-ref="25e">e</a>) {</td></tr>
+<tr><th id="170">170</th><td>            <a class="tu ref" href="#eh" title='eh' data-use='w' data-ref="eh">eh</a>[<a class="local col4 ref" href="#24i" title='i' data-ref="24i">i</a>] = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="171">171</th><td>            <b>break</b>;</td></tr>
+<tr><th id="172">172</th><td>          }</td></tr>
+<tr><th id="173">173</th><td>        }</td></tr>
+<tr><th id="174">174</th><td>      }</td></tr>
+<tr><th id="175">175</th><td>      <b>else</b></td></tr>
+<tr><th id="176">176</th><td>        <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"E: CURLMsg (%d)\n"</q>, (<em>int</em>)<a class="local col3 ref" href="#13msg" title='msg' data-ref="13msg">msg</a>-&gt;<a class="ref" href="../../include/curl/multi.h.html#CURLMsg::msg" title='CURLMsg::msg' data-ref="CURLMsg::msg">msg</a>);</td></tr>
+<tr><th id="177">177</th><td>    }</td></tr>
+<tr><th id="178">178</th><td></td></tr>
+<tr><th id="179">179</th><td>    <a class="macro" href="test.h.html#395" title="do { if(tutil_tvdiff(tutil_tvnow(), tv_test_start) &gt; 60 * 1000) { curl_mfprintf(stderr, &quot;%s:%d ABORTING TEST, since it seems &quot; &quot;that it would have run forever.\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((179))); res = 125; } } while(0)" data-ref="_M/res_test_timedout">res_test_timedout</a>();</td></tr>
+<tr><th id="180">180</th><td>    <b>if</b>(<a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>)</td></tr>
+<tr><th id="181">181</th><td>      <b>return</b> <a class="local col1 ref" href="#21res" title='res' data-ref="21res">res</a>;</td></tr>
+<tr><th id="182">182</th><td>  }</td></tr>
+<tr><th id="183">183</th><td></td></tr>
+<tr><th id="184">184</th><td>  <b>return</b> <var>0</var>; <i>/* success */</i></td></tr>
+<tr><th id="185">185</th><td>}</td></tr>
+<tr><th id="186">186</th><td></td></tr>
+<tr><th id="187">187</th><td><em>int</em> <dfn class="decl def" id="test" title='test' data-ref="test">test</dfn>(<em>char</em> *<dfn class="local col6 decl" id="26URL" title='URL' data-type='char *' data-ref="26URL">URL</dfn>)</td></tr>
+<tr><th id="188">188</th><td>{</td></tr>
+<tr><th id="189">189</th><td>  <a class="typedef" href="../../include/curl/multi.h.html#CURLM" title='CURLM' data-type='struct Curl_multi' data-ref="CURLM">CURLM</a> *<dfn class="local col7 decl" id="27cm" title='cm' data-type='CURLM *' data-ref="27cm">cm</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="190">190</th><td>  <b>struct</b> <a class="type" href="../../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="local col8 decl" id="28headers" title='headers' data-type='struct curl_slist *' data-ref="28headers">headers</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="191">191</th><td>  <em>char</em> <dfn class="local col9 decl" id="29buffer" title='buffer' data-type='char [246]' data-ref="29buffer">buffer</dfn>[<var>246</var>]; <i>/* naively fixed-size */</i></td></tr>
+<tr><th id="192">192</th><td>  <em>int</em> <dfn class="local col0 decl" id="30res" title='res' data-type='int' data-ref="30res">res</dfn> = <var>0</var>;</td></tr>
+<tr><th id="193">193</th><td>  <em>int</em> <dfn class="local col1 decl" id="31i" title='i' data-type='int' data-ref="31i">i</dfn>;</td></tr>
+<tr><th id="194">194</th><td></td></tr>
+<tr><th id="195">195</th><td>  <b>for</b>(<a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a> = <var>0</var>; <a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a> &lt; <a class="macro" href="#47" title="2" data-ref="_M/NUM_HANDLES">NUM_HANDLES</a>; <a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a>++)</td></tr>
+<tr><th id="196">196</th><td>    <a class="tu ref" href="#eh" title='eh' data-use='w' data-ref="eh">eh</a>[<a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a>] = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="197">197</th><td></td></tr>
+<tr><th id="198">198</th><td>  <a class="macro" href="test.h.html#383" title="do { tv_test_start = tutil_tvnow(); } while(0)" data-ref="_M/start_test_timing">start_test_timing</a>();</td></tr>
+<tr><th id="199">199</th><td></td></tr>
+<tr><th id="200">200</th><td>  <b>if</b>(<a class="ref" href="test.h.html#test_argc" title='test_argc' data-ref="test_argc">test_argc</a> &lt; <var>4</var>)</td></tr>
+<tr><th id="201">201</th><td>    <b>return</b> <var>99</var>;</td></tr>
+<tr><th id="202">202</th><td></td></tr>
+<tr><th id="203">203</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col9 ref" href="#29buffer" title='buffer' data-ref="29buffer">buffer</a>, <b>sizeof</b>(<a class="local col9 ref" href="#29buffer" title='buffer' data-ref="29buffer">buffer</a>), <q>"Host: %s"</q>, <a class="macro" href="#45" title="test_argv[4]" data-ref="_M/HOST">HOST</a>);</td></tr>
+<tr><th id="204">204</th><td></td></tr>
+<tr><th id="205">205</th><td>  <i>/* now add a custom Host: header */</i></td></tr>
+<tr><th id="206">206</th><td>  <a class="local col8 ref" href="#28headers" title='headers' data-ref="28headers">headers</a> = <a class="ref" href="../../include/curl/curl.h.html#curl_slist_append" title='curl_slist_append' data-ref="curl_slist_append">curl_slist_append</a>(<a class="local col8 ref" href="#28headers" title='headers' data-ref="28headers">headers</a>, <a class="local col9 ref" href="#29buffer" title='buffer' data-ref="29buffer">buffer</a>);</td></tr>
+<tr><th id="207">207</th><td>  <b>if</b>(!<a class="local col8 ref" href="#28headers" title='headers' data-ref="28headers">headers</a>) {</td></tr>
+<tr><th id="208">208</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"curl_slist_append() failed\n"</q>);</td></tr>
+<tr><th id="209">209</th><td>    <b>return</b> <a class="macro" href="test.h.html#85" title="126" data-ref="_M/TEST_ERR_MAJOR_BAD">TEST_ERR_MAJOR_BAD</a>;</td></tr>
+<tr><th id="210">210</th><td>  }</td></tr>
+<tr><th id="211">211</th><td></td></tr>
+<tr><th id="212">212</th><td>  <a class="macro" href="test.h.html#419" title="do { CURLcode ec; if((ec = curl_global_init(((((1&lt;&lt;0)|(1&lt;&lt;1)))))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_global_init() failed, &quot; &quot;with code %d (%s)\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((212)), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0)" data-ref="_M/res_global_init">res_global_init</a>(<a class="macro" href="../../include/curl/curl.h.html#2519" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_ALL">CURL_GLOBAL_ALL</a>);</td></tr>
+<tr><th id="213">213</th><td>  <b>if</b>(<a class="local col0 ref" href="#30res" title='res' data-ref="30res">res</a>) {</td></tr>
+<tr><th id="214">214</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_slist_free_all" title='curl_slist_free_all' data-ref="curl_slist_free_all">curl_slist_free_all</a>(<a class="local col8 ref" href="#28headers" title='headers' data-ref="28headers">headers</a>);</td></tr>
+<tr><th id="215">215</th><td>    <b>return</b> <a class="local col0 ref" href="#30res" title='res' data-ref="30res">res</a>;</td></tr>
+<tr><th id="216">216</th><td>  }</td></tr>
+<tr><th id="217">217</th><td></td></tr>
+<tr><th id="218">218</th><td>  <a class="macro" href="test.h.html#157" title="do { if((((cm)) = curl_multi_init()) == ((void*)0)) { curl_mfprintf(stderr, &quot;%s:%d curl_multi_init() failed\n&quot;, ((&quot;/home/jon/workspace/curl/tests/libtest/lib540.c&quot;)), ((218))); res = 123; } } while(0)" data-ref="_M/res_multi_init">res_multi_init</a>(<a class="local col7 ref" href="#27cm" title='cm' data-ref="27cm">cm</a>);</td></tr>
+<tr><th id="219">219</th><td>  <b>if</b>(<a class="local col0 ref" href="#30res" title='res' data-ref="30res">res</a>) {</td></tr>
+<tr><th id="220">220</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="221">221</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_slist_free_all" title='curl_slist_free_all' data-ref="curl_slist_free_all">curl_slist_free_all</a>(<a class="local col8 ref" href="#28headers" title='headers' data-ref="28headers">headers</a>);</td></tr>
+<tr><th id="222">222</th><td>    <b>return</b> <a class="local col0 ref" href="#30res" title='res' data-ref="30res">res</a>;</td></tr>
+<tr><th id="223">223</th><td>  }</td></tr>
+<tr><th id="224">224</th><td></td></tr>
+<tr><th id="225">225</th><td>  <a class="local col0 ref" href="#30res" title='res' data-ref="30res">res</a> = <a class="tu ref" href="#loop" title='loop' data-use='c' data-ref="loop">loop</a>(<var>0</var>, <a class="local col7 ref" href="#27cm" title='cm' data-ref="27cm">cm</a>, <a class="local col6 ref" href="#26URL" title='URL' data-ref="26URL">URL</a>, <a class="macro" href="#44" title="libtest_arg3" data-ref="_M/PROXYUSERPWD">PROXYUSERPWD</a>, <a class="local col8 ref" href="#28headers" title='headers' data-ref="28headers">headers</a>);</td></tr>
+<tr><th id="226">226</th><td>  <b>if</b>(<a class="local col0 ref" href="#30res" title='res' data-ref="30res">res</a>)</td></tr>
+<tr><th id="227">227</th><td>    <b>goto</b> <a class="lbl" href="#32test_cleanup" data-ref="32test_cleanup">test_cleanup</a>;</td></tr>
+<tr><th id="228">228</th><td></td></tr>
+<tr><th id="229">229</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"lib540: now we do the request again\n"</q>);</td></tr>
+<tr><th id="230">230</th><td></td></tr>
+<tr><th id="231">231</th><td>  <a class="local col0 ref" href="#30res" title='res' data-ref="30res">res</a> = <a class="tu ref" href="#loop" title='loop' data-use='c' data-ref="loop">loop</a>(<var>1</var>, <a class="local col7 ref" href="#27cm" title='cm' data-ref="27cm">cm</a>, <a class="local col6 ref" href="#26URL" title='URL' data-ref="26URL">URL</a>, <a class="macro" href="#44" title="libtest_arg3" data-ref="_M/PROXYUSERPWD">PROXYUSERPWD</a>, <a class="local col8 ref" href="#28headers" title='headers' data-ref="28headers">headers</a>);</td></tr>
+<tr><th id="232">232</th><td></td></tr>
+<tr><th id="233">233</th><td><dfn class="lbl" id="32test_cleanup" data-ref="32test_cleanup">test_cleanup</dfn>:</td></tr>
+<tr><th id="234">234</th><td></td></tr>
+<tr><th id="235">235</th><td>  <i>/* proper cleanup sequence - type PB */</i></td></tr>
+<tr><th id="236">236</th><td></td></tr>
+<tr><th id="237">237</th><td>  <b>for</b>(<a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a> = <var>0</var>; <a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a> &lt; <a class="macro" href="#47" title="2" data-ref="_M/NUM_HANDLES">NUM_HANDLES</a>; <a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a>++) {</td></tr>
+<tr><th id="238">238</th><td>    <a class="ref" href="../../include/curl/multi.h.html#curl_multi_remove_handle" title='curl_multi_remove_handle' data-ref="curl_multi_remove_handle">curl_multi_remove_handle</a>(<a class="local col7 ref" href="#27cm" title='cm' data-ref="27cm">cm</a>, <a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a>]);</td></tr>
+<tr><th id="239">239</th><td>    <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="tu ref" href="#eh" title='eh' data-use='r' data-ref="eh">eh</a>[<a class="local col1 ref" href="#31i" title='i' data-ref="31i">i</a>]);</td></tr>
+<tr><th id="240">240</th><td>  }</td></tr>
+<tr><th id="241">241</th><td></td></tr>
+<tr><th id="242">242</th><td>  <a class="ref" href="../../include/curl/multi.h.html#curl_multi_cleanup" title='curl_multi_cleanup' data-ref="curl_multi_cleanup">curl_multi_cleanup</a>(<a class="local col7 ref" href="#27cm" title='cm' data-ref="27cm">cm</a>);</td></tr>
+<tr><th id="243">243</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="244">244</th><td></td></tr>
+<tr><th id="245">245</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_slist_free_all" title='curl_slist_free_all' data-ref="curl_slist_free_all">curl_slist_free_all</a>(<a class="local col8 ref" href="#28headers" title='headers' data-ref="28headers">headers</a>);</td></tr>
+<tr><th id="246">246</th><td></td></tr>
+<tr><th id="247">247</th><td>  <b>return</b> <a class="local col0 ref" href="#30res" title='res' data-ref="30res">res</a>;</td></tr>
+<tr><th id="248">248</th><td>}</td></tr>
+<tr><th id="249">249</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

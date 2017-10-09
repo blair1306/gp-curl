@@ -1,0 +1,15 @@
+<dec f='include/x86_64-linux-gnu/bits/socket_type.h' l='28'/>
+<use f='codebrowser/lib/connect.c' l='1004' u='c'/>
+<use f='codebrowser/lib/connect.c' l='1059' u='c'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='330' u='c'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='518' u='c'/>
+<use f='codebrowser/lib/if2ip.c' l='228' u='c'/>
+<use f='codebrowser/lib/url.c' l='4895' u='c'/>
+<use f='codebrowser/tests/server/resolve.c' l='129' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1286' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1289' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1464' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1467' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1344' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2121' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2174' u='c'/>

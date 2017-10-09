@@ -1,0 +1,30 @@
+<dec f='codebrowser/lib/urldata.h' l='1591' type='long'/>
+<offset>10944</offset>
+<doc f='codebrowser/lib/urldata.h' l='1591'>/* size of receive buffer to use */</doc>
+<use f='codebrowser/lib/easy.c' l='880' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='880' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='881' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/file.c' l='368' u='r' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='565' u='r' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='566' u='r' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='569' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='1633' u='r' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/ftp.c' l='1634' u='r' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/ftp.c' l='2779' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/http.c' l='2201' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2202' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/pingpong.c' l='296' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='322' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='415' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='427' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/sendf.c' l='729' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='729' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/smtp.c' l='1554' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/telnet.c' l='1614' u='r' c='telnet_do'/>
+<use f='codebrowser/lib/telnet.c' l='1650' u='r' c='telnet_do'/>
+<use f='codebrowser/lib/telnet.c' l='1655' u='r' c='telnet_do'/>
+<use f='codebrowser/lib/transfer.c' l='448' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='977' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/url.c' l='630' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2356' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2365' u='w' c='Curl_setopt'/>

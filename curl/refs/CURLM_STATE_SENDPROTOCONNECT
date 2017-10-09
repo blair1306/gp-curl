@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/multihandle.h' l='45' type='6'/>
+<doc f='codebrowser/lib/multihandle.h' l='45'>/* 6 - initiate protocol connect procedure */</doc>
+<use f='codebrowser/lib/multi.c' l='894' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1571' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1592' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1602' c='multi_runsingle'/>

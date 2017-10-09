@@ -1,0 +1,1 @@
+<dec f='codebrowser/lib/url.h' l='56' type='CURLcode Curl_addHandleToPipeline(struct Curl_easy * handle, struct curl_llist * pipeline)'/>

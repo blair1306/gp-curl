@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/rtsp.h' l='26' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/rtsp.c' l='108' ll='127' type='const struct Curl_handler'/>
+<doc f='codebrowser/lib/rtsp.c' l='105'>/*
+ * RTSP handler interface.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='240' u='a'/>
+<use f='codebrowser/lib/url.c' l='240' u='a'/>

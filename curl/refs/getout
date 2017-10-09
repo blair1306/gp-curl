@@ -1,0 +1,12 @@
+<def f='codebrowser/src/tool_sdecls.h' l='103' ll='109'/>
+<size>40</size>
+<doc f='codebrowser/src/tool_sdecls.h' l='97'>/*
+ * A linked list of these &apos;getout&apos; nodes contain URL&apos;s to fetch,
+ * as well as information relative to where URL contents should
+ * be stored or which file should be uploaded.
+ */</doc>
+<mbr r='getout::next' o='0' t='struct getout *'/>
+<mbr r='getout::url' o='64' t='char *'/>
+<mbr r='getout::outfile' o='128' t='char *'/>
+<mbr r='getout::infile' o='192' t='char *'/>
+<mbr r='getout::flags' o='256' t='int'/>

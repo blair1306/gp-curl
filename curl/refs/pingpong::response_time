@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/pingpong.h' l='63' type='long'/>
+<offset>640</offset>
+<doc f='codebrowser/lib/pingpong.h' l='63'>/* When no timeout is given, this is the amount of
+                         milliseconds we await for a server response. */</doc>
+<use f='codebrowser/lib/ftp.c' l='3098' u='w' c='ftp_connect'/>
+<use f='codebrowser/lib/ftp.c' l='3263' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3265' u='w' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3270' u='w' c='ftp_done'/>
+<use f='codebrowser/lib/imap.c' l='1403' u='w' c='imap_connect'/>
+<use f='codebrowser/lib/pingpong.c' l='54' u='r' c='Curl_pp_state_timeout'/>
+<use f='codebrowser/lib/pop3.c' l='1074' u='w' c='pop3_connect'/>
+<use f='codebrowser/lib/smtp.c' l='1137' u='w' c='smtp_connect'/>

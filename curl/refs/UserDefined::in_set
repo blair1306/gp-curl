@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1493' type='void *'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/urldata.h' l='1493'>/* CURLOPT_READDATA */</doc>
+<use f='codebrowser/lib/transfer.c' l='1315' u='r' c='Curl_init_CONNECT'/>
+<use f='codebrowser/lib/url.c' l='512' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1660' u='w' c='Curl_setopt'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/conncache.h' l='58' type='void Curl_conncache_foreach(struct conncache * connc, void * param, int (*)(struct connectdata *, void *) func)'/>
+<def f='codebrowser/lib/conncache.c' l='264' ll='295' type='void Curl_conncache_foreach(struct conncache * connc, void * param, int (*)(struct connectdata *, void *) func)'/>
+<doc f='codebrowser/lib/conncache.c' l='258'>/* This function iterates the entire connection cache and calls the
+   function func() with the connection pointer as the first argument
+   and the supplied &apos;param&apos; argument as the other,
+
+   Return 0 from func() to continue the loop, return 1 to abort it.
+ */</doc>
+<use f='codebrowser/lib/connect.c' l='1228' u='c' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/url.c' l='3462' u='c' c='prune_dead_connections'/>

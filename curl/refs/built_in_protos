@@ -1,0 +1,8 @@
+<dec f='codebrowser/src/tool_libinfo.h' l='29' type='long'/>
+<def f='codebrowser/src/tool_libinfo.c' l='37' type='long'/>
+<use f='codebrowser/src/tool_libinfo.c' l='88' u='w' c='get_libcurl_info'/>
+<use f='codebrowser/src/tool_libinfo.c' l='93' u='w' c='get_libcurl_info'/>
+<use f='codebrowser/src/tool_operate.c' l='1009' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1014' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1077' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1180' u='r' c='operate_do'/>

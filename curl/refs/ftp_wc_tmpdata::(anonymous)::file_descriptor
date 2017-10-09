@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='89' type='FILE *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/ftp.c' l='3824' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3852' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3854' u='w' c='wc_statemach'/>

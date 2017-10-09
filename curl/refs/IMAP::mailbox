@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/imap.h' l='58' type='char *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/imap.h' l='58'>/* Mailbox to select */</doc>
+<use f='codebrowser/lib/imap.c' l='613' u='r' c='imap_perform_list'/>
+<use f='codebrowser/lib/imap.c' l='613' u='r' c='imap_perform_list'/>
+<use f='codebrowser/lib/imap.c' l='648' u='r' c='imap_perform_select'/>
+<use f='codebrowser/lib/imap.c' l='654' u='r' c='imap_perform_select'/>
+<use f='codebrowser/lib/imap.c' l='717' u='r' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='758' u='r' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='1062' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1480' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1480' u='w' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1523' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1524' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1533' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1542' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1950' u='a' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='1956' u='w' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='2036' u='r' c='imap_parse_url_path'/>

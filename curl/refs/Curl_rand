@@ -1,0 +1,35 @@
+<dec f='codebrowser/lib/rand.h' l='40' type='CURLcode Curl_rand(struct Curl_easy * data, unsigned char * rnd, size_t num)'/>
+<doc f='codebrowser/lib/rand.h' l='25'>/*
+ * Curl_rand() stores &apos;num&apos; number of random unsigned characters in the buffer
+ * &apos;rnd&apos; points to.
+ *
+ * If libcurl is built without TLS support or with a TLS backend that lacks a
+ * proper random API (Gskit, PolarSSL or mbedTLS), this function will use
+ * &quot;weak&quot; random.
+ *
+ * When built *with* TLS support and a backend that offers strong random, it
+ * will return error if it cannot provide strong random values.
+ *
+ * NOTE: &apos;data&apos; may be passed in as NULL when coming from external API without
+ * easy handle!
+ *
+ */</doc>
+<def f='codebrowser/lib/rand.c' l='120' ll='143' type='CURLcode Curl_rand(struct Curl_easy * data, unsigned char * rnd, size_t num)'/>
+<use f='codebrowser/lib/rand.c' l='166' u='c' c='Curl_rand_hex'/>
+<doc f='codebrowser/lib/rand.c' l='104'>/*
+ * Curl_rand() stores &apos;num&apos; number of random unsigned integers in the buffer
+ * &apos;rndptr&apos; points to.
+ *
+ * If libcurl is built without TLS support or with a TLS backend that lacks a
+ * proper random API (Gskit, PolarSSL or mbedTLS), this function will use
+ * &quot;weak&quot; random.
+ *
+ * When built *with* TLS support and a backend that offers strong random, it
+ * will return error if it cannot provide strong random values.
+ *
+ * NOTE: &apos;data&apos; may be passed in as NULL when coming from external API without
+ * easy handle!
+ *
+ */</doc>
+<use f='codebrowser/lib/vauth/ntlm.c' l='565' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='604' u='c' c='Curl_auth_create_ntlm_type3_message'/>

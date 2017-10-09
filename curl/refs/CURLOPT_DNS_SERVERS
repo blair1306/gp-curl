@@ -1,0 +1,3 @@
+<dec f='codebrowser/include/curl/curl.h' l='1623' macro='1' type='10211'/>
+<use f='codebrowser/lib/url.c' l='2879' c='Curl_setopt'/>
+<use f='codebrowser/src/tool_operate.c' l='1255' u='r' c='operate_do'/>

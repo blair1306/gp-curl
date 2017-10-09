@@ -1,0 +1,1 @@
+<dec f='include/openssl/ui.h' l='341' type='char *(*)(UI *, const char *, const char *) UI_method_get_prompt_constructor(UI_METHOD * method)'/>

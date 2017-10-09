@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='240' type='int PKCS12_setup_mac(PKCS12 * p12, int iter, unsigned char * salt, int saltlen, const EVP_MD * md_type)'/>

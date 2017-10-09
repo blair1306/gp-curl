@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='516' type='49'/>
+<doc f='codebrowser/include/curl/curl.h' l='516'>/* 49 - Malformed telnet option */</doc>
+<use f='codebrowser/lib/strerror.c' l='191' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/telnet.c' l='885' u='r' c='check_telnet_options'/>
+<use f='codebrowser/lib/telnet.c' l='906' u='r' c='check_telnet_options'/>

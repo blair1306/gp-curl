@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='158' type='void Curl_ssl_close(struct connectdata * conn, int sockindex)'/>
+<use f='codebrowser/lib/ftp.c' l='3247' u='c' c='ftp_done'/>
+<use f='codebrowser/lib/url.c' l='3025' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3026' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3144' u='c' c='Curl_disconnect'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='549' ll='553' type='void Curl_ssl_close(struct connectdata * conn, int sockindex)'/>

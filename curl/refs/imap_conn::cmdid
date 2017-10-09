@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/imap.h' l='77' type='int'/>
+<offset>1248</offset>
+<doc f='codebrowser/lib/imap.h' l='77'>/* Last used command ID */</doc>
+<use f='codebrowser/lib/imap.c' l='1727' u='w' c='imap_sendf'/>
+<use f='codebrowser/lib/imap.c' l='1727' u='r' c='imap_sendf'/>
+<use f='codebrowser/lib/imap.c' l='1731' u='r' c='imap_sendf'/>

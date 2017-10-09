@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/mprintf.c' l='120' type='9'/>
+<use f='codebrowser/lib/mprintf.c' l='463' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='474' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='538' c='dprintf_Pass1'/>
+<doc f='codebrowser/lib/mprintf.c' l='120'>/* For internal use */</doc>

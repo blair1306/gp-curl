@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1402' type='8'/>
+<doc f='codebrowser/lib/urldata.h' l='1402'>/* local network interface/address to use */</doc>
+<use f='codebrowser/lib/connect.c' l='257' u='r' c='bindlocal'/>
+<use f='codebrowser/lib/url.c' l='2103' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4328' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4329' u='r' c='allocate_conn'/>

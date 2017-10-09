@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/curl_threads.h' l='28'/>
+<use f='codebrowser/lib/asyn-thread.c' l='155' u='c'/>
+<use f='codebrowser/lib/asyn-thread.c' l='224' u='c'/>

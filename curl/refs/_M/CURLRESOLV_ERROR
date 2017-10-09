@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/hostip.h' l='83'/>
+<use f='codebrowser/lib/hostip.c' l='452' u='c'/>
+<use f='codebrowser/lib/hostip.c' l='479' u='c'/>
+<use f='codebrowser/lib/hostip.c' l='499' u='c'/>
+<use f='codebrowser/lib/socks.c' l='162' u='c'/>
+<use f='codebrowser/lib/socks.c' l='603' u='c'/>

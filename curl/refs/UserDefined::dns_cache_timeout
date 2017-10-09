@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1590' type='long'/>
+<offset>10880</offset>
+<doc f='codebrowser/lib/urldata.h' l='1590'>/* DNS cache timeout */</doc>
+<use f='codebrowser/lib/hostip.c' l='261' u='r' c='Curl_hostcache_prune'/>
+<use f='codebrowser/lib/hostip.c' l='273' u='r' c='Curl_hostcache_prune'/>
+<use f='codebrowser/lib/hostip.c' l='309' u='r' c='fetch_addr'/>
+<use f='codebrowser/lib/hostip.c' l='314' u='r' c='fetch_addr'/>
+<use f='codebrowser/lib/url.c' l='542' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='730' u='w' c='Curl_setopt'/>

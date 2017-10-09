@@ -1,0 +1,3 @@
+<dec f='include/openssl/x509.h' l='785' macro='1' type='int i2d_X509_PUBKEY(X509_PUBKEY * a, unsigned char ** out)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2983' u='c' c='pkp_pin_peer_pubkey'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2993' u='c' c='pkp_pin_peer_pubkey'/>

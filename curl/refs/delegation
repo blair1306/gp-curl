@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='52' type='long delegation(struct OperationConfig * config, char * str)'/>
+<use f='codebrowser/src/tool_getparam.c' l='997' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='525' ll='538' type='long delegation(struct OperationConfig * config, char * str)'/>

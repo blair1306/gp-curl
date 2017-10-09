@@ -1,0 +1,20 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='272' type='char *'/>
+<offset>512</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='272'>/* Output libcurl code to this file name */</doc>
+<use f='codebrowser/src/tool_easysrc.c' l='176' u='r' c='dumpeasysrc'/>
+<use f='codebrowser/src/tool_getparam.c' l='929' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='929' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='929' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='929' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='929' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_main.c' l='205' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_main.c' l='205' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_operate.c' l='1530' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='2043' u='r' c='operate'/>
+<use f='codebrowser/src/tool_operate.c' l='2075' u='r' c='operate'/>
+<use f='codebrowser/src/tool_setopt.c' l='276' u='r' c='tool_setopt_enum'/>
+<use f='codebrowser/src/tool_setopt.c' l='309' u='r' c='tool_setopt_flags'/>
+<use f='codebrowser/src/tool_setopt.c' l='352' u='r' c='tool_setopt_bitmask'/>
+<use f='codebrowser/src/tool_setopt.c' l='570' u='r' c='tool_setopt_mimepost'/>
+<use f='codebrowser/src/tool_setopt.c' l='592' u='r' c='tool_setopt_slist'/>
+<use f='codebrowser/src/tool_setopt.c' l='680' u='r' c='tool_setopt'/>

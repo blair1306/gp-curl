@@ -1,0 +1,5 @@
+<def f='codebrowser/lib/llist.h' l='30' ll='34'/>
+<size>24</size>
+<mbr r='curl_llist_element::ptr' o='0' t='void *'/>
+<mbr r='curl_llist_element::prev' o='64' t='struct curl_llist_element *'/>
+<mbr r='curl_llist_element::next' o='128' t='struct curl_llist_element *'/>

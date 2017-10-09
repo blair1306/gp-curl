@@ -1,0 +1,11 @@
+<def f='codebrowser/lib/ftp.h' l='104' ll='113'/>
+<size>40</size>
+<doc f='codebrowser/lib/ftp.h' l='100'>/* This FTP struct is used in the Curl_easy. All FTP data that is
+   connection-oriented must be in FTP_conn to properly deal with the fact that
+   perhaps the Curl_easy is changed between the times the connection is
+   used. */</doc>
+<mbr r='FTP::bytecountp' o='0' t='curl_off_t *'/>
+<mbr r='FTP::user' o='64' t='char *'/>
+<mbr r='FTP::passwd' o='128' t='char *'/>
+<mbr r='FTP::transfer' o='192' t='curl_pp_transfer'/>
+<mbr r='FTP::downloadsize' o='256' t='curl_off_t'/>

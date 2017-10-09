@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='2258' type='char * curl_escape(const char * string, int length)'/>
+<def f='codebrowser/lib/escape.c' l='68' ll='71' type='char * curl_escape(const char * string, int inlength)'/>
+<doc f='codebrowser/lib/escape.c' l='67'>/* for ABI-compatibility with previous versions */</doc>
+<use f='codebrowser/tests/libtest/lib1537.c' l='50' u='c' c='test'/>

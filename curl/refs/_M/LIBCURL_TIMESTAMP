@@ -1,0 +1,11 @@
+<dec f='codebrowser/include/curl/curlver.h' l='71'/>
+<doc f='codebrowser/include/curl/curlver.h' l='62'>/*
+ * This is the date and time when the full source package was created. The
+ * timestamp is not stored in git, as the timestamp is properly set in the
+ * tarballs by the maketgz script.
+ *
+ * The format of the date follows this template:
+ *
+ * &quot;2007-11-23&quot;
+ */</doc>
+<use f='codebrowser/src/tool_help.c' l='532' u='c'/>

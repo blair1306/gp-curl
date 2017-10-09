@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_setup.h' l='427'/>
+<use f='codebrowser/lib/curl_gethostname.h' l='29' u='c'/>
+<use f='codebrowser/lib/curl_gethostname.c' l='51' u='c'/>
+<use f='codebrowser/tests/libtest/sethostname.h' l='40' u='c'/>
+<use f='codebrowser/tests/libtest/sethostname.c' l='30' u='c'/>

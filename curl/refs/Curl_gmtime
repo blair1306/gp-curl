@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/parsedate.h' l='28' type='CURLcode Curl_gmtime(time_t intime, struct tm * store)'/>
+<use f='codebrowser/lib/file.c' l='495' u='c' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='2080' u='c' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/http.c' l='1697' u='c' c='Curl_add_timecondition'/>
+<def f='codebrowser/lib/parsedate.c' l='570' ll='585' type='CURLcode Curl_gmtime(time_t intime, struct tm * store)'/>
+<doc f='codebrowser/lib/parsedate.c' l='564'>/*
+ * Curl_gmtime() is a gmtime() replacement for portability. Do not use the
+ * gmtime_r() or gmtime() functions anywhere else but here.
+ *
+ */</doc>

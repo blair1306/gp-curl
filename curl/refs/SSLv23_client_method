@@ -1,0 +1,4 @@
+<dec f='include/openssl/ssl.h' l='2364' type='const SSL_METHOD * SSLv23_client_method()'/>
+<doc f='include/openssl/ssl.h' l='2364'>/* Negotiate highest available
+                                               * SSL/TLS version */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='2084' u='c' c='ossl_connect_step1'/>

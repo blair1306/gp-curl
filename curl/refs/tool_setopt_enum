@@ -1,0 +1,17 @@
+<dec f='codebrowser/src/tool_setopt.h' l='79' type='CURLcode tool_setopt_enum(CURL * curl, struct GlobalConfig * config, const char * name, CURLoption tag, const NameValue * nv, long lval)'/>
+<use f='codebrowser/src/tool_operate.c' l='929' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='972' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='974' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='976' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1035' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1037' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1172' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1174' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1234' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1325' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1329' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1333' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1337' macro='1' u='c'/>
+<doc f='codebrowser/src/tool_setopt.h' l='77'>/* Intercept setopt calls for --libcurl */</doc>
+<def f='codebrowser/src/tool_setopt.c' l='265' ll='295' type='CURLcode tool_setopt_enum(CURL * curl, struct GlobalConfig * config, const char * name, CURLoption tag, const NameValue * nvlist, long lval)'/>
+<doc f='codebrowser/src/tool_setopt.c' l='264'>/* setopt wrapper for enum types */</doc>

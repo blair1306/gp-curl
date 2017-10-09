@@ -1,0 +1,4 @@
+<dec f='include/openssl/x509v3.h' l='180'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1334' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1382' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1394' u='c'/>

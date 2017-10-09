@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='150' type='void Curl_ssl_cleanup()'/>
+<use f='codebrowser/lib/easy.c' l='323' u='c' c='curl_global_cleanup'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='173' ll='180' type='void Curl_ssl_cleanup()'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='172'>/* Global cleanup */</doc>

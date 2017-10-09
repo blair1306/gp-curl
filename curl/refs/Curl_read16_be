@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/curl_endian.h' l='32' type='unsigned short Curl_read16_be(const unsigned char * buf)'/>
+<def f='codebrowser/lib/curl_endian.c' l='78' ll='82' type='unsigned short Curl_read16_be(const unsigned char * buf)'/>
+<doc f='codebrowser/lib/curl_endian.c' l='65'>/*
+ * Curl_read16_be()
+ *
+ * This function converts a 16-bit integer from the big endian format, as
+ * used in the incoming package to whatever endian format we&apos;re using
+ * natively.
+ *
+ * Parameters:
+ *
+ * buf      [in]     - A pointer to a 2 byte buffer.
+ *
+ * Returns the integer.
+ */</doc>
+<doc f='codebrowser/lib/curl_endian.h' l='31'>/* Converts a 16-bit integer from big endian */</doc>
+<use f='codebrowser/lib/smb.c' l='317' u='c' c='smb_recv_message'/>

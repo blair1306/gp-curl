@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/urldata.h' l='376' type='_Bool'/>
+<offset>0</offset>
+<use f='codebrowser/lib/connect.c' l='1391' u='r' c='Curl_conncontrol'/>
+<use f='codebrowser/lib/connect.c' l='1394' u='w' c='Curl_conncontrol'/>
+<use f='codebrowser/lib/http.c' l='444' u='r' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='3102' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3120' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3169' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3457' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_proxy.c' l='61' u='w' c='https_proxy_connect'/>
+<use f='codebrowser/lib/http_proxy.c' l='577' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/multi.c' l='577' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='620' u='r' c='multi_done'/>
+<use f='codebrowser/lib/transfer.c' l='589' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='861' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/url.c' l='3112' u='r' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3188' u='r' c='IsPipeliningPossible'/>
+<use f='codebrowser/lib/url.c' l='3579' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3616' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3617' u='r' c='ConnectionExists'/>

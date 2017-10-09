@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1324' type='_Bool'/>
+<offset>139472</offset>
+<use f='codebrowser/lib/sendf.c' l='60' u='r' c='convert_lineends'/>
+<use f='codebrowser/lib/sendf.c' l='71' u='w' c='convert_lineends'/>
+<use f='codebrowser/lib/sendf.c' l='107' u='w' c='convert_lineends'/>

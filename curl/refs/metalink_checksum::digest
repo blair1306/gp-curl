@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_metalink.h' l='69' type='unsigned char *'/>
+<offset>64</offset>
+<doc f='codebrowser/src/tool_metalink.h' l='68'>/* raw digest value, not ascii hex digest */</doc>

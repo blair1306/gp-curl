@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/strtoofft.h' l='57' type='CURLofft curlx_strtoofft(const char * str, char ** endp, int base, curl_off_t * num)'/>
+<use f='codebrowser/lib/cookie.c' l='613' u='c' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='776' u='c' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/file.c' l='144' u='c' c='file_range'/>
+<use f='codebrowser/lib/file.c' l='149' u='c' c='file_range'/>
+<use f='codebrowser/lib/ftp.c' l='2269' u='c' c='ftp_state_size_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2440' u='c' c='ftp_state_get_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3481' u='c' c='ftp_range'/>
+<use f='codebrowser/lib/ftp.c' l='3486' u='c' c='ftp_range'/>
+<use f='codebrowser/lib/ftplistparser.c' l='612' u='c' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='940' u='c' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/http.c' l='3509' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3708' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_chunks.c' l='161' u='c' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_proxy.c' l='527' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/imap.c' l='1107' u='c' c='imap_state_fetch_resp'/>
+<def f='codebrowser/lib/strtoofft.c' l='215' ll='244' type='CURLofft curlx_strtoofft(const char * str, char ** endp, int base, curl_off_t * num)'/>
+<doc f='codebrowser/lib/strtoofft.c' l='212'>/*
+ * Parse a *positive* up to 64 bit number written in ascii.
+ */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='595' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1854' u='c' c='getparameter'/>

@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/multiif.h' l='42'/>
+<use f='codebrowser/lib/ftp.c' l='832' u='c'/>
+<use f='codebrowser/lib/http.c' l='1406' u='c'/>
+<use f='codebrowser/lib/multi.c' l='810' u='c'/>
+<use f='codebrowser/lib/multi.c' l='832' u='c'/>
+<use f='codebrowser/lib/multi.c' l='850' u='c'/>
+<use f='codebrowser/lib/pingpong.c' l='470' u='c'/>
+<use f='codebrowser/lib/smb.c' l='947' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='1085' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1270' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1278' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1293' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1296' u='c'/>
+<use f='codebrowser/lib/url.c' l='3978' u='c'/>
+<use f='codebrowser/lib/url.c' l='3987' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='521' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='534' u='c'/>

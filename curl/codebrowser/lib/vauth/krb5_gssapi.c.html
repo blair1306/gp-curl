@@ -1,0 +1,419 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>krb5_gssapi.c source code [codebrowser/lib/vauth/krb5_gssapi.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/vauth/krb5_gssapi.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>lib</a>/<a href='./'>vauth</a>/<a href='krb5_gssapi.c.html'>krb5_gssapi.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 2014 - 2017, Steve Holme, &lt;steve_holme@hotmail.com&gt;.</i></td></tr>
+<tr><th id="9">9</th><td><i> * Copyright (C) 2015, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="10">10</th><td><i> *</i></td></tr>
+<tr><th id="11">11</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="12">12</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="13">13</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="14">14</th><td><i> *</i></td></tr>
+<tr><th id="15">15</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="16">16</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="17">17</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="18">18</th><td><i> *</i></td></tr>
+<tr><th id="19">19</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="20">20</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="21">21</th><td><i> *</i></td></tr>
+<tr><th id="22">22</th><td><i> * RFC4752 The Kerberos V5 ("GSSAPI") SASL Mechanism</i></td></tr>
+<tr><th id="23">23</th><td><i> *</i></td></tr>
+<tr><th id="24">24</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="28">if</span> defined(<span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span>)</u></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#include &lt;curl/curl.h&gt;</u></td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><u>#include "vauth/vauth.h"</u></td></tr>
+<tr><th id="33">33</th><td><u>#include "curl_sasl.h"</u></td></tr>
+<tr><th id="34">34</th><td><u>#include "urldata.h"</u></td></tr>
+<tr><th id="35">35</th><td><u>#include "curl_base64.h"</u></td></tr>
+<tr><th id="36">36</th><td><u>#include "curl_gssapi.h"</u></td></tr>
+<tr><th id="37">37</th><td><u>#include "sendf.h"</u></td></tr>
+<tr><th id="38">38</th><td><u>#include "curl_printf.h"</u></td></tr>
+<tr><th id="39">39</th><td></td></tr>
+<tr><th id="40">40</th><td><i>/* The last #include files should be: */</i></td></tr>
+<tr><th id="41">41</th><td><u>#include "curl_memory.h"</u></td></tr>
+<tr><th id="42">42</th><td><u>#include "memdebug.h"</u></td></tr>
+<tr><th id="43">43</th><td></td></tr>
+<tr><th id="44">44</th><td><i>/*</i></td></tr>
+<tr><th id="45">45</th><td><i> * Curl_auth_is_gssapi_supported()</i></td></tr>
+<tr><th id="46">46</th><td><i> *</i></td></tr>
+<tr><th id="47">47</th><td><i> * This is used to evaluate if GSSAPI (Kerberos V5) is supported.</i></td></tr>
+<tr><th id="48">48</th><td><i> *</i></td></tr>
+<tr><th id="49">49</th><td><i> * Parameters: None</i></td></tr>
+<tr><th id="50">50</th><td><i> *</i></td></tr>
+<tr><th id="51">51</th><td><i> * Returns TRUE if Kerberos V5 is supported by the GSS-API library.</i></td></tr>
+<tr><th id="52">52</th><td><i> */</i></td></tr>
+<tr><th id="53">53</th><td>bool Curl_auth_is_gssapi_supported(<em>void</em>)</td></tr>
+<tr><th id="54">54</th><td>{</td></tr>
+<tr><th id="55">55</th><td>  <b>return</b> TRUE;</td></tr>
+<tr><th id="56">56</th><td>}</td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td><i>/*</i></td></tr>
+<tr><th id="59">59</th><td><i> * Curl_auth_create_gssapi_user_message()</i></td></tr>
+<tr><th id="60">60</th><td><i> *</i></td></tr>
+<tr><th id="61">61</th><td><i> * This is used to generate an already encoded GSSAPI (Kerberos V5) user token</i></td></tr>
+<tr><th id="62">62</th><td><i> * message ready for sending to the recipient.</i></td></tr>
+<tr><th id="63">63</th><td><i> *</i></td></tr>
+<tr><th id="64">64</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="65">65</th><td><i> *</i></td></tr>
+<tr><th id="66">66</th><td><i> * data        [in]     - The session handle.</i></td></tr>
+<tr><th id="67">67</th><td><i> * userp       [in]     - The user name.</i></td></tr>
+<tr><th id="68">68</th><td><i> * passdwp     [in]     - The user's password.</i></td></tr>
+<tr><th id="69">69</th><td><i> * service     [in]     - The service type such as http, smtp, pop or imap.</i></td></tr>
+<tr><th id="70">70</th><td><i> * host        [in[     - The host name.</i></td></tr>
+<tr><th id="71">71</th><td><i> * mutual_auth [in]     - Flag specifying whether or not mutual authentication</i></td></tr>
+<tr><th id="72">72</th><td><i> *                        is enabled.</i></td></tr>
+<tr><th id="73">73</th><td><i> * chlg64      [in]     - Pointer to the optional base64 encoded challenge</i></td></tr>
+<tr><th id="74">74</th><td><i> *                        message.</i></td></tr>
+<tr><th id="75">75</th><td><i> * krb5        [in/out] - The Kerberos 5 data struct being used and modified.</i></td></tr>
+<tr><th id="76">76</th><td><i> * outptr      [in/out] - The address where a pointer to newly allocated memory</i></td></tr>
+<tr><th id="77">77</th><td><i> *                        holding the result will be stored upon completion.</i></td></tr>
+<tr><th id="78">78</th><td><i> * outlen      [out]    - The length of the output message.</i></td></tr>
+<tr><th id="79">79</th><td><i> *</i></td></tr>
+<tr><th id="80">80</th><td><i> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="81">81</th><td><i> */</i></td></tr>
+<tr><th id="82">82</th><td>CURLcode Curl_auth_create_gssapi_user_message(<b>struct</b> Curl_easy *data,</td></tr>
+<tr><th id="83">83</th><td>                                              <em>const</em> <em>char</em> *userp,</td></tr>
+<tr><th id="84">84</th><td>                                              <em>const</em> <em>char</em> *passwdp,</td></tr>
+<tr><th id="85">85</th><td>                                              <em>const</em> <em>char</em> *service,</td></tr>
+<tr><th id="86">86</th><td>                                              <em>const</em> <em>char</em> *host,</td></tr>
+<tr><th id="87">87</th><td>                                              <em>const</em> bool mutual_auth,</td></tr>
+<tr><th id="88">88</th><td>                                              <em>const</em> <em>char</em> *chlg64,</td></tr>
+<tr><th id="89">89</th><td>                                              <b>struct</b> kerberos5data *krb5,</td></tr>
+<tr><th id="90">90</th><td>                                              <em>char</em> **outptr, size_t *outlen)</td></tr>
+<tr><th id="91">91</th><td>{</td></tr>
+<tr><th id="92">92</th><td>  CURLcode result = CURLE_OK;</td></tr>
+<tr><th id="93">93</th><td>  size_t chlglen = <var>0</var>;</td></tr>
+<tr><th id="94">94</th><td>  <em>unsigned</em> <em>char</em> *chlg = NULL;</td></tr>
+<tr><th id="95">95</th><td>  OM_uint32 major_status;</td></tr>
+<tr><th id="96">96</th><td>  OM_uint32 minor_status;</td></tr>
+<tr><th id="97">97</th><td>  OM_uint32 unused_status;</td></tr>
+<tr><th id="98">98</th><td>  gss_buffer_desc spn_token = GSS_C_EMPTY_BUFFER;</td></tr>
+<tr><th id="99">99</th><td>  gss_buffer_desc input_token = GSS_C_EMPTY_BUFFER;</td></tr>
+<tr><th id="100">100</th><td>  gss_buffer_desc output_token = GSS_C_EMPTY_BUFFER;</td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td>  (<em>void</em>) userp;</td></tr>
+<tr><th id="103">103</th><td>  (<em>void</em>) passwdp;</td></tr>
+<tr><th id="104">104</th><td></td></tr>
+<tr><th id="105">105</th><td>  <b>if</b>(!krb5-&gt;spn) {</td></tr>
+<tr><th id="106">106</th><td>    <i>/* Generate our SPN */</i></td></tr>
+<tr><th id="107">107</th><td>    <em>char</em> *spn = Curl_auth_build_spn(service, NULL, host);</td></tr>
+<tr><th id="108">108</th><td>    <b>if</b>(!spn)</td></tr>
+<tr><th id="109">109</th><td>      <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="110">110</th><td></td></tr>
+<tr><th id="111">111</th><td>    <i>/* Populate the SPN structure */</i></td></tr>
+<tr><th id="112">112</th><td>    spn_token.value = spn;</td></tr>
+<tr><th id="113">113</th><td>    spn_token.length = strlen(spn);</td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td>    <i>/* Import the SPN */</i></td></tr>
+<tr><th id="116">116</th><td>    major_status = gss_import_name(&amp;minor_status, &amp;spn_token,</td></tr>
+<tr><th id="117">117</th><td>                                   GSS_C_NT_HOSTBASED_SERVICE, &amp;krb5-&gt;spn);</td></tr>
+<tr><th id="118">118</th><td>    <b>if</b>(GSS_ERROR(major_status)) {</td></tr>
+<tr><th id="119">119</th><td>      Curl_gss_log_error(data, <q>"gss_import_name() failed: "</q>,</td></tr>
+<tr><th id="120">120</th><td>                         major_status, minor_status);</td></tr>
+<tr><th id="121">121</th><td></td></tr>
+<tr><th id="122">122</th><td>      free(spn);</td></tr>
+<tr><th id="123">123</th><td></td></tr>
+<tr><th id="124">124</th><td>      <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="125">125</th><td>    }</td></tr>
+<tr><th id="126">126</th><td></td></tr>
+<tr><th id="127">127</th><td>    free(spn);</td></tr>
+<tr><th id="128">128</th><td>  }</td></tr>
+<tr><th id="129">129</th><td></td></tr>
+<tr><th id="130">130</th><td>  <b>if</b>(chlg64 &amp;&amp; *chlg64) {</td></tr>
+<tr><th id="131">131</th><td>    <i>/* Decode the base-64 encoded challenge message */</i></td></tr>
+<tr><th id="132">132</th><td>    <b>if</b>(*chlg64 != <kbd>'='</kbd>) {</td></tr>
+<tr><th id="133">133</th><td>      result = Curl_base64_decode(chlg64, &amp;chlg, &amp;chlglen);</td></tr>
+<tr><th id="134">134</th><td>      <b>if</b>(result)</td></tr>
+<tr><th id="135">135</th><td>        <b>return</b> result;</td></tr>
+<tr><th id="136">136</th><td>    }</td></tr>
+<tr><th id="137">137</th><td></td></tr>
+<tr><th id="138">138</th><td>    <i>/* Ensure we have a valid challenge message */</i></td></tr>
+<tr><th id="139">139</th><td>    <b>if</b>(!chlg) {</td></tr>
+<tr><th id="140">140</th><td>      infof(data, <q>"GSSAPI handshake failure (empty challenge message)\n"</q>);</td></tr>
+<tr><th id="141">141</th><td></td></tr>
+<tr><th id="142">142</th><td>      <b>return</b> CURLE_BAD_CONTENT_ENCODING;</td></tr>
+<tr><th id="143">143</th><td>    }</td></tr>
+<tr><th id="144">144</th><td></td></tr>
+<tr><th id="145">145</th><td>    <i>/* Setup the challenge "input" security buffer */</i></td></tr>
+<tr><th id="146">146</th><td>    input_token.value = chlg;</td></tr>
+<tr><th id="147">147</th><td>    input_token.length = chlglen;</td></tr>
+<tr><th id="148">148</th><td>  }</td></tr>
+<tr><th id="149">149</th><td></td></tr>
+<tr><th id="150">150</th><td>  major_status = Curl_gss_init_sec_context(data,</td></tr>
+<tr><th id="151">151</th><td>                                           &amp;minor_status,</td></tr>
+<tr><th id="152">152</th><td>                                           &amp;krb5-&gt;context,</td></tr>
+<tr><th id="153">153</th><td>                                           krb5-&gt;spn,</td></tr>
+<tr><th id="154">154</th><td>                                           &amp;Curl_krb5_mech_oid,</td></tr>
+<tr><th id="155">155</th><td>                                           GSS_C_NO_CHANNEL_BINDINGS,</td></tr>
+<tr><th id="156">156</th><td>                                           &amp;input_token,</td></tr>
+<tr><th id="157">157</th><td>                                           &amp;output_token,</td></tr>
+<tr><th id="158">158</th><td>                                           mutual_auth,</td></tr>
+<tr><th id="159">159</th><td>                                           NULL);</td></tr>
+<tr><th id="160">160</th><td></td></tr>
+<tr><th id="161">161</th><td>  <i>/* Free the decoded challenge as it is not required anymore */</i></td></tr>
+<tr><th id="162">162</th><td>  free(input_token.value);</td></tr>
+<tr><th id="163">163</th><td></td></tr>
+<tr><th id="164">164</th><td>  <b>if</b>(GSS_ERROR(major_status)) {</td></tr>
+<tr><th id="165">165</th><td>    <b>if</b>(output_token.value)</td></tr>
+<tr><th id="166">166</th><td>      gss_release_buffer(&amp;unused_status, &amp;output_token);</td></tr>
+<tr><th id="167">167</th><td></td></tr>
+<tr><th id="168">168</th><td>    Curl_gss_log_error(data, <q>"gss_init_sec_context() failed: "</q>,</td></tr>
+<tr><th id="169">169</th><td>                       major_status, minor_status);</td></tr>
+<tr><th id="170">170</th><td></td></tr>
+<tr><th id="171">171</th><td>    <b>return</b> CURLE_RECV_ERROR;</td></tr>
+<tr><th id="172">172</th><td>  }</td></tr>
+<tr><th id="173">173</th><td></td></tr>
+<tr><th id="174">174</th><td>  <b>if</b>(output_token.value &amp;&amp; output_token.length) {</td></tr>
+<tr><th id="175">175</th><td>    <i>/* Base64 encode the response */</i></td></tr>
+<tr><th id="176">176</th><td>    result = Curl_base64_encode(data, (<em>char</em> *) output_token.value,</td></tr>
+<tr><th id="177">177</th><td>                                output_token.length, outptr, outlen);</td></tr>
+<tr><th id="178">178</th><td></td></tr>
+<tr><th id="179">179</th><td>    gss_release_buffer(&amp;unused_status, &amp;output_token);</td></tr>
+<tr><th id="180">180</th><td>  }</td></tr>
+<tr><th id="181">181</th><td>  <b>else</b> <b>if</b>(mutual_auth) {</td></tr>
+<tr><th id="182">182</th><td>    *outptr = strdup(<q>""</q>);</td></tr>
+<tr><th id="183">183</th><td>    <b>if</b>(!*outptr)</td></tr>
+<tr><th id="184">184</th><td>      result = CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="185">185</th><td>  }</td></tr>
+<tr><th id="186">186</th><td></td></tr>
+<tr><th id="187">187</th><td>  <b>return</b> result;</td></tr>
+<tr><th id="188">188</th><td>}</td></tr>
+<tr><th id="189">189</th><td></td></tr>
+<tr><th id="190">190</th><td><i>/*</i></td></tr>
+<tr><th id="191">191</th><td><i> * Curl_auth_create_gssapi_security_message()</i></td></tr>
+<tr><th id="192">192</th><td><i> *</i></td></tr>
+<tr><th id="193">193</th><td><i> * This is used to generate an already encoded GSSAPI (Kerberos V5) security</i></td></tr>
+<tr><th id="194">194</th><td><i> * token message ready for sending to the recipient.</i></td></tr>
+<tr><th id="195">195</th><td><i> *</i></td></tr>
+<tr><th id="196">196</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="197">197</th><td><i> *</i></td></tr>
+<tr><th id="198">198</th><td><i> * data    [in]     - The session handle.</i></td></tr>
+<tr><th id="199">199</th><td><i> * chlg64  [in]     - Pointer to the optional base64 encoded challenge message.</i></td></tr>
+<tr><th id="200">200</th><td><i> * krb5    [in/out] - The Kerberos 5 data struct being used and modified.</i></td></tr>
+<tr><th id="201">201</th><td><i> * outptr  [in/out] - The address where a pointer to newly allocated memory</i></td></tr>
+<tr><th id="202">202</th><td><i> *                    holding the result will be stored upon completion.</i></td></tr>
+<tr><th id="203">203</th><td><i> * outlen  [out]    - The length of the output message.</i></td></tr>
+<tr><th id="204">204</th><td><i> *</i></td></tr>
+<tr><th id="205">205</th><td><i> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="206">206</th><td><i> */</i></td></tr>
+<tr><th id="207">207</th><td>CURLcode Curl_auth_create_gssapi_security_message(<b>struct</b> Curl_easy *data,</td></tr>
+<tr><th id="208">208</th><td>                                                  <em>const</em> <em>char</em> *chlg64,</td></tr>
+<tr><th id="209">209</th><td>                                                  <b>struct</b> kerberos5data *krb5,</td></tr>
+<tr><th id="210">210</th><td>                                                  <em>char</em> **outptr,</td></tr>
+<tr><th id="211">211</th><td>                                                  size_t *outlen)</td></tr>
+<tr><th id="212">212</th><td>{</td></tr>
+<tr><th id="213">213</th><td>  CURLcode result = CURLE_OK;</td></tr>
+<tr><th id="214">214</th><td>  size_t chlglen = <var>0</var>;</td></tr>
+<tr><th id="215">215</th><td>  size_t messagelen = <var>0</var>;</td></tr>
+<tr><th id="216">216</th><td>  <em>unsigned</em> <em>char</em> *chlg = NULL;</td></tr>
+<tr><th id="217">217</th><td>  <em>unsigned</em> <em>char</em> *message = NULL;</td></tr>
+<tr><th id="218">218</th><td>  OM_uint32 major_status;</td></tr>
+<tr><th id="219">219</th><td>  OM_uint32 minor_status;</td></tr>
+<tr><th id="220">220</th><td>  OM_uint32 unused_status;</td></tr>
+<tr><th id="221">221</th><td>  gss_buffer_desc input_token = GSS_C_EMPTY_BUFFER;</td></tr>
+<tr><th id="222">222</th><td>  gss_buffer_desc output_token = GSS_C_EMPTY_BUFFER;</td></tr>
+<tr><th id="223">223</th><td>  <em>unsigned</em> <em>int</em> indata = <var>0</var>;</td></tr>
+<tr><th id="224">224</th><td>  <em>unsigned</em> <em>int</em> outdata = <var>0</var>;</td></tr>
+<tr><th id="225">225</th><td>  gss_qop_t qop = GSS_C_QOP_DEFAULT;</td></tr>
+<tr><th id="226">226</th><td>  <em>unsigned</em> <em>int</em> sec_layer = <var>0</var>;</td></tr>
+<tr><th id="227">227</th><td>  <em>unsigned</em> <em>int</em> max_size = <var>0</var>;</td></tr>
+<tr><th id="228">228</th><td>  gss_name_t username = GSS_C_NO_NAME;</td></tr>
+<tr><th id="229">229</th><td>  gss_buffer_desc username_token;</td></tr>
+<tr><th id="230">230</th><td></td></tr>
+<tr><th id="231">231</th><td>  <i>/* Decode the base-64 encoded input message */</i></td></tr>
+<tr><th id="232">232</th><td>  <b>if</b>(strlen(chlg64) &amp;&amp; *chlg64 != <kbd>'='</kbd>) {</td></tr>
+<tr><th id="233">233</th><td>    result = Curl_base64_decode(chlg64, &amp;chlg, &amp;chlglen);</td></tr>
+<tr><th id="234">234</th><td>    <b>if</b>(result)</td></tr>
+<tr><th id="235">235</th><td>      <b>return</b> result;</td></tr>
+<tr><th id="236">236</th><td>  }</td></tr>
+<tr><th id="237">237</th><td></td></tr>
+<tr><th id="238">238</th><td>  <i>/* Ensure we have a valid challenge message */</i></td></tr>
+<tr><th id="239">239</th><td>  <b>if</b>(!chlg) {</td></tr>
+<tr><th id="240">240</th><td>    infof(data, <q>"GSSAPI handshake failure (empty security message)\n"</q>);</td></tr>
+<tr><th id="241">241</th><td></td></tr>
+<tr><th id="242">242</th><td>    <b>return</b> CURLE_BAD_CONTENT_ENCODING;</td></tr>
+<tr><th id="243">243</th><td>  }</td></tr>
+<tr><th id="244">244</th><td></td></tr>
+<tr><th id="245">245</th><td>  <i>/* Get the fully qualified username back from the context */</i></td></tr>
+<tr><th id="246">246</th><td>  major_status = gss_inquire_context(&amp;minor_status, krb5-&gt;context,</td></tr>
+<tr><th id="247">247</th><td>                                     &amp;username, NULL, NULL, NULL, NULL,</td></tr>
+<tr><th id="248">248</th><td>                                     NULL, NULL);</td></tr>
+<tr><th id="249">249</th><td>  <b>if</b>(GSS_ERROR(major_status)) {</td></tr>
+<tr><th id="250">250</th><td>    Curl_gss_log_error(data, <q>"gss_inquire_context() failed: "</q>,</td></tr>
+<tr><th id="251">251</th><td>                       major_status, minor_status);</td></tr>
+<tr><th id="252">252</th><td></td></tr>
+<tr><th id="253">253</th><td>    free(chlg);</td></tr>
+<tr><th id="254">254</th><td></td></tr>
+<tr><th id="255">255</th><td>    <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="256">256</th><td>  }</td></tr>
+<tr><th id="257">257</th><td></td></tr>
+<tr><th id="258">258</th><td>  <i>/* Convert the username from internal format to a displayable token */</i></td></tr>
+<tr><th id="259">259</th><td>  major_status = gss_display_name(&amp;minor_status, username,</td></tr>
+<tr><th id="260">260</th><td>                                  &amp;username_token, NULL);</td></tr>
+<tr><th id="261">261</th><td>  <b>if</b>(GSS_ERROR(major_status)) {</td></tr>
+<tr><th id="262">262</th><td>    Curl_gss_log_error(data, <q>"gss_display_name() failed: "</q>,</td></tr>
+<tr><th id="263">263</th><td>                       major_status, minor_status);</td></tr>
+<tr><th id="264">264</th><td></td></tr>
+<tr><th id="265">265</th><td>    free(chlg);</td></tr>
+<tr><th id="266">266</th><td></td></tr>
+<tr><th id="267">267</th><td>    <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="268">268</th><td>  }</td></tr>
+<tr><th id="269">269</th><td></td></tr>
+<tr><th id="270">270</th><td>  <i>/* Setup the challenge "input" security buffer */</i></td></tr>
+<tr><th id="271">271</th><td>  input_token.value = chlg;</td></tr>
+<tr><th id="272">272</th><td>  input_token.length = chlglen;</td></tr>
+<tr><th id="273">273</th><td></td></tr>
+<tr><th id="274">274</th><td>  <i>/* Decrypt the inbound challenge and obtain the qop */</i></td></tr>
+<tr><th id="275">275</th><td>  major_status = gss_unwrap(&amp;minor_status, krb5-&gt;context, &amp;input_token,</td></tr>
+<tr><th id="276">276</th><td>                            &amp;output_token, NULL, &amp;qop);</td></tr>
+<tr><th id="277">277</th><td>  <b>if</b>(GSS_ERROR(major_status)) {</td></tr>
+<tr><th id="278">278</th><td>    Curl_gss_log_error(data, <q>"gss_unwrap() failed: "</q>,</td></tr>
+<tr><th id="279">279</th><td>                       major_status, minor_status);</td></tr>
+<tr><th id="280">280</th><td></td></tr>
+<tr><th id="281">281</th><td>    gss_release_buffer(&amp;unused_status, &amp;username_token);</td></tr>
+<tr><th id="282">282</th><td>    free(chlg);</td></tr>
+<tr><th id="283">283</th><td></td></tr>
+<tr><th id="284">284</th><td>    <b>return</b> CURLE_BAD_CONTENT_ENCODING;</td></tr>
+<tr><th id="285">285</th><td>  }</td></tr>
+<tr><th id="286">286</th><td></td></tr>
+<tr><th id="287">287</th><td>  <i>/* Not 4 octets long so fail as per RFC4752 Section 3.1 */</i></td></tr>
+<tr><th id="288">288</th><td>  <b>if</b>(output_token.length != <var>4</var>) {</td></tr>
+<tr><th id="289">289</th><td>    infof(data, <q>"GSSAPI handshake failure (invalid security data)\n"</q>);</td></tr>
+<tr><th id="290">290</th><td></td></tr>
+<tr><th id="291">291</th><td>    gss_release_buffer(&amp;unused_status, &amp;username_token);</td></tr>
+<tr><th id="292">292</th><td>    free(chlg);</td></tr>
+<tr><th id="293">293</th><td></td></tr>
+<tr><th id="294">294</th><td>    <b>return</b> CURLE_BAD_CONTENT_ENCODING;</td></tr>
+<tr><th id="295">295</th><td>  }</td></tr>
+<tr><th id="296">296</th><td></td></tr>
+<tr><th id="297">297</th><td>  <i>/* Copy the data out and free the challenge as it is not required anymore */</i></td></tr>
+<tr><th id="298">298</th><td>  memcpy(&amp;indata, output_token.value, <var>4</var>);</td></tr>
+<tr><th id="299">299</th><td>  gss_release_buffer(&amp;unused_status, &amp;output_token);</td></tr>
+<tr><th id="300">300</th><td>  free(chlg);</td></tr>
+<tr><th id="301">301</th><td></td></tr>
+<tr><th id="302">302</th><td>  <i>/* Extract the security layer */</i></td></tr>
+<tr><th id="303">303</th><td>  sec_layer = indata &amp; <var>0x000000FF</var>;</td></tr>
+<tr><th id="304">304</th><td>  <b>if</b>(!(sec_layer &amp; GSSAUTH_P_NONE)) {</td></tr>
+<tr><th id="305">305</th><td>    infof(data, <q>"GSSAPI handshake failure (invalid security layer)\n"</q>);</td></tr>
+<tr><th id="306">306</th><td></td></tr>
+<tr><th id="307">307</th><td>    gss_release_buffer(&amp;unused_status, &amp;username_token);</td></tr>
+<tr><th id="308">308</th><td></td></tr>
+<tr><th id="309">309</th><td>    <b>return</b> CURLE_BAD_CONTENT_ENCODING;</td></tr>
+<tr><th id="310">310</th><td>  }</td></tr>
+<tr><th id="311">311</th><td></td></tr>
+<tr><th id="312">312</th><td>  <i>/* Extract the maximum message size the server can receive */</i></td></tr>
+<tr><th id="313">313</th><td>  max_size = ntohl(indata &amp; <var>0xFFFFFF00</var>);</td></tr>
+<tr><th id="314">314</th><td>  <b>if</b>(max_size &gt; <var>0</var>) {</td></tr>
+<tr><th id="315">315</th><td>    <i>/* The server has told us it supports a maximum receive buffer, however, as</i></td></tr>
+<tr><th id="316">316</th><td><i>       we don't require one unless we are encrypting data, we tell the server</i></td></tr>
+<tr><th id="317">317</th><td><i>       our receive buffer is zero. */</i></td></tr>
+<tr><th id="318">318</th><td>    max_size = <var>0</var>;</td></tr>
+<tr><th id="319">319</th><td>  }</td></tr>
+<tr><th id="320">320</th><td></td></tr>
+<tr><th id="321">321</th><td>  <i>/* Allocate our message */</i></td></tr>
+<tr><th id="322">322</th><td>  messagelen = <b>sizeof</b>(outdata) + username_token.length + <var>1</var>;</td></tr>
+<tr><th id="323">323</th><td>  message = malloc(messagelen);</td></tr>
+<tr><th id="324">324</th><td>  <b>if</b>(!message) {</td></tr>
+<tr><th id="325">325</th><td>    gss_release_buffer(&amp;unused_status, &amp;username_token);</td></tr>
+<tr><th id="326">326</th><td></td></tr>
+<tr><th id="327">327</th><td>    <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="328">328</th><td>  }</td></tr>
+<tr><th id="329">329</th><td></td></tr>
+<tr><th id="330">330</th><td>  <i>/* Populate the message with the security layer, client supported receive</i></td></tr>
+<tr><th id="331">331</th><td><i>     message size and authorization identity including the 0x00 based</i></td></tr>
+<tr><th id="332">332</th><td><i>     terminator. Note: Despite RFC4752 Section 3.1 stating "The authorization</i></td></tr>
+<tr><th id="333">333</th><td><i>     identity is not terminated with the zero-valued (%x00) octet." it seems</i></td></tr>
+<tr><th id="334">334</th><td><i>     necessary to include it. */</i></td></tr>
+<tr><th id="335">335</th><td>  outdata = htonl(max_size) | sec_layer;</td></tr>
+<tr><th id="336">336</th><td>  memcpy(message, &amp;outdata, <b>sizeof</b>(outdata));</td></tr>
+<tr><th id="337">337</th><td>  memcpy(message + <b>sizeof</b>(outdata), username_token.value,</td></tr>
+<tr><th id="338">338</th><td>         username_token.length);</td></tr>
+<tr><th id="339">339</th><td>  message[messagelen - <var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="340">340</th><td></td></tr>
+<tr><th id="341">341</th><td>  <i>/* Free the username token as it is not required anymore */</i></td></tr>
+<tr><th id="342">342</th><td>  gss_release_buffer(&amp;unused_status, &amp;username_token);</td></tr>
+<tr><th id="343">343</th><td></td></tr>
+<tr><th id="344">344</th><td>  <i>/* Setup the "authentication data" security buffer */</i></td></tr>
+<tr><th id="345">345</th><td>  input_token.value = message;</td></tr>
+<tr><th id="346">346</th><td>  input_token.length = messagelen;</td></tr>
+<tr><th id="347">347</th><td></td></tr>
+<tr><th id="348">348</th><td>  <i>/* Encrypt the data */</i></td></tr>
+<tr><th id="349">349</th><td>  major_status = gss_wrap(&amp;minor_status, krb5-&gt;context, <var>0</var>,</td></tr>
+<tr><th id="350">350</th><td>                          GSS_C_QOP_DEFAULT, &amp;input_token, NULL,</td></tr>
+<tr><th id="351">351</th><td>                          &amp;output_token);</td></tr>
+<tr><th id="352">352</th><td>  <b>if</b>(GSS_ERROR(major_status)) {</td></tr>
+<tr><th id="353">353</th><td>    Curl_gss_log_error(data, <q>"gss_wrap() failed: "</q>,</td></tr>
+<tr><th id="354">354</th><td>                       major_status, minor_status);</td></tr>
+<tr><th id="355">355</th><td></td></tr>
+<tr><th id="356">356</th><td>    free(message);</td></tr>
+<tr><th id="357">357</th><td></td></tr>
+<tr><th id="358">358</th><td>    <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="359">359</th><td>  }</td></tr>
+<tr><th id="360">360</th><td></td></tr>
+<tr><th id="361">361</th><td>  <i>/* Base64 encode the response */</i></td></tr>
+<tr><th id="362">362</th><td>  result = Curl_base64_encode(data, (<em>char</em> *) output_token.value,</td></tr>
+<tr><th id="363">363</th><td>                              output_token.length, outptr, outlen);</td></tr>
+<tr><th id="364">364</th><td></td></tr>
+<tr><th id="365">365</th><td>  <i>/* Free the output buffer */</i></td></tr>
+<tr><th id="366">366</th><td>  gss_release_buffer(&amp;unused_status, &amp;output_token);</td></tr>
+<tr><th id="367">367</th><td></td></tr>
+<tr><th id="368">368</th><td>  <i>/* Free the message buffer */</i></td></tr>
+<tr><th id="369">369</th><td>  free(message);</td></tr>
+<tr><th id="370">370</th><td></td></tr>
+<tr><th id="371">371</th><td>  <b>return</b> result;</td></tr>
+<tr><th id="372">372</th><td>}</td></tr>
+<tr><th id="373">373</th><td></td></tr>
+<tr><th id="374">374</th><td><i>/*</i></td></tr>
+<tr><th id="375">375</th><td><i> * Curl_auth_gssapi_cleanup()</i></td></tr>
+<tr><th id="376">376</th><td><i> *</i></td></tr>
+<tr><th id="377">377</th><td><i> * This is used to clean up the GSSAPI (Kerberos V5) specific data.</i></td></tr>
+<tr><th id="378">378</th><td><i> *</i></td></tr>
+<tr><th id="379">379</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="380">380</th><td><i> *</i></td></tr>
+<tr><th id="381">381</th><td><i> * krb5     [in/out] - The Kerberos 5 data struct being cleaned up.</i></td></tr>
+<tr><th id="382">382</th><td><i> *</i></td></tr>
+<tr><th id="383">383</th><td><i> */</i></td></tr>
+<tr><th id="384">384</th><td><em>void</em> Curl_auth_gssapi_cleanup(<b>struct</b> kerberos5data *krb5)</td></tr>
+<tr><th id="385">385</th><td>{</td></tr>
+<tr><th id="386">386</th><td>  OM_uint32 minor_status;</td></tr>
+<tr><th id="387">387</th><td></td></tr>
+<tr><th id="388">388</th><td>  <i>/* Free our security context */</i></td></tr>
+<tr><th id="389">389</th><td>  <b>if</b>(krb5-&gt;context != GSS_C_NO_CONTEXT) {</td></tr>
+<tr><th id="390">390</th><td>    gss_delete_sec_context(&amp;minor_status, &amp;krb5-&gt;context, GSS_C_NO_BUFFER);</td></tr>
+<tr><th id="391">391</th><td>    krb5-&gt;context = GSS_C_NO_CONTEXT;</td></tr>
+<tr><th id="392">392</th><td>  }</td></tr>
+<tr><th id="393">393</th><td></td></tr>
+<tr><th id="394">394</th><td>  <i>/* Free the SPN */</i></td></tr>
+<tr><th id="395">395</th><td>  <b>if</b>(krb5-&gt;spn != GSS_C_NO_NAME) {</td></tr>
+<tr><th id="396">396</th><td>    gss_release_name(&amp;minor_status, &amp;krb5-&gt;spn);</td></tr>
+<tr><th id="397">397</th><td>    krb5-&gt;spn = GSS_C_NO_NAME;</td></tr>
+<tr><th id="398">398</th><td>  }</td></tr>
+<tr><th id="399">399</th><td>}</td></tr>
+<tr><th id="400">400</th><td></td></tr>
+<tr><th id="401">401</th><td><u>#<span data-ppcond="28">endif</span> /* HAVE_GSSAPI &amp;&amp; USE_KERBEROS5 */</u></td></tr>
+<tr><th id="402">402</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='1146' type='6'/>
+<use f='codebrowser/lib/http.c' l='383' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='515' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='530' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='1854' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1877' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2238' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3105' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/rtsp.c' l='576' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='3193' u='r' c='IsPipeliningPossible'/>
+<use f='codebrowser/lib/url.c' l='7073' u='r' c='Curl_init_do'/>
+<use f='codebrowser/lib/url.c' l='7074' u='r' c='Curl_init_do'/>
+<dec f='codebrowser/src/tool_sdecls.h' l='137' type='2'/>
+<use f='codebrowser/src/tool_getparam.c' l='1690' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='368' u='r' c='operate_do'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='177' type='PKCS12_SAFEBAG * PKCS12_item_pack_safebag(void * obj, const ASN1_ITEM * it, int nid1, int nid2)'/>

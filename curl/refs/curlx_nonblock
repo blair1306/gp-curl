@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/nonblock.h' l='27' type='int curlx_nonblock(curl_socket_t sockfd, int nonblock)'/>
+<doc f='codebrowser/lib/nonblock.h' l='27'>/* operate on this */</doc>
+<use f='codebrowser/lib/connect.c' l='1052' u='c' c='singleipconnect'/>
+<use f='codebrowser/lib/ftp.c' l='305' u='c' c='AcceptServerConnect'/>
+<def f='codebrowser/lib/nonblock.c' l='47' ll='90' type='int curlx_nonblock(curl_socket_t sockfd, int nonblock)'/>
+<doc f='codebrowser/lib/nonblock.c' l='42'>/*
+ * curlx_nonblock() set the given socket to either blocking or non-blocking
+ * mode based on the &apos;nonblock&apos; boolean argument. This function is highly
+ * portable.
+ */</doc>
+<doc f='codebrowser/lib/nonblock.c' l='47'>/* operate on this */</doc>
+<use f='codebrowser/lib/socks.c' l='134' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='344' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='413' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='455' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='466' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='484' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='787' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/src/tool_operate.c' l='780' u='c' c='operate_do'/>
+<use f='codebrowser/tests/server/sws.c' l='1856' u='c' c='accept_connection'/>
+<use f='codebrowser/tests/server/sws.c' l='2141' u='c' c='main'/>

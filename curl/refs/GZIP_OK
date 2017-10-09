@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/content_encoding.c' l='195' type='0'/>
+<use f='codebrowser/lib/content_encoding.c' l='272' u='r' c='check_gzip_header'/>
+<use f='codebrowser/lib/content_encoding.c' l='337' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='382' c='Curl_unencode_gzip_write'/>

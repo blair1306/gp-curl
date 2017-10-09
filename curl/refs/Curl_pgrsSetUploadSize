@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/progress.h' l='46' type='void Curl_pgrsSetUploadSize(struct Curl_easy * data, curl_off_t size)'/>
+<use f='codebrowser/lib/file.c' l='354' u='c' c='file_upload'/>
+<use f='codebrowser/lib/ftp.c' l='465' u='c' c='InitiateTransfer'/>
+<use f='codebrowser/lib/ftp.c' l='4391' u='c' c='ftp_regular_transfer'/>
+<use f='codebrowser/lib/http.c' l='2433' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2469' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2555' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2670' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2683' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2707' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='1208' u='c' c='imap_state_append_resp'/>
+<use f='codebrowser/lib/imap.c' l='1680' u='c' c='imap_regular_transfer'/>
+<use f='codebrowser/lib/pop3.c' l='1284' u='c' c='pop3_regular_transfer'/>
+<use f='codebrowser/lib/progress.c' l='156' u='c' c='Curl_pgrsResetTransferSizes'/>
+<def f='codebrowser/lib/progress.c' l='334' ll='344' type='void Curl_pgrsSetUploadSize(struct Curl_easy * data, curl_off_t size)'/>
+<use f='codebrowser/lib/smb.c' l='793' u='c' c='smb_request_state'/>
+<use f='codebrowser/lib/smtp.c' l='948' u='c' c='smtp_state_data_resp'/>
+<use f='codebrowser/lib/smtp.c' l='1417' u='c' c='smtp_regular_transfer'/>
+<use f='codebrowser/lib/tftp.c' l='480' u='c' c='tftp_send_first'/>

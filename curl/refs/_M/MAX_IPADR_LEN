@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='75'/>
+<use f='codebrowser/lib/urldata.h' l='827' u='c'/>
+<use f='codebrowser/lib/urldata.h' l='855' u='c'/>
+<use f='codebrowser/lib/urldata.h' l='862' u='c'/>
+<use f='codebrowser/lib/urldata.h' l='1077' u='c'/>
+<use f='codebrowser/lib/urldata.h' l='1080' u='c'/>
+<doc f='codebrowser/lib/urldata.h' l='74'>/* length of longest IPv6 address string including the trailing null */</doc>
+<use f='codebrowser/lib/connect.c' l='602' u='c'/>
+<use f='codebrowser/lib/connect.c' l='603' u='c'/>
+<use f='codebrowser/lib/connect.c' l='628' u='c'/>
+<use f='codebrowser/lib/connect.c' l='638' u='c'/>
+<use f='codebrowser/lib/connect.c' l='648' u='c'/>
+<use f='codebrowser/lib/connect.c' l='699' u='c'/>
+<use f='codebrowser/lib/connect.c' l='824' u='c'/>
+<use f='codebrowser/lib/connect.c' l='825' u='c'/>
+<use f='codebrowser/lib/connect.c' l='978' u='c'/>

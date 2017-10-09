@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='566' type='int OCSP_REQUEST_print(BIO * bp, OCSP_REQUEST * a, unsigned long flags)'/>

@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/bits/stat.h' l='62' type='__mode_t'/>
+<offset>192</offset>
+<doc f='include/x86_64-linux-gnu/bits/stat.h' l='62'>/* File mode.  */</doc>
+<use f='codebrowser/lib/mime.c' l='1302' u='r' c='curl_mime_filedata'/>
+<use f='codebrowser/src/tool_operate.c' l='745' u='r' c='operate_do'/>
+<use f='codebrowser/tests/server/sws.c' l='2198' u='r' c='main'/>

@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='79' type='CURLcode Curl_auth_decode_cram_md5_message(const char * chlg64, char ** outptr, size_t * outlen)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='473' u='c' c='Curl_sasl_continue'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='78'>/* This is used to decode a CRAM-MD5 challenge message */</doc>
+<def f='codebrowser/lib/vauth/cram.c' l='57' ll='71' type='CURLcode Curl_auth_decode_cram_md5_message(const char * chlg64, char ** outptr, size_t * outlen)'/>
+<doc f='codebrowser/lib/vauth/cram.c' l='43'>/*
+ * Curl_auth_decode_cram_md5_message()
+ *
+ * This is used to decode an already encoded CRAM-MD5 challenge message.
+ *
+ * Parameters:
+ *
+ * chlg64  [in]     - The base64 encoded challenge message.
+ * outptr  [in/out] - The address where a pointer to newly allocated memory
+ *                    holding the result will be stored upon completion.
+ * outlen  [out]    - The length of the output message.
+ *
+ * Returns CURLE_OK on success.
+ */</doc>

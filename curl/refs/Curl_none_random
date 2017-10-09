@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='87' type='CURLcode Curl_none_random(struct Curl_easy * data, unsigned char * entropy, size_t length)'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='1004' ll='1012' type='CURLcode Curl_none_random(struct Curl_easy * data, unsigned char * entropy, size_t length)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1145'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1145'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='40' type='int check_protocol(const char * str)'/>
+<use f='codebrowser/src/tool_getparam.c' l='1051' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='376' ll='387' type='int check_protocol(const char * str)'/>
+<doc f='codebrowser/src/tool_paramhlp.c' l='368'>/**
+ * Check if the given string is a protocol supported by libcurl
+ *
+ * @param str  the protocol name
+ * @return PARAM_OK  protocol supported
+ * @return PARAM_LIBCURL_UNSUPPORTED_PROTOCOL  protocol not supported
+ * @return PARAM_REQUIRES_PARAMETER   missing parameter
+ */</doc>

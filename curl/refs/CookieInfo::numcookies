@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/cookie.h' l='54' type='long'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/cookie.h' l='54'>/* number of cookies in the &quot;jar&quot; */</doc>
+<use f='codebrowser/lib/cookie.c' l='318' u='w' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='929' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1240' u='w' c='Curl_cookie_clearall'/>
+<use f='codebrowser/lib/cookie.c' l='1291' u='w' c='Curl_cookie_clearsess'/>
+<use f='codebrowser/lib/cookie.c' l='1362' u='r' c='cookie_output'/>
+<use f='codebrowser/lib/cookie.c' l='1414' u='r' c='cookie_list'/>

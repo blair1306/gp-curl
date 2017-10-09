@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='71' type='27'/>
+<doc f='codebrowser/lib/ftp.h' l='71'>/* when asking for &quot;resume&quot; in for RETR */</doc>
+<use f='codebrowser/lib/ftp.c' l='2246' u='r' c='ftp_state_retr'/>
+<use f='codebrowser/lib/ftp.c' l='2318' c='ftp_state_rest_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3005' c='ftp_statemach_act'/>

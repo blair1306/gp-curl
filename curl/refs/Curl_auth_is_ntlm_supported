@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='119' type='_Bool Curl_auth_is_ntlm_supported()'/>
+<use f='codebrowser/lib/curl_sasl.c' l='327' u='c' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/http.c' l='808' u='c' c='Curl_http_input_auth'/>
+<def f='codebrowser/lib/vauth/ntlm.c' l='230' ll='233' macro='1' type='_Bool Curl_auth_is_ntlm_supported()'/>

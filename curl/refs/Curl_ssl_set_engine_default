@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='162' type='CURLcode Curl_ssl_set_engine_default(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='161'>/* Sets engine as default for all SSL operations */</doc>
+<use f='codebrowser/lib/url.c' l='2089' u='c' c='Curl_setopt'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='578' ll='581' type='CURLcode Curl_ssl_set_engine_default(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='576'>/* Selects the default SSL crypto engine
+ */</doc>

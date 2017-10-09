@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/hostip.h' l='125' type='void Curl_scan_cache_used(void * user, void * ptr)'/>
+<doc f='codebrowser/lib/hostip.h' l='124'>/* for debugging purposes only: */</doc>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='92' type='_Bool Curl_none_cert_status_request()'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='1032' ll='1035' macro='1' type='_Bool Curl_none_cert_status_request()'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1146'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1146'/>

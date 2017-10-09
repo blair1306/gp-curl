@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/hash.h' l='91' type='void Curl_hash_start_iterate(struct curl_hash * hash, struct curl_hash_iterator * iter)'/>
+<use f='codebrowser/lib/conncache.c' l='176' u='c' c='conncache_remove_bundle'/>
+<use f='codebrowser/lib/conncache.c' l='275' u='c' c='Curl_conncache_foreach'/>
+<use f='codebrowser/lib/conncache.c' l='306' u='c' c='Curl_conncache_find_first_connection'/>
+<def f='codebrowser/lib/hash.c' l='283' ll='289' type='void Curl_hash_start_iterate(struct curl_hash * hash, struct curl_hash_iterator * iter)'/>
+<use f='codebrowser/lib/url.c' l='3313' u='c' c='Curl_oldest_idle_connection'/>

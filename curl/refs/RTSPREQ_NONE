@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1153' type='0'/>
+<doc f='codebrowser/lib/urldata.h' l='1153'>/* first in list */</doc>
+<use f='codebrowser/lib/url.c' l='2715' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2761' u='r' c='Curl_setopt'/>

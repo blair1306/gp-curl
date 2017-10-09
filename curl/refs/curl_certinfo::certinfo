@@ -1,0 +1,13 @@
+<dec f='codebrowser/include/curl/curl.h' l='2416' type='struct curl_slist **'/>
+<offset>64</offset>
+<doc f='codebrowser/include/curl/curl.h' l='2416'>/* for each index in this array, there&apos;s a
+                                   linked list with textual information in the
+                                   format &quot;name: value&quot; */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='650' u='r' c='Curl_ssl_free_certinfo'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='651' u='r' c='Curl_ssl_free_certinfo'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='654' u='r' c='Curl_ssl_free_certinfo'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='655' u='w' c='Curl_ssl_free_certinfo'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='674' u='w' c='Curl_ssl_init_certinfo'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='708' u='r' c='Curl_ssl_push_certinfo_len'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='711' u='r' c='Curl_ssl_push_certinfo_len'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='715' u='r' c='Curl_ssl_push_certinfo_len'/>

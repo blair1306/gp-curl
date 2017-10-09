@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/curl_threads.h' l='54' type='pthread_t * Curl_thread_create(unsigned int (*)(void *) func, void * arg)'/>
+<use f='codebrowser/lib/asyn-thread.c' l='414' u='c' c='init_resolve_thread'/>
+<def f='codebrowser/lib/curl_threads.c' l='62' ll='81' macro='1' type='pthread_t * Curl_thread_create(unsigned int (*)(void *) func, void * arg)'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/hostip.h' l='212' type='CURLcode Curl_set_dns_servers(struct Curl_easy * data, char * servers)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='685' ll='692' type='CURLcode Curl_set_dns_servers(struct Curl_easy * data, char * servers)'/>
+<doc f='codebrowser/lib/hostip.h' l='209'>/*
+ * Function provided by the resolver backend to set DNS servers to use.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='2880' u='c' c='Curl_setopt'/>

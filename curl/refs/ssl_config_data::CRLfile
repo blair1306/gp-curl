@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='228' type='char *'/>
+<offset>704</offset>
+<doc f='codebrowser/lib/urldata.h' l='228'>/* CRL to check certificate revocation */</doc>
+<use f='codebrowser/lib/url.c' l='6701' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6702' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2058' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2058' u='r' c='ossl_connect_step1'/>

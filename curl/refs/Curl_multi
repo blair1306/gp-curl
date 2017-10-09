@@ -1,0 +1,32 @@
+<def f='codebrowser/lib/multihandle.h' l='71' ll='153'/>
+<size>480</size>
+<doc f='codebrowser/lib/multihandle.h' l='70'>/* This is the struct known as CURLM on the outside */</doc>
+<mbr r='Curl_multi::type' o='0' t='long'/>
+<mbr r='Curl_multi::easyp' o='64' t='struct Curl_easy *'/>
+<mbr r='Curl_multi::easylp' o='128' t='struct Curl_easy *'/>
+<mbr r='Curl_multi::num_easy' o='192' t='int'/>
+<mbr r='Curl_multi::num_alive' o='224' t='int'/>
+<mbr r='Curl_multi::msglist' o='256' t='struct curl_llist'/>
+<mbr r='Curl_multi::pending' o='512' t='struct curl_llist'/>
+<mbr r='Curl_multi::socket_cb' o='768' t='curl_socket_callback'/>
+<mbr r='Curl_multi::socket_userp' o='832' t='void *'/>
+<mbr r='Curl_multi::push_cb' o='896' t='curl_push_callback'/>
+<mbr r='Curl_multi::push_userp' o='960' t='void *'/>
+<mbr r='Curl_multi::hostcache' o='1024' t='struct curl_hash'/>
+<mbr r='Curl_multi::timetree' o='1408' t='struct Curl_tree *'/>
+<mbr r='Curl_multi::sockhash' o='1472' t='struct curl_hash'/>
+<mbr r='Curl_multi::pipelining' o='1856' t='long'/>
+<mbr r='Curl_multi::recheckstate' o='1920' t='_Bool'/>
+<mbr r='Curl_multi::conn_cache' o='1984' t='struct conncache'/>
+<mbr r='Curl_multi::closure_handle' o='2624' t='struct Curl_easy *'/>
+<mbr r='Curl_multi::maxconnects' o='2688' t='long'/>
+<mbr r='Curl_multi::max_host_connections' o='2752' t='long'/>
+<mbr r='Curl_multi::max_total_connections' o='2816' t='long'/>
+<mbr r='Curl_multi::max_pipeline_length' o='2880' t='long'/>
+<mbr r='Curl_multi::content_length_penalty_size' o='2944' t='long'/>
+<mbr r='Curl_multi::chunk_length_penalty_size' o='3008' t='long'/>
+<mbr r='Curl_multi::pipelining_site_bl' o='3072' t='struct curl_llist'/>
+<mbr r='Curl_multi::pipelining_server_bl' o='3328' t='struct curl_llist'/>
+<mbr r='Curl_multi::timer_cb' o='3584' t='curl_multi_timer_callback'/>
+<mbr r='Curl_multi::timer_userp' o='3648' t='void *'/>
+<mbr r='Curl_multi::timer_lastcall' o='3712' t='struct curltime'/>

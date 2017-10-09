@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='142' type='void Curl_auth_ntlm_cleanup(struct ntlmdata * ntlm)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='93' u='c' c='Curl_sasl_cleanup'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='141'>/* This is used to clean up the NTLM specific data */</doc>
+<use f='codebrowser/lib/http_ntlm.c' l='233' u='c' c='Curl_http_ntlm_cleanup'/>
+<use f='codebrowser/lib/http_ntlm.c' l='234' u='c' c='Curl_http_ntlm_cleanup'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='399' u='c' c='Curl_auth_create_ntlm_type1_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='836' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<def f='codebrowser/lib/vauth/ntlm.c' l='851' ll='858' type='void Curl_auth_ntlm_cleanup(struct ntlmdata * ntlm)'/>
+<doc f='codebrowser/lib/vauth/ntlm.c' l='841'>/*
+* Curl_auth_ntlm_cleanup()
+*
+* This is used to clean up the NTLM specific data.
+*
+* Parameters:
+*
+* ntlm    [in/out] - The NTLM data struct being cleaned up.
+*
+*/</doc>

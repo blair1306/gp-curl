@@ -1,0 +1,13 @@
+<dec f='codebrowser/src/tool_easysrc.h' l='29' type='struct slist_wc *'/>
+<def f='codebrowser/src/tool_easysrc.c' l='40' type='struct slist_wc *'/>
+<use f='codebrowser/src/tool_easysrc.c' l='82' u='r' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='83' u='w' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='196' u='r' c='dumpeasysrc'/>
+<use f='codebrowser/src/tool_easysrc.c' l='197' u='r' c='dumpeasysrc'/>
+<doc f='codebrowser/src/tool_easysrc.c' l='38'>/* global variable definitions, for easy-interface source code generation */</doc>
+<doc f='codebrowser/src/tool_easysrc.c' l='40'>/* Variable declarations */</doc>
+<doc f='codebrowser/src/tool_easysrc.h' l='27'>/* global variable declarations, for easy-interface source code generation */</doc>
+<doc f='codebrowser/src/tool_easysrc.h' l='29'>/* Variable declarations */</doc>
+<use f='codebrowser/src/tool_setopt.c' l='192' u='a' c='libcurl_generate_slist'/>
+<use f='codebrowser/src/tool_setopt.c' l='192' u='a' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='192' u='a' c='libcurl_generate_mime'/>

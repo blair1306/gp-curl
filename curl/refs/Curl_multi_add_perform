@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/multiif.h' l='96' type='CURLMcode Curl_multi_add_perform(struct Curl_multi * multi, struct Curl_easy * data, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/multiif.h' l='93'>/*
+ * Add a handle and move it into PERFORM state at once. For pushed streams.
+ */</doc>
+<def f='codebrowser/lib/multi.c' l='1149' ll='1169' type='CURLMcode Curl_multi_add_perform(struct Curl_multi * multi, struct Curl_easy * data, struct connectdata * conn)'/>

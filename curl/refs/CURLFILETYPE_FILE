@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='252' type='0'/>
+<use f='codebrowser/lib/ftp.c' l='3900' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftplistparser.c' l='449' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='947' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/tests/libtest/lib576.c' l='61' c='chunk_bgn'/>
+<use f='codebrowser/tests/libtest/lib576.c' l='75' u='r' c='chunk_bgn'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='140'/>
+<doc f='codebrowser/lib/urldata.h' l='139'>/* The &quot;master buffer&quot; is for HTTP pipelining */</doc>
+<use f='codebrowser/lib/sendf.c' l='725' u='c'/>
+<use f='codebrowser/lib/url.c' l='4314' u='c'/>

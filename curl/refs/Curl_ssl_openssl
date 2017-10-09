@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/openssl.h' l='34' type='const struct Curl_ssl'/>
+<def f='codebrowser/lib/vtls/openssl.c' l='3617' ll='3652' type='const struct Curl_ssl'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1179' u='a'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1211' u='a'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1211' u='a'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='210' type='int PKCS8_add_keyusage(PKCS8_PRIV_KEY_INFO * p8, int usage)'/>

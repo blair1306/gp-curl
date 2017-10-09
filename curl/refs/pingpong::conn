@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/pingpong.h' l='66' type='struct connectdata *'/>
+<offset>704</offset>
+<doc f='codebrowser/lib/pingpong.h' l='66'>/* points to the connectdata struct that this
+                               belongs to */</doc>
+<use f='codebrowser/lib/ftp.c' l='565' u='r' c='ftp_readresp'/>
+<use f='codebrowser/lib/ftp.c' l='3101' u='w' c='ftp_connect'/>
+<use f='codebrowser/lib/imap.c' l='1166' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1406' u='w' c='imap_connect'/>
+<use f='codebrowser/lib/imap.c' l='1611' u='r' c='imap_disconnect'/>
+<use f='codebrowser/lib/imap.c' l='1611' u='r' c='imap_disconnect'/>
+<use f='codebrowser/lib/pingpong.c' l='49' u='r' c='Curl_pp_state_timeout'/>
+<use f='codebrowser/lib/pingpong.c' l='83' u='r' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/pingpong.c' l='142' u='r' c='Curl_pp_init'/>
+<use f='codebrowser/lib/pingpong.c' l='170' u='r' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='283' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='467' u='r' c='Curl_pp_getsock'/>
+<use f='codebrowser/lib/pingpong.c' l='486' u='r' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pop3.c' l='1077' u='w' c='pop3_connect'/>
+<use f='codebrowser/lib/pop3.c' l='1221' u='r' c='pop3_disconnect'/>
+<use f='codebrowser/lib/pop3.c' l='1221' u='r' c='pop3_disconnect'/>
+<use f='codebrowser/lib/smtp.c' l='1140' u='w' c='smtp_connect'/>
+<use f='codebrowser/lib/smtp.c' l='1188' u='r' c='smtp_done'/>
+<use f='codebrowser/lib/smtp.c' l='1349' u='r' c='smtp_disconnect'/>
+<use f='codebrowser/lib/smtp.c' l='1349' u='r' c='smtp_disconnect'/>

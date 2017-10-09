@@ -1,0 +1,9 @@
+<dec f='codebrowser/include/curl/curl.h' l='471' type='12'/>
+<doc f='codebrowser/include/curl/curl.h' l='471'>/* 12 - timeout occurred accepting server
+                                    [was obsoleted in August 2007 for 7.17.0,
+                                    reused in Dec 2011 for 7.24.0]*/</doc>
+<use f='codebrowser/lib/ftp.c' l='392' u='r' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='511' u='r' c='AllowServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='3151' c='ftp_done'/>
+<use f='codebrowser/lib/strerror.c' l='95' c='curl_easy_strerror'/>
+<use f='codebrowser/src/tool_operate.c' l='1598' u='r' c='operate_do'/>

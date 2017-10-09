@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='882' type='Curl_send *[2]'/>
+<offset>5120</offset>
+<use f='codebrowser/lib/sendf.c' l='328' u='r' c='Curl_write'/>
+<use f='codebrowser/lib/url.c' l='6632' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6634' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3351' u='w' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='564' u='w' c='Curl_ssl_shutdown'/>

@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/curl_config.h' l='233'/>
+<doc f='codebrowser/lib/curl_config.h' l='232'>/* Define to 1 if you have the `getprotobyname&apos; function. */</doc>

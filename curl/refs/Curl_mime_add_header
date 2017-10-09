@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/mime.h' l='135' type='CURLcode Curl_mime_add_header(struct curl_slist ** slp, const char * fmt)'/>
+<use f='codebrowser/lib/imap.c' l='734' u='c' c='imap_perform_append'/>
+<def f='codebrowser/lib/mime.c' l='1545' ll='1564' type='CURLcode Curl_mime_add_header(struct curl_slist ** slp, const char * fmt)'/>
+<use f='codebrowser/lib/mime.c' l='1570' u='c' c='add_content_type'/>
+<use f='codebrowser/lib/mime.c' l='1691' u='c' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1722' u='c' c='Curl_mime_prepare_headers'/>
+<doc f='codebrowser/lib/mime.c' l='1544'>/* VARARGS2 */</doc>
+<use f='codebrowser/lib/smtp.c' l='546' u='c' c='smtp_perform_mail'/>

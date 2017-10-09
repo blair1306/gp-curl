@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/pop3.h' l='68' type='struct SASL'/>
+<offset>1088</offset>
+<doc f='codebrowser/lib/pop3.h' l='68'>/* SASL-related storage */</doc>
+<use f='codebrowser/lib/pop3.c' l='313' u='m' c='pop3_perform_capa'/>
+<use f='codebrowser/lib/pop3.c' l='314' u='m' c='pop3_perform_capa'/>
+<use f='codebrowser/lib/pop3.c' l='506' u='a' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='513' u='a' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='707' u='m' c='pop3_state_capa_resp'/>
+<use f='codebrowser/lib/pop3.c' l='777' u='a' c='pop3_state_auth_resp'/>
+<use f='codebrowser/lib/pop3.c' l='1081' u='a' c='pop3_connect'/>
+<use f='codebrowser/lib/pop3.c' l='1229' u='m' c='pop3_disconnect'/>
+<use f='codebrowser/lib/pop3.c' l='1325' u='m' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1340' u='a' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1345' u='m' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1357' u='m' c='pop3_parse_url_options'/>

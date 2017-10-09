@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='1780' type='unsigned int'/>
+<offset>169216</offset>
+<doc f='codebrowser/lib/urldata.h' l='1780'>/* set to a CURLEASY_MAGIC_NUMBER */</doc>
+<use f='codebrowser/lib/easy.c' l='944' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/multi.c' l='369' macro='1' u='r'/>
+<use f='codebrowser/lib/multi.c' l='667' macro='1' u='r'/>
+<use f='codebrowser/lib/multi.c' l='1322' macro='1' u='r'/>
+<use f='codebrowser/lib/multi.c' l='2591' u='r' c='multi_socket'/>
+<use f='codebrowser/lib/url.c' l='431' u='w' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='657' u='w' c='Curl_open'/>

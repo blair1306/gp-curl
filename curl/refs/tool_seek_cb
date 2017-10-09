@@ -1,0 +1,12 @@
+<dec f='codebrowser/src/tool_cb_see.h' l='43' type='int tool_seek_cb(void * userdata, curl_off_t offset, int whence)'/>
+<def f='codebrowser/src/tool_cb_see.c' l='47' ll='89' type='int tool_seek_cb(void * userdata, curl_off_t offset, int whence)'/>
+<doc f='codebrowser/src/tool_cb_see.c' l='40'>/*
+** callback for CURLOPT_SEEKFUNCTION
+**
+** Notice that this is not supposed to return the resulting offset. This
+** shall only return CURL_SEEKFUNC_* return codes.
+*/</doc>
+<doc f='codebrowser/src/tool_cb_see.h' l='39'>/*
+** callback for CURLOPT_SEEKFUNCTION
+*/</doc>
+<use f='codebrowser/src/tool_operate.c' l='895' c='operate_do'/>

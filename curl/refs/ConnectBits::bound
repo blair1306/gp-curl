@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='428' type='_Bool'/>
+<offset>208</offset>
+<use f='codebrowser/lib/connect.c' l='445' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/tftp.c' l='1017' u='r' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1038' u='w' c='tftp_connect'/>

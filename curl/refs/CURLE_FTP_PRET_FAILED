@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='568' type='84'/>
+<doc f='codebrowser/include/curl/curl.h' l='568'>/* 84 - a PRET command failed */</doc>
+<use f='codebrowser/lib/ftp.c' l='3013' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/strerror.c' l='98' c='curl_easy_strerror'/>

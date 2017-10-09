@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/curl_config.h' l='657'/>
+<doc f='codebrowser/lib/curl_config.h' l='656'>/* Define to 1 if you have the &lt;sys/param.h&gt; header file. */</doc>
+<use f='codebrowser/lib/dict.c' l='43' u='a'/>
+<use f='codebrowser/lib/easy.c' l='49' u='a'/>
+<use f='codebrowser/lib/file.c' l='43' u='a'/>
+<use f='codebrowser/lib/http.c' l='44' u='a'/>
+<use f='codebrowser/lib/inet_ntop.c' l='25' u='a'/>
+<use f='codebrowser/lib/telnet.c' l='43' u='a'/>
+<use f='codebrowser/lib/tftp.c' l='43' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='45' u='a'/>
+<use f='codebrowser/lib/url.c' l='41' u='a'/>

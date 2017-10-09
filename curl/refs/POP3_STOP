@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/pop3.h' l='32' type='0'/>
+<doc f='codebrowser/lib/pop3.h' l='32'>/* do nothing state, stops the state machine */</doc>
+<use f='codebrowser/lib/pop3.c' l='385' u='r' c='pop3_perform_user'/>
+<use f='codebrowser/lib/pop3.c' l='418' u='r' c='pop3_perform_apop'/>
+<use f='codebrowser/lib/pop3.c' l='507' u='r' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='781' u='r' c='pop3_state_auth_resp'/>
+<use f='codebrowser/lib/pop3.c' l='821' u='r' c='pop3_state_apop_resp'/>
+<use f='codebrowser/lib/pop3.c' l='865' u='r' c='pop3_state_pass_resp'/>
+<use f='codebrowser/lib/pop3.c' l='884' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='922' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='993' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='996' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='1014' u='r' c='pop3_multi_statemach'/>
+<use f='codebrowser/lib/pop3.c' l='1024' u='r' c='pop3_block_statemach'/>

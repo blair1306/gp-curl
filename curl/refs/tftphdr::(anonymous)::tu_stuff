@@ -1,0 +1,4 @@
+<dec f='include/arpa/tftp.h' l='60' type='char [0]'/>
+<use f='codebrowser/tests/server/tftpd.c' l='978' macro='1' u='a'/>
+<offset>0</offset>
+<doc f='include/arpa/tftp.h' l='60'>/* request packet stuff */</doc>

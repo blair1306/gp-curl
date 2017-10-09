@@ -1,0 +1,8 @@
+<dec f='include/time.h' l='141' type='int'/>
+<offset>192</offset>
+<use f='codebrowser/lib/file.c' l='502' u='r' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='502' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='2087' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2087' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/http.c' l='1730' u='r' c='Curl_add_timecondition'/>
+<use f='codebrowser/lib/http.c' l='1730' u='r' c='Curl_add_timecondition'/>

@@ -1,0 +1,4 @@
+<def f='codebrowser/lib/fileinfo.h' l='28' ll='31'/>
+<size>152</size>
+<mbr r='fileinfo::info' o='0' t='struct curl_fileinfo'/>
+<mbr r='fileinfo::list' o='1024' t='struct curl_llist_element'/>

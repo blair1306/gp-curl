@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>wildcard.c source code [codebrowser/lib/wildcard.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/wildcard.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='wildcard.c.html'>wildcard.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="wildcard.h.html">"wildcard.h"</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="llist.h.html">"llist.h"</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="fileinfo.h.html">"fileinfo.h"</a></u></td></tr>
+<tr><th id="28">28</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_wildcard_init" title='Curl_wildcard_init' data-ref="Curl_wildcard_init">Curl_wildcard_init</dfn>(<b>struct</b> <a class="type" href="wildcard.h.html#WildcardData" title='WildcardData' data-ref="WildcardData">WildcardData</a> *<dfn class="local col1 decl" id="1wc" title='wc' data-type='struct WildcardData *' data-ref="1wc">wc</dfn>)</td></tr>
+<tr><th id="34">34</th><td>{</td></tr>
+<tr><th id="35">35</th><td>  <a class="ref" href="llist.h.html#Curl_llist_init" title='Curl_llist_init' data-ref="Curl_llist_init">Curl_llist_init</a>(&amp;<a class="local col1 ref" href="#1wc" title='wc' data-ref="1wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::filelist" title='WildcardData::filelist' data-ref="WildcardData::filelist">filelist</a>, <a class="ref" href="fileinfo.h.html#Curl_fileinfo_dtor" title='Curl_fileinfo_dtor' data-ref="Curl_fileinfo_dtor">Curl_fileinfo_dtor</a>);</td></tr>
+<tr><th id="36">36</th><td>  <a class="local col1 ref" href="#1wc" title='wc' data-ref="1wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::state" title='WildcardData::state' data-ref="WildcardData::state">state</a> = <a class="enum" href="wildcard.h.html#CURLWC_INIT" title='CURLWC_INIT' data-ref="CURLWC_INIT">CURLWC_INIT</a>;</td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="39">39</th><td>}</td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td><em>void</em> <dfn class="decl def" id="Curl_wildcard_dtor" title='Curl_wildcard_dtor' data-ref="Curl_wildcard_dtor">Curl_wildcard_dtor</dfn>(<b>struct</b> <a class="type" href="wildcard.h.html#WildcardData" title='WildcardData' data-ref="WildcardData">WildcardData</a> *<dfn class="local col2 decl" id="2wc" title='wc' data-type='struct WildcardData *' data-ref="2wc">wc</dfn>)</td></tr>
+<tr><th id="42">42</th><td>{</td></tr>
+<tr><th id="43">43</th><td>  <b>if</b>(!<a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>)</td></tr>
+<tr><th id="44">44</th><td>    <b>return</b>;</td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td>  <b>if</b>(<a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::tmp_dtor" title='WildcardData::tmp_dtor' data-ref="WildcardData::tmp_dtor">tmp_dtor</a>) {</td></tr>
+<tr><th id="47">47</th><td>    <a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::tmp_dtor" title='WildcardData::tmp_dtor' data-ref="WildcardData::tmp_dtor">tmp_dtor</a>(<a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::tmp" title='WildcardData::tmp' data-ref="WildcardData::tmp">tmp</a>);</td></tr>
+<tr><th id="48">48</th><td>    <a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::tmp_dtor" title='WildcardData::tmp_dtor' data-ref="WildcardData::tmp_dtor">tmp_dtor</a> = <a class="macro" href="curl_setup_once.h.html#533" title="0" data-ref="_M/ZERO_NULL">ZERO_NULL</a>;</td></tr>
+<tr><th id="49">49</th><td>    <a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::tmp" title='WildcardData::tmp' data-ref="WildcardData::tmp">tmp</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="50">50</th><td>  }</td></tr>
+<tr><th id="51">51</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(wc-&gt;tmp == NULL);</td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td>  <a class="ref" href="llist.h.html#Curl_llist_destroy" title='Curl_llist_destroy' data-ref="Curl_llist_destroy">Curl_llist_destroy</a>(&amp;<a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::filelist" title='WildcardData::filelist' data-ref="WildcardData::filelist">filelist</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="54">54</th><td></td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(wc-&gt;path)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::path" title='WildcardData::path' data-ref="WildcardData::path">path</a>);</td></tr>
+<tr><th id="57">57</th><td>  <a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::path" title='WildcardData::path' data-ref="WildcardData::path">path</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="58">58</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(wc-&gt;pattern)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::pattern" title='WildcardData::pattern' data-ref="WildcardData::pattern">pattern</a>);</td></tr>
+<tr><th id="59">59</th><td>  <a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::pattern" title='WildcardData::pattern' data-ref="WildcardData::pattern">pattern</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="60">60</th><td></td></tr>
+<tr><th id="61">61</th><td>  <a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::customptr" title='WildcardData::customptr' data-ref="WildcardData::customptr">customptr</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="62">62</th><td>  <a class="local col2 ref" href="#2wc" title='wc' data-ref="2wc">wc</a>-&gt;<a class="ref" href="wildcard.h.html#WildcardData::state" title='WildcardData::state' data-ref="WildcardData::state">state</a> = <a class="enum" href="wildcard.h.html#CURLWC_INIT" title='CURLWC_INIT' data-ref="CURLWC_INIT">CURLWC_INIT</a>;</td></tr>
+<tr><th id="63">63</th><td>}</td></tr>
+<tr><th id="64">64</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

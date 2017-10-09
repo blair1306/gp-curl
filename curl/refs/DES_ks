@@ -1,0 +1,7 @@
+<def f='include/openssl/des.h' l='85' ll='93'/>
+<size>128</size>
+<doc f='include/openssl/des.h' l='80'>/*
+ * With &quot;const&quot;, gcc 2.8.1 on Solaris thinks that DES_cblock * and
+ * const_DES_cblock * are incompatible pointer types.
+ */</doc>
+<mbr r='DES_ks::ks' o='0' t='union (anonymous union at /usr/include/openssl/des.h:86:5) [16]'/>

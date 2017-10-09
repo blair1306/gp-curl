@@ -1,0 +1,11 @@
+<def f='codebrowser/lib/smtp.h' l='54' ll='61'/>
+<size>40</size>
+<doc f='codebrowser/lib/smtp.h' l='50'>/* This SMTP struct is used in the Curl_easy. All SMTP data that is
+   connection-oriented must be in smtp_conn to properly deal with the fact that
+   perhaps the Curl_easy is changed between the times the connection is
+   used. */</doc>
+<mbr r='SMTP::transfer' o='0' t='curl_pp_transfer'/>
+<mbr r='SMTP::custom' o='64' t='char *'/>
+<mbr r='SMTP::rcpt' o='128' t='struct curl_slist *'/>
+<mbr r='SMTP::eob' o='192' t='size_t'/>
+<mbr r='SMTP::trailing_crlf' o='256' t='_Bool'/>

@@ -1,0 +1,5 @@
+<dec f='include/openssl/ocsp.h' l='195'/>
+<doc f='include/openssl/ocsp.h' l='191'>/*-  ResponderID ::= CHOICE {
+ *      byName   [1] Name,
+ *      byKey    [2] KeyHash }
+ */</doc>

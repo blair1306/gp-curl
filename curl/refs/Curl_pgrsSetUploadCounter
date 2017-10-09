@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/progress.h' l='48' type='void Curl_pgrsSetUploadCounter(struct Curl_easy * data, curl_off_t size)'/>
+<use f='codebrowser/lib/file.c' l='402' u='c' c='file_upload'/>
+<use f='codebrowser/lib/ftp.c' l='4389' u='c' c='ftp_regular_transfer'/>
+<use f='codebrowser/lib/http.c' l='2753' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='1678' u='c' c='imap_regular_transfer'/>
+<use f='codebrowser/lib/pop3.c' l='1282' u='c' c='pop3_regular_transfer'/>
+<def f='codebrowser/lib/progress.c' l='304' ll='320' type='void Curl_pgrsSetUploadCounter(struct Curl_easy * data, curl_off_t size)'/>
+<use f='codebrowser/lib/rtsp.c' l='613' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/smb.c' l='847' u='c' c='smb_request_state'/>
+<use f='codebrowser/lib/smtp.c' l='1415' u='c' c='smtp_regular_transfer'/>
+<use f='codebrowser/lib/telnet.c' l='1672' u='c' c='telnet_do'/>
+<use f='codebrowser/lib/tftp.c' l='800' u='c' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='825' u='c' c='tftp_tx'/>
+<use f='codebrowser/lib/transfer.c' l='1077' u='c' c='readwrite_upload'/>
+<use f='codebrowser/lib/url.c' l='7094' u='c' c='Curl_init_do'/>

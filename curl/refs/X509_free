@@ -1,0 +1,16 @@
+<dec f='include/openssl/x509.h' l='823' macro='1' type='void X509_free(X509 * a)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='638' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='641' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='722' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='727' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='737' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='738' u='r' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3075' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3101' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3111' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3112' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3123' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3124' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3131' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3159' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3178' u='c' c='servercert'/>

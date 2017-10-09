@@ -1,0 +1,9 @@
+<dec f='include/netinet/in.h' l='50' type='6'/>
+<doc f='include/netinet/in.h' l='50'>/* Transmission Control Protocol.  */</doc>
+<use f='codebrowser/lib/connect.c' l='137' macro='1' u='r'/>
+<use f='codebrowser/lib/connect.c' l='145' macro='1' u='r'/>
+<use f='codebrowser/lib/connect.c' l='877' macro='1' u='r'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1382' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1356' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1565' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1894' macro='1' u='r'/>

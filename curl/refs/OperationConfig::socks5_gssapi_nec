@@ -1,0 +1,7 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='190' type='int'/>
+<offset>6976</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='190'>/* The NEC reference server does not protect the
+                               encryption type exchange */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='957' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1341' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1343' u='r' c='operate_do'/>

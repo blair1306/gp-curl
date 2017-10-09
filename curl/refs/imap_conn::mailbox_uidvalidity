@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/imap.h' l='83' type='char *'/>
+<offset>1408</offset>
+<doc f='codebrowser/lib/imap.h' l='83'>/* UIDVALIDITY parsed from select response */</doc>
+<use f='codebrowser/lib/imap.c' l='645' u='r' c='imap_perform_select'/>
+<use f='codebrowser/lib/imap.c' l='645' u='w' c='imap_perform_select'/>
+<use f='codebrowser/lib/imap.c' l='1049' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1049' u='w' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1050' u='w' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1055' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1056' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1525' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1526' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1623' u='r' c='imap_disconnect'/>
+<use f='codebrowser/lib/imap.c' l='1623' u='w' c='imap_disconnect'/>

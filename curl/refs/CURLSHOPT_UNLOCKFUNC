@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='2576' type='4'/>
+<doc f='codebrowser/include/curl/curl.h' l='2576'>/* pass in a &apos;curl_unlock_function&apos; pointer */</doc>
+<use f='codebrowser/lib/share.c' l='153' c='curl_share_setopt'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='211' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='165' u='r' c='test'/>

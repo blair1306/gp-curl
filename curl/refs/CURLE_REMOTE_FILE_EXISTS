@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='544' type='73'/>
+<doc f='codebrowser/include/curl/curl.h' l='544'>/* 73 - File already exists */</doc>
+<use f='codebrowser/lib/strerror.c' l='270' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/tftp.c' l='879' u='r' c='tftp_translate_code'/>

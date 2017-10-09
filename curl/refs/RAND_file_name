@@ -1,0 +1,2 @@
+<dec f='include/openssl/rand.h' l='107' type='const char * RAND_file_name(char * file, size_t num)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='465' u='c' c='Curl_ossl_seed'/>

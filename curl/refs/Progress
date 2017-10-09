@@ -1,0 +1,32 @@
+<def f='codebrowser/lib/urldata.h' l='1092' ll='1137'/>
+<size>408</size>
+<mbr r='Progress::lastshow' o='0' t='time_t'/>
+<mbr r='Progress::size_dl' o='64' t='curl_off_t'/>
+<mbr r='Progress::size_ul' o='128' t='curl_off_t'/>
+<mbr r='Progress::downloaded' o='192' t='curl_off_t'/>
+<mbr r='Progress::uploaded' o='256' t='curl_off_t'/>
+<mbr r='Progress::current_speed' o='320' t='curl_off_t'/>
+<mbr r='Progress::callback' o='384' t='_Bool'/>
+<mbr r='Progress::width' o='416' t='int'/>
+<mbr r='Progress::flags' o='448' t='int'/>
+<mbr r='Progress::timespent' o='512' t='time_t'/>
+<mbr r='Progress::dlspeed' o='576' t='curl_off_t'/>
+<mbr r='Progress::ulspeed' o='640' t='curl_off_t'/>
+<mbr r='Progress::t_nslookup' o='704' t='time_t'/>
+<mbr r='Progress::t_connect' o='768' t='time_t'/>
+<mbr r='Progress::t_appconnect' o='832' t='time_t'/>
+<mbr r='Progress::t_pretransfer' o='896' t='time_t'/>
+<mbr r='Progress::t_starttransfer' o='960' t='time_t'/>
+<mbr r='Progress::t_redirect' o='1024' t='time_t'/>
+<mbr r='Progress::start' o='1088' t='struct curltime'/>
+<mbr r='Progress::t_startsingle' o='1216' t='struct curltime'/>
+<mbr r='Progress::t_startop' o='1344' t='struct curltime'/>
+<mbr r='Progress::t_acceptdata' o='1472' t='struct curltime'/>
+<mbr r='Progress::is_t_startransfer_set' o='1600' t='_Bool'/>
+<mbr r='Progress::ul_limit_start' o='1664' t='struct curltime'/>
+<mbr r='Progress::ul_limit_size' o='1792' t='curl_off_t'/>
+<mbr r='Progress::dl_limit_start' o='1856' t='struct curltime'/>
+<mbr r='Progress::dl_limit_size' o='1984' t='curl_off_t'/>
+<mbr r='Progress::speeder' o='2048' t='curl_off_t [6]'/>
+<mbr r='Progress::speeder_time' o='2432' t='struct curltime [6]'/>
+<mbr r='Progress::speeder_c' o='3200' t='int'/>

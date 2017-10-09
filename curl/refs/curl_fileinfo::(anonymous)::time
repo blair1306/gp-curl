@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='289' type='char *'/>
+<offset>0</offset>
+<doc f='codebrowser/include/curl/curl.h' l='288'>/* If some of these fields is not NULL, it is a pointer to b_data. */</doc>
+<use f='codebrowser/lib/ftplistparser.c' l='297' u='w' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/tests/libtest/lib576.c' l='57' u='r' c='chunk_bgn'/>
+<use f='codebrowser/tests/libtest/lib576.c' l='58' u='r' c='chunk_bgn'/>

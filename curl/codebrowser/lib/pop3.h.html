@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>pop3.h source code [codebrowser/lib/pop3.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="POP3,pop3_conn "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/pop3.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='pop3.h.html'>pop3.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_POP3_H">HEADER_CURL_POP3_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_POP3_H" data-ref="_M/HEADER_CURL_POP3_H">HEADER_CURL_POP3_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 2009 - 2015, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="pingpong.h.html">"pingpong.h"</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="curl_sasl.h.html">"curl_sasl.h"</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><i>/****************************************************************************</i></td></tr>
+<tr><th id="29">29</th><td><i> * POP3 unique setup</i></td></tr>
+<tr><th id="30">30</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="31">31</th><td><b>typedef</b> <b>enum</b> {</td></tr>
+<tr><th id="32">32</th><td>  <dfn class="enum" id="POP3_STOP" title='POP3_STOP' data-ref="POP3_STOP">POP3_STOP</dfn>,         <i>/* do nothing state, stops the state machine */</i></td></tr>
+<tr><th id="33">33</th><td>  <dfn class="enum" id="POP3_SERVERGREET" title='POP3_SERVERGREET' data-ref="POP3_SERVERGREET">POP3_SERVERGREET</dfn>,  <i>/* waiting for the initial greeting immediately after</i></td></tr>
+<tr><th id="34">34</th><td><i>                        a connect */</i></td></tr>
+<tr><th id="35">35</th><td>  <dfn class="enum" id="POP3_CAPA" title='POP3_CAPA' data-ref="POP3_CAPA">POP3_CAPA</dfn>,</td></tr>
+<tr><th id="36">36</th><td>  <dfn class="enum" id="POP3_STARTTLS" title='POP3_STARTTLS' data-ref="POP3_STARTTLS">POP3_STARTTLS</dfn>,</td></tr>
+<tr><th id="37">37</th><td>  <dfn class="enum" id="POP3_UPGRADETLS" title='POP3_UPGRADETLS' data-ref="POP3_UPGRADETLS">POP3_UPGRADETLS</dfn>,   <i>/* asynchronously upgrade the connection to SSL/TLS</i></td></tr>
+<tr><th id="38">38</th><td><i>                       (multi mode only) */</i></td></tr>
+<tr><th id="39">39</th><td>  <dfn class="enum" id="POP3_AUTH" title='POP3_AUTH' data-ref="POP3_AUTH">POP3_AUTH</dfn>,</td></tr>
+<tr><th id="40">40</th><td>  <dfn class="enum" id="POP3_APOP" title='POP3_APOP' data-ref="POP3_APOP">POP3_APOP</dfn>,</td></tr>
+<tr><th id="41">41</th><td>  <dfn class="enum" id="POP3_USER" title='POP3_USER' data-ref="POP3_USER">POP3_USER</dfn>,</td></tr>
+<tr><th id="42">42</th><td>  <dfn class="enum" id="POP3_PASS" title='POP3_PASS' data-ref="POP3_PASS">POP3_PASS</dfn>,</td></tr>
+<tr><th id="43">43</th><td>  <dfn class="enum" id="POP3_COMMAND" title='POP3_COMMAND' data-ref="POP3_COMMAND">POP3_COMMAND</dfn>,</td></tr>
+<tr><th id="44">44</th><td>  <dfn class="enum" id="POP3_QUIT" title='POP3_QUIT' data-ref="POP3_QUIT">POP3_QUIT</dfn>,</td></tr>
+<tr><th id="45">45</th><td>  <dfn class="enum" id="POP3_LAST" title='POP3_LAST' data-ref="POP3_LAST">POP3_LAST</dfn>          <i>/* never used */</i></td></tr>
+<tr><th id="46">46</th><td>} <dfn class="typedef" id="pop3state" title='pop3state' data-type='enum pop3state' data-ref="pop3state">pop3state</dfn>;</td></tr>
+<tr><th id="47">47</th><td></td></tr>
+<tr><th id="48">48</th><td><i>/* This POP3 struct is used in the Curl_easy. All POP3 data that is</i></td></tr>
+<tr><th id="49">49</th><td><i>   connection-oriented must be in pop3_conn to properly deal with the fact that</i></td></tr>
+<tr><th id="50">50</th><td><i>   perhaps the Curl_easy is changed between the times the connection is</i></td></tr>
+<tr><th id="51">51</th><td><i>   used. */</i></td></tr>
+<tr><th id="52">52</th><td><b>struct</b> <dfn class="type def" id="POP3" title='POP3' data-ref="POP3">POP3</dfn> {</td></tr>
+<tr><th id="53">53</th><td>  <a class="typedef" href="pingpong.h.html#curl_pp_transfer" title='curl_pp_transfer' data-type='enum curl_pp_transfer' data-ref="curl_pp_transfer">curl_pp_transfer</a> <dfn class="decl" id="POP3::transfer" title='POP3::transfer' data-ref="POP3::transfer">transfer</dfn>;</td></tr>
+<tr><th id="54">54</th><td>  <em>char</em> *<dfn class="decl" id="POP3::id" title='POP3::id' data-ref="POP3::id">id</dfn>;               <i>/* Message ID */</i></td></tr>
+<tr><th id="55">55</th><td>  <em>char</em> *<dfn class="decl" id="POP3::custom" title='POP3::custom' data-ref="POP3::custom">custom</dfn>;           <i>/* Custom Request */</i></td></tr>
+<tr><th id="56">56</th><td>};</td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td><i>/* pop3_conn is used for struct connection-oriented data in the connectdata</i></td></tr>
+<tr><th id="59">59</th><td><i>   struct */</i></td></tr>
+<tr><th id="60">60</th><td><b>struct</b> <dfn class="type def" id="pop3_conn" title='pop3_conn' data-ref="pop3_conn">pop3_conn</dfn> {</td></tr>
+<tr><th id="61">61</th><td>  <b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> <dfn class="decl" id="pop3_conn::pp" title='pop3_conn::pp' data-ref="pop3_conn::pp">pp</dfn>;</td></tr>
+<tr><th id="62">62</th><td>  <a class="typedef" href="#pop3state" title='pop3state' data-type='enum pop3state' data-ref="pop3state">pop3state</a> <dfn class="decl" id="pop3_conn::state" title='pop3_conn::state' data-ref="pop3_conn::state">state</dfn>;        <i>/* Always use pop3.c:state() to change state! */</i></td></tr>
+<tr><th id="63">63</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="pop3_conn::ssldone" title='pop3_conn::ssldone' data-ref="pop3_conn::ssldone">ssldone</dfn>;           <i>/* Is connect() over SSL done? */</i></td></tr>
+<tr><th id="64">64</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="pop3_conn::eob" title='pop3_conn::eob' data-ref="pop3_conn::eob">eob</dfn>;             <i>/* Number of bytes of the EOB (End Of Body) that</i></td></tr>
+<tr><th id="65">65</th><td><i>                             have been received so far */</i></td></tr>
+<tr><th id="66">66</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="pop3_conn::strip" title='pop3_conn::strip' data-ref="pop3_conn::strip">strip</dfn>;           <i>/* Number of bytes from the start to ignore as</i></td></tr>
+<tr><th id="67">67</th><td><i>                             non-body */</i></td></tr>
+<tr><th id="68">68</th><td>  <b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> <dfn class="decl" id="pop3_conn::sasl" title='pop3_conn::sasl' data-ref="pop3_conn::sasl">sasl</dfn>;       <i>/* SASL-related storage */</i></td></tr>
+<tr><th id="69">69</th><td>  <em>unsigned</em> <em>int</em> <dfn class="decl" id="pop3_conn::authtypes" title='pop3_conn::authtypes' data-ref="pop3_conn::authtypes">authtypes</dfn>; <i>/* Accepted authentication types */</i></td></tr>
+<tr><th id="70">70</th><td>  <em>unsigned</em> <em>int</em> <dfn class="decl" id="pop3_conn::preftype" title='pop3_conn::preftype' data-ref="pop3_conn::preftype">preftype</dfn>;  <i>/* Preferred authentication type */</i></td></tr>
+<tr><th id="71">71</th><td>  <em>char</em> *<dfn class="decl" id="pop3_conn::apoptimestamp" title='pop3_conn::apoptimestamp' data-ref="pop3_conn::apoptimestamp">apoptimestamp</dfn>;    <i>/* APOP timestamp from the server greeting */</i></td></tr>
+<tr><th id="72">72</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="pop3_conn::tls_supported" title='pop3_conn::tls_supported' data-ref="pop3_conn::tls_supported">tls_supported</dfn>;     <i>/* StartTLS capability supported by server */</i></td></tr>
+<tr><th id="73">73</th><td>};</td></tr>
+<tr><th id="74">74</th><td></td></tr>
+<tr><th id="75">75</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_pop3" title='Curl_handler_pop3' data-ref="Curl_handler_pop3">Curl_handler_pop3</dfn>;</td></tr>
+<tr><th id="76">76</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_pop3s" title='Curl_handler_pop3s' data-ref="Curl_handler_pop3s">Curl_handler_pop3s</dfn>;</td></tr>
+<tr><th id="77">77</th><td></td></tr>
+<tr><th id="78">78</th><td><i>/* Authentication type flags */</i></td></tr>
+<tr><th id="79">79</th><td><u>#define <dfn class="macro" id="_M/POP3_TYPE_CLEARTEXT" data-ref="_M/POP3_TYPE_CLEARTEXT">POP3_TYPE_CLEARTEXT</dfn> (1 &lt;&lt; 0)</u></td></tr>
+<tr><th id="80">80</th><td><u>#define <dfn class="macro" id="_M/POP3_TYPE_APOP" data-ref="_M/POP3_TYPE_APOP">POP3_TYPE_APOP</dfn>      (1 &lt;&lt; 1)</u></td></tr>
+<tr><th id="81">81</th><td><u>#define <dfn class="macro" id="_M/POP3_TYPE_SASL" data-ref="_M/POP3_TYPE_SASL">POP3_TYPE_SASL</dfn>      (1 &lt;&lt; 2)</u></td></tr>
+<tr><th id="82">82</th><td></td></tr>
+<tr><th id="83">83</th><td><i>/* Authentication type values */</i></td></tr>
+<tr><th id="84">84</th><td><u>#define <dfn class="macro" id="_M/POP3_TYPE_NONE" data-ref="_M/POP3_TYPE_NONE">POP3_TYPE_NONE</dfn>      0</u></td></tr>
+<tr><th id="85">85</th><td><u>#define <dfn class="macro" id="_M/POP3_TYPE_ANY" data-ref="_M/POP3_TYPE_ANY">POP3_TYPE_ANY</dfn>       ~0U</u></td></tr>
+<tr><th id="86">86</th><td></td></tr>
+<tr><th id="87">87</th><td><i>/* This is the 5-bytes End-Of-Body marker for POP3 */</i></td></tr>
+<tr><th id="88">88</th><td><u>#define <dfn class="macro" id="_M/POP3_EOB" data-ref="_M/POP3_EOB">POP3_EOB</dfn> "\x0d\x0a\x2e\x0d\x0a"</u></td></tr>
+<tr><th id="89">89</th><td><u>#define <dfn class="macro" id="_M/POP3_EOB_LEN" data-ref="_M/POP3_EOB_LEN">POP3_EOB_LEN</dfn> 5</u></td></tr>
+<tr><th id="90">90</th><td></td></tr>
+<tr><th id="91">91</th><td><i>/* This function scans the body after the end-of-body and writes everything</i></td></tr>
+<tr><th id="92">92</th><td><i> * until the end is found */</i></td></tr>
+<tr><th id="93">93</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_pop3_write" title='Curl_pop3_write' data-ref="Curl_pop3_write">Curl_pop3_write</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col9 decl" id="579conn" title='conn' data-type='struct connectdata *' data-ref="579conn">conn</dfn>, <em>char</em> *<dfn class="local col0 decl" id="580str" title='str' data-type='char *' data-ref="580str">str</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="581nread" title='nread' data-type='size_t' data-ref="581nread">nread</dfn>);</td></tr>
+<tr><th id="94">94</th><td></td></tr>
+<tr><th id="95">95</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_POP3_H */</u></td></tr>
+<tr><th id="96">96</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='asyn-thread.c.html'>codebrowser/lib/asyn-thread.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

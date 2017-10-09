@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>unit1303.c source code [codebrowser/tests/unit/unit1303.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="timetest "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/unit/unit1303.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>unit</a>/<a href='unit1303.c.html'>unit1303.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="curlcheck.h.html">"curlcheck.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../../lib/urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../../lib/connect.h.html">"connect.h"</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../lib/memdebug.h.html">"memdebug.h"</a> /* LAST include file */</u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><em>static</em> <b>struct</b> <a class="type" href="../../lib/urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="tu decl def" id="data" title='data' data-type='struct Curl_easy *' data-ref="data">data</dfn>;</td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="unit_setup" title='unit_setup' data-type='CURLcode unit_setup()' data-ref="unit_setup">unit_setup</dfn>(<em>void</em>)</td></tr>
+<tr><th id="31">31</th><td>{</td></tr>
+<tr><th id="32">32</th><td>  <em>int</em> <dfn class="local col1 decl" id="1res" title='res' data-type='int' data-ref="1res">res</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td>  <a class="macro" href="../libtest/test.h.html#431" title="do { do { CURLcode ec; if((ec = curl_global_init((((((1&lt;&lt;0)|(1&lt;&lt;1))))))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_global_init() failed, &quot; &quot;with code %d (%s)\n&quot;, (((&quot;/home/jon/workspace/curl/tests/unit/unit1303.c&quot;))), (((34))), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0); if(res) return res; } while(0)" data-ref="_M/global_init">global_init</a>(<a class="macro" href="../../include/curl/curl.h.html#2519" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_ALL">CURL_GLOBAL_ALL</a>);</td></tr>
+<tr><th id="35">35</th><td>  <a class="tu ref" href="#data" title='data' data-use='w' data-ref="data">data</a> = <a class="ref" href="../../include/curl/easy.h.html#curl_easy_init" title='curl_easy_init' data-ref="curl_easy_init">curl_easy_init</a>();</td></tr>
+<tr><th id="36">36</th><td>  <b>if</b>(!<a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>)</td></tr>
+<tr><th id="37">37</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="38">38</th><td>  <b>return</b> <a class="local col1 ref" href="#1res" title='res' data-ref="1res">res</a>;</td></tr>
+<tr><th id="39">39</th><td>}</td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="unit_stop" title='unit_stop' data-type='void unit_stop()' data-ref="unit_stop">unit_stop</dfn>(<em>void</em>)</td></tr>
+<tr><th id="42">42</th><td>{</td></tr>
+<tr><th id="43">43</th><td>  <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>);</td></tr>
+<tr><th id="44">44</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="45">45</th><td>}</td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><i>/* BASE is just a define to make us fool around with decently large number so</i></td></tr>
+<tr><th id="48">48</th><td><i>   that we aren't zero-based */</i></td></tr>
+<tr><th id="49">49</th><td><u>#define <dfn class="macro" id="_M/BASE" data-ref="_M/BASE">BASE</dfn> 1000000</u></td></tr>
+<tr><th id="50">50</th><td></td></tr>
+<tr><th id="51">51</th><td><i>/* macro to set the pretended current time */</i></td></tr>
+<tr><th id="52">52</th><td><u>#define <dfn class="macro" id="_M/NOW" data-ref="_M/NOW">NOW</dfn>(x,y) <a class="local col2 ref" href="#2now" title='now' data-ref="2now">now</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_sec" title='curltime::tv_sec' data-ref="curltime::tv_sec">tv_sec</a> = x; <a class="local col2 ref" href="#2now" title='now' data-ref="2now">now</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_usec" title='curltime::tv_usec' data-ref="curltime::tv_usec">tv_usec</a> = y</u></td></tr>
+<tr><th id="53">53</th><td><i>/* macro to set the millisecond based timeouts to use */</i></td></tr>
+<tr><th id="54">54</th><td><u>#define <dfn class="macro" id="_M/TIMEOUTS" data-ref="_M/TIMEOUTS">TIMEOUTS</dfn>(x,y) <a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>-&gt;<a class="ref" href="../../lib/urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="../../lib/urldata.h.html#UserDefined::timeout" title='UserDefined::timeout' data-ref="UserDefined::timeout">timeout</a> = x; <a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>-&gt;<a class="ref" href="../../lib/urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="../../lib/urldata.h.html#UserDefined::connecttimeout" title='UserDefined::connecttimeout' data-ref="UserDefined::connecttimeout">connecttimeout</a> = y</u></td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td><i>/*</i></td></tr>
+<tr><th id="57">57</th><td><i> * To test:</i></td></tr>
+<tr><th id="58">58</th><td><i> *</i></td></tr>
+<tr><th id="59">59</th><td><i> * 00/10/01/11 timeouts set</i></td></tr>
+<tr><th id="60">60</th><td><i> * 0/1         during connect</i></td></tr>
+<tr><th id="61">61</th><td><i> * T           various values on the timeouts</i></td></tr>
+<tr><th id="62">62</th><td><i> * N           various values of now</i></td></tr>
+<tr><th id="63">63</th><td><i> */</i></td></tr>
+<tr><th id="64">64</th><td></td></tr>
+<tr><th id="65">65</th><td><b>struct</b> <dfn class="type def" id="timetest" title='timetest' data-ref="timetest">timetest</dfn> {</td></tr>
+<tr><th id="66">66</th><td>  <em>int</em> <dfn class="tu decl" id="timetest::now_s" title='timetest::now_s' data-type='int' data-ref="timetest::now_s">now_s</dfn>;</td></tr>
+<tr><th id="67">67</th><td>  <em>int</em> <dfn class="tu decl" id="timetest::now_us" title='timetest::now_us' data-type='int' data-ref="timetest::now_us">now_us</dfn>;</td></tr>
+<tr><th id="68">68</th><td>  <em>int</em> <dfn class="tu decl" id="timetest::timeout_ms" title='timetest::timeout_ms' data-type='int' data-ref="timetest::timeout_ms">timeout_ms</dfn>;</td></tr>
+<tr><th id="69">69</th><td>  <em>int</em> <dfn class="tu decl" id="timetest::connecttimeout_ms" title='timetest::connecttimeout_ms' data-type='int' data-ref="timetest::connecttimeout_ms">connecttimeout_ms</dfn>;</td></tr>
+<tr><th id="70">70</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="tu decl" id="timetest::connecting" title='timetest::connecting' data-type='_Bool' data-ref="timetest::connecting">connecting</dfn>;</td></tr>
+<tr><th id="71">71</th><td>  <a class="typedef" href="../../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="tu decl" id="timetest::result" title='timetest::result' data-type='time_t' data-ref="timetest::result">result</dfn>;</td></tr>
+<tr><th id="72">72</th><td>  <em>const</em> <em>char</em> *<dfn class="tu decl" id="timetest::comment" title='timetest::comment' data-type='const char *' data-ref="timetest::comment">comment</dfn>;</td></tr>
+<tr><th id="73">73</th><td>};</td></tr>
+<tr><th id="74">74</th><td></td></tr>
+<tr><th id="75">75</th><td><a class="macro" href="curlcheck.h.html#86" title="int test(char *arg) { (void)arg; if(unit_setup()) { do { curl_mfprintf(stderr, &quot;%s:%d test failed: &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1303.c&quot;, 75, &quot;unit_setup() failure&quot;); unitfail++; } while(0); } else {" data-ref="_M/UNITTEST_START">UNITTEST_START</a></td></tr>
+<tr><th id="76">76</th><td>{</td></tr>
+<tr><th id="77">77</th><td>  <b>struct</b> <a class="type" href="../../lib/timeval.h.html#curltime" title='curltime' data-ref="curltime">curltime</a> <dfn class="local col2 decl" id="2now" title='now' data-type='struct curltime' data-ref="2now">now</dfn>;</td></tr>
+<tr><th id="78">78</th><td>  <a class="typedef" href="../../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col3 decl" id="3timeout" title='timeout' data-type='time_t' data-ref="3timeout">timeout</dfn>;</td></tr>
+<tr><th id="79">79</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col4 decl" id="4i" title='i' data-type='unsigned int' data-ref="4i">i</dfn>;</td></tr>
+<tr><th id="80">80</th><td></td></tr>
+<tr><th id="81">81</th><td>  <em>const</em> <b>struct</b> <a class="type" href="#timetest" title='timetest' data-ref="timetest">timetest</a> <dfn class="local col5 decl" id="5run" title='run' data-type='const struct timetest [33]' data-ref="5run">run</dfn>[] = {</td></tr>
+<tr><th id="82">82</th><td>  <i>/* both timeouts set, not connecting */</i></td></tr>
+<tr><th id="83">83</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>10000</var>, <var>8000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>6000</var>, <q>"6 seconds should be left"</q>},</td></tr>
+<tr><th id="84">84</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>990000</var>, <var>10000</var>, <var>8000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>5010</var>, <q>"5010 ms should be left"</q>},</td></tr>
+<tr><th id="85">85</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>10</var>, <var>0</var>,     <var>10000</var>, <var>8000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, -<var>1</var>,   <q>"timeout is -1, expired"</q>},</td></tr>
+<tr><th id="86">86</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>12</var>, <var>0</var>,     <var>10000</var>, <var>8000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, -<var>2000</var>, <q>"-2000, overdue 2 seconds"</q>},</td></tr>
+<tr><th id="87">87</th><td></td></tr>
+<tr><th id="88">88</th><td>  <i>/* both timeouts set, connecting */</i></td></tr>
+<tr><th id="89">89</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>10000</var>, <var>8000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>4000</var>, <q>"4 seconds should be left"</q>},</td></tr>
+<tr><th id="90">90</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>990000</var>, <var>10000</var>, <var>8000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>3010</var>, <q>"3010 ms should be left"</q>},</td></tr>
+<tr><th id="91">91</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>8</var>, <var>0</var>,      <var>10000</var>, <var>8000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, -<var>1</var>,   <q>"timeout is -1, expired"</q>},</td></tr>
+<tr><th id="92">92</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>10</var>, <var>0</var>,     <var>10000</var>, <var>8000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, -<var>2000</var>, <q>"-2000, overdue 2 seconds"</q>},</td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td>  <i>/* no connect timeout set, not connecting */</i></td></tr>
+<tr><th id="95">95</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>10000</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>6000</var>, <q>"6 seconds should be left"</q>},</td></tr>
+<tr><th id="96">96</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>990000</var>, <var>10000</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>5010</var>, <q>"5010 ms should be left"</q>},</td></tr>
+<tr><th id="97">97</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>10</var>, <var>0</var>,     <var>10000</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, -<var>1</var>,   <q>"timeout is -1, expired"</q>},</td></tr>
+<tr><th id="98">98</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>12</var>, <var>0</var>,     <var>10000</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, -<var>2000</var>, <q>"-2000, overdue 2 seconds"</q>},</td></tr>
+<tr><th id="99">99</th><td></td></tr>
+<tr><th id="100">100</th><td>  <i>/* no connect timeout set, connecting */</i></td></tr>
+<tr><th id="101">101</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>10000</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>6000</var>, <q>"6 seconds should be left"</q>},</td></tr>
+<tr><th id="102">102</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>990000</var>, <var>10000</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>5010</var>, <q>"5010 ms should be left"</q>},</td></tr>
+<tr><th id="103">103</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>10</var>, <var>0</var>,     <var>10000</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, -<var>1</var>,   <q>"timeout is -1, expired"</q>},</td></tr>
+<tr><th id="104">104</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>12</var>, <var>0</var>,     <var>10000</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, -<var>2000</var>, <q>"-2000, overdue 2 seconds"</q>},</td></tr>
+<tr><th id="105">105</th><td></td></tr>
+<tr><th id="106">106</th><td>  <i>/* only connect timeout set, not connecting */</i></td></tr>
+<tr><th id="107">107</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>0</var>, <var>10000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>0</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="108">108</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>990000</var>, <var>0</var>, <var>10000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>0</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="109">109</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>10</var>, <var>0</var>,     <var>0</var>, <var>10000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>0</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="110">110</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>12</var>, <var>0</var>,     <var>0</var>, <var>10000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>0</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="111">111</th><td></td></tr>
+<tr><th id="112">112</th><td>  <i>/* only connect timeout set, connecting */</i></td></tr>
+<tr><th id="113">113</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>0</var>, <var>10000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>6000</var>, <q>"6 seconds should be left"</q>},</td></tr>
+<tr><th id="114">114</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>990000</var>, <var>0</var>, <var>10000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>5010</var>, <q>"5010 ms should be left"</q>},</td></tr>
+<tr><th id="115">115</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>10</var>, <var>0</var>,     <var>0</var>, <var>10000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, -<var>1</var>,   <q>"timeout is -1, expired"</q>},</td></tr>
+<tr><th id="116">116</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>12</var>, <var>0</var>,     <var>0</var>, <var>10000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, -<var>2000</var>, <q>"-2000, overdue 2 seconds"</q>},</td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td>  <i>/* no timeout set, not connecting */</i></td></tr>
+<tr><th id="119">119</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>0</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>0</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="120">120</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>990000</var>, <var>0</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>0</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="121">121</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>10</var>, <var>0</var>,     <var>0</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>0</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="122">122</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>12</var>, <var>0</var>,     <var>0</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>, <var>0</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="123">123</th><td></td></tr>
+<tr><th id="124">124</th><td>  <i>/* no timeout set, connecting */</i></td></tr>
+<tr><th id="125">125</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>0</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>296000</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="126">126</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>990000</var>, <var>0</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>295010</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="127">127</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>10</var>, <var>0</var>,     <var>0</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>290000</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="128">128</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>12</var>, <var>0</var>,     <var>0</var>, <var>0</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>288000</var>, <q>"no timeout active"</q>},</td></tr>
+<tr><th id="129">129</th><td></td></tr>
+<tr><th id="130">130</th><td>  <i>/* both timeouts set, connecting, connect timeout the longer one */</i></td></tr>
+<tr><th id="131">131</th><td>  {<a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a> + <var>4</var>, <var>0</var>,      <var>10000</var>, <var>12000</var>, <a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>, <var>6000</var>, <q>"6 seconds should be left"</q>},</td></tr>
+<tr><th id="132">132</th><td></td></tr>
+<tr><th id="133">133</th><td>  };</td></tr>
+<tr><th id="134">134</th><td></td></tr>
+<tr><th id="135">135</th><td>  <i>/* this is the pretended start time of the transfer */</i></td></tr>
+<tr><th id="136">136</th><td>  <a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>-&gt;<a class="ref" href="../../lib/urldata.h.html#Curl_easy::progress" title='Curl_easy::progress' data-ref="Curl_easy::progress">progress</a>.<a class="ref" href="../../lib/urldata.h.html#Progress::t_startsingle" title='Progress::t_startsingle' data-ref="Progress::t_startsingle">t_startsingle</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_sec" title='curltime::tv_sec' data-ref="curltime::tv_sec">tv_sec</a> = <a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a>;</td></tr>
+<tr><th id="137">137</th><td>  <a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>-&gt;<a class="ref" href="../../lib/urldata.h.html#Curl_easy::progress" title='Curl_easy::progress' data-ref="Curl_easy::progress">progress</a>.<a class="ref" href="../../lib/urldata.h.html#Progress::t_startsingle" title='Progress::t_startsingle' data-ref="Progress::t_startsingle">t_startsingle</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_usec" title='curltime::tv_usec' data-ref="curltime::tv_usec">tv_usec</a> = <var>0</var>;</td></tr>
+<tr><th id="138">138</th><td>  <a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>-&gt;<a class="ref" href="../../lib/urldata.h.html#Curl_easy::progress" title='Curl_easy::progress' data-ref="Curl_easy::progress">progress</a>.<a class="ref" href="../../lib/urldata.h.html#Progress::t_startop" title='Progress::t_startop' data-ref="Progress::t_startop">t_startop</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_sec" title='curltime::tv_sec' data-ref="curltime::tv_sec">tv_sec</a> = <a class="macro" href="#49" title="1000000" data-ref="_M/BASE">BASE</a>;</td></tr>
+<tr><th id="139">139</th><td>  <a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>-&gt;<a class="ref" href="../../lib/urldata.h.html#Curl_easy::progress" title='Curl_easy::progress' data-ref="Curl_easy::progress">progress</a>.<a class="ref" href="../../lib/urldata.h.html#Progress::t_startop" title='Progress::t_startop' data-ref="Progress::t_startop">t_startop</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_usec" title='curltime::tv_usec' data-ref="curltime::tv_usec">tv_usec</a> = <var>0</var>;</td></tr>
+<tr><th id="140">140</th><td></td></tr>
+<tr><th id="141">141</th><td>  <b>for</b>(<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> = <var>0</var>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> &lt; <b>sizeof</b>(<a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>)/<b>sizeof</b>(<a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>[<var>0</var>]); <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>++) {</td></tr>
+<tr><th id="142">142</th><td>    <a class="macro" href="#52" title="now.tv_sec = run[i].now_s; now.tv_usec = run[i].now_us" data-ref="_M/NOW">NOW</a>(<a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#timetest::now_s" title='timetest::now_s' data-use='r' data-ref="timetest::now_s">now_s</a>, <a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#timetest::now_us" title='timetest::now_us' data-use='r' data-ref="timetest::now_us">now_us</a>);</td></tr>
+<tr><th id="143">143</th><td>    <a class="macro" href="#54" title="data-&gt;set.timeout = run[i].timeout_ms; data-&gt;set.connecttimeout = run[i].connecttimeout_ms" data-ref="_M/TIMEOUTS">TIMEOUTS</a>(<a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#timetest::timeout_ms" title='timetest::timeout_ms' data-use='r' data-ref="timetest::timeout_ms">timeout_ms</a>, <a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#timetest::connecttimeout_ms" title='timetest::connecttimeout_ms' data-use='r' data-ref="timetest::connecttimeout_ms">connecttimeout_ms</a>);</td></tr>
+<tr><th id="144">144</th><td>    <a class="local col3 ref" href="#3timeout" title='timeout' data-ref="3timeout">timeout</a> =  <a class="ref" href="../../lib/connect.h.html#Curl_timeleft" title='Curl_timeleft' data-ref="Curl_timeleft">Curl_timeleft</a>(<a class="tu ref" href="#data" title='data' data-use='r' data-ref="data">data</a>, &amp;<a class="local col2 ref" href="#2now" title='now' data-ref="2now">now</a>, <a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#timetest::connecting" title='timetest::connecting' data-use='r' data-ref="timetest::connecting">connecting</a>);</td></tr>
+<tr><th id="145">145</th><td>    <b>if</b>(<a class="local col3 ref" href="#3timeout" title='timeout' data-ref="3timeout">timeout</a> != <a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#timetest::result" title='timetest::result' data-use='r' data-ref="timetest::result">result</a>)</td></tr>
+<tr><th id="146">146</th><td>      <a class="macro" href="curlcheck.h.html#51" title="do { curl_mfprintf(stderr, &quot;%s:%d test failed: &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1303.c&quot;, 146, run[i].comment); unitfail++; } while(0)" data-ref="_M/fail">fail</a>(<a class="local col5 ref" href="#5run" title='run' data-ref="5run">run</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#timetest::comment" title='timetest::comment' data-use='r' data-ref="timetest::comment">comment</a>);</td></tr>
+<tr><th id="147">147</th><td>  }</td></tr>
+<tr><th id="148">148</th><td>}</td></tr>
+<tr><th id="149">149</th><td><a class="macro" href="curlcheck.h.html#95" title="goto unit_test_abort; unit_test_abort: unit_stop(); } return unitfail; }" data-ref="_M/UNITTEST_STOP">UNITTEST_STOP</a></td></tr>
+<tr><th id="150">150</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

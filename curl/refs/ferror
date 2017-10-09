@@ -1,0 +1,3 @@
+<dec f='include/stdio.h' l='830' type='int ferror(FILE * __stream)'/>
+<doc f='include/stdio.h' l='829'>/* Return the error indicator for STREAM.  */</doc>
+<use f='codebrowser/src/tool_formparse.c' l='140' u='c' c='read_field_headers'/>

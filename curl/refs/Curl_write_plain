@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/sendf.h' l='83' type='CURLcode Curl_write_plain(struct connectdata * conn, curl_socket_t sockfd, const void * mem, size_t len, ssize_t * written)'/>
+<doc f='codebrowser/lib/sendf.h' l='82'>/* internal write-function, does plain sockets ONLY */</doc>
+<def f='codebrowser/lib/sendf.c' l='408' ll='423' type='CURLcode Curl_write_plain(struct connectdata * conn, curl_socket_t sockfd, const void * mem, size_t len, ssize_t * written)'/>
+<doc f='codebrowser/lib/sendf.c' l='403'>/*
+ * Curl_write_plain() is an internal write function that sends data to the
+ * server using plain sockets only. Otherwise meant to have the exact same
+ * proto as Curl_write()
+ */</doc>
+<use f='codebrowser/lib/socks.c' l='244' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='254' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='459' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='539' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='673' u='c' c='Curl_SOCKS5'/>

@@ -1,0 +1,41 @@
+<dec f='codebrowser/include/curl/curl.h' l='2733'/>
+<doc f='codebrowser/include/curl/curl.h' l='2730'>/* This preprocessor magic that replaces a call with the exact same call is
+   only done to make sure application authors pass exactly three arguments
+   to these functions. */</doc>
+<use f='codebrowser/lib/easy.c' l='373' u='w'/>
+<use f='codebrowser/src/tool_setopt.c' l='272' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='305' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='348' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='568' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='590' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='634' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='663' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='672' u='c'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='67' u='c'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='72' u='c'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='73' u='c'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='74' u='c'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='75' u='c'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='76' u='c'/>
+<use f='codebrowser/tests/libtest/lib1531.c' l='54' u='c'/>
+<use f='codebrowser/tests/libtest/lib1531.c' l='55' u='c'/>
+<use f='codebrowser/tests/libtest/lib1531.c' l='57' u='c'/>
+<use f='codebrowser/tests/libtest/lib1551.c' l='36' u='c'/>
+<use f='codebrowser/tests/libtest/lib1551.c' l='37' u='c'/>
+<use f='codebrowser/tests/libtest/lib1551.c' l='38' u='c'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='117' u='c'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='118' u='c'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='119' u='c'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='120' u='c'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='121' u='c'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='143' u='c'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='144' u='c'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='145' u='c'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='147' u='c'/>
+<use f='codebrowser/tests/libtest/lib512.c' l='42' u='c'/>
+<use f='codebrowser/tests/libtest/lib512.c' l='43' u='c'/>
+<use f='codebrowser/tests/libtest/lib512.c' l='48' u='c'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='110' u='c'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='111' u='c'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='112' u='c'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='114' u='c'/>

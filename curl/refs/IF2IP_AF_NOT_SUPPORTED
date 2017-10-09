@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/if2ip.h' l='39' type='1'/>
+<use f='codebrowser/lib/connect.c' l='297' c='bindlocal'/>
+<doc f='codebrowser/lib/if2ip.h' l='39'>/* Int. exists but has no address for this af */</doc>
+<use f='codebrowser/lib/ftp.c' l='1050' c='ftp_state_use_port'/>

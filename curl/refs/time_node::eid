@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1232' type='expire_id'/>
+<offset>320</offset>
+<use f='codebrowser/lib/multi.c' l='2873' u='r' c='multi_deltimeout'/>
+<use f='codebrowser/lib/multi.c' l='2902' u='w' c='multi_addtimeout'/>

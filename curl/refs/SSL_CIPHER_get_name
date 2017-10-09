@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2145' type='const char * SSL_CIPHER_get_name(const SSL_CIPHER * c)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2599' macro='1' u='c'/>

@@ -1,0 +1,12 @@
+<dec f='include/x86_64-linux-gnu/bits/socket_type.h' l='29' type='2'/>
+<doc f='include/x86_64-linux-gnu/bits/socket_type.h' l='29'>/* Connectionless, unreliable datagrams
+				   of fixed maximum length.  */</doc>
+<use f='codebrowser/lib/connect.c' l='671' macro='1' u='r'/>
+<use f='codebrowser/lib/connect.c' l='1336' macro='1' u='r'/>
+<use f='codebrowser/lib/hostip6.c' l='106' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='1373' macro='1' u='r'/>
+<use f='codebrowser/tests/server/resolve.c' l='113' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='766' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='769' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='851' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='866' macro='1' u='r'/>

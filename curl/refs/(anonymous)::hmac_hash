@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='49' type='const HMAC_params *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/curl_hmac.h' l='49'>/* Hash function definition. */</doc>
+<use f='codebrowser/lib/hmac.c' l='68' u='w' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='108' u='r' c='Curl_HMAC_update'/>
+<use f='codebrowser/lib/hmac.c' l='115' u='r' c='Curl_HMAC_final'/>
+<use f='codebrowser/lib/hmac.c' l='122' u='r' c='Curl_HMAC_final'/>

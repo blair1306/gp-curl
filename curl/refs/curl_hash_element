@@ -1,0 +1,6 @@
+<def f='codebrowser/lib/hash.h' l='59' ll='64'/>
+<size>48</size>
+<mbr r='curl_hash_element::list' o='0' t='struct curl_llist_element'/>
+<mbr r='curl_hash_element::ptr' o='192' t='void *'/>
+<mbr r='curl_hash_element::key_len' o='256' t='size_t'/>
+<mbr r='curl_hash_element::key' o='320' t='char [1]'/>

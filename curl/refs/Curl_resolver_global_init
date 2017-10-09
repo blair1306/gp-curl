@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/asyn.h' l='47' type='int Curl_resolver_global_init()'/>
+<def f='codebrowser/lib/asyn-thread.c' l='87' ll='90' type='int Curl_resolver_global_init()'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='82'>/*
+ * Curl_resolver_global_init()
+ * Called from curl_global_init() to initialize global resolver environment.
+ * Does nothing here.
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='41'>/*
+ * Curl_resolver_global_init()
+ *
+ * Called from curl_global_init() to initialize global resolver environment.
+ * Returning anything else than CURLE_OK fails curl_global_init().
+ */</doc>
+<use f='codebrowser/lib/easy.c' l='242' u='c' c='global_init'/>

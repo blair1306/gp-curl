@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/multihandle.h' l='56' type='16'/>
+<doc f='codebrowser/lib/multihandle.h' l='56'>/* 16 - post data transfer operation */</doc>
+<use f='codebrowser/lib/multi.c' l='1351' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1651' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1669' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1816' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1993' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2004' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2118' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2119' u='r' c='multi_runsingle'/>

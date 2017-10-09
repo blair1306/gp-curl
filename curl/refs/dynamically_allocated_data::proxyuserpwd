@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/urldata.h' l='919' type='char *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/http.c' l='275' u='a' c='http_output_basic'/>
+<use f='codebrowser/lib/http.c' l='2329' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2330' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2356' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2356' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http_digest.c' l='97' u='a' c='Curl_output_digest'/>
+<use f='codebrowser/lib/http_ntlm.c' l='141' u='a' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_proxy.c' l='129' u='r' c='Curl_proxy_connect'/>
+<use f='codebrowser/lib/http_proxy.c' l='129' u='w' c='Curl_proxy_connect'/>
+<use f='codebrowser/lib/http_proxy.c' l='280' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='281' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='632' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='632' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='633' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/rtsp.c' l='419' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='3051' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3051' u='w' c='conn_free'/>

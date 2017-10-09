@@ -1,0 +1,7 @@
+<dec f='codebrowser/include/curl/curl.h' l='2032' type='CURLcode curl_mime_type(curl_mimepart * part, const char * mimetype)'/>
+<use f='codebrowser/lib/formdata.c' l='911' u='c' c='Curl_getformdata'/>
+<def f='codebrowser/lib/mime.c' l='1330' ll='1345' type='CURLcode curl_mime_type(curl_mimepart * part, const char * mimetype)'/>
+<doc f='codebrowser/lib/mime.c' l='1329'>/* Set mime part type. */</doc>
+<use f='codebrowser/src/tool_formparse.c' l='517' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='606' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='717' u='c' c='formparse'/>

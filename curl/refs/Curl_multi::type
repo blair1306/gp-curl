@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/multihandle.h' l='74' type='long'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/multihandle.h' l='72'>/* First a simple identifier to easier detect if a user mix up
+     this multi handle with an easy handle. Set this to CURL_MULTI_HANDLE. */</doc>
+<use f='codebrowser/lib/multi.c' l='313' u='w' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_fdset'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2226' u='w' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_info_read'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_setopt'/>
+<use f='codebrowser/lib/multi.c' l='67' u='r' c='curl_multi_timeout'/>

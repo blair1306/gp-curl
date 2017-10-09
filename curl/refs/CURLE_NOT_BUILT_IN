@@ -1,0 +1,35 @@
+<dec f='codebrowser/include/curl/curl.h' l='459' type='4'/>
+<doc f='codebrowser/include/curl/curl.h' l='459'>/* 4 - [was obsoleted in August 2007 for
+                                    7.17.0, reused in April 2011 for 7.21.5] */</doc>
+<use f='codebrowser/lib/asyn-thread.c' l='690' u='r' c='Curl_set_dns_servers'/>
+<use f='codebrowser/lib/asyn-thread.c' l='699' u='r' c='Curl_set_dns_interface'/>
+<use f='codebrowser/lib/asyn-thread.c' l='707' u='r' c='Curl_set_dns_local_ip4'/>
+<use f='codebrowser/lib/asyn-thread.c' l='715' u='r' c='Curl_set_dns_local_ip6'/>
+<use f='codebrowser/lib/easy.c' l='667' u='r' c='easy_perform'/>
+<use f='codebrowser/lib/rand.c' l='67' u='r' c='randit'/>
+<use f='codebrowser/lib/strerror.c' l='73' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/url.c' l='1430' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1509' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1570' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2193' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2209' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2220' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2227' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2239' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2252' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2265' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2294' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2308' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2936' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2947' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='5132' u='r' c='parse_proxy'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1974' u='r' c='set_ssl_version_min_max'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2021' u='r' c='set_ssl_version_min_max'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2091' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2246' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='215' u='r' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1011' u='r' c='Curl_none_random'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1042' u='r' c='Curl_none_set_engine'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1048' u='r' c='Curl_none_set_engine_default'/>
+<use f='codebrowser/src/tool_operate.c' l='1102' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1117' u='r' c='operate_do'/>

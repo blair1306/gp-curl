@@ -1,0 +1,3 @@
+<dec f='include/openssl/ocsp.h' l='153' type='OCSP_SIGNATURE *'/>
+<offset>64</offset>
+<doc f='include/openssl/ocsp.h' l='153'>/* OPTIONAL */</doc>

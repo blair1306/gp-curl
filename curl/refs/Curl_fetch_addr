@@ -1,0 +1,25 @@
+<dec f='codebrowser/lib/hostip.h' l='182' type='struct Curl_dns_entry * Curl_fetch_addr(struct connectdata * conn, const char * hostname, int port)'/>
+<doc f='codebrowser/lib/hostip.h' l='173'>/*
+ * Curl_fetch_addr() fetches a &apos;Curl_dns_entry&apos; already in the DNS cache.
+ *
+ * Returns the Curl_dns_entry entry pointer or NULL if not in the cache.
+ *
+ * The returned data *MUST* be &quot;unlocked&quot; with Curl_resolv_unlock() after
+ * use, or we&apos;ll leak memory!
+ */</doc>
+<def f='codebrowser/lib/hostip.c' l='343' ll='363' type='struct Curl_dns_entry * Curl_fetch_addr(struct connectdata * conn, const char * hostname, int port)'/>
+<doc f='codebrowser/lib/hostip.c' l='329'>/*
+ * Curl_fetch_addr() fetches a &apos;Curl_dns_entry&apos; already in the DNS cache.
+ *
+ * Curl_resolv() checks initially and multi_runsingle() checks each time
+ * it discovers the handle in the state WAITRESOLVE whether the hostname
+ * has already been resolved and the address has already been stored in
+ * the DNS cache. This short circuits waiting for a lot of pending
+ * lookups for the same hostname requested by different handles.
+ *
+ * Returns the Curl_dns_entry entry pointer or NULL if not in the cache.
+ *
+ * The returned data *MUST* be &quot;unlocked&quot; with Curl_resolv_unlock() after
+ * use, or we&apos;ll leak memory!
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='1497' u='c' c='multi_runsingle'/>

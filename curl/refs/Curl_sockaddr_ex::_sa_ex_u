@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/connect.h' l='94' type='union (anonymous union at /home/jon/workspace/curl/lib/connect.h:91:3)'/>
+<offset>128</offset>
+<use f='codebrowser/lib/connect.c' l='992' macro='1' u='m'/>
+<use f='codebrowser/lib/connect.c' l='1039' macro='1' u='m'/>
+<use f='codebrowser/lib/connect.c' l='1083' macro='1' u='m'/>
+<use f='codebrowser/lib/connect.c' l='1089' macro='1' u='m'/>
+<use f='codebrowser/lib/connect.c' l='1341' macro='1' u='m'/>
+<use f='codebrowser/lib/connect.c' l='1366' macro='1' u='m'/>

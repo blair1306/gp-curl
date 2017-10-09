@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_help.h' l='28' type='void tool_version_info()'/>
+<def f='codebrowser/src/tool_help.c' l='523' ll='556' type='void tool_version_info()'/>
+<use f='codebrowser/src/tool_operate.c' l='2032' u='c' c='operate'/>

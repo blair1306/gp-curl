@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='380' type='_Bool'/>
+<offset>24</offset>
+<use f='codebrowser/lib/http_proxy.c' l='121' u='r' c='Curl_proxy_connect'/>
+<use f='codebrowser/lib/url.c' l='3668' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3668' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3745' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3927' u='r' c='Curl_connected_proxy'/>
+<use f='codebrowser/lib/url.c' l='6150' u='w' c='parse_connect_to_slist'/>
+<use f='codebrowser/lib/url.c' l='6155' u='w' c='parse_connect_to_slist'/>
+<use f='codebrowser/lib/url.c' l='6229' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6611' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6612' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6619' u='r' c='create_conn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='342' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='343' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='441' u='r' c='Curl_ssl_addsessionid'/>

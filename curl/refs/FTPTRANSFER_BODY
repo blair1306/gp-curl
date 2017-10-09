@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/pingpong.h' l='36' type='0'/>
+<doc f='codebrowser/lib/pingpong.h' l='36'>/* yes do transfer a body */</doc>
+<use f='codebrowser/lib/ftp.c' l='1362' u='r' c='ftp_state_prepare_transfer'/>
+<use f='codebrowser/lib/ftp.c' l='1405' u='r' c='ftp_state_rest'/>
+<use f='codebrowser/lib/ftp.c' l='1746' u='r' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='3255' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3306' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3338' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3653' u='r' c='ftp_do_more'/>
+<use f='codebrowser/lib/ftp.c' l='3672' u='r' c='ftp_do_more'/>
+<use f='codebrowser/lib/ftp.c' l='4289' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4339' u='r' c='ftp_dophase_done'/>
+<use f='codebrowser/lib/ftp.c' l='4462' u='r' c='ftp_setup_connection'/>
+<use f='codebrowser/lib/imap.c' l='1490' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1635' u='r' c='imap_dophase_done'/>
+<use f='codebrowser/lib/pop3.c' l='898' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='1130' u='r' c='pop3_done'/>
+<use f='codebrowser/lib/smtp.c' l='1253' u='r' c='smtp_done'/>
+<use f='codebrowser/lib/smtp.c' l='1372' u='r' c='smtp_dophase_done'/>

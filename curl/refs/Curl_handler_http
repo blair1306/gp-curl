@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/http.h' l='32' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/http.c' l='108' ll='127' type='const struct Curl_handler'/>
+<doc f='codebrowser/lib/http.c' l='105'>/*
+ * HTTP handler interface.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='164' u='a'/>
+<use f='codebrowser/lib/url.c' l='164' u='a'/>
+<use f='codebrowser/lib/url.c' l='5425' u='a' c='create_conn_helper_init_proxy'/>

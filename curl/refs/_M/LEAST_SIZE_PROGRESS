@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/progress.h' l='59'/>
+<doc f='codebrowser/lib/progress.h' l='58'>/* Don&apos;t show progress for sizes smaller than: */</doc>

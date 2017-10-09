@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/splay.h' l='53' type='int Curl_splayremovebyaddr(struct Curl_tree * t, struct Curl_tree * removenode, struct Curl_tree ** newroot)'/>
+<use f='codebrowser/lib/multi.c' l='2978' u='c' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='3026' u='c' c='Curl_expire_clear'/>
+<def f='codebrowser/lib/splay.c' l='210' ll='277' type='int Curl_splayremovebyaddr(struct Curl_tree * t, struct Curl_tree * removenode, struct Curl_tree ** newroot)'/>
+<doc f='codebrowser/lib/splay.c' l='199'>/* Deletes the very node we point out from the tree if it&apos;s there. Stores a
+ * pointer to the new resulting tree in &apos;newroot&apos;.
+ *
+ * Returns zero on success and non-zero on errors! TODO: document error codes.
+ * When returning error, it does not touch the &apos;newroot&apos; pointer.
+ *
+ * NOTE: when the last node of the tree is removed, there&apos;s no tree left so
+ * &apos;newroot&apos; will be made to point to NULL.
+ *
+ * @unittest: 1309
+ */</doc>
+<use f='codebrowser/tests/unit/unit1309.c' l='102' u='c' c='test'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1518' type='curl_write_callback'/>
+<offset>1344</offset>
+<doc f='codebrowser/lib/urldata.h' l='1518'>/* function that stores interleaved RTP */</doc>
+<use f='codebrowser/lib/rtsp.c' l='763' u='r' c='rtp_client_write'/>
+<use f='codebrowser/lib/rtsp.c' l='764' u='r' c='rtp_client_write'/>
+<use f='codebrowser/lib/url.c' l='2814' u='w' c='Curl_setopt'/>

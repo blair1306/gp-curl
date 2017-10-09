@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='834' type='void SSL_CTX_set_msg_callback(SSL_CTX * ctx, void (*)(int, int, int, const void *, size_t, SSL *, void *) cb)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2136' u='c' c='ossl_connect_step1'/>

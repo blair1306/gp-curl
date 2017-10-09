@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_setup.h source code [codebrowser/src/tool_setup.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_setup.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_setup.h.html'>tool_setup.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_TOOL_SETUP_H">HEADER_CURL_TOOL_SETUP_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_TOOL_SETUP_H" data-ref="_M/HEADER_CURL_TOOL_SETUP_H">HEADER_CURL_TOOL_SETUP_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2014, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#define <dfn class="macro" id="_M/CURL_NO_OLDIES" data-ref="_M/CURL_NO_OLDIES">CURL_NO_OLDIES</dfn></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><i>/*</i></td></tr>
+<tr><th id="28">28</th><td><i> * curl_setup.h may define preprocessor macros such as _FILE_OFFSET_BITS and</i></td></tr>
+<tr><th id="29">29</th><td><i> * _LARGE_FILES in order to support files larger than 2 GB. On platforms</i></td></tr>
+<tr><th id="30">30</th><td><i> * where this happens it is mandatory that these macros are defined before</i></td></tr>
+<tr><th id="31">31</th><td><i> * any system header file is included, otherwise file handling function</i></td></tr>
+<tr><th id="32">32</th><td><i> * prototypes will be misdeclared and curl tool may not build properly;</i></td></tr>
+<tr><th id="33">33</th><td><i> * therefore we must include curl_setup.h before curl.h when building curl.</i></td></tr>
+<tr><th id="34">34</th><td><i> */</i></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="../lib/curl_setup.h.html">"curl_setup.h"</a> /* from the lib directory */</u></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><i>/*</i></td></tr>
+<tr><th id="39">39</th><td><i> * curl tool certainly uses libcurl's external interface.</i></td></tr>
+<tr><th id="40">40</th><td><i> */</i></td></tr>
+<tr><th id="41">41</th><td></td></tr>
+<tr><th id="42">42</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a> /* external interface */</u></td></tr>
+<tr><th id="43">43</th><td></td></tr>
+<tr><th id="44">44</th><td><i>/*</i></td></tr>
+<tr><th id="45">45</th><td><i> * Platform specific stuff.</i></td></tr>
+<tr><th id="46">46</th><td><i> */</i></td></tr>
+<tr><th id="47">47</th><td></td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="48">if</span> defined(<span class="macro" data-ref="_M/macintosh">macintosh</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/__MRC__">__MRC__</span>)</u></td></tr>
+<tr><th id="49">49</th><td><u>#  define main(x,y) curl_main(x,y)</u></td></tr>
+<tr><th id="50">50</th><td><u>#<span data-ppcond="48">endif</span></u></td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td><u>#<span data-ppcond="52">ifdef</span> <span class="macro" data-ref="_M/TPF">TPF</span></u></td></tr>
+<tr><th id="53">53</th><td><u>#  undef select</u></td></tr>
+<tr><th id="54">54</th><td>   <i>/* change which select is used for the curl command line tool */</i></td></tr>
+<tr><th id="55">55</th><td><u>#  define select(a,b,c,d,e) tpf_select_bsd(a,b,c,d,e)</u></td></tr>
+<tr><th id="56">56</th><td>   <i>/* and turn off the progress meter */</i></td></tr>
+<tr><th id="57">57</th><td><u>#  define CONF_DEFAULT (0|CONF_NOPROGRESS)</u></td></tr>
+<tr><th id="58">58</th><td><u>#<span data-ppcond="52">endif</span></u></td></tr>
+<tr><th id="59">59</th><td></td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="60">ifndef</span> <a class="macro" href="../lib/curl_config.h.html#775" data-ref="_M/OS">OS</a></u></td></tr>
+<tr><th id="61">61</th><td><u>#  define OS "unknown"</u></td></tr>
+<tr><th id="62">62</th><td><u>#<span data-ppcond="60">endif</span></u></td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td><u>#<span data-ppcond="64">ifndef</span> <span class="macro" data-ref="_M/UNPRINTABLE_CHAR">UNPRINTABLE_CHAR</span></u></td></tr>
+<tr><th id="65">65</th><td>   <i>/* define what to use for unprintable characters */</i></td></tr>
+<tr><th id="66">66</th><td><u>#  define <dfn class="macro" id="_M/UNPRINTABLE_CHAR" data-ref="_M/UNPRINTABLE_CHAR">UNPRINTABLE_CHAR</dfn> '.'</u></td></tr>
+<tr><th id="67">67</th><td><u>#<span data-ppcond="64">endif</span></u></td></tr>
+<tr><th id="68">68</th><td></td></tr>
+<tr><th id="69">69</th><td><u>#<span data-ppcond="69">ifndef</span> <a class="macro" href="../lib/curl_config.h.html#603" data-ref="_M/HAVE_STRDUP">HAVE_STRDUP</a></u></td></tr>
+<tr><th id="70">70</th><td><u>#  include "tool_strdup.h"</u></td></tr>
+<tr><th id="71">71</th><td><u>#<span data-ppcond="69">endif</span></u></td></tr>
+<tr><th id="72">72</th><td></td></tr>
+<tr><th id="73">73</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_TOOL_SETUP_H */</u></td></tr>
+<tr><th id="74">74</th><td></td></tr>
+<tr><th id="75">75</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='slist_wc.c.html'>codebrowser/src/slist_wc.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

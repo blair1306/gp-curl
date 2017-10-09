@@ -1,0 +1,7 @@
+<dec f='include/openssl/engine.h' l='664' type='EVP_PKEY * ENGINE_load_private_key(ENGINE * e, const char * key_id, UI_METHOD * ui_method, void * callback_data)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='788' u='c' c='cert_stuff'/>
+<doc f='include/openssl/engine.h' l='659'>/*
+ * The following functions handle keys that are stored in some secondary
+ * location, handled by the engine.  The storage may be on a card or
+ * whatever.
+ */</doc>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='647' type='CURLcode (*)(struct connectdata *, _Bool *)'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/urldata.h' l='646'>/* See above. Currently only used for FTP. */</doc>
+<use f='codebrowser/lib/url.c' l='4001' u='r' c='Curl_protocol_connecting'/>
+<use f='codebrowser/lib/url.c' l='4003' u='r' c='Curl_protocol_connecting'/>
+<use f='codebrowser/lib/url.c' l='4049' u='r' c='Curl_protocol_connect'/>

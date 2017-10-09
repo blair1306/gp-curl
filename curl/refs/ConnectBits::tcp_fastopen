@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='433' type='_Bool'/>
+<offset>232</offset>
+<use f='codebrowser/lib/connect.c' l='675' u='r' c='Curl_updateconninfo'/>
+<use f='codebrowser/lib/connect.c' l='780' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='1060' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/sendf.c' l='364' u='r' c='Curl_send_plain'/>
+<use f='codebrowser/lib/sendf.c' l='367' u='w' c='Curl_send_plain'/>
+<use f='codebrowser/lib/url.c' l='6636' u='w' c='create_conn'/>

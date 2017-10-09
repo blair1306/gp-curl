@@ -1,0 +1,7 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='27' type='1'/>
+<use f='codebrowser/src/tool_urlglob.c' l='42' u='r' c='glob_fixed'/>
+<use f='codebrowser/src/tool_urlglob.c' l='95' u='r' c='glob_set'/>
+<use f='codebrowser/src/tool_urlglob.c' l='491' u='r' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='526' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='563' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='641' c='glob_match_url'/>

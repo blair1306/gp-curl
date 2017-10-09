@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='122' type='CURLcode Curl_auth_create_ntlm_type1_message(struct Curl_easy * data, const char * userp, const char * passwdp, struct ntlmdata * ntlm, char ** outptr, size_t * outlen)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='334' u='c' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='497' u='c' c='Curl_sasl_continue'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='121'>/* This is used to generate a base64 encoded NTLM type-1 message */</doc>
+<use f='codebrowser/lib/http_ntlm.c' l='176' u='c' c='Curl_output_ntlm'/>
+<def f='codebrowser/lib/vauth/ntlm.c' l='365' ll='466' type='CURLcode Curl_auth_create_ntlm_type1_message(struct Curl_easy * data, const char * userp, const char * passwdp, struct ntlmdata * ntlm, char ** outptr, size_t * outlen)'/>
+<doc f='codebrowser/lib/vauth/ntlm.c' l='347'>/*
+ * Curl_auth_create_ntlm_type1_message()
+ *
+ * This is used to generate an already encoded NTLM type-1 message ready for
+ * sending to the recipient using the appropriate compile time crypto API.
+ *
+ * Parameters:
+ *
+ * data    [in]     - The session handle.
+ * userp   [in]     - The user name in the format User or Domain\User.
+ * passdwp [in]     - The user&apos;s password.
+ * ntlm    [in/out] - The NTLM data struct being used and modified.
+ * outptr  [in/out] - The address where a pointer to newly allocated memory
+ *                    holding the result will be stored upon completion.
+ * outlen  [out]    - The length of the output message.
+ *
+ * Returns CURLE_OK on success.
+ */</doc>

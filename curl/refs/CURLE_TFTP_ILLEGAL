@@ -1,0 +1,15 @@
+<dec f='codebrowser/include/curl/curl.h' l='542' type='71'/>
+<doc f='codebrowser/include/curl/curl.h' l='542'>/* 71 - Illegal TFTP operation */</doc>
+<use f='codebrowser/lib/strerror.c' l='264' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/tftp.c' l='349' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='361' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='366' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='371' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='379' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='397' u='r' c='tftp_parse_option_ack'/>
+<use f='codebrowser/lib/tftp.c' l='497' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='696' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='873' u='r' c='tftp_translate_code'/>
+<use f='codebrowser/lib/tftp.c' l='933' u='r' c='tftp_state_machine'/>
+<use f='codebrowser/lib/tftp.c' l='984' u='r' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1354' u='r' c='tftp_do'/>

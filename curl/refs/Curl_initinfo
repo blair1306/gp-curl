@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/getinfo.h' l='25' type='CURLcode Curl_initinfo(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/easy.c' l='942' u='c' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='987' u='c' c='curl_easy_reset'/>
+<use f='codebrowser/lib/file.c' l='448' u='c' c='file_do'/>
+<def f='codebrowser/lib/getinfo.c' l='45' ll='90' type='CURLcode Curl_initinfo(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/getinfo.c' l='38'>/*
+ * Initialize statistical and informational data.
+ *
+ * This function is called in curl_easy_reset, curl_easy_duphandle and at the
+ * beginning of a perform session. It must reset the session-info variables,
+ * in particular all variables in struct PureInfo.
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='1387' u='c' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='688' u='c' c='Curl_open'/>

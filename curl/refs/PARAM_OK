@@ -1,0 +1,17 @@
+<dec f='codebrowser/src/tool_getparam.h' l='27' type='0'/>
+<use f='codebrowser/src/tool_getparam.c' l='2081' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='2090' u='r' c='parse_args'/>
+<use f='codebrowser/src/tool_getparam.c' l='2112' u='r' c='parse_args'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='87' u='r' c='file2string'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='136' u='r' c='file2memory'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='174' u='r' c='str2num'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='192' u='r' c='str2unum'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='197' u='r' c='str2unum'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='227' u='r' c='str2double'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='249' u='r' c='str2udouble'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='255' u='r' c='str2udouble'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='384' u='r' c='check_protocol'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='419' u='r' c='str2offset'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='494' u='r' c='add2list'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='606' u='r' c='str2tls_max'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='253' u='r' c='parseconfig'/>

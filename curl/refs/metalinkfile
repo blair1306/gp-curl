@@ -1,0 +1,6 @@
+<def f='codebrowser/src/tool_metalink.h' l='77' ll='82'/>
+<size>32</size>
+<mbr r='metalinkfile::next' o='0' t='struct metalinkfile *'/>
+<mbr r='metalinkfile::filename' o='64' t='char *'/>
+<mbr r='metalinkfile::checksum' o='128' t='metalink_checksum *'/>
+<mbr r='metalinkfile::resource' o='192' t='metalink_resource *'/>

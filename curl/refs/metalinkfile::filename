@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_metalink.h' l='79' type='char *'/>
+<offset>64</offset>
+<use f='codebrowser/src/tool_operate.c' l='559' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1735' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1743' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1750' u='r' c='operate_do'/>

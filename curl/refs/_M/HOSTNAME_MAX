@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_gethostname.h' l='26'/>
+<doc f='codebrowser/lib/curl_gethostname.h' l='25'>/* Hostname buffer size */</doc>
+<use f='codebrowser/lib/smtp.c' l='1499' u='c'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='524' u='c'/>

@@ -1,0 +1,5 @@
+<dec f='include/openssl/ui.h' l='360' type='const char * UI_get0_action_string(UI_STRING * uis)'/>
+<doc f='include/openssl/ui.h' l='356'>/*
+ * Return the optional action string to output (the boolean promtp
+ * instruction)
+ */</doc>

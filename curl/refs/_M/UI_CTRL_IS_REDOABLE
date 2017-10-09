@@ -1,0 +1,6 @@
+<dec f='include/openssl/ui.h' l='238'/>
+<doc f='include/openssl/ui.h' l='233'>/*
+ * Check if a UI_process() is possible to do again with the same instance of
+ * a user interface.  This makes UI_ctrl() return 1 if it is redoable, and 0
+ * if not.
+ */</doc>

@@ -1,0 +1,17 @@
+<dec f='include/stdlib.h' l='543' type='void exit(int __status)'/>
+<doc f='include/stdlib.h' l='540'>/* Call all functions registered with `atexit&apos; and `on_exit&apos;,
+   in the reverse of the order in which they were registered,
+   perform stdio cleanup, and terminate program execution with STATUS.  */</doc>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='157' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='167' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='173' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='196' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='204' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='214' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='222' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='234' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='243' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='256' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='265' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='280' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='336' u='c' c='timer'/>

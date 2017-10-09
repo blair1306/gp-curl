@@ -1,0 +1,11 @@
+<dec f='codebrowser/include/curl/curl.h' l='462' type='6'/>
+<doc f='codebrowser/include/curl/curl.h' l='462'>/* 6 */</doc>
+<use f='codebrowser/lib/asyn-thread.c' l='452' u='r' c='resolver_error'/>
+<use f='codebrowser/lib/asyn-thread.c' l='518' u='r' c='Curl_resolver_is_resolved'/>
+<use f='codebrowser/lib/socks.c' l='201' u='r' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='604' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='660' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/strerror.c' l='80' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/url.c' l='6209' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6245' u='r' c='resolve_server'/>
+<use f='codebrowser/src/tool_operate.c' l='1596' u='r' c='operate_do'/>

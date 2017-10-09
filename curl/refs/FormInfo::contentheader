@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/formdata.h' l='42' type='struct curl_slist *'/>
+<offset>896</offset>
+<use f='codebrowser/lib/formdata.c' l='548' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='551' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='686' u='r' c='FormAdd'/>

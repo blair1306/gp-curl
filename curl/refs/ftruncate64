@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='1022' type='int ftruncate(int __fd, __off64_t __length)'/>
+<use f='codebrowser/src/tool_operate.c' l='1685' u='c' c='operate_do'/>

@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='961' type='size_t'/>
+<offset>9280</offset>
+<doc f='codebrowser/lib/urldata.h' l='961'>/* Current read position in the master buffer */</doc>
+<use f='codebrowser/lib/sendf.c' l='711' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='711' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='716' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='717' u='w' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='740' u='w' c='Curl_read'/>
+<use f='codebrowser/lib/transfer.c' l='365' u='w' c='read_rewind'/>

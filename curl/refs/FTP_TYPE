@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='63' type='19'/>
+<doc f='codebrowser/lib/ftp.h' l='63'>/* to set type when doing a head-like request */</doc>
+<use f='codebrowser/lib/ftp.c' l='1549' u='r' c='ftp_state_type'/>
+<use f='codebrowser/lib/ftp.c' l='2163' u='r' c='ftp_state_type_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2991' c='ftp_statemach_act'/>

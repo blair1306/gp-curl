@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/http.h' l='89' type='CURLcode Curl_http_input_auth(struct connectdata * conn, _Bool proxy, const char * auth)'/>
+<def f='codebrowser/lib/http.c' l='734' ll='897' type='CURLcode Curl_http_input_auth(struct connectdata * conn, _Bool proxy, const char * auth)'/>
+<use f='codebrowser/lib/http.c' l='3750' u='c' c='Curl_http_readwrite_headers'/>
+<doc f='codebrowser/lib/http.c' l='728'>/*
+ * Curl_http_input_auth() deals with Proxy-Authenticate: and WWW-Authenticate:
+ * headers. They are dealt with both in the transfer.c main loop and in the
+ * proxy CONNECT loop.
+ */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='511' u='c' c='CONNECT'/>

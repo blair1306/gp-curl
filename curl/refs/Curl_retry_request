@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/transfer.h' l='54' type='CURLcode Curl_retry_request(struct connectdata * conn, char ** url)'/>
+<use f='codebrowser/lib/multi.c' l='1705' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1913' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/transfer.c' l='1937' ll='1982' type='CURLcode Curl_retry_request(struct connectdata * conn, char ** url)'/>
+<doc f='codebrowser/lib/transfer.c' l='1934'>/* Returns CURLE_OK *and* sets &apos;*url&apos; if a request retry is wanted.
+
+   NOTE: that the *url is malloc()ed. */</doc>

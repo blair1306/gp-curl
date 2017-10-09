@@ -1,0 +1,23 @@
+<dec f='include/arpa/tftp.h' l='50' type='short'/>
+<use f='codebrowser/tests/server/tftpd.c' l='883' u='w' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='883' u='r' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='884' u='r' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='884' u='r' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='976' u='r' c='do_tftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1039' u='r' c='do_tftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1054' u='r' c='do_tftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1255' u='w' c='sendtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1287' u='w' c='sendtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1287' u='r' c='sendtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1290' u='r' c='sendtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1295' u='r' c='sendtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1330' u='w' c='recvtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1356' u='w' c='recvtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1356' u='r' c='recvtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1358' u='r' c='recvtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1360' u='r' c='recvtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1382' u='w' c='recvtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1398' u='r' c='recvtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1417' u='w' c='nak'/>
+<offset>0</offset>
+<doc f='include/arpa/tftp.h' l='50'>/* packet type */</doc>

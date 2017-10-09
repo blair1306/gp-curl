@@ -1,0 +1,23 @@
+<def f='codebrowser/lib/urldata.h' l='622' ll='697'/>
+<size>136</size>
+<doc f='codebrowser/lib/urldata.h' l='618'>/*
+ * Specific protocol handler.
+ */</doc>
+<mbr r='Curl_handler::scheme' o='0' t='const char *'/>
+<mbr r='Curl_handler::setup_connection' o='64' t='CURLcode (*)(struct connectdata *)'/>
+<mbr r='Curl_handler::do_it' o='128' t='CURLcode (*)(struct connectdata *, _Bool *)'/>
+<mbr r='Curl_handler::done' o='192' t='Curl_done_func'/>
+<mbr r='Curl_handler::do_more' o='256' t='Curl_do_more_func'/>
+<mbr r='Curl_handler::connect_it' o='320' t='CURLcode (*)(struct connectdata *, _Bool *)'/>
+<mbr r='Curl_handler::connecting' o='384' t='CURLcode (*)(struct connectdata *, _Bool *)'/>
+<mbr r='Curl_handler::doing' o='448' t='CURLcode (*)(struct connectdata *, _Bool *)'/>
+<mbr r='Curl_handler::proto_getsock' o='512' t='int (*)(struct connectdata *, curl_socket_t *, int)'/>
+<mbr r='Curl_handler::doing_getsock' o='576' t='int (*)(struct connectdata *, curl_socket_t *, int)'/>
+<mbr r='Curl_handler::domore_getsock' o='640' t='int (*)(struct connectdata *, curl_socket_t *, int)'/>
+<mbr r='Curl_handler::perform_getsock' o='704' t='int (*)(const struct connectdata *, curl_socket_t *, int)'/>
+<mbr r='Curl_handler::disconnect' o='768' t='CURLcode (*)(struct connectdata *, _Bool)'/>
+<mbr r='Curl_handler::readwrite' o='832' t='CURLcode (*)(struct Curl_easy *, struct connectdata *, ssize_t *, _Bool *)'/>
+<mbr r='Curl_handler::connection_check' o='896' t='unsigned int (*)(struct connectdata *, unsigned int)'/>
+<mbr r='Curl_handler::defport' o='960' t='long'/>
+<mbr r='Curl_handler::protocol' o='1024' t='unsigned int'/>
+<mbr r='Curl_handler::flags' o='1056' t='unsigned int'/>

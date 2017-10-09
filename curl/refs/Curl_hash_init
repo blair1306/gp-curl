@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/hash.h' l='72' type='int Curl_hash_init(struct curl_hash * h, int slots, hash_function hfunc, comp_function comparator, curl_hash_dtor dtor)'/>
+<use f='codebrowser/lib/conncache.c' l='112' u='c' c='Curl_conncache_init'/>
+<def f='codebrowser/lib/hash.c' l='56' ll='83' type='int Curl_hash_init(struct curl_hash * h, int slots, hash_function hfunc, comp_function comparator, curl_hash_dtor dtor)'/>
+<doc f='codebrowser/lib/hash.c' l='50'>/* Initializes a hash structure.
+ * Return 1 on error, 0 is fine.
+ *
+ * @unittest: 1602
+ * @unittest: 1603
+ */</doc>
+<use f='codebrowser/lib/hostip.c' l='126' u='c' c='Curl_global_host_cache_init'/>
+<use f='codebrowser/lib/hostip.c' l='753' u='c' c='Curl_mk_dnscache'/>
+<use f='codebrowser/lib/multi.c' l='276' u='c' c='sh_init'/>
+<use f='codebrowser/tests/unit/unit1603.c' l='42' u='c' c='unit_setup'/>

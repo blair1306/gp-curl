@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/cookie.h' l='43' type='_Bool'/>
+<offset>704</offset>
+<use f='codebrowser/lib/cookie.c' l='487' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='773' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1107' u='w' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1107' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1157' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1341' u='r' c='get_netscape_format'/>

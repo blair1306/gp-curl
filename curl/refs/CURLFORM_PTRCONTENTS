@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='2119' macro='1' type='5'/>
+<use f='codebrowser/lib/formdata.c' l='361' c='FormAdd'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='81' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='66' c='test'/>

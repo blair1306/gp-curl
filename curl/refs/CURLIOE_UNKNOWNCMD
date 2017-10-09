@@ -1,0 +1,3 @@
+<dec f='codebrowser/include/curl/curl.h' l='397' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='397'>/* command was unknown to callback */</doc>
+<use f='codebrowser/tests/libtest/lib552.c' l='163' u='r' c='ioctl_callback'/>

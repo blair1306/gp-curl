@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1396' type='2'/>
+<doc f='codebrowser/lib/urldata.h' l='1396'>/* format for certificate (default: PEM)*/</doc>
+<use f='codebrowser/lib/url.c' l='2024' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6707' u='r' c='create_conn'/>

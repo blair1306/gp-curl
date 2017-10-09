@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/cookie.h' l='86' type='struct Cookie * Curl_cookie_getlist(struct CookieInfo * , const char * , const char * , _Bool )'/>
+<def f='codebrowser/lib/cookie.c' l='1130' ll='1226' type='struct Cookie * Curl_cookie_getlist(struct CookieInfo * c, const char * host, const char * path, _Bool secure)'/>
+<doc f='codebrowser/lib/cookie.c' l='1118'>/*****************************************************************************
+ *
+ * Curl_cookie_getlist()
+ *
+ * For a given host and path, return a linked list of cookies that the
+ * client should send to the server if used now. The secure boolean informs
+ * the cookie if a secure connection is achieved or not.
+ *
+ * It shall only return cookies that haven&apos;t expired.
+ *
+ ****************************************************************************/</doc>
+<use f='codebrowser/lib/http.c' l='2378' u='c' c='Curl_http'/>

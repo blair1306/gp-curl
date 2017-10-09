@@ -1,0 +1,8 @@
+<def f='include/openssl/ocsp.h' l='216' ll='219'/>
+<size>16</size>
+<doc f='include/openssl/ocsp.h' l='212'>/*-  RevokedInfo ::= SEQUENCE {
+ *       revocationTime              GeneralizedTime,
+ *       revocationReason    [0]     EXPLICIT CRLReason OPTIONAL }
+ */</doc>
+<mbr r='ocsp_revoked_info_st::revocationTime' o='0' t='ASN1_GENERALIZEDTIME *'/>
+<mbr r='ocsp_revoked_info_st::revocationReason' o='64' t='ASN1_ENUMERATED *'/>

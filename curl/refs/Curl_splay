@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/splay.h' l='36' type='struct Curl_tree * Curl_splay(struct curltime i, struct Curl_tree * t)'/>
+<use f='codebrowser/lib/multi.c' l='2789' u='c' c='multi_timeout'/>
+<def f='codebrowser/lib/splay.c' l='40' ll='93' type='struct Curl_tree * Curl_splay(struct curltime i, struct Curl_tree * t)'/>
+<use f='codebrowser/lib/splay.c' l='112' u='c' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='167' u='c' c='Curl_splaygetbest'/>
+<use f='codebrowser/lib/splay.c' l='239' u='c' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='269' u='c' c='Curl_splayremovebyaddr'/>
+<doc f='codebrowser/lib/splay.c' l='36'>/*
+ * Splay using the key i (which may or may not be in the tree.) The starting
+ * root is t.
+ */</doc>

@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/urldata.h' l='385' type='_Bool'/>
+<offset>56</offset>
+<use f='codebrowser/lib/curl_sasl.c' l='239' u='r' c='Curl_sasl_can_authenticate'/>
+<use f='codebrowser/lib/curl_sasl.c' l='290' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/dict.c' l='144' u='r' c='dict_do'/>
+<use f='codebrowser/lib/http.c' l='490' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='619' u='r' c='output_auth_headers'/>
+<use f='codebrowser/lib/http.c' l='677' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='963' u='r' c='http_should_fail'/>
+<use f='codebrowser/lib/http.c' l='2154' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3425' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/imap.c' l='491' u='r' c='imap_perform_login'/>
+<use f='codebrowser/lib/pop3.c' l='384' u='r' c='pop3_perform_user'/>
+<use f='codebrowser/lib/pop3.c' l='417' u='r' c='pop3_perform_apop'/>
+<use f='codebrowser/lib/smb.c' l='259' u='r' c='smb_connect'/>
+<use f='codebrowser/lib/telnet.c' l='834' u='r' c='check_telnet_options'/>
+<use f='codebrowser/lib/url.c' l='4272' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='5548' u='w' c='parse_url_login'/>
+<use f='codebrowser/lib/url.c' l='5897' u='w' c='override_login'/>
+<use f='codebrowser/lib/url.c' l='5914' u='r' c='set_login'/>
+<use f='codebrowser/lib/url.c' l='6301' u='w' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6301' u='r' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6302' u='r' c='reuse_conn'/>

@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/urldata.h' l='778' type='1'/>
+<doc f='codebrowser/lib/urldata.h' l='778'>/* CONNECT has been sent off */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='312' u='r' c='CONNECT'/>

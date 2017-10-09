@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='402' type='OCSP_REQ_CTX * OCSP_REQ_CTX_new(BIO * io, int maxline)'/>

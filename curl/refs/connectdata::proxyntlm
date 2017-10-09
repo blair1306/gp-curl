@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='974' type='struct ntlmdata'/>
+<offset>9792</offset>
+<doc f='codebrowser/lib/urldata.h' l='974'>/* NTLM data for proxy */</doc>
+<use f='codebrowser/lib/http.c' l='431' u='m' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='3124' u='m' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_ntlm.c' l='73' u='a' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='144' u='a' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='234' u='a' c='Curl_http_ntlm_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='618' u='m' c='multi_done'/>
+<use f='codebrowser/lib/url.c' l='3809' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3821' u='m' c='ConnectionExists'/>

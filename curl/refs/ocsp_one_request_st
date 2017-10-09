@@ -1,0 +1,8 @@
+<def f='include/openssl/ocsp.h' l='115' ll='118'/>
+<size>16</size>
+<doc f='include/openssl/ocsp.h' l='111'>/*-  Request ::=     SEQUENCE {
+ *       reqCert                    CertID,
+ *       singleRequestExtensions    [0] EXPLICIT Extensions OPTIONAL }
+ */</doc>
+<mbr r='ocsp_one_request_st::reqCert' o='0' t='OCSP_CERTID *'/>
+<mbr r='ocsp_one_request_st::singleRequestExtensions' o='64' t='struct stack_st_X509_EXTENSION *'/>

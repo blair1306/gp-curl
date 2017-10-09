@@ -1,0 +1,9 @@
+<dec f='codebrowser/include/curl/curl.h' l='461' type='5'/>
+<doc f='codebrowser/include/curl/curl.h' l='461'>/* 5 */</doc>
+<use f='codebrowser/lib/asyn-thread.c' l='448' u='r' c='resolver_error'/>
+<use f='codebrowser/lib/ftp.c' l='1950' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/socks.c' l='163' u='r' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/strerror.c' l='77' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/url.c' l='5210' u='r' c='parse_proxy'/>
+<use f='codebrowser/lib/url.c' l='6267' u='r' c='resolve_server'/>
+<use f='codebrowser/src/tool_operate.c' l='1597' u='r' c='operate_do'/>

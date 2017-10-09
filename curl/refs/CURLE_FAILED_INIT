@@ -1,0 +1,46 @@
+<dec f='codebrowser/include/curl/curl.h' l='457' type='2'/>
+<doc f='codebrowser/include/curl/curl.h' l='457'>/* 2 */</doc>
+<use f='codebrowser/lib/easy.c' l='220' u='r' c='global_init'/>
+<use f='codebrowser/lib/easy.c' l='226' u='r' c='global_init'/>
+<use f='codebrowser/lib/easy.c' l='244' u='r' c='global_init'/>
+<use f='codebrowser/lib/easy.c' l='286' u='r' c='curl_global_init_mem'/>
+<use f='codebrowser/lib/easy.c' l='762' u='r' c='easy_perform'/>
+<use f='codebrowser/lib/easy.c' l='784' u='r' c='easy_perform'/>
+<use f='codebrowser/lib/strerror.c' l='67' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3561' u='r' c='Curl_ossl_random'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3565' u='r' c='Curl_ossl_random'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3569' u='r' c='Curl_ossl_random'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1101' u='r' c='Curl_multissl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1109' u='r' c='Curl_multissl_connect_nonblocking'/>
+<use f='codebrowser/src/tool_libinfo.c' l='85' u='r' c='get_libcurl_info'/>
+<use f='codebrowser/src/tool_main.c' l='171' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='187' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_operate.c' l='106' c='is_fatal_error'/>
+<use f='codebrowser/src/tool_operate.c' l='292' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='370' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='376' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='2014' u='r' c='operate'/>
+<use f='codebrowser/src/tool_operate.c' l='2039' u='r' c='operate'/>
+<use f='codebrowser/src/tool_urlglob.c' l='551' u='r' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='589' u='r' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='665' u='r' c='glob_match_url'/>
+<use f='codebrowser/tests/libtest/lib1525.c' l='50' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1526.c' l='48' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1527.c' l='49' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1528.c' l='30' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1529.c' l='30' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1530.c' l='41' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1533.c' l='132' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1534.c' l='50' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1534.c' l='88' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1534.c' l='101' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1534.c' l='120' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1535.c' l='50' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1535.c' l='87' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1535.c' l='100' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1535.c' l='119' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1536.c' l='50' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1536.c' l='88' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1536.c' l='101' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1536.c' l='120' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib553.c' l='61' u='r' c='test'/>

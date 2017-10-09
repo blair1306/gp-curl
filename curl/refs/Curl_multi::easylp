@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/multihandle.h' l='78' type='struct Curl_easy *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/multihandle.h' l='78'>/* last node */</doc>
+<use f='codebrowser/lib/multi.c' l='419' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='422' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='427' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='780' u='w' c='curl_multi_remove_handle'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='575' type='90'/>
+<doc f='codebrowser/include/curl/curl.h' l='575'>/* 90 - specified pinned public key did not
+                                     match */</doc>
+<use f='codebrowser/lib/strerror.c' l='306' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2968' u='r' c='pkp_pin_peer_pubkey'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='811' u='r' c='Curl_pin_peer_pubkey'/>

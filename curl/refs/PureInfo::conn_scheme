@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1083' type='const char *'/>
+<offset>1600</offset>
+<use f='codebrowser/lib/connect.c' l='604' u='w' c='Curl_persistconninfo'/>
+<use f='codebrowser/lib/getinfo.c' l='82' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='131' u='r' c='getinfo_char'/>

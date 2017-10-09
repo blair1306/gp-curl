@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/pingpong.h' l='54' type='_Bool'/>
+<offset>256</offset>
+<use f='codebrowser/lib/ftp.c' l='480' u='w' c='InitiateTransfer'/>
+<use f='codebrowser/lib/ftp.c' l='722' u='w' c='Curl_GetFTPResponse'/>
+<use f='codebrowser/lib/ftp.c' l='3256' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/pingpong.c' l='145' u='w' c='Curl_pp_init'/>
+<use f='codebrowser/lib/pingpong.c' l='458' u='w' c='Curl_pp_readresp'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='254' type='char *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/urldata.h' l='254'>/* host name for which this ID was used */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='338' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='378' u='r' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='378' u='w' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='476' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='478' u='w' c='Curl_ssl_addsessionid'/>

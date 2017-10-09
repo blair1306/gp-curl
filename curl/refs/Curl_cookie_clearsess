@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/cookie.h' l='90' type='void Curl_cookie_clearsess(struct CookieInfo * cookies)'/>
+<def f='codebrowser/lib/cookie.c' l='1270' ll='1298' type='void Curl_cookie_clearsess(struct CookieInfo * cookies)'/>
+<doc f='codebrowser/lib/cookie.c' l='1263'>/*****************************************************************************
+ *
+ * Curl_cookie_clearsess()
+ *
+ * Free all session cookies in the cookies list.
+ *
+ ****************************************************************************/</doc>
+<use f='codebrowser/lib/url.c' l='1310' u='c' c='Curl_setopt'/>

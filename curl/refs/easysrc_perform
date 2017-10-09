@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_easysrc.h' l='42' type='CURLcode easysrc_perform()'/>
+<def f='codebrowser/src/tool_easysrc.c' l='135' ll='163' type='CURLcode easysrc_perform()'/>
+<use f='codebrowser/src/tool_operate.c' l='1531' u='c' c='operate_do'/>

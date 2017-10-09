@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>netrc.c source code [codebrowser/lib/netrc.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="host_lookup_state "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/netrc.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='netrc.c.html'>netrc.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <a class="macro" href="curl_config.h.html#492" data-ref="_M/HAVE_PWD_H">HAVE_PWD_H</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../include/pwd.h.html">&lt;pwd.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="netrc.h.html">"netrc.h"</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="strtok.h.html">"strtok.h"</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="strcase.h.html">"strcase.h"</a></u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="37">37</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><i>/* Get user and password from .netrc when given a machine name */</i></td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td><b>enum</b> <dfn class="type def" id="host_lookup_state" title='host_lookup_state' data-ref="host_lookup_state">host_lookup_state</dfn> {</td></tr>
+<tr><th id="42">42</th><td>  <dfn class="enum" id="host_lookup_state::NOTHING" title='host_lookup_state::NOTHING' data-ref="host_lookup_state::NOTHING">NOTHING</dfn>,</td></tr>
+<tr><th id="43">43</th><td>  <dfn class="enum" id="host_lookup_state::HOSTFOUND" title='host_lookup_state::HOSTFOUND' data-ref="host_lookup_state::HOSTFOUND">HOSTFOUND</dfn>,    <i>/* the 'machine' keyword was found */</i></td></tr>
+<tr><th id="44">44</th><td>  <dfn class="enum" id="host_lookup_state::HOSTVALID" title='host_lookup_state::HOSTVALID' data-ref="host_lookup_state::HOSTVALID">HOSTVALID</dfn>     <i>/* this is "our" machine! */</i></td></tr>
+<tr><th id="45">45</th><td>};</td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><i>/*</i></td></tr>
+<tr><th id="48">48</th><td><i> * @unittest: 1304</i></td></tr>
+<tr><th id="49">49</th><td><i> *</i></td></tr>
+<tr><th id="50">50</th><td><i> * *loginp and *passwordp MUST be allocated if they aren't NULL when passed</i></td></tr>
+<tr><th id="51">51</th><td><i> * in.</i></td></tr>
+<tr><th id="52">52</th><td><i> */</i></td></tr>
+<tr><th id="53">53</th><td><em>int</em> <dfn class="decl def" id="Curl_parsenetrc" title='Curl_parsenetrc' data-ref="Curl_parsenetrc">Curl_parsenetrc</dfn>(<em>const</em> <em>char</em> *<dfn class="local col9 decl" id="29host" title='host' data-type='const char *' data-ref="29host">host</dfn>,</td></tr>
+<tr><th id="54">54</th><td>                    <em>char</em> **<dfn class="local col0 decl" id="30loginp" title='loginp' data-type='char **' data-ref="30loginp">loginp</dfn>,</td></tr>
+<tr><th id="55">55</th><td>                    <em>char</em> **<dfn class="local col1 decl" id="31passwordp" title='passwordp' data-type='char **' data-ref="31passwordp">passwordp</dfn>,</td></tr>
+<tr><th id="56">56</th><td>                    <em>char</em> *<dfn class="local col2 decl" id="32netrcfile" title='netrcfile' data-type='char *' data-ref="32netrcfile">netrcfile</dfn>)</td></tr>
+<tr><th id="57">57</th><td>{</td></tr>
+<tr><th id="58">58</th><td>  <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col3 decl" id="33file" title='file' data-type='FILE *' data-ref="33file">file</dfn>;</td></tr>
+<tr><th id="59">59</th><td>  <em>int</em> <dfn class="local col4 decl" id="34retcode" title='retcode' data-type='int' data-ref="34retcode">retcode</dfn> = <var>1</var>;</td></tr>
+<tr><th id="60">60</th><td>  <em>int</em> <dfn class="local col5 decl" id="35specific_login" title='specific_login' data-type='int' data-ref="35specific_login">specific_login</dfn> = (*<a class="local col0 ref" href="#30loginp" title='loginp' data-ref="30loginp">loginp</a> &amp;&amp; **<a class="local col0 ref" href="#30loginp" title='loginp' data-ref="30loginp">loginp</a> != <var>0</var>);</td></tr>
+<tr><th id="61">61</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col6 decl" id="36netrc_alloc" title='netrc_alloc' data-type='_Bool' data-ref="36netrc_alloc">netrc_alloc</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="62">62</th><td>  <b>enum</b> <a class="type" href="#host_lookup_state" title='host_lookup_state' data-ref="host_lookup_state">host_lookup_state</a> <dfn class="local col7 decl" id="37state" title='state' data-type='enum host_lookup_state' data-ref="37state">state</dfn> = <a class="enum" href="#host_lookup_state::NOTHING" title='host_lookup_state::NOTHING' data-ref="host_lookup_state::NOTHING">NOTHING</a>;</td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td>  <em>char</em> <dfn class="local col8 decl" id="38state_login" title='state_login' data-type='char' data-ref="38state_login">state_login</dfn> = <var>0</var>;      <i>/* Found a login keyword */</i></td></tr>
+<tr><th id="65">65</th><td>  <em>char</em> <dfn class="local col9 decl" id="39state_password" title='state_password' data-type='char' data-ref="39state_password">state_password</dfn> = <var>0</var>;   <i>/* Found a password keyword */</i></td></tr>
+<tr><th id="66">66</th><td>  <em>int</em> <dfn class="local col0 decl" id="40state_our_login" title='state_our_login' data-type='int' data-ref="40state_our_login">state_our_login</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;  <i>/* With specific_login, found *our* login</i></td></tr>
+<tr><th id="67">67</th><td><i>                                   name */</i></td></tr>
+<tr><th id="68">68</th><td></td></tr>
+<tr><th id="69">69</th><td><u>#define <dfn class="macro" id="_M/NETRC" data-ref="_M/NETRC">NETRC</dfn> DOT_CHAR "netrc"</u></td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td>  <b>if</b>(!<a class="local col2 ref" href="#32netrcfile" title='netrcfile' data-ref="32netrcfile">netrcfile</a>) {</td></tr>
+<tr><th id="72">72</th><td>    <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col1 decl" id="41home_alloc" title='home_alloc' data-type='_Bool' data-ref="41home_alloc">home_alloc</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="73">73</th><td>    <em>char</em> *<dfn class="local col2 decl" id="42home" title='home' data-type='char *' data-ref="42home">home</dfn> = <a class="ref" href="../include/curl/curl.h.html#curl_getenv" title='curl_getenv' data-ref="curl_getenv">curl_getenv</a>(<q>"HOME"</q>); <i>/* portable environment reader */</i></td></tr>
+<tr><th id="74">74</th><td>    <b>if</b>(<a class="local col2 ref" href="#42home" title='home' data-ref="42home">home</a>) {</td></tr>
+<tr><th id="75">75</th><td>      <a class="local col1 ref" href="#41home_alloc" title='home_alloc' data-ref="41home_alloc">home_alloc</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="76">if</span> defined(<span class="macro" data-ref="_M/HAVE_GETPWUID_R">HAVE_GETPWUID_R</span>) &amp;&amp; defined(<a class="macro" href="curl_config.h.html#185" data-ref="_M/HAVE_GETEUID">HAVE_GETEUID</a>)</u></td></tr>
+<tr><th id="77">77</th><td>    }</td></tr>
+<tr><th id="78">78</th><td>    <b>else</b> {</td></tr>
+<tr><th id="79">79</th><td>      <b>struct</b> passwd pw, *pw_res;</td></tr>
+<tr><th id="80">80</th><td>      <em>char</em> pwbuf[<var>1024</var>];</td></tr>
+<tr><th id="81">81</th><td>      <b>if</b>(!getpwuid_r(geteuid(), &amp;pw, pwbuf, <b>sizeof</b>(pwbuf), &amp;pw_res)</td></tr>
+<tr><th id="82">82</th><td>         &amp;&amp; pw_res) {</td></tr>
+<tr><th id="83">83</th><td>        home = strdup(pw.pw_dir);</td></tr>
+<tr><th id="84">84</th><td>        <b>if</b>(!home)</td></tr>
+<tr><th id="85">85</th><td>          <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="86">86</th><td>        home_alloc = TRUE;</td></tr>
+<tr><th id="87">87</th><td>      }</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="76">elif</span> defined(<a class="macro" href="curl_config.h.html#236" data-ref="_M/HAVE_GETPWUID">HAVE_GETPWUID</a>) &amp;&amp; defined(<a class="macro" href="curl_config.h.html#185" data-ref="_M/HAVE_GETEUID">HAVE_GETEUID</a>)</u></td></tr>
+<tr><th id="89">89</th><td>    }</td></tr>
+<tr><th id="90">90</th><td>    <b>else</b> {</td></tr>
+<tr><th id="91">91</th><td>      <b>struct</b> <a class="type" href="../../include/pwd.h.html#passwd" title='passwd' data-ref="passwd">passwd</a> *<dfn class="local col3 decl" id="43pw" title='pw' data-type='struct passwd *' data-ref="43pw">pw</dfn>;</td></tr>
+<tr><th id="92">92</th><td>      <a class="local col3 ref" href="#43pw" title='pw' data-ref="43pw">pw</a> = <a class="ref" href="../../include/pwd.h.html#getpwuid" title='getpwuid' data-ref="getpwuid">getpwuid</a>(<a class="ref" href="../../include/unistd.h.html#geteuid" title='geteuid' data-ref="geteuid">geteuid</a>());</td></tr>
+<tr><th id="93">93</th><td>      <b>if</b>(<a class="local col3 ref" href="#43pw" title='pw' data-ref="43pw">pw</a>) {</td></tr>
+<tr><th id="94">94</th><td>        <a class="local col2 ref" href="#42home" title='home' data-ref="42home">home</a> = <a class="local col3 ref" href="#43pw" title='pw' data-ref="43pw">pw</a>-&gt;<a class="ref" href="../../include/pwd.h.html#passwd::pw_dir" title='passwd::pw_dir' data-ref="passwd::pw_dir">pw_dir</a>;</td></tr>
+<tr><th id="95">95</th><td>      }</td></tr>
+<tr><th id="96">96</th><td><u>#<span data-ppcond="76">endif</span></u></td></tr>
+<tr><th id="97">97</th><td>    }</td></tr>
+<tr><th id="98">98</th><td></td></tr>
+<tr><th id="99">99</th><td>    <b>if</b>(!<a class="local col2 ref" href="#42home" title='home' data-ref="42home">home</a>)</td></tr>
+<tr><th id="100">100</th><td>      <b>return</b> <a class="local col4 ref" href="#34retcode" title='retcode' data-ref="34retcode">retcode</a>; <i>/* no home directory found (or possibly out of memory) */</i></td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td>    <a class="local col2 ref" href="#32netrcfile" title='netrcfile' data-ref="32netrcfile">netrcfile</a> = <a class="ref" href="../include/curl/mprintf.h.html#curl_maprintf" title='curl_maprintf' data-ref="curl_maprintf">curl_maprintf</a>(<q>"%s%s%s"</q>, <a class="local col2 ref" href="#42home" title='home' data-ref="42home">home</a>, <a class="macro" href="curl_setup.h.html#465" title="&quot;/&quot;" data-ref="_M/DIR_CHAR">DIR_CHAR</a>, <a class="macro" href="#69" title="&quot;.&quot; &quot;netrc&quot;" data-ref="_M/NETRC">NETRC</a>);</td></tr>
+<tr><th id="103">103</th><td>    <b>if</b>(<a class="local col1 ref" href="#41home_alloc" title='home_alloc' data-ref="41home_alloc">home_alloc</a>)</td></tr>
+<tr><th id="104">104</th><td>      <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(home)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#42home" title='home' data-ref="42home">home</a>);</td></tr>
+<tr><th id="105">105</th><td>    <b>if</b>(!<a class="local col2 ref" href="#32netrcfile" title='netrcfile' data-ref="32netrcfile">netrcfile</a>) {</td></tr>
+<tr><th id="106">106</th><td>      <b>return</b> -<var>1</var>;</td></tr>
+<tr><th id="107">107</th><td>    }</td></tr>
+<tr><th id="108">108</th><td>    <a class="local col6 ref" href="#36netrc_alloc" title='netrc_alloc' data-ref="36netrc_alloc">netrc_alloc</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="109">109</th><td>  }</td></tr>
+<tr><th id="110">110</th><td></td></tr>
+<tr><th id="111">111</th><td>  <a class="local col3 ref" href="#33file" title='file' data-ref="33file">file</a> = <a class="ref" href="../../include/stdio.h.html#283" title='fopen' data-ref="fopen64">fopen</a>(<a class="local col2 ref" href="#32netrcfile" title='netrcfile' data-ref="32netrcfile">netrcfile</a>, <a class="macro" href="curl_setup.h.html#732" title="&quot;r&quot;" data-ref="_M/FOPEN_READTEXT">FOPEN_READTEXT</a>);</td></tr>
+<tr><th id="112">112</th><td>  <b>if</b>(<a class="local col6 ref" href="#36netrc_alloc" title='netrc_alloc' data-ref="36netrc_alloc">netrc_alloc</a>)</td></tr>
+<tr><th id="113">113</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(netrcfile)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#32netrcfile" title='netrcfile' data-ref="32netrcfile">netrcfile</a>);</td></tr>
+<tr><th id="114">114</th><td>  <b>if</b>(<a class="local col3 ref" href="#33file" title='file' data-ref="33file">file</a>) {</td></tr>
+<tr><th id="115">115</th><td>    <em>char</em> *<dfn class="local col4 decl" id="44tok" title='tok' data-type='char *' data-ref="44tok">tok</dfn>;</td></tr>
+<tr><th id="116">116</th><td>    <em>char</em> *<dfn class="local col5 decl" id="45tok_buf" title='tok_buf' data-type='char *' data-ref="45tok_buf">tok_buf</dfn>;</td></tr>
+<tr><th id="117">117</th><td>    <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col6 decl" id="46done" title='done' data-type='_Bool' data-ref="46done">done</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="118">118</th><td>    <em>char</em> <dfn class="local col7 decl" id="47netrcbuffer" title='netrcbuffer' data-type='char [256]' data-ref="47netrcbuffer">netrcbuffer</dfn>[<var>256</var>];</td></tr>
+<tr><th id="119">119</th><td>    <em>int</em>  <dfn class="local col8 decl" id="48netrcbuffsize" title='netrcbuffsize' data-type='int' data-ref="48netrcbuffsize">netrcbuffsize</dfn> = (<em>int</em>)<b>sizeof</b>(<a class="local col7 ref" href="#47netrcbuffer" title='netrcbuffer' data-ref="47netrcbuffer">netrcbuffer</a>);</td></tr>
+<tr><th id="120">120</th><td></td></tr>
+<tr><th id="121">121</th><td>    <b>while</b>(!<a class="local col6 ref" href="#46done" title='done' data-ref="46done">done</a> &amp;&amp; <a class="ref" href="../../include/stdio.h.html#fgets" title='fgets' data-ref="fgets">fgets</a>(<a class="local col7 ref" href="#47netrcbuffer" title='netrcbuffer' data-ref="47netrcbuffer">netrcbuffer</a>, <a class="local col8 ref" href="#48netrcbuffsize" title='netrcbuffsize' data-ref="48netrcbuffsize">netrcbuffsize</a>, <a class="local col3 ref" href="#33file" title='file' data-ref="33file">file</a>)) {</td></tr>
+<tr><th id="122">122</th><td>      <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a> = <a class="ref" href="../../include/string.h.html#strtok_r" title='strtok_r' data-ref="strtok_r">strtok_r</a>(<a class="local col7 ref" href="#47netrcbuffer" title='netrcbuffer' data-ref="47netrcbuffer">netrcbuffer</a>, <q>" \t\n"</q>, &amp;<a class="local col5 ref" href="#45tok_buf" title='tok_buf' data-ref="45tok_buf">tok_buf</a>);</td></tr>
+<tr><th id="123">123</th><td>      <b>if</b>(<a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a> &amp;&amp; *<a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a> == <kbd>'#'</kbd>)</td></tr>
+<tr><th id="124">124</th><td>        <i>/* treat an initial hash as a comment line */</i></td></tr>
+<tr><th id="125">125</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="126">126</th><td>      <b>while</b>(!<a class="local col6 ref" href="#46done" title='done' data-ref="46done">done</a> &amp;&amp; <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>) {</td></tr>
+<tr><th id="127">127</th><td></td></tr>
+<tr><th id="128">128</th><td>        <b>if</b>((*<a class="local col0 ref" href="#30loginp" title='loginp' data-ref="30loginp">loginp</a> &amp;&amp; **<a class="local col0 ref" href="#30loginp" title='loginp' data-ref="30loginp">loginp</a>) &amp;&amp; (*<a class="local col1 ref" href="#31passwordp" title='passwordp' data-ref="31passwordp">passwordp</a> &amp;&amp; **<a class="local col1 ref" href="#31passwordp" title='passwordp' data-ref="31passwordp">passwordp</a>)) {</td></tr>
+<tr><th id="129">129</th><td>          <a class="local col6 ref" href="#46done" title='done' data-ref="46done">done</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="130">130</th><td>          <b>break</b>;</td></tr>
+<tr><th id="131">131</th><td>        }</td></tr>
+<tr><th id="132">132</th><td></td></tr>
+<tr><th id="133">133</th><td>        <b>switch</b>(<a class="local col7 ref" href="#37state" title='state' data-ref="37state">state</a>) {</td></tr>
+<tr><th id="134">134</th><td>        <b>case</b> <a class="enum" href="#host_lookup_state::NOTHING" title='host_lookup_state::NOTHING' data-ref="host_lookup_state::NOTHING">NOTHING</a>:</td></tr>
+<tr><th id="135">135</th><td>          <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(&quot;machine&quot;,tok)" data-ref="_M/strcasecompare">strcasecompare</a>(<q>"machine"</q>, <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>)) {</td></tr>
+<tr><th id="136">136</th><td>            <i>/* the next tok is the machine name, this is in itself the</i></td></tr>
+<tr><th id="137">137</th><td><i>               delimiter that starts the stuff entered for this machine,</i></td></tr>
+<tr><th id="138">138</th><td><i>               after this we need to search for 'login' and</i></td></tr>
+<tr><th id="139">139</th><td><i>               'password'. */</i></td></tr>
+<tr><th id="140">140</th><td>            <a class="local col7 ref" href="#37state" title='state' data-ref="37state">state</a> = <a class="enum" href="#host_lookup_state::HOSTFOUND" title='host_lookup_state::HOSTFOUND' data-ref="host_lookup_state::HOSTFOUND">HOSTFOUND</a>;</td></tr>
+<tr><th id="141">141</th><td>          }</td></tr>
+<tr><th id="142">142</th><td>          <b>else</b> <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(&quot;default&quot;,tok)" data-ref="_M/strcasecompare">strcasecompare</a>(<q>"default"</q>, <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>)) {</td></tr>
+<tr><th id="143">143</th><td>            <a class="local col7 ref" href="#37state" title='state' data-ref="37state">state</a> = <a class="enum" href="#host_lookup_state::HOSTVALID" title='host_lookup_state::HOSTVALID' data-ref="host_lookup_state::HOSTVALID">HOSTVALID</a>;</td></tr>
+<tr><th id="144">144</th><td>            <a class="local col4 ref" href="#34retcode" title='retcode' data-ref="34retcode">retcode</a> = <var>0</var>; <i>/* we did find our host */</i></td></tr>
+<tr><th id="145">145</th><td>          }</td></tr>
+<tr><th id="146">146</th><td>          <b>break</b>;</td></tr>
+<tr><th id="147">147</th><td>        <b>case</b> <a class="enum" href="#host_lookup_state::HOSTFOUND" title='host_lookup_state::HOSTFOUND' data-ref="host_lookup_state::HOSTFOUND">HOSTFOUND</a>:</td></tr>
+<tr><th id="148">148</th><td>          <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(host,tok)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col9 ref" href="#29host" title='host' data-ref="29host">host</a>, <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>)) {</td></tr>
+<tr><th id="149">149</th><td>            <i>/* and yes, this is our host! */</i></td></tr>
+<tr><th id="150">150</th><td>            <a class="local col7 ref" href="#37state" title='state' data-ref="37state">state</a> = <a class="enum" href="#host_lookup_state::HOSTVALID" title='host_lookup_state::HOSTVALID' data-ref="host_lookup_state::HOSTVALID">HOSTVALID</a>;</td></tr>
+<tr><th id="151">151</th><td>            <a class="local col4 ref" href="#34retcode" title='retcode' data-ref="34retcode">retcode</a> = <var>0</var>; <i>/* we did find our host */</i></td></tr>
+<tr><th id="152">152</th><td>          }</td></tr>
+<tr><th id="153">153</th><td>          <b>else</b></td></tr>
+<tr><th id="154">154</th><td>            <i>/* not our host */</i></td></tr>
+<tr><th id="155">155</th><td>            <a class="local col7 ref" href="#37state" title='state' data-ref="37state">state</a> = <a class="enum" href="#host_lookup_state::NOTHING" title='host_lookup_state::NOTHING' data-ref="host_lookup_state::NOTHING">NOTHING</a>;</td></tr>
+<tr><th id="156">156</th><td>          <b>break</b>;</td></tr>
+<tr><th id="157">157</th><td>        <b>case</b> <a class="enum" href="#host_lookup_state::HOSTVALID" title='host_lookup_state::HOSTVALID' data-ref="host_lookup_state::HOSTVALID">HOSTVALID</a>:</td></tr>
+<tr><th id="158">158</th><td>          <i>/* we are now parsing sub-keywords concerning "our" host */</i></td></tr>
+<tr><th id="159">159</th><td>          <b>if</b>(<a class="local col8 ref" href="#38state_login" title='state_login' data-ref="38state_login">state_login</a>) {</td></tr>
+<tr><th id="160">160</th><td>            <b>if</b>(<a class="local col5 ref" href="#35specific_login" title='specific_login' data-ref="35specific_login">specific_login</a>) {</td></tr>
+<tr><th id="161">161</th><td>              <a class="local col0 ref" href="#40state_our_login" title='state_our_login' data-ref="40state_our_login">state_our_login</a> = <a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(*loginp,tok)" data-ref="_M/strcasecompare">strcasecompare</a>(*<a class="local col0 ref" href="#30loginp" title='loginp' data-ref="30loginp">loginp</a>, <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>);</td></tr>
+<tr><th id="162">162</th><td>            }</td></tr>
+<tr><th id="163">163</th><td>            <b>else</b> {</td></tr>
+<tr><th id="164">164</th><td>              <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(*loginp)" data-ref="_M/free">free</a>(*<a class="local col0 ref" href="#30loginp" title='loginp' data-ref="30loginp">loginp</a>);</td></tr>
+<tr><th id="165">165</th><td>              *<a class="local col0 ref" href="#30loginp" title='loginp' data-ref="30loginp">loginp</a> = <a class="macro" href="curl_memory.h.html#122" title="Curl_cstrdup(tok)" data-ref="_M/strdup">strdup</a>(<a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>);</td></tr>
+<tr><th id="166">166</th><td>              <b>if</b>(!*<a class="local col0 ref" href="#30loginp" title='loginp' data-ref="30loginp">loginp</a>) {</td></tr>
+<tr><th id="167">167</th><td>                <a class="local col4 ref" href="#34retcode" title='retcode' data-ref="34retcode">retcode</a> = -<var>1</var>; <i>/* allocation failed */</i></td></tr>
+<tr><th id="168">168</th><td>                <b>goto</b> <a class="lbl" href="#49out" data-ref="49out">out</a>;</td></tr>
+<tr><th id="169">169</th><td>              }</td></tr>
+<tr><th id="170">170</th><td>            }</td></tr>
+<tr><th id="171">171</th><td>            <a class="local col8 ref" href="#38state_login" title='state_login' data-ref="38state_login">state_login</a> = <var>0</var>;</td></tr>
+<tr><th id="172">172</th><td>          }</td></tr>
+<tr><th id="173">173</th><td>          <b>else</b> <b>if</b>(<a class="local col9 ref" href="#39state_password" title='state_password' data-ref="39state_password">state_password</a>) {</td></tr>
+<tr><th id="174">174</th><td>            <b>if</b>(<a class="local col0 ref" href="#40state_our_login" title='state_our_login' data-ref="40state_our_login">state_our_login</a> || !<a class="local col5 ref" href="#35specific_login" title='specific_login' data-ref="35specific_login">specific_login</a>) {</td></tr>
+<tr><th id="175">175</th><td>              <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(*passwordp)" data-ref="_M/free">free</a>(*<a class="local col1 ref" href="#31passwordp" title='passwordp' data-ref="31passwordp">passwordp</a>);</td></tr>
+<tr><th id="176">176</th><td>              *<a class="local col1 ref" href="#31passwordp" title='passwordp' data-ref="31passwordp">passwordp</a> = <a class="macro" href="curl_memory.h.html#122" title="Curl_cstrdup(tok)" data-ref="_M/strdup">strdup</a>(<a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>);</td></tr>
+<tr><th id="177">177</th><td>              <b>if</b>(!*<a class="local col1 ref" href="#31passwordp" title='passwordp' data-ref="31passwordp">passwordp</a>) {</td></tr>
+<tr><th id="178">178</th><td>                <a class="local col4 ref" href="#34retcode" title='retcode' data-ref="34retcode">retcode</a> = -<var>1</var>; <i>/* allocation failed */</i></td></tr>
+<tr><th id="179">179</th><td>                <b>goto</b> <a class="lbl" href="#49out" data-ref="49out">out</a>;</td></tr>
+<tr><th id="180">180</th><td>              }</td></tr>
+<tr><th id="181">181</th><td>            }</td></tr>
+<tr><th id="182">182</th><td>            <a class="local col9 ref" href="#39state_password" title='state_password' data-ref="39state_password">state_password</a> = <var>0</var>;</td></tr>
+<tr><th id="183">183</th><td>          }</td></tr>
+<tr><th id="184">184</th><td>          <b>else</b> <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(&quot;login&quot;,tok)" data-ref="_M/strcasecompare">strcasecompare</a>(<q>"login"</q>, <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>))</td></tr>
+<tr><th id="185">185</th><td>            <a class="local col8 ref" href="#38state_login" title='state_login' data-ref="38state_login">state_login</a> = <var>1</var>;</td></tr>
+<tr><th id="186">186</th><td>          <b>else</b> <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(&quot;password&quot;,tok)" data-ref="_M/strcasecompare">strcasecompare</a>(<q>"password"</q>, <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>))</td></tr>
+<tr><th id="187">187</th><td>            <a class="local col9 ref" href="#39state_password" title='state_password' data-ref="39state_password">state_password</a> = <var>1</var>;</td></tr>
+<tr><th id="188">188</th><td>          <b>else</b> <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(&quot;machine&quot;,tok)" data-ref="_M/strcasecompare">strcasecompare</a>(<q>"machine"</q>, <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a>)) {</td></tr>
+<tr><th id="189">189</th><td>            <i>/* ok, there's machine here go =&gt; */</i></td></tr>
+<tr><th id="190">190</th><td>            <a class="local col7 ref" href="#37state" title='state' data-ref="37state">state</a> = <a class="enum" href="#host_lookup_state::HOSTFOUND" title='host_lookup_state::HOSTFOUND' data-ref="host_lookup_state::HOSTFOUND">HOSTFOUND</a>;</td></tr>
+<tr><th id="191">191</th><td>            <a class="local col0 ref" href="#40state_our_login" title='state_our_login' data-ref="40state_our_login">state_our_login</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="192">192</th><td>          }</td></tr>
+<tr><th id="193">193</th><td>          <b>break</b>;</td></tr>
+<tr><th id="194">194</th><td>        } <i>/* switch (state) */</i></td></tr>
+<tr><th id="195">195</th><td></td></tr>
+<tr><th id="196">196</th><td>        <a class="local col4 ref" href="#44tok" title='tok' data-ref="44tok">tok</a> = <a class="ref" href="../../include/string.h.html#strtok_r" title='strtok_r' data-ref="strtok_r">strtok_r</a>(<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <q>" \t\n"</q>, &amp;<a class="local col5 ref" href="#45tok_buf" title='tok_buf' data-ref="45tok_buf">tok_buf</a>);</td></tr>
+<tr><th id="197">197</th><td>      } <i>/* while(tok) */</i></td></tr>
+<tr><th id="198">198</th><td>    } <i>/* while fgets() */</i></td></tr>
+<tr><th id="199">199</th><td></td></tr>
+<tr><th id="200">200</th><td>    <dfn class="lbl" id="49out" data-ref="49out">out</dfn>:</td></tr>
+<tr><th id="201">201</th><td>    <a class="ref" href="../../include/stdio.h.html#fclose" title='fclose' data-ref="fclose">fclose</a>(<a class="local col3 ref" href="#33file" title='file' data-ref="33file">file</a>);</td></tr>
+<tr><th id="202">202</th><td>  }</td></tr>
+<tr><th id="203">203</th><td></td></tr>
+<tr><th id="204">204</th><td>  <b>return</b> <a class="local col4 ref" href="#34retcode" title='retcode' data-ref="34retcode">retcode</a>;</td></tr>
+<tr><th id="205">205</th><td>}</td></tr>
+<tr><th id="206">206</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

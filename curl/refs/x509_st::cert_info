@@ -1,0 +1,10 @@
+<dec f='include/openssl/x509.h' l='271' type='X509_CINF *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2782' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2811' u='r' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2825' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2828' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2983' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2993' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3060' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3065' macro='1' u='r'/>

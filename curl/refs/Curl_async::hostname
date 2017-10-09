@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='478' type='char *'/>
+<use f='codebrowser/lib/asyn-thread.c' l='372' u='r' c='destroy_async_data'/>
+<use f='codebrowser/lib/asyn-thread.c' l='373' u='w' c='destroy_async_data'/>
+<use f='codebrowser/lib/asyn-thread.c' l='405' u='r' c='init_resolve_thread'/>
+<use f='codebrowser/lib/asyn-thread.c' l='406' u='w' c='init_resolve_thread'/>
+<use f='codebrowser/lib/asyn-thread.c' l='407' u='r' c='init_resolve_thread'/>
+<use f='codebrowser/lib/asyn-thread.c' l='456' u='r' c='resolver_error'/>
+<offset>0</offset>
+<use f='codebrowser/lib/hostasyn.c' l='86' u='r' c='Curl_addrinfo_callback'/>

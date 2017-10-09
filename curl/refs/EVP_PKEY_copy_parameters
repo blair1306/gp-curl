@@ -1,0 +1,2 @@
+<dec f='include/openssl/evp.h' l='993' type='int EVP_PKEY_copy_parameters(EVP_PKEY * to, const EVP_PKEY * from)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='836' u='c' c='cert_stuff'/>

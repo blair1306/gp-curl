@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='489'/>
+<doc f='codebrowser/lib/curl_config.h' l='488'>/* Define to 1 if you have the &lt;pthread.h&gt; header file */</doc>
+<use f='codebrowser/lib/asyn-thread.c' l='45' u='a'/>
+<use f='codebrowser/lib/curl_threads.c' l='28' u='a'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='140' type='_Bool Curl_clone_primary_ssl_config(struct ssl_primary_config * source, struct ssl_primary_config * dest)'/>
+<use f='codebrowser/lib/url.c' l='6724' u='c' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6730' u='c' c='create_conn'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='105' ll='124' macro='1' type='_Bool Curl_clone_primary_ssl_config(struct ssl_primary_config * source, struct ssl_primary_config * dest)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='485' u='c' c='Curl_ssl_addsessionid'/>

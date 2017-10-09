@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='522' type='54'/>
+<doc f='codebrowser/include/curl/curl.h' l='522'>/* 54 - can not set SSL crypto engine as
+                                    default */</doc>
+<use f='codebrowser/lib/strerror.c' l='203' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1118' u='r' c='Curl_ossl_set_engine_default'/>

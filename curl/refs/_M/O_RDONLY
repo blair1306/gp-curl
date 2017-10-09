@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/bits/fcntl-linux.h' l='43'/>
+<use f='codebrowser/lib/file.c' l='251' u='c'/>
+<use f='codebrowser/lib/rand.c' l='77' u='c'/>
+<use f='codebrowser/src/tool_getpass.c' l='228' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='730' u='c'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='326' u='c'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='320' u='c'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='79' u='c'/>
+<use f='codebrowser/tests/libtest/lib572.c' l='98' u='c'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/tests/server/sockfilt.c' l='142' type='1'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='968' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1124' u='r' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1154' u='r' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1183' u='r' c='juggle'/>
+<doc f='codebrowser/tests/server/sockfilt.c' l='142'>/* as a server, connected to a client */</doc>

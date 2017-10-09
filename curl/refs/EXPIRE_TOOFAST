@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1222' type='9'/>
+<use f='codebrowser/lib/multi.c' l='1856' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1858' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1889' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1891' u='r' c='multi_runsingle'/>

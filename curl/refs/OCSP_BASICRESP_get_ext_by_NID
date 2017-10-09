@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='519' type='int OCSP_BASICRESP_get_ext_by_NID(OCSP_BASICRESP * x, int nid, int lastpos)'/>

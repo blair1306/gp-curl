@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='566'/>
+<use f='codebrowser/lib/http.c' l='3645' u='c'/>
+<use f='codebrowser/lib/http.c' l='3683' u='c'/>
+<use f='codebrowser/lib/http_chunks.c' l='205' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='802' u='c'/>

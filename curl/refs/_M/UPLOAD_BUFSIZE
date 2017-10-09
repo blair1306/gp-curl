@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='137'/>
+<use f='codebrowser/lib/urldata.h' l='1254' u='c'/>
+<doc f='codebrowser/lib/urldata.h' l='135'>/* The upload buffer size, should not be smaller than CURL_MAX_WRITE_SIZE, as
+   it needs to hold a full buffer as could be sent in a write callback */</doc>
+<use f='codebrowser/lib/smb.c' l='612' u='c'/>
+<use f='codebrowser/lib/smb.c' l='612' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='945' u='c'/>

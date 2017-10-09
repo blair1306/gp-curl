@@ -1,0 +1,6 @@
+<dec f='include/signal.h' l='139' type='int raise(int __sig)'/>
+<doc f='include/signal.h' l='138'>/* Raise signal SIG, i.e., send SIG to yourself.  */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='1479' u='c' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1565' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2408' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='942' u='c' c='main'/>

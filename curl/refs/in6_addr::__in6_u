@@ -1,0 +1,4 @@
+<dec f='include/netinet/in.h' l='220' type='union (anonymous union at /usr/include/netinet/in.h:213:5)'/>
+<offset>0</offset>
+<use f='codebrowser/lib/if2ip.c' l='71' macro='1' u='m'/>
+<use f='codebrowser/lib/socks.c' l='643' macro='1' u='m'/>

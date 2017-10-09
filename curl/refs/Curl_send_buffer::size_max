@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/http.h' l='55' type='size_t'/>
+<offset>64</offset>
+<use f='codebrowser/lib/http.c' l='1238' u='r' c='Curl_add_buffer'/>
+<use f='codebrowser/lib/http.c' l='1264' u='w' c='Curl_add_buffer'/>

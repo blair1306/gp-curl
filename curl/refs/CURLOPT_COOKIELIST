@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='1372' macro='1' type='10135'/>
+<use f='codebrowser/lib/url.c' l='1295' c='Curl_setopt'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='244' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='248' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='250' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='252' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='256' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='297' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='322' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='326' u='r' c='test'/>

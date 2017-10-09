@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/if2ip.h' l='38' type='0'/>
+<use f='codebrowser/lib/connect.c' l='290' c='bindlocal'/>
+<doc f='codebrowser/lib/if2ip.h' l='38'>/* Interface not found */</doc>
+<use f='codebrowser/lib/ftp.c' l='1046' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/if2ip.c' l='205' u='r' c='Curl_if_is_interface_name'/>
+<use f='codebrowser/lib/if2ip.c' l='222' u='r' c='Curl_if2ip'/>
+<use f='codebrowser/lib/if2ip.c' l='226' u='r' c='Curl_if2ip'/>
+<use f='codebrowser/lib/if2ip.c' l='230' u='r' c='Curl_if2ip'/>
+<use f='codebrowser/lib/if2ip.c' l='241' u='r' c='Curl_if2ip'/>

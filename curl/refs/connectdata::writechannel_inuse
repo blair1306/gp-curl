@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='953' type='_Bool'/>
+<offset>8648</offset>
+<use f='codebrowser/lib/pipeline.c' l='332' u='r' c='Curl_pipeline_checkget_write'/>
+<use f='codebrowser/lib/pipeline.c' l='334' u='w' c='Curl_pipeline_checkget_write'/>
+<use f='codebrowser/lib/pipeline.c' l='368' u='w' c='Curl_pipeline_leave_write'/>
+<use f='codebrowser/lib/url.c' l='3255' u='r' c='Curl_getoff_all_pipelines'/>

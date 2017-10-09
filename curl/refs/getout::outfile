@@ -1,0 +1,19 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='106' type='char *'/>
+<offset>128</offset>
+<doc f='codebrowser/src/tool_sdecls.h' l='106'>/* where to store the output */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='94' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='94' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='1797' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1797' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1797' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1797' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1797' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1801' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='446' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='446' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='453' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='454' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1953' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1953' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operhlp.c' l='46' u='r' c='clean_getout'/>
+<use f='codebrowser/src/tool_operhlp.c' l='46' u='w' c='clean_getout'/>

@@ -1,0 +1,33 @@
+<dec f='codebrowser/lib/urldata.h' l='955' type='struct curl_llist'/>
+<offset>8704</offset>
+<doc f='codebrowser/lib/urldata.h' l='955'>/* List of handles waiting to send on this
+                                  pipeline */</doc>
+<use f='codebrowser/lib/multi.c' l='575' u='m' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='2088' u='a' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2424' u='m' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2433' u='m' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2435' u='m' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2600' u='m' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2601' u='m' c='multi_socket'/>
+<use f='codebrowser/lib/pipeline.c' l='105' u='m' c='Curl_add_handle_to_pipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='109' u='a' c='Curl_add_handle_to_pipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='113' u='a' c='Curl_add_handle_to_pipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='113' u='m' c='Curl_add_handle_to_pipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='116' u='m' c='Curl_add_handle_to_pipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='137' u='m' c='Curl_move_handle_from_send_to_recv_pipe'/>
+<use f='codebrowser/lib/pipeline.c' l='140' u='a' c='Curl_move_handle_from_send_to_recv_pipe'/>
+<use f='codebrowser/lib/pipeline.c' l='143' u='m' c='Curl_move_handle_from_send_to_recv_pipe'/>
+<use f='codebrowser/lib/pipeline.c' l='151' u='m' c='Curl_move_handle_from_send_to_recv_pipe'/>
+<use f='codebrowser/lib/pipeline.c' l='314' u='a' c='Curl_sendpipe_head'/>
+<use f='codebrowser/lib/url.c' l='3072' u='a' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3113' u='m' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3148' u='a' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3260' u='a' c='Curl_getoff_all_pipelines'/>
+<use f='codebrowser/lib/url.c' l='3406' u='m' c='disconnect_if_dead'/>
+<use f='codebrowser/lib/url.c' l='3576' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3585' u='a' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='4320' u='a' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4344' u='a' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='6356' u='a' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6756' u='m' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='7024' u='m' c='Curl_connect'/>

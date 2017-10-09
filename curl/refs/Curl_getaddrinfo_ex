@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='68' type='int Curl_getaddrinfo_ex(const char * nodename, const char * servname, const struct addrinfo * hints, Curl_addrinfo ** result)'/>
+<use f='codebrowser/lib/asyn-thread.c' l='279' u='c' c='getaddrinfo_thread'/>
+<use f='codebrowser/lib/asyn-thread.c' l='670' u='c' c='Curl_resolver_getaddrinfo'/>
+<def f='codebrowser/lib/curl_addrinfo.c' l='108' ll='224' type='int Curl_getaddrinfo_ex(const char * nodename, const char * servname, const struct addrinfo * hints, Curl_addrinfo ** result)'/>
+<doc f='codebrowser/lib/curl_addrinfo.c' l='94'>/*
+ * Curl_getaddrinfo_ex()
+ *
+ * This is a wrapper function around system&apos;s getaddrinfo(), with
+ * the only difference that instead of returning a linked list of
+ * addrinfo structs this one returns a linked list of Curl_addrinfo
+ * ones. The memory allocated by this function *MUST* be free&apos;d with
+ * Curl_freeaddrinfo().  For each successful call to this function
+ * there must be an associated call later to Curl_freeaddrinfo().
+ *
+ * There should be no single call to system&apos;s getaddrinfo() in the
+ * whole library, any such call should be &apos;routed&apos; through this one.
+ */</doc>

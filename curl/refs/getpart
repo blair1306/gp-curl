@@ -1,0 +1,36 @@
+<dec f='codebrowser/tests/server/getpart.h' l='31' type='int getpart(char ** outbuf, size_t * outlen, const char * main, const char * sub, FILE * stream)'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='200' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='218' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='238' u='c' c='main'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='260' u='c' c='main'/>
+<def f='codebrowser/tests/server/getpart.c' l='278' ll='482' type='int getpart(char ** outbuf, size_t * outlen, const char * main, const char * sub, FILE * stream)'/>
+<doc f='codebrowser/tests/server/getpart.c' l='256'>/*
+ * getpart()
+ *
+ * This returns whole contents of specified XML-like section and subsection
+ * from the given file. This is mostly used to retrieve a specific part from
+ * a test definition file for consumption by test suite servers.
+ *
+ * Data is returned in a dynamically allocated buffer, a pointer to this data
+ * and the size of the data is stored at the addresses that caller specifies.
+ *
+ * If the returned data is a string the returned size will be the length of
+ * the string excluding null termination. Otherwise it will just be the size
+ * of the returned binary data.
+ *
+ * Calling function is responsible to free returned buffer.
+ *
+ * This function may return:
+ *   GPE_NO_BUFFER_SPACE
+ *   GPE_OUT_OF_MEMORY
+ *   GPE_OK
+ */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='445' u='c' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1000' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1026' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sws.c' l='378' u='c' c='parse_servercmd'/>
+<use f='codebrowser/tests/server/sws.c' l='1151' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sws.c' l='1176' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/testpart.c' l='41' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1092' u='c' c='parse_servercmd'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1205' u='c' c='validate_access'/>

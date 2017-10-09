@@ -1,0 +1,15 @@
+<dec f='codebrowser/include/curl/curl.h' l='2703' type='CURLcode curl_easy_pause(CURL * handle, int bitmask)'/>
+<def f='codebrowser/lib/easy.c' l='1007' ll='1058' type='CURLcode curl_easy_pause(struct Curl_easy * data, int action)'/>
+<doc f='codebrowser/lib/easy.c' l='997'>/*
+ * curl_easy_pause() allows an application to pause or unpause a specific
+ * transfer and direction. This function sets the full new state for the
+ * current connection this easy handle operates on.
+ *
+ * NOTE: if you have the receiving paused and you call this function to remove
+ * the pausing, you may get your write callback called at this point.
+ *
+ * Action is a bitmask consisting of CURLPAUSE_* bits in curl/curl.h
+ */</doc>
+<use f='codebrowser/src/tool_cb_wrt.c' l='166' u='c' c='tool_write_cb'/>
+<use f='codebrowser/tests/libtest/lib1533.c' l='92' u='c' c='write_callback'/>
+<use f='codebrowser/tests/libtest/lib1540.c' l='50' u='c' c='please_continue'/>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1219' type='6'/>
+<use f='codebrowser/lib/easy.c' l='1055' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/multi.c' l='439' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='1952' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='3108' u='r' c='Curl_multi_process_pending_handles'/>
+<use f='codebrowser/lib/pipeline.c' l='116' u='r' c='Curl_add_handle_to_pipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='151' u='r' c='Curl_move_handle_from_send_to_recv_pipe'/>

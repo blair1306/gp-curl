@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='44' type='CURLcode get_args(struct OperationConfig * config, const size_t i)'/>
+<use f='codebrowser/src/tool_operate.c' l='2056' u='c' c='operate'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='548' ll='577' type='CURLcode get_args(struct OperationConfig * config, const size_t i)'/>

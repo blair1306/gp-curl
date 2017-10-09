@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/ftplistparser.c' l='150' type='0'/>
+<use f='codebrowser/lib/ftplistparser.c' l='352' u='r' c='Curl_ftp_parselist'/>

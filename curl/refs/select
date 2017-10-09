@@ -1,0 +1,16 @@
+<dec f='include/x86_64-linux-gnu/sys/select.h' l='106' type='int select(int __nfds, fd_set *restrict __readfds, fd_set *restrict __writefds, fd_set *restrict __exceptfds, struct timeval *restrict __timeout)'/>
+<doc f='include/x86_64-linux-gnu/sys/select.h' l='98'>/* Check the first NFDS descriptors each in READFDS (if not NULL) for read
+   readiness, in WRITEFDS (if not NULL) for write readiness, and in EXCEPTFDS
+   (if not NULL) for exceptional conditions.  If TIMEOUT is not NULL, time out
+   after waiting the interval specified therein.  Returns the number of ready
+   descriptors, or -1 for errors.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>
+<use f='codebrowser/tests/libtest/first.c' l='63' u='c' c='select_wrapper'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='121' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1531.c' l='112' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1531.c' l='118' u='c' c='test'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1017' u='c' c='juggle'/>
+<use f='codebrowser/tests/server/sws.c' l='1537' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='2290' u='c' c='main'/>

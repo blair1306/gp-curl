@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='59' type='struct Curl_addrinfo *'/>
+<offset>320</offset>
+<use f='codebrowser/lib/connect.c' l='561' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='568' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='576' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='582' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='829' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='1167' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1174' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='86' u='r' c='Curl_freeaddrinfo'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='167' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='193' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='324' u='w' c='Curl_he2ai'/>
+<use f='codebrowser/lib/ftp.c' l='1112' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/hostip.c' l='152' u='r' c='Curl_num_addresses'/>

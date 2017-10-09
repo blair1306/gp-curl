@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/termios.h' l='33' type='tcflag_t'/>
+<use f='codebrowser/src/tool_getpass.c' l='196' u='w' c='ttyecho'/>
+<offset>96</offset>
+<doc f='include/x86_64-linux-gnu/bits/termios.h' l='33'>/* local mode flags */</doc>

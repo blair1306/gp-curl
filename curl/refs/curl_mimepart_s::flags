@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/mime.h' l='115' type='unsigned int'/>
+<offset>1024</offset>
+<doc f='codebrowser/lib/mime.h' l='115'>/* Flags. */</doc>
+<use f='codebrowser/lib/http.c' l='1957' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='725' u='w' c='imap_perform_append'/>
+<use f='codebrowser/lib/mime.c' l='836' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='1021' u='r' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1119' u='r' c='Curl_mime_cleanpart'/>
+<use f='codebrowser/lib/mime.c' l='1377' u='r' c='curl_mime_headers'/>
+<use f='codebrowser/lib/mime.c' l='1380' u='w' c='curl_mime_headers'/>
+<use f='codebrowser/lib/mime.c' l='1384' u='w' c='curl_mime_headers'/>
+<use f='codebrowser/lib/mime.c' l='1534' u='r' c='Curl_mime_size'/>
+<use f='codebrowser/lib/smtp.c' l='537' u='w' c='smtp_perform_mail'/>
+<use f='codebrowser/src/tool_setopt.c' l='543' u='r' c='libcurl_generate_mime'/>

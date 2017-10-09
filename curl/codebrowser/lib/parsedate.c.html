@@ -1,0 +1,604 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>parsedate.c source code [codebrowser/lib/parsedate.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="assume,my_tm,tzinfo "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/parsedate.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='parsedate.c.html'>parsedate.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><i>/*</i></td></tr>
+<tr><th id="23">23</th><td><i>  A brief summary of the date string formats this parser groks:</i></td></tr>
+<tr><th id="24">24</th><td><i></i></td></tr>
+<tr><th id="25">25</th><td><i>  RFC 2616 3.3.1</i></td></tr>
+<tr><th id="26">26</th><td><i></i></td></tr>
+<tr><th id="27">27</th><td><i>  Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123</i></td></tr>
+<tr><th id="28">28</th><td><i>  Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036</i></td></tr>
+<tr><th id="29">29</th><td><i>  Sun Nov  6 08:49:37 1994       ; ANSI C's asctime() format</i></td></tr>
+<tr><th id="30">30</th><td><i></i></td></tr>
+<tr><th id="31">31</th><td><i>  we support dates without week day name:</i></td></tr>
+<tr><th id="32">32</th><td><i></i></td></tr>
+<tr><th id="33">33</th><td><i>  06 Nov 1994 08:49:37 GMT</i></td></tr>
+<tr><th id="34">34</th><td><i>  06-Nov-94 08:49:37 GMT</i></td></tr>
+<tr><th id="35">35</th><td><i>  Nov  6 08:49:37 1994</i></td></tr>
+<tr><th id="36">36</th><td><i></i></td></tr>
+<tr><th id="37">37</th><td><i>  without the time zone:</i></td></tr>
+<tr><th id="38">38</th><td><i></i></td></tr>
+<tr><th id="39">39</th><td><i>  06 Nov 1994 08:49:37</i></td></tr>
+<tr><th id="40">40</th><td><i>  06-Nov-94 08:49:37</i></td></tr>
+<tr><th id="41">41</th><td><i></i></td></tr>
+<tr><th id="42">42</th><td><i>  weird order:</i></td></tr>
+<tr><th id="43">43</th><td><i></i></td></tr>
+<tr><th id="44">44</th><td><i>  1994 Nov 6 08:49:37  (GNU date fails)</i></td></tr>
+<tr><th id="45">45</th><td><i>  GMT 08:49:37 06-Nov-94 Sunday</i></td></tr>
+<tr><th id="46">46</th><td><i>  94 6 Nov 08:49:37    (GNU date fails)</i></td></tr>
+<tr><th id="47">47</th><td><i></i></td></tr>
+<tr><th id="48">48</th><td><i>  time left out:</i></td></tr>
+<tr><th id="49">49</th><td><i></i></td></tr>
+<tr><th id="50">50</th><td><i>  1994 Nov 6</i></td></tr>
+<tr><th id="51">51</th><td><i>  06-Nov-94</i></td></tr>
+<tr><th id="52">52</th><td><i>  Sun Nov 6 94</i></td></tr>
+<tr><th id="53">53</th><td><i></i></td></tr>
+<tr><th id="54">54</th><td><i>  unusual separators:</i></td></tr>
+<tr><th id="55">55</th><td><i></i></td></tr>
+<tr><th id="56">56</th><td><i>  1994.Nov.6</i></td></tr>
+<tr><th id="57">57</th><td><i>  Sun/Nov/6/94/GMT</i></td></tr>
+<tr><th id="58">58</th><td><i></i></td></tr>
+<tr><th id="59">59</th><td><i>  commonly used time zone names:</i></td></tr>
+<tr><th id="60">60</th><td><i></i></td></tr>
+<tr><th id="61">61</th><td><i>  Sun, 06 Nov 1994 08:49:37 CET</i></td></tr>
+<tr><th id="62">62</th><td><i>  06 Nov 1994 08:49:37 EST</i></td></tr>
+<tr><th id="63">63</th><td><i></i></td></tr>
+<tr><th id="64">64</th><td><i>  time zones specified using RFC822 style:</i></td></tr>
+<tr><th id="65">65</th><td><i></i></td></tr>
+<tr><th id="66">66</th><td><i>  Sun, 12 Sep 2004 15:05:58 -0700</i></td></tr>
+<tr><th id="67">67</th><td><i>  Sat, 11 Sep 2004 21:32:11 +0200</i></td></tr>
+<tr><th id="68">68</th><td><i></i></td></tr>
+<tr><th id="69">69</th><td><i>  compact numerical date strings:</i></td></tr>
+<tr><th id="70">70</th><td><i></i></td></tr>
+<tr><th id="71">71</th><td><i>  20040912 15:05:58 -0700</i></td></tr>
+<tr><th id="72">72</th><td><i>  20040911 +0200</i></td></tr>
+<tr><th id="73">73</th><td><i></i></td></tr>
+<tr><th id="74">74</th><td><i>*/</i></td></tr>
+<tr><th id="75">75</th><td></td></tr>
+<tr><th id="76">76</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="77">77</th><td></td></tr>
+<tr><th id="78">78</th><td><u>#<span data-ppcond="78">ifdef</span> <a class="macro" href="curl_config.h.html#402" data-ref="_M/HAVE_LIMITS_H">HAVE_LIMITS_H</a></u></td></tr>
+<tr><th id="79">79</th><td><u>#include &lt;limits.h&gt;</u></td></tr>
+<tr><th id="80">80</th><td><u>#<span data-ppcond="78">endif</span></u></td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="83">83</th><td><u>#include <a href="strcase.h.html">"strcase.h"</a></u></td></tr>
+<tr><th id="84">84</th><td><u>#include <a href="warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="85">85</th><td><u>#include <a href="parsedate.h.html">"parsedate.h"</a></u></td></tr>
+<tr><th id="86">86</th><td></td></tr>
+<tr><th id="87">87</th><td><em>const</em> <em>char</em> * <em>const</em> <dfn class="decl def" id="Curl_wkday" title='Curl_wkday' data-ref="Curl_wkday">Curl_wkday</dfn>[] =</td></tr>
+<tr><th id="88">88</th><td>{<q>"Mon"</q>, <q>"Tue"</q>, <q>"Wed"</q>, <q>"Thu"</q>, <q>"Fri"</q>, <q>"Sat"</q>, <q>"Sun"</q>};</td></tr>
+<tr><th id="89">89</th><td><em>static</em> <em>const</em> <em>char</em> * <em>const</em> <dfn class="tu decl def" id="weekday" title='weekday' data-type='const char *const [7]' data-ref="weekday">weekday</dfn>[] =</td></tr>
+<tr><th id="90">90</th><td>{ <q>"Monday"</q>, <q>"Tuesday"</q>, <q>"Wednesday"</q>, <q>"Thursday"</q>,</td></tr>
+<tr><th id="91">91</th><td>  <q>"Friday"</q>, <q>"Saturday"</q>, <q>"Sunday"</q> };</td></tr>
+<tr><th id="92">92</th><td><em>const</em> <em>char</em> * <em>const</em> <dfn class="decl def" id="Curl_month" title='Curl_month' data-ref="Curl_month">Curl_month</dfn>[]=</td></tr>
+<tr><th id="93">93</th><td>{ <q>"Jan"</q>, <q>"Feb"</q>, <q>"Mar"</q>, <q>"Apr"</q>, <q>"May"</q>, <q>"Jun"</q>,</td></tr>
+<tr><th id="94">94</th><td>  <q>"Jul"</q>, <q>"Aug"</q>, <q>"Sep"</q>, <q>"Oct"</q>, <q>"Nov"</q>, <q>"Dec"</q> };</td></tr>
+<tr><th id="95">95</th><td></td></tr>
+<tr><th id="96">96</th><td><b>struct</b> <dfn class="type def" id="tzinfo" title='tzinfo' data-ref="tzinfo">tzinfo</dfn> {</td></tr>
+<tr><th id="97">97</th><td>  <em>char</em> <dfn class="tu decl" id="tzinfo::name" title='tzinfo::name' data-type='char [5]' data-ref="tzinfo::name">name</dfn>[<var>5</var>];</td></tr>
+<tr><th id="98">98</th><td>  <em>int</em> <dfn class="tu decl" id="tzinfo::offset" title='tzinfo::offset' data-type='int' data-ref="tzinfo::offset">offset</dfn>; <i  data-doc="tzinfo::offset">/* +/- in minutes */</i></td></tr>
+<tr><th id="99">99</th><td>};</td></tr>
+<tr><th id="100">100</th><td></td></tr>
+<tr><th id="101">101</th><td><i  data-doc="parsedate">/*</i></td></tr>
+<tr><th id="102">102</th><td><i  data-doc="parsedate"> * parsedate()</i></td></tr>
+<tr><th id="103">103</th><td><i  data-doc="parsedate"> *</i></td></tr>
+<tr><th id="104">104</th><td><i  data-doc="parsedate"> * Returns:</i></td></tr>
+<tr><th id="105">105</th><td><i  data-doc="parsedate"> *</i></td></tr>
+<tr><th id="106">106</th><td><i  data-doc="parsedate"> * PARSEDATE_OK     - a fine conversion</i></td></tr>
+<tr><th id="107">107</th><td><i  data-doc="parsedate"> * PARSEDATE_FAIL   - failed to convert</i></td></tr>
+<tr><th id="108">108</th><td><i  data-doc="parsedate"> * PARSEDATE_LATER  - time overflow at the far end of time_t</i></td></tr>
+<tr><th id="109">109</th><td><i  data-doc="parsedate"> * PARSEDATE_SOONER - time underflow at the low end of time_t</i></td></tr>
+<tr><th id="110">110</th><td><i  data-doc="parsedate"> */</i></td></tr>
+<tr><th id="111">111</th><td></td></tr>
+<tr><th id="112">112</th><td><em>static</em> <em>int</em> <a class="tu decl" href="#parsedate" title='parsedate' data-type='int parsedate(const char * date, time_t * output)' data-ref="parsedate">parsedate</a>(<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="1date" title='date' data-type='const char *' data-ref="1date">date</dfn>, <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<dfn class="local col2 decl" id="2output" title='output' data-type='time_t *' data-ref="2output">output</dfn>);</td></tr>
+<tr><th id="113">113</th><td></td></tr>
+<tr><th id="114">114</th><td><u>#define <dfn class="macro" id="_M/PARSEDATE_OK" data-ref="_M/PARSEDATE_OK">PARSEDATE_OK</dfn>     0</u></td></tr>
+<tr><th id="115">115</th><td><u>#define <dfn class="macro" id="_M/PARSEDATE_FAIL" data-ref="_M/PARSEDATE_FAIL">PARSEDATE_FAIL</dfn>   -1</u></td></tr>
+<tr><th id="116">116</th><td><u>#define <dfn class="macro" id="_M/PARSEDATE_LATER" data-ref="_M/PARSEDATE_LATER">PARSEDATE_LATER</dfn>  1</u></td></tr>
+<tr><th id="117">117</th><td><u>#define <dfn class="macro" id="_M/PARSEDATE_SOONER" data-ref="_M/PARSEDATE_SOONER">PARSEDATE_SOONER</dfn> 2</u></td></tr>
+<tr><th id="118">118</th><td></td></tr>
+<tr><th id="119">119</th><td><i>/* Here's a bunch of frequently used time zone names. These were supported</i></td></tr>
+<tr><th id="120">120</th><td><i>   by the old getdate parser. */</i></td></tr>
+<tr><th id="121">121</th><td><u>#define <dfn class="macro" id="_M/tDAYZONE" data-ref="_M/tDAYZONE">tDAYZONE</dfn> -60       /* offset for daylight savings time */</u></td></tr>
+<tr><th id="122">122</th><td><em>static</em> <em>const</em> <b>struct</b> <a class="type" href="#tzinfo" title='tzinfo' data-ref="tzinfo">tzinfo</a> <dfn class="tu decl def" id="tz" title='tz' data-type='const struct tzinfo [68]' data-ref="tz">tz</dfn>[]= {</td></tr>
+<tr><th id="123">123</th><td>  {<q>"GMT"</q>, <var>0</var>},              <i>/* Greenwich Mean */</i></td></tr>
+<tr><th id="124">124</th><td>  {<q>"UTC"</q>, <var>0</var>},              <i>/* Universal (Coordinated) */</i></td></tr>
+<tr><th id="125">125</th><td>  {<q>"WET"</q>, <var>0</var>},              <i>/* Western European */</i></td></tr>
+<tr><th id="126">126</th><td>  {<q>"BST"</q>, <var>0</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},     <i>/* British Summer */</i></td></tr>
+<tr><th id="127">127</th><td>  {<q>"WAT"</q>, <var>60</var>},             <i>/* West Africa */</i></td></tr>
+<tr><th id="128">128</th><td>  {<q>"AST"</q>, <var>240</var>},            <i>/* Atlantic Standard */</i></td></tr>
+<tr><th id="129">129</th><td>  {<q>"ADT"</q>, <var>240</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},   <i>/* Atlantic Daylight */</i></td></tr>
+<tr><th id="130">130</th><td>  {<q>"EST"</q>, <var>300</var>},            <i>/* Eastern Standard */</i></td></tr>
+<tr><th id="131">131</th><td>  {<q>"EDT"</q>, <var>300</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},   <i>/* Eastern Daylight */</i></td></tr>
+<tr><th id="132">132</th><td>  {<q>"CST"</q>, <var>360</var>},            <i>/* Central Standard */</i></td></tr>
+<tr><th id="133">133</th><td>  {<q>"CDT"</q>, <var>360</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},   <i>/* Central Daylight */</i></td></tr>
+<tr><th id="134">134</th><td>  {<q>"MST"</q>, <var>420</var>},            <i>/* Mountain Standard */</i></td></tr>
+<tr><th id="135">135</th><td>  {<q>"MDT"</q>, <var>420</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},   <i>/* Mountain Daylight */</i></td></tr>
+<tr><th id="136">136</th><td>  {<q>"PST"</q>, <var>480</var>},            <i>/* Pacific Standard */</i></td></tr>
+<tr><th id="137">137</th><td>  {<q>"PDT"</q>, <var>480</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},   <i>/* Pacific Daylight */</i></td></tr>
+<tr><th id="138">138</th><td>  {<q>"YST"</q>, <var>540</var>},            <i>/* Yukon Standard */</i></td></tr>
+<tr><th id="139">139</th><td>  {<q>"YDT"</q>, <var>540</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},   <i>/* Yukon Daylight */</i></td></tr>
+<tr><th id="140">140</th><td>  {<q>"HST"</q>, <var>600</var>},            <i>/* Hawaii Standard */</i></td></tr>
+<tr><th id="141">141</th><td>  {<q>"HDT"</q>, <var>600</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},   <i>/* Hawaii Daylight */</i></td></tr>
+<tr><th id="142">142</th><td>  {<q>"CAT"</q>, <var>600</var>},            <i>/* Central Alaska */</i></td></tr>
+<tr><th id="143">143</th><td>  {<q>"AHST"</q>, <var>600</var>},           <i>/* Alaska-Hawaii Standard */</i></td></tr>
+<tr><th id="144">144</th><td>  {<q>"NT"</q>,  <var>660</var>},            <i>/* Nome */</i></td></tr>
+<tr><th id="145">145</th><td>  {<q>"IDLW"</q>, <var>720</var>},           <i>/* International Date Line West */</i></td></tr>
+<tr><th id="146">146</th><td>  {<q>"CET"</q>, -<var>60</var>},            <i>/* Central European */</i></td></tr>
+<tr><th id="147">147</th><td>  {<q>"MET"</q>, -<var>60</var>},            <i>/* Middle European */</i></td></tr>
+<tr><th id="148">148</th><td>  {<q>"MEWT"</q>, -<var>60</var>},           <i>/* Middle European Winter */</i></td></tr>
+<tr><th id="149">149</th><td>  {<q>"MEST"</q>, -<var>60</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},  <i>/* Middle European Summer */</i></td></tr>
+<tr><th id="150">150</th><td>  {<q>"CEST"</q>, -<var>60</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},  <i>/* Central European Summer */</i></td></tr>
+<tr><th id="151">151</th><td>  {<q>"MESZ"</q>, -<var>60</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},  <i>/* Middle European Summer */</i></td></tr>
+<tr><th id="152">152</th><td>  {<q>"FWT"</q>, -<var>60</var>},            <i>/* French Winter */</i></td></tr>
+<tr><th id="153">153</th><td>  {<q>"FST"</q>, -<var>60</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>},   <i>/* French Summer */</i></td></tr>
+<tr><th id="154">154</th><td>  {<q>"EET"</q>, -<var>120</var>},           <i>/* Eastern Europe, USSR Zone 1 */</i></td></tr>
+<tr><th id="155">155</th><td>  {<q>"WAST"</q>, -<var>420</var>},          <i>/* West Australian Standard */</i></td></tr>
+<tr><th id="156">156</th><td>  {<q>"WADT"</q>, -<var>420</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>}, <i>/* West Australian Daylight */</i></td></tr>
+<tr><th id="157">157</th><td>  {<q>"CCT"</q>, -<var>480</var>},           <i>/* China Coast, USSR Zone 7 */</i></td></tr>
+<tr><th id="158">158</th><td>  {<q>"JST"</q>, -<var>540</var>},           <i>/* Japan Standard, USSR Zone 8 */</i></td></tr>
+<tr><th id="159">159</th><td>  {<q>"EAST"</q>, -<var>600</var>},          <i>/* Eastern Australian Standard */</i></td></tr>
+<tr><th id="160">160</th><td>  {<q>"EADT"</q>, -<var>600</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>}, <i>/* Eastern Australian Daylight */</i></td></tr>
+<tr><th id="161">161</th><td>  {<q>"GST"</q>, -<var>600</var>},           <i>/* Guam Standard, USSR Zone 9 */</i></td></tr>
+<tr><th id="162">162</th><td>  {<q>"NZT"</q>, -<var>720</var>},           <i>/* New Zealand */</i></td></tr>
+<tr><th id="163">163</th><td>  {<q>"NZST"</q>, -<var>720</var>},          <i>/* New Zealand Standard */</i></td></tr>
+<tr><th id="164">164</th><td>  {<q>"NZDT"</q>, -<var>720</var> <a class="macro" href="#121" title="-60" data-ref="_M/tDAYZONE">tDAYZONE</a>}, <i>/* New Zealand Daylight */</i></td></tr>
+<tr><th id="165">165</th><td>  {<q>"IDLE"</q>, -<var>720</var>},          <i>/* International Date Line East */</i></td></tr>
+<tr><th id="166">166</th><td>  <i>/* Next up: Military timezone names. RFC822 allowed these, but (as noted in</i></td></tr>
+<tr><th id="167">167</th><td><i>     RFC 1123) had their signs wrong. Here we use the correct signs to match</i></td></tr>
+<tr><th id="168">168</th><td><i>     actual military usage.</i></td></tr>
+<tr><th id="169">169</th><td><i>   */</i></td></tr>
+<tr><th id="170">170</th><td>  {<q>"A"</q>,  <var>1</var> * <var>60</var>},         <i>/* Alpha */</i></td></tr>
+<tr><th id="171">171</th><td>  {<q>"B"</q>,  <var>2</var> * <var>60</var>},         <i>/* Bravo */</i></td></tr>
+<tr><th id="172">172</th><td>  {<q>"C"</q>,  <var>3</var> * <var>60</var>},         <i>/* Charlie */</i></td></tr>
+<tr><th id="173">173</th><td>  {<q>"D"</q>,  <var>4</var> * <var>60</var>},         <i>/* Delta */</i></td></tr>
+<tr><th id="174">174</th><td>  {<q>"E"</q>,  <var>5</var> * <var>60</var>},         <i>/* Echo */</i></td></tr>
+<tr><th id="175">175</th><td>  {<q>"F"</q>,  <var>6</var> * <var>60</var>},         <i>/* Foxtrot */</i></td></tr>
+<tr><th id="176">176</th><td>  {<q>"G"</q>,  <var>7</var> * <var>60</var>},         <i>/* Golf */</i></td></tr>
+<tr><th id="177">177</th><td>  {<q>"H"</q>,  <var>8</var> * <var>60</var>},         <i>/* Hotel */</i></td></tr>
+<tr><th id="178">178</th><td>  {<q>"I"</q>,  <var>9</var> * <var>60</var>},         <i>/* India */</i></td></tr>
+<tr><th id="179">179</th><td>  <i>/* "J", Juliet is not used as a timezone, to indicate the observer's local</i></td></tr>
+<tr><th id="180">180</th><td><i>     time */</i></td></tr>
+<tr><th id="181">181</th><td>  {<q>"K"</q>, <var>10</var> * <var>60</var>},         <i>/* Kilo */</i></td></tr>
+<tr><th id="182">182</th><td>  {<q>"L"</q>, <var>11</var> * <var>60</var>},         <i>/* Lima */</i></td></tr>
+<tr><th id="183">183</th><td>  {<q>"M"</q>, <var>12</var> * <var>60</var>},         <i>/* Mike */</i></td></tr>
+<tr><th id="184">184</th><td>  {<q>"N"</q>,  -<var>1</var> * <var>60</var>},         <i>/* November */</i></td></tr>
+<tr><th id="185">185</th><td>  {<q>"O"</q>,  -<var>2</var> * <var>60</var>},         <i>/* Oscar */</i></td></tr>
+<tr><th id="186">186</th><td>  {<q>"P"</q>,  -<var>3</var> * <var>60</var>},         <i>/* Papa */</i></td></tr>
+<tr><th id="187">187</th><td>  {<q>"Q"</q>,  -<var>4</var> * <var>60</var>},         <i>/* Quebec */</i></td></tr>
+<tr><th id="188">188</th><td>  {<q>"R"</q>,  -<var>5</var> * <var>60</var>},         <i>/* Romeo */</i></td></tr>
+<tr><th id="189">189</th><td>  {<q>"S"</q>,  -<var>6</var> * <var>60</var>},         <i>/* Sierra */</i></td></tr>
+<tr><th id="190">190</th><td>  {<q>"T"</q>,  -<var>7</var> * <var>60</var>},         <i>/* Tango */</i></td></tr>
+<tr><th id="191">191</th><td>  {<q>"U"</q>,  -<var>8</var> * <var>60</var>},         <i>/* Uniform */</i></td></tr>
+<tr><th id="192">192</th><td>  {<q>"V"</q>,  -<var>9</var> * <var>60</var>},         <i>/* Victor */</i></td></tr>
+<tr><th id="193">193</th><td>  {<q>"W"</q>, -<var>10</var> * <var>60</var>},         <i>/* Whiskey */</i></td></tr>
+<tr><th id="194">194</th><td>  {<q>"X"</q>, -<var>11</var> * <var>60</var>},         <i>/* X-ray */</i></td></tr>
+<tr><th id="195">195</th><td>  {<q>"Y"</q>, -<var>12</var> * <var>60</var>},         <i>/* Yankee */</i></td></tr>
+<tr><th id="196">196</th><td>  {<q>"Z"</q>, <var>0</var>},                <i>/* Zulu, zero meridian, a.k.a. UTC */</i></td></tr>
+<tr><th id="197">197</th><td>};</td></tr>
+<tr><th id="198">198</th><td></td></tr>
+<tr><th id="199">199</th><td><i  data-doc="checkday">/* returns:</i></td></tr>
+<tr><th id="200">200</th><td><i  data-doc="checkday">   -1 no day</i></td></tr>
+<tr><th id="201">201</th><td><i  data-doc="checkday">   0 monday - 6 sunday</i></td></tr>
+<tr><th id="202">202</th><td><i  data-doc="checkday">*/</i></td></tr>
+<tr><th id="203">203</th><td></td></tr>
+<tr><th id="204">204</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="checkday" title='checkday' data-type='int checkday(const char * check, size_t len)' data-ref="checkday">checkday</dfn>(<em>const</em> <em>char</em> *<dfn class="local col3 decl" id="3check" title='check' data-type='const char *' data-ref="3check">check</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="4len" title='len' data-type='size_t' data-ref="4len">len</dfn>)</td></tr>
+<tr><th id="205">205</th><td>{</td></tr>
+<tr><th id="206">206</th><td>  <em>int</em> <dfn class="local col5 decl" id="5i" title='i' data-type='int' data-ref="5i">i</dfn>;</td></tr>
+<tr><th id="207">207</th><td>  <em>const</em> <em>char</em> * <em>const</em> *<dfn class="local col6 decl" id="6what" title='what' data-type='const char *const *' data-ref="6what">what</dfn>;</td></tr>
+<tr><th id="208">208</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col7 decl" id="7found" title='found' data-type='_Bool' data-ref="7found">found</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="209">209</th><td>  <b>if</b>(<a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a> &gt; <var>3</var>)</td></tr>
+<tr><th id="210">210</th><td>    <a class="local col6 ref" href="#6what" title='what' data-ref="6what">what</a> = &amp;<a class="tu ref" href="#weekday" title='weekday' data-use='a' data-ref="weekday">weekday</a>[<var>0</var>];</td></tr>
+<tr><th id="211">211</th><td>  <b>else</b></td></tr>
+<tr><th id="212">212</th><td>    <a class="local col6 ref" href="#6what" title='what' data-ref="6what">what</a> = &amp;<a class="ref" href="parsedate.h.html#Curl_wkday" title='Curl_wkday' data-ref="Curl_wkday">Curl_wkday</a>[<var>0</var>];</td></tr>
+<tr><th id="213">213</th><td>  <b>for</b>(<a class="local col5 ref" href="#5i" title='i' data-ref="5i">i</a> = <var>0</var>; <a class="local col5 ref" href="#5i" title='i' data-ref="5i">i</a>&lt;<var>7</var>; <a class="local col5 ref" href="#5i" title='i' data-ref="5i">i</a>++) {</td></tr>
+<tr><th id="214">214</th><td>    <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(check,what[0])" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col3 ref" href="#3check" title='check' data-ref="3check">check</a>, <a class="local col6 ref" href="#6what" title='what' data-ref="6what">what</a>[<var>0</var>])) {</td></tr>
+<tr><th id="215">215</th><td>      <a class="local col7 ref" href="#7found" title='found' data-ref="7found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="216">216</th><td>      <b>break</b>;</td></tr>
+<tr><th id="217">217</th><td>    }</td></tr>
+<tr><th id="218">218</th><td>    <a class="local col6 ref" href="#6what" title='what' data-ref="6what">what</a>++;</td></tr>
+<tr><th id="219">219</th><td>  }</td></tr>
+<tr><th id="220">220</th><td>  <b>return</b> <a class="local col7 ref" href="#7found" title='found' data-ref="7found">found</a>?<a class="local col5 ref" href="#5i" title='i' data-ref="5i">i</a>:-<var>1</var>;</td></tr>
+<tr><th id="221">221</th><td>}</td></tr>
+<tr><th id="222">222</th><td></td></tr>
+<tr><th id="223">223</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="checkmonth" title='checkmonth' data-type='int checkmonth(const char * check)' data-ref="checkmonth">checkmonth</dfn>(<em>const</em> <em>char</em> *<dfn class="local col8 decl" id="8check" title='check' data-type='const char *' data-ref="8check">check</dfn>)</td></tr>
+<tr><th id="224">224</th><td>{</td></tr>
+<tr><th id="225">225</th><td>  <em>int</em> <dfn class="local col9 decl" id="9i" title='i' data-type='int' data-ref="9i">i</dfn>;</td></tr>
+<tr><th id="226">226</th><td>  <em>const</em> <em>char</em> * <em>const</em> *<dfn class="local col0 decl" id="10what" title='what' data-type='const char *const *' data-ref="10what">what</dfn>;</td></tr>
+<tr><th id="227">227</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col1 decl" id="11found" title='found' data-type='_Bool' data-ref="11found">found</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="228">228</th><td></td></tr>
+<tr><th id="229">229</th><td>  <a class="local col0 ref" href="#10what" title='what' data-ref="10what">what</a> = &amp;<a class="ref" href="parsedate.h.html#Curl_month" title='Curl_month' data-ref="Curl_month">Curl_month</a>[<var>0</var>];</td></tr>
+<tr><th id="230">230</th><td>  <b>for</b>(<a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a> = <var>0</var>; <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>&lt;<var>12</var>; <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>++) {</td></tr>
+<tr><th id="231">231</th><td>    <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(check,what[0])" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col8 ref" href="#8check" title='check' data-ref="8check">check</a>, <a class="local col0 ref" href="#10what" title='what' data-ref="10what">what</a>[<var>0</var>])) {</td></tr>
+<tr><th id="232">232</th><td>      <a class="local col1 ref" href="#11found" title='found' data-ref="11found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="233">233</th><td>      <b>break</b>;</td></tr>
+<tr><th id="234">234</th><td>    }</td></tr>
+<tr><th id="235">235</th><td>    <a class="local col0 ref" href="#10what" title='what' data-ref="10what">what</a>++;</td></tr>
+<tr><th id="236">236</th><td>  }</td></tr>
+<tr><th id="237">237</th><td>  <b>return</b> <a class="local col1 ref" href="#11found" title='found' data-ref="11found">found</a>?<a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>:-<var>1</var>; <i>/* return the offset or -1, no real offset is -1 */</i></td></tr>
+<tr><th id="238">238</th><td>}</td></tr>
+<tr><th id="239">239</th><td></td></tr>
+<tr><th id="240">240</th><td><i  data-doc="checktz">/* return the time zone offset between GMT and the input one, in number</i></td></tr>
+<tr><th id="241">241</th><td><i  data-doc="checktz">   of seconds or -1 if the timezone wasn't found/legal */</i></td></tr>
+<tr><th id="242">242</th><td></td></tr>
+<tr><th id="243">243</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="checktz" title='checktz' data-type='int checktz(const char * check)' data-ref="checktz">checktz</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="12check" title='check' data-type='const char *' data-ref="12check">check</dfn>)</td></tr>
+<tr><th id="244">244</th><td>{</td></tr>
+<tr><th id="245">245</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col3 decl" id="13i" title='i' data-type='unsigned int' data-ref="13i">i</dfn>;</td></tr>
+<tr><th id="246">246</th><td>  <em>const</em> <b>struct</b> <a class="type" href="#tzinfo" title='tzinfo' data-ref="tzinfo">tzinfo</a> *<dfn class="local col4 decl" id="14what" title='what' data-type='const struct tzinfo *' data-ref="14what">what</dfn>;</td></tr>
+<tr><th id="247">247</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col5 decl" id="15found" title='found' data-type='_Bool' data-ref="15found">found</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="248">248</th><td></td></tr>
+<tr><th id="249">249</th><td>  <a class="local col4 ref" href="#14what" title='what' data-ref="14what">what</a> = <a class="tu ref" href="#tz" title='tz' data-use='r' data-ref="tz">tz</a>;</td></tr>
+<tr><th id="250">250</th><td>  <b>for</b>(<a class="local col3 ref" href="#13i" title='i' data-ref="13i">i</a> = <var>0</var>; <a class="local col3 ref" href="#13i" title='i' data-ref="13i">i</a>&lt; <b>sizeof</b>(<a class="tu ref" href="#tz" title='tz' data-use='r' data-ref="tz">tz</a>)/<b>sizeof</b>(<a class="tu ref" href="#tz" title='tz' data-use='r' data-ref="tz">tz</a>[<var>0</var>]); <a class="local col3 ref" href="#13i" title='i' data-ref="13i">i</a>++) {</td></tr>
+<tr><th id="251">251</th><td>    <b>if</b>(<a class="macro" href="strcase.h.html#35" title="Curl_strcasecompare(check,what-&gt;name)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col2 ref" href="#12check" title='check' data-ref="12check">check</a>, <a class="local col4 ref" href="#14what" title='what' data-ref="14what">what</a>-&gt;<a class="tu ref" href="#tzinfo::name" title='tzinfo::name' data-use='r' data-ref="tzinfo::name">name</a>)) {</td></tr>
+<tr><th id="252">252</th><td>      <a class="local col5 ref" href="#15found" title='found' data-ref="15found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="253">253</th><td>      <b>break</b>;</td></tr>
+<tr><th id="254">254</th><td>    }</td></tr>
+<tr><th id="255">255</th><td>    <a class="local col4 ref" href="#14what" title='what' data-ref="14what">what</a>++;</td></tr>
+<tr><th id="256">256</th><td>  }</td></tr>
+<tr><th id="257">257</th><td>  <b>return</b> <a class="local col5 ref" href="#15found" title='found' data-ref="15found">found</a>?<a class="local col4 ref" href="#14what" title='what' data-ref="14what">what</a>-&gt;<a class="tu ref" href="#tzinfo::offset" title='tzinfo::offset' data-use='r' data-ref="tzinfo::offset">offset</a>*<var>60</var>:-<var>1</var>;</td></tr>
+<tr><th id="258">258</th><td>}</td></tr>
+<tr><th id="259">259</th><td></td></tr>
+<tr><th id="260">260</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="skip" title='skip' data-type='void skip(const char ** date)' data-ref="skip">skip</dfn>(<em>const</em> <em>char</em> **<dfn class="local col6 decl" id="16date" title='date' data-type='const char **' data-ref="16date">date</dfn>)</td></tr>
+<tr><th id="261">261</th><td>{</td></tr>
+<tr><th id="262">262</th><td>  <i>/* skip everything that aren't letters or digits */</i></td></tr>
+<tr><th id="263">263</th><td>  <b>while</b>(**<a class="local col6 ref" href="#16date" title='date' data-ref="16date">date</a> &amp;&amp; !<a class="macro" href="curl_setup_once.h.html#284" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)**date)))] &amp; (unsigned short int) _ISalnum))" data-ref="_M/ISALNUM">ISALNUM</a>(**<a class="local col6 ref" href="#16date" title='date' data-ref="16date">date</a>))</td></tr>
+<tr><th id="264">264</th><td>    (*<a class="local col6 ref" href="#16date" title='date' data-ref="16date">date</a>)++;</td></tr>
+<tr><th id="265">265</th><td>}</td></tr>
+<tr><th id="266">266</th><td></td></tr>
+<tr><th id="267">267</th><td><b>enum</b> <dfn class="type def" id="assume" title='assume' data-ref="assume">assume</dfn> {</td></tr>
+<tr><th id="268">268</th><td>  <dfn class="enum" id="assume::DATE_MDAY" title='assume::DATE_MDAY' data-ref="assume::DATE_MDAY">DATE_MDAY</dfn>,</td></tr>
+<tr><th id="269">269</th><td>  <dfn class="enum" id="assume::DATE_YEAR" title='assume::DATE_YEAR' data-ref="assume::DATE_YEAR">DATE_YEAR</dfn>,</td></tr>
+<tr><th id="270">270</th><td>  <dfn class="enum" id="assume::DATE_TIME" title='assume::DATE_TIME' data-ref="assume::DATE_TIME">DATE_TIME</dfn></td></tr>
+<tr><th id="271">271</th><td>};</td></tr>
+<tr><th id="272">272</th><td></td></tr>
+<tr><th id="273">273</th><td><i>/* this is a clone of 'struct tm' but with all fields we don't need or use</i></td></tr>
+<tr><th id="274">274</th><td><i>   cut out */</i></td></tr>
+<tr><th id="275">275</th><td><b>struct</b> <dfn class="type def" id="my_tm" title='my_tm' data-ref="my_tm">my_tm</dfn> {</td></tr>
+<tr><th id="276">276</th><td>  <em>int</em> <dfn class="tu decl" id="my_tm::tm_sec" title='my_tm::tm_sec' data-type='int' data-ref="my_tm::tm_sec">tm_sec</dfn>;</td></tr>
+<tr><th id="277">277</th><td>  <em>int</em> <dfn class="tu decl" id="my_tm::tm_min" title='my_tm::tm_min' data-type='int' data-ref="my_tm::tm_min">tm_min</dfn>;</td></tr>
+<tr><th id="278">278</th><td>  <em>int</em> <dfn class="tu decl" id="my_tm::tm_hour" title='my_tm::tm_hour' data-type='int' data-ref="my_tm::tm_hour">tm_hour</dfn>;</td></tr>
+<tr><th id="279">279</th><td>  <em>int</em> <dfn class="tu decl" id="my_tm::tm_mday" title='my_tm::tm_mday' data-type='int' data-ref="my_tm::tm_mday">tm_mday</dfn>;</td></tr>
+<tr><th id="280">280</th><td>  <em>int</em> <dfn class="tu decl" id="my_tm::tm_mon" title='my_tm::tm_mon' data-type='int' data-ref="my_tm::tm_mon">tm_mon</dfn>;</td></tr>
+<tr><th id="281">281</th><td>  <em>int</em> <dfn class="tu decl" id="my_tm::tm_year" title='my_tm::tm_year' data-type='int' data-ref="my_tm::tm_year">tm_year</dfn>;</td></tr>
+<tr><th id="282">282</th><td>};</td></tr>
+<tr><th id="283">283</th><td></td></tr>
+<tr><th id="284">284</th><td><i  data-doc="my_timegm">/* struct tm to time since epoch in GMT time zone.</i></td></tr>
+<tr><th id="285">285</th><td><i  data-doc="my_timegm"> * This is similar to the standard mktime function but for GMT only, and</i></td></tr>
+<tr><th id="286">286</th><td><i  data-doc="my_timegm"> * doesn't suffer from the various bugs and portability problems that</i></td></tr>
+<tr><th id="287">287</th><td><i  data-doc="my_timegm"> * some systems' implementations have.</i></td></tr>
+<tr><th id="288">288</th><td><i  data-doc="my_timegm"> */</i></td></tr>
+<tr><th id="289">289</th><td><em>static</em> <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="tu decl def" id="my_timegm" title='my_timegm' data-type='time_t my_timegm(struct my_tm * tm)' data-ref="my_timegm">my_timegm</dfn>(<b>struct</b> <a class="type" href="#my_tm" title='my_tm' data-ref="my_tm">my_tm</a> *<dfn class="local col7 decl" id="17tm" title='tm' data-type='struct my_tm *' data-ref="17tm">tm</dfn>)</td></tr>
+<tr><th id="290">290</th><td>{</td></tr>
+<tr><th id="291">291</th><td>  <em>static</em> <em>const</em> <em>int</em> <dfn class="local col8 decl" id="18month_days_cumulative" title='month_days_cumulative' data-type='const int [12]' data-ref="18month_days_cumulative">month_days_cumulative</dfn> [<var>12</var>] =</td></tr>
+<tr><th id="292">292</th><td>    { <var>0</var>, <var>31</var>, <var>59</var>, <var>90</var>, <var>120</var>, <var>151</var>, <var>181</var>, <var>212</var>, <var>243</var>, <var>273</var>, <var>304</var>, <var>334</var> };</td></tr>
+<tr><th id="293">293</th><td>  <em>int</em> <dfn class="local col9 decl" id="19month" title='month' data-type='int' data-ref="19month">month</dfn>, <dfn class="local col0 decl" id="20year" title='year' data-type='int' data-ref="20year">year</dfn>, <dfn class="local col1 decl" id="21leap_days" title='leap_days' data-type='int' data-ref="21leap_days">leap_days</dfn>;</td></tr>
+<tr><th id="294">294</th><td></td></tr>
+<tr><th id="295">295</th><td>  <b>if</b>(<a class="local col7 ref" href="#17tm" title='tm' data-ref="17tm">tm</a>-&gt;<a class="tu ref" href="#my_tm::tm_year" title='my_tm::tm_year' data-use='r' data-ref="my_tm::tm_year">tm_year</a> &lt; <var>70</var>)</td></tr>
+<tr><th id="296">296</th><td>    <i>/* we don't support years before 1970 as they will cause this function</i></td></tr>
+<tr><th id="297">297</th><td><i>       to return a negative value */</i></td></tr>
+<tr><th id="298">298</th><td>    <b>return</b> -<var>1</var>;</td></tr>
+<tr><th id="299">299</th><td></td></tr>
+<tr><th id="300">300</th><td>  <a class="local col0 ref" href="#20year" title='year' data-ref="20year">year</a> = <a class="local col7 ref" href="#17tm" title='tm' data-ref="17tm">tm</a>-&gt;<a class="tu ref" href="#my_tm::tm_year" title='my_tm::tm_year' data-use='r' data-ref="my_tm::tm_year">tm_year</a> + <var>1900</var>;</td></tr>
+<tr><th id="301">301</th><td>  <a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a> = <a class="local col7 ref" href="#17tm" title='tm' data-ref="17tm">tm</a>-&gt;<a class="tu ref" href="#my_tm::tm_mon" title='my_tm::tm_mon' data-use='r' data-ref="my_tm::tm_mon">tm_mon</a>;</td></tr>
+<tr><th id="302">302</th><td>  <b>if</b>(<a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a> &lt; <var>0</var>) {</td></tr>
+<tr><th id="303">303</th><td>    <a class="local col0 ref" href="#20year" title='year' data-ref="20year">year</a> += (<var>11</var> - <a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a>) / <var>12</var>;</td></tr>
+<tr><th id="304">304</th><td>    <a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a> = <var>11</var> - (<var>11</var> - <a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a>) % <var>12</var>;</td></tr>
+<tr><th id="305">305</th><td>  }</td></tr>
+<tr><th id="306">306</th><td>  <b>else</b> <b>if</b>(<a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a> &gt;= <var>12</var>) {</td></tr>
+<tr><th id="307">307</th><td>    <a class="local col0 ref" href="#20year" title='year' data-ref="20year">year</a> -= <a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a> / <var>12</var>;</td></tr>
+<tr><th id="308">308</th><td>    <a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a> = <a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a> % <var>12</var>;</td></tr>
+<tr><th id="309">309</th><td>  }</td></tr>
+<tr><th id="310">310</th><td></td></tr>
+<tr><th id="311">311</th><td>  <a class="local col1 ref" href="#21leap_days" title='leap_days' data-ref="21leap_days">leap_days</a> = <a class="local col0 ref" href="#20year" title='year' data-ref="20year">year</a> - (<a class="local col7 ref" href="#17tm" title='tm' data-ref="17tm">tm</a>-&gt;<a class="tu ref" href="#my_tm::tm_mon" title='my_tm::tm_mon' data-use='r' data-ref="my_tm::tm_mon">tm_mon</a> &lt;= <var>1</var>);</td></tr>
+<tr><th id="312">312</th><td>  <a class="local col1 ref" href="#21leap_days" title='leap_days' data-ref="21leap_days">leap_days</a> = ((<a class="local col1 ref" href="#21leap_days" title='leap_days' data-ref="21leap_days">leap_days</a> / <var>4</var>) - (<a class="local col1 ref" href="#21leap_days" title='leap_days' data-ref="21leap_days">leap_days</a> / <var>100</var>) + (<a class="local col1 ref" href="#21leap_days" title='leap_days' data-ref="21leap_days">leap_days</a> / <var>400</var>)</td></tr>
+<tr><th id="313">313</th><td>               - (<var>1969</var> / <var>4</var>) + (<var>1969</var> / <var>100</var>) - (<var>1969</var> / <var>400</var>));</td></tr>
+<tr><th id="314">314</th><td></td></tr>
+<tr><th id="315">315</th><td>  <b>return</b> ((((<a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a>) (<a class="local col0 ref" href="#20year" title='year' data-ref="20year">year</a> - <var>1970</var>) * <var>365</var></td></tr>
+<tr><th id="316">316</th><td>            + <a class="local col1 ref" href="#21leap_days" title='leap_days' data-ref="21leap_days">leap_days</a> + <a class="local col8 ref" href="#18month_days_cumulative" title='month_days_cumulative' data-ref="18month_days_cumulative">month_days_cumulative</a> [<a class="local col9 ref" href="#19month" title='month' data-ref="19month">month</a>] + <a class="local col7 ref" href="#17tm" title='tm' data-ref="17tm">tm</a>-&gt;<a class="tu ref" href="#my_tm::tm_mday" title='my_tm::tm_mday' data-use='r' data-ref="my_tm::tm_mday">tm_mday</a> - <var>1</var>) * <var>24</var></td></tr>
+<tr><th id="317">317</th><td>           + <a class="local col7 ref" href="#17tm" title='tm' data-ref="17tm">tm</a>-&gt;<a class="tu ref" href="#my_tm::tm_hour" title='my_tm::tm_hour' data-use='r' data-ref="my_tm::tm_hour">tm_hour</a>) * <var>60</var> + <a class="local col7 ref" href="#17tm" title='tm' data-ref="17tm">tm</a>-&gt;<a class="tu ref" href="#my_tm::tm_min" title='my_tm::tm_min' data-use='r' data-ref="my_tm::tm_min">tm_min</a>) * <var>60</var> + <a class="local col7 ref" href="#17tm" title='tm' data-ref="17tm">tm</a>-&gt;<a class="tu ref" href="#my_tm::tm_sec" title='my_tm::tm_sec' data-use='r' data-ref="my_tm::tm_sec">tm_sec</a>;</td></tr>
+<tr><th id="318">318</th><td>}</td></tr>
+<tr><th id="319">319</th><td></td></tr>
+<tr><th id="320">320</th><td><i  data-doc="parsedate">/*</i></td></tr>
+<tr><th id="321">321</th><td><i  data-doc="parsedate"> * parsedate()</i></td></tr>
+<tr><th id="322">322</th><td><i  data-doc="parsedate"> *</i></td></tr>
+<tr><th id="323">323</th><td><i  data-doc="parsedate"> * Returns:</i></td></tr>
+<tr><th id="324">324</th><td><i  data-doc="parsedate"> *</i></td></tr>
+<tr><th id="325">325</th><td><i  data-doc="parsedate"> * PARSEDATE_OK     - a fine conversion</i></td></tr>
+<tr><th id="326">326</th><td><i  data-doc="parsedate"> * PARSEDATE_FAIL   - failed to convert</i></td></tr>
+<tr><th id="327">327</th><td><i  data-doc="parsedate"> * PARSEDATE_LATER  - time overflow at the far end of time_t</i></td></tr>
+<tr><th id="328">328</th><td><i  data-doc="parsedate"> * PARSEDATE_SOONER - time underflow at the low end of time_t</i></td></tr>
+<tr><th id="329">329</th><td><i  data-doc="parsedate"> */</i></td></tr>
+<tr><th id="330">330</th><td></td></tr>
+<tr><th id="331">331</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="parsedate" title='parsedate' data-type='int parsedate(const char * date, time_t * output)' data-ref="parsedate">parsedate</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="22date" title='date' data-type='const char *' data-ref="22date">date</dfn>, <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<dfn class="local col3 decl" id="23output" title='output' data-type='time_t *' data-ref="23output">output</dfn>)</td></tr>
+<tr><th id="332">332</th><td>{</td></tr>
+<tr><th id="333">333</th><td>  <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col4 decl" id="24t" title='t' data-type='time_t' data-ref="24t">t</dfn> = <var>0</var>;</td></tr>
+<tr><th id="334">334</th><td>  <em>int</em> <dfn class="local col5 decl" id="25wdaynum" title='wdaynum' data-type='int' data-ref="25wdaynum">wdaynum</dfn> = -<var>1</var>;  <i>/* day of the week number, 0-6 (mon-sun) */</i></td></tr>
+<tr><th id="335">335</th><td>  <em>int</em> <dfn class="local col6 decl" id="26monnum" title='monnum' data-type='int' data-ref="26monnum">monnum</dfn> = -<var>1</var>;   <i>/* month of the year number, 0-11 */</i></td></tr>
+<tr><th id="336">336</th><td>  <em>int</em> <dfn class="local col7 decl" id="27mdaynum" title='mdaynum' data-type='int' data-ref="27mdaynum">mdaynum</dfn> = -<var>1</var>; <i>/* day of month, 1 - 31 */</i></td></tr>
+<tr><th id="337">337</th><td>  <em>int</em> <dfn class="local col8 decl" id="28hournum" title='hournum' data-type='int' data-ref="28hournum">hournum</dfn> = -<var>1</var>;</td></tr>
+<tr><th id="338">338</th><td>  <em>int</em> <dfn class="local col9 decl" id="29minnum" title='minnum' data-type='int' data-ref="29minnum">minnum</dfn> = -<var>1</var>;</td></tr>
+<tr><th id="339">339</th><td>  <em>int</em> <dfn class="local col0 decl" id="30secnum" title='secnum' data-type='int' data-ref="30secnum">secnum</dfn> = -<var>1</var>;</td></tr>
+<tr><th id="340">340</th><td>  <em>int</em> <dfn class="local col1 decl" id="31yearnum" title='yearnum' data-type='int' data-ref="31yearnum">yearnum</dfn> = -<var>1</var>;</td></tr>
+<tr><th id="341">341</th><td>  <em>int</em> <dfn class="local col2 decl" id="32tzoff" title='tzoff' data-type='int' data-ref="32tzoff">tzoff</dfn> = -<var>1</var>;</td></tr>
+<tr><th id="342">342</th><td>  <b>struct</b> <a class="type" href="#my_tm" title='my_tm' data-ref="my_tm">my_tm</a> <dfn class="local col3 decl" id="33tm" title='tm' data-type='struct my_tm' data-ref="33tm">tm</dfn>;</td></tr>
+<tr><th id="343">343</th><td>  <b>enum</b> <a class="type" href="#assume" title='assume' data-ref="assume">assume</a> <dfn class="local col4 decl" id="34dignext" title='dignext' data-type='enum assume' data-ref="34dignext">dignext</dfn> = <a class="enum" href="#assume::DATE_MDAY" title='assume::DATE_MDAY' data-ref="assume::DATE_MDAY">DATE_MDAY</a>;</td></tr>
+<tr><th id="344">344</th><td>  <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="35indate" title='indate' data-type='const char *' data-ref="35indate">indate</dfn> = <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>; <i>/* save the original pointer */</i></td></tr>
+<tr><th id="345">345</th><td>  <em>int</em> <dfn class="local col6 decl" id="36part" title='part' data-type='int' data-ref="36part">part</dfn> = <var>0</var>; <i>/* max 6 parts */</i></td></tr>
+<tr><th id="346">346</th><td></td></tr>
+<tr><th id="347">347</th><td>  <b>while</b>(*<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a> &amp;&amp; (<a class="local col6 ref" href="#36part" title='part' data-ref="36part">part</a> &lt; <var>6</var>)) {</td></tr>
+<tr><th id="348">348</th><td>    <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col7 decl" id="37found" title='found' data-type='_Bool' data-ref="37found">found</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="349">349</th><td></td></tr>
+<tr><th id="350">350</th><td>    <a class="tu ref" href="#skip" title='skip' data-use='c' data-ref="skip">skip</a>(&amp;<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>);</td></tr>
+<tr><th id="351">351</th><td></td></tr>
+<tr><th id="352">352</th><td>    <b>if</b>(<a class="macro" href="curl_setup_once.h.html#287" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)*date)))] &amp; (unsigned short int) _ISalpha))" data-ref="_M/ISALPHA">ISALPHA</a>(*<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>)) {</td></tr>
+<tr><th id="353">353</th><td>      <i>/* a name coming up */</i></td></tr>
+<tr><th id="354">354</th><td>      <em>char</em> <dfn class="local col8 decl" id="38buf" title='buf' data-type='char [32]' data-ref="38buf">buf</dfn>[<var>32</var>]=<q>""</q>;</td></tr>
+<tr><th id="355">355</th><td>      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="39len" title='len' data-type='size_t' data-ref="39len">len</dfn>;</td></tr>
+<tr><th id="356">356</th><td>      <b>if</b>(<a class="ref" href="../../include/stdio.h.html#__isoc99_sscanf" title='sscanf' data-ref="__isoc99_sscanf">sscanf</a>(<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>, <q>"%31[ABCDEFGHIJKLMNOPQRSTUVWXYZ"</q></td></tr>
+<tr><th id="357">357</th><td>                          <q>"abcdefghijklmnopqrstuvwxyz]"</q>, <a class="local col8 ref" href="#38buf" title='buf' data-ref="38buf">buf</a>))</td></tr>
+<tr><th id="358">358</th><td>        <a class="local col9 ref" href="#39len" title='len' data-ref="39len">len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col8 ref" href="#38buf" title='buf' data-ref="38buf">buf</a>);</td></tr>
+<tr><th id="359">359</th><td>      <b>else</b></td></tr>
+<tr><th id="360">360</th><td>        <a class="local col9 ref" href="#39len" title='len' data-ref="39len">len</a> = <var>0</var>;</td></tr>
+<tr><th id="361">361</th><td></td></tr>
+<tr><th id="362">362</th><td>      <b>if</b>(<a class="local col5 ref" href="#25wdaynum" title='wdaynum' data-ref="25wdaynum">wdaynum</a> == -<var>1</var>) {</td></tr>
+<tr><th id="363">363</th><td>        <a class="local col5 ref" href="#25wdaynum" title='wdaynum' data-ref="25wdaynum">wdaynum</a> = <a class="tu ref" href="#checkday" title='checkday' data-use='c' data-ref="checkday">checkday</a>(<a class="local col8 ref" href="#38buf" title='buf' data-ref="38buf">buf</a>, <a class="local col9 ref" href="#39len" title='len' data-ref="39len">len</a>);</td></tr>
+<tr><th id="364">364</th><td>        <b>if</b>(<a class="local col5 ref" href="#25wdaynum" title='wdaynum' data-ref="25wdaynum">wdaynum</a> != -<var>1</var>)</td></tr>
+<tr><th id="365">365</th><td>          <a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="366">366</th><td>      }</td></tr>
+<tr><th id="367">367</th><td>      <b>if</b>(!<a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> &amp;&amp; (<a class="local col6 ref" href="#26monnum" title='monnum' data-ref="26monnum">monnum</a> == -<var>1</var>)) {</td></tr>
+<tr><th id="368">368</th><td>        <a class="local col6 ref" href="#26monnum" title='monnum' data-ref="26monnum">monnum</a> = <a class="tu ref" href="#checkmonth" title='checkmonth' data-use='c' data-ref="checkmonth">checkmonth</a>(<a class="local col8 ref" href="#38buf" title='buf' data-ref="38buf">buf</a>);</td></tr>
+<tr><th id="369">369</th><td>        <b>if</b>(<a class="local col6 ref" href="#26monnum" title='monnum' data-ref="26monnum">monnum</a> != -<var>1</var>)</td></tr>
+<tr><th id="370">370</th><td>          <a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="371">371</th><td>      }</td></tr>
+<tr><th id="372">372</th><td></td></tr>
+<tr><th id="373">373</th><td>      <b>if</b>(!<a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> &amp;&amp; (<a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a> == -<var>1</var>)) {</td></tr>
+<tr><th id="374">374</th><td>        <i>/* this just must be a time zone string */</i></td></tr>
+<tr><th id="375">375</th><td>        <a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a> = <a class="tu ref" href="#checktz" title='checktz' data-use='c' data-ref="checktz">checktz</a>(<a class="local col8 ref" href="#38buf" title='buf' data-ref="38buf">buf</a>);</td></tr>
+<tr><th id="376">376</th><td>        <b>if</b>(<a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a> != -<var>1</var>)</td></tr>
+<tr><th id="377">377</th><td>          <a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="378">378</th><td>      }</td></tr>
+<tr><th id="379">379</th><td></td></tr>
+<tr><th id="380">380</th><td>      <b>if</b>(!<a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a>)</td></tr>
+<tr><th id="381">381</th><td>        <b>return</b> <a class="macro" href="#115" title="-1" data-ref="_M/PARSEDATE_FAIL">PARSEDATE_FAIL</a>; <i>/* bad string */</i></td></tr>
+<tr><th id="382">382</th><td></td></tr>
+<tr><th id="383">383</th><td>      <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a> += <a class="local col9 ref" href="#39len" title='len' data-ref="39len">len</a>;</td></tr>
+<tr><th id="384">384</th><td>    }</td></tr>
+<tr><th id="385">385</th><td>    <b>else</b> <b>if</b>(<a class="macro" href="curl_setup_once.h.html#283" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)*date)))] &amp; (unsigned short int) _ISdigit))" data-ref="_M/ISDIGIT">ISDIGIT</a>(*<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>)) {</td></tr>
+<tr><th id="386">386</th><td>      <i>/* a digit */</i></td></tr>
+<tr><th id="387">387</th><td>      <em>int</em> <dfn class="local col0 decl" id="40val" title='val' data-type='int' data-ref="40val">val</dfn>;</td></tr>
+<tr><th id="388">388</th><td>      <em>char</em> *<dfn class="local col1 decl" id="41end" title='end' data-type='char *' data-ref="41end">end</dfn>;</td></tr>
+<tr><th id="389">389</th><td>      <em>int</em> <dfn class="local col2 decl" id="42len" title='len' data-type='int' data-ref="42len">len</dfn> = <var>0</var>;</td></tr>
+<tr><th id="390">390</th><td>      <b>if</b>((<a class="local col0 ref" href="#30secnum" title='secnum' data-ref="30secnum">secnum</a> == -<var>1</var>) &amp;&amp;</td></tr>
+<tr><th id="391">391</th><td>         (<var>3</var> == <a class="ref" href="../../include/stdio.h.html#__isoc99_sscanf" title='sscanf' data-ref="__isoc99_sscanf">sscanf</a>(<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>, <q>"%02d:%02d:%02d%n"</q>,</td></tr>
+<tr><th id="392">392</th><td>                      &amp;<a class="local col8 ref" href="#28hournum" title='hournum' data-ref="28hournum">hournum</a>, &amp;<a class="local col9 ref" href="#29minnum" title='minnum' data-ref="29minnum">minnum</a>, &amp;<a class="local col0 ref" href="#30secnum" title='secnum' data-ref="30secnum">secnum</a>, &amp;<a class="local col2 ref" href="#42len" title='len' data-ref="42len">len</a>))) {</td></tr>
+<tr><th id="393">393</th><td>        <i>/* time stamp! */</i></td></tr>
+<tr><th id="394">394</th><td>        <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a> += <a class="local col2 ref" href="#42len" title='len' data-ref="42len">len</a>;</td></tr>
+<tr><th id="395">395</th><td>      }</td></tr>
+<tr><th id="396">396</th><td>      <b>else</b> <b>if</b>((<a class="local col0 ref" href="#30secnum" title='secnum' data-ref="30secnum">secnum</a> == -<var>1</var>) &amp;&amp;</td></tr>
+<tr><th id="397">397</th><td>              (<var>2</var> == <a class="ref" href="../../include/stdio.h.html#__isoc99_sscanf" title='sscanf' data-ref="__isoc99_sscanf">sscanf</a>(<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>, <q>"%02d:%02d%n"</q>, &amp;<a class="local col8 ref" href="#28hournum" title='hournum' data-ref="28hournum">hournum</a>, &amp;<a class="local col9 ref" href="#29minnum" title='minnum' data-ref="29minnum">minnum</a>, &amp;<a class="local col2 ref" href="#42len" title='len' data-ref="42len">len</a>))) {</td></tr>
+<tr><th id="398">398</th><td>        <i>/* time stamp without seconds */</i></td></tr>
+<tr><th id="399">399</th><td>        <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a> += <a class="local col2 ref" href="#42len" title='len' data-ref="42len">len</a>;</td></tr>
+<tr><th id="400">400</th><td>        <a class="local col0 ref" href="#30secnum" title='secnum' data-ref="30secnum">secnum</a> = <var>0</var>;</td></tr>
+<tr><th id="401">401</th><td>      }</td></tr>
+<tr><th id="402">402</th><td>      <b>else</b> {</td></tr>
+<tr><th id="403">403</th><td>        <em>long</em> <dfn class="local col3 decl" id="43lval" title='lval' data-type='long' data-ref="43lval">lval</dfn>;</td></tr>
+<tr><th id="404">404</th><td>        <em>int</em> <dfn class="local col4 decl" id="44error" title='error' data-type='int' data-ref="44error">error</dfn>;</td></tr>
+<tr><th id="405">405</th><td>        <em>int</em> <dfn class="local col5 decl" id="45old_errno" title='old_errno' data-type='int' data-ref="45old_errno">old_errno</dfn>;</td></tr>
+<tr><th id="406">406</th><td></td></tr>
+<tr><th id="407">407</th><td>        <a class="local col5 ref" href="#45old_errno" title='old_errno' data-ref="45old_errno">old_errno</a> = <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>;</td></tr>
+<tr><th id="408">408</th><td>        <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <var>0</var>;</td></tr>
+<tr><th id="409">409</th><td>        <a class="local col3 ref" href="#43lval" title='lval' data-ref="43lval">lval</a> = <a class="ref" href="../../include/stdlib.h.html#strtol" title='strtol' data-ref="strtol">strtol</a>(<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>, &amp;<a class="local col1 ref" href="#41end" title='end' data-ref="41end">end</a>, <var>10</var>);</td></tr>
+<tr><th id="410">410</th><td>        <a class="local col4 ref" href="#44error" title='error' data-ref="44error">error</a> = <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>;</td></tr>
+<tr><th id="411">411</th><td>        <b>if</b>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> != <a class="local col5 ref" href="#45old_errno" title='old_errno' data-ref="45old_errno">old_errno</a>)</td></tr>
+<tr><th id="412">412</th><td>          <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <a class="local col5 ref" href="#45old_errno" title='old_errno' data-ref="45old_errno">old_errno</a>;</td></tr>
+<tr><th id="413">413</th><td></td></tr>
+<tr><th id="414">414</th><td>        <b>if</b>(<a class="local col4 ref" href="#44error" title='error' data-ref="44error">error</a>)</td></tr>
+<tr><th id="415">415</th><td>          <b>return</b> <a class="macro" href="#115" title="-1" data-ref="_M/PARSEDATE_FAIL">PARSEDATE_FAIL</a>;</td></tr>
+<tr><th id="416">416</th><td></td></tr>
+<tr><th id="417">417</th><td><u>#<span data-ppcond="417">if</span> <span class="macro" title="9223372036854775807L" data-ref="_M/LONG_MAX">LONG_MAX</span> != <span class="macro" title="2147483647" data-ref="_M/INT_MAX">INT_MAX</span></u></td></tr>
+<tr><th id="418">418</th><td>        <b>if</b>((<a class="local col3 ref" href="#43lval" title='lval' data-ref="43lval">lval</a> &gt; (<em>long</em>)<span class="macro" title="2147483647" data-ref="_M/INT_MAX">INT_MAX</span>) || (<a class="local col3 ref" href="#43lval" title='lval' data-ref="43lval">lval</a> &lt; (<em>long</em>)<span class="macro" title="(-2147483647 -1)" data-ref="_M/INT_MIN">INT_MIN</span>))</td></tr>
+<tr><th id="419">419</th><td>          <b>return</b> <a class="macro" href="#115" title="-1" data-ref="_M/PARSEDATE_FAIL">PARSEDATE_FAIL</a>;</td></tr>
+<tr><th id="420">420</th><td><u>#<span data-ppcond="417">endif</span></u></td></tr>
+<tr><th id="421">421</th><td></td></tr>
+<tr><th id="422">422</th><td>        <a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a> = <a class="ref" href="warnless.h.html#curlx_sltosi" title='curlx_sltosi' data-ref="curlx_sltosi">curlx_sltosi</a>(<a class="local col3 ref" href="#43lval" title='lval' data-ref="43lval">lval</a>);</td></tr>
+<tr><th id="423">423</th><td></td></tr>
+<tr><th id="424">424</th><td>        <b>if</b>((<a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a> == -<var>1</var>) &amp;&amp;</td></tr>
+<tr><th id="425">425</th><td>           ((<a class="local col1 ref" href="#41end" title='end' data-ref="41end">end</a> - <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>) == <var>4</var>) &amp;&amp;</td></tr>
+<tr><th id="426">426</th><td>           (<a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a> &lt;= <var>1400</var>) &amp;&amp;</td></tr>
+<tr><th id="427">427</th><td>           (<a class="local col5 ref" href="#35indate" title='indate' data-ref="35indate">indate</a>&lt; <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>) &amp;&amp;</td></tr>
+<tr><th id="428">428</th><td>           ((<a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>[-<var>1</var>] == <kbd>'+'</kbd> || <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>[-<var>1</var>] == <kbd>'-'</kbd>))) {</td></tr>
+<tr><th id="429">429</th><td>          <i>/* four digits and a value less than or equal to 1400 (to take into</i></td></tr>
+<tr><th id="430">430</th><td><i>             account all sorts of funny time zone diffs) and it is preceded</i></td></tr>
+<tr><th id="431">431</th><td><i>             with a plus or minus. This is a time zone indication.  1400 is</i></td></tr>
+<tr><th id="432">432</th><td><i>             picked since +1300 is frequently used and +1400 is mentioned as</i></td></tr>
+<tr><th id="433">433</th><td><i>             an edge number in the document "ISO C 200X Proposal: Timezone</i></td></tr>
+<tr><th id="434">434</th><td><i>             Functions" at <a href="http://david.tribble.com/text/c0xtimezone.html">http://david.tribble.com/text/c0xtimezone.html</a> If</i></td></tr>
+<tr><th id="435">435</th><td><i>             anyone has a more authoritative source for the exact maximum time</i></td></tr>
+<tr><th id="436">436</th><td><i>             zone offsets, please speak up! */</i></td></tr>
+<tr><th id="437">437</th><td>          <a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="438">438</th><td>          <a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a> = (<a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a>/<var>100</var> * <var>60</var> + <a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a>%<var>100</var>)*<var>60</var>;</td></tr>
+<tr><th id="439">439</th><td></td></tr>
+<tr><th id="440">440</th><td>          <i>/* the + and - prefix indicates the local time compared to GMT,</i></td></tr>
+<tr><th id="441">441</th><td><i>             this we need ther reversed math to get what we want */</i></td></tr>
+<tr><th id="442">442</th><td>          <a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a> = <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>[-<var>1</var>]==<kbd>'+'</kbd>?-<a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a>:<a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a>;</td></tr>
+<tr><th id="443">443</th><td>        }</td></tr>
+<tr><th id="444">444</th><td></td></tr>
+<tr><th id="445">445</th><td>        <b>if</b>(((<a class="local col1 ref" href="#41end" title='end' data-ref="41end">end</a> - <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a>) == <var>8</var>) &amp;&amp;</td></tr>
+<tr><th id="446">446</th><td>           (<a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> == -<var>1</var>) &amp;&amp;</td></tr>
+<tr><th id="447">447</th><td>           (<a class="local col6 ref" href="#26monnum" title='monnum' data-ref="26monnum">monnum</a> == -<var>1</var>) &amp;&amp;</td></tr>
+<tr><th id="448">448</th><td>           (<a class="local col7 ref" href="#27mdaynum" title='mdaynum' data-ref="27mdaynum">mdaynum</a> == -<var>1</var>)) {</td></tr>
+<tr><th id="449">449</th><td>          <i>/* 8 digits, no year, month or day yet. This is YYYYMMDD */</i></td></tr>
+<tr><th id="450">450</th><td>          <a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="451">451</th><td>          <a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> = <a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a>/<var>10000</var>;</td></tr>
+<tr><th id="452">452</th><td>          <a class="local col6 ref" href="#26monnum" title='monnum' data-ref="26monnum">monnum</a> = (<a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a>%<var>10000</var>)/<var>100</var>-<var>1</var>; <i>/* month is 0 - 11 */</i></td></tr>
+<tr><th id="453">453</th><td>          <a class="local col7 ref" href="#27mdaynum" title='mdaynum' data-ref="27mdaynum">mdaynum</a> = <a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a>%<var>100</var>;</td></tr>
+<tr><th id="454">454</th><td>        }</td></tr>
+<tr><th id="455">455</th><td></td></tr>
+<tr><th id="456">456</th><td>        <b>if</b>(!<a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> &amp;&amp; (<a class="local col4 ref" href="#34dignext" title='dignext' data-ref="34dignext">dignext</a> == <a class="enum" href="#assume::DATE_MDAY" title='assume::DATE_MDAY' data-ref="assume::DATE_MDAY">DATE_MDAY</a>) &amp;&amp; (<a class="local col7 ref" href="#27mdaynum" title='mdaynum' data-ref="27mdaynum">mdaynum</a> == -<var>1</var>)) {</td></tr>
+<tr><th id="457">457</th><td>          <b>if</b>((<a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a> &gt; <var>0</var>) &amp;&amp; (<a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a>&lt;<var>32</var>)) {</td></tr>
+<tr><th id="458">458</th><td>            <a class="local col7 ref" href="#27mdaynum" title='mdaynum' data-ref="27mdaynum">mdaynum</a> = <a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a>;</td></tr>
+<tr><th id="459">459</th><td>            <a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="460">460</th><td>          }</td></tr>
+<tr><th id="461">461</th><td>          <a class="local col4 ref" href="#34dignext" title='dignext' data-ref="34dignext">dignext</a> = <a class="enum" href="#assume::DATE_YEAR" title='assume::DATE_YEAR' data-ref="assume::DATE_YEAR">DATE_YEAR</a>;</td></tr>
+<tr><th id="462">462</th><td>        }</td></tr>
+<tr><th id="463">463</th><td></td></tr>
+<tr><th id="464">464</th><td>        <b>if</b>(!<a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> &amp;&amp; (<a class="local col4 ref" href="#34dignext" title='dignext' data-ref="34dignext">dignext</a> == <a class="enum" href="#assume::DATE_YEAR" title='assume::DATE_YEAR' data-ref="assume::DATE_YEAR">DATE_YEAR</a>) &amp;&amp; (<a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> == -<var>1</var>)) {</td></tr>
+<tr><th id="465">465</th><td>          <a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> = <a class="local col0 ref" href="#40val" title='val' data-ref="40val">val</a>;</td></tr>
+<tr><th id="466">466</th><td>          <a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="467">467</th><td>          <b>if</b>(<a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> &lt; <var>1900</var>) {</td></tr>
+<tr><th id="468">468</th><td>            <b>if</b>(<a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> &gt; <var>70</var>)</td></tr>
+<tr><th id="469">469</th><td>              <a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> += <var>1900</var>;</td></tr>
+<tr><th id="470">470</th><td>            <b>else</b></td></tr>
+<tr><th id="471">471</th><td>              <a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> += <var>2000</var>;</td></tr>
+<tr><th id="472">472</th><td>          }</td></tr>
+<tr><th id="473">473</th><td>          <b>if</b>(<a class="local col7 ref" href="#27mdaynum" title='mdaynum' data-ref="27mdaynum">mdaynum</a> == -<var>1</var>)</td></tr>
+<tr><th id="474">474</th><td>            <a class="local col4 ref" href="#34dignext" title='dignext' data-ref="34dignext">dignext</a> = <a class="enum" href="#assume::DATE_MDAY" title='assume::DATE_MDAY' data-ref="assume::DATE_MDAY">DATE_MDAY</a>;</td></tr>
+<tr><th id="475">475</th><td>        }</td></tr>
+<tr><th id="476">476</th><td></td></tr>
+<tr><th id="477">477</th><td>        <b>if</b>(!<a class="local col7 ref" href="#37found" title='found' data-ref="37found">found</a>)</td></tr>
+<tr><th id="478">478</th><td>          <b>return</b> <a class="macro" href="#115" title="-1" data-ref="_M/PARSEDATE_FAIL">PARSEDATE_FAIL</a>;</td></tr>
+<tr><th id="479">479</th><td></td></tr>
+<tr><th id="480">480</th><td>        <a class="local col2 ref" href="#22date" title='date' data-ref="22date">date</a> = <a class="local col1 ref" href="#41end" title='end' data-ref="41end">end</a>;</td></tr>
+<tr><th id="481">481</th><td>      }</td></tr>
+<tr><th id="482">482</th><td>    }</td></tr>
+<tr><th id="483">483</th><td></td></tr>
+<tr><th id="484">484</th><td>    <a class="local col6 ref" href="#36part" title='part' data-ref="36part">part</a>++;</td></tr>
+<tr><th id="485">485</th><td>  }</td></tr>
+<tr><th id="486">486</th><td></td></tr>
+<tr><th id="487">487</th><td>  <b>if</b>(-<var>1</var> == <a class="local col0 ref" href="#30secnum" title='secnum' data-ref="30secnum">secnum</a>)</td></tr>
+<tr><th id="488">488</th><td>    <a class="local col0 ref" href="#30secnum" title='secnum' data-ref="30secnum">secnum</a> = <a class="local col9 ref" href="#29minnum" title='minnum' data-ref="29minnum">minnum</a> = <a class="local col8 ref" href="#28hournum" title='hournum' data-ref="28hournum">hournum</a> = <var>0</var>; <i>/* no time, make it zero */</i></td></tr>
+<tr><th id="489">489</th><td></td></tr>
+<tr><th id="490">490</th><td>  <b>if</b>((-<var>1</var> == <a class="local col7 ref" href="#27mdaynum" title='mdaynum' data-ref="27mdaynum">mdaynum</a>) ||</td></tr>
+<tr><th id="491">491</th><td>     (-<var>1</var> == <a class="local col6 ref" href="#26monnum" title='monnum' data-ref="26monnum">monnum</a>) ||</td></tr>
+<tr><th id="492">492</th><td>     (-<var>1</var> == <a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a>))</td></tr>
+<tr><th id="493">493</th><td>    <i>/* lacks vital info, fail */</i></td></tr>
+<tr><th id="494">494</th><td>    <b>return</b> <a class="macro" href="#115" title="-1" data-ref="_M/PARSEDATE_FAIL">PARSEDATE_FAIL</a>;</td></tr>
+<tr><th id="495">495</th><td></td></tr>
+<tr><th id="496">496</th><td><u>#<span data-ppcond="496">if</span> <a class="macro" href="curl_config.h.html#898" title="8" data-ref="_M/SIZEOF_TIME_T">SIZEOF_TIME_T</a> &lt; 5</u></td></tr>
+<tr><th id="497">497</th><td>  <i>/* 32 bit time_t can only hold dates to the beginning of 2038 */</i></td></tr>
+<tr><th id="498">498</th><td>  <b>if</b>(yearnum &gt; <var>2037</var>) {</td></tr>
+<tr><th id="499">499</th><td>    *output = <var>0x7fffffff</var>;</td></tr>
+<tr><th id="500">500</th><td>    <b>return</b> PARSEDATE_LATER;</td></tr>
+<tr><th id="501">501</th><td>  }</td></tr>
+<tr><th id="502">502</th><td><u>#<span data-ppcond="496">endif</span></u></td></tr>
+<tr><th id="503">503</th><td></td></tr>
+<tr><th id="504">504</th><td>  <b>if</b>(<a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> &lt; <var>1970</var>) {</td></tr>
+<tr><th id="505">505</th><td>    *<a class="local col3 ref" href="#23output" title='output' data-ref="23output">output</a> = <var>0</var>;</td></tr>
+<tr><th id="506">506</th><td>    <b>return</b> <a class="macro" href="#117" title="2" data-ref="_M/PARSEDATE_SOONER">PARSEDATE_SOONER</a>;</td></tr>
+<tr><th id="507">507</th><td>  }</td></tr>
+<tr><th id="508">508</th><td></td></tr>
+<tr><th id="509">509</th><td>  <b>if</b>((<a class="local col7 ref" href="#27mdaynum" title='mdaynum' data-ref="27mdaynum">mdaynum</a> &gt; <var>31</var>) || (<a class="local col6 ref" href="#26monnum" title='monnum' data-ref="26monnum">monnum</a> &gt; <var>11</var>) ||</td></tr>
+<tr><th id="510">510</th><td>     (<a class="local col8 ref" href="#28hournum" title='hournum' data-ref="28hournum">hournum</a> &gt; <var>23</var>) || (<a class="local col9 ref" href="#29minnum" title='minnum' data-ref="29minnum">minnum</a> &gt; <var>59</var>) || (<a class="local col0 ref" href="#30secnum" title='secnum' data-ref="30secnum">secnum</a> &gt; <var>60</var>))</td></tr>
+<tr><th id="511">511</th><td>    <b>return</b> <a class="macro" href="#115" title="-1" data-ref="_M/PARSEDATE_FAIL">PARSEDATE_FAIL</a>; <i>/* clearly an illegal date */</i></td></tr>
+<tr><th id="512">512</th><td></td></tr>
+<tr><th id="513">513</th><td>  <a class="local col3 ref" href="#33tm" title='tm' data-ref="33tm">tm</a>.<a class="tu ref" href="#my_tm::tm_sec" title='my_tm::tm_sec' data-use='w' data-ref="my_tm::tm_sec">tm_sec</a> = <a class="local col0 ref" href="#30secnum" title='secnum' data-ref="30secnum">secnum</a>;</td></tr>
+<tr><th id="514">514</th><td>  <a class="local col3 ref" href="#33tm" title='tm' data-ref="33tm">tm</a>.<a class="tu ref" href="#my_tm::tm_min" title='my_tm::tm_min' data-use='w' data-ref="my_tm::tm_min">tm_min</a> = <a class="local col9 ref" href="#29minnum" title='minnum' data-ref="29minnum">minnum</a>;</td></tr>
+<tr><th id="515">515</th><td>  <a class="local col3 ref" href="#33tm" title='tm' data-ref="33tm">tm</a>.<a class="tu ref" href="#my_tm::tm_hour" title='my_tm::tm_hour' data-use='w' data-ref="my_tm::tm_hour">tm_hour</a> = <a class="local col8 ref" href="#28hournum" title='hournum' data-ref="28hournum">hournum</a>;</td></tr>
+<tr><th id="516">516</th><td>  <a class="local col3 ref" href="#33tm" title='tm' data-ref="33tm">tm</a>.<a class="tu ref" href="#my_tm::tm_mday" title='my_tm::tm_mday' data-use='w' data-ref="my_tm::tm_mday">tm_mday</a> = <a class="local col7 ref" href="#27mdaynum" title='mdaynum' data-ref="27mdaynum">mdaynum</a>;</td></tr>
+<tr><th id="517">517</th><td>  <a class="local col3 ref" href="#33tm" title='tm' data-ref="33tm">tm</a>.<a class="tu ref" href="#my_tm::tm_mon" title='my_tm::tm_mon' data-use='w' data-ref="my_tm::tm_mon">tm_mon</a> = <a class="local col6 ref" href="#26monnum" title='monnum' data-ref="26monnum">monnum</a>;</td></tr>
+<tr><th id="518">518</th><td>  <a class="local col3 ref" href="#33tm" title='tm' data-ref="33tm">tm</a>.<a class="tu ref" href="#my_tm::tm_year" title='my_tm::tm_year' data-use='w' data-ref="my_tm::tm_year">tm_year</a> = <a class="local col1 ref" href="#31yearnum" title='yearnum' data-ref="31yearnum">yearnum</a> - <var>1900</var>;</td></tr>
+<tr><th id="519">519</th><td></td></tr>
+<tr><th id="520">520</th><td>  <i>/* my_timegm() returns a time_t. time_t is often 32 bits, even on many</i></td></tr>
+<tr><th id="521">521</th><td><i>     architectures that feature 64 bit 'long'.</i></td></tr>
+<tr><th id="522">522</th><td><i></i></td></tr>
+<tr><th id="523">523</th><td><i>     Some systems have 64 bit time_t and deal with years beyond 2038. However,</i></td></tr>
+<tr><th id="524">524</th><td><i>     even on some of the systems with 64 bit time_t mktime() returns -1 for</i></td></tr>
+<tr><th id="525">525</th><td><i>     dates beyond 03:14:07 UTC, January 19, 2038. (Such as AIX 5100-06)</i></td></tr>
+<tr><th id="526">526</th><td><i>  */</i></td></tr>
+<tr><th id="527">527</th><td>  <a class="local col4 ref" href="#24t" title='t' data-ref="24t">t</a> = <a class="tu ref" href="#my_timegm" title='my_timegm' data-use='c' data-ref="my_timegm">my_timegm</a>(&amp;<a class="local col3 ref" href="#33tm" title='tm' data-ref="33tm">tm</a>);</td></tr>
+<tr><th id="528">528</th><td></td></tr>
+<tr><th id="529">529</th><td>  <i>/* time zone adjust (cast t to int to compare to negative one) */</i></td></tr>
+<tr><th id="530">530</th><td>  <b>if</b>(-<var>1</var> != (<em>int</em>)<a class="local col4 ref" href="#24t" title='t' data-ref="24t">t</a>) {</td></tr>
+<tr><th id="531">531</th><td></td></tr>
+<tr><th id="532">532</th><td>    <i>/* Add the time zone diff between local time zone and GMT. */</i></td></tr>
+<tr><th id="533">533</th><td>    <em>long</em> <dfn class="local col6 decl" id="46delta" title='delta' data-type='long' data-ref="46delta">delta</dfn> = (<em>long</em>)(<a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a>!=-<var>1</var>?<a class="local col2 ref" href="#32tzoff" title='tzoff' data-ref="32tzoff">tzoff</a>:<var>0</var>);</td></tr>
+<tr><th id="534">534</th><td></td></tr>
+<tr><th id="535">535</th><td>    <b>if</b>((<a class="local col6 ref" href="#46delta" title='delta' data-ref="46delta">delta</a>&gt;<var>0</var>) &amp;&amp; (<a class="local col4 ref" href="#24t" title='t' data-ref="24t">t</a> &gt; <span class="macro" title="9223372036854775807L" data-ref="_M/LONG_MAX">LONG_MAX</span> - <a class="local col6 ref" href="#46delta" title='delta' data-ref="46delta">delta</a>)) {</td></tr>
+<tr><th id="536">536</th><td>      *<a class="local col3 ref" href="#23output" title='output' data-ref="23output">output</a> = <var>0x7fffffff</var>;</td></tr>
+<tr><th id="537">537</th><td>      <b>return</b> <a class="macro" href="#116" title="1" data-ref="_M/PARSEDATE_LATER">PARSEDATE_LATER</a>; <i>/* time_t overflow */</i></td></tr>
+<tr><th id="538">538</th><td>    }</td></tr>
+<tr><th id="539">539</th><td></td></tr>
+<tr><th id="540">540</th><td>    <a class="local col4 ref" href="#24t" title='t' data-ref="24t">t</a> += <a class="local col6 ref" href="#46delta" title='delta' data-ref="46delta">delta</a>;</td></tr>
+<tr><th id="541">541</th><td>  }</td></tr>
+<tr><th id="542">542</th><td></td></tr>
+<tr><th id="543">543</th><td>  *<a class="local col3 ref" href="#23output" title='output' data-ref="23output">output</a> = <a class="local col4 ref" href="#24t" title='t' data-ref="24t">t</a>;</td></tr>
+<tr><th id="544">544</th><td></td></tr>
+<tr><th id="545">545</th><td>  <b>return</b> <a class="macro" href="#114" title="0" data-ref="_M/PARSEDATE_OK">PARSEDATE_OK</a>;</td></tr>
+<tr><th id="546">546</th><td>}</td></tr>
+<tr><th id="547">547</th><td></td></tr>
+<tr><th id="548">548</th><td><a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="decl def" id="curl_getdate" title='curl_getdate' data-ref="curl_getdate">curl_getdate</dfn>(<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="47p" title='p' data-type='const char *' data-ref="47p">p</dfn>, <em>const</em> <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<dfn class="local col8 decl" id="48now" title='now' data-type='const time_t *' data-ref="48now">now</dfn>)</td></tr>
+<tr><th id="549">549</th><td>{</td></tr>
+<tr><th id="550">550</th><td>  <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col9 decl" id="49parsed" title='parsed' data-type='time_t' data-ref="49parsed">parsed</dfn> = -<var>1</var>;</td></tr>
+<tr><th id="551">551</th><td>  <em>int</em> <dfn class="local col0 decl" id="50rc" title='rc' data-type='int' data-ref="50rc">rc</dfn> = <a class="tu ref" href="#parsedate" title='parsedate' data-use='c' data-ref="parsedate">parsedate</a>(<a class="local col7 ref" href="#47p" title='p' data-ref="47p">p</a>, &amp;<a class="local col9 ref" href="#49parsed" title='parsed' data-ref="49parsed">parsed</a>);</td></tr>
+<tr><th id="552">552</th><td>  (<em>void</em>)<a class="local col8 ref" href="#48now" title='now' data-ref="48now">now</a>; <i>/* legacy argument from the past that we ignore */</i></td></tr>
+<tr><th id="553">553</th><td></td></tr>
+<tr><th id="554">554</th><td>  <b>switch</b>(<a class="local col0 ref" href="#50rc" title='rc' data-ref="50rc">rc</a>) {</td></tr>
+<tr><th id="555">555</th><td>  <b>case</b> <a class="macro" href="#114" title="0" data-ref="_M/PARSEDATE_OK">PARSEDATE_OK</a>:</td></tr>
+<tr><th id="556">556</th><td>  <b>case</b> <a class="macro" href="#116" title="1" data-ref="_M/PARSEDATE_LATER">PARSEDATE_LATER</a>:</td></tr>
+<tr><th id="557">557</th><td>  <b>case</b> <a class="macro" href="#117" title="2" data-ref="_M/PARSEDATE_SOONER">PARSEDATE_SOONER</a>:</td></tr>
+<tr><th id="558">558</th><td>    <b>return</b> <a class="local col9 ref" href="#49parsed" title='parsed' data-ref="49parsed">parsed</a>;</td></tr>
+<tr><th id="559">559</th><td>  }</td></tr>
+<tr><th id="560">560</th><td>  <i>/* everything else is fail */</i></td></tr>
+<tr><th id="561">561</th><td>  <b>return</b> -<var>1</var>;</td></tr>
+<tr><th id="562">562</th><td>}</td></tr>
+<tr><th id="563">563</th><td></td></tr>
+<tr><th id="564">564</th><td><i>/*</i></td></tr>
+<tr><th id="565">565</th><td><i> * Curl_gmtime() is a gmtime() replacement for portability. Do not use the</i></td></tr>
+<tr><th id="566">566</th><td><i> * gmtime_r() or gmtime() functions anywhere else but here.</i></td></tr>
+<tr><th id="567">567</th><td><i> *</i></td></tr>
+<tr><th id="568">568</th><td><i> */</i></td></tr>
+<tr><th id="569">569</th><td></td></tr>
+<tr><th id="570">570</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_gmtime" title='Curl_gmtime' data-ref="Curl_gmtime">Curl_gmtime</dfn>(<a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col1 decl" id="51intime" title='intime' data-type='time_t' data-ref="51intime">intime</dfn>, <b>struct</b> <a class="type" href="../../include/time.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col2 decl" id="52store" title='store' data-type='struct tm *' data-ref="52store">store</dfn>)</td></tr>
+<tr><th id="571">571</th><td>{</td></tr>
+<tr><th id="572">572</th><td>  <em>const</em> <b>struct</b> <a class="type" href="../../include/time.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col3 decl" id="53tm" title='tm' data-type='const struct tm *' data-ref="53tm">tm</dfn>;</td></tr>
+<tr><th id="573">573</th><td><u>#<span data-ppcond="573">ifdef</span> <a class="macro" href="curl_config.h.html#251" data-ref="_M/HAVE_GMTIME_R">HAVE_GMTIME_R</a></u></td></tr>
+<tr><th id="574">574</th><td>  <i>/* thread-safe version */</i></td></tr>
+<tr><th id="575">575</th><td>  <a class="local col3 ref" href="#53tm" title='tm' data-ref="53tm">tm</a> = (<b>struct</b> <a class="type" href="../../include/time.h.html#tm" title='tm' data-ref="tm">tm</a> *)<a class="ref" href="../../include/time.h.html#gmtime_r" title='gmtime_r' data-ref="gmtime_r">gmtime_r</a>(&amp;<a class="local col1 ref" href="#51intime" title='intime' data-ref="51intime">intime</a>, <a class="local col2 ref" href="#52store" title='store' data-ref="52store">store</a>);</td></tr>
+<tr><th id="576">576</th><td><u>#<span data-ppcond="573">else</span></u></td></tr>
+<tr><th id="577">577</th><td>  tm = gmtime(&amp;intime);</td></tr>
+<tr><th id="578">578</th><td>  <b>if</b>(tm)</td></tr>
+<tr><th id="579">579</th><td>    *store = *tm; <i>/* copy the pointed struct to the local copy */</i></td></tr>
+<tr><th id="580">580</th><td><u>#<span data-ppcond="573">endif</span></u></td></tr>
+<tr><th id="581">581</th><td></td></tr>
+<tr><th id="582">582</th><td>  <b>if</b>(!<a class="local col3 ref" href="#53tm" title='tm' data-ref="53tm">tm</a>)</td></tr>
+<tr><th id="583">583</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_BAD_FUNCTION_ARGUMENT" title='CURLE_BAD_FUNCTION_ARGUMENT' data-ref="CURLE_BAD_FUNCTION_ARGUMENT">CURLE_BAD_FUNCTION_ARGUMENT</a>;</td></tr>
+<tr><th id="584">584</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="585">585</th><td>}</td></tr>
+<tr><th id="586">586</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

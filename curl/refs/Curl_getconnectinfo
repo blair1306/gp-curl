@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/connect.h' l='52' type='curl_socket_t Curl_getconnectinfo(struct Curl_easy * data, struct connectdata ** connp)'/>
+<doc f='codebrowser/lib/connect.h' l='46'>/*
+ * Used to extract socket and connectdata struct for the most recent
+ * transfer on the given Curl_easy.
+ *
+ * The returned socket will be CURL_SOCKET_BAD in case of failure!
+ */</doc>
+<def f='codebrowser/lib/connect.c' l='1210' ll='1246' type='curl_socket_t Curl_getconnectinfo(struct Curl_easy * data, struct connectdata ** connp)'/>
+<doc f='codebrowser/lib/connect.c' l='1204'>/*
+ * Used to extract socket and connectdata struct for the most recent
+ * transfer on the given Curl_easy.
+ *
+ * The returned socket will be CURL_SOCKET_BAD in case of failure!
+ */</doc>
+<use f='codebrowser/lib/easy.c' l='1074' u='c' c='easy_connection'/>
+<use f='codebrowser/lib/getinfo.c' l='191' u='c' c='getinfo_long'/>
+<use f='codebrowser/lib/getinfo.c' l='396' u='c' c='getinfo_socket'/>

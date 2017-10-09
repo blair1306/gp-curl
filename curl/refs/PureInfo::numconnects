@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1065' type='long'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/urldata.h' l='1065'>/* how many new connection did libcurl created */</doc>
+<use f='codebrowser/lib/connect.c' l='1183' u='w' c='Curl_connecthost'/>
+<use f='codebrowser/lib/getinfo.c' l='69' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='188' u='r' c='getinfo_long'/>

@@ -1,0 +1,3 @@
+<dec f='codebrowser/include/curl/curl.h' l='2372' type='0'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1301' u='r' c='curl_global_sslset'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1307' u='r' c='curl_global_sslset'/>

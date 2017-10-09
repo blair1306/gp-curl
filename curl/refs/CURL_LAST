@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='580' type='93'/>
+<doc f='codebrowser/include/curl/curl.h' l='580'>/* never use! */</doc>
+<use f='codebrowser/lib/strerror.c' l='325' c='curl_easy_strerror'/>
+<use f='codebrowser/tests/libtest/lib1538.c' l='40' u='r' c='test'/>

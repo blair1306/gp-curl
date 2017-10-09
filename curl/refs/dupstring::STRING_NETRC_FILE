@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1414' type='20'/>
+<doc f='codebrowser/lib/urldata.h' l='1414'>/* if not NULL, use this instead of trying to find
+                             $HOME/.netrc */</doc>
+<use f='codebrowser/lib/url.c' l='922' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='5882' u='r' c='override_login'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='531'/>
+<doc f='codebrowser/lib/curl_config.h' l='530'>/* Define to 1 if you have the `setlocale&apos; function. */</doc>
+<use f='codebrowser/src/tool_operate.c' l='2001' u='a'/>
+<use f='codebrowser/tests/libtest/first.c' l='152' u='a'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='1668' u='a'/>

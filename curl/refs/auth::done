@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/urldata.h' l='1185' type='_Bool'/>
+<offset>192</offset>
+<use f='codebrowser/lib/http.c' l='523' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='534' u='w' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='629' u='w' c='output_auth_headers'/>
+<use f='codebrowser/lib/http.c' l='637' u='r' c='output_auth_headers'/>
+<use f='codebrowser/lib/http.c' l='680' u='w' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='681' u='w' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='711' u='w' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='723' u='w' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http_digest.c' l='126' u='w' c='Curl_output_digest'/>
+<use f='codebrowser/lib/http_digest.c' l='169' u='w' c='Curl_output_digest'/>
+<use f='codebrowser/lib/http_ntlm.c' l='154' u='w' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='213' u='w' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='224' u='w' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_proxy.c' l='635' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/url.c' l='6874' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6877' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6881' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6884' u='w' c='create_conn'/>

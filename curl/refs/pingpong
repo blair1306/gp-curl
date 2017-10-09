@@ -1,0 +1,21 @@
+<def f='codebrowser/lib/pingpong.h' l='48' ll='76'/>
+<size>112</size>
+<doc f='codebrowser/lib/pingpong.h' l='42'>/*
+ * &apos;pingpong&apos; is the generic struct used for protocols doing server&lt;-&gt;client
+ * conversations in a back-and-forth style such as FTP, IMAP, POP3, SMTP etc.
+ *
+ * It holds response cache and non-blocking sending data.
+ */</doc>
+<mbr r='pingpong::cache' o='0' t='char *'/>
+<mbr r='pingpong::cache_size' o='64' t='size_t'/>
+<mbr r='pingpong::nread_resp' o='128' t='size_t'/>
+<mbr r='pingpong::linestart_resp' o='192' t='char *'/>
+<mbr r='pingpong::pending_resp' o='256' t='_Bool'/>
+<mbr r='pingpong::sendthis' o='320' t='char *'/>
+<mbr r='pingpong::sendleft' o='384' t='size_t'/>
+<mbr r='pingpong::sendsize' o='448' t='size_t'/>
+<mbr r='pingpong::response' o='512' t='struct curltime'/>
+<mbr r='pingpong::response_time' o='640' t='long'/>
+<mbr r='pingpong::conn' o='704' t='struct connectdata *'/>
+<mbr r='pingpong::statemach_act' o='768' t='CURLcode (*)(struct connectdata *)'/>
+<mbr r='pingpong::endofresp' o='832' t='_Bool (*)(struct connectdata *, char *, size_t, int *)'/>

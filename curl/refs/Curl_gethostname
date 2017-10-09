@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/curl_gethostname.h' l='29' type='int Curl_gethostname(char * name, size_t namelen)'/>
+<def f='codebrowser/lib/curl_gethostname.c' l='51' ll='100' type='int Curl_gethostname(char * name, size_t namelen)'/>
+<doc f='codebrowser/lib/curl_gethostname.c' l='27'>/*
+ * Curl_gethostname() is a wrapper around gethostname() which allows
+ * overriding the host name that the function would normally return.
+ * This capability is used by the test suite to verify exact matching
+ * of NTLM authentication, which exercises libcurl&apos;s MD4 and DES code
+ * as well as by the SMTP module when a hostname is not provided.
+ *
+ * For libcurl debug enabled builds host name overriding takes place
+ * when environment variable CURL_GETHOSTNAME is set, using the value
+ * held by the variable to override returned host name.
+ *
+ * Note: The function always returns the un-qualified hostname rather
+ * than being provider dependent.
+ *
+ * For libcurl shared library release builds the test suite preloads
+ * another shared library named libhostname using the LD_PRELOAD
+ * mechanism which intercepts, and might override, the gethostname()
+ * function call. In this case a given platform must support the
+ * LD_PRELOAD mechanism and additionally have environment variable
+ * CURL_GETHOSTNAME set in order to override the returned host name.
+ *
+ * For libcurl static library release builds no overriding takes place.
+ */</doc>
+<doc f='codebrowser/lib/curl_gethostname.h' l='28'>/* This returns the local machine&apos;s un-qualified hostname */</doc>
+<use f='codebrowser/lib/smtp.c' l='1503' u='c' c='smtp_parse_url_path'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='551' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/tests/libtest/chkhostname.c' l='36' u='c' c='main'/>

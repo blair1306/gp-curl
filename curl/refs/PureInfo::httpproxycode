@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1053' type='int'/>
+<offset>32</offset>
+<doc f='codebrowser/lib/urldata.h' l='1053'>/* response code from proxy when received separate */</doc>
+<use f='codebrowser/lib/getinfo.c' l='60' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='156' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/http_proxy.c' l='556' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='570' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='601' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='638' u='r' c='CONNECT'/>

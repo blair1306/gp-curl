@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/multi.h' l='305'/>
+<doc f='codebrowser/include/curl/multi.h' l='302'>/* This macro below was added in 7.16.3 to push users who recompile to use
+   the new curl_multi_socket_action() instead of the old curl_multi_socket()
+*/</doc>
+<use f='codebrowser/lib/multi.c' l='2748' u='w'/>

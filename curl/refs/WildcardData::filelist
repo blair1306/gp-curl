@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/wildcard.h' l='50' type='struct curl_llist'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/wildcard.h' l='50'>/* llist with struct Curl_fileinfo */</doc>
+<use f='codebrowser/lib/ftp.c' l='3862' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3873' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3888' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3913' u='a' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3913' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3915' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3926' u='a' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3926' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3927' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftplistparser.c' l='283' u='a' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/wildcard.c' l='35' u='a' c='Curl_wildcard_init'/>
+<use f='codebrowser/lib/wildcard.c' l='53' u='a' c='Curl_wildcard_dtor'/>

@@ -1,0 +1,9 @@
+<dec f='codebrowser/include/curl/curl.h' l='2071' type='CURLcode curl_mime_data_cb(curl_mimepart * part, curl_off_t datasize, curl_read_callback readfunc, curl_seek_callback seekfunc, curl_free_callback freefunc, void * arg)'/>
+<use f='codebrowser/lib/formdata.c' l='932' u='c' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='948' u='c' c='Curl_getformdata'/>
+<def f='codebrowser/lib/mime.c' l='1389' ll='1409' type='CURLcode curl_mime_data_cb(curl_mimepart * part, curl_off_t datasize, curl_read_callback readfunc, curl_seek_callback seekfunc, curl_free_callback freefunc, void * arg)'/>
+<doc f='codebrowser/lib/mime.c' l='1388'>/* Set mime part content from callback. */</doc>
+<use f='codebrowser/src/tool_formparse.c' l='383' u='c' c='file_or_stdin'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='118' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='127' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='156' u='c' c='once'/>

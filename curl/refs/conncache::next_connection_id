@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/conncache.h' l='29' type='long'/>
+<offset>448</offset>
+<use f='codebrowser/lib/conncache.c' l='225' u='w' c='Curl_conncache_add_conn'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='1581' type='time_t'/>
+<offset>7808</offset>
+<doc f='codebrowser/lib/urldata.h' l='1581'>/* what time to compare with */</doc>
+<use f='codebrowser/lib/ftp.c' l='2111' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2115' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2124' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/http.c' l='1697' u='r' c='Curl_add_timecondition'/>
+<use f='codebrowser/lib/transfer.c' l='395' u='r' c='Curl_meets_timecondition'/>
+<use f='codebrowser/lib/transfer.c' l='401' u='r' c='Curl_meets_timecondition'/>
+<use f='codebrowser/lib/transfer.c' l='409' u='r' c='Curl_meets_timecondition'/>
+<use f='codebrowser/lib/url.c' l='946' u='w' c='Curl_setopt'/>

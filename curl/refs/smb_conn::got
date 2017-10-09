@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/smb.h' l='44' type='size_t'/>
+<offset>576</offset>
+<use f='codebrowser/lib/smb.c' l='301' u='r' c='smb_recv_message'/>
+<use f='codebrowser/lib/smb.c' l='304' u='r' c='smb_recv_message'/>
+<use f='codebrowser/lib/smb.c' l='311' u='w' c='smb_recv_message'/>
+<use f='codebrowser/lib/smb.c' l='314' u='r' c='smb_recv_message'/>
+<use f='codebrowser/lib/smb.c' l='320' u='r' c='smb_recv_message'/>
+<use f='codebrowser/lib/smb.c' l='345' u='w' c='smb_pop_message'/>
+<use f='codebrowser/lib/smb.c' l='683' u='r' c='smb_connection_state'/>
+<use f='codebrowser/lib/smb.c' l='783' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='807' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='817' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='838' u='r' c='smb_request_state'/>

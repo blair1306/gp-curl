@@ -1,0 +1,10 @@
+<def f='codebrowser/lib/ftplistparser.c' l='148' ll='179'/>
+<size>88</size>
+<doc f='codebrowser/lib/ftplistparser.c' l='147'>/* This struct is used in wildcard downloading - for parsing LIST response */</doc>
+<mbr r='ftp_parselist_data::os_type' o='0' t='enum (anonymous enum at /home/jon/workspace/curl/lib/ftplistparser.c:149:3)'/>
+<mbr r='ftp_parselist_data::state' o='32' t='union (anonymous union at /home/jon/workspace/curl/lib/ftplistparser.c:155:3)'/>
+<mbr r='ftp_parselist_data::error' o='96' t='CURLcode'/>
+<mbr r='ftp_parselist_data::file_data' o='128' t='struct fileinfo *'/>
+<mbr r='ftp_parselist_data::item_length' o='192' t='unsigned int'/>
+<mbr r='ftp_parselist_data::item_offset' o='256' t='size_t'/>
+<mbr r='ftp_parselist_data::offsets' o='320' t='struct (anonymous struct at /home/jon/workspace/curl/lib/ftplistparser.c:171:3)'/>

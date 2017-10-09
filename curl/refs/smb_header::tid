@@ -1,0 +1,2 @@
+<use f='codebrowser/lib/smb.c' l='363' u='w' c='smb_format_message'/>
+<use f='codebrowser/lib/smb.c' l='778' u='r' c='smb_request_state'/>

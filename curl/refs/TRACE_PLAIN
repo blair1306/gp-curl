@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='126' type='3'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='96' u='r' c='tool_debug_cb'/>
+<doc f='codebrowser/src/tool_sdecls.h' l='126'>/* -v/--verbose type */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1962' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1965' u='r' c='getparameter'/>

@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/hostip.h' l='146' type='Curl_addrinfo * Curl_ipv4_resolve_r(const char * hostname, int port)'/>
+<doc f='codebrowser/lib/hostip.h' l='145'>/* IPv4 threadsafe resolve function used for synch and asynch builds */</doc>

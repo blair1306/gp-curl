@@ -1,0 +1,12 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='78' type='char *'/>
+<offset>2048</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='78'>/* dot notation: 1.1.1.1;2.2.2.2 */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='80' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='80' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='569' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='569' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='569' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='569' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='569' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1254' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1255' u='r' c='operate_do'/>

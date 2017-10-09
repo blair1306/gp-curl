@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2216' type='void SSL_load_error_strings()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='940' u='c' c='Curl_ossl_init'/>

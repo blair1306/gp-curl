@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1504' type='int'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/urldata.h' l='1504'>/* keep POSTs as POSTs after a 30x request; each
+                        bit represents a request, from 301 to 303 */</doc>
+<use f='codebrowser/lib/transfer.c' l='1871' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1896' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1906' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='1040' u='w' c='Curl_setopt'/>

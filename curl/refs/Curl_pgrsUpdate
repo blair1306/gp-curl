@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/progress.h' l='49' type='int Curl_pgrsUpdate(struct connectdata * )'/>
+<use f='codebrowser/lib/file.c' l='404' u='c' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='409' u='c' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='589' u='c' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='594' u='c' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='697' u='c' c='Curl_GetFTPResponse'/>
+<use f='codebrowser/lib/http.c' l='2754' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http_proxy.c' l='347' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='564' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/multi.c' l='1831' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2111' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/pingpong.c' l='120' u='c' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/progress.c' l='138' u='c' c='Curl_pgrsDone'/>
+<def f='codebrowser/lib/progress.c' l='350' ll='577' type='int Curl_pgrsUpdate(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/progress.c' l='346'>/*
+ * Curl_pgrsUpdate() returns 0 for success or the value returned by the
+ * progress callback!
+ */</doc>
+<use f='codebrowser/lib/rtsp.c' l='614' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/telnet.c' l='1689' u='c' c='telnet_do'/>
+<use f='codebrowser/lib/tftp.c' l='1172' u='c' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1293' u='c' c='tftp_doing'/>
+<use f='codebrowser/lib/transfer.c' l='1188' u='c' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1246' u='c' c='Curl_readwrite'/>

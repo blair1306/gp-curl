@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/curl_fnmatch.c' l='64' type='1'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='87' u='r' c='parsekeyword'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='91' c='parsekeyword'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='418' type='void _ossl_old_des_pcbc_encrypt(_ossl_old_des_cblock * input, _ossl_old_des_cblock * output, long length, struct _ossl_old_des_ks_struct * schedule, _ossl_old_des_cblock * ivec, int enc)'/>

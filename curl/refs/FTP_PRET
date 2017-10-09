@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/ftp.h' l='73' type='29'/>
+<doc f='codebrowser/lib/ftp.h' l='73'>/* generic state for PRET RETR, PRET STOR and PRET LIST/NLST */</doc>
+<use f='codebrowser/lib/ftp.c' l='1390' u='r' c='ftp_state_prepare_transfer'/>
+<use f='codebrowser/lib/ftp.c' l='3009' c='ftp_statemach_act'/>

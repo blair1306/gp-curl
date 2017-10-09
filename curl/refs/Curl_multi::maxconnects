@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/multihandle.h' l='121' type='long'/>
+<offset>2688</offset>
+<doc f='codebrowser/lib/multihandle.h' l='121'>/* if &gt;0, a fixed limit of the maximum number of entries
+                       we&apos;re allowed to grow the connection cache to */</doc>
+<use f='codebrowser/lib/multi.c' l='338' u='w' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='494' u='r' c='ConnectionDone'/>
+<use f='codebrowser/lib/multi.c' l='495' u='r' c='ConnectionDone'/>
+<use f='codebrowser/lib/multi.c' l='2714' u='w' c='curl_multi_setopt'/>

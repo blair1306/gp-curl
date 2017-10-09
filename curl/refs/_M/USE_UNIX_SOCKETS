@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/curl_config.h' l='955'/>
+<doc f='codebrowser/lib/curl_config.h' l='954'>/* if Unix domain sockets are enabled  */</doc>
+<use f='codebrowser/lib/curl_addrinfo.h' l='82' u='a'/>
+<use f='codebrowser/lib/urldata.h' l='1029' u='a'/>
+<use f='codebrowser/lib/urldata.h' l='1469' u='a'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='482' u='a'/>
+<use f='codebrowser/lib/url.c' l='2915' u='a'/>
+<use f='codebrowser/lib/url.c' l='3079' u='a'/>
+<use f='codebrowser/lib/url.c' l='3634' u='a'/>
+<use f='codebrowser/lib/url.c' l='5373' u='a'/>
+<use f='codebrowser/lib/url.c' l='6189' u='a'/>
+<use f='codebrowser/lib/url.c' l='6361' u='a'/>
+<use f='codebrowser/lib/url.c' l='6537' u='a'/>
+<use f='codebrowser/lib/version.c' l='321' u='a'/>
+<use f='codebrowser/tests/server/server_sockaddr.h' l='36' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='73' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='1389' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='1982' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='2008' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='2046' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='2165' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='2235' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='2380' u='a'/>

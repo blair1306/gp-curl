@@ -1,0 +1,7 @@
+<def f='codebrowser/lib/urldata.h' l='195' ll='205'/>
+<size>24</size>
+<doc f='codebrowser/lib/urldata.h' l='194'>/* struct for data related to each SSL connection */</doc>
+<mbr r='ssl_connect_data::use' o='0' t='_Bool'/>
+<mbr r='ssl_connect_data::state' o='32' t='ssl_connection_state'/>
+<mbr r='ssl_connect_data::connecting_state' o='64' t='ssl_connect_state'/>
+<mbr r='ssl_connect_data::backend' o='128' t='struct ssl_backend_data *'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/imap.h' l='61' type='char *'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/imap.h' l='61'>/* Message SECTION to fetch */</doc>
+<use f='codebrowser/lib/imap.c' l='690' u='r' c='imap_perform_fetch'/>
+<use f='codebrowser/lib/imap.c' l='690' u='r' c='imap_perform_fetch'/>
+<use f='codebrowser/lib/imap.c' l='695' u='r' c='imap_perform_fetch'/>
+<use f='codebrowser/lib/imap.c' l='695' u='r' c='imap_perform_fetch'/>
+<use f='codebrowser/lib/imap.c' l='1483' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1483' u='w' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='2009' u='r' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='2013' u='w' c='imap_parse_url_path'/>

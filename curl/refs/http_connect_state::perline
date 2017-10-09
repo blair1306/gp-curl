@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='770' type='int'/>
+<offset>131072</offset>
+<doc f='codebrowser/lib/urldata.h' l='770'>/* count bytes per line */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='313' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='404' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='422' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='431' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='436' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='437' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='500' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='559' u='w' c='CONNECT'/>

@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/curl_config.h' l='357'/>
+<doc f='codebrowser/lib/curl_config.h' l='356'>/* Define to 1 if you have the `ldap_url_parse&apos; function. */</doc>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='162' type='long'/>
+<offset>256</offset>
+<doc f='codebrowser/include/curl/curl.h' l='162'>/* length of contents field, see also
+                                       CURL_HTTPPOST_LARGE */</doc>
+<use f='codebrowser/lib/formdata.c' l='919' u='r' c='Curl_getformdata'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/des.h' l='194' type='void DES_ede3_cfb_encrypt(const unsigned char * in, unsigned char * out, int numbits, long length, DES_key_schedule * ks1, DES_key_schedule * ks2, DES_key_schedule * ks3, DES_cblock * ivec, int enc)'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='84' type='void Curl_none_cleanup()'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='987' ll='988' type='void Curl_none_cleanup()'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1140'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1140'/>

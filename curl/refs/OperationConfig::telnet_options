@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='175' type='struct curl_slist *'/>
+<offset>6464</offset>
+<use f='codebrowser/src/tool_cfgable.c' l='149' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='1907' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1266' u='r' c='operate_do'/>

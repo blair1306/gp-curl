@@ -1,0 +1,17 @@
+<dec f='include/x86_64-linux-gnu/bits/stat.h' l='74' type='__off_t'/>
+<offset>384</offset>
+<doc f='include/x86_64-linux-gnu/bits/stat.h' l='74'>/* Size of file, in bytes.  */</doc>
+<use f='codebrowser/lib/file.c' l='363' u='r' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='462' u='r' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='526' u='r' c='file_do'/>
+<use f='codebrowser/lib/mime.c' l='129' u='r' c='curl_mime_filedata'/>
+<use f='codebrowser/src/tool_operate.c' l='655' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='746' u='r' c='operate_do'/>
+<use f='codebrowser/tests/libtest/lib505.c' l='74' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib505.c' l='133' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib525.c' l='106' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib541.c' l='66' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='93' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib572.c' l='112' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='262' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='288' u='r' c='test'/>

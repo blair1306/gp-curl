@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1132'/>
+<use f='codebrowser/lib/urldata.h' l='1134' u='c'/>
+<use f='codebrowser/lib/urldata.h' l='1135' u='c'/>
+<use f='codebrowser/lib/progress.c' l='362' u='c'/>
+<use f='codebrowser/lib/progress.c' l='411' u='c'/>
+<use f='codebrowser/lib/progress.c' l='412' u='c'/>
+<use f='codebrowser/lib/progress.c' l='421' u='c'/>
+<use f='codebrowser/lib/progress.c' l='422' u='c'/>

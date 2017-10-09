@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='546' type='int'/>
+<offset>832</offset>
+<doc f='codebrowser/lib/urldata.h' l='546'>/* counts header lines to better track the
+                                   first one */</doc>
+<use f='codebrowser/lib/http.c' l='2975' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3007' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3059' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3077' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3095' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3306' u='w' c='Curl_http_readwrite_headers'/>

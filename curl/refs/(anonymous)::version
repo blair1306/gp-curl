@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='2607' type='const char *'/>
+<offset>64</offset>
+<doc f='codebrowser/include/curl/curl.h' l='2607'>/* LIBCURL_VERSION */</doc>
+<dec f='include/openssl/pkcs12.h' l='109' type='ASN1_INTEGER *'/>
+<offset>0</offset>

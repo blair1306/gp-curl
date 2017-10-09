@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/multiif.h' l='48'/>
+<doc f='codebrowser/lib/multiif.h' l='47'>/* set the bit for the given sock number to make the bitmap for readable */</doc>
+<use f='codebrowser/lib/ftp.c' l='840' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='860' u='c'/>
+<use f='codebrowser/lib/multi.c' l='839' u='c'/>
+<use f='codebrowser/lib/multi.c' l='944' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1005' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1052' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2346' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2355' u='c'/>
+<use f='codebrowser/lib/pingpong.c' l='480' u='c'/>
+<use f='codebrowser/lib/smb.c' l='954' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='1089' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1285' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='531' u='c'/>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='269' type='trace'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='96' u='r' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='214' u='r' c='tool_debug_cb'/>
+<offset>416</offset>
+<use f='codebrowser/src/tool_getparam.c' l='573' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='573' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='575' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='582' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='582' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='585' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1962' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1962' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1965' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1969' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_msgs.c' l='85' u='r' c='notef'/>
+<use f='codebrowser/src/tool_operate.c' l='1291' u='r' c='operate_do'/>

@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='127' type='int getsockname(int __fd, struct sockaddr *restrict __addr, socklen_t *restrict __len)'/>
+<doc f='include/x86_64-linux-gnu/sys/socket.h' l='126'>/* Put the local address of FD into *ADDR and its length in *LEN.  */</doc>
+<use f='codebrowser/lib/connect.c' l='438' u='c' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='686' u='c' c='Curl_updateconninfo'/>
+<use f='codebrowser/lib/ftp.c' l='288' u='c' c='AcceptServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='1066' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1150' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1183' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1286' u='c' c='sockdaemon'/>

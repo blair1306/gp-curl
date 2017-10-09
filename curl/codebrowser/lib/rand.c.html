@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>rand.c source code [codebrowser/lib/rand.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/rand.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='rand.c.html'>rand.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <a class="macro" href="curl_config.h.html#161" data-ref="_M/HAVE_FCNTL_H">HAVE_FCNTL_H</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../include/fcntl.h.html">&lt;fcntl.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="vtls/vtls.h.html">"vtls/vtls.h"</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="rand.h.html">"rand.h"</a></u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="37">37</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><em>static</em> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="randit" title='randit' data-type='CURLcode randit(struct Curl_easy * data, unsigned int * rnd)' data-ref="randit">randit</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="1data" title='data' data-type='struct Curl_easy *' data-ref="1data">data</dfn>, <em>unsigned</em> <em>int</em> *<dfn class="local col2 decl" id="2rnd" title='rnd' data-type='unsigned int *' data-ref="2rnd">rnd</dfn>)</td></tr>
+<tr><th id="40">40</th><td>{</td></tr>
+<tr><th id="41">41</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col3 decl" id="3r" title='r' data-type='unsigned int' data-ref="3r">r</dfn>;</td></tr>
+<tr><th id="42">42</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col4 decl" id="4result" title='result' data-type='CURLcode' data-ref="4result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="43">43</th><td>  <em>static</em> <em>unsigned</em> <em>int</em> <dfn class="local col5 decl" id="5randseed" title='randseed' data-type='unsigned int' data-ref="5randseed">randseed</dfn>;</td></tr>
+<tr><th id="44">44</th><td>  <em>static</em> <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col6 decl" id="6seeded" title='seeded' data-type='_Bool' data-ref="6seeded">seeded</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td><u>#<span data-ppcond="46">ifdef</span> <span class="macro" data-ref="_M/CURLDEBUG">CURLDEBUG</span></u></td></tr>
+<tr><th id="47">47</th><td>  <em>char</em> *force_entropy = getenv(<q>"CURL_ENTROPY"</q>);</td></tr>
+<tr><th id="48">48</th><td>  <b>if</b>(force_entropy) {</td></tr>
+<tr><th id="49">49</th><td>    <b>if</b>(!seeded) {</td></tr>
+<tr><th id="50">50</th><td>      <em>unsigned</em> <em>int</em> seed = <var>0</var>;</td></tr>
+<tr><th id="51">51</th><td>      size_t elen = strlen(force_entropy);</td></tr>
+<tr><th id="52">52</th><td>      size_t clen = <b>sizeof</b>(seed);</td></tr>
+<tr><th id="53">53</th><td>      size_t min = elen &lt; clen ? elen : clen;</td></tr>
+<tr><th id="54">54</th><td>      memcpy((<em>char</em> *)&amp;seed, force_entropy, min);</td></tr>
+<tr><th id="55">55</th><td>      randseed = ntohl(seed);</td></tr>
+<tr><th id="56">56</th><td>      seeded = TRUE;</td></tr>
+<tr><th id="57">57</th><td>    }</td></tr>
+<tr><th id="58">58</th><td>    <b>else</b></td></tr>
+<tr><th id="59">59</th><td>      randseed++;</td></tr>
+<tr><th id="60">60</th><td>    *rnd = randseed;</td></tr>
+<tr><th id="61">61</th><td>    <b>return</b> CURLE_OK;</td></tr>
+<tr><th id="62">62</th><td>  }</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="46">endif</span></u></td></tr>
+<tr><th id="64">64</th><td></td></tr>
+<tr><th id="65">65</th><td>  <i>/* data may be NULL! */</i></td></tr>
+<tr><th id="66">66</th><td>  <a class="local col4 ref" href="#4result" title='result' data-ref="4result">result</a> = <a class="ref" href="vtls/vtls.h.html#Curl_ssl_random" title='Curl_ssl_random' data-ref="Curl_ssl_random">Curl_ssl_random</a>(<a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>, (<em>unsigned</em> <em>char</em> *)<a class="local col2 ref" href="#2rnd" title='rnd' data-ref="2rnd">rnd</a>, <b>sizeof</b>(*<a class="local col2 ref" href="#2rnd" title='rnd' data-ref="2rnd">rnd</a>));</td></tr>
+<tr><th id="67">67</th><td>  <b>if</b>(<a class="local col4 ref" href="#4result" title='result' data-ref="4result">result</a> != <a class="enum" href="../include/curl/curl.h.html#CURLE_NOT_BUILT_IN" title='CURLE_NOT_BUILT_IN' data-ref="CURLE_NOT_BUILT_IN">CURLE_NOT_BUILT_IN</a>)</td></tr>
+<tr><th id="68">68</th><td>    <i>/* only if there is no random function in the TLS backend do the non crypto</i></td></tr>
+<tr><th id="69">69</th><td><i>       version, otherwise return result */</i></td></tr>
+<tr><th id="70">70</th><td>    <b>return</b> <a class="local col4 ref" href="#4result" title='result' data-ref="4result">result</a>;</td></tr>
+<tr><th id="71">71</th><td></td></tr>
+<tr><th id="72">72</th><td>  <i>/* ---- non-cryptographic version following ---- */</i></td></tr>
+<tr><th id="73">73</th><td></td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="74">ifdef</span> <a class="macro" href="curl_config.h.html#796" data-ref="_M/RANDOM_FILE">RANDOM_FILE</a></u></td></tr>
+<tr><th id="75">75</th><td>  <b>if</b>(!<a class="local col6 ref" href="#6seeded" title='seeded' data-ref="6seeded">seeded</a>) {</td></tr>
+<tr><th id="76">76</th><td>    <i>/* if there's a random file to read a seed from, use it */</i></td></tr>
+<tr><th id="77">77</th><td>    <em>int</em> <dfn class="local col7 decl" id="7fd" title='fd' data-type='int' data-ref="7fd">fd</dfn> = <a class="ref" href="../../include/fcntl.h.html#159" title='open' data-ref="open64">open</a>(<a class="macro" href="curl_config.h.html#796" title="&quot;/dev/urandom&quot;" data-ref="_M/RANDOM_FILE">RANDOM_FILE</a>, <a class="macro" href="../../include/x86_64-linux-gnu/bits/fcntl-linux.h.html#43" title="00" data-ref="_M/O_RDONLY">O_RDONLY</a>);</td></tr>
+<tr><th id="78">78</th><td>    <b>if</b>(<a class="local col7 ref" href="#7fd" title='fd' data-ref="7fd">fd</a> &gt; -<var>1</var>) {</td></tr>
+<tr><th id="79">79</th><td>      <i>/* read random data into the randseed variable */</i></td></tr>
+<tr><th id="80">80</th><td>      <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col8 decl" id="8nread" title='nread' data-type='ssize_t' data-ref="8nread">nread</dfn> = <a class="ref" href="../../include/unistd.h.html#read" title='read' data-ref="read">read</a>(<a class="local col7 ref" href="#7fd" title='fd' data-ref="7fd">fd</a>, &amp;<a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a>, <b>sizeof</b>(<a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a>));</td></tr>
+<tr><th id="81">81</th><td>      <b>if</b>(<a class="local col8 ref" href="#8nread" title='nread' data-ref="8nread">nread</a> == <b>sizeof</b>(<a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a>))</td></tr>
+<tr><th id="82">82</th><td>        <a class="local col6 ref" href="#6seeded" title='seeded' data-ref="6seeded">seeded</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="83">83</th><td>      <a class="ref" href="../../include/unistd.h.html#close" title='close' data-ref="close">close</a>(<a class="local col7 ref" href="#7fd" title='fd' data-ref="7fd">fd</a>);</td></tr>
+<tr><th id="84">84</th><td>    }</td></tr>
+<tr><th id="85">85</th><td>  }</td></tr>
+<tr><th id="86">86</th><td><u>#<span data-ppcond="74">endif</span></u></td></tr>
+<tr><th id="87">87</th><td></td></tr>
+<tr><th id="88">88</th><td>  <b>if</b>(!<a class="local col6 ref" href="#6seeded" title='seeded' data-ref="6seeded">seeded</a>) {</td></tr>
+<tr><th id="89">89</th><td>    <b>struct</b> <a class="type" href="timeval.h.html#curltime" title='curltime' data-ref="curltime">curltime</a> <dfn class="local col9 decl" id="9now" title='now' data-type='struct curltime' data-ref="9now">now</dfn> = <a class="ref" href="timeval.h.html#curlx_tvnow" title='curlx_tvnow' data-ref="curlx_tvnow">curlx_tvnow</a>();</td></tr>
+<tr><th id="90">90</th><td>    <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>, <q>"WARNING: Using weak random seed\n"</q>);</td></tr>
+<tr><th id="91">91</th><td>    <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> += (<em>unsigned</em> <em>int</em>)<a class="local col9 ref" href="#9now" title='now' data-ref="9now">now</a>.<a class="ref" href="timeval.h.html#curltime::tv_usec" title='curltime::tv_usec' data-ref="curltime::tv_usec">tv_usec</a> + (<em>unsigned</em> <em>int</em>)<a class="local col9 ref" href="#9now" title='now' data-ref="9now">now</a>.<a class="ref" href="timeval.h.html#curltime::tv_sec" title='curltime::tv_sec' data-ref="curltime::tv_sec">tv_sec</a>;</td></tr>
+<tr><th id="92">92</th><td>    <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> = <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> * <var>1103515245</var> + <var>12345</var>;</td></tr>
+<tr><th id="93">93</th><td>    <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> = <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> * <var>1103515245</var> + <var>12345</var>;</td></tr>
+<tr><th id="94">94</th><td>    <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> = <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> * <var>1103515245</var> + <var>12345</var>;</td></tr>
+<tr><th id="95">95</th><td>    <a class="local col6 ref" href="#6seeded" title='seeded' data-ref="6seeded">seeded</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="96">96</th><td>  }</td></tr>
+<tr><th id="97">97</th><td></td></tr>
+<tr><th id="98">98</th><td>  <i>/* Return an unsigned 32-bit pseudo-random number. */</i></td></tr>
+<tr><th id="99">99</th><td>  <a class="local col3 ref" href="#3r" title='r' data-ref="3r">r</a> = <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> = <a class="local col5 ref" href="#5randseed" title='randseed' data-ref="5randseed">randseed</a> * <var>1103515245</var> + <var>12345</var>;</td></tr>
+<tr><th id="100">100</th><td>  *<a class="local col2 ref" href="#2rnd" title='rnd' data-ref="2rnd">rnd</a> = (<a class="local col3 ref" href="#3r" title='r' data-ref="3r">r</a> &lt;&lt; <var>16</var>) | ((<a class="local col3 ref" href="#3r" title='r' data-ref="3r">r</a> &gt;&gt; <var>16</var>) &amp; <var>0xFFFF</var>);</td></tr>
+<tr><th id="101">101</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="102">102</th><td>}</td></tr>
+<tr><th id="103">103</th><td></td></tr>
+<tr><th id="104">104</th><td><i>/*</i></td></tr>
+<tr><th id="105">105</th><td><i> * Curl_rand() stores 'num' number of random unsigned integers in the buffer</i></td></tr>
+<tr><th id="106">106</th><td><i> * 'rndptr' points to.</i></td></tr>
+<tr><th id="107">107</th><td><i> *</i></td></tr>
+<tr><th id="108">108</th><td><i> * If libcurl is built without TLS support or with a TLS backend that lacks a</i></td></tr>
+<tr><th id="109">109</th><td><i> * proper random API (Gskit, PolarSSL or mbedTLS), this function will use</i></td></tr>
+<tr><th id="110">110</th><td><i> * "weak" random.</i></td></tr>
+<tr><th id="111">111</th><td><i> *</i></td></tr>
+<tr><th id="112">112</th><td><i> * When built *with* TLS support and a backend that offers strong random, it</i></td></tr>
+<tr><th id="113">113</th><td><i> * will return error if it cannot provide strong random values.</i></td></tr>
+<tr><th id="114">114</th><td><i> *</i></td></tr>
+<tr><th id="115">115</th><td><i> * NOTE: 'data' may be passed in as NULL when coming from external API without</i></td></tr>
+<tr><th id="116">116</th><td><i> * easy handle!</i></td></tr>
+<tr><th id="117">117</th><td><i> *</i></td></tr>
+<tr><th id="118">118</th><td><i> */</i></td></tr>
+<tr><th id="119">119</th><td></td></tr>
+<tr><th id="120">120</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_rand" title='Curl_rand' data-ref="Curl_rand">Curl_rand</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col0 decl" id="10data" title='data' data-type='struct Curl_easy *' data-ref="10data">data</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col1 decl" id="11rnd" title='rnd' data-type='unsigned char *' data-ref="11rnd">rnd</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="12num" title='num' data-type='size_t' data-ref="12num">num</dfn>)</td></tr>
+<tr><th id="121">121</th><td>{</td></tr>
+<tr><th id="122">122</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col3 decl" id="13result" title='result' data-type='CURLcode' data-ref="13result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_BAD_FUNCTION_ARGUMENT" title='CURLE_BAD_FUNCTION_ARGUMENT' data-ref="CURLE_BAD_FUNCTION_ARGUMENT">CURLE_BAD_FUNCTION_ARGUMENT</a>;</td></tr>
+<tr><th id="123">123</th><td></td></tr>
+<tr><th id="124">124</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(num &gt; <var>0</var>);</td></tr>
+<tr><th id="125">125</th><td></td></tr>
+<tr><th id="126">126</th><td>  <b>while</b>(<a class="local col2 ref" href="#12num" title='num' data-ref="12num">num</a>) {</td></tr>
+<tr><th id="127">127</th><td>    <em>unsigned</em> <em>int</em> <dfn class="local col4 decl" id="14r" title='r' data-type='unsigned int' data-ref="14r">r</dfn>;</td></tr>
+<tr><th id="128">128</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="15left" title='left' data-type='size_t' data-ref="15left">left</dfn> = <a class="local col2 ref" href="#12num" title='num' data-ref="12num">num</a> &lt; <b>sizeof</b>(<em>unsigned</em> <em>int</em>) ? <a class="local col2 ref" href="#12num" title='num' data-ref="12num">num</a> : <b>sizeof</b>(<em>unsigned</em> <em>int</em>);</td></tr>
+<tr><th id="129">129</th><td></td></tr>
+<tr><th id="130">130</th><td>    <a class="local col3 ref" href="#13result" title='result' data-ref="13result">result</a> = <a class="tu ref" href="#randit" title='randit' data-use='c' data-ref="randit">randit</a>(<a class="local col0 ref" href="#10data" title='data' data-ref="10data">data</a>, &amp;<a class="local col4 ref" href="#14r" title='r' data-ref="14r">r</a>);</td></tr>
+<tr><th id="131">131</th><td>    <b>if</b>(<a class="local col3 ref" href="#13result" title='result' data-ref="13result">result</a>)</td></tr>
+<tr><th id="132">132</th><td>      <b>return</b> <a class="local col3 ref" href="#13result" title='result' data-ref="13result">result</a>;</td></tr>
+<tr><th id="133">133</th><td></td></tr>
+<tr><th id="134">134</th><td>    <b>while</b>(<a class="local col5 ref" href="#15left" title='left' data-ref="15left">left</a>) {</td></tr>
+<tr><th id="135">135</th><td>      *<a class="local col1 ref" href="#11rnd" title='rnd' data-ref="11rnd">rnd</a>++ = (<em>unsigned</em> <em>char</em>)(<a class="local col4 ref" href="#14r" title='r' data-ref="14r">r</a> &amp; <var>0xFF</var>);</td></tr>
+<tr><th id="136">136</th><td>      <a class="local col4 ref" href="#14r" title='r' data-ref="14r">r</a> &gt;&gt;= <var>8</var>;</td></tr>
+<tr><th id="137">137</th><td>      --<a class="local col2 ref" href="#12num" title='num' data-ref="12num">num</a>;</td></tr>
+<tr><th id="138">138</th><td>      --<a class="local col5 ref" href="#15left" title='left' data-ref="15left">left</a>;</td></tr>
+<tr><th id="139">139</th><td>    }</td></tr>
+<tr><th id="140">140</th><td>  }</td></tr>
+<tr><th id="141">141</th><td></td></tr>
+<tr><th id="142">142</th><td>  <b>return</b> <a class="local col3 ref" href="#13result" title='result' data-ref="13result">result</a>;</td></tr>
+<tr><th id="143">143</th><td>}</td></tr>
+<tr><th id="144">144</th><td></td></tr>
+<tr><th id="145">145</th><td><i>/*</i></td></tr>
+<tr><th id="146">146</th><td><i> * Curl_rand_hex() fills the 'rnd' buffer with a given 'num' size with random</i></td></tr>
+<tr><th id="147">147</th><td><i> * hexadecimal digits PLUS a zero terminating byte. It must be an odd number</i></td></tr>
+<tr><th id="148">148</th><td><i> * size.</i></td></tr>
+<tr><th id="149">149</th><td><i> */</i></td></tr>
+<tr><th id="150">150</th><td></td></tr>
+<tr><th id="151">151</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_rand_hex" title='Curl_rand_hex' data-ref="Curl_rand_hex">Curl_rand_hex</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col6 decl" id="16data" title='data' data-type='struct Curl_easy *' data-ref="16data">data</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col7 decl" id="17rnd" title='rnd' data-type='unsigned char *' data-ref="17rnd">rnd</dfn>,</td></tr>
+<tr><th id="152">152</th><td>                       <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="18num" title='num' data-type='size_t' data-ref="18num">num</dfn>)</td></tr>
+<tr><th id="153">153</th><td>{</td></tr>
+<tr><th id="154">154</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col9 decl" id="19result" title='result' data-type='CURLcode' data-ref="19result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_BAD_FUNCTION_ARGUMENT" title='CURLE_BAD_FUNCTION_ARGUMENT' data-ref="CURLE_BAD_FUNCTION_ARGUMENT">CURLE_BAD_FUNCTION_ARGUMENT</a>;</td></tr>
+<tr><th id="155">155</th><td>  <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="20hex" title='hex' data-type='const char *' data-ref="20hex">hex</dfn> = <q>"0123456789abcdef"</q>;</td></tr>
+<tr><th id="156">156</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col1 decl" id="21buffer" title='buffer' data-type='unsigned char [128]' data-ref="21buffer">buffer</dfn>[<var>128</var>];</td></tr>
+<tr><th id="157">157</th><td>  <em>unsigned</em> <em>char</em> *<dfn class="local col2 decl" id="22bufp" title='bufp' data-type='unsigned char *' data-ref="22bufp">bufp</dfn> = <a class="local col1 ref" href="#21buffer" title='buffer' data-ref="21buffer">buffer</a>;</td></tr>
+<tr><th id="158">158</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(num &gt; <var>1</var>);</td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td>  <b>if</b>((<a class="local col8 ref" href="#18num" title='num' data-ref="18num">num</a>/<var>2</var> &gt;= <b>sizeof</b>(<a class="local col1 ref" href="#21buffer" title='buffer' data-ref="21buffer">buffer</a>)) || !(<a class="local col8 ref" href="#18num" title='num' data-ref="18num">num</a>&amp;<var>1</var>))</td></tr>
+<tr><th id="161">161</th><td>    <i>/* make sure it fits in the local buffer and that it is an odd number! */</i></td></tr>
+<tr><th id="162">162</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_BAD_FUNCTION_ARGUMENT" title='CURLE_BAD_FUNCTION_ARGUMENT' data-ref="CURLE_BAD_FUNCTION_ARGUMENT">CURLE_BAD_FUNCTION_ARGUMENT</a>;</td></tr>
+<tr><th id="163">163</th><td></td></tr>
+<tr><th id="164">164</th><td>  <a class="local col8 ref" href="#18num" title='num' data-ref="18num">num</a>--; <i>/* save one for zero termination */</i></td></tr>
+<tr><th id="165">165</th><td></td></tr>
+<tr><th id="166">166</th><td>  <a class="local col9 ref" href="#19result" title='result' data-ref="19result">result</a> = <a class="ref" href="#Curl_rand" title='Curl_rand' data-ref="Curl_rand">Curl_rand</a>(<a class="local col6 ref" href="#16data" title='data' data-ref="16data">data</a>, <a class="local col1 ref" href="#21buffer" title='buffer' data-ref="21buffer">buffer</a>, <a class="local col8 ref" href="#18num" title='num' data-ref="18num">num</a>/<var>2</var>);</td></tr>
+<tr><th id="167">167</th><td>  <b>if</b>(<a class="local col9 ref" href="#19result" title='result' data-ref="19result">result</a>)</td></tr>
+<tr><th id="168">168</th><td>    <b>return</b> <a class="local col9 ref" href="#19result" title='result' data-ref="19result">result</a>;</td></tr>
+<tr><th id="169">169</th><td></td></tr>
+<tr><th id="170">170</th><td>  <b>while</b>(<a class="local col8 ref" href="#18num" title='num' data-ref="18num">num</a>) {</td></tr>
+<tr><th id="171">171</th><td>    *<a class="local col7 ref" href="#17rnd" title='rnd' data-ref="17rnd">rnd</a>++ = <a class="local col0 ref" href="#20hex" title='hex' data-ref="20hex">hex</a>[(*<a class="local col2 ref" href="#22bufp" title='bufp' data-ref="22bufp">bufp</a> &amp; <var>0xF0</var>)&gt;&gt;<var>4</var>];</td></tr>
+<tr><th id="172">172</th><td>    *<a class="local col7 ref" href="#17rnd" title='rnd' data-ref="17rnd">rnd</a>++ = <a class="local col0 ref" href="#20hex" title='hex' data-ref="20hex">hex</a>[*<a class="local col2 ref" href="#22bufp" title='bufp' data-ref="22bufp">bufp</a> &amp; <var>0x0F</var>];</td></tr>
+<tr><th id="173">173</th><td>    <a class="local col2 ref" href="#22bufp" title='bufp' data-ref="22bufp">bufp</a>++;</td></tr>
+<tr><th id="174">174</th><td>    <a class="local col8 ref" href="#18num" title='num' data-ref="18num">num</a> -= <var>2</var>;</td></tr>
+<tr><th id="175">175</th><td>  }</td></tr>
+<tr><th id="176">176</th><td>  *<a class="local col7 ref" href="#17rnd" title='rnd' data-ref="17rnd">rnd</a> = <var>0</var>;</td></tr>
+<tr><th id="177">177</th><td></td></tr>
+<tr><th id="178">178</th><td>  <b>return</b> <a class="local col9 ref" href="#19result" title='result' data-ref="19result">result</a>;</td></tr>
+<tr><th id="179">179</th><td>}</td></tr>
+<tr><th id="180">180</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

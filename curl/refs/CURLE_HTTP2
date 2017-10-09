@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='477' type='16'/>
+<doc f='codebrowser/include/curl/curl.h' l='477'>/* 16 - A problem in the http2 framing layer.
+                                    [was obsoleted in August 2007 for 7.17.0,
+                                    reused in July 2014 for 7.38.0] */</doc>
+<use f='codebrowser/lib/strerror.c' l='113' c='curl_easy_strerror'/>

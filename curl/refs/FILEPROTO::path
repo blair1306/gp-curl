@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/file.h' l='30' type='char *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/file.h' l='30'>/* the path we operate on */</doc>
+<use f='codebrowser/lib/file.c' l='252' u='w' c='file_connect'/>
+<use f='codebrowser/lib/file.c' l='276' u='w' c='file_done'/>
+<use f='codebrowser/lib/file.c' l='293' u='w' c='file_disconnect'/>
+<use f='codebrowser/lib/file.c' l='311' u='r' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='346' u='r' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='348' u='r' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='360' u='r' c='file_upload'/>

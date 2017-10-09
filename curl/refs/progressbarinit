@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_cb_prg.h' l='38' type='void progressbarinit(struct ProgressData * bar, struct OperationConfig * config)'/>
+<def f='codebrowser/src/tool_cb_prg.c' l='103' ll='150' type='void progressbarinit(struct ProgressData * bar, struct OperationConfig * config)'/>
+<use f='codebrowser/src/tool_operate.c' l='1244' u='c' c='operate_do'/>

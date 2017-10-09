@@ -1,0 +1,2 @@
+<dec f='include/openssl/engine.h' l='681' type='ENGINE * ENGINE_get_default_DSA()'/>
+<doc f='include/openssl/engine.h' l='680'>/* Same for the other &quot;methods&quot; */</doc>

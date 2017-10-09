@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/warnless.h' l='31' type='unsigned char curlx_ultouc(unsigned long ulnum)'/>
+<use f='codebrowser/lib/base64.c' l='74' u='c' c='decodeQuantum'/>
+<use f='codebrowser/lib/base64.c' l='78' u='c' c='decodeQuantum'/>
+<use f='codebrowser/lib/base64.c' l='81' u='c' c='decodeQuantum'/>
+<use f='codebrowser/lib/escape.c' l='174' u='c' c='Curl_urldecode'/>
+<def f='codebrowser/lib/warnless.c' l='143' ll='156' type='unsigned char curlx_ultouc(unsigned long ulnum)'/>
+<doc f='codebrowser/lib/warnless.c' l='139'>/*
+** unsigned long to unsigned char
+*/</doc>

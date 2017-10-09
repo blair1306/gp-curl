@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='236'/>
+<doc f='codebrowser/lib/curl_config.h' l='235'>/* Define to 1 if you have the `getpwuid&apos; function. */</doc>
+<use f='codebrowser/lib/netrc.c' l='88' u='a'/>
+<use f='codebrowser/src/tool_homedir.c' l='75' u='a'/>

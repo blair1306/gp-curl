@@ -1,0 +1,7 @@
+<dec f='include/openssl/des.h' l='230' type='int DES_set_key(const_DES_cblock * key, DES_key_schedule * schedule)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='178' u='c' c='setup_des_key'/>
+<doc f='include/openssl/des.h' l='225'>/*
+ * DES_set_key (= set_key = DES_key_sched = key_sched) calls
+ * DES_set_key_checked if global variable DES_check_key is set,
+ * DES_set_key_unchecked otherwise.
+ */</doc>

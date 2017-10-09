@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_setup.h' l='465'/>
+<use f='codebrowser/lib/netrc.c' l='102' u='c'/>
+<use f='codebrowser/src/tool_dirhie.c' l='134' u='c'/>
+<use f='codebrowser/src/tool_dirhie.c' l='140' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='66' u='c'/>

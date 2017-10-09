@@ -1,0 +1,8 @@
+<dec f='include/string.h' l='343' type='char * strtok(char *restrict __s, const char *restrict __delim)'/>
+<doc f='include/string.h' l='342'>/* Divide S into tokens separated by characters in DELIM.  */</doc>
+<use f='codebrowser/src/tool_dirhie.c' l='125' u='c' c='create_dir_hierarchy'/>
+<use f='codebrowser/src/tool_dirhie.c' l='128' u='c' c='create_dir_hierarchy'/>
+<use f='codebrowser/src/tool_getparam.c' l='1650' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1658' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='314' u='c' c='proto2num'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='316' u='c' c='proto2num'/>

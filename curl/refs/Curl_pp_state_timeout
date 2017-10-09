@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/pingpong.h' l='91' type='time_t Curl_pp_state_timeout(struct pingpong * pp)'/>
+<doc f='codebrowser/lib/pingpong.h' l='89'>/* Returns timeout in ms. 0 or negative number means the timeout has already
+   triggered */</doc>
+<use f='codebrowser/lib/ftp.c' l='656' u='c' c='Curl_GetFTPResponse'/>
+<def f='codebrowser/lib/pingpong.c' l='47' ll='76' type='time_t Curl_pp_state_timeout(struct pingpong * pp)'/>
+<use f='codebrowser/lib/pingpong.c' l='87' u='c' c='Curl_pp_statemach'/>
+<doc f='codebrowser/lib/pingpong.c' l='45'>/* Returns timeout in ms. 0 or negative number means the timeout has already
+   triggered */</doc>

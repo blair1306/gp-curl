@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/urldata.h' l='1713' type='struct curl_hash *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/hostip.c' l='261' u='r' c='Curl_hostcache_prune'/>
+<use f='codebrowser/lib/hostip.c' l='272' u='r' c='Curl_hostcache_prune'/>
+<use f='codebrowser/lib/hostip.c' l='307' u='r' c='fetch_addr'/>
+<use f='codebrowser/lib/hostip.c' l='319' u='r' c='fetch_addr'/>
+<use f='codebrowser/lib/hostip.c' l='406' u='r' c='Curl_cache_addr'/>
+<use f='codebrowser/lib/hostip.c' l='810' u='r' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/hostip.c' l='851' u='r' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/multi.c' l='396' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='402' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='404' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='729' u='w' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2237' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2238' u='w' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2256' u='w' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2258' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/url.c' l='2387' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2415' u='w' c='Curl_setopt'/>

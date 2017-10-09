@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1594' type='struct curl_slist *'/>
+<offset>11072</offset>
+<doc f='codebrowser/lib/urldata.h' l='1594'>/* linked list of aliases for http200 */</doc>
+<use f='codebrowser/lib/http.c' l='2787' u='r' c='checkhttpprefix'/>
+<use f='codebrowser/lib/url.c' l='1224' u='w' c='Curl_setopt'/>

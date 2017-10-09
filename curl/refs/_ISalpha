@@ -1,0 +1,9 @@
+<dec f='include/ctype.h' l='50' type='1024'/>
+<doc f='include/ctype.h' l='50'>/* Alphabetic.  */</doc>
+<use f='codebrowser/lib/curl_fnmatch.c' l='84' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='362' macro='1' u='r'/>
+<use f='codebrowser/lib/parsedate.c' l='352' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='5165' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='5997' macro='1' u='r'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='103' macro='1' u='r'/>
+<use f='codebrowser/src/tool_urlglob.c' l='191' macro='1' u='r'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/hash.h' l='69' type='struct curl_llist_element *'/>
+<offset>128</offset>
+<use f='codebrowser/lib/hash.c' l='288' u='w' c='Curl_hash_start_iterate'/>
+<use f='codebrowser/lib/hash.c' l='298' u='r' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='299' u='w' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='299' u='r' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='302' u='r' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='305' u='w' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='312' u='r' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='313' u='r' c='Curl_hash_next_element'/>
+<use f='codebrowser/lib/hash.c' l='316' u='w' c='Curl_hash_next_element'/>

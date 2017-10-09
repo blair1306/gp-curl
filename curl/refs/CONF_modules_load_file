@@ -1,0 +1,2 @@
+<dec f='include/openssl/conf.h' l='187' type='int CONF_modules_load_file(const char * filename, const char * appname, unsigned long flags)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='931' u='c' c='Curl_ossl_init'/>

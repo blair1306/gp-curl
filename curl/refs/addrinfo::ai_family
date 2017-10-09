@@ -1,0 +1,8 @@
+<dec f='include/netdb.h' l='570' type='int'/>
+<offset>32</offset>
+<doc f='include/netdb.h' l='570'>/* Protocol family for socket.  */</doc>
+<use f='codebrowser/lib/asyn-thread.c' l='655' u='w' c='Curl_resolver_getaddrinfo'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='134' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='137' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='161' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/tests/server/resolve.c' l='128' u='w' c='main'/>

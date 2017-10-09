@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='994' type='int'/>
+<offset>12480</offset>
+<doc f='codebrowser/lib/urldata.h' l='994'>/* allocated buffer size */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='293' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='297' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='298' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='299' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='302' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='303' u='r' c='Curl_httpchunk_read'/>

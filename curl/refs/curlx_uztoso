@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/warnless.h' l='37' type='curl_off_t curlx_uztoso(size_t uznum)'/>
+<def f='codebrowser/lib/warnless.c' l='181' ll='197' type='curl_off_t curlx_uztoso(size_t uznum)'/>
+<doc f='codebrowser/lib/warnless.c' l='177'>/*
+** unsigned size_t to signed curl_off_t
+*/</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1347' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1365' u='c' c='getparameter'/>

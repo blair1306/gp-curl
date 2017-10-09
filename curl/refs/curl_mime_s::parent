@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/mime.h' l='90' type='curl_mimepart *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/mime.h' l='90'>/* Parent part. */</doc>
+<use f='codebrowser/lib/mime.c' l='1095' u='r' c='mime_subparts_free'/>
+<use f='codebrowser/lib/mime.c' l='1096' u='r' c='mime_subparts_free'/>
+<use f='codebrowser/lib/mime.c' l='1097' u='r' c='mime_subparts_free'/>
+<use f='codebrowser/lib/mime.c' l='1107' u='r' c='mime_subparts_unbind'/>
+<use f='codebrowser/lib/mime.c' l='1108' u='r' c='mime_subparts_unbind'/>
+<use f='codebrowser/lib/mime.c' l='1109' u='r' c='mime_subparts_unbind'/>
+<use f='codebrowser/lib/mime.c' l='1110' u='w' c='mime_subparts_unbind'/>
+<use f='codebrowser/lib/mime.c' l='1159' u='w' c='curl_mime_init'/>
+<use f='codebrowser/lib/mime.c' l='1432' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1438' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1438' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1439' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1446' u='w' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/src/tool_formparse.c' l='530' u='r' c='formparse'/>

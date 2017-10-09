@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='985' type='char [256]'/>
+<offset>10048</offset>
+<doc f='codebrowser/lib/urldata.h' l='985'>/* buffer for Curl_strerror() */</doc>
+<use f='codebrowser/lib/strerror.c' l='658' u='r' c='Curl_strerror'/>
+<use f='codebrowser/lib/strerror.c' l='659' u='r' c='Curl_strerror'/>

@@ -1,0 +1,17 @@
+<dec f='codebrowser/include/curl/curl.h' l='340'/>
+<doc f='codebrowser/include/curl/curl.h' l='339'>/* These are the return codes for the seek callbacks */</doc>
+<use f='codebrowser/lib/ftp.c' l='1591' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='1624' u='c'/>
+<use f='codebrowser/lib/http.c' l='2191' u='c'/>
+<use f='codebrowser/lib/mime.c' l='653' u='c'/>
+<use f='codebrowser/lib/mime.c' l='690' u='c'/>
+<use f='codebrowser/lib/mime.c' l='696' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1018' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1029' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1043' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1053' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1060' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1064' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1068' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1477' u='c'/>
+<use f='codebrowser/src/tool_cb_see.c' l='88' u='c'/>

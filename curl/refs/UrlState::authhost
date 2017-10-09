@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/urldata.h' l='1289' type='struct auth'/>
+<offset>133952</offset>
+<doc f='codebrowser/lib/urldata.h' l='1289'>/* auth details for host */</doc>
+<use f='codebrowser/lib/easy.c' l='993' u='a' c='curl_easy_reset'/>
+<use f='codebrowser/lib/http.c' l='426' u='m' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='428' u='m' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='493' u='a' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='523' u='m' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='534' u='m' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='673' u='a' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='755' u='a' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='1423' u='m' c='Curl_http_done'/>
+<use f='codebrowser/lib/http.c' l='1875' u='m' c='Curl_http'/>
+<use f='codebrowser/lib/http_digest.c' l='107' u='a' c='Curl_output_digest'/>
+<use f='codebrowser/lib/http_ntlm.c' l='152' u='a' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/transfer.c' l='1352' u='m' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1400' u='m' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1400' u='m' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='1401' u='m' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='3501' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='6873' u='m' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6874' u='m' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6876' u='m' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6877' u='m' c='create_conn'/>

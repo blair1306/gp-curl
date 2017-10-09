@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/curl.h' l='1879'/>
+<doc f='codebrowser/include/curl/curl.h' l='1876'>/* Convenience definition simple because the name of the version is HTTP/2 and
+   not 2.0. The 2_0 version of the enum name was set while the version was
+   still planned to be 2.0 and we stick to it for compatibility. */</doc>
+<use f='codebrowser/lib/http.c' l='1778' u='c'/>
+<use f='codebrowser/lib/http.c' l='2363' u='c'/>
+<use f='codebrowser/lib/url.c' l='1369' u='c'/>
+<use f='codebrowser/lib/url.c' l='3198' u='c'/>

@@ -1,0 +1,4 @@
+<dec f='include/net/if.h' l='149' type='union (anonymous union at /usr/include/net/if.h:135:5)'/>
+<offset>128</offset>
+<use f='codebrowser/lib/if2ip.c' l='234' macro='1' u='m'/>
+<use f='codebrowser/lib/if2ip.c' l='244' macro='1' u='m'/>

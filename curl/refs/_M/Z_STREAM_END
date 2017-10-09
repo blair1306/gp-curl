@@ -1,0 +1,5 @@
+<dec f='include/zlib.h' l='174'/>
+<use f='codebrowser/lib/content_encoding.c' l='116' u='c'/>
+<use f='codebrowser/lib/content_encoding.c' l='129' u='c'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10033' u='c'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10035' u='c'/>

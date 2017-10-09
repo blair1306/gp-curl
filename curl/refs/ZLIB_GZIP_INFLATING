@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='471' type='3'/>
+<doc f='codebrowser/lib/urldata.h' l='471'>/* inflating gzip stream */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='340' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='388' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='404' c='Curl_unencode_gzip_write'/>

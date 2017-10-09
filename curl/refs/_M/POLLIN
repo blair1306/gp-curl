@@ -1,0 +1,18 @@
+<dec f='include/x86_64-linux-gnu/bits/poll.h' l='25'/>
+<use f='codebrowser/lib/select.h' l='40' u='a'/>
+<doc f='include/x86_64-linux-gnu/bits/poll.h' l='22'>/* Event types that can be polled for.  These bits may be set in `events&apos;
+   to indicate the interesting event types; they will appear in `revents&apos;
+   to indicate the status of the file descriptor.  */</doc>
+<use f='codebrowser/lib/multi.c' l='1054' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1078' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1102' u='c'/>
+<use f='codebrowser/lib/select.c' l='195' u='c'/>
+<use f='codebrowser/lib/select.c' l='201' u='c'/>
+<use f='codebrowser/lib/select.c' l='240' u='c'/>
+<use f='codebrowser/lib/select.c' l='247' u='c'/>
+<use f='codebrowser/lib/select.c' l='462' u='c'/>
+<use f='codebrowser/lib/select.c' l='464' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='1588' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='1597' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='1612' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='1649' u='c'/>

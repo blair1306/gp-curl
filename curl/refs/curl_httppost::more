@@ -1,0 +1,13 @@
+<dec f='codebrowser/include/curl/curl.h' l='168' type='struct curl_httppost *'/>
+<offset>576</offset>
+<doc f='codebrowser/include/curl/curl.h' l='168'>/* if one field name has more than one
+                                       file, this link should link to following
+                                       files */</doc>
+<use f='codebrowser/lib/formdata.c' l='102' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='102' u='r' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='105' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='812' u='r' c='curl_formfree'/>
+<use f='codebrowser/lib/formdata.c' l='883' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='899' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='914' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='962' u='r' c='Curl_getformdata'/>

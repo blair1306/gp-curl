@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='45' type='int (*)(void)'/>
+<offset>256</offset>
+<use f='codebrowser/lib/vtls/vtls.c' l='168' u='r' c='Curl_ssl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1095' u='r' c='Curl_multissl_init'/>

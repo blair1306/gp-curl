@@ -1,0 +1,16 @@
+<def f='codebrowser/lib/curl_addrinfo.h' l='51' ll='60'/>
+<size>48</size>
+<doc f='codebrowser/lib/curl_addrinfo.h' l='44'>/*
+ * Curl_addrinfo is our internal struct definition that we use to allow
+ * consistent internal handling of this data. We use this even when the
+ * system provides an addrinfo structure definition. And we use this for
+ * all sorts of IPv4 and IPV6 builds.
+ */</doc>
+<mbr r='Curl_addrinfo::ai_flags' o='0' t='int'/>
+<mbr r='Curl_addrinfo::ai_family' o='32' t='int'/>
+<mbr r='Curl_addrinfo::ai_socktype' o='64' t='int'/>
+<mbr r='Curl_addrinfo::ai_protocol' o='96' t='int'/>
+<mbr r='Curl_addrinfo::ai_addrlen' o='128' t='curl_socklen_t'/>
+<mbr r='Curl_addrinfo::ai_canonname' o='192' t='char *'/>
+<mbr r='Curl_addrinfo::ai_addr' o='256' t='struct sockaddr *'/>
+<mbr r='Curl_addrinfo::ai_next' o='320' t='struct Curl_addrinfo *'/>

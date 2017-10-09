@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='773' type='char *'/>
+<offset>131200</offset>
+<doc f='codebrowser/lib/urldata.h' l='773'>/* where to store more data */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='168' u='w' c='connect_init'/>
+<use f='codebrowser/lib/http_proxy.c' l='335' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='342' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='373' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='392' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='407' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='408' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='446' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='560' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='561' u='r' c='CONNECT'/>

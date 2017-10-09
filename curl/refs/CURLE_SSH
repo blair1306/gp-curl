@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='555' type='79'/>
+<doc f='codebrowser/include/curl/curl.h' l='555'>/* 79 - error from the SSH layer, somewhat
+                                    generic so the error message will be of
+                                    interest when this has happened */</doc>
+<use f='codebrowser/lib/strerror.c' l='285' c='curl_easy_strerror'/>

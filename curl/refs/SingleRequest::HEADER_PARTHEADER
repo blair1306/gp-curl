@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='541' type='1'/>
+<doc f='codebrowser/lib/urldata.h' l='541'>/* part of the chunk is a bad header, the rest
+                                   is normal data */</doc>
+<use f='codebrowser/lib/http.c' l='3015' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='655' u='r' c='readwrite_data'/>

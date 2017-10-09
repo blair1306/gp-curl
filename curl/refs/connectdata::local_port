@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='863' type='long'/>
+<offset>4160</offset>
+<use f='codebrowser/lib/connect.c' l='607' u='r' c='Curl_persistconninfo'/>
+<use f='codebrowser/lib/connect.c' l='702' u='a' c='Curl_updateconninfo'/>

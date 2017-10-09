@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/cookie.h' l='36' type='char *'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/cookie.h' l='36'>/* the plain text version */</doc>
+<use f='codebrowser/lib/cookie.c' l='109' u='r' c='freecookie'/>
+<use f='codebrowser/lib/cookie.c' l='580' u='a' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='581' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='627' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='630' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='894' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1097' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1097' u='w' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1097' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1097' u='r' c='dup_cookie'/>

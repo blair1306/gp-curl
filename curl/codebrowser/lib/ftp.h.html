@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ftp.h source code [codebrowser/lib/ftp.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="FTP,ftp_conn,ftp_wc_tmpdata "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/ftp.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='ftp.h.html'>ftp.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_FTP_H">HEADER_CURL_FTP_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_FTP_H" data-ref="_M/HEADER_CURL_FTP_H">HEADER_CURL_FTP_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="pingpong.h.html">"pingpong.h"</a></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_FTP">CURL_DISABLE_FTP</span></u></td></tr>
+<tr><th id="28">28</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_ftp" title='Curl_handler_ftp' data-ref="Curl_handler_ftp">Curl_handler_ftp</dfn>;</td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifdef</span> <a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a></u></td></tr>
+<tr><th id="31">31</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_ftps" title='Curl_handler_ftps' data-ref="Curl_handler_ftps">Curl_handler_ftps</dfn>;</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="30">endif</span></u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_ftpsend" title='Curl_ftpsend' data-ref="Curl_ftpsend">Curl_ftpsend</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="584cmd" title='cmd' data-type='const char *' data-ref="584cmd">cmd</dfn>);</td></tr>
+<tr><th id="35">35</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_GetFTPResponse" title='Curl_GetFTPResponse' data-ref="Curl_GetFTPResponse">Curl_GetFTPResponse</dfn>(<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> *<dfn class="local col5 decl" id="585nread" title='nread' data-type='ssize_t *' data-ref="585nread">nread</dfn>, <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="586conn" title='conn' data-type='struct connectdata *' data-ref="586conn">conn</dfn>,</td></tr>
+<tr><th id="36">36</th><td>                             <em>int</em> *<dfn class="local col7 decl" id="587ftpcode" title='ftpcode' data-type='int *' data-ref="587ftpcode">ftpcode</dfn>);</td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="27">endif</span> /* CURL_DISABLE_FTP */</u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><i>/****************************************************************************</i></td></tr>
+<tr><th id="40">40</th><td><i> * FTP unique setup</i></td></tr>
+<tr><th id="41">41</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="42">42</th><td><b>typedef</b> <b>enum</b> {</td></tr>
+<tr><th id="43">43</th><td>  <dfn class="enum" id="FTP_STOP" title='FTP_STOP' data-ref="FTP_STOP">FTP_STOP</dfn>,    <i>/* do nothing state, stops the state machine */</i></td></tr>
+<tr><th id="44">44</th><td>  <dfn class="enum" id="FTP_WAIT220" title='FTP_WAIT220' data-ref="FTP_WAIT220">FTP_WAIT220</dfn>, <i>/* waiting for the initial 220 response immediately after</i></td></tr>
+<tr><th id="45">45</th><td><i>                  a connect */</i></td></tr>
+<tr><th id="46">46</th><td>  <dfn class="enum" id="FTP_AUTH" title='FTP_AUTH' data-ref="FTP_AUTH">FTP_AUTH</dfn>,</td></tr>
+<tr><th id="47">47</th><td>  <dfn class="enum" id="FTP_USER" title='FTP_USER' data-ref="FTP_USER">FTP_USER</dfn>,</td></tr>
+<tr><th id="48">48</th><td>  <dfn class="enum" id="FTP_PASS" title='FTP_PASS' data-ref="FTP_PASS">FTP_PASS</dfn>,</td></tr>
+<tr><th id="49">49</th><td>  <dfn class="enum" id="FTP_ACCT" title='FTP_ACCT' data-ref="FTP_ACCT">FTP_ACCT</dfn>,</td></tr>
+<tr><th id="50">50</th><td>  <dfn class="enum" id="FTP_PBSZ" title='FTP_PBSZ' data-ref="FTP_PBSZ">FTP_PBSZ</dfn>,</td></tr>
+<tr><th id="51">51</th><td>  <dfn class="enum" id="FTP_PROT" title='FTP_PROT' data-ref="FTP_PROT">FTP_PROT</dfn>,</td></tr>
+<tr><th id="52">52</th><td>  <dfn class="enum" id="FTP_CCC" title='FTP_CCC' data-ref="FTP_CCC">FTP_CCC</dfn>,</td></tr>
+<tr><th id="53">53</th><td>  <dfn class="enum" id="FTP_PWD" title='FTP_PWD' data-ref="FTP_PWD">FTP_PWD</dfn>,</td></tr>
+<tr><th id="54">54</th><td>  <dfn class="enum" id="FTP_SYST" title='FTP_SYST' data-ref="FTP_SYST">FTP_SYST</dfn>,</td></tr>
+<tr><th id="55">55</th><td>  <dfn class="enum" id="FTP_NAMEFMT" title='FTP_NAMEFMT' data-ref="FTP_NAMEFMT">FTP_NAMEFMT</dfn>,</td></tr>
+<tr><th id="56">56</th><td>  <dfn class="enum" id="FTP_QUOTE" title='FTP_QUOTE' data-ref="FTP_QUOTE">FTP_QUOTE</dfn>, <i>/* waiting for a response to a command sent in a quote list */</i></td></tr>
+<tr><th id="57">57</th><td>  <dfn class="enum" id="FTP_RETR_PREQUOTE" title='FTP_RETR_PREQUOTE' data-ref="FTP_RETR_PREQUOTE">FTP_RETR_PREQUOTE</dfn>,</td></tr>
+<tr><th id="58">58</th><td>  <dfn class="enum" id="FTP_STOR_PREQUOTE" title='FTP_STOR_PREQUOTE' data-ref="FTP_STOR_PREQUOTE">FTP_STOR_PREQUOTE</dfn>,</td></tr>
+<tr><th id="59">59</th><td>  <dfn class="enum" id="FTP_POSTQUOTE" title='FTP_POSTQUOTE' data-ref="FTP_POSTQUOTE">FTP_POSTQUOTE</dfn>,</td></tr>
+<tr><th id="60">60</th><td>  <dfn class="enum" id="FTP_CWD" title='FTP_CWD' data-ref="FTP_CWD">FTP_CWD</dfn>,  <i>/* change dir */</i></td></tr>
+<tr><th id="61">61</th><td>  <dfn class="enum" id="FTP_MKD" title='FTP_MKD' data-ref="FTP_MKD">FTP_MKD</dfn>,  <i>/* if the dir didn't exist */</i></td></tr>
+<tr><th id="62">62</th><td>  <dfn class="enum" id="FTP_MDTM" title='FTP_MDTM' data-ref="FTP_MDTM">FTP_MDTM</dfn>, <i>/* to figure out the datestamp */</i></td></tr>
+<tr><th id="63">63</th><td>  <dfn class="enum" id="FTP_TYPE" title='FTP_TYPE' data-ref="FTP_TYPE">FTP_TYPE</dfn>, <i>/* to set type when doing a head-like request */</i></td></tr>
+<tr><th id="64">64</th><td>  <dfn class="enum" id="FTP_LIST_TYPE" title='FTP_LIST_TYPE' data-ref="FTP_LIST_TYPE">FTP_LIST_TYPE</dfn>, <i>/* set type when about to do a dir list */</i></td></tr>
+<tr><th id="65">65</th><td>  <dfn class="enum" id="FTP_RETR_TYPE" title='FTP_RETR_TYPE' data-ref="FTP_RETR_TYPE">FTP_RETR_TYPE</dfn>, <i>/* set type when about to RETR a file */</i></td></tr>
+<tr><th id="66">66</th><td>  <dfn class="enum" id="FTP_STOR_TYPE" title='FTP_STOR_TYPE' data-ref="FTP_STOR_TYPE">FTP_STOR_TYPE</dfn>, <i>/* set type when about to STOR a file */</i></td></tr>
+<tr><th id="67">67</th><td>  <dfn class="enum" id="FTP_SIZE" title='FTP_SIZE' data-ref="FTP_SIZE">FTP_SIZE</dfn>, <i>/* get the remote file's size for head-like request */</i></td></tr>
+<tr><th id="68">68</th><td>  <dfn class="enum" id="FTP_RETR_SIZE" title='FTP_RETR_SIZE' data-ref="FTP_RETR_SIZE">FTP_RETR_SIZE</dfn>, <i>/* get the remote file's size for RETR */</i></td></tr>
+<tr><th id="69">69</th><td>  <dfn class="enum" id="FTP_STOR_SIZE" title='FTP_STOR_SIZE' data-ref="FTP_STOR_SIZE">FTP_STOR_SIZE</dfn>, <i>/* get the size for STOR */</i></td></tr>
+<tr><th id="70">70</th><td>  <dfn class="enum" id="FTP_REST" title='FTP_REST' data-ref="FTP_REST">FTP_REST</dfn>, <i>/* when used to check if the server supports it in head-like */</i></td></tr>
+<tr><th id="71">71</th><td>  <dfn class="enum" id="FTP_RETR_REST" title='FTP_RETR_REST' data-ref="FTP_RETR_REST">FTP_RETR_REST</dfn>, <i>/* when asking for "resume" in for RETR */</i></td></tr>
+<tr><th id="72">72</th><td>  <dfn class="enum" id="FTP_PORT" title='FTP_PORT' data-ref="FTP_PORT">FTP_PORT</dfn>, <i>/* generic state for PORT, LPRT and EPRT, check count1 */</i></td></tr>
+<tr><th id="73">73</th><td>  <dfn class="enum" id="FTP_PRET" title='FTP_PRET' data-ref="FTP_PRET">FTP_PRET</dfn>, <i>/* generic state for PRET RETR, PRET STOR and PRET LIST/NLST */</i></td></tr>
+<tr><th id="74">74</th><td>  <dfn class="enum" id="FTP_PASV" title='FTP_PASV' data-ref="FTP_PASV">FTP_PASV</dfn>, <i>/* generic state for PASV and EPSV, check count1 */</i></td></tr>
+<tr><th id="75">75</th><td>  <dfn class="enum" id="FTP_LIST" title='FTP_LIST' data-ref="FTP_LIST">FTP_LIST</dfn>, <i>/* generic state for LIST, NLST or a custom list command */</i></td></tr>
+<tr><th id="76">76</th><td>  <dfn class="enum" id="FTP_RETR" title='FTP_RETR' data-ref="FTP_RETR">FTP_RETR</dfn>,</td></tr>
+<tr><th id="77">77</th><td>  <dfn class="enum" id="FTP_STOR" title='FTP_STOR' data-ref="FTP_STOR">FTP_STOR</dfn>, <i>/* generic state for STOR and APPE */</i></td></tr>
+<tr><th id="78">78</th><td>  <dfn class="enum" id="FTP_QUIT" title='FTP_QUIT' data-ref="FTP_QUIT">FTP_QUIT</dfn>,</td></tr>
+<tr><th id="79">79</th><td>  <dfn class="enum" id="FTP_LAST" title='FTP_LAST' data-ref="FTP_LAST">FTP_LAST</dfn>  <i>/* never used */</i></td></tr>
+<tr><th id="80">80</th><td>} <dfn class="typedef" id="ftpstate" title='ftpstate' data-type='enum ftpstate' data-ref="ftpstate">ftpstate</dfn>;</td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td><b>struct</b> <dfn class="type" id="ftp_parselist_data" title='ftp_parselist_data' data-ref="ftp_parselist_data">ftp_parselist_data</dfn>; <i>/* defined later in ftplistparser.c */</i></td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td><b>struct</b> <dfn class="type def" id="ftp_wc_tmpdata" title='ftp_wc_tmpdata' data-ref="ftp_wc_tmpdata">ftp_wc_tmpdata</dfn> {</td></tr>
+<tr><th id="85">85</th><td>  <b>struct</b> <a class="type" href="#ftp_parselist_data" title='ftp_parselist_data' data-ref="ftp_parselist_data">ftp_parselist_data</a> *<dfn class="decl" id="ftp_wc_tmpdata::parser" title='ftp_wc_tmpdata::parser' data-ref="ftp_wc_tmpdata::parser">parser</dfn>;</td></tr>
+<tr><th id="86">86</th><td></td></tr>
+<tr><th id="87">87</th><td>  <b>struct</b> {</td></tr>
+<tr><th id="88">88</th><td>    <a class="typedef" href="../include/curl/curl.h.html#curl_write_callback" title='curl_write_callback' data-type='size_t (*)(char *, size_t, size_t, void *)' data-ref="curl_write_callback">curl_write_callback</a> <dfn class="decl" id="ftp_wc_tmpdata::(anonymous)::write_function" title='ftp_wc_tmpdata::(anonymous struct)::write_function' data-ref="ftp_wc_tmpdata::(anonymous)::write_function">write_function</dfn>;</td></tr>
+<tr><th id="89">89</th><td>    <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl" id="ftp_wc_tmpdata::(anonymous)::file_descriptor" title='ftp_wc_tmpdata::(anonymous struct)::file_descriptor' data-ref="ftp_wc_tmpdata::(anonymous)::file_descriptor">file_descriptor</dfn>;</td></tr>
+<tr><th id="90">90</th><td>  } <dfn class="decl" id="ftp_wc_tmpdata::backup" title='ftp_wc_tmpdata::backup' data-ref="ftp_wc_tmpdata::backup">backup</dfn>;</td></tr>
+<tr><th id="91">91</th><td>};</td></tr>
+<tr><th id="92">92</th><td></td></tr>
+<tr><th id="93">93</th><td><b>typedef</b> <b>enum</b> {</td></tr>
+<tr><th id="94">94</th><td>  <dfn class="enum" id="FTPFILE_MULTICWD" title='FTPFILE_MULTICWD' data-ref="FTPFILE_MULTICWD">FTPFILE_MULTICWD</dfn>  = <var>1</var>, <i>/* as defined by RFC1738 */</i></td></tr>
+<tr><th id="95">95</th><td>  <dfn class="enum" id="FTPFILE_NOCWD" title='FTPFILE_NOCWD' data-ref="FTPFILE_NOCWD">FTPFILE_NOCWD</dfn>     = <var>2</var>, <i>/* use SIZE / RETR / STOR on the full path */</i></td></tr>
+<tr><th id="96">96</th><td>  <dfn class="enum" id="FTPFILE_SINGLECWD" title='FTPFILE_SINGLECWD' data-ref="FTPFILE_SINGLECWD">FTPFILE_SINGLECWD</dfn> = <var>3</var>  <i>/* make one CWD, then SIZE / RETR / STOR on the</i></td></tr>
+<tr><th id="97">97</th><td><i>                            file */</i></td></tr>
+<tr><th id="98">98</th><td>} <dfn class="typedef" id="curl_ftpfile" title='curl_ftpfile' data-type='enum curl_ftpfile' data-ref="curl_ftpfile">curl_ftpfile</dfn>;</td></tr>
+<tr><th id="99">99</th><td></td></tr>
+<tr><th id="100">100</th><td><i>/* This FTP struct is used in the Curl_easy. All FTP data that is</i></td></tr>
+<tr><th id="101">101</th><td><i>   connection-oriented must be in FTP_conn to properly deal with the fact that</i></td></tr>
+<tr><th id="102">102</th><td><i>   perhaps the Curl_easy is changed between the times the connection is</i></td></tr>
+<tr><th id="103">103</th><td><i>   used. */</i></td></tr>
+<tr><th id="104">104</th><td><b>struct</b> <dfn class="type def" id="FTP" title='FTP' data-ref="FTP">FTP</dfn> {</td></tr>
+<tr><th id="105">105</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> *<dfn class="decl" id="FTP::bytecountp" title='FTP::bytecountp' data-ref="FTP::bytecountp">bytecountp</dfn>;</td></tr>
+<tr><th id="106">106</th><td>  <em>char</em> *<dfn class="decl" id="FTP::user" title='FTP::user' data-ref="FTP::user">user</dfn>;    <i>/* user name string */</i></td></tr>
+<tr><th id="107">107</th><td>  <em>char</em> *<dfn class="decl" id="FTP::passwd" title='FTP::passwd' data-ref="FTP::passwd">passwd</dfn>;  <i>/* password string */</i></td></tr>
+<tr><th id="108">108</th><td></td></tr>
+<tr><th id="109">109</th><td>  <i>/* transfer a file/body or not, done as a typedefed enum just to make</i></td></tr>
+<tr><th id="110">110</th><td><i>     debuggers display the full symbol and not just the numerical value */</i></td></tr>
+<tr><th id="111">111</th><td>  <a class="typedef" href="pingpong.h.html#curl_pp_transfer" title='curl_pp_transfer' data-type='enum curl_pp_transfer' data-ref="curl_pp_transfer">curl_pp_transfer</a> <dfn class="decl" id="FTP::transfer" title='FTP::transfer' data-ref="FTP::transfer">transfer</dfn>;</td></tr>
+<tr><th id="112">112</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="FTP::downloadsize" title='FTP::downloadsize' data-ref="FTP::downloadsize">downloadsize</dfn>;</td></tr>
+<tr><th id="113">113</th><td>};</td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td></td></tr>
+<tr><th id="116">116</th><td><i>/* ftp_conn is used for struct connection-oriented data in the connectdata</i></td></tr>
+<tr><th id="117">117</th><td><i>   struct */</i></td></tr>
+<tr><th id="118">118</th><td><b>struct</b> <dfn class="type def" id="ftp_conn" title='ftp_conn' data-ref="ftp_conn">ftp_conn</dfn> {</td></tr>
+<tr><th id="119">119</th><td>  <b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> <dfn class="decl" id="ftp_conn::pp" title='ftp_conn::pp' data-ref="ftp_conn::pp">pp</dfn>;</td></tr>
+<tr><th id="120">120</th><td>  <em>char</em> *<dfn class="decl" id="ftp_conn::entrypath" title='ftp_conn::entrypath' data-ref="ftp_conn::entrypath">entrypath</dfn>; <i>/* the PWD reply when we logged on */</i></td></tr>
+<tr><th id="121">121</th><td>  <em>char</em> **<dfn class="decl" id="ftp_conn::dirs" title='ftp_conn::dirs' data-ref="ftp_conn::dirs">dirs</dfn>;   <i>/* realloc()ed array for path components */</i></td></tr>
+<tr><th id="122">122</th><td>  <em>int</em> <dfn class="decl" id="ftp_conn::dirdepth" title='ftp_conn::dirdepth' data-ref="ftp_conn::dirdepth">dirdepth</dfn>;  <i>/* number of entries used in the 'dirs' array */</i></td></tr>
+<tr><th id="123">123</th><td>  <em>int</em> <dfn class="decl" id="ftp_conn::diralloc" title='ftp_conn::diralloc' data-ref="ftp_conn::diralloc">diralloc</dfn>;  <i>/* number of entries allocated for the 'dirs' array */</i></td></tr>
+<tr><th id="124">124</th><td>  <em>char</em> *<dfn class="decl" id="ftp_conn::file" title='ftp_conn::file' data-ref="ftp_conn::file">file</dfn>;    <i>/* decoded file */</i></td></tr>
+<tr><th id="125">125</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="ftp_conn::dont_check" title='ftp_conn::dont_check' data-ref="ftp_conn::dont_check">dont_check</dfn>;  <i>/* Set to TRUE to prevent the final (post-transfer)</i></td></tr>
+<tr><th id="126">126</th><td><i>                       file size and 226/250 status check. It should still</i></td></tr>
+<tr><th id="127">127</th><td><i>                       read the line, just ignore the result. */</i></td></tr>
+<tr><th id="128">128</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="ftp_conn::ctl_valid" title='ftp_conn::ctl_valid' data-ref="ftp_conn::ctl_valid">ctl_valid</dfn>;   <i>/* Tells Curl_ftp_quit() whether or not to do anything. If</i></td></tr>
+<tr><th id="129">129</th><td><i>                       the connection has timed out or been closed, this</i></td></tr>
+<tr><th id="130">130</th><td><i>                       should be FALSE when it gets to Curl_ftp_quit() */</i></td></tr>
+<tr><th id="131">131</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="ftp_conn::cwddone" title='ftp_conn::cwddone' data-ref="ftp_conn::cwddone">cwddone</dfn>;     <i>/* if it has been determined that the proper CWD combo</i></td></tr>
+<tr><th id="132">132</th><td><i>                       already has been done */</i></td></tr>
+<tr><th id="133">133</th><td>  <em>int</em> <dfn class="decl" id="ftp_conn::cwdcount" title='ftp_conn::cwdcount' data-ref="ftp_conn::cwdcount">cwdcount</dfn>;     <i>/* number of CWD commands issued */</i></td></tr>
+<tr><th id="134">134</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="ftp_conn::cwdfail" title='ftp_conn::cwdfail' data-ref="ftp_conn::cwdfail">cwdfail</dfn>;     <i>/* set TRUE if a CWD command fails, as then we must prevent</i></td></tr>
+<tr><th id="135">135</th><td><i>                       caching the current directory */</i></td></tr>
+<tr><th id="136">136</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="ftp_conn::wait_data_conn" title='ftp_conn::wait_data_conn' data-ref="ftp_conn::wait_data_conn">wait_data_conn</dfn>; <i>/* this is set TRUE if data connection is waited */</i></td></tr>
+<tr><th id="137">137</th><td>  <em>char</em> *<dfn class="decl" id="ftp_conn::prevpath" title='ftp_conn::prevpath' data-ref="ftp_conn::prevpath">prevpath</dfn>;   <i>/* conn-&gt;path from the previous transfer */</i></td></tr>
+<tr><th id="138">138</th><td>  <a class="typedef" href="#curl_ftpfile" title='curl_ftpfile' data-type='enum curl_ftpfile' data-ref="curl_ftpfile">curl_ftpfile</a> <dfn class="decl" id="ftp_conn::prevmethod" title='ftp_conn::prevmethod' data-ref="ftp_conn::prevmethod">prevmethod</dfn>; <i>/* ftp method in previous transfer  */</i></td></tr>
+<tr><th id="139">139</th><td>  <em>char</em> <dfn class="decl" id="ftp_conn::transfertype" title='ftp_conn::transfertype' data-ref="ftp_conn::transfertype">transfertype</dfn>; <i>/* set by ftp_transfertype for use by Curl_client_write()a</i></td></tr>
+<tr><th id="140">140</th><td><i>                        and others (A/I or zero) */</i></td></tr>
+<tr><th id="141">141</th><td>  <em>int</em> <dfn class="decl" id="ftp_conn::count1" title='ftp_conn::count1' data-ref="ftp_conn::count1">count1</dfn>; <i>/* general purpose counter for the state machine */</i></td></tr>
+<tr><th id="142">142</th><td>  <em>int</em> <dfn class="decl" id="ftp_conn::count2" title='ftp_conn::count2' data-ref="ftp_conn::count2">count2</dfn>; <i>/* general purpose counter for the state machine */</i></td></tr>
+<tr><th id="143">143</th><td>  <em>int</em> <dfn class="decl" id="ftp_conn::count3" title='ftp_conn::count3' data-ref="ftp_conn::count3">count3</dfn>; <i>/* general purpose counter for the state machine */</i></td></tr>
+<tr><th id="144">144</th><td>  <a class="typedef" href="#ftpstate" title='ftpstate' data-type='enum ftpstate' data-ref="ftpstate">ftpstate</a> <dfn class="decl" id="ftp_conn::state" title='ftp_conn::state' data-ref="ftp_conn::state">state</dfn>; <i>/* always use ftp.c:state() to change state! */</i></td></tr>
+<tr><th id="145">145</th><td>  <a class="typedef" href="#ftpstate" title='ftpstate' data-type='enum ftpstate' data-ref="ftpstate">ftpstate</a> <dfn class="decl" id="ftp_conn::state_saved" title='ftp_conn::state_saved' data-ref="ftp_conn::state_saved">state_saved</dfn>; <i>/* transfer type saved to be reloaded after</i></td></tr>
+<tr><th id="146">146</th><td><i>                           data connection is established */</i></td></tr>
+<tr><th id="147">147</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="ftp_conn::retr_size_saved" title='ftp_conn::retr_size_saved' data-ref="ftp_conn::retr_size_saved">retr_size_saved</dfn>; <i>/* Size of retrieved file saved */</i></td></tr>
+<tr><th id="148">148</th><td>  <em>char</em> *<dfn class="decl" id="ftp_conn::server_os" title='ftp_conn::server_os' data-ref="ftp_conn::server_os">server_os</dfn>;     <i>/* The target server operating system. */</i></td></tr>
+<tr><th id="149">149</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="ftp_conn::known_filesize" title='ftp_conn::known_filesize' data-ref="ftp_conn::known_filesize">known_filesize</dfn>; <i>/* file size is different from -1, if wildcard</i></td></tr>
+<tr><th id="150">150</th><td><i>                                LIST parsing was done and wc_statemach set</i></td></tr>
+<tr><th id="151">151</th><td><i>                                it */</i></td></tr>
+<tr><th id="152">152</th><td>  <i>/* newhost is the (allocated) IP addr or host name to connect the data</i></td></tr>
+<tr><th id="153">153</th><td><i>     connection to */</i></td></tr>
+<tr><th id="154">154</th><td>  <em>char</em> *<dfn class="decl" id="ftp_conn::newhost" title='ftp_conn::newhost' data-ref="ftp_conn::newhost">newhost</dfn>;          <i>/* this is the pair to connect the DATA... */</i></td></tr>
+<tr><th id="155">155</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl" id="ftp_conn::newport" title='ftp_conn::newport' data-ref="ftp_conn::newport">newport</dfn>; <i>/* connection to */</i></td></tr>
+<tr><th id="156">156</th><td></td></tr>
+<tr><th id="157">157</th><td>};</td></tr>
+<tr><th id="158">158</th><td></td></tr>
+<tr><th id="159">159</th><td><u>#define <dfn class="macro" id="_M/DEFAULT_ACCEPT_TIMEOUT" data-ref="_M/DEFAULT_ACCEPT_TIMEOUT">DEFAULT_ACCEPT_TIMEOUT</dfn>   60000 /* milliseconds == one minute */</u></td></tr>
+<tr><th id="160">160</th><td></td></tr>
+<tr><th id="161">161</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_FTP_H */</u></td></tr>
+<tr><th id="162">162</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='asyn-thread.c.html'>codebrowser/lib/asyn-thread.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

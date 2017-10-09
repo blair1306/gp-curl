@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='549' macro='1' type='int i2d_OCSP_BASICRESP(OCSP_BASICRESP * a, unsigned char ** out)'/>

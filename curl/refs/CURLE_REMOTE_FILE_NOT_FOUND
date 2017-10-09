@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='554' type='78'/>
+<doc f='codebrowser/include/curl/curl.h' l='554'>/* 78 - remote file not found */</doc>
+<use f='codebrowser/lib/ftp.c' l='2489' u='r' c='ftp_state_get_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3158' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3865' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/imap.c' l='1058' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1097' u='r' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/smb.c' l='773' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='784' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/strerror.c' l='282' c='curl_easy_strerror'/>

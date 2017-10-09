@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/smtp.h' l='82'/>
+<use f='codebrowser/lib/smtp.c' l='1207' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='1211' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='1572' u='c'/>

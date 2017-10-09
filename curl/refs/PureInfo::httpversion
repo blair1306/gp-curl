@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1054' type='int'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/urldata.h' l='1054'>/* the http version number X.Y = X*10+Y */</doc>
+<use f='codebrowser/lib/getinfo.c' l='61' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='224' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/http.c' l='3410' u='w' c='Curl_http_readwrite_headers'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1575' type='struct curl_slist *'/>
+<offset>7552</offset>
+<doc f='codebrowser/lib/urldata.h' l='1575'>/* linked list of telnet options */</doc>
+<use f='codebrowser/lib/telnet.c' l='846' u='r' c='check_telnet_options'/>
+<use f='codebrowser/lib/url.c' l='2338' u='w' c='Curl_setopt'/>

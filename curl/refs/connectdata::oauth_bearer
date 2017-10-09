@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='869' type='char *'/>
+<offset>4416</offset>
+<doc f='codebrowser/lib/urldata.h' l='869'>/* bearer token for OAuth 2.0, allocated */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='340' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='350' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='353' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='361' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='558' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='567' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/url.c' l='3045' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3045' u='w' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='6530' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6531' u='r' c='create_conn'/>

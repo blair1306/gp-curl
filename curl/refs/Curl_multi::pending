@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/multihandle.h' l='86' type='struct curl_llist'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/multihandle.h' l='86'>/* Curl_easys that are in the
+                                CURLM_STATE_CONNECT_PEND state */</doc>
+<use f='codebrowser/lib/multi.c' l='325' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='349' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='1445' u='a' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1445' u='m' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2266' u='a' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='3095' u='m' c='Curl_multi_process_pending_handles'/>
+<use f='codebrowser/lib/multi.c' l='3105' u='a' c='Curl_multi_process_pending_handles'/>

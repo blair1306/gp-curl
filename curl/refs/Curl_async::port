@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='479' type='int'/>
+<use f='codebrowser/lib/asyn-thread.c' l='393' u='w' c='init_resolve_thread'/>
+<offset>64</offset>
+<use f='codebrowser/lib/hostasyn.c' l='87' u='r' c='Curl_addrinfo_callback'/>

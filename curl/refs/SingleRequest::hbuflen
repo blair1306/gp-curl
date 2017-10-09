@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/urldata.h' l='549' type='size_t'/>
+<offset>960</offset>
+<use f='codebrowser/lib/http.c' l='2874' u='r' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2880' u='r' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2889' u='r' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2889' u='r' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2902' u='w' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2975' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3009' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3298' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3800' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3802' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3806' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3807' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3811' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='654' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='714' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='762' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='765' u='r' c='readwrite_data'/>

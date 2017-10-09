@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/asyn.h' l='142' type='Curl_addrinfo * Curl_resolver_getaddrinfo(struct connectdata * conn, const char * hostname, int port, int * waitp)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='601' ll='681' type='Curl_addrinfo * Curl_resolver_getaddrinfo(struct connectdata * conn, const char * hostname, int port, int * waitp)'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='598'>/*
+ * Curl_resolver_getaddrinfo() - for getaddrinfo
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='131'>/*
+ * Curl_resolver_getaddrinfo() - when using this resolver
+ *
+ * Returns name information about the given hostname and port number. If
+ * successful, the &apos;hostent&apos; is returned and the forth argument will point to
+ * memory we need to free after use. That memory *MUST* be freed with
+ * Curl_freeaddrinfo(), nothing else.
+ *
+ * Each resolver backend must of course make sure to return data in the
+ * correct format to comply with this.
+ */</doc>
+<use f='codebrowser/lib/hostasyn.c' l='150' u='c' c='Curl_getaddrinfo'/>

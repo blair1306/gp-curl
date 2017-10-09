@@ -1,0 +1,14 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='38' type='long proto2num(struct OperationConfig * config, long * val, const char * str)'/>
+<use f='codebrowser/src/tool_getparam.c' l='983' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='988' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='269' ll='366' type='long proto2num(struct OperationConfig * config, long * val, const char * str)'/>
+<doc f='codebrowser/src/tool_paramhlp.c' l='258'>/*
+ * Parse the string and modify the long in the given address. Return
+ * non-zero on failure, zero on success.
+ *
+ * The string is a list of protocols
+ *
+ * Since this function gets called with the &apos;nextarg&apos; pointer from within the
+ * getparameter a lot, we must check it for NULL before accessing the str
+ * data.
+ */</doc>

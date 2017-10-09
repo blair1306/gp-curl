@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vauth/ntlm.h' l='89'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='427' u='c'/>
+<doc f='codebrowser/lib/vauth/ntlm.h' l='85'>/* Sent by the server to indicate that the server and client are on the same
+   machine. Implies that the client may use a pre-established local security
+   context rather than responding to the challenge. */</doc>

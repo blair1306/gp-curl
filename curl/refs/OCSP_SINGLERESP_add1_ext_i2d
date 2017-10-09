@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='542' type='int OCSP_SINGLERESP_add1_ext_i2d(OCSP_SINGLERESP * x, int nid, void * value, int crit, unsigned long flags)'/>

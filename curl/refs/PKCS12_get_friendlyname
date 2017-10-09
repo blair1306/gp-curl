@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='212' type='char * PKCS12_get_friendlyname(PKCS12_SAFEBAG * bag)'/>

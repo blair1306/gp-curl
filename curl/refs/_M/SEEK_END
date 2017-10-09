@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='142'/>
+<dec f='include/fcntl.h' l='138'/>
+<use f='codebrowser/lib/mime.c' l='644' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='892' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1696' u='c'/>

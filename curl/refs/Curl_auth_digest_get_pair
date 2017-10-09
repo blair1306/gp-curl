@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/vauth/digest.h' l='38' type='_Bool Curl_auth_digest_get_pair(const char * str, char * value, char * content, const char ** endptr)'/>
+<def f='codebrowser/lib/vauth/digest.c' l='70' ll='135' macro='1' type='_Bool Curl_auth_digest_get_pair(const char * str, char * value, char * content, const char ** endptr)'/>
+<use f='codebrowser/lib/vauth/digest.c' l='535' u='c' c='Curl_auth_decode_digest_http_message'/>

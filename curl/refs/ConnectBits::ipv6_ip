@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='387' type='_Bool'/>
+<offset>72</offset>
+<use f='codebrowser/lib/http.c' l='2070' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2072' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2075' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2077' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http_proxy.c' l='241' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/url.c' l='5748' u='w' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5794' u='r' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5795' u='r' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='6074' u='r' c='parse_connect_to_string'/>
+<use f='codebrowser/lib/url.c' l='6076' u='r' c='parse_connect_to_string'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1352' u='r' c='verifyhost'/>

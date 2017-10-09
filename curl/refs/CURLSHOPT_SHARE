@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='2573' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='2573'>/* specify a data type to share */</doc>
+<use f='codebrowser/lib/share.c' l='69' c='curl_share_setopt'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='219' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='223' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='173' u='r' c='test'/>

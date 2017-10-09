@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/tftp.c' l='134' type='time_t'/>
+<use f='codebrowser/lib/tftp.c' l='270' u='a' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='636' u='a' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='656' u='a' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='760' u='a' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='1203' u='r' c='tftp_state_timeout'/>
+<use f='codebrowser/lib/tftp.c' l='1206' u='a' c='tftp_state_timeout'/>
+<offset>448</offset>

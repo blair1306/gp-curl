@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='444' type='OCSP_SINGLERESP * OCSP_resp_get0(OCSP_BASICRESP * bs, int idx)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1619' u='c' c='verifystatus'/>

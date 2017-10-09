@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='92' type='int'/>
+<offset>0</offset>
+<use f='codebrowser/src/tool_cb_rea.c' l='42' u='r' c='tool_read_cb'/>
+<use f='codebrowser/src/tool_cb_see.c' l='82' u='r' c='tool_seek_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='879' u='w' c='operate_do'/>

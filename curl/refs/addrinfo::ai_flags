@@ -1,0 +1,5 @@
+<dec f='include/netdb.h' l='569' type='int'/>
+<offset>0</offset>
+<doc f='include/netdb.h' l='569'>/* Input flags.  */</doc>
+<use f='codebrowser/lib/curl_addrinfo.c' l='160' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/tests/server/resolve.c' l='130' u='w' c='main'/>

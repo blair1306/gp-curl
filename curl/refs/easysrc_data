@@ -1,0 +1,11 @@
+<dec f='codebrowser/src/tool_easysrc.h' l='30' type='struct slist_wc *'/>
+<def f='codebrowser/src/tool_easysrc.c' l='41' type='struct slist_wc *'/>
+<use f='codebrowser/src/tool_easysrc.c' l='84' u='r' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='85' u='w' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='202' u='r' c='dumpeasysrc'/>
+<use f='codebrowser/src/tool_easysrc.c' l='205' u='r' c='dumpeasysrc'/>
+<doc f='codebrowser/src/tool_easysrc.c' l='41'>/* Build slists, forms etc. */</doc>
+<doc f='codebrowser/src/tool_easysrc.h' l='30'>/* Build slists, forms etc. */</doc>
+<use f='codebrowser/src/tool_setopt.c' l='195' u='a' c='libcurl_generate_slist'/>
+<use f='codebrowser/src/tool_setopt.c' l='197' u='a' c='libcurl_generate_slist'/>
+<use f='codebrowser/src/tool_setopt.c' l='195' u='a' c='libcurl_generate_mime'/>

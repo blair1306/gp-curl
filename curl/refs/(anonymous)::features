@@ -1,0 +1,29 @@
+<dec f='codebrowser/include/curl/curl.h' l='2610' type='int'/>
+<offset>256</offset>
+<doc f='codebrowser/include/curl/curl.h' l='2610'>/* bitmask, see defines below */</doc>
+<use f='codebrowser/lib/version.c' l='359' u='w' c='curl_version_info'/>
+<use f='codebrowser/lib/version.c' l='361' u='w' c='curl_version_info'/>
+<use f='codebrowser/src/tool_getparam.c' l='632' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='650' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='661' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='672' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='718' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='750' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='804' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='858' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='902' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='910' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1440' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1446' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1452' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1461' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1483' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1492' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1499' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1506' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1547' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_help.c' l='541' u='r' c='tool_version_info'/>
+<use f='codebrowser/src/tool_help.c' l='545' u='r' c='tool_version_info'/>
+<use f='codebrowser/src/tool_operate.c' l='1036' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1137' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1444' u='r' c='operate_do'/>

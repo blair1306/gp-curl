@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_setopt.h' l='82' type='CURLcode tool_setopt_flags(CURL * curl, struct GlobalConfig * config, const char * name, CURLoption tag, const NameValue * nv, long lval)'/>
+<use f='codebrowser/src/tool_operate.c' l='1419' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1421' macro='1' u='c'/>
+<def f='codebrowser/src/tool_setopt.c' l='298' ll='337' type='CURLcode tool_setopt_flags(CURL * curl, struct GlobalConfig * config, const char * name, CURLoption tag, const NameValue * nvlist, long lval)'/>
+<doc f='codebrowser/src/tool_setopt.c' l='297'>/* setopt wrapper for flags */</doc>

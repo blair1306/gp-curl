@@ -1,0 +1,17 @@
+<dec f='codebrowser/tests/server/util.h' l='37' type='const char *'/>
+<def f='codebrowser/tests/server/fake_ntlm.c' l='42' type='const char *'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='178' u='w' c='main'/>
+<doc f='codebrowser/tests/server/util.h' l='36'>/* global variable, log file name */</doc>
+<def f='codebrowser/tests/server/resolve.c' l='60' type='const char *'/>
+<doc f='codebrowser/tests/server/resolve.c' l='60'>/* for a util.c function we don&apos;t use */</doc>
+<def f='codebrowser/tests/server/rtspd.c' l='130' type='const char *'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1223' u='w' c='main'/>
+<def f='codebrowser/tests/server/sockfilt.c' l='129' type='const char *'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1373' u='w' c='main'/>
+<def f='codebrowser/tests/server/sws.c' l='141' type='const char *'/>
+<use f='codebrowser/tests/server/sws.c' l='2022' u='w' c='main'/>
+<def f='codebrowser/tests/server/tftpd.c' l='210' type='const char *'/>
+<use f='codebrowser/tests/server/tftpd.c' l='703' u='w' c='main'/>
+<use f='codebrowser/tests/server/util.c' l='110' u='r' c='logmsg'/>
+<use f='codebrowser/tests/server/util.c' l='130' u='r' c='logmsg'/>
+<use f='codebrowser/tests/server/util.c' l='139' u='r' c='logmsg'/>

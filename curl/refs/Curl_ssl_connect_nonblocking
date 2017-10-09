@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='152' type='CURLcode Curl_ssl_connect_nonblocking(struct connectdata * conn, int sockindex, _Bool * done)'/>
+<use f='codebrowser/lib/http.c' l='1393' u='c' c='https_connecting'/>
+<use f='codebrowser/lib/http_proxy.c' l='58' u='c' c='https_proxy_connect'/>
+<use f='codebrowser/lib/imap.c' l='462' u='c' c='imap_perform_upgrade_tls'/>
+<use f='codebrowser/lib/imap.c' l='1337' u='c' c='imap_multi_statemach'/>
+<use f='codebrowser/lib/pop3.c' l='357' u='c' c='pop3_perform_upgrade_tls'/>
+<use f='codebrowser/lib/pop3.c' l='1008' u='c' c='pop3_multi_statemach'/>
+<use f='codebrowser/lib/smb.c' l='652' u='c' c='smb_connection_state'/>
+<use f='codebrowser/lib/smtp.c' l='373' u='c' c='smtp_perform_upgrade_tls'/>
+<use f='codebrowser/lib/smtp.c' l='1071' u='c' c='smtp_multi_statemach'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='256' ll='276' type='CURLcode Curl_ssl_connect_nonblocking(struct connectdata * conn, int sockindex, _Bool * done)'/>

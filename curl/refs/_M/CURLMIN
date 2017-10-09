@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='153'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='470' u='c'/>
+<use f='codebrowser/lib/http.c' l='1103' u='c'/>
+<use f='codebrowser/lib/pingpong.c' l='72' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='711' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='725' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='729' u='c'/>

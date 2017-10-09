@@ -1,0 +1,10 @@
+<dec f='include/unistd.h' l='631' type='__pid_t getpid()'/>
+<doc f='include/unistd.h' l='630'>/* Get the process ID of the calling process.  */</doc>
+<use f='codebrowser/lib/smb.c' l='364' u='c' c='smb_format_message'/>
+<use f='codebrowser/tests/server/rtspd.c' l='953' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1281' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='1109' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sws.c' l='2119' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='761' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1150' u='c' c='validate_access'/>
+<use f='codebrowser/tests/server/util.c' l='263' u='c' c='write_pidfile'/>

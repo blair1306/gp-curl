@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/http_ntlm.h' l='34' type='CURLcode Curl_output_ntlm(struct connectdata * conn, _Bool proxy)'/>
+<use f='codebrowser/lib/http.c' l='588' u='c' c='output_auth_headers'/>
+<doc f='codebrowser/lib/http_ntlm.h' l='33'>/* this is for creating ntlm header output */</doc>
+<def f='codebrowser/lib/http_ntlm.c' l='114' ll='229' type='CURLcode Curl_output_ntlm(struct connectdata * conn, _Bool proxy)'/>
+<doc f='codebrowser/lib/http_ntlm.c' l='111'>/*
+ * This is for creating ntlm header output
+ */</doc>

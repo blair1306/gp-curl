@@ -1,0 +1,3 @@
+<dec f='include/openssl/ssl.h' l='2457' type='long SSL_get_verify_result(const SSL * ssl)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2554' u='c' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3134' u='c' c='servercert'/>

@@ -1,0 +1,46 @@
+<def f='codebrowser/src/tool_sdecls.h' l='65' ll='78'/>
+<size>48</size>
+<doc f='codebrowser/src/tool_sdecls.h' l='29'>/*
+ * OutStruct variables keep track of information relative to curl&apos;s
+ * output writing, which may take place to a standard stream or a file.
+ *
+ * &apos;filename&apos; member is either a pointer to a file name string or NULL
+ * when dealing with a standard stream.
+ *
+ * &apos;alloc_filename&apos; member is TRUE when string pointed by &apos;filename&apos; has been
+ * dynamically allocated and &apos;belongs&apos; to this OutStruct, otherwise FALSE.
+ *
+ * &apos;is_cd_filename&apos; member is TRUE when string pointed by &apos;filename&apos; has been
+ * set using a server-specified Content-Disposition filename, otherwise FALSE.
+ *
+ * &apos;s_isreg&apos; member is TRUE when output goes to a regular file, this also
+ * implies that output is &apos;seekable&apos; and &apos;appendable&apos; and also that member
+ * &apos;filename&apos; points to file name&apos;s string. For any standard stream member
+ * &apos;s_isreg&apos; will be FALSE.
+ *
+ * &apos;fopened&apos; member is TRUE when output goes to a regular file and it
+ * has been fopen&apos;ed, requiring it to be closed later on. In any other
+ * case this is FALSE.
+ *
+ * &apos;stream&apos; member is a pointer to a stream controlling object as returned
+ * from a &apos;fopen&apos; call or a standard stream.
+ *
+ * &apos;config&apos; member is a pointer to associated &apos;OperationConfig&apos; struct.
+ *
+ * &apos;bytes&apos; member represents amount written so far.
+ *
+ * &apos;init&apos; member holds original file size or offset at which truncation is
+ * taking place. Always zero unless appending to a non-empty regular file.
+ *
+ * &apos;metalink_parser&apos; member is a pointer to Metalink XML parser
+ * context.
+ */</doc>
+<mbr r='OutStruct::filename' o='0' t='char *'/>
+<mbr r='OutStruct::alloc_filename' o='64' t='_Bool'/>
+<mbr r='OutStruct::is_cd_filename' o='72' t='_Bool'/>
+<mbr r='OutStruct::s_isreg' o='80' t='_Bool'/>
+<mbr r='OutStruct::fopened' o='88' t='_Bool'/>
+<mbr r='OutStruct::stream' o='128' t='FILE *'/>
+<mbr r='OutStruct::config' o='192' t='struct OperationConfig *'/>
+<mbr r='OutStruct::bytes' o='256' t='curl_off_t'/>
+<mbr r='OutStruct::init' o='320' t='curl_off_t'/>

@@ -1,0 +1,3 @@
+<dec f='codebrowser/include/curl/curl.h' l='2488' type='2097194'/>
+<use f='codebrowser/lib/getinfo.c' l='206' c='getinfo_long'/>
+<use f='codebrowser/src/tool_writeout.c' l='294' u='r' c='ourWriteOut'/>

@@ -1,0 +1,6 @@
+<dec f='include/arpa/tftp.h' l='73'/>
+<use f='codebrowser/tests/server/tftpd.c' l='168' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1424' u='c'/>
+<doc f='include/arpa/tftp.h' l='70'>/*
+ * Error codes.
+ */</doc>

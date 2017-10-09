@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/wildcard.h' l='33' type='2'/>
+<doc f='codebrowser/lib/wildcard.h' l='33'>/* library is trying to get list of addresses for
+                      downloading */</doc>
+<use f='codebrowser/lib/ftp.c' l='3844' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3847' c='wc_statemach'/>

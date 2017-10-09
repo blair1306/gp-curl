@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/http.h' l='152' type='1'/>
+<doc f='codebrowser/lib/http.h' l='152'>/* sending a request */</doc>
+<use f='codebrowser/lib/http.c' l='993' u='r' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1172' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/transfer.c' l='937' u='r' c='readwrite_upload'/>

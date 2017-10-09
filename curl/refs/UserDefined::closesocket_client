@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1534' type='void *'/>
+<offset>2112</offset>
+<use f='codebrowser/lib/url.c' l='2561' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4339' u='r' c='allocate_conn'/>

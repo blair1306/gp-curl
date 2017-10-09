@@ -1,0 +1,11 @@
+<dec f='codebrowser/include/curl/curl.h' l='2735'/>
+<use f='codebrowser/lib/share.c' l='50' u='w'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='207' u='c'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='211' u='c'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='215' u='c'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='219' u='c'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='223' u='c'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='161' u='c'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='165' u='c'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='169' u='c'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='173' u='c'/>

@@ -1,0 +1,1 @@
+<dec f='codebrowser/lib/hash.h' l='96' type='void Curl_hash_print(struct curl_hash * h, void (*)(void *) func)'/>

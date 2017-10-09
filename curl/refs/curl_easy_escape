@@ -1,0 +1,11 @@
+<dec f='codebrowser/include/curl/curl.h' l='2253' type='char * curl_easy_escape(CURL * handle, const char * string, int length)'/>
+<use f='codebrowser/lib/escape.c' l='70' u='c' c='curl_escape'/>
+<def f='codebrowser/lib/escape.c' l='79' ll='134' type='char * curl_easy_escape(struct Curl_easy * data, const char * string, int inlength)'/>
+<use f='codebrowser/src/tool_getparam.c' l='1261' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_operhlp.c' l='102' u='c' c='add_file_name_to_url'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='44' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='80' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib509.c' l='135' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib543.c' l='50' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib558.c' l='45' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1396.c' l='102' u='c' c='test'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/multihandle.h' l='94' type='curl_push_callback'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/multihandle.h' l='93'>/* callback function and user data pointer for server push */</doc>
+<use f='codebrowser/lib/multi.c' l='2699' u='w' c='curl_multi_setopt'/>

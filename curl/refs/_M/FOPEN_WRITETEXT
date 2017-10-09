@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_setup.h' l='733'/>
+<use f='codebrowser/lib/cookie.c' l='1376' u='c'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='83' u='c'/>
+<use f='codebrowser/src/tool_easysrc.c' l='181' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='731' u='c'/>

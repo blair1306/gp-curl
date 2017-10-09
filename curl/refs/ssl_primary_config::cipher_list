@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='219' type='char *'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/urldata.h' l='219'>/* list of ciphers to use */</doc>
+<use f='codebrowser/lib/url.c' l='6696' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6698' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2299' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2299' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='99' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='99' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='121' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='121' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='121' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='121' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='121' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='133' u='r' c='Curl_free_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='133' u='w' c='Curl_free_primary_ssl_config'/>

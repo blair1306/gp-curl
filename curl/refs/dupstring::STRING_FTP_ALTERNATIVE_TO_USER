@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1405' type='11'/>
+<doc f='codebrowser/lib/urldata.h' l='1405'>/* command to send if USER/PASS fails */</doc>
+<use f='codebrowser/lib/ftp.c' l='2565' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2569' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/url.c' l='2516' u='a' c='Curl_setopt'/>

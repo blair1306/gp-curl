@@ -1,0 +1,18 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='261' type='int shutdown(int __fd, int __how)'/>
+<doc f='include/x86_64-linux-gnu/sys/socket.h' l='255'>/* Shut down all or part of the connection open on socket FD.
+   HOW determines what to shut down:
+     SHUT_RD   = No more receptions;
+     SHUT_WR   = No more transmissions;
+     SHUT_RDWR = No more receptions or transmissions.
+   Returns 0 on success, -1 for errors.  */</doc>
+<use f='codebrowser/tests/server/sws.c' l='1609' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1629' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1647' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1664' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1684' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1712' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1717' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1725' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1730' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1799' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1804' u='c' c='http_connect'/>

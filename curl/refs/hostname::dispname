@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/urldata.h' l='445' type='const char *'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/urldata.h' l='445'>/* name to display, as &apos;name&apos; might be encoded */</doc>
+<use f='codebrowser/lib/http.c' l='2092' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2094' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2101' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/multi.c' l='636' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='637' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='638' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='639' u='r' c='multi_done'/>
+<use f='codebrowser/lib/sendf.c' l='824' u='r' c='Curl_debug'/>
+<use f='codebrowser/lib/sendf.c' l='847' u='r' c='Curl_debug'/>
+<use f='codebrowser/lib/url.c' l='3964' u='r' c='Curl_verboseconnect'/>
+<use f='codebrowser/lib/url.c' l='3965' u='r' c='Curl_verboseconnect'/>
+<use f='codebrowser/lib/url.c' l='3966' u='r' c='Curl_verboseconnect'/>
+<use f='codebrowser/lib/url.c' l='3967' u='r' c='Curl_verboseconnect'/>
+<use f='codebrowser/lib/url.c' l='4119' u='w' c='fix_hostname'/>
+<use f='codebrowser/lib/url.c' l='6244' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6266' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6788' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6789' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6790' u='r' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1349' u='r' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1349' u='r' c='verifyhost'/>

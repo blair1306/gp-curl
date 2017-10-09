@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/urldata.h' l='1011' type='int'/>
+<offset>14496</offset>
+<doc f='codebrowser/lib/urldata.h' l='1011'>/* current READ/WRITE bits to wait for */</doc>

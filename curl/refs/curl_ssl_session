@@ -1,0 +1,12 @@
+<def f='codebrowser/lib/urldata.h' l='253' ll='263'/>
+<size>128</size>
+<doc f='codebrowser/lib/urldata.h' l='252'>/* information stored about one single SSL session */</doc>
+<mbr r='curl_ssl_session::name' o='0' t='char *'/>
+<mbr r='curl_ssl_session::conn_to_host' o='64' t='char *'/>
+<mbr r='curl_ssl_session::scheme' o='128' t='const char *'/>
+<mbr r='curl_ssl_session::sessionid' o='192' t='void *'/>
+<mbr r='curl_ssl_session::idsize' o='256' t='size_t'/>
+<mbr r='curl_ssl_session::age' o='320' t='long'/>
+<mbr r='curl_ssl_session::remote_port' o='384' t='int'/>
+<mbr r='curl_ssl_session::conn_to_port' o='416' t='int'/>
+<mbr r='curl_ssl_session::ssl_config' o='448' t='struct ssl_primary_config'/>

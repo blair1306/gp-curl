@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='293' type='0'/>
+<use f='codebrowser/lib/http.c' l='430' u='r' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='431' u='r' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http_ntlm.c' l='96' u='r' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/url.c' l='3793' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3809' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3819' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3821' u='r' c='ConnectionExists'/>

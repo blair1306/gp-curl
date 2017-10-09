@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/imap.h' l='62' type='char *'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/imap.h' l='62'>/* Message PARTIAL to fetch */</doc>
+<use f='codebrowser/lib/imap.c' l='687' u='r' c='imap_perform_fetch'/>
+<use f='codebrowser/lib/imap.c' l='691' u='r' c='imap_perform_fetch'/>
+<use f='codebrowser/lib/imap.c' l='1484' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1484' u='w' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='2016' u='r' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='2020' u='w' c='imap_parse_url_path'/>

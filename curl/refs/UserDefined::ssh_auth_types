@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1654' type='long'/>
+<offset>11904</offset>
+<doc f='codebrowser/lib/urldata.h' l='1654'>/* allowed SSH auth types */</doc>
+<use f='codebrowser/lib/url.c' l='567' u='w' c='Curl_init_userdefined'/>

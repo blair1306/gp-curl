@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/asyn.h' l='113' type='CURLcode Curl_resolver_is_resolved(struct connectdata * conn, struct Curl_dns_entry ** dns)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='507' ll='557' type='CURLcode Curl_resolver_is_resolved(struct connectdata * conn, struct Curl_dns_entry ** entry)'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='502'>/*
+ * Curl_resolver_is_resolved() is called repeatedly to check if a previous
+ * name resolve request has completed. It should also make sure to time-out if
+ * the operation seems to take too long.
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='104'>/*
+ * Curl_resolver_is_resolved()
+ *
+ * Called repeatedly to check if a previous name resolve request has
+ * completed. It should also make sure to time-out if the operation seems to
+ * take too long.
+ *
+ * Returns normal CURLcode errors.
+ */</doc>
+<use f='codebrowser/lib/hostip.c' l='497' u='c' c='Curl_resolv'/>
+<use f='codebrowser/lib/multi.c' l='1509' u='c' c='multi_runsingle'/>

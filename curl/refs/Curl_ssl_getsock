@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='143' type='int Curl_ssl_getsock(struct connectdata * conn, curl_socket_t * socks, int numsocks)'/>
+<use f='codebrowser/lib/http.c' l='1405' u='c' c='https_getsock'/>
+<use f='codebrowser/lib/multi.c' l='814' u='c' c='waitconnect_getsock'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='515' ll='535' type='int Curl_ssl_getsock(struct connectdata * conn, curl_socket_t * socks, int numsocks)'/>

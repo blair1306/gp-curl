@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/connect.h' l='75' type='void Curl_updateconninfo(struct connectdata * conn, curl_socket_t sockfd)'/>
+<def f='codebrowser/lib/connect.c' l='664' ll='712' type='void Curl_updateconninfo(struct connectdata * conn, curl_socket_t sockfd)'/>
+<use f='codebrowser/lib/connect.c' l='805' u='c' c='Curl_is_connected'/>
+<doc f='codebrowser/lib/connect.c' l='662'>/* retrieves the start/end point information of a socket of an established
+   connection */</doc>
+<use f='codebrowser/lib/url.c' l='6987' u='c' c='Curl_setup_conn'/>

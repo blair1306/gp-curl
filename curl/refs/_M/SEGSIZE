@@ -1,0 +1,8 @@
+<dec f='include/arpa/tftp.h' l='38'/>
+<use f='codebrowser/tests/server/tftpd.c' l='497' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='508' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1308' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1379' u='c'/>
+<doc f='include/arpa/tftp.h' l='35'>/*
+ * Trivial File Transfer Protocol (IEN-133)
+ */</doc>

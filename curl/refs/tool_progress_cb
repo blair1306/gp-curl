@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cb_prg.h' l='45' type='int tool_progress_cb(void * clientp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow)'/>
+<def f='codebrowser/src/tool_cb_prg.c' l='40' ll='101' type='int tool_progress_cb(void * clientp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow)'/>
+<doc f='codebrowser/src/tool_cb_prg.h' l='41'>/*
+** callback for CURLOPT_PROGRESSFUNCTION
+*/</doc>
+<use f='codebrowser/src/tool_operate.c' l='1249' c='operate_do'/>

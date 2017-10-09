@@ -1,0 +1,1 @@
+<dec f='include/openssl/engine.h' l='558' type='int ENGINE_set_ECDSA(ENGINE * e, const ECDSA_METHOD * ecdsa_meth)'/>

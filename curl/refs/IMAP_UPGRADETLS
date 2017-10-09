@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/imap.h' l='37' type='4'/>
+<doc f='codebrowser/lib/imap.h' l='37'>/* asynchronously upgrade the connection to SSL/TLS
+                       (multi mode only) */</doc>
+<use f='codebrowser/lib/imap.c' l='465' u='r' c='imap_perform_upgrade_tls'/>
+<use f='codebrowser/lib/imap.c' l='466' u='r' c='imap_perform_upgrade_tls'/>
+<use f='codebrowser/lib/imap.c' l='1248' u='r' c='imap_statemach_act'/>

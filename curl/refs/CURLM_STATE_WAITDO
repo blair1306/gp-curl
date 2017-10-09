@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/multihandle.h' l='48' type='8'/>
+<doc f='codebrowser/lib/multihandle.h' l='48'>/* 8 - wait for our turn to send the request */</doc>
+<use f='codebrowser/lib/multi.c' l='1376' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1468' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1533' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1610' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1627' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1638' c='multi_runsingle'/>

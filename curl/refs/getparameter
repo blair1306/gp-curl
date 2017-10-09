@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_getparam.h' l='51' type='ParameterError getparameter(const char * flag, char * nextarg, _Bool * usedarg, struct GlobalConfig * global, struct OperationConfig * operation)'/>
+<def f='codebrowser/src/tool_getparam.c' l='427' ll='2082' type='ParameterError getparameter(const char * flag, char * nextarg, _Bool * usedarg, struct GlobalConfig * global, struct OperationConfig * config)'/>
+<use f='codebrowser/src/tool_getparam.c' l='2108' u='c' c='parse_args'/>
+<use f='codebrowser/src/tool_getparam.c' l='2146' u='c' c='parse_args'/>
+<doc f='codebrowser/src/tool_getparam.c' l='427'>/* f or -long-flag */</doc>
+<use f='codebrowser/src/tool_parsecfg.c' l='221' u='c' c='parseconfig'/>

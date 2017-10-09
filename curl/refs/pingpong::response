@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/pingpong.h' l='61' type='struct curltime'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/pingpong.h' l='61'>/* set to Curl_tvnow() when a command has been sent
+                              off, used to time-out response reading */</doc>
+<use f='codebrowser/lib/ftp.c' l='3266' u='w' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3386' u='w' c='ftp_sendquote'/>
+<use f='codebrowser/lib/pingpong.c' l='64' u='r' c='Curl_pp_state_timeout'/>
+<use f='codebrowser/lib/pingpong.c' l='146' u='w' c='Curl_pp_init'/>
+<use f='codebrowser/lib/pingpong.c' l='238' u='w' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='502' u='w' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/smtp.c' l='1233' u='w' c='smtp_done'/>

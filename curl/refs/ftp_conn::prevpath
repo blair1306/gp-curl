@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/ftp.h' l='137' type='char *'/>
+<offset>1280</offset>
+<doc f='codebrowser/lib/ftp.h' l='137'>/* conn-&gt;path from the previous transfer */</doc>
+<use f='codebrowser/lib/ftp.c' l='3180' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3197' u='w' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3205' u='w' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3208' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3212' u='w' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3215' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3216' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3219' u='w' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='4111' u='r' c='ftp_disconnect'/>
+<use f='codebrowser/lib/ftp.c' l='4112' u='w' c='ftp_disconnect'/>
+<use f='codebrowser/lib/ftp.c' l='4297' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4310' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4311' u='r' c='ftp_parse_url_path'/>

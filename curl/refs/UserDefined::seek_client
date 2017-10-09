@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1536' type='void *'/>
+<offset>2176</offset>
+<doc f='codebrowser/lib/urldata.h' l='1536'>/* pointer to pass to the seek callback */</doc>
+<use f='codebrowser/lib/http.c' l='1444' u='r' c='Curl_http_done'/>
+<use f='codebrowser/lib/transfer.c' l='303' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/url.c' l='524' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1974' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6909' u='r' c='create_conn'/>

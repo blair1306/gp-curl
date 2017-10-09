@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/mime.h' l='48' type='3'/>
+<doc f='codebrowser/lib/mime.h' l='48'>/* End of headers. */</doc>
+<use f='codebrowser/lib/mime.c' l='841' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='859' c='readback_part'/>

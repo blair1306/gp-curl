@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/ftp.h' l='60' type='16'/>
+<doc f='codebrowser/lib/ftp.h' l='60'>/* change dir */</doc>
+<use f='codebrowser/lib/ftp.c' l='900' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='908' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='2943' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2982' u='r' c='ftp_statemach_act'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='206' type='int PKCS12_add_CSPName_asc(PKCS12_SAFEBAG * bag, const char * name, int namelen)'/>

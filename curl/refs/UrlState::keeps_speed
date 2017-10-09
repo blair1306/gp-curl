@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1246' type='struct curltime'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/urldata.h' l='1245'>/* buffers to store authentication data in, as parsed from input options */</doc>
+<doc f='codebrowser/lib/urldata.h' l='1246'>/* for the progress meter really */</doc>
+<use f='codebrowser/lib/speedcheck.c' l='33' u='a' c='Curl_speedinit'/>
+<use f='codebrowser/lib/speedcheck.c' l='44' u='m' c='Curl_speedcheck'/>
+<use f='codebrowser/lib/speedcheck.c' l='46' u='w' c='Curl_speedcheck'/>
+<use f='codebrowser/lib/speedcheck.c' l='49' u='r' c='Curl_speedcheck'/>
+<use f='codebrowser/lib/speedcheck.c' l='64' u='m' c='Curl_speedcheck'/>

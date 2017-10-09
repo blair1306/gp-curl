@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/urldata.h' l='835' type='struct hostname'/>
+<offset>1920</offset>
+<doc f='codebrowser/lib/urldata.h' l='835'>/* the host to connect to. valid only if
+                                   bits.conn_to_host is set */</doc>
+<use f='codebrowser/lib/conncache.c' l='133' u='m' c='hashkey'/>
+<use f='codebrowser/lib/connect.c' l='859' u='m' c='Curl_is_connected'/>
+<use f='codebrowser/lib/http_proxy.c' l='113' u='m' c='Curl_proxy_connect'/>
+<use f='codebrowser/lib/multi.c' l='638' u='m' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='1492' u='m' c='multi_runsingle'/>
+<use f='codebrowser/lib/url.c' l='3063' u='m' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3063' u='m' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3140' u='a' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3529' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3744' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3744' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3922' u='m' c='Curl_connected_proxy'/>
+<use f='codebrowser/lib/url.c' l='3966' u='m' c='Curl_verboseconnect'/>
+<use f='codebrowser/lib/url.c' l='6136' u='m' c='parse_connect_to_slist'/>
+<use f='codebrowser/lib/url.c' l='6137' u='m' c='parse_connect_to_slist'/>
+<use f='codebrowser/lib/url.c' l='6223' u='a' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6332' u='a' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6334' u='m' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6334' u='m' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6336' u='w' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6336' u='r' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6592' u='a' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6603' u='m' c='create_conn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='341' u='m' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='432' u='m' c='Curl_ssl_addsessionid'/>

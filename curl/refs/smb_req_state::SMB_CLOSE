@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/smb.c' l='175' type='5'/>
+<use f='codebrowser/lib/smb.c' l='809' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='827' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='834' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='840' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='849' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='854' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='883' c='smb_request_state'/>

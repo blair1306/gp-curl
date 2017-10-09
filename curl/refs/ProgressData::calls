@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cb_prg.h' l='30' type='int'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='64' u='r' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='74' u='w' c='tool_progress_cb'/>
+<offset>0</offset>
+<use f='codebrowser/src/tool_operate.c' l='1758' u='r' c='operate_do'/>

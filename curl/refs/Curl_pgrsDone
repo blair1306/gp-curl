@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/progress.h' l='43' type='int Curl_pgrsDone(struct connectdata * )'/>
+<use f='codebrowser/lib/multi.c' l='570' u='c' c='multi_done'/>
+<def f='codebrowser/lib/progress.c' l='133' ll='150' type='int Curl_pgrsDone(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/progress.c' l='119'>/*
+
+   New proposed interface, 9th of February 2000:
+
+   pgrsStartNow() - sets start time
+   pgrsSetDownloadSize(x) - known expected download size
+   pgrsSetUploadSize(x) - known expected upload size
+   pgrsSetDownloadCounter() - amount of data currently downloaded
+   pgrsSetUploadCounter() - amount of data currently uploaded
+   pgrsUpdate() - show progress
+   pgrsDone() - transfer complete
+
+*/</doc>
+<use f='codebrowser/lib/tftp.c' l='1064' u='c' c='tftp_done'/>

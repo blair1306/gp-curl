@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/ftp.h' l='72' type='28'/>
+<doc f='codebrowser/lib/ftp.h' l='72'>/* generic state for PORT, LPRT and EPRT, check count1 */</doc>
+<use f='codebrowser/lib/ftp.c' l='1306' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='3022' c='ftp_statemach_act'/>

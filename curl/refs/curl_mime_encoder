@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='2041' type='CURLcode curl_mime_encoder(curl_mimepart * part, const char * encoding)'/>
+<def f='codebrowser/lib/mime.c' l='1348' ll='1368' type='CURLcode curl_mime_encoder(curl_mimepart * part, const char * encoding)'/>
+<doc f='codebrowser/lib/mime.c' l='1347'>/* Set mime data transfer encoder. */</doc>
+<use f='codebrowser/src/tool_formparse.c' l='613' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='722' u='c' c='formparse'/>

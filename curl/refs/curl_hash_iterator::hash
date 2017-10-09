@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/hash.h' l='67' type='struct curl_hash *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/hash.c' l='286' u='w' c='Curl_hash_start_iterate'/>
+<use f='codebrowser/lib/hash.c' l='295' u='r' c='Curl_hash_next_element'/>

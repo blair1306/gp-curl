@@ -1,0 +1,4 @@
+<dec f='include/openssl/x509.h' l='144' type='ASN1_OBJECT *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2813' u='r' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2816' u='r' c='get_cert_chain'/>

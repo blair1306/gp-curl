@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_cb_prg.h' l='27'/>
+<use f='codebrowser/src/tool_getparam.c' l='1087' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1245' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1757' u='c'/>

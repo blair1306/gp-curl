@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1164' type='11'/>
+<use f='codebrowser/lib/rtsp.c' l='225' u='r' c='rtsp_done'/>
+<use f='codebrowser/lib/rtsp.c' l='234' u='r' c='rtsp_done'/>
+<use f='codebrowser/lib/rtsp.c' l='240' u='r' c='rtsp_done'/>
+<use f='codebrowser/lib/rtsp.c' l='324' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='334' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='690' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1954' u='r' c='Curl_retry_request'/>
+<use f='codebrowser/lib/url.c' l='2758' u='r' c='Curl_setopt'/>

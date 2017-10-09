@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='518' type='51'/>
+<doc f='codebrowser/include/curl/curl.h' l='518'>/* 51 - peer&apos;s certificate or fingerprint
+                                     wasn&apos;t verified fine */</doc>
+<use f='codebrowser/lib/strerror.c' l='194' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1442' u='r' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1490' u='r' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1514' u='r' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1519' u='r' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3051' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3143' u='r' c='servercert'/>

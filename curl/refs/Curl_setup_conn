@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/url.h' l='44' type='CURLcode Curl_setup_conn(struct connectdata * conn, _Bool * protocol_done)'/>
+<use f='codebrowser/lib/hostasyn.c' l='129' u='c' c='Curl_async_resolved'/>
+<def f='codebrowser/lib/url.c' l='6932' ll='7008' type='CURLcode Curl_setup_conn(struct connectdata * conn, _Bool * protocol_done)'/>
+<use f='codebrowser/lib/url.c' l='7031' u='c' c='Curl_connect'/>
+<doc f='codebrowser/lib/url.c' l='6924'>/* Curl_setup_conn() is called after the name resolve initiated in
+ * create_conn() is all done.
+ *
+ * Curl_setup_conn() also handles reused connections
+ *
+ * conn-&gt;data MUST already have been setup fine (in create_conn)
+ */</doc>

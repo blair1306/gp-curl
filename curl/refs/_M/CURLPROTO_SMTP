@@ -1,0 +1,7 @@
+<dec f='codebrowser/include/curl/curl.h' l='860'/>
+<use f='codebrowser/lib/smtp.c' l='130' u='c'/>
+<use f='codebrowser/lib/url.c' l='7166' u='c'/>
+<use f='codebrowser/lib/url.c' l='7168' u='c'/>
+<use f='codebrowser/src/tool_libinfo.c' l='72' u='c'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='296' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='159' u='c'/>

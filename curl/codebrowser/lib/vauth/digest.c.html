@@ -1,0 +1,911 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>digest.c source code [codebrowser/lib/vauth/digest.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/vauth/digest.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>lib</a>/<a href='./'>vauth</a>/<a href='digest.c.html'>digest.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> * RFC2831 DIGEST-MD5 authentication</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">if</span> !defined(<span class="macro" data-ref="_M/CURL_DISABLE_CRYPTO_AUTH">CURL_DISABLE_CRYPTO_AUTH</span>)</u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="vauth.h.html">"vauth/vauth.h"</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="digest.h.html">"vauth/digest.h"</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#include <a href="../urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="../curl_base64.h.html">"curl_base64.h"</a></u></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="../curl_hmac.h.html">"curl_hmac.h"</a></u></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="../curl_md5.h.html">"curl_md5.h"</a></u></td></tr>
+<tr><th id="37">37</th><td><u>#include <a href="../vtls/vtls.h.html">"vtls/vtls.h"</a></u></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="../warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="39">39</th><td><u>#include <a href="../strtok.h.html">"strtok.h"</a></u></td></tr>
+<tr><th id="40">40</th><td><u>#include <a href="../strcase.h.html">"strcase.h"</a></u></td></tr>
+<tr><th id="41">41</th><td><u>#include <a href="../non-ascii.h.html">"non-ascii.h"</a> /* included for Curl_convert_... prototypes */</u></td></tr>
+<tr><th id="42">42</th><td><u>#include <a href="../curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="../rand.h.html">"rand.h"</a></u></td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><i>/* The last #include files should be: */</i></td></tr>
+<tr><th id="46">46</th><td><u>#include <a href="../curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="47">47</th><td><u>#include <a href="../memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="49">if</span> !defined(<span class="macro" data-ref="_M/USE_WINDOWS_SSPI">USE_WINDOWS_SSPI</span>)</u></td></tr>
+<tr><th id="50">50</th><td><u>#define <dfn class="macro" id="_M/DIGEST_QOP_VALUE_AUTH" data-ref="_M/DIGEST_QOP_VALUE_AUTH">DIGEST_QOP_VALUE_AUTH</dfn>             (1 &lt;&lt; 0)</u></td></tr>
+<tr><th id="51">51</th><td><u>#define <dfn class="macro" id="_M/DIGEST_QOP_VALUE_AUTH_INT" data-ref="_M/DIGEST_QOP_VALUE_AUTH_INT">DIGEST_QOP_VALUE_AUTH_INT</dfn>         (1 &lt;&lt; 1)</u></td></tr>
+<tr><th id="52">52</th><td><u>#define <dfn class="macro" id="_M/DIGEST_QOP_VALUE_AUTH_CONF" data-ref="_M/DIGEST_QOP_VALUE_AUTH_CONF">DIGEST_QOP_VALUE_AUTH_CONF</dfn>        (1 &lt;&lt; 2)</u></td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td><u>#define <dfn class="macro" id="_M/DIGEST_QOP_VALUE_STRING_AUTH" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH">DIGEST_QOP_VALUE_STRING_AUTH</dfn>      "auth"</u></td></tr>
+<tr><th id="55">55</th><td><u>#define <dfn class="macro" id="_M/DIGEST_QOP_VALUE_STRING_AUTH_INT" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH_INT">DIGEST_QOP_VALUE_STRING_AUTH_INT</dfn>  "auth-int"</u></td></tr>
+<tr><th id="56">56</th><td><u>#define <dfn class="macro" id="_M/DIGEST_QOP_VALUE_STRING_AUTH_CONF" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH_CONF">DIGEST_QOP_VALUE_STRING_AUTH_CONF</dfn> "auth-conf"</u></td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td><i>/* The CURL_OUTPUT_DIGEST_CONV macro below is for non-ASCII machines.</i></td></tr>
+<tr><th id="59">59</th><td><i>   It converts digest text to ASCII so the MD5 will be correct for</i></td></tr>
+<tr><th id="60">60</th><td><i>   what ultimately goes over the network.</i></td></tr>
+<tr><th id="61">61</th><td><i>*/</i></td></tr>
+<tr><th id="62">62</th><td><u>#define <dfn class="macro" id="_M/CURL_OUTPUT_DIGEST_CONV" data-ref="_M/CURL_OUTPUT_DIGEST_CONV">CURL_OUTPUT_DIGEST_CONV</dfn>(a, b) \</u></td></tr>
+<tr><th id="63">63</th><td><u>  <a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a> = Curl_convert_to_network(a, (char *)b, strlen((const char *)b)); \</u></td></tr>
+<tr><th id="64">64</th><td><u>  if(<a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a>) { \</u></td></tr>
+<tr><th id="65">65</th><td><u>    free(b); \</u></td></tr>
+<tr><th id="66">66</th><td><u>    return <a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a>; \</u></td></tr>
+<tr><th id="67">67</th><td><u>  }</u></td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="49">endif</span> /* !USE_WINDOWS_SSPI */</u></td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_auth_digest_get_pair" title='Curl_auth_digest_get_pair' data-ref="Curl_auth_digest_get_pair">Curl_auth_digest_get_pair</dfn>(<em>const</em> <em>char</em> *<dfn class="local col5 decl" id="5str" title='str' data-type='const char *' data-ref="5str">str</dfn>, <em>char</em> *<dfn class="local col6 decl" id="6value" title='value' data-type='char *' data-ref="6value">value</dfn>, <em>char</em> *<dfn class="local col7 decl" id="7content" title='content' data-type='char *' data-ref="7content">content</dfn>,</td></tr>
+<tr><th id="71">71</th><td>                               <em>const</em> <em>char</em> **<dfn class="local col8 decl" id="8endptr" title='endptr' data-type='const char **' data-ref="8endptr">endptr</dfn>)</td></tr>
+<tr><th id="72">72</th><td>{</td></tr>
+<tr><th id="73">73</th><td>  <em>int</em> <dfn class="local col9 decl" id="9c" title='c' data-type='int' data-ref="9c">c</dfn>;</td></tr>
+<tr><th id="74">74</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col0 decl" id="10starts_with_quote" title='starts_with_quote' data-type='_Bool' data-ref="10starts_with_quote">starts_with_quote</dfn> = <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="75">75</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col1 decl" id="11escape" title='escape' data-type='_Bool' data-ref="11escape">escape</dfn> = <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td>  <b>for</b>(<a class="local col9 ref" href="#9c" title='c' data-ref="9c">c</a> = <a class="macro" href="digest.h.html#29" title="256" data-ref="_M/DIGEST_MAX_VALUE_LENGTH">DIGEST_MAX_VALUE_LENGTH</a> - <var>1</var>; (*<a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a> &amp;&amp; (*<a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a> != <kbd>'='</kbd>) &amp;&amp; <a class="local col9 ref" href="#9c" title='c' data-ref="9c">c</a>--);)</td></tr>
+<tr><th id="78">78</th><td>    *<a class="local col6 ref" href="#6value" title='value' data-ref="6value">value</a>++ = *<a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a>++;</td></tr>
+<tr><th id="79">79</th><td>  *<a class="local col6 ref" href="#6value" title='value' data-ref="6value">value</a> = <var>0</var>;</td></tr>
+<tr><th id="80">80</th><td></td></tr>
+<tr><th id="81">81</th><td>  <b>if</b>(<kbd>'='</kbd> != *<a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a>++)</td></tr>
+<tr><th id="82">82</th><td>    <i>/* eek, no match */</i></td></tr>
+<tr><th id="83">83</th><td>    <b>return</b> <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="84">84</th><td></td></tr>
+<tr><th id="85">85</th><td>  <b>if</b>(<kbd>'\"'</kbd> == *<a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a>) {</td></tr>
+<tr><th id="86">86</th><td>    <i>/* This starts with a quote so it must end with one as well! */</i></td></tr>
+<tr><th id="87">87</th><td>    <a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a>++;</td></tr>
+<tr><th id="88">88</th><td>    <a class="local col0 ref" href="#10starts_with_quote" title='starts_with_quote' data-ref="10starts_with_quote">starts_with_quote</a> = <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="89">89</th><td>  }</td></tr>
+<tr><th id="90">90</th><td></td></tr>
+<tr><th id="91">91</th><td>  <b>for</b>(<a class="local col9 ref" href="#9c" title='c' data-ref="9c">c</a> = <a class="macro" href="digest.h.html#30" title="1024" data-ref="_M/DIGEST_MAX_CONTENT_LENGTH">DIGEST_MAX_CONTENT_LENGTH</a> - <var>1</var>; *<a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a> &amp;&amp; <a class="local col9 ref" href="#9c" title='c' data-ref="9c">c</a>--; <a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a>++) {</td></tr>
+<tr><th id="92">92</th><td>    <b>switch</b>(*<a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a>) {</td></tr>
+<tr><th id="93">93</th><td>    <b>case</b> <kbd>'\\'</kbd>:</td></tr>
+<tr><th id="94">94</th><td>      <b>if</b>(!<a class="local col1 ref" href="#11escape" title='escape' data-ref="11escape">escape</a>) {</td></tr>
+<tr><th id="95">95</th><td>        <i>/* possibly the start of an escaped quote */</i></td></tr>
+<tr><th id="96">96</th><td>        <a class="local col1 ref" href="#11escape" title='escape' data-ref="11escape">escape</a> = <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="97">97</th><td>        *<a class="local col7 ref" href="#7content" title='content' data-ref="7content">content</a>++ = <kbd>'\\'</kbd>; <i>/* Even though this is an escape character, we still</i></td></tr>
+<tr><th id="98">98</th><td><i>                              store it as-is in the target buffer */</i></td></tr>
+<tr><th id="99">99</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="100">100</th><td>      }</td></tr>
+<tr><th id="101">101</th><td>      <b>break</b>;</td></tr>
+<tr><th id="102">102</th><td></td></tr>
+<tr><th id="103">103</th><td>    <b>case</b> <kbd>','</kbd>:</td></tr>
+<tr><th id="104">104</th><td>      <b>if</b>(!<a class="local col0 ref" href="#10starts_with_quote" title='starts_with_quote' data-ref="10starts_with_quote">starts_with_quote</a>) {</td></tr>
+<tr><th id="105">105</th><td>        <i>/* This signals the end of the content if we didn't get a starting</i></td></tr>
+<tr><th id="106">106</th><td><i>           quote and then we do "sloppy" parsing */</i></td></tr>
+<tr><th id="107">107</th><td>        <a class="local col9 ref" href="#9c" title='c' data-ref="9c">c</a> = <var>0</var>; <i>/* the end */</i></td></tr>
+<tr><th id="108">108</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="109">109</th><td>      }</td></tr>
+<tr><th id="110">110</th><td>      <b>break</b>;</td></tr>
+<tr><th id="111">111</th><td></td></tr>
+<tr><th id="112">112</th><td>    <b>case</b> <kbd>'\r'</kbd>:</td></tr>
+<tr><th id="113">113</th><td>    <b>case</b> <kbd>'\n'</kbd>:</td></tr>
+<tr><th id="114">114</th><td>      <i>/* end of string */</i></td></tr>
+<tr><th id="115">115</th><td>      <a class="local col9 ref" href="#9c" title='c' data-ref="9c">c</a> = <var>0</var>;</td></tr>
+<tr><th id="116">116</th><td>      <b>continue</b>;</td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td>    <b>case</b> <kbd>'\"'</kbd>:</td></tr>
+<tr><th id="119">119</th><td>      <b>if</b>(!<a class="local col1 ref" href="#11escape" title='escape' data-ref="11escape">escape</a> &amp;&amp; <a class="local col0 ref" href="#10starts_with_quote" title='starts_with_quote' data-ref="10starts_with_quote">starts_with_quote</a>) {</td></tr>
+<tr><th id="120">120</th><td>        <i>/* end of string */</i></td></tr>
+<tr><th id="121">121</th><td>        <a class="local col9 ref" href="#9c" title='c' data-ref="9c">c</a> = <var>0</var>;</td></tr>
+<tr><th id="122">122</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="123">123</th><td>      }</td></tr>
+<tr><th id="124">124</th><td>      <b>break</b>;</td></tr>
+<tr><th id="125">125</th><td>    }</td></tr>
+<tr><th id="126">126</th><td></td></tr>
+<tr><th id="127">127</th><td>    <a class="local col1 ref" href="#11escape" title='escape' data-ref="11escape">escape</a> = <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="128">128</th><td>    *<a class="local col7 ref" href="#7content" title='content' data-ref="7content">content</a>++ = *<a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a>;</td></tr>
+<tr><th id="129">129</th><td>  }</td></tr>
+<tr><th id="130">130</th><td></td></tr>
+<tr><th id="131">131</th><td>  *<a class="local col7 ref" href="#7content" title='content' data-ref="7content">content</a> = <var>0</var>;</td></tr>
+<tr><th id="132">132</th><td>  *<a class="local col8 ref" href="#8endptr" title='endptr' data-ref="8endptr">endptr</a> = <a class="local col5 ref" href="#5str" title='str' data-ref="5str">str</a>;</td></tr>
+<tr><th id="133">133</th><td></td></tr>
+<tr><th id="134">134</th><td>  <b>return</b> <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="135">135</th><td>}</td></tr>
+<tr><th id="136">136</th><td></td></tr>
+<tr><th id="137">137</th><td><u>#<span data-ppcond="137">if</span> !defined(<span class="macro" data-ref="_M/USE_WINDOWS_SSPI">USE_WINDOWS_SSPI</span>)</u></td></tr>
+<tr><th id="138">138</th><td><i  data-doc="auth_digest_md5_to_ascii">/* Convert md5 chunk to RFC2617 (section 3.1.3) -suitable ascii string*/</i></td></tr>
+<tr><th id="139">139</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="auth_digest_md5_to_ascii" title='auth_digest_md5_to_ascii' data-type='void auth_digest_md5_to_ascii(unsigned char * source, unsigned char * dest)' data-ref="auth_digest_md5_to_ascii">auth_digest_md5_to_ascii</dfn>(<em>unsigned</em> <em>char</em> *<dfn class="local col2 decl" id="12source" title='source' data-type='unsigned char *' data-ref="12source">source</dfn>, <i  data-doc="auth_digest_md5_to_ascii">/* 16 bytes */</i></td></tr>
+<tr><th id="140">140</th><td>                                     <em>unsigned</em> <em>char</em> *<dfn class="local col3 decl" id="13dest" title='dest' data-type='unsigned char *' data-ref="13dest">dest</dfn>) <i>/* 33 bytes */</i></td></tr>
+<tr><th id="141">141</th><td>{</td></tr>
+<tr><th id="142">142</th><td>  <em>int</em> <dfn class="local col4 decl" id="14i" title='i' data-type='int' data-ref="14i">i</dfn>;</td></tr>
+<tr><th id="143">143</th><td>  <b>for</b>(<a class="local col4 ref" href="#14i" title='i' data-ref="14i">i</a> = <var>0</var>; <a class="local col4 ref" href="#14i" title='i' data-ref="14i">i</a> &lt; <var>16</var>; <a class="local col4 ref" href="#14i" title='i' data-ref="14i">i</a>++)</td></tr>
+<tr><th id="144">144</th><td>    <a class="macro" href="../curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>((<em>char</em> *) &amp;<a class="local col3 ref" href="#13dest" title='dest' data-ref="13dest">dest</a>[<a class="local col4 ref" href="#14i" title='i' data-ref="14i">i</a> * <var>2</var>], <var>3</var>, <q>"%02x"</q>, <a class="local col2 ref" href="#12source" title='source' data-ref="12source">source</a>[<a class="local col4 ref" href="#14i" title='i' data-ref="14i">i</a>]);</td></tr>
+<tr><th id="145">145</th><td>}</td></tr>
+<tr><th id="146">146</th><td></td></tr>
+<tr><th id="147">147</th><td><i  data-doc="auth_digest_string_quoted">/* Perform quoted-string escaping as described in RFC2616 and its errata */</i></td></tr>
+<tr><th id="148">148</th><td><em>static</em> <em>char</em> *<dfn class="tu decl def" id="auth_digest_string_quoted" title='auth_digest_string_quoted' data-type='char * auth_digest_string_quoted(const char * source)' data-ref="auth_digest_string_quoted">auth_digest_string_quoted</dfn>(<em>const</em> <em>char</em> *<dfn class="local col5 decl" id="15source" title='source' data-type='const char *' data-ref="15source">source</dfn>)</td></tr>
+<tr><th id="149">149</th><td>{</td></tr>
+<tr><th id="150">150</th><td>  <em>char</em> *<dfn class="local col6 decl" id="16dest" title='dest' data-type='char *' data-ref="16dest">dest</dfn>, *<dfn class="local col7 decl" id="17d" title='d' data-type='char *' data-ref="17d">d</dfn>;</td></tr>
+<tr><th id="151">151</th><td>  <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="18s" title='s' data-type='const char *' data-ref="18s">s</dfn> = <a class="local col5 ref" href="#15source" title='source' data-ref="15source">source</a>;</td></tr>
+<tr><th id="152">152</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="19n" title='n' data-type='size_t' data-ref="19n">n</dfn> = <var>1</var>; <i>/* null terminator */</i></td></tr>
+<tr><th id="153">153</th><td></td></tr>
+<tr><th id="154">154</th><td>  <i>/* Calculate size needed */</i></td></tr>
+<tr><th id="155">155</th><td>  <b>while</b>(*<a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a>) {</td></tr>
+<tr><th id="156">156</th><td>    ++<a class="local col9 ref" href="#19n" title='n' data-ref="19n">n</a>;</td></tr>
+<tr><th id="157">157</th><td>    <b>if</b>(*<a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a> == <kbd>'"'</kbd> || *<a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a> == <kbd>'\\'</kbd>) {</td></tr>
+<tr><th id="158">158</th><td>      ++<a class="local col9 ref" href="#19n" title='n' data-ref="19n">n</a>;</td></tr>
+<tr><th id="159">159</th><td>    }</td></tr>
+<tr><th id="160">160</th><td>    ++<a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a>;</td></tr>
+<tr><th id="161">161</th><td>  }</td></tr>
+<tr><th id="162">162</th><td></td></tr>
+<tr><th id="163">163</th><td>  <a class="local col6 ref" href="#16dest" title='dest' data-ref="16dest">dest</a> = <a class="macro" href="../curl_memory.h.html#124" title="Curl_cmalloc(n)" data-ref="_M/malloc">malloc</a>(<a class="local col9 ref" href="#19n" title='n' data-ref="19n">n</a>);</td></tr>
+<tr><th id="164">164</th><td>  <b>if</b>(<a class="local col6 ref" href="#16dest" title='dest' data-ref="16dest">dest</a>) {</td></tr>
+<tr><th id="165">165</th><td>    <a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a> = <a class="local col5 ref" href="#15source" title='source' data-ref="15source">source</a>;</td></tr>
+<tr><th id="166">166</th><td>    <a class="local col7 ref" href="#17d" title='d' data-ref="17d">d</a> = <a class="local col6 ref" href="#16dest" title='dest' data-ref="16dest">dest</a>;</td></tr>
+<tr><th id="167">167</th><td>    <b>while</b>(*<a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a>) {</td></tr>
+<tr><th id="168">168</th><td>      <b>if</b>(*<a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a> == <kbd>'"'</kbd> || *<a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a> == <kbd>'\\'</kbd>) {</td></tr>
+<tr><th id="169">169</th><td>        *<a class="local col7 ref" href="#17d" title='d' data-ref="17d">d</a>++ = <kbd>'\\'</kbd>;</td></tr>
+<tr><th id="170">170</th><td>      }</td></tr>
+<tr><th id="171">171</th><td>      *<a class="local col7 ref" href="#17d" title='d' data-ref="17d">d</a>++ = *<a class="local col8 ref" href="#18s" title='s' data-ref="18s">s</a>++;</td></tr>
+<tr><th id="172">172</th><td>    }</td></tr>
+<tr><th id="173">173</th><td>    *<a class="local col7 ref" href="#17d" title='d' data-ref="17d">d</a> = <var>0</var>;</td></tr>
+<tr><th id="174">174</th><td>  }</td></tr>
+<tr><th id="175">175</th><td></td></tr>
+<tr><th id="176">176</th><td>  <b>return</b> <a class="local col6 ref" href="#16dest" title='dest' data-ref="16dest">dest</a>;</td></tr>
+<tr><th id="177">177</th><td>}</td></tr>
+<tr><th id="178">178</th><td></td></tr>
+<tr><th id="179">179</th><td><i  data-doc="auth_digest_get_key_value">/* Retrieves the value for a corresponding key from the challenge string</i></td></tr>
+<tr><th id="180">180</th><td><i  data-doc="auth_digest_get_key_value"> * returns TRUE if the key could be found, FALSE if it does not exists</i></td></tr>
+<tr><th id="181">181</th><td><i  data-doc="auth_digest_get_key_value"> */</i></td></tr>
+<tr><th id="182">182</th><td><em>static</em> <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="tu decl def" id="auth_digest_get_key_value" title='auth_digest_get_key_value' data-type='_Bool auth_digest_get_key_value(const char * chlg, const char * key, char * value, size_t max_val_len, char end_char)' data-ref="auth_digest_get_key_value">auth_digest_get_key_value</dfn>(<em>const</em> <em>char</em> *<dfn class="local col0 decl" id="20chlg" title='chlg' data-type='const char *' data-ref="20chlg">chlg</dfn>,</td></tr>
+<tr><th id="183">183</th><td>                                      <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="21key" title='key' data-type='const char *' data-ref="21key">key</dfn>,</td></tr>
+<tr><th id="184">184</th><td>                                      <em>char</em> *<dfn class="local col2 decl" id="22value" title='value' data-type='char *' data-ref="22value">value</dfn>,</td></tr>
+<tr><th id="185">185</th><td>                                      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="23max_val_len" title='max_val_len' data-type='size_t' data-ref="23max_val_len">max_val_len</dfn>,</td></tr>
+<tr><th id="186">186</th><td>                                      <em>char</em> <dfn class="local col4 decl" id="24end_char" title='end_char' data-type='char' data-ref="24end_char">end_char</dfn>)</td></tr>
+<tr><th id="187">187</th><td>{</td></tr>
+<tr><th id="188">188</th><td>  <em>char</em> *<dfn class="local col5 decl" id="25find_pos" title='find_pos' data-type='char *' data-ref="25find_pos">find_pos</dfn>;</td></tr>
+<tr><th id="189">189</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="26i" title='i' data-type='size_t' data-ref="26i">i</dfn>;</td></tr>
+<tr><th id="190">190</th><td></td></tr>
+<tr><th id="191">191</th><td>  <a class="local col5 ref" href="#25find_pos" title='find_pos' data-ref="25find_pos">find_pos</a> = <a class="ref" href="../../../include/string.h.html#strstr" title='strstr' data-ref="strstr">strstr</a>(<a class="local col0 ref" href="#20chlg" title='chlg' data-ref="20chlg">chlg</a>, <a class="local col1 ref" href="#21key" title='key' data-ref="21key">key</a>);</td></tr>
+<tr><th id="192">192</th><td>  <b>if</b>(!<a class="local col5 ref" href="#25find_pos" title='find_pos' data-ref="25find_pos">find_pos</a>)</td></tr>
+<tr><th id="193">193</th><td>    <b>return</b> <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="194">194</th><td></td></tr>
+<tr><th id="195">195</th><td>  <a class="local col5 ref" href="#25find_pos" title='find_pos' data-ref="25find_pos">find_pos</a> += <a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col1 ref" href="#21key" title='key' data-ref="21key">key</a>);</td></tr>
+<tr><th id="196">196</th><td></td></tr>
+<tr><th id="197">197</th><td>  <b>for</b>(<a class="local col6 ref" href="#26i" title='i' data-ref="26i">i</a> = <var>0</var>; *<a class="local col5 ref" href="#25find_pos" title='find_pos' data-ref="25find_pos">find_pos</a> &amp;&amp; *<a class="local col5 ref" href="#25find_pos" title='find_pos' data-ref="25find_pos">find_pos</a> != <a class="local col4 ref" href="#24end_char" title='end_char' data-ref="24end_char">end_char</a> &amp;&amp; <a class="local col6 ref" href="#26i" title='i' data-ref="26i">i</a> &lt; <a class="local col3 ref" href="#23max_val_len" title='max_val_len' data-ref="23max_val_len">max_val_len</a> - <var>1</var>; ++<a class="local col6 ref" href="#26i" title='i' data-ref="26i">i</a>)</td></tr>
+<tr><th id="198">198</th><td>    <a class="local col2 ref" href="#22value" title='value' data-ref="22value">value</a>[<a class="local col6 ref" href="#26i" title='i' data-ref="26i">i</a>] = *<a class="local col5 ref" href="#25find_pos" title='find_pos' data-ref="25find_pos">find_pos</a>++;</td></tr>
+<tr><th id="199">199</th><td>  <a class="local col2 ref" href="#22value" title='value' data-ref="22value">value</a>[<a class="local col6 ref" href="#26i" title='i' data-ref="26i">i</a>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="200">200</th><td></td></tr>
+<tr><th id="201">201</th><td>  <b>return</b> <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="202">202</th><td>}</td></tr>
+<tr><th id="203">203</th><td></td></tr>
+<tr><th id="204">204</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="auth_digest_get_qop_values" title='auth_digest_get_qop_values' data-type='CURLcode auth_digest_get_qop_values(const char * options, int * value)' data-ref="auth_digest_get_qop_values">auth_digest_get_qop_values</dfn>(<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="27options" title='options' data-type='const char *' data-ref="27options">options</dfn>, <em>int</em> *<dfn class="local col8 decl" id="28value" title='value' data-type='int *' data-ref="28value">value</dfn>)</td></tr>
+<tr><th id="205">205</th><td>{</td></tr>
+<tr><th id="206">206</th><td>  <em>char</em> *<dfn class="local col9 decl" id="29tmp" title='tmp' data-type='char *' data-ref="29tmp">tmp</dfn>;</td></tr>
+<tr><th id="207">207</th><td>  <em>char</em> *<dfn class="local col0 decl" id="30token" title='token' data-type='char *' data-ref="30token">token</dfn>;</td></tr>
+<tr><th id="208">208</th><td>  <em>char</em> *<dfn class="local col1 decl" id="31tok_buf" title='tok_buf' data-type='char *' data-ref="31tok_buf">tok_buf</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="209">209</th><td></td></tr>
+<tr><th id="210">210</th><td>  <i>/* Initialise the output */</i></td></tr>
+<tr><th id="211">211</th><td>  *<a class="local col8 ref" href="#28value" title='value' data-ref="28value">value</a> = <var>0</var>;</td></tr>
+<tr><th id="212">212</th><td></td></tr>
+<tr><th id="213">213</th><td>  <i>/* Tokenise the list of qop values. Use a temporary clone of the buffer since</i></td></tr>
+<tr><th id="214">214</th><td><i>     strtok_r() ruins it. */</i></td></tr>
+<tr><th id="215">215</th><td>  <a class="local col9 ref" href="#29tmp" title='tmp' data-ref="29tmp">tmp</a> = <a class="macro" href="../curl_memory.h.html#122" title="Curl_cstrdup(options)" data-ref="_M/strdup">strdup</a>(<a class="local col7 ref" href="#27options" title='options' data-ref="27options">options</a>);</td></tr>
+<tr><th id="216">216</th><td>  <b>if</b>(!<a class="local col9 ref" href="#29tmp" title='tmp' data-ref="29tmp">tmp</a>)</td></tr>
+<tr><th id="217">217</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="218">218</th><td></td></tr>
+<tr><th id="219">219</th><td>  <a class="local col0 ref" href="#30token" title='token' data-ref="30token">token</a> = <a class="ref" href="../../../include/string.h.html#strtok_r" title='strtok_r' data-ref="strtok_r">strtok_r</a>(<a class="local col9 ref" href="#29tmp" title='tmp' data-ref="29tmp">tmp</a>, <q>","</q>, &amp;<a class="local col1 ref" href="#31tok_buf" title='tok_buf' data-ref="31tok_buf">tok_buf</a>);</td></tr>
+<tr><th id="220">220</th><td>  <b>while</b>(<a class="local col0 ref" href="#30token" title='token' data-ref="30token">token</a> != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) {</td></tr>
+<tr><th id="221">221</th><td>    <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(token,&quot;auth&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col0 ref" href="#30token" title='token' data-ref="30token">token</a>, <a class="macro" href="#54" title="&quot;auth&quot;" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH">DIGEST_QOP_VALUE_STRING_AUTH</a>))</td></tr>
+<tr><th id="222">222</th><td>      *<a class="local col8 ref" href="#28value" title='value' data-ref="28value">value</a> |= <a class="macro" href="#50" title="(1 &lt;&lt; 0)" data-ref="_M/DIGEST_QOP_VALUE_AUTH">DIGEST_QOP_VALUE_AUTH</a>;</td></tr>
+<tr><th id="223">223</th><td>    <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(token,&quot;auth-int&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col0 ref" href="#30token" title='token' data-ref="30token">token</a>, <a class="macro" href="#55" title="&quot;auth-int&quot;" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH_INT">DIGEST_QOP_VALUE_STRING_AUTH_INT</a>))</td></tr>
+<tr><th id="224">224</th><td>      *<a class="local col8 ref" href="#28value" title='value' data-ref="28value">value</a> |= <a class="macro" href="#51" title="(1 &lt;&lt; 1)" data-ref="_M/DIGEST_QOP_VALUE_AUTH_INT">DIGEST_QOP_VALUE_AUTH_INT</a>;</td></tr>
+<tr><th id="225">225</th><td>    <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(token,&quot;auth-conf&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col0 ref" href="#30token" title='token' data-ref="30token">token</a>, <a class="macro" href="#56" title="&quot;auth-conf&quot;" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH_CONF">DIGEST_QOP_VALUE_STRING_AUTH_CONF</a>))</td></tr>
+<tr><th id="226">226</th><td>      *<a class="local col8 ref" href="#28value" title='value' data-ref="28value">value</a> |= <a class="macro" href="#52" title="(1 &lt;&lt; 2)" data-ref="_M/DIGEST_QOP_VALUE_AUTH_CONF">DIGEST_QOP_VALUE_AUTH_CONF</a>;</td></tr>
+<tr><th id="227">227</th><td></td></tr>
+<tr><th id="228">228</th><td>    <a class="local col0 ref" href="#30token" title='token' data-ref="30token">token</a> = <a class="ref" href="../../../include/string.h.html#strtok_r" title='strtok_r' data-ref="strtok_r">strtok_r</a>(<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <q>","</q>, &amp;<a class="local col1 ref" href="#31tok_buf" title='tok_buf' data-ref="31tok_buf">tok_buf</a>);</td></tr>
+<tr><th id="229">229</th><td>  }</td></tr>
+<tr><th id="230">230</th><td></td></tr>
+<tr><th id="231">231</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(tmp)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#29tmp" title='tmp' data-ref="29tmp">tmp</a>);</td></tr>
+<tr><th id="232">232</th><td></td></tr>
+<tr><th id="233">233</th><td>  <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="234">234</th><td>}</td></tr>
+<tr><th id="235">235</th><td></td></tr>
+<tr><th id="236">236</th><td><i  data-doc="auth_decode_digest_md5_message">/*</i></td></tr>
+<tr><th id="237">237</th><td><i  data-doc="auth_decode_digest_md5_message"> * auth_decode_digest_md5_message()</i></td></tr>
+<tr><th id="238">238</th><td><i  data-doc="auth_decode_digest_md5_message"> *</i></td></tr>
+<tr><th id="239">239</th><td><i  data-doc="auth_decode_digest_md5_message"> * This is used internally to decode an already encoded DIGEST-MD5 challenge</i></td></tr>
+<tr><th id="240">240</th><td><i  data-doc="auth_decode_digest_md5_message"> * message into the separate attributes.</i></td></tr>
+<tr><th id="241">241</th><td><i  data-doc="auth_decode_digest_md5_message"> *</i></td></tr>
+<tr><th id="242">242</th><td><i  data-doc="auth_decode_digest_md5_message"> * Parameters:</i></td></tr>
+<tr><th id="243">243</th><td><i  data-doc="auth_decode_digest_md5_message"> *</i></td></tr>
+<tr><th id="244">244</th><td><i  data-doc="auth_decode_digest_md5_message"> * chlg64  [in]     - The base64 encoded challenge message.</i></td></tr>
+<tr><th id="245">245</th><td><i  data-doc="auth_decode_digest_md5_message"> * nonce   [in/out] - The buffer where the nonce will be stored.</i></td></tr>
+<tr><th id="246">246</th><td><i  data-doc="auth_decode_digest_md5_message"> * nlen    [in]     - The length of the nonce buffer.</i></td></tr>
+<tr><th id="247">247</th><td><i  data-doc="auth_decode_digest_md5_message"> * realm   [in/out] - The buffer where the realm will be stored.</i></td></tr>
+<tr><th id="248">248</th><td><i  data-doc="auth_decode_digest_md5_message"> * rlen    [in]     - The length of the realm buffer.</i></td></tr>
+<tr><th id="249">249</th><td><i  data-doc="auth_decode_digest_md5_message"> * alg     [in/out] - The buffer where the algorithm will be stored.</i></td></tr>
+<tr><th id="250">250</th><td><i  data-doc="auth_decode_digest_md5_message"> * alen    [in]     - The length of the algorithm buffer.</i></td></tr>
+<tr><th id="251">251</th><td><i  data-doc="auth_decode_digest_md5_message"> * qop     [in/out] - The buffer where the qop-options will be stored.</i></td></tr>
+<tr><th id="252">252</th><td><i  data-doc="auth_decode_digest_md5_message"> * qlen    [in]     - The length of the qop buffer.</i></td></tr>
+<tr><th id="253">253</th><td><i  data-doc="auth_decode_digest_md5_message"> *</i></td></tr>
+<tr><th id="254">254</th><td><i  data-doc="auth_decode_digest_md5_message"> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="255">255</th><td><i  data-doc="auth_decode_digest_md5_message"> */</i></td></tr>
+<tr><th id="256">256</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="auth_decode_digest_md5_message" title='auth_decode_digest_md5_message' data-type='CURLcode auth_decode_digest_md5_message(const char * chlg64, char * nonce, size_t nlen, char * realm, size_t rlen, char * alg, size_t alen, char * qop, size_t qlen)' data-ref="auth_decode_digest_md5_message">auth_decode_digest_md5_message</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="32chlg64" title='chlg64' data-type='const char *' data-ref="32chlg64">chlg64</dfn>,</td></tr>
+<tr><th id="257">257</th><td>                                               <em>char</em> *<dfn class="local col3 decl" id="33nonce" title='nonce' data-type='char *' data-ref="33nonce">nonce</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="34nlen" title='nlen' data-type='size_t' data-ref="34nlen">nlen</dfn>,</td></tr>
+<tr><th id="258">258</th><td>                                               <em>char</em> *<dfn class="local col5 decl" id="35realm" title='realm' data-type='char *' data-ref="35realm">realm</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="36rlen" title='rlen' data-type='size_t' data-ref="36rlen">rlen</dfn>,</td></tr>
+<tr><th id="259">259</th><td>                                               <em>char</em> *<dfn class="local col7 decl" id="37alg" title='alg' data-type='char *' data-ref="37alg">alg</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="38alen" title='alen' data-type='size_t' data-ref="38alen">alen</dfn>,</td></tr>
+<tr><th id="260">260</th><td>                                               <em>char</em> *<dfn class="local col9 decl" id="39qop" title='qop' data-type='char *' data-ref="39qop">qop</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="40qlen" title='qlen' data-type='size_t' data-ref="40qlen">qlen</dfn>)</td></tr>
+<tr><th id="261">261</th><td>{</td></tr>
+<tr><th id="262">262</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col1 decl" id="41result" title='result' data-type='CURLcode' data-ref="41result">result</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="263">263</th><td>  <em>unsigned</em> <em>char</em> *<dfn class="local col2 decl" id="42chlg" title='chlg' data-type='unsigned char *' data-ref="42chlg">chlg</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="264">264</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="43chlglen" title='chlglen' data-type='size_t' data-ref="43chlglen">chlglen</dfn> = <var>0</var>;</td></tr>
+<tr><th id="265">265</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="44chlg64len" title='chlg64len' data-type='size_t' data-ref="44chlg64len">chlg64len</dfn> = <a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col2 ref" href="#32chlg64" title='chlg64' data-ref="32chlg64">chlg64</a>);</td></tr>
+<tr><th id="266">266</th><td></td></tr>
+<tr><th id="267">267</th><td>  <i>/* Decode the base-64 encoded challenge message */</i></td></tr>
+<tr><th id="268">268</th><td>  <b>if</b>(<a class="local col4 ref" href="#44chlg64len" title='chlg64len' data-ref="44chlg64len">chlg64len</a> &amp;&amp; *<a class="local col2 ref" href="#32chlg64" title='chlg64' data-ref="32chlg64">chlg64</a> != <kbd>'='</kbd>) {</td></tr>
+<tr><th id="269">269</th><td>    <a class="local col1 ref" href="#41result" title='result' data-ref="41result">result</a> = <a class="ref" href="../curl_base64.h.html#Curl_base64_decode" title='Curl_base64_decode' data-ref="Curl_base64_decode">Curl_base64_decode</a>(<a class="local col2 ref" href="#32chlg64" title='chlg64' data-ref="32chlg64">chlg64</a>, &amp;<a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>, &amp;<a class="local col3 ref" href="#43chlglen" title='chlglen' data-ref="43chlglen">chlglen</a>);</td></tr>
+<tr><th id="270">270</th><td>    <b>if</b>(<a class="local col1 ref" href="#41result" title='result' data-ref="41result">result</a>)</td></tr>
+<tr><th id="271">271</th><td>      <b>return</b> <a class="local col1 ref" href="#41result" title='result' data-ref="41result">result</a>;</td></tr>
+<tr><th id="272">272</th><td>  }</td></tr>
+<tr><th id="273">273</th><td></td></tr>
+<tr><th id="274">274</th><td>  <i>/* Ensure we have a valid challenge message */</i></td></tr>
+<tr><th id="275">275</th><td>  <b>if</b>(!<a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>)</td></tr>
+<tr><th id="276">276</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="277">277</th><td></td></tr>
+<tr><th id="278">278</th><td>  <i>/* Retrieve nonce string from the challenge */</i></td></tr>
+<tr><th id="279">279</th><td>  <b>if</b>(!<a class="tu ref" href="#auth_digest_get_key_value" title='auth_digest_get_key_value' data-use='c' data-ref="auth_digest_get_key_value">auth_digest_get_key_value</a>((<em>char</em> *) <a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>, <q>"nonce=\""</q>, <a class="local col3 ref" href="#33nonce" title='nonce' data-ref="33nonce">nonce</a>, <a class="local col4 ref" href="#34nlen" title='nlen' data-ref="34nlen">nlen</a>,</td></tr>
+<tr><th id="280">280</th><td>                                <kbd>'\"'</kbd>)) {</td></tr>
+<tr><th id="281">281</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(chlg)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>);</td></tr>
+<tr><th id="282">282</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="283">283</th><td>  }</td></tr>
+<tr><th id="284">284</th><td></td></tr>
+<tr><th id="285">285</th><td>  <i>/* Retrieve realm string from the challenge */</i></td></tr>
+<tr><th id="286">286</th><td>  <b>if</b>(!<a class="tu ref" href="#auth_digest_get_key_value" title='auth_digest_get_key_value' data-use='c' data-ref="auth_digest_get_key_value">auth_digest_get_key_value</a>((<em>char</em> *) <a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>, <q>"realm=\""</q>, <a class="local col5 ref" href="#35realm" title='realm' data-ref="35realm">realm</a>, <a class="local col6 ref" href="#36rlen" title='rlen' data-ref="36rlen">rlen</a>,</td></tr>
+<tr><th id="287">287</th><td>                                <kbd>'\"'</kbd>)) {</td></tr>
+<tr><th id="288">288</th><td>    <i>/* Challenge does not have a realm, set empty string [RFC2831] page 6 */</i></td></tr>
+<tr><th id="289">289</th><td>    <a class="ref" href="../../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col5 ref" href="#35realm" title='realm' data-ref="35realm">realm</a>, <q>""</q>);</td></tr>
+<tr><th id="290">290</th><td>  }</td></tr>
+<tr><th id="291">291</th><td></td></tr>
+<tr><th id="292">292</th><td>  <i>/* Retrieve algorithm string from the challenge */</i></td></tr>
+<tr><th id="293">293</th><td>  <b>if</b>(!<a class="tu ref" href="#auth_digest_get_key_value" title='auth_digest_get_key_value' data-use='c' data-ref="auth_digest_get_key_value">auth_digest_get_key_value</a>((<em>char</em> *) <a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>, <q>"algorithm="</q>, <a class="local col7 ref" href="#37alg" title='alg' data-ref="37alg">alg</a>, <a class="local col8 ref" href="#38alen" title='alen' data-ref="38alen">alen</a>, <kbd>','</kbd>)) {</td></tr>
+<tr><th id="294">294</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(chlg)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>);</td></tr>
+<tr><th id="295">295</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="296">296</th><td>  }</td></tr>
+<tr><th id="297">297</th><td></td></tr>
+<tr><th id="298">298</th><td>  <i>/* Retrieve qop-options string from the challenge */</i></td></tr>
+<tr><th id="299">299</th><td>  <b>if</b>(!<a class="tu ref" href="#auth_digest_get_key_value" title='auth_digest_get_key_value' data-use='c' data-ref="auth_digest_get_key_value">auth_digest_get_key_value</a>((<em>char</em> *) <a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>, <q>"qop=\""</q>, <a class="local col9 ref" href="#39qop" title='qop' data-ref="39qop">qop</a>, <a class="local col0 ref" href="#40qlen" title='qlen' data-ref="40qlen">qlen</a>, <kbd>'\"'</kbd>)) {</td></tr>
+<tr><th id="300">300</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(chlg)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>);</td></tr>
+<tr><th id="301">301</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="302">302</th><td>  }</td></tr>
+<tr><th id="303">303</th><td></td></tr>
+<tr><th id="304">304</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(chlg)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#42chlg" title='chlg' data-ref="42chlg">chlg</a>);</td></tr>
+<tr><th id="305">305</th><td></td></tr>
+<tr><th id="306">306</th><td>  <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="307">307</th><td>}</td></tr>
+<tr><th id="308">308</th><td></td></tr>
+<tr><th id="309">309</th><td><i>/*</i></td></tr>
+<tr><th id="310">310</th><td><i> * Curl_auth_is_digest_supported()</i></td></tr>
+<tr><th id="311">311</th><td><i> *</i></td></tr>
+<tr><th id="312">312</th><td><i> * This is used to evaluate if DIGEST is supported.</i></td></tr>
+<tr><th id="313">313</th><td><i> *</i></td></tr>
+<tr><th id="314">314</th><td><i> * Parameters: None</i></td></tr>
+<tr><th id="315">315</th><td><i> *</i></td></tr>
+<tr><th id="316">316</th><td><i> * Returns TRUE as DIGEST as handled by libcurl.</i></td></tr>
+<tr><th id="317">317</th><td><i> */</i></td></tr>
+<tr><th id="318">318</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_auth_is_digest_supported" title='Curl_auth_is_digest_supported' data-ref="Curl_auth_is_digest_supported">Curl_auth_is_digest_supported</dfn>(<em>void</em>)</td></tr>
+<tr><th id="319">319</th><td>{</td></tr>
+<tr><th id="320">320</th><td>  <b>return</b> <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="321">321</th><td>}</td></tr>
+<tr><th id="322">322</th><td></td></tr>
+<tr><th id="323">323</th><td><i>/*</i></td></tr>
+<tr><th id="324">324</th><td><i> * Curl_auth_create_digest_md5_message()</i></td></tr>
+<tr><th id="325">325</th><td><i> *</i></td></tr>
+<tr><th id="326">326</th><td><i> * This is used to generate an already encoded DIGEST-MD5 response message</i></td></tr>
+<tr><th id="327">327</th><td><i> * ready for sending to the recipient.</i></td></tr>
+<tr><th id="328">328</th><td><i> *</i></td></tr>
+<tr><th id="329">329</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="330">330</th><td><i> *</i></td></tr>
+<tr><th id="331">331</th><td><i> * data    [in]     - The session handle.</i></td></tr>
+<tr><th id="332">332</th><td><i> * chlg64  [in]     - The base64 encoded challenge message.</i></td></tr>
+<tr><th id="333">333</th><td><i> * userp   [in]     - The user name.</i></td></tr>
+<tr><th id="334">334</th><td><i> * passdwp [in]     - The user's password.</i></td></tr>
+<tr><th id="335">335</th><td><i> * service [in]     - The service type such as http, smtp, pop or imap.</i></td></tr>
+<tr><th id="336">336</th><td><i> * outptr  [in/out] - The address where a pointer to newly allocated memory</i></td></tr>
+<tr><th id="337">337</th><td><i> *                    holding the result will be stored upon completion.</i></td></tr>
+<tr><th id="338">338</th><td><i> * outlen  [out]    - The length of the output message.</i></td></tr>
+<tr><th id="339">339</th><td><i> *</i></td></tr>
+<tr><th id="340">340</th><td><i> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="341">341</th><td><i> */</i></td></tr>
+<tr><th id="342">342</th><td><a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_auth_create_digest_md5_message" title='Curl_auth_create_digest_md5_message' data-ref="Curl_auth_create_digest_md5_message">Curl_auth_create_digest_md5_message</dfn>(<b>struct</b> <a class="type" href="../urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="45data" title='data' data-type='struct Curl_easy *' data-ref="45data">data</dfn>,</td></tr>
+<tr><th id="343">343</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col6 decl" id="46chlg64" title='chlg64' data-type='const char *' data-ref="46chlg64">chlg64</dfn>,</td></tr>
+<tr><th id="344">344</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="47userp" title='userp' data-type='const char *' data-ref="47userp">userp</dfn>,</td></tr>
+<tr><th id="345">345</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="48passwdp" title='passwdp' data-type='const char *' data-ref="48passwdp">passwdp</dfn>,</td></tr>
+<tr><th id="346">346</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="49service" title='service' data-type='const char *' data-ref="49service">service</dfn>,</td></tr>
+<tr><th id="347">347</th><td>                                             <em>char</em> **<dfn class="local col0 decl" id="50outptr" title='outptr' data-type='char **' data-ref="50outptr">outptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col1 decl" id="51outlen" title='outlen' data-type='size_t *' data-ref="51outlen">outlen</dfn>)</td></tr>
+<tr><th id="348">348</th><td>{</td></tr>
+<tr><th id="349">349</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col2 decl" id="52result" title='result' data-type='CURLcode' data-ref="52result">result</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="350">350</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="53i" title='i' data-type='size_t' data-ref="53i">i</dfn>;</td></tr>
+<tr><th id="351">351</th><td>  <a class="typedef" href="../curl_md5.h.html#MD5_context" title='MD5_context' data-type='struct MD5_context' data-ref="MD5_context">MD5_context</a> *<dfn class="local col4 decl" id="54ctxt" title='ctxt' data-type='MD5_context *' data-ref="54ctxt">ctxt</dfn>;</td></tr>
+<tr><th id="352">352</th><td>  <em>char</em> *<dfn class="local col5 decl" id="55response" title='response' data-type='char *' data-ref="55response">response</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="353">353</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col6 decl" id="56digest" title='digest' data-type='unsigned char [16]' data-ref="56digest">digest</dfn>[<a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a>];</td></tr>
+<tr><th id="354">354</th><td>  <em>char</em> <dfn class="local col7 decl" id="57HA1_hex" title='HA1_hex' data-type='char [33]' data-ref="57HA1_hex">HA1_hex</dfn>[<var>2</var> * <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a> + <var>1</var>];</td></tr>
+<tr><th id="355">355</th><td>  <em>char</em> <dfn class="local col8 decl" id="58HA2_hex" title='HA2_hex' data-type='char [33]' data-ref="58HA2_hex">HA2_hex</dfn>[<var>2</var> * <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a> + <var>1</var>];</td></tr>
+<tr><th id="356">356</th><td>  <em>char</em> <dfn class="local col9 decl" id="59resp_hash_hex" title='resp_hash_hex' data-type='char [33]' data-ref="59resp_hash_hex">resp_hash_hex</dfn>[<var>2</var> * <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a> + <var>1</var>];</td></tr>
+<tr><th id="357">357</th><td>  <em>char</em> <dfn class="local col0 decl" id="60nonce" title='nonce' data-type='char [64]' data-ref="60nonce">nonce</dfn>[<var>64</var>];</td></tr>
+<tr><th id="358">358</th><td>  <em>char</em> <dfn class="local col1 decl" id="61realm" title='realm' data-type='char [128]' data-ref="61realm">realm</dfn>[<var>128</var>];</td></tr>
+<tr><th id="359">359</th><td>  <em>char</em> <dfn class="local col2 decl" id="62algorithm" title='algorithm' data-type='char [64]' data-ref="62algorithm">algorithm</dfn>[<var>64</var>];</td></tr>
+<tr><th id="360">360</th><td>  <em>char</em> <dfn class="local col3 decl" id="63qop_options" title='qop_options' data-type='char [64]' data-ref="63qop_options">qop_options</dfn>[<var>64</var>];</td></tr>
+<tr><th id="361">361</th><td>  <em>int</em> <dfn class="local col4 decl" id="64qop_values" title='qop_values' data-type='int' data-ref="64qop_values">qop_values</dfn>;</td></tr>
+<tr><th id="362">362</th><td>  <em>char</em> <dfn class="local col5 decl" id="65cnonce" title='cnonce' data-type='char [33]' data-ref="65cnonce">cnonce</dfn>[<var>33</var>];</td></tr>
+<tr><th id="363">363</th><td>  <em>char</em> <dfn class="local col6 decl" id="66nonceCount" title='nonceCount' data-type='char [9]' data-ref="66nonceCount">nonceCount</dfn>[] = <q>"00000001"</q>;</td></tr>
+<tr><th id="364">364</th><td>  <em>char</em> <dfn class="local col7 decl" id="67method" title='method' data-type='char [13]' data-ref="67method">method</dfn>[]     = <q>"AUTHENTICATE"</q>;</td></tr>
+<tr><th id="365">365</th><td>  <em>char</em> <dfn class="local col8 decl" id="68qop" title='qop' data-type='char [5]' data-ref="68qop">qop</dfn>[]        = <a class="macro" href="#54" title="&quot;auth&quot;" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH">DIGEST_QOP_VALUE_STRING_AUTH</a>;</td></tr>
+<tr><th id="366">366</th><td>  <em>char</em> *<dfn class="local col9 decl" id="69spn" title='spn' data-type='char *' data-ref="69spn">spn</dfn>         = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="367">367</th><td></td></tr>
+<tr><th id="368">368</th><td>  <i>/* Decode the challenge message */</i></td></tr>
+<tr><th id="369">369</th><td>  <a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a> = <a class="tu ref" href="#auth_decode_digest_md5_message" title='auth_decode_digest_md5_message' data-use='c' data-ref="auth_decode_digest_md5_message">auth_decode_digest_md5_message</a>(<a class="local col6 ref" href="#46chlg64" title='chlg64' data-ref="46chlg64">chlg64</a>, <a class="local col0 ref" href="#60nonce" title='nonce' data-ref="60nonce">nonce</a>, <b>sizeof</b>(<a class="local col0 ref" href="#60nonce" title='nonce' data-ref="60nonce">nonce</a>),</td></tr>
+<tr><th id="370">370</th><td>                                          <a class="local col1 ref" href="#61realm" title='realm' data-ref="61realm">realm</a>, <b>sizeof</b>(<a class="local col1 ref" href="#61realm" title='realm' data-ref="61realm">realm</a>),</td></tr>
+<tr><th id="371">371</th><td>                                          <a class="local col2 ref" href="#62algorithm" title='algorithm' data-ref="62algorithm">algorithm</a>, <b>sizeof</b>(<a class="local col2 ref" href="#62algorithm" title='algorithm' data-ref="62algorithm">algorithm</a>),</td></tr>
+<tr><th id="372">372</th><td>                                          <a class="local col3 ref" href="#63qop_options" title='qop_options' data-ref="63qop_options">qop_options</a>, <b>sizeof</b>(<a class="local col3 ref" href="#63qop_options" title='qop_options' data-ref="63qop_options">qop_options</a>));</td></tr>
+<tr><th id="373">373</th><td>  <b>if</b>(<a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a>)</td></tr>
+<tr><th id="374">374</th><td>    <b>return</b> <a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a>;</td></tr>
+<tr><th id="375">375</th><td></td></tr>
+<tr><th id="376">376</th><td>  <i>/* We only support md5 sessions */</i></td></tr>
+<tr><th id="377">377</th><td>  <b>if</b>(<a class="ref" href="../../../include/string.h.html#strcmp" title='strcmp' data-ref="strcmp">strcmp</a>(<a class="local col2 ref" href="#62algorithm" title='algorithm' data-ref="62algorithm">algorithm</a>, <q>"md5-sess"</q>) != <var>0</var>)</td></tr>
+<tr><th id="378">378</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="379">379</th><td></td></tr>
+<tr><th id="380">380</th><td>  <i>/* Get the qop-values from the qop-options */</i></td></tr>
+<tr><th id="381">381</th><td>  <a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a> = <a class="tu ref" href="#auth_digest_get_qop_values" title='auth_digest_get_qop_values' data-use='c' data-ref="auth_digest_get_qop_values">auth_digest_get_qop_values</a>(<a class="local col3 ref" href="#63qop_options" title='qop_options' data-ref="63qop_options">qop_options</a>, &amp;<a class="local col4 ref" href="#64qop_values" title='qop_values' data-ref="64qop_values">qop_values</a>);</td></tr>
+<tr><th id="382">382</th><td>  <b>if</b>(<a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a>)</td></tr>
+<tr><th id="383">383</th><td>    <b>return</b> <a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a>;</td></tr>
+<tr><th id="384">384</th><td></td></tr>
+<tr><th id="385">385</th><td>  <i>/* We only support auth quality-of-protection */</i></td></tr>
+<tr><th id="386">386</th><td>  <b>if</b>(!(<a class="local col4 ref" href="#64qop_values" title='qop_values' data-ref="64qop_values">qop_values</a> &amp; <a class="macro" href="#50" title="(1 &lt;&lt; 0)" data-ref="_M/DIGEST_QOP_VALUE_AUTH">DIGEST_QOP_VALUE_AUTH</a>))</td></tr>
+<tr><th id="387">387</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="388">388</th><td></td></tr>
+<tr><th id="389">389</th><td>  <i>/* Generate 32 random hex chars, 32 bytes + 1 zero termination */</i></td></tr>
+<tr><th id="390">390</th><td>  <a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a> = <a class="ref" href="../rand.h.html#Curl_rand_hex" title='Curl_rand_hex' data-ref="Curl_rand_hex">Curl_rand_hex</a>(<a class="local col5 ref" href="#45data" title='data' data-ref="45data">data</a>, (<em>unsigned</em> <em>char</em> *)<a class="local col5 ref" href="#65cnonce" title='cnonce' data-ref="65cnonce">cnonce</a>, <b>sizeof</b>(<a class="local col5 ref" href="#65cnonce" title='cnonce' data-ref="65cnonce">cnonce</a>));</td></tr>
+<tr><th id="391">391</th><td>  <b>if</b>(<a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a>)</td></tr>
+<tr><th id="392">392</th><td>    <b>return</b> <a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a>;</td></tr>
+<tr><th id="393">393</th><td></td></tr>
+<tr><th id="394">394</th><td>  <i>/* So far so good, now calculate A1 and H(A1) according to RFC 2831 */</i></td></tr>
+<tr><th id="395">395</th><td>  <a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a> = <a class="ref" href="../curl_md5.h.html#Curl_MD5_init" title='Curl_MD5_init' data-ref="Curl_MD5_init">Curl_MD5_init</a>(<a class="ref" href="../curl_md5.h.html#Curl_DIGEST_MD5" title='Curl_DIGEST_MD5' data-ref="Curl_DIGEST_MD5">Curl_DIGEST_MD5</a>);</td></tr>
+<tr><th id="396">396</th><td>  <b>if</b>(!<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>)</td></tr>
+<tr><th id="397">397</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="398">398</th><td></td></tr>
+<tr><th id="399">399</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col7 ref" href="#47userp" title='userp' data-ref="47userp">userp</a>,</td></tr>
+<tr><th id="400">400</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col7 ref" href="#47userp" title='userp' data-ref="47userp">userp</a>)));</td></tr>
+<tr><th id="401">401</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="402">402</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col1 ref" href="#61realm" title='realm' data-ref="61realm">realm</a>,</td></tr>
+<tr><th id="403">403</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col1 ref" href="#61realm" title='realm' data-ref="61realm">realm</a>)));</td></tr>
+<tr><th id="404">404</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="405">405</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col8 ref" href="#48passwdp" title='passwdp' data-ref="48passwdp">passwdp</a>,</td></tr>
+<tr><th id="406">406</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col8 ref" href="#48passwdp" title='passwdp' data-ref="48passwdp">passwdp</a>)));</td></tr>
+<tr><th id="407">407</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_final" title='Curl_MD5_final' data-ref="Curl_MD5_final">Curl_MD5_final</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, <a class="local col6 ref" href="#56digest" title='digest' data-ref="56digest">digest</a>);</td></tr>
+<tr><th id="408">408</th><td></td></tr>
+<tr><th id="409">409</th><td>  <a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a> = <a class="ref" href="../curl_md5.h.html#Curl_MD5_init" title='Curl_MD5_init' data-ref="Curl_MD5_init">Curl_MD5_init</a>(<a class="ref" href="../curl_md5.h.html#Curl_DIGEST_MD5" title='Curl_DIGEST_MD5' data-ref="Curl_DIGEST_MD5">Curl_DIGEST_MD5</a>);</td></tr>
+<tr><th id="410">410</th><td>  <b>if</b>(!<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>)</td></tr>
+<tr><th id="411">411</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="412">412</th><td></td></tr>
+<tr><th id="413">413</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col6 ref" href="#56digest" title='digest' data-ref="56digest">digest</a>, <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a>);</td></tr>
+<tr><th id="414">414</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="415">415</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col0 ref" href="#60nonce" title='nonce' data-ref="60nonce">nonce</a>,</td></tr>
+<tr><th id="416">416</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col0 ref" href="#60nonce" title='nonce' data-ref="60nonce">nonce</a>)));</td></tr>
+<tr><th id="417">417</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="418">418</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col5 ref" href="#65cnonce" title='cnonce' data-ref="65cnonce">cnonce</a>,</td></tr>
+<tr><th id="419">419</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col5 ref" href="#65cnonce" title='cnonce' data-ref="65cnonce">cnonce</a>)));</td></tr>
+<tr><th id="420">420</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_final" title='Curl_MD5_final' data-ref="Curl_MD5_final">Curl_MD5_final</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, <a class="local col6 ref" href="#56digest" title='digest' data-ref="56digest">digest</a>);</td></tr>
+<tr><th id="421">421</th><td></td></tr>
+<tr><th id="422">422</th><td>  <i>/* Convert calculated 16 octet hex into 32 bytes string */</i></td></tr>
+<tr><th id="423">423</th><td>  <b>for</b>(<a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a> = <var>0</var>; <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a> &lt; <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a>; <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>++)</td></tr>
+<tr><th id="424">424</th><td>    <a class="macro" href="../curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(&amp;<a class="local col7 ref" href="#57HA1_hex" title='HA1_hex' data-ref="57HA1_hex">HA1_hex</a>[<var>2</var> * <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>], <var>3</var>, <q>"%02x"</q>, <a class="local col6 ref" href="#56digest" title='digest' data-ref="56digest">digest</a>[<a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>]);</td></tr>
+<tr><th id="425">425</th><td></td></tr>
+<tr><th id="426">426</th><td>  <i>/* Generate our SPN */</i></td></tr>
+<tr><th id="427">427</th><td>  <a class="local col9 ref" href="#69spn" title='spn' data-ref="69spn">spn</a> = <a class="ref" href="vauth.h.html#Curl_auth_build_spn" title='Curl_auth_build_spn' data-ref="Curl_auth_build_spn">Curl_auth_build_spn</a>(<a class="local col9 ref" href="#49service" title='service' data-ref="49service">service</a>, <a class="local col1 ref" href="#61realm" title='realm' data-ref="61realm">realm</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="428">428</th><td>  <b>if</b>(!<a class="local col9 ref" href="#69spn" title='spn' data-ref="69spn">spn</a>)</td></tr>
+<tr><th id="429">429</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="430">430</th><td></td></tr>
+<tr><th id="431">431</th><td>  <i>/* Calculate H(A2) */</i></td></tr>
+<tr><th id="432">432</th><td>  <a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a> = <a class="ref" href="../curl_md5.h.html#Curl_MD5_init" title='Curl_MD5_init' data-ref="Curl_MD5_init">Curl_MD5_init</a>(<a class="ref" href="../curl_md5.h.html#Curl_DIGEST_MD5" title='Curl_DIGEST_MD5' data-ref="Curl_DIGEST_MD5">Curl_DIGEST_MD5</a>);</td></tr>
+<tr><th id="433">433</th><td>  <b>if</b>(!<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>) {</td></tr>
+<tr><th id="434">434</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(spn)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#69spn" title='spn' data-ref="69spn">spn</a>);</td></tr>
+<tr><th id="435">435</th><td></td></tr>
+<tr><th id="436">436</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="437">437</th><td>  }</td></tr>
+<tr><th id="438">438</th><td></td></tr>
+<tr><th id="439">439</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col7 ref" href="#67method" title='method' data-ref="67method">method</a>,</td></tr>
+<tr><th id="440">440</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col7 ref" href="#67method" title='method' data-ref="67method">method</a>)));</td></tr>
+<tr><th id="441">441</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="442">442</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col9 ref" href="#69spn" title='spn' data-ref="69spn">spn</a>,</td></tr>
+<tr><th id="443">443</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col9 ref" href="#69spn" title='spn' data-ref="69spn">spn</a>)));</td></tr>
+<tr><th id="444">444</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_final" title='Curl_MD5_final' data-ref="Curl_MD5_final">Curl_MD5_final</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, <a class="local col6 ref" href="#56digest" title='digest' data-ref="56digest">digest</a>);</td></tr>
+<tr><th id="445">445</th><td></td></tr>
+<tr><th id="446">446</th><td>  <b>for</b>(<a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a> = <var>0</var>; <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a> &lt; <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a>; <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>++)</td></tr>
+<tr><th id="447">447</th><td>    <a class="macro" href="../curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(&amp;<a class="local col8 ref" href="#58HA2_hex" title='HA2_hex' data-ref="58HA2_hex">HA2_hex</a>[<var>2</var> * <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>], <var>3</var>, <q>"%02x"</q>, <a class="local col6 ref" href="#56digest" title='digest' data-ref="56digest">digest</a>[<a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>]);</td></tr>
+<tr><th id="448">448</th><td></td></tr>
+<tr><th id="449">449</th><td>  <i>/* Now calculate the response hash */</i></td></tr>
+<tr><th id="450">450</th><td>  <a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a> = <a class="ref" href="../curl_md5.h.html#Curl_MD5_init" title='Curl_MD5_init' data-ref="Curl_MD5_init">Curl_MD5_init</a>(<a class="ref" href="../curl_md5.h.html#Curl_DIGEST_MD5" title='Curl_DIGEST_MD5' data-ref="Curl_DIGEST_MD5">Curl_DIGEST_MD5</a>);</td></tr>
+<tr><th id="451">451</th><td>  <b>if</b>(!<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>) {</td></tr>
+<tr><th id="452">452</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(spn)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#69spn" title='spn' data-ref="69spn">spn</a>);</td></tr>
+<tr><th id="453">453</th><td></td></tr>
+<tr><th id="454">454</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="455">455</th><td>  }</td></tr>
+<tr><th id="456">456</th><td></td></tr>
+<tr><th id="457">457</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col7 ref" href="#57HA1_hex" title='HA1_hex' data-ref="57HA1_hex">HA1_hex</a>, <var>2</var> * <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a>);</td></tr>
+<tr><th id="458">458</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="459">459</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col0 ref" href="#60nonce" title='nonce' data-ref="60nonce">nonce</a>,</td></tr>
+<tr><th id="460">460</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col0 ref" href="#60nonce" title='nonce' data-ref="60nonce">nonce</a>)));</td></tr>
+<tr><th id="461">461</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="462">462</th><td></td></tr>
+<tr><th id="463">463</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col6 ref" href="#66nonceCount" title='nonceCount' data-ref="66nonceCount">nonceCount</a>,</td></tr>
+<tr><th id="464">464</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col6 ref" href="#66nonceCount" title='nonceCount' data-ref="66nonceCount">nonceCount</a>)));</td></tr>
+<tr><th id="465">465</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="466">466</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col5 ref" href="#65cnonce" title='cnonce' data-ref="65cnonce">cnonce</a>,</td></tr>
+<tr><th id="467">467</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col5 ref" href="#65cnonce" title='cnonce' data-ref="65cnonce">cnonce</a>)));</td></tr>
+<tr><th id="468">468</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="469">469</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col8 ref" href="#68qop" title='qop' data-ref="68qop">qop</a>,</td></tr>
+<tr><th id="470">470</th><td>                  <a class="ref" href="../warnless.h.html#curlx_uztoui" title='curlx_uztoui' data-ref="curlx_uztoui">curlx_uztoui</a>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col8 ref" href="#68qop" title='qop' data-ref="68qop">qop</a>)));</td></tr>
+<tr><th id="471">471</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <q>":"</q>, <var>1</var>);</td></tr>
+<tr><th id="472">472</th><td></td></tr>
+<tr><th id="473">473</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_update" title='Curl_MD5_update' data-ref="Curl_MD5_update">Curl_MD5_update</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *) <a class="local col8 ref" href="#58HA2_hex" title='HA2_hex' data-ref="58HA2_hex">HA2_hex</a>, <var>2</var> * <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a>);</td></tr>
+<tr><th id="474">474</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_MD5_final" title='Curl_MD5_final' data-ref="Curl_MD5_final">Curl_MD5_final</a>(<a class="local col4 ref" href="#54ctxt" title='ctxt' data-ref="54ctxt">ctxt</a>, <a class="local col6 ref" href="#56digest" title='digest' data-ref="56digest">digest</a>);</td></tr>
+<tr><th id="475">475</th><td></td></tr>
+<tr><th id="476">476</th><td>  <b>for</b>(<a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a> = <var>0</var>; <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a> &lt; <a class="macro" href="../curl_md5.h.html#28" title="16" data-ref="_M/MD5_DIGEST_LEN">MD5_DIGEST_LEN</a>; <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>++)</td></tr>
+<tr><th id="477">477</th><td>    <a class="macro" href="../curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(&amp;<a class="local col9 ref" href="#59resp_hash_hex" title='resp_hash_hex' data-ref="59resp_hash_hex">resp_hash_hex</a>[<var>2</var> * <a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>], <var>3</var>, <q>"%02x"</q>, <a class="local col6 ref" href="#56digest" title='digest' data-ref="56digest">digest</a>[<a class="local col3 ref" href="#53i" title='i' data-ref="53i">i</a>]);</td></tr>
+<tr><th id="478">478</th><td></td></tr>
+<tr><th id="479">479</th><td>  <i>/* Generate the response */</i></td></tr>
+<tr><th id="480">480</th><td>  <a class="local col5 ref" href="#55response" title='response' data-ref="55response">response</a> = <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"username=\"%s\",realm=\"%s\",nonce=\"%s\","</q></td></tr>
+<tr><th id="481">481</th><td>                     <q>"cnonce=\"%s\",nc=\"%s\",digest-uri=\"%s\",response=%s,"</q></td></tr>
+<tr><th id="482">482</th><td>                     <q>"qop=%s"</q>,</td></tr>
+<tr><th id="483">483</th><td>                     <a class="local col7 ref" href="#47userp" title='userp' data-ref="47userp">userp</a>, <a class="local col1 ref" href="#61realm" title='realm' data-ref="61realm">realm</a>, <a class="local col0 ref" href="#60nonce" title='nonce' data-ref="60nonce">nonce</a>,</td></tr>
+<tr><th id="484">484</th><td>                     <a class="local col5 ref" href="#65cnonce" title='cnonce' data-ref="65cnonce">cnonce</a>, <a class="local col6 ref" href="#66nonceCount" title='nonceCount' data-ref="66nonceCount">nonceCount</a>, <a class="local col9 ref" href="#69spn" title='spn' data-ref="69spn">spn</a>, <a class="local col9 ref" href="#59resp_hash_hex" title='resp_hash_hex' data-ref="59resp_hash_hex">resp_hash_hex</a>, <a class="local col8 ref" href="#68qop" title='qop' data-ref="68qop">qop</a>);</td></tr>
+<tr><th id="485">485</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(spn)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#69spn" title='spn' data-ref="69spn">spn</a>);</td></tr>
+<tr><th id="486">486</th><td>  <b>if</b>(!<a class="local col5 ref" href="#55response" title='response' data-ref="55response">response</a>)</td></tr>
+<tr><th id="487">487</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="488">488</th><td></td></tr>
+<tr><th id="489">489</th><td>  <i>/* Base64 encode the response */</i></td></tr>
+<tr><th id="490">490</th><td>  <a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a> = <a class="ref" href="../curl_base64.h.html#Curl_base64_encode" title='Curl_base64_encode' data-ref="Curl_base64_encode">Curl_base64_encode</a>(<a class="local col5 ref" href="#45data" title='data' data-ref="45data">data</a>, <a class="local col5 ref" href="#55response" title='response' data-ref="55response">response</a>, <var>0</var>, <a class="local col0 ref" href="#50outptr" title='outptr' data-ref="50outptr">outptr</a>, <a class="local col1 ref" href="#51outlen" title='outlen' data-ref="51outlen">outlen</a>);</td></tr>
+<tr><th id="491">491</th><td></td></tr>
+<tr><th id="492">492</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(response)" data-ref="_M/free">free</a>(<a class="local col5 ref" href="#55response" title='response' data-ref="55response">response</a>);</td></tr>
+<tr><th id="493">493</th><td></td></tr>
+<tr><th id="494">494</th><td>  <b>return</b> <a class="local col2 ref" href="#52result" title='result' data-ref="52result">result</a>;</td></tr>
+<tr><th id="495">495</th><td>}</td></tr>
+<tr><th id="496">496</th><td></td></tr>
+<tr><th id="497">497</th><td><i>/*</i></td></tr>
+<tr><th id="498">498</th><td><i> * Curl_auth_decode_digest_http_message()</i></td></tr>
+<tr><th id="499">499</th><td><i> *</i></td></tr>
+<tr><th id="500">500</th><td><i> * This is used to decode a HTTP DIGEST challenge message into the separate</i></td></tr>
+<tr><th id="501">501</th><td><i> * attributes.</i></td></tr>
+<tr><th id="502">502</th><td><i> *</i></td></tr>
+<tr><th id="503">503</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="504">504</th><td><i> *</i></td></tr>
+<tr><th id="505">505</th><td><i> * chlg    [in]     - The challenge message.</i></td></tr>
+<tr><th id="506">506</th><td><i> * digest  [in/out] - The digest data struct being used and modified.</i></td></tr>
+<tr><th id="507">507</th><td><i> *</i></td></tr>
+<tr><th id="508">508</th><td><i> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="509">509</th><td><i> */</i></td></tr>
+<tr><th id="510">510</th><td><a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_auth_decode_digest_http_message" title='Curl_auth_decode_digest_http_message' data-ref="Curl_auth_decode_digest_http_message">Curl_auth_decode_digest_http_message</dfn>(<em>const</em> <em>char</em> *<dfn class="local col0 decl" id="70chlg" title='chlg' data-type='const char *' data-ref="70chlg">chlg</dfn>,</td></tr>
+<tr><th id="511">511</th><td>                                              <b>struct</b> <a class="type" href="../urldata.h.html#digestdata" title='digestdata' data-ref="digestdata">digestdata</a> *<dfn class="local col1 decl" id="71digest" title='digest' data-type='struct digestdata *' data-ref="71digest">digest</dfn>)</td></tr>
+<tr><th id="512">512</th><td>{</td></tr>
+<tr><th id="513">513</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col2 decl" id="72before" title='before' data-type='_Bool' data-ref="72before">before</dfn> = <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>; <i>/* got a nonce before */</i></td></tr>
+<tr><th id="514">514</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col3 decl" id="73foundAuth" title='foundAuth' data-type='_Bool' data-ref="73foundAuth">foundAuth</dfn> = <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="515">515</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col4 decl" id="74foundAuthInt" title='foundAuthInt' data-type='_Bool' data-ref="74foundAuthInt">foundAuthInt</dfn> = <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="516">516</th><td>  <em>char</em> *<dfn class="local col5 decl" id="75token" title='token' data-type='char *' data-ref="75token">token</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="517">517</th><td>  <em>char</em> *<dfn class="local col6 decl" id="76tmp" title='tmp' data-type='char *' data-ref="76tmp">tmp</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="518">518</th><td></td></tr>
+<tr><th id="519">519</th><td>  <i>/* If we already have received a nonce, keep that in mind */</i></td></tr>
+<tr><th id="520">520</th><td>  <b>if</b>(<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>)</td></tr>
+<tr><th id="521">521</th><td>    <a class="local col2 ref" href="#72before" title='before' data-ref="72before">before</a> = <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="522">522</th><td></td></tr>
+<tr><th id="523">523</th><td>  <i>/* Clean up any former leftovers and initialise to defaults */</i></td></tr>
+<tr><th id="524">524</th><td>  <a class="ref" href="#Curl_auth_digest_cleanup" title='Curl_auth_digest_cleanup' data-ref="Curl_auth_digest_cleanup">Curl_auth_digest_cleanup</a>(<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>);</td></tr>
+<tr><th id="525">525</th><td></td></tr>
+<tr><th id="526">526</th><td>  <b>for</b>(;;) {</td></tr>
+<tr><th id="527">527</th><td>    <em>char</em> <dfn class="local col7 decl" id="77value" title='value' data-type='char [256]' data-ref="77value">value</dfn>[<a class="macro" href="digest.h.html#29" title="256" data-ref="_M/DIGEST_MAX_VALUE_LENGTH">DIGEST_MAX_VALUE_LENGTH</a>];</td></tr>
+<tr><th id="528">528</th><td>    <em>char</em> <dfn class="local col8 decl" id="78content" title='content' data-type='char [1024]' data-ref="78content">content</dfn>[<a class="macro" href="digest.h.html#30" title="1024" data-ref="_M/DIGEST_MAX_CONTENT_LENGTH">DIGEST_MAX_CONTENT_LENGTH</a>];</td></tr>
+<tr><th id="529">529</th><td></td></tr>
+<tr><th id="530">530</th><td>    <i>/* Pass all additional spaces here */</i></td></tr>
+<tr><th id="531">531</th><td>    <b>while</b>(*<a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a> &amp;&amp; <a class="macro" href="../curl_setup_once.h.html#282" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)*chlg)))] &amp; (unsigned short int) _ISspace))" data-ref="_M/ISSPACE">ISSPACE</a>(*<a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a>))</td></tr>
+<tr><th id="532">532</th><td>      <a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a>++;</td></tr>
+<tr><th id="533">533</th><td></td></tr>
+<tr><th id="534">534</th><td>    <i>/* Extract a value=content pair */</i></td></tr>
+<tr><th id="535">535</th><td>    <b>if</b>(<a class="ref" href="#Curl_auth_digest_get_pair" title='Curl_auth_digest_get_pair' data-ref="Curl_auth_digest_get_pair">Curl_auth_digest_get_pair</a>(<a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a>, <a class="local col7 ref" href="#77value" title='value' data-ref="77value">value</a>, <a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>, &amp;<a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a>)) {</td></tr>
+<tr><th id="536">536</th><td>      <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(value,&quot;nonce&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col7 ref" href="#77value" title='value' data-ref="77value">value</a>, <q>"nonce"</q>)) {</td></tr>
+<tr><th id="537">537</th><td>        <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(digest-&gt;nonce)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>);</td></tr>
+<tr><th id="538">538</th><td>        <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a> = <a class="macro" href="../curl_memory.h.html#122" title="Curl_cstrdup(content)" data-ref="_M/strdup">strdup</a>(<a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>);</td></tr>
+<tr><th id="539">539</th><td>        <b>if</b>(!<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>)</td></tr>
+<tr><th id="540">540</th><td>          <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="541">541</th><td>      }</td></tr>
+<tr><th id="542">542</th><td>      <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(value,&quot;stale&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col7 ref" href="#77value" title='value' data-ref="77value">value</a>, <q>"stale"</q>)) {</td></tr>
+<tr><th id="543">543</th><td>        <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(content,&quot;true&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>, <q>"true"</q>)) {</td></tr>
+<tr><th id="544">544</th><td>          <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::stale" title='digestdata::stale' data-ref="digestdata::stale">stale</a> = <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="545">545</th><td>          <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nc" title='digestdata::nc' data-ref="digestdata::nc">nc</a> = <var>1</var>; <i>/* we make a new nonce now */</i></td></tr>
+<tr><th id="546">546</th><td>        }</td></tr>
+<tr><th id="547">547</th><td>      }</td></tr>
+<tr><th id="548">548</th><td>      <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(value,&quot;realm&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col7 ref" href="#77value" title='value' data-ref="77value">value</a>, <q>"realm"</q>)) {</td></tr>
+<tr><th id="549">549</th><td>        <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(digest-&gt;realm)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::realm" title='digestdata::realm' data-ref="digestdata::realm">realm</a>);</td></tr>
+<tr><th id="550">550</th><td>        <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::realm" title='digestdata::realm' data-ref="digestdata::realm">realm</a> = <a class="macro" href="../curl_memory.h.html#122" title="Curl_cstrdup(content)" data-ref="_M/strdup">strdup</a>(<a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>);</td></tr>
+<tr><th id="551">551</th><td>        <b>if</b>(!<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::realm" title='digestdata::realm' data-ref="digestdata::realm">realm</a>)</td></tr>
+<tr><th id="552">552</th><td>          <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="553">553</th><td>      }</td></tr>
+<tr><th id="554">554</th><td>      <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(value,&quot;opaque&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col7 ref" href="#77value" title='value' data-ref="77value">value</a>, <q>"opaque"</q>)) {</td></tr>
+<tr><th id="555">555</th><td>        <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(digest-&gt;opaque)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::opaque" title='digestdata::opaque' data-ref="digestdata::opaque">opaque</a>);</td></tr>
+<tr><th id="556">556</th><td>        <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::opaque" title='digestdata::opaque' data-ref="digestdata::opaque">opaque</a> = <a class="macro" href="../curl_memory.h.html#122" title="Curl_cstrdup(content)" data-ref="_M/strdup">strdup</a>(<a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>);</td></tr>
+<tr><th id="557">557</th><td>        <b>if</b>(!<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::opaque" title='digestdata::opaque' data-ref="digestdata::opaque">opaque</a>)</td></tr>
+<tr><th id="558">558</th><td>          <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="559">559</th><td>      }</td></tr>
+<tr><th id="560">560</th><td>      <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(value,&quot;qop&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col7 ref" href="#77value" title='value' data-ref="77value">value</a>, <q>"qop"</q>)) {</td></tr>
+<tr><th id="561">561</th><td>        <em>char</em> *<dfn class="local col9 decl" id="79tok_buf" title='tok_buf' data-type='char *' data-ref="79tok_buf">tok_buf</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="562">562</th><td>        <i>/* Tokenize the list and choose auth if possible, use a temporary</i></td></tr>
+<tr><th id="563">563</th><td><i>           clone of the buffer since strtok_r() ruins it */</i></td></tr>
+<tr><th id="564">564</th><td>        <a class="local col6 ref" href="#76tmp" title='tmp' data-ref="76tmp">tmp</a> = <a class="macro" href="../curl_memory.h.html#122" title="Curl_cstrdup(content)" data-ref="_M/strdup">strdup</a>(<a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>);</td></tr>
+<tr><th id="565">565</th><td>        <b>if</b>(!<a class="local col6 ref" href="#76tmp" title='tmp' data-ref="76tmp">tmp</a>)</td></tr>
+<tr><th id="566">566</th><td>          <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="567">567</th><td></td></tr>
+<tr><th id="568">568</th><td>        <a class="local col5 ref" href="#75token" title='token' data-ref="75token">token</a> = <a class="ref" href="../../../include/string.h.html#strtok_r" title='strtok_r' data-ref="strtok_r">strtok_r</a>(<a class="local col6 ref" href="#76tmp" title='tmp' data-ref="76tmp">tmp</a>, <q>","</q>, &amp;<a class="local col9 ref" href="#79tok_buf" title='tok_buf' data-ref="79tok_buf">tok_buf</a>);</td></tr>
+<tr><th id="569">569</th><td>        <b>while</b>(<a class="local col5 ref" href="#75token" title='token' data-ref="75token">token</a> != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) {</td></tr>
+<tr><th id="570">570</th><td>          <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(token,&quot;auth&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col5 ref" href="#75token" title='token' data-ref="75token">token</a>, <a class="macro" href="#54" title="&quot;auth&quot;" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH">DIGEST_QOP_VALUE_STRING_AUTH</a>)) {</td></tr>
+<tr><th id="571">571</th><td>            <a class="local col3 ref" href="#73foundAuth" title='foundAuth' data-ref="73foundAuth">foundAuth</a> = <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="572">572</th><td>          }</td></tr>
+<tr><th id="573">573</th><td>          <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(token,&quot;auth-int&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col5 ref" href="#75token" title='token' data-ref="75token">token</a>, <a class="macro" href="#55" title="&quot;auth-int&quot;" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH_INT">DIGEST_QOP_VALUE_STRING_AUTH_INT</a>)) {</td></tr>
+<tr><th id="574">574</th><td>            <a class="local col4 ref" href="#74foundAuthInt" title='foundAuthInt' data-ref="74foundAuthInt">foundAuthInt</a> = <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="575">575</th><td>          }</td></tr>
+<tr><th id="576">576</th><td>          <a class="local col5 ref" href="#75token" title='token' data-ref="75token">token</a> = <a class="ref" href="../../../include/string.h.html#strtok_r" title='strtok_r' data-ref="strtok_r">strtok_r</a>(<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <q>","</q>, &amp;<a class="local col9 ref" href="#79tok_buf" title='tok_buf' data-ref="79tok_buf">tok_buf</a>);</td></tr>
+<tr><th id="577">577</th><td>        }</td></tr>
+<tr><th id="578">578</th><td></td></tr>
+<tr><th id="579">579</th><td>        <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(tmp)" data-ref="_M/free">free</a>(<a class="local col6 ref" href="#76tmp" title='tmp' data-ref="76tmp">tmp</a>);</td></tr>
+<tr><th id="580">580</th><td></td></tr>
+<tr><th id="581">581</th><td>        <i>/* Select only auth or auth-int. Otherwise, ignore */</i></td></tr>
+<tr><th id="582">582</th><td>        <b>if</b>(<a class="local col3 ref" href="#73foundAuth" title='foundAuth' data-ref="73foundAuth">foundAuth</a>) {</td></tr>
+<tr><th id="583">583</th><td>          <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(digest-&gt;qop)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>);</td></tr>
+<tr><th id="584">584</th><td>          <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a> = <a class="macro" href="../curl_memory.h.html#122" title="Curl_cstrdup(&quot;auth&quot;)" data-ref="_M/strdup">strdup</a>(<a class="macro" href="#54" title="&quot;auth&quot;" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH">DIGEST_QOP_VALUE_STRING_AUTH</a>);</td></tr>
+<tr><th id="585">585</th><td>          <b>if</b>(!<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>)</td></tr>
+<tr><th id="586">586</th><td>            <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="587">587</th><td>        }</td></tr>
+<tr><th id="588">588</th><td>        <b>else</b> <b>if</b>(<a class="local col4 ref" href="#74foundAuthInt" title='foundAuthInt' data-ref="74foundAuthInt">foundAuthInt</a>) {</td></tr>
+<tr><th id="589">589</th><td>          <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(digest-&gt;qop)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>);</td></tr>
+<tr><th id="590">590</th><td>          <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a> = <a class="macro" href="../curl_memory.h.html#122" title="Curl_cstrdup(&quot;auth-int&quot;)" data-ref="_M/strdup">strdup</a>(<a class="macro" href="#55" title="&quot;auth-int&quot;" data-ref="_M/DIGEST_QOP_VALUE_STRING_AUTH_INT">DIGEST_QOP_VALUE_STRING_AUTH_INT</a>);</td></tr>
+<tr><th id="591">591</th><td>          <b>if</b>(!<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>)</td></tr>
+<tr><th id="592">592</th><td>            <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="593">593</th><td>        }</td></tr>
+<tr><th id="594">594</th><td>      }</td></tr>
+<tr><th id="595">595</th><td>      <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(value,&quot;algorithm&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col7 ref" href="#77value" title='value' data-ref="77value">value</a>, <q>"algorithm"</q>)) {</td></tr>
+<tr><th id="596">596</th><td>        <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(digest-&gt;algorithm)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algorithm" title='digestdata::algorithm' data-ref="digestdata::algorithm">algorithm</a>);</td></tr>
+<tr><th id="597">597</th><td>        <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algorithm" title='digestdata::algorithm' data-ref="digestdata::algorithm">algorithm</a> = <a class="macro" href="../curl_memory.h.html#122" title="Curl_cstrdup(content)" data-ref="_M/strdup">strdup</a>(<a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>);</td></tr>
+<tr><th id="598">598</th><td>        <b>if</b>(!<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algorithm" title='digestdata::algorithm' data-ref="digestdata::algorithm">algorithm</a>)</td></tr>
+<tr><th id="599">599</th><td>          <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="600">600</th><td></td></tr>
+<tr><th id="601">601</th><td>        <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(content,&quot;MD5-sess&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>, <q>"MD5-sess"</q>))</td></tr>
+<tr><th id="602">602</th><td>          <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algo" title='digestdata::algo' data-ref="digestdata::algo">algo</a> = <a class="enum" href="digest.h.html#CURLDIGESTALGO_MD5SESS" title='CURLDIGESTALGO_MD5SESS' data-ref="CURLDIGESTALGO_MD5SESS">CURLDIGESTALGO_MD5SESS</a>;</td></tr>
+<tr><th id="603">603</th><td>        <b>else</b> <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(content,&quot;MD5&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col8 ref" href="#78content" title='content' data-ref="78content">content</a>, <q>"MD5"</q>))</td></tr>
+<tr><th id="604">604</th><td>          <a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algo" title='digestdata::algo' data-ref="digestdata::algo">algo</a> = <a class="enum" href="digest.h.html#CURLDIGESTALGO_MD5" title='CURLDIGESTALGO_MD5' data-ref="CURLDIGESTALGO_MD5">CURLDIGESTALGO_MD5</a>;</td></tr>
+<tr><th id="605">605</th><td>        <b>else</b></td></tr>
+<tr><th id="606">606</th><td>          <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="607">607</th><td>      }</td></tr>
+<tr><th id="608">608</th><td>      <b>else</b> {</td></tr>
+<tr><th id="609">609</th><td>        <i>/* Unknown specifier, ignore it! */</i></td></tr>
+<tr><th id="610">610</th><td>      }</td></tr>
+<tr><th id="611">611</th><td>    }</td></tr>
+<tr><th id="612">612</th><td>    <b>else</b></td></tr>
+<tr><th id="613">613</th><td>      <b>break</b>; <i>/* We're done here */</i></td></tr>
+<tr><th id="614">614</th><td></td></tr>
+<tr><th id="615">615</th><td>    <i>/* Pass all additional spaces here */</i></td></tr>
+<tr><th id="616">616</th><td>    <b>while</b>(*<a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a> &amp;&amp; <a class="macro" href="../curl_setup_once.h.html#282" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)*chlg)))] &amp; (unsigned short int) _ISspace))" data-ref="_M/ISSPACE">ISSPACE</a>(*<a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a>))</td></tr>
+<tr><th id="617">617</th><td>      <a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a>++;</td></tr>
+<tr><th id="618">618</th><td></td></tr>
+<tr><th id="619">619</th><td>    <i>/* Allow the list to be comma-separated */</i></td></tr>
+<tr><th id="620">620</th><td>    <b>if</b>(<kbd>','</kbd> == *<a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a>)</td></tr>
+<tr><th id="621">621</th><td>      <a class="local col0 ref" href="#70chlg" title='chlg' data-ref="70chlg">chlg</a>++;</td></tr>
+<tr><th id="622">622</th><td>  }</td></tr>
+<tr><th id="623">623</th><td></td></tr>
+<tr><th id="624">624</th><td>  <i>/* We had a nonce since before, and we got another one now without</i></td></tr>
+<tr><th id="625">625</th><td><i>     'stale=true'. This means we provided bad credentials in the previous</i></td></tr>
+<tr><th id="626">626</th><td><i>     request */</i></td></tr>
+<tr><th id="627">627</th><td>  <b>if</b>(<a class="local col2 ref" href="#72before" title='before' data-ref="72before">before</a> &amp;&amp; !<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::stale" title='digestdata::stale' data-ref="digestdata::stale">stale</a>)</td></tr>
+<tr><th id="628">628</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="629">629</th><td></td></tr>
+<tr><th id="630">630</th><td>  <i>/* We got this header without a nonce, that's a bad Digest line! */</i></td></tr>
+<tr><th id="631">631</th><td>  <b>if</b>(!<a class="local col1 ref" href="#71digest" title='digest' data-ref="71digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>)</td></tr>
+<tr><th id="632">632</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="633">633</th><td></td></tr>
+<tr><th id="634">634</th><td>  <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="635">635</th><td>}</td></tr>
+<tr><th id="636">636</th><td></td></tr>
+<tr><th id="637">637</th><td><i>/*</i></td></tr>
+<tr><th id="638">638</th><td><i> * Curl_auth_create_digest_http_message()</i></td></tr>
+<tr><th id="639">639</th><td><i> *</i></td></tr>
+<tr><th id="640">640</th><td><i> * This is used to generate a HTTP DIGEST response message ready for sending</i></td></tr>
+<tr><th id="641">641</th><td><i> * to the recipient.</i></td></tr>
+<tr><th id="642">642</th><td><i> *</i></td></tr>
+<tr><th id="643">643</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="644">644</th><td><i> *</i></td></tr>
+<tr><th id="645">645</th><td><i> * data    [in]     - The session handle.</i></td></tr>
+<tr><th id="646">646</th><td><i> * userp   [in]     - The user name.</i></td></tr>
+<tr><th id="647">647</th><td><i> * passdwp [in]     - The user's password.</i></td></tr>
+<tr><th id="648">648</th><td><i> * request [in]     - The HTTP request.</i></td></tr>
+<tr><th id="649">649</th><td><i> * uripath [in]     - The path of the HTTP uri.</i></td></tr>
+<tr><th id="650">650</th><td><i> * digest  [in/out] - The digest data struct being used and modified.</i></td></tr>
+<tr><th id="651">651</th><td><i> * outptr  [in/out] - The address where a pointer to newly allocated memory</i></td></tr>
+<tr><th id="652">652</th><td><i> *                    holding the result will be stored upon completion.</i></td></tr>
+<tr><th id="653">653</th><td><i> * outlen  [out]    - The length of the output message.</i></td></tr>
+<tr><th id="654">654</th><td><i> *</i></td></tr>
+<tr><th id="655">655</th><td><i> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="656">656</th><td><i> */</i></td></tr>
+<tr><th id="657">657</th><td><a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_auth_create_digest_http_message" title='Curl_auth_create_digest_http_message' data-ref="Curl_auth_create_digest_http_message">Curl_auth_create_digest_http_message</dfn>(<b>struct</b> <a class="type" href="../urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col0 decl" id="80data" title='data' data-type='struct Curl_easy *' data-ref="80data">data</dfn>,</td></tr>
+<tr><th id="658">658</th><td>                                              <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="81userp" title='userp' data-type='const char *' data-ref="81userp">userp</dfn>,</td></tr>
+<tr><th id="659">659</th><td>                                              <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="82passwdp" title='passwdp' data-type='const char *' data-ref="82passwdp">passwdp</dfn>,</td></tr>
+<tr><th id="660">660</th><td>                                              <em>const</em> <em>unsigned</em> <em>char</em> *<dfn class="local col3 decl" id="83request" title='request' data-type='const unsigned char *' data-ref="83request">request</dfn>,</td></tr>
+<tr><th id="661">661</th><td>                                              <em>const</em> <em>unsigned</em> <em>char</em> *<dfn class="local col4 decl" id="84uripath" title='uripath' data-type='const unsigned char *' data-ref="84uripath">uripath</dfn>,</td></tr>
+<tr><th id="662">662</th><td>                                              <b>struct</b> <a class="type" href="../urldata.h.html#digestdata" title='digestdata' data-ref="digestdata">digestdata</a> *<dfn class="local col5 decl" id="85digest" title='digest' data-type='struct digestdata *' data-ref="85digest">digest</dfn>,</td></tr>
+<tr><th id="663">663</th><td>                                              <em>char</em> **<dfn class="local col6 decl" id="86outptr" title='outptr' data-type='char **' data-ref="86outptr">outptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col7 decl" id="87outlen" title='outlen' data-type='size_t *' data-ref="87outlen">outlen</dfn>)</td></tr>
+<tr><th id="664">664</th><td>{</td></tr>
+<tr><th id="665">665</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col8 decl" id="88result" title='result' data-type='CURLcode' data-ref="88result">result</dfn>;</td></tr>
+<tr><th id="666">666</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col9 decl" id="89md5buf" title='md5buf' data-type='unsigned char [16]' data-ref="89md5buf">md5buf</dfn>[<var>16</var>]; <i>/* 16 bytes/128 bits */</i></td></tr>
+<tr><th id="667">667</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col0 decl" id="90request_digest" title='request_digest' data-type='unsigned char [33]' data-ref="90request_digest">request_digest</dfn>[<var>33</var>];</td></tr>
+<tr><th id="668">668</th><td>  <em>unsigned</em> <em>char</em> *<dfn class="local col1 decl" id="91md5this" title='md5this' data-type='unsigned char *' data-ref="91md5this">md5this</dfn>;</td></tr>
+<tr><th id="669">669</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col2 decl" id="92ha1" title='ha1' data-type='unsigned char [33]' data-ref="92ha1">ha1</dfn>[<var>33</var>];    <i>/* 32 digits and 1 zero byte */</i></td></tr>
+<tr><th id="670">670</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col3 decl" id="93ha2" title='ha2' data-type='unsigned char [33]' data-ref="93ha2">ha2</dfn>[<var>33</var>];    <i>/* 32 digits and 1 zero byte */</i></td></tr>
+<tr><th id="671">671</th><td>  <em>char</em> <dfn class="local col4 decl" id="94cnoncebuf" title='cnoncebuf' data-type='char [33]' data-ref="94cnoncebuf">cnoncebuf</dfn>[<var>33</var>];</td></tr>
+<tr><th id="672">672</th><td>  <em>char</em> *<dfn class="local col5 decl" id="95cnonce" title='cnonce' data-type='char *' data-ref="95cnonce">cnonce</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="673">673</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="96cnonce_sz" title='cnonce_sz' data-type='size_t' data-ref="96cnonce_sz">cnonce_sz</dfn> = <var>0</var>;</td></tr>
+<tr><th id="674">674</th><td>  <em>char</em> *<dfn class="local col7 decl" id="97userp_quoted" title='userp_quoted' data-type='char *' data-ref="97userp_quoted">userp_quoted</dfn>;</td></tr>
+<tr><th id="675">675</th><td>  <em>char</em> *<dfn class="local col8 decl" id="98response" title='response' data-type='char *' data-ref="98response">response</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="676">676</th><td>  <em>char</em> *<dfn class="local col9 decl" id="99tmp" title='tmp' data-type='char *' data-ref="99tmp">tmp</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="677">677</th><td></td></tr>
+<tr><th id="678">678</th><td>  <b>if</b>(!<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nc" title='digestdata::nc' data-ref="digestdata::nc">nc</a>)</td></tr>
+<tr><th id="679">679</th><td>    <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nc" title='digestdata::nc' data-ref="digestdata::nc">nc</a> = <var>1</var>;</td></tr>
+<tr><th id="680">680</th><td></td></tr>
+<tr><th id="681">681</th><td>  <b>if</b>(!<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::cnonce" title='digestdata::cnonce' data-ref="digestdata::cnonce">cnonce</a>) {</td></tr>
+<tr><th id="682">682</th><td>    <a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a> = <a class="ref" href="../rand.h.html#Curl_rand_hex" title='Curl_rand_hex' data-ref="Curl_rand_hex">Curl_rand_hex</a>(<a class="local col0 ref" href="#80data" title='data' data-ref="80data">data</a>, (<em>unsigned</em> <em>char</em> *)<a class="local col4 ref" href="#94cnoncebuf" title='cnoncebuf' data-ref="94cnoncebuf">cnoncebuf</a>,</td></tr>
+<tr><th id="683">683</th><td>                           <b>sizeof</b>(<a class="local col4 ref" href="#94cnoncebuf" title='cnoncebuf' data-ref="94cnoncebuf">cnoncebuf</a>));</td></tr>
+<tr><th id="684">684</th><td>    <b>if</b>(<a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a>)</td></tr>
+<tr><th id="685">685</th><td>      <b>return</b> <a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a>;</td></tr>
+<tr><th id="686">686</th><td></td></tr>
+<tr><th id="687">687</th><td>    <a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a> = <a class="ref" href="../curl_base64.h.html#Curl_base64_encode" title='Curl_base64_encode' data-ref="Curl_base64_encode">Curl_base64_encode</a>(<a class="local col0 ref" href="#80data" title='data' data-ref="80data">data</a>, <a class="local col4 ref" href="#94cnoncebuf" title='cnoncebuf' data-ref="94cnoncebuf">cnoncebuf</a>, <a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col4 ref" href="#94cnoncebuf" title='cnoncebuf' data-ref="94cnoncebuf">cnoncebuf</a>),</td></tr>
+<tr><th id="688">688</th><td>                                &amp;<a class="local col5 ref" href="#95cnonce" title='cnonce' data-ref="95cnonce">cnonce</a>, &amp;<a class="local col6 ref" href="#96cnonce_sz" title='cnonce_sz' data-ref="96cnonce_sz">cnonce_sz</a>);</td></tr>
+<tr><th id="689">689</th><td>    <b>if</b>(<a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a>)</td></tr>
+<tr><th id="690">690</th><td>      <b>return</b> <a class="local col8 ref" href="#88result" title='result' data-ref="88result">result</a>;</td></tr>
+<tr><th id="691">691</th><td></td></tr>
+<tr><th id="692">692</th><td>    <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::cnonce" title='digestdata::cnonce' data-ref="digestdata::cnonce">cnonce</a> = <a class="local col5 ref" href="#95cnonce" title='cnonce' data-ref="95cnonce">cnonce</a>;</td></tr>
+<tr><th id="693">693</th><td>  }</td></tr>
+<tr><th id="694">694</th><td></td></tr>
+<tr><th id="695">695</th><td>  <i>/*</i></td></tr>
+<tr><th id="696">696</th><td><i>    If the algorithm is "MD5" or unspecified (which then defaults to MD5):</i></td></tr>
+<tr><th id="697">697</th><td><i></i></td></tr>
+<tr><th id="698">698</th><td><i>      A1 = unq(username-value) ":" unq(realm-value) ":" passwd</i></td></tr>
+<tr><th id="699">699</th><td><i></i></td></tr>
+<tr><th id="700">700</th><td><i>    If the algorithm is "MD5-sess" then:</i></td></tr>
+<tr><th id="701">701</th><td><i></i></td></tr>
+<tr><th id="702">702</th><td><i>      A1 = H(unq(username-value) ":" unq(realm-value) ":" passwd) ":"</i></td></tr>
+<tr><th id="703">703</th><td><i>           unq(nonce-value) ":" unq(cnonce-value)</i></td></tr>
+<tr><th id="704">704</th><td><i>  */</i></td></tr>
+<tr><th id="705">705</th><td></td></tr>
+<tr><th id="706">706</th><td>  <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a> = (<em>unsigned</em> <em>char</em> *)</td></tr>
+<tr><th id="707">707</th><td>    <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s:%s:%s"</q>, <a class="local col1 ref" href="#81userp" title='userp' data-ref="81userp">userp</a>, <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::realm" title='digestdata::realm' data-ref="digestdata::realm">realm</a>, <a class="local col2 ref" href="#82passwdp" title='passwdp' data-ref="82passwdp">passwdp</a>);</td></tr>
+<tr><th id="708">708</th><td>  <b>if</b>(!<a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>)</td></tr>
+<tr><th id="709">709</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="710">710</th><td></td></tr>
+<tr><th id="711">711</th><td>  <a class="macro" href="#62" title="result = ((void)data, CURLE_OK); if(result) { Curl_cfree(md5this); return result; }" data-ref="_M/CURL_OUTPUT_DIGEST_CONV">CURL_OUTPUT_DIGEST_CONV</a>(<a class="local col0 ref" href="#80data" title='data' data-ref="80data">data</a>, <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>); <i>/* convert on non-ASCII machines */</i></td></tr>
+<tr><th id="712">712</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_md5it" title='Curl_md5it' data-ref="Curl_md5it">Curl_md5it</a>(<a class="local col9 ref" href="#89md5buf" title='md5buf' data-ref="89md5buf">md5buf</a>, <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>);</td></tr>
+<tr><th id="713">713</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(md5this)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>);</td></tr>
+<tr><th id="714">714</th><td>  <a class="tu ref" href="#auth_digest_md5_to_ascii" title='auth_digest_md5_to_ascii' data-use='c' data-ref="auth_digest_md5_to_ascii">auth_digest_md5_to_ascii</a>(<a class="local col9 ref" href="#89md5buf" title='md5buf' data-ref="89md5buf">md5buf</a>, <a class="local col2 ref" href="#92ha1" title='ha1' data-ref="92ha1">ha1</a>);</td></tr>
+<tr><th id="715">715</th><td></td></tr>
+<tr><th id="716">716</th><td>  <b>if</b>(<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algo" title='digestdata::algo' data-ref="digestdata::algo">algo</a> == <a class="enum" href="digest.h.html#CURLDIGESTALGO_MD5SESS" title='CURLDIGESTALGO_MD5SESS' data-ref="CURLDIGESTALGO_MD5SESS">CURLDIGESTALGO_MD5SESS</a>) {</td></tr>
+<tr><th id="717">717</th><td>    <i>/* nonce and cnonce are OUTSIDE the hash */</i></td></tr>
+<tr><th id="718">718</th><td>    <a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a> = <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s:%s:%s"</q>, <a class="local col2 ref" href="#92ha1" title='ha1' data-ref="92ha1">ha1</a>, <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>, <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::cnonce" title='digestdata::cnonce' data-ref="digestdata::cnonce">cnonce</a>);</td></tr>
+<tr><th id="719">719</th><td>    <b>if</b>(!<a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a>)</td></tr>
+<tr><th id="720">720</th><td>      <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="721">721</th><td></td></tr>
+<tr><th id="722">722</th><td>    <a class="macro" href="#62" title="result = ((void)data, CURLE_OK); if(result) { Curl_cfree(tmp); return result; }" data-ref="_M/CURL_OUTPUT_DIGEST_CONV">CURL_OUTPUT_DIGEST_CONV</a>(<a class="local col0 ref" href="#80data" title='data' data-ref="80data">data</a>, <a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a>); <i>/* Convert on non-ASCII machines */</i></td></tr>
+<tr><th id="723">723</th><td>    <a class="ref" href="../curl_md5.h.html#Curl_md5it" title='Curl_md5it' data-ref="Curl_md5it">Curl_md5it</a>(<a class="local col9 ref" href="#89md5buf" title='md5buf' data-ref="89md5buf">md5buf</a>, (<em>unsigned</em> <em>char</em> *) <a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a>);</td></tr>
+<tr><th id="724">724</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(tmp)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a>);</td></tr>
+<tr><th id="725">725</th><td>    <a class="tu ref" href="#auth_digest_md5_to_ascii" title='auth_digest_md5_to_ascii' data-use='c' data-ref="auth_digest_md5_to_ascii">auth_digest_md5_to_ascii</a>(<a class="local col9 ref" href="#89md5buf" title='md5buf' data-ref="89md5buf">md5buf</a>, <a class="local col2 ref" href="#92ha1" title='ha1' data-ref="92ha1">ha1</a>);</td></tr>
+<tr><th id="726">726</th><td>  }</td></tr>
+<tr><th id="727">727</th><td></td></tr>
+<tr><th id="728">728</th><td>  <i>/*</i></td></tr>
+<tr><th id="729">729</th><td><i>    If the "qop" directive's value is "auth" or is unspecified, then A2 is:</i></td></tr>
+<tr><th id="730">730</th><td><i></i></td></tr>
+<tr><th id="731">731</th><td><i>      A2 = Method ":" digest-uri-value</i></td></tr>
+<tr><th id="732">732</th><td><i></i></td></tr>
+<tr><th id="733">733</th><td><i>    If the "qop" value is "auth-int", then A2 is:</i></td></tr>
+<tr><th id="734">734</th><td><i></i></td></tr>
+<tr><th id="735">735</th><td><i>      A2 = Method ":" digest-uri-value ":" H(entity-body)</i></td></tr>
+<tr><th id="736">736</th><td><i></i></td></tr>
+<tr><th id="737">737</th><td><i>    (The "Method" value is the HTTP request method as specified in section</i></td></tr>
+<tr><th id="738">738</th><td><i>    5.1.1 of RFC 2616)</i></td></tr>
+<tr><th id="739">739</th><td><i>  */</i></td></tr>
+<tr><th id="740">740</th><td></td></tr>
+<tr><th id="741">741</th><td>  <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a> = (<em>unsigned</em> <em>char</em> *) <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s:%s"</q>, <a class="local col3 ref" href="#83request" title='request' data-ref="83request">request</a>, <a class="local col4 ref" href="#84uripath" title='uripath' data-ref="84uripath">uripath</a>);</td></tr>
+<tr><th id="742">742</th><td></td></tr>
+<tr><th id="743">743</th><td>  <b>if</b>(<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a> &amp;&amp; <a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(digest-&gt;qop,&quot;auth-int&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>, <q>"auth-int"</q>)) {</td></tr>
+<tr><th id="744">744</th><td>    <i>/* We don't support auth-int for PUT or POST at the moment.</i></td></tr>
+<tr><th id="745">745</th><td><i>       TODO: replace md5 of empty string with entity-body for PUT/POST */</i></td></tr>
+<tr><th id="746">746</th><td>    <em>unsigned</em> <em>char</em> *<dfn class="local col0 decl" id="100md5this2" title='md5this2' data-type='unsigned char *' data-ref="100md5this2">md5this2</dfn> = (<em>unsigned</em> <em>char</em> *)</td></tr>
+<tr><th id="747">747</th><td>      <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s:%s"</q>, <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>, <q>"d41d8cd98f00b204e9800998ecf8427e"</q>);</td></tr>
+<tr><th id="748">748</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(md5this)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>);</td></tr>
+<tr><th id="749">749</th><td>    <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a> = <a class="local col0 ref" href="#100md5this2" title='md5this2' data-ref="100md5this2">md5this2</a>;</td></tr>
+<tr><th id="750">750</th><td>  }</td></tr>
+<tr><th id="751">751</th><td></td></tr>
+<tr><th id="752">752</th><td>  <b>if</b>(!<a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>)</td></tr>
+<tr><th id="753">753</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="754">754</th><td></td></tr>
+<tr><th id="755">755</th><td>  <a class="macro" href="#62" title="result = ((void)data, CURLE_OK); if(result) { Curl_cfree(md5this); return result; }" data-ref="_M/CURL_OUTPUT_DIGEST_CONV">CURL_OUTPUT_DIGEST_CONV</a>(<a class="local col0 ref" href="#80data" title='data' data-ref="80data">data</a>, <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>); <i>/* convert on non-ASCII machines */</i></td></tr>
+<tr><th id="756">756</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_md5it" title='Curl_md5it' data-ref="Curl_md5it">Curl_md5it</a>(<a class="local col9 ref" href="#89md5buf" title='md5buf' data-ref="89md5buf">md5buf</a>, <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>);</td></tr>
+<tr><th id="757">757</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(md5this)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>);</td></tr>
+<tr><th id="758">758</th><td>  <a class="tu ref" href="#auth_digest_md5_to_ascii" title='auth_digest_md5_to_ascii' data-use='c' data-ref="auth_digest_md5_to_ascii">auth_digest_md5_to_ascii</a>(<a class="local col9 ref" href="#89md5buf" title='md5buf' data-ref="89md5buf">md5buf</a>, <a class="local col3 ref" href="#93ha2" title='ha2' data-ref="93ha2">ha2</a>);</td></tr>
+<tr><th id="759">759</th><td></td></tr>
+<tr><th id="760">760</th><td>  <b>if</b>(<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>) {</td></tr>
+<tr><th id="761">761</th><td>    <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a> = (<em>unsigned</em> <em>char</em> *) <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s:%s:%08x:%s:%s:%s"</q>,</td></tr>
+<tr><th id="762">762</th><td>                                        <a class="local col2 ref" href="#92ha1" title='ha1' data-ref="92ha1">ha1</a>,</td></tr>
+<tr><th id="763">763</th><td>                                        <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>,</td></tr>
+<tr><th id="764">764</th><td>                                        <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nc" title='digestdata::nc' data-ref="digestdata::nc">nc</a>,</td></tr>
+<tr><th id="765">765</th><td>                                        <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::cnonce" title='digestdata::cnonce' data-ref="digestdata::cnonce">cnonce</a>,</td></tr>
+<tr><th id="766">766</th><td>                                        <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>,</td></tr>
+<tr><th id="767">767</th><td>                                        <a class="local col3 ref" href="#93ha2" title='ha2' data-ref="93ha2">ha2</a>);</td></tr>
+<tr><th id="768">768</th><td>  }</td></tr>
+<tr><th id="769">769</th><td>  <b>else</b> {</td></tr>
+<tr><th id="770">770</th><td>    <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a> = (<em>unsigned</em> <em>char</em> *) <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s:%s:%s"</q>,</td></tr>
+<tr><th id="771">771</th><td>                                        <a class="local col2 ref" href="#92ha1" title='ha1' data-ref="92ha1">ha1</a>,</td></tr>
+<tr><th id="772">772</th><td>                                        <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>,</td></tr>
+<tr><th id="773">773</th><td>                                        <a class="local col3 ref" href="#93ha2" title='ha2' data-ref="93ha2">ha2</a>);</td></tr>
+<tr><th id="774">774</th><td>  }</td></tr>
+<tr><th id="775">775</th><td></td></tr>
+<tr><th id="776">776</th><td>  <b>if</b>(!<a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>)</td></tr>
+<tr><th id="777">777</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="778">778</th><td></td></tr>
+<tr><th id="779">779</th><td>  <a class="macro" href="#62" title="result = ((void)data, CURLE_OK); if(result) { Curl_cfree(md5this); return result; }" data-ref="_M/CURL_OUTPUT_DIGEST_CONV">CURL_OUTPUT_DIGEST_CONV</a>(<a class="local col0 ref" href="#80data" title='data' data-ref="80data">data</a>, <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>); <i>/* convert on non-ASCII machines */</i></td></tr>
+<tr><th id="780">780</th><td>  <a class="ref" href="../curl_md5.h.html#Curl_md5it" title='Curl_md5it' data-ref="Curl_md5it">Curl_md5it</a>(<a class="local col9 ref" href="#89md5buf" title='md5buf' data-ref="89md5buf">md5buf</a>, <a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>);</td></tr>
+<tr><th id="781">781</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(md5this)" data-ref="_M/free">free</a>(<a class="local col1 ref" href="#91md5this" title='md5this' data-ref="91md5this">md5this</a>);</td></tr>
+<tr><th id="782">782</th><td>  <a class="tu ref" href="#auth_digest_md5_to_ascii" title='auth_digest_md5_to_ascii' data-use='c' data-ref="auth_digest_md5_to_ascii">auth_digest_md5_to_ascii</a>(<a class="local col9 ref" href="#89md5buf" title='md5buf' data-ref="89md5buf">md5buf</a>, <a class="local col0 ref" href="#90request_digest" title='request_digest' data-ref="90request_digest">request_digest</a>);</td></tr>
+<tr><th id="783">783</th><td></td></tr>
+<tr><th id="784">784</th><td>  <i>/* For test case 64 (snooped from a Mozilla 1.3a request)</i></td></tr>
+<tr><th id="785">785</th><td><i></i></td></tr>
+<tr><th id="786">786</th><td><i>     Authorization: Digest username="testuser", realm="testrealm", \</i></td></tr>
+<tr><th id="787">787</th><td><i>     nonce="1053604145", uri="/64", response="c55f7f30d83d774a3d2dcacf725abaca"</i></td></tr>
+<tr><th id="788">788</th><td><i></i></td></tr>
+<tr><th id="789">789</th><td><i>     Digest parameters are all quoted strings.  Username which is provided by</i></td></tr>
+<tr><th id="790">790</th><td><i>     the user will need double quotes and backslashes within it escaped.  For</i></td></tr>
+<tr><th id="791">791</th><td><i>     the other fields, this shouldn't be an issue.  realm, nonce, and opaque</i></td></tr>
+<tr><th id="792">792</th><td><i>     are copied as is from the server, escapes and all.  cnonce is generated</i></td></tr>
+<tr><th id="793">793</th><td><i>     with web-safe characters.  uri is already percent encoded.  nc is 8 hex</i></td></tr>
+<tr><th id="794">794</th><td><i>     characters.  algorithm and qop with standard values only contain web-safe</i></td></tr>
+<tr><th id="795">795</th><td><i>     characters.</i></td></tr>
+<tr><th id="796">796</th><td><i>  */</i></td></tr>
+<tr><th id="797">797</th><td>  <a class="local col7 ref" href="#97userp_quoted" title='userp_quoted' data-ref="97userp_quoted">userp_quoted</a> = <a class="tu ref" href="#auth_digest_string_quoted" title='auth_digest_string_quoted' data-use='c' data-ref="auth_digest_string_quoted">auth_digest_string_quoted</a>(<a class="local col1 ref" href="#81userp" title='userp' data-ref="81userp">userp</a>);</td></tr>
+<tr><th id="798">798</th><td>  <b>if</b>(!<a class="local col7 ref" href="#97userp_quoted" title='userp_quoted' data-ref="97userp_quoted">userp_quoted</a>)</td></tr>
+<tr><th id="799">799</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="800">800</th><td></td></tr>
+<tr><th id="801">801</th><td>  <b>if</b>(<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>) {</td></tr>
+<tr><th id="802">802</th><td>    <a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a> = <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"username=\"%s\", "</q></td></tr>
+<tr><th id="803">803</th><td>                       <q>"realm=\"%s\", "</q></td></tr>
+<tr><th id="804">804</th><td>                       <q>"nonce=\"%s\", "</q></td></tr>
+<tr><th id="805">805</th><td>                       <q>"uri=\"%s\", "</q></td></tr>
+<tr><th id="806">806</th><td>                       <q>"cnonce=\"%s\", "</q></td></tr>
+<tr><th id="807">807</th><td>                       <q>"nc=%08x, "</q></td></tr>
+<tr><th id="808">808</th><td>                       <q>"qop=%s, "</q></td></tr>
+<tr><th id="809">809</th><td>                       <q>"response=\"%s\""</q>,</td></tr>
+<tr><th id="810">810</th><td>                       <a class="local col7 ref" href="#97userp_quoted" title='userp_quoted' data-ref="97userp_quoted">userp_quoted</a>,</td></tr>
+<tr><th id="811">811</th><td>                       <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::realm" title='digestdata::realm' data-ref="digestdata::realm">realm</a>,</td></tr>
+<tr><th id="812">812</th><td>                       <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>,</td></tr>
+<tr><th id="813">813</th><td>                       <a class="local col4 ref" href="#84uripath" title='uripath' data-ref="84uripath">uripath</a>,</td></tr>
+<tr><th id="814">814</th><td>                       <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::cnonce" title='digestdata::cnonce' data-ref="digestdata::cnonce">cnonce</a>,</td></tr>
+<tr><th id="815">815</th><td>                       <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nc" title='digestdata::nc' data-ref="digestdata::nc">nc</a>,</td></tr>
+<tr><th id="816">816</th><td>                       <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>,</td></tr>
+<tr><th id="817">817</th><td>                       <a class="local col0 ref" href="#90request_digest" title='request_digest' data-ref="90request_digest">request_digest</a>);</td></tr>
+<tr><th id="818">818</th><td></td></tr>
+<tr><th id="819">819</th><td>    <b>if</b>(<a class="macro" href="../strcase.h.html#35" title="Curl_strcasecompare(digest-&gt;qop,&quot;auth&quot;)" data-ref="_M/strcasecompare">strcasecompare</a>(<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>, <q>"auth"</q>))</td></tr>
+<tr><th id="820">820</th><td>      <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nc" title='digestdata::nc' data-ref="digestdata::nc">nc</a>++; <i>/* The nc (from RFC) has to be a 8 hex digit number 0</i></td></tr>
+<tr><th id="821">821</th><td><i>                       padded which tells to the server how many times you are</i></td></tr>
+<tr><th id="822">822</th><td><i>                       using the same nonce in the qop=auth mode */</i></td></tr>
+<tr><th id="823">823</th><td>  }</td></tr>
+<tr><th id="824">824</th><td>  <b>else</b> {</td></tr>
+<tr><th id="825">825</th><td>    <a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a> = <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"username=\"%s\", "</q></td></tr>
+<tr><th id="826">826</th><td>                       <q>"realm=\"%s\", "</q></td></tr>
+<tr><th id="827">827</th><td>                       <q>"nonce=\"%s\", "</q></td></tr>
+<tr><th id="828">828</th><td>                       <q>"uri=\"%s\", "</q></td></tr>
+<tr><th id="829">829</th><td>                       <q>"response=\"%s\""</q>,</td></tr>
+<tr><th id="830">830</th><td>                       <a class="local col7 ref" href="#97userp_quoted" title='userp_quoted' data-ref="97userp_quoted">userp_quoted</a>,</td></tr>
+<tr><th id="831">831</th><td>                       <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::realm" title='digestdata::realm' data-ref="digestdata::realm">realm</a>,</td></tr>
+<tr><th id="832">832</th><td>                       <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>,</td></tr>
+<tr><th id="833">833</th><td>                       <a class="local col4 ref" href="#84uripath" title='uripath' data-ref="84uripath">uripath</a>,</td></tr>
+<tr><th id="834">834</th><td>                       <a class="local col0 ref" href="#90request_digest" title='request_digest' data-ref="90request_digest">request_digest</a>);</td></tr>
+<tr><th id="835">835</th><td>  }</td></tr>
+<tr><th id="836">836</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(userp_quoted)" data-ref="_M/free">free</a>(<a class="local col7 ref" href="#97userp_quoted" title='userp_quoted' data-ref="97userp_quoted">userp_quoted</a>);</td></tr>
+<tr><th id="837">837</th><td>  <b>if</b>(!<a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a>)</td></tr>
+<tr><th id="838">838</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="839">839</th><td></td></tr>
+<tr><th id="840">840</th><td>  <i>/* Add the optional fields */</i></td></tr>
+<tr><th id="841">841</th><td>  <b>if</b>(<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::opaque" title='digestdata::opaque' data-ref="digestdata::opaque">opaque</a>) {</td></tr>
+<tr><th id="842">842</th><td>    <i>/* Append the opaque */</i></td></tr>
+<tr><th id="843">843</th><td>    <a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a> = <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s, opaque=\"%s\""</q>, <a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a>, <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::opaque" title='digestdata::opaque' data-ref="digestdata::opaque">opaque</a>);</td></tr>
+<tr><th id="844">844</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(response)" data-ref="_M/free">free</a>(<a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a>);</td></tr>
+<tr><th id="845">845</th><td>    <b>if</b>(!<a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a>)</td></tr>
+<tr><th id="846">846</th><td>      <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="847">847</th><td></td></tr>
+<tr><th id="848">848</th><td>    <a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a> = <a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a>;</td></tr>
+<tr><th id="849">849</th><td>  }</td></tr>
+<tr><th id="850">850</th><td></td></tr>
+<tr><th id="851">851</th><td>  <b>if</b>(<a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algorithm" title='digestdata::algorithm' data-ref="digestdata::algorithm">algorithm</a>) {</td></tr>
+<tr><th id="852">852</th><td>    <i>/* Append the algorithm */</i></td></tr>
+<tr><th id="853">853</th><td>    <a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a> = <a class="macro" href="../curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s, algorithm=\"%s\""</q>, <a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a>, <a class="local col5 ref" href="#85digest" title='digest' data-ref="85digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algorithm" title='digestdata::algorithm' data-ref="digestdata::algorithm">algorithm</a>);</td></tr>
+<tr><th id="854">854</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(response)" data-ref="_M/free">free</a>(<a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a>);</td></tr>
+<tr><th id="855">855</th><td>    <b>if</b>(!<a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a>)</td></tr>
+<tr><th id="856">856</th><td>      <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="857">857</th><td></td></tr>
+<tr><th id="858">858</th><td>    <a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a> = <a class="local col9 ref" href="#99tmp" title='tmp' data-ref="99tmp">tmp</a>;</td></tr>
+<tr><th id="859">859</th><td>  }</td></tr>
+<tr><th id="860">860</th><td></td></tr>
+<tr><th id="861">861</th><td>  <i>/* Return the output */</i></td></tr>
+<tr><th id="862">862</th><td>  *<a class="local col6 ref" href="#86outptr" title='outptr' data-ref="86outptr">outptr</a> = <a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a>;</td></tr>
+<tr><th id="863">863</th><td>  *<a class="local col7 ref" href="#87outlen" title='outlen' data-ref="87outlen">outlen</a> = <a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col8 ref" href="#98response" title='response' data-ref="98response">response</a>);</td></tr>
+<tr><th id="864">864</th><td></td></tr>
+<tr><th id="865">865</th><td>  <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="866">866</th><td>}</td></tr>
+<tr><th id="867">867</th><td></td></tr>
+<tr><th id="868">868</th><td><i>/*</i></td></tr>
+<tr><th id="869">869</th><td><i> * Curl_auth_digest_cleanup()</i></td></tr>
+<tr><th id="870">870</th><td><i> *</i></td></tr>
+<tr><th id="871">871</th><td><i> * This is used to clean up the digest specific data.</i></td></tr>
+<tr><th id="872">872</th><td><i> *</i></td></tr>
+<tr><th id="873">873</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="874">874</th><td><i> *</i></td></tr>
+<tr><th id="875">875</th><td><i> * digest    [in/out] - The digest data struct being cleaned up.</i></td></tr>
+<tr><th id="876">876</th><td><i> *</i></td></tr>
+<tr><th id="877">877</th><td><i> */</i></td></tr>
+<tr><th id="878">878</th><td><em>void</em> <dfn class="decl def" id="Curl_auth_digest_cleanup" title='Curl_auth_digest_cleanup' data-ref="Curl_auth_digest_cleanup">Curl_auth_digest_cleanup</dfn>(<b>struct</b> <a class="type" href="../urldata.h.html#digestdata" title='digestdata' data-ref="digestdata">digestdata</a> *<dfn class="local col1 decl" id="101digest" title='digest' data-type='struct digestdata *' data-ref="101digest">digest</dfn>)</td></tr>
+<tr><th id="879">879</th><td>{</td></tr>
+<tr><th id="880">880</th><td>  <a class="macro" href="../memdebug.h.html#170" title="do { Curl_cfree((digest-&gt;nonce)); (digest-&gt;nonce) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nonce" title='digestdata::nonce' data-ref="digestdata::nonce">nonce</a>);</td></tr>
+<tr><th id="881">881</th><td>  <a class="macro" href="../memdebug.h.html#170" title="do { Curl_cfree((digest-&gt;cnonce)); (digest-&gt;cnonce) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::cnonce" title='digestdata::cnonce' data-ref="digestdata::cnonce">cnonce</a>);</td></tr>
+<tr><th id="882">882</th><td>  <a class="macro" href="../memdebug.h.html#170" title="do { Curl_cfree((digest-&gt;realm)); (digest-&gt;realm) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::realm" title='digestdata::realm' data-ref="digestdata::realm">realm</a>);</td></tr>
+<tr><th id="883">883</th><td>  <a class="macro" href="../memdebug.h.html#170" title="do { Curl_cfree((digest-&gt;opaque)); (digest-&gt;opaque) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::opaque" title='digestdata::opaque' data-ref="digestdata::opaque">opaque</a>);</td></tr>
+<tr><th id="884">884</th><td>  <a class="macro" href="../memdebug.h.html#170" title="do { Curl_cfree((digest-&gt;qop)); (digest-&gt;qop) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::qop" title='digestdata::qop' data-ref="digestdata::qop">qop</a>);</td></tr>
+<tr><th id="885">885</th><td>  <a class="macro" href="../memdebug.h.html#170" title="do { Curl_cfree((digest-&gt;algorithm)); (digest-&gt;algorithm) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algorithm" title='digestdata::algorithm' data-ref="digestdata::algorithm">algorithm</a>);</td></tr>
+<tr><th id="886">886</th><td></td></tr>
+<tr><th id="887">887</th><td>  <a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::nc" title='digestdata::nc' data-ref="digestdata::nc">nc</a> = <var>0</var>;</td></tr>
+<tr><th id="888">888</th><td>  <a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::algo" title='digestdata::algo' data-ref="digestdata::algo">algo</a> = <a class="enum" href="digest.h.html#CURLDIGESTALGO_MD5" title='CURLDIGESTALGO_MD5' data-ref="CURLDIGESTALGO_MD5">CURLDIGESTALGO_MD5</a>; <i>/* default algorithm */</i></td></tr>
+<tr><th id="889">889</th><td>  <a class="local col1 ref" href="#101digest" title='digest' data-ref="101digest">digest</a>-&gt;<a class="ref" href="../urldata.h.html#digestdata::stale" title='digestdata::stale' data-ref="digestdata::stale">stale</a> = <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>; <i>/* default means normal, not stale */</i></td></tr>
+<tr><th id="890">890</th><td>}</td></tr>
+<tr><th id="891">891</th><td><u>#<span data-ppcond="137">endif</span>  /* !USE_WINDOWS_SSPI */</u></td></tr>
+<tr><th id="892">892</th><td></td></tr>
+<tr><th id="893">893</th><td><u>#<span data-ppcond="27">endif</span>  /* CURL_DISABLE_CRYPTO_AUTH */</u></td></tr>
+<tr><th id="894">894</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

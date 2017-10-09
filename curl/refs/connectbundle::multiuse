@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/conncache.h' l='39' type='int'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/conncache.h' l='39'>/* supports multi-use */</doc>
+<use f='codebrowser/lib/conncache.c' l='57' u='w' c='bundle_create'/>
+<use f='codebrowser/lib/http.c' l='3454' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3466' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3554' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3556' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/sendf.c' l='700' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/url.c' l='3523' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3531' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3533' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3538' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3539' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3548' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3554' u='r' c='ConnectionExists'/>

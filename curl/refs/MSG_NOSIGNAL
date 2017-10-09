@@ -1,0 +1,30 @@
+<dec f='include/x86_64-linux-gnu/bits/socket.h' l='210' type='16384'/>
+<doc f='include/x86_64-linux-gnu/bits/socket.h' l='210'>/* Do not generate SIGPIPE.  */</doc>
+<use f='codebrowser/lib/sendf.c' l='371' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='358' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='945' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='957' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='985' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='1040' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='1049' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='621' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='646' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='672' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='686' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='746' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='790' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='816' macro='1' u='r'/>
+<use f='codebrowser/lib/tftp.c' l='833' macro='1' u='r'/>
+<use f='codebrowser/tests/server/rtspd.c' l='924' macro='1' u='r'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1075' macro='1' u='r'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1100' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1109' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1081' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1226' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1661' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1681' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1268' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1337' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1385' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1400' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1432' macro='1' u='r'/>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/http_chunks.h' l='51' type='4'/>
+<doc f='codebrowser/lib/http_chunks.h' l='48'>/* Used to mark that we&apos;re out of the game.  NOTE: that there&apos;s a &apos;dataleft&apos;
+     field in the struct that will tell how many bytes that were not passed to
+     the client in the end of the last buffer! */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='339' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='342' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/transfer.c' l='1233' u='r' c='Curl_readwrite'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/connect.h' l='142'/>
+<use f='codebrowser/lib/ftp.c' l='3096' u='c'/>
+<use f='codebrowser/lib/http.c' l='1343' u='c'/>
+<use f='codebrowser/lib/http.c' l='3571' u='c'/>
+<use f='codebrowser/lib/http.c' l='3593' u='c'/>
+<use f='codebrowser/lib/http_proxy.c' l='106' u='c'/>
+<use f='codebrowser/lib/imap.c' l='1400' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1650' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1071' u='c'/>
+<use f='codebrowser/lib/smb.c' l='270' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='1134' u='c'/>

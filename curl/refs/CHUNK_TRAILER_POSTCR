@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/http_chunks.h' l='65' type='7'/>
+<doc f='codebrowser/lib/http_chunks.h' l='61'>/* A trailer LF must be found now, otherwise CHUNKE_BAD_CHUNK will be
+     signalled If this is an empty trailer CHUNKE_STOP will be signalled.
+     Otherwise the trailer will be broadcasted via Curl_client_write() and the
+     next state will be CHUNK_TRAILER */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='286' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='317' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='325' c='Curl_httpchunk_read'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='529' type='long'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/urldata.h' l='529'>/* only count received headers */</doc>
+<use f='codebrowser/lib/http.c' l='1476' u='r' c='Curl_http_done'/>
+<use f='codebrowser/lib/http.c' l='3155' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3158' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3807' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_proxy.c' l='437' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/pingpong.c' l='356' u='w' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/transfer.c' l='1950' u='r' c='Curl_retry_request'/>
+<use f='codebrowser/lib/url.c' l='6966' u='w' c='Curl_setup_conn'/>

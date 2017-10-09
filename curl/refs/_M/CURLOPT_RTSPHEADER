@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='1859'/>
+<doc f='codebrowser/include/curl/curl.h' l='1858'>/* three convenient &quot;aliases&quot; that follow the name scheme better */</doc>
+<use f='codebrowser/tests/libtest/lib567.c' l='57' u='c'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='136' u='c'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='146' u='c'/>

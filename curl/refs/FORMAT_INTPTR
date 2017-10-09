@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/mprintf.c' l='115' type='4'/>
+<use f='codebrowser/lib/mprintf.c' l='402' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='502' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='956' c='dprintf_formatf'/>

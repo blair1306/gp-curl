@@ -1,0 +1,5 @@
+<dec f='include/openssl/dsa.h' l='164' type='BIGNUM *'/>
+<offset>256</offset>
+<doc f='include/openssl/dsa.h' l='164'>/* == 20 */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='2897' u='r' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2897' u='r' c='get_cert_chain'/>

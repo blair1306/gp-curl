@@ -1,0 +1,3 @@
+<def f='codebrowser/lib/urldata.h' l='248' ll='250'/>
+<size>8</size>
+<mbr r='ssl_general_config::max_ssl_sessions' o='0' t='size_t'/>

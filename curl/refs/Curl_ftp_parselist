@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/ftplistparser.h' l='29' type='size_t Curl_ftp_parselist(char * buffer, size_t size, size_t nmemb, void * connptr)'/>
+<use f='codebrowser/lib/ftp.c' l='3822' u='r' c='init_wc_data'/>
+<doc f='codebrowser/lib/ftplistparser.h' l='28'>/* WRITEFUNCTION callback for parsing LIST responses */</doc>
+<def f='codebrowser/lib/ftplistparser.c' l='330' ll='1014' type='size_t Curl_ftp_parselist(char * buffer, size_t size, size_t nmemb, void * connptr)'/>

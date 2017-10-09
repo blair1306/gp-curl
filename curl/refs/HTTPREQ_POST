@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='1142' type='2'/>
+<use f='codebrowser/lib/http.c' l='403' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='1839' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2162' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2245' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2577' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3186' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/rtsp.c' l='539' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/transfer.c' l='1868' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1893' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='1049' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1100' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1110' u='r' c='Curl_setopt'/>

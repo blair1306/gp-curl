@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>testutil.c source code [codebrowser/tests/libtest/testutil.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/testutil.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='testutil.c.html'>testutil.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="../../lib/curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="../../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="testutil.h.html">"testutil.h"</a></u></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../../lib/memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">if</span> defined(<span class="macro" data-ref="_M/WIN32">WIN32</span>) &amp;&amp; !defined(<span class="macro" data-ref="_M/MSDOS">MSDOS</span>)</u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><b>struct</b> timeval tutil_tvnow(<em>void</em>)</td></tr>
+<tr><th id="30">30</th><td>{</td></tr>
+<tr><th id="31">31</th><td>  <i>/*</i></td></tr>
+<tr><th id="32">32</th><td><i>  ** GetTickCount() is available on _all_ Windows versions from W95 up</i></td></tr>
+<tr><th id="33">33</th><td><i>  ** to nowadays. Returns milliseconds elapsed since last system boot,</i></td></tr>
+<tr><th id="34">34</th><td><i>  ** increases monotonically and wraps once 49.7 days have elapsed.</i></td></tr>
+<tr><th id="35">35</th><td><i>  */</i></td></tr>
+<tr><th id="36">36</th><td>  <b>struct</b> timeval now;</td></tr>
+<tr><th id="37">37</th><td>  DWORD milliseconds = GetTickCount();</td></tr>
+<tr><th id="38">38</th><td>  now.tv_sec = milliseconds / <var>1000</var>;</td></tr>
+<tr><th id="39">39</th><td>  now.tv_usec = (milliseconds % <var>1000</var>) * <var>1000</var>;</td></tr>
+<tr><th id="40">40</th><td>  <b>return</b> now;</td></tr>
+<tr><th id="41">41</th><td>}</td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="27">elif</span> defined(<span class="macro" data-ref="_M/HAVE_CLOCK_GETTIME_MONOTONIC">HAVE_CLOCK_GETTIME_MONOTONIC</span>)</u></td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><b>struct</b> timeval tutil_tvnow(<em>void</em>)</td></tr>
+<tr><th id="46">46</th><td>{</td></tr>
+<tr><th id="47">47</th><td>  <i>/*</i></td></tr>
+<tr><th id="48">48</th><td><i>  ** clock_gettime() is granted to be increased monotonically when the</i></td></tr>
+<tr><th id="49">49</th><td><i>  ** monotonic clock is queried. Time starting point is unspecified, it</i></td></tr>
+<tr><th id="50">50</th><td><i>  ** could be the system start-up time, the Epoch, or something else,</i></td></tr>
+<tr><th id="51">51</th><td><i>  ** in any case the time starting point does not change once that the</i></td></tr>
+<tr><th id="52">52</th><td><i>  ** system has started up.</i></td></tr>
+<tr><th id="53">53</th><td><i>  */</i></td></tr>
+<tr><th id="54">54</th><td>  <b>struct</b> timeval now;</td></tr>
+<tr><th id="55">55</th><td>  <b>struct</b> timespec tsnow;</td></tr>
+<tr><th id="56">56</th><td>  <b>if</b>(<var>0</var> == clock_gettime(CLOCK_MONOTONIC, &amp;tsnow)) {</td></tr>
+<tr><th id="57">57</th><td>    now.tv_sec = tsnow.tv_sec;</td></tr>
+<tr><th id="58">58</th><td>    now.tv_usec = tsnow.tv_nsec / <var>1000</var>;</td></tr>
+<tr><th id="59">59</th><td>  }</td></tr>
+<tr><th id="60">60</th><td>  <i>/*</i></td></tr>
+<tr><th id="61">61</th><td><i>  ** Even when the configure process has truly detected monotonic clock</i></td></tr>
+<tr><th id="62">62</th><td><i>  ** availability, it might happen that it is not actually available at</i></td></tr>
+<tr><th id="63">63</th><td><i>  ** run-time. When this occurs simply fallback to other time source.</i></td></tr>
+<tr><th id="64">64</th><td><i>  */</i></td></tr>
+<tr><th id="65">65</th><td><u>#ifdef HAVE_GETTIMEOFDAY</u></td></tr>
+<tr><th id="66">66</th><td>  <b>else</b></td></tr>
+<tr><th id="67">67</th><td>    (<em>void</em>)gettimeofday(&amp;now, NULL);</td></tr>
+<tr><th id="68">68</th><td><u>#else</u></td></tr>
+<tr><th id="69">69</th><td>  <b>else</b> {</td></tr>
+<tr><th id="70">70</th><td>    now.tv_sec = (<em>long</em>)time(NULL);</td></tr>
+<tr><th id="71">71</th><td>    now.tv_usec = <var>0</var>;</td></tr>
+<tr><th id="72">72</th><td>  }</td></tr>
+<tr><th id="73">73</th><td><u>#endif</u></td></tr>
+<tr><th id="74">74</th><td>  <b>return</b> now;</td></tr>
+<tr><th id="75">75</th><td>}</td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td><u>#<span data-ppcond="27">elif</span> defined(<a class="macro" href="../../lib/curl_config.h.html#245" data-ref="_M/HAVE_GETTIMEOFDAY">HAVE_GETTIMEOFDAY</a>)</u></td></tr>
+<tr><th id="78">78</th><td></td></tr>
+<tr><th id="79">79</th><td><b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="decl def" id="tutil_tvnow" title='tutil_tvnow' data-ref="tutil_tvnow">tutil_tvnow</dfn>(<em>void</em>)</td></tr>
+<tr><th id="80">80</th><td>{</td></tr>
+<tr><th id="81">81</th><td>  <i>/*</i></td></tr>
+<tr><th id="82">82</th><td><i>  ** gettimeofday() is not granted to be increased monotonically, due to</i></td></tr>
+<tr><th id="83">83</th><td><i>  ** clock drifting and external source time synchronization it can jump</i></td></tr>
+<tr><th id="84">84</th><td><i>  ** forward or backward in time.</i></td></tr>
+<tr><th id="85">85</th><td><i>  */</i></td></tr>
+<tr><th id="86">86</th><td>  <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col1 decl" id="1now" title='now' data-type='struct timeval' data-ref="1now">now</dfn>;</td></tr>
+<tr><th id="87">87</th><td>  (<em>void</em>)<a class="ref" href="../../../include/x86_64-linux-gnu/sys/time.h.html#gettimeofday" title='gettimeofday' data-ref="gettimeofday">gettimeofday</a>(&amp;<a class="local col1 ref" href="#1now" title='now' data-ref="1now">now</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="88">88</th><td>  <b>return</b> <a class="local col1 ref" href="#1now" title='now' data-ref="1now">now</a>;</td></tr>
+<tr><th id="89">89</th><td>}</td></tr>
+<tr><th id="90">90</th><td></td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="27">else</span></u></td></tr>
+<tr><th id="92">92</th><td></td></tr>
+<tr><th id="93">93</th><td><b>struct</b> timeval tutil_tvnow(<em>void</em>)</td></tr>
+<tr><th id="94">94</th><td>{</td></tr>
+<tr><th id="95">95</th><td>  <i>/*</i></td></tr>
+<tr><th id="96">96</th><td><i>  ** time() returns the value of time in seconds since the Epoch.</i></td></tr>
+<tr><th id="97">97</th><td><i>  */</i></td></tr>
+<tr><th id="98">98</th><td>  <b>struct</b> timeval now;</td></tr>
+<tr><th id="99">99</th><td>  now.tv_sec = (<em>long</em>)time(NULL);</td></tr>
+<tr><th id="100">100</th><td>  now.tv_usec = <var>0</var>;</td></tr>
+<tr><th id="101">101</th><td>  <b>return</b> now;</td></tr>
+<tr><th id="102">102</th><td>}</td></tr>
+<tr><th id="103">103</th><td></td></tr>
+<tr><th id="104">104</th><td><u>#<span data-ppcond="27">endif</span></u></td></tr>
+<tr><th id="105">105</th><td></td></tr>
+<tr><th id="106">106</th><td><i>/*</i></td></tr>
+<tr><th id="107">107</th><td><i> * Make sure that the first argument is the more recent time, as otherwise</i></td></tr>
+<tr><th id="108">108</th><td><i> * we'll get a weird negative time-diff back...</i></td></tr>
+<tr><th id="109">109</th><td><i> *</i></td></tr>
+<tr><th id="110">110</th><td><i> * Returns: the time difference in number of milliseconds.</i></td></tr>
+<tr><th id="111">111</th><td><i> */</i></td></tr>
+<tr><th id="112">112</th><td><em>long</em> <dfn class="decl def" id="tutil_tvdiff" title='tutil_tvdiff' data-ref="tutil_tvdiff">tutil_tvdiff</dfn>(<b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col2 decl" id="2newer" title='newer' data-type='struct timeval' data-ref="2newer">newer</dfn>, <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col3 decl" id="3older" title='older' data-type='struct timeval' data-ref="3older">older</dfn>)</td></tr>
+<tr><th id="113">113</th><td>{</td></tr>
+<tr><th id="114">114</th><td>  <b>return</b> (<em>long</em>)(<a class="local col2 ref" href="#2newer" title='newer' data-ref="2newer">newer</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a>-<a class="local col3 ref" href="#3older" title='older' data-ref="3older">older</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a>)*<var>1000</var>+</td></tr>
+<tr><th id="115">115</th><td>    (<em>long</em>)(<a class="local col2 ref" href="#2newer" title='newer' data-ref="2newer">newer</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a>-<a class="local col3 ref" href="#3older" title='older' data-ref="3older">older</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a>)/<var>1000</var>;</td></tr>
+<tr><th id="116">116</th><td>}</td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td></td></tr>
+<tr><th id="119">119</th><td><i>/*</i></td></tr>
+<tr><th id="120">120</th><td><i> * Same as tutil_tvdiff but with full usec resolution.</i></td></tr>
+<tr><th id="121">121</th><td><i> *</i></td></tr>
+<tr><th id="122">122</th><td><i> * Returns: the time difference in seconds with subsecond resolution.</i></td></tr>
+<tr><th id="123">123</th><td><i> */</i></td></tr>
+<tr><th id="124">124</th><td><em>double</em> <dfn class="decl def" id="tutil_tvdiff_secs" title='tutil_tvdiff_secs' data-ref="tutil_tvdiff_secs">tutil_tvdiff_secs</dfn>(<b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col4 decl" id="4newer" title='newer' data-type='struct timeval' data-ref="4newer">newer</dfn>, <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col5 decl" id="5older" title='older' data-type='struct timeval' data-ref="5older">older</dfn>)</td></tr>
+<tr><th id="125">125</th><td>{</td></tr>
+<tr><th id="126">126</th><td>  <b>if</b>(<a class="local col4 ref" href="#4newer" title='newer' data-ref="4newer">newer</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a> != <a class="local col5 ref" href="#5older" title='older' data-ref="5older">older</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a>)</td></tr>
+<tr><th id="127">127</th><td>    <b>return</b> (<em>double</em>)(<a class="local col4 ref" href="#4newer" title='newer' data-ref="4newer">newer</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a>-<a class="local col5 ref" href="#5older" title='older' data-ref="5older">older</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a>)+</td></tr>
+<tr><th id="128">128</th><td>      (<em>double</em>)(<a class="local col4 ref" href="#4newer" title='newer' data-ref="4newer">newer</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a>-<a class="local col5 ref" href="#5older" title='older' data-ref="5older">older</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a>)/<var>1000000.0</var>;</td></tr>
+<tr><th id="129">129</th><td>  <b>return</b> (<em>double</em>)(<a class="local col4 ref" href="#4newer" title='newer' data-ref="4newer">newer</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a>-<a class="local col5 ref" href="#5older" title='older' data-ref="5older">older</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a>)/<var>1000000.0</var>;</td></tr>
+<tr><th id="130">130</th><td>}</td></tr>
+<tr><th id="131">131</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,325 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>hostip4.c source code [codebrowser/lib/hostip4.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/hostip4.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='hostip4.c.html'>hostip4.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <a class="macro" href="curl_config.h.html#429" data-ref="_M/HAVE_NETINET_IN_H">HAVE_NETINET_IN_H</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../include/netinet/in.h.html">&lt;netinet/in.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="28">ifdef</span> <a class="macro" href="curl_config.h.html#426" data-ref="_M/HAVE_NETDB_H">HAVE_NETDB_H</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../../include/netdb.h.html">&lt;netdb.h&gt;</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="28">endif</span></u></td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="31">ifdef</span> <a class="macro" href="curl_config.h.html#116" data-ref="_M/HAVE_ARPA_INET_H">HAVE_ARPA_INET_H</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="../../include/arpa/inet.h.html">&lt;arpa/inet.h&gt;</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="31">endif</span></u></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifdef</span> <span class="macro" data-ref="_M/__VMS">__VMS</span></u></td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;in.h&gt;</u></td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;inet.h&gt;</u></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="34">endif</span></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">ifdef</span> <span class="macro" data-ref="_M/HAVE_PROCESS_H">HAVE_PROCESS_H</span></u></td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;process.h&gt;</u></td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="39">endif</span></u></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="45">45</th><td><u>#include <a href="hostip.h.html">"hostip.h"</a></u></td></tr>
+<tr><th id="46">46</th><td><u>#include <a href="hash.h.html">"hash.h"</a></u></td></tr>
+<tr><th id="47">47</th><td><u>#include <a href="share.h.html">"share.h"</a></u></td></tr>
+<tr><th id="48">48</th><td><u>#include <a href="strerror.h.html">"strerror.h"</a></u></td></tr>
+<tr><th id="49">49</th><td><u>#include <a href="url.h.html">"url.h"</a></u></td></tr>
+<tr><th id="50">50</th><td><u>#include <a href="inet_pton.h.html">"inet_pton.h"</a></u></td></tr>
+<tr><th id="51">51</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="52">52</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="53">53</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="54">54</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td><i>/***********************************************************************</i></td></tr>
+<tr><th id="57">57</th><td><i> * Only for plain IPv4 builds</i></td></tr>
+<tr><th id="58">58</th><td><i> **********************************************************************/</i></td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="59">ifdef</span> <span class="macro" data-ref="_M/CURLRES_IPV4">CURLRES_IPV4</span> /* plain IPv4 code coming up */</u></td></tr>
+<tr><th id="60">60</th><td><i>/*</i></td></tr>
+<tr><th id="61">61</th><td><i> * Curl_ipvalid() checks what CURL_IPRESOLVE_* requirements that might've</i></td></tr>
+<tr><th id="62">62</th><td><i> * been set and returns TRUE if they are OK.</i></td></tr>
+<tr><th id="63">63</th><td><i> */</i></td></tr>
+<tr><th id="64">64</th><td>bool Curl_ipvalid(<b>struct</b> connectdata *conn)</td></tr>
+<tr><th id="65">65</th><td>{</td></tr>
+<tr><th id="66">66</th><td>  <b>if</b>(conn-&gt;ip_version == CURL_IPRESOLVE_V6)</td></tr>
+<tr><th id="67">67</th><td>    <i>/* An IPv6 address was requested and we can't get/use one */</i></td></tr>
+<tr><th id="68">68</th><td>    <b>return</b> FALSE;</td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td>  <b>return</b> TRUE; <i>/* OK, proceed */</i></td></tr>
+<tr><th id="71">71</th><td>}</td></tr>
+<tr><th id="72">72</th><td></td></tr>
+<tr><th id="73">73</th><td><u>#ifdef CURLRES_SYNCH</u></td></tr>
+<tr><th id="74">74</th><td></td></tr>
+<tr><th id="75">75</th><td><i>/*</i></td></tr>
+<tr><th id="76">76</th><td><i> * Curl_getaddrinfo() - the IPv4 synchronous version.</i></td></tr>
+<tr><th id="77">77</th><td><i> *</i></td></tr>
+<tr><th id="78">78</th><td><i> * The original code to this function was from the Dancer source code, written</i></td></tr>
+<tr><th id="79">79</th><td><i> * by Bjorn Reese, it has since been patched and modified considerably.</i></td></tr>
+<tr><th id="80">80</th><td><i> *</i></td></tr>
+<tr><th id="81">81</th><td><i> * gethostbyname_r() is the thread-safe version of the gethostbyname()</i></td></tr>
+<tr><th id="82">82</th><td><i> * function. When we build for plain IPv4, we attempt to use this</i></td></tr>
+<tr><th id="83">83</th><td><i> * function. There are _three_ different gethostbyname_r() versions, and we</i></td></tr>
+<tr><th id="84">84</th><td><i> * detect which one this platform supports in the configure script and set up</i></td></tr>
+<tr><th id="85">85</th><td><i> * the HAVE_GETHOSTBYNAME_R_3, HAVE_GETHOSTBYNAME_R_5 or</i></td></tr>
+<tr><th id="86">86</th><td><i> * HAVE_GETHOSTBYNAME_R_6 defines accordingly. Note that HAVE_GETADDRBYNAME</i></td></tr>
+<tr><th id="87">87</th><td><i> * has the corresponding rules. This is primarily on *nix. Note that some unix</i></td></tr>
+<tr><th id="88">88</th><td><i> * flavours have thread-safe versions of the plain gethostbyname() etc.</i></td></tr>
+<tr><th id="89">89</th><td><i> *</i></td></tr>
+<tr><th id="90">90</th><td><i> */</i></td></tr>
+<tr><th id="91">91</th><td>Curl_addrinfo *Curl_getaddrinfo(<b>struct</b> connectdata *conn,</td></tr>
+<tr><th id="92">92</th><td>                                <em>const</em> <em>char</em> *hostname,</td></tr>
+<tr><th id="93">93</th><td>                                <em>int</em> port,</td></tr>
+<tr><th id="94">94</th><td>                                <em>int</em> *waitp)</td></tr>
+<tr><th id="95">95</th><td>{</td></tr>
+<tr><th id="96">96</th><td>  Curl_addrinfo *ai = NULL;</td></tr>
+<tr><th id="97">97</th><td></td></tr>
+<tr><th id="98">98</th><td><u>#ifdef CURL_DISABLE_VERBOSE_STRINGS</u></td></tr>
+<tr><th id="99">99</th><td>  (<em>void</em>)conn;</td></tr>
+<tr><th id="100">100</th><td><u>#endif</u></td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td>  *waitp = <var>0</var>; <i>/* synchronous response only */</i></td></tr>
+<tr><th id="103">103</th><td></td></tr>
+<tr><th id="104">104</th><td>  ai = Curl_ipv4_resolve_r(hostname, port);</td></tr>
+<tr><th id="105">105</th><td>  <b>if</b>(!ai)</td></tr>
+<tr><th id="106">106</th><td>    infof(conn-&gt;data, <q>"Curl_ipv4_resolve_r failed for %s\n"</q>, hostname);</td></tr>
+<tr><th id="107">107</th><td></td></tr>
+<tr><th id="108">108</th><td>  <b>return</b> ai;</td></tr>
+<tr><th id="109">109</th><td>}</td></tr>
+<tr><th id="110">110</th><td><u>#endif /* CURLRES_SYNCH */</u></td></tr>
+<tr><th id="111">111</th><td><u>#<span data-ppcond="59">endif</span> /* CURLRES_IPV4 */</u></td></tr>
+<tr><th id="112">112</th><td></td></tr>
+<tr><th id="113">113</th><td><u>#<span data-ppcond="113">if</span> defined(<span class="macro" data-ref="_M/CURLRES_IPV4">CURLRES_IPV4</span>) &amp;&amp; !defined(<span class="macro" data-ref="_M/CURLRES_ARES">CURLRES_ARES</span>)</u></td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td><i>/*</i></td></tr>
+<tr><th id="116">116</th><td><i> * Curl_ipv4_resolve_r() - ipv4 threadsafe resolver function.</i></td></tr>
+<tr><th id="117">117</th><td><i> *</i></td></tr>
+<tr><th id="118">118</th><td><i> * This is used for both synchronous and asynchronous resolver builds,</i></td></tr>
+<tr><th id="119">119</th><td><i> * implying that only threadsafe code and function calls may be used.</i></td></tr>
+<tr><th id="120">120</th><td><i> *</i></td></tr>
+<tr><th id="121">121</th><td><i> */</i></td></tr>
+<tr><th id="122">122</th><td>Curl_addrinfo *Curl_ipv4_resolve_r(<em>const</em> <em>char</em> *hostname,</td></tr>
+<tr><th id="123">123</th><td>                                   <em>int</em> port)</td></tr>
+<tr><th id="124">124</th><td>{</td></tr>
+<tr><th id="125">125</th><td><u>#if !defined(HAVE_GETADDRINFO_THREADSAFE) &amp;&amp; defined(HAVE_GETHOSTBYNAME_R_3)</u></td></tr>
+<tr><th id="126">126</th><td>  <em>int</em> res;</td></tr>
+<tr><th id="127">127</th><td><u>#endif</u></td></tr>
+<tr><th id="128">128</th><td>  Curl_addrinfo *ai = NULL;</td></tr>
+<tr><th id="129">129</th><td>  <b>struct</b> hostent *h = NULL;</td></tr>
+<tr><th id="130">130</th><td>  <b>struct</b> in_addr in;</td></tr>
+<tr><th id="131">131</th><td>  <b>struct</b> hostent *buf = NULL;</td></tr>
+<tr><th id="132">132</th><td></td></tr>
+<tr><th id="133">133</th><td>  <b>if</b>(Curl_inet_pton(AF_INET, hostname, &amp;in) &gt; <var>0</var>)</td></tr>
+<tr><th id="134">134</th><td>    <i>/* This is a dotted IP address 123.123.123.123-style */</i></td></tr>
+<tr><th id="135">135</th><td>    <b>return</b> Curl_ip2addr(AF_INET, &amp;in, hostname, port);</td></tr>
+<tr><th id="136">136</th><td></td></tr>
+<tr><th id="137">137</th><td><u>#if defined(HAVE_GETADDRINFO_THREADSAFE)</u></td></tr>
+<tr><th id="138">138</th><td>  <b>else</b> {</td></tr>
+<tr><th id="139">139</th><td>    <b>struct</b> addrinfo hints;</td></tr>
+<tr><th id="140">140</th><td>    <em>char</em> sbuf[<var>12</var>];</td></tr>
+<tr><th id="141">141</th><td>    <em>char</em> *sbufptr = NULL;</td></tr>
+<tr><th id="142">142</th><td></td></tr>
+<tr><th id="143">143</th><td>    memset(&amp;hints, <var>0</var>, <b>sizeof</b>(hints));</td></tr>
+<tr><th id="144">144</th><td>    hints.ai_family = PF_INET;</td></tr>
+<tr><th id="145">145</th><td>    hints.ai_socktype = SOCK_STREAM;</td></tr>
+<tr><th id="146">146</th><td>    <b>if</b>(port) {</td></tr>
+<tr><th id="147">147</th><td>      snprintf(sbuf, <b>sizeof</b>(sbuf), <q>"%d"</q>, port);</td></tr>
+<tr><th id="148">148</th><td>      sbufptr = sbuf;</td></tr>
+<tr><th id="149">149</th><td>    }</td></tr>
+<tr><th id="150">150</th><td></td></tr>
+<tr><th id="151">151</th><td>    (<em>void</em>)Curl_getaddrinfo_ex(hostname, sbufptr, &amp;hints, &amp;ai);</td></tr>
+<tr><th id="152">152</th><td></td></tr>
+<tr><th id="153">153</th><td><u>#elif defined(HAVE_GETHOSTBYNAME_R)</u></td></tr>
+<tr><th id="154">154</th><td>  <i>/*</i></td></tr>
+<tr><th id="155">155</th><td><i>   * gethostbyname_r() is the preferred resolve function for many platforms.</i></td></tr>
+<tr><th id="156">156</th><td><i>   * Since there are three different versions of it, the following code is</i></td></tr>
+<tr><th id="157">157</th><td><i>   * somewhat #ifdef-ridden.</i></td></tr>
+<tr><th id="158">158</th><td><i>   */</i></td></tr>
+<tr><th id="159">159</th><td>  <b>else</b> {</td></tr>
+<tr><th id="160">160</th><td>    <em>int</em> h_errnop;</td></tr>
+<tr><th id="161">161</th><td></td></tr>
+<tr><th id="162">162</th><td>    buf = calloc(<var>1</var>, CURL_HOSTENT_SIZE);</td></tr>
+<tr><th id="163">163</th><td>    <b>if</b>(!buf)</td></tr>
+<tr><th id="164">164</th><td>      <b>return</b> NULL; <i>/* major failure */</i></td></tr>
+<tr><th id="165">165</th><td>    <i>/*</i></td></tr>
+<tr><th id="166">166</th><td><i>     * The clearing of the buffer is a workaround for a gethostbyname_r bug in</i></td></tr>
+<tr><th id="167">167</th><td><i>     * qnx nto and it is also _required_ for some of these functions on some</i></td></tr>
+<tr><th id="168">168</th><td><i>     * platforms.</i></td></tr>
+<tr><th id="169">169</th><td><i>     */</i></td></tr>
+<tr><th id="170">170</th><td></td></tr>
+<tr><th id="171">171</th><td><u>#if defined(HAVE_GETHOSTBYNAME_R_5)</u></td></tr>
+<tr><th id="172">172</th><td>    <i>/* Solaris, IRIX and more */</i></td></tr>
+<tr><th id="173">173</th><td>    h = gethostbyname_r(hostname,</td></tr>
+<tr><th id="174">174</th><td>                        (<b>struct</b> hostent *)buf,</td></tr>
+<tr><th id="175">175</th><td>                        (<em>char</em> *)buf + <b>sizeof</b>(<b>struct</b> hostent),</td></tr>
+<tr><th id="176">176</th><td>                        CURL_HOSTENT_SIZE - <b>sizeof</b>(<b>struct</b> hostent),</td></tr>
+<tr><th id="177">177</th><td>                        &amp;h_errnop);</td></tr>
+<tr><th id="178">178</th><td></td></tr>
+<tr><th id="179">179</th><td>    <i>/* If the buffer is too small, it returns NULL and sets errno to</i></td></tr>
+<tr><th id="180">180</th><td><i>     * ERANGE. The errno is thread safe if this is compiled with</i></td></tr>
+<tr><th id="181">181</th><td><i>     * -D_REENTRANT as then the 'errno' variable is a macro defined to get</i></td></tr>
+<tr><th id="182">182</th><td><i>     * used properly for threads.</i></td></tr>
+<tr><th id="183">183</th><td><i>     */</i></td></tr>
+<tr><th id="184">184</th><td></td></tr>
+<tr><th id="185">185</th><td>    <b>if</b>(h) {</td></tr>
+<tr><th id="186">186</th><td>      ;</td></tr>
+<tr><th id="187">187</th><td>    }</td></tr>
+<tr><th id="188">188</th><td>    <b>else</b></td></tr>
+<tr><th id="189">189</th><td><u>#elif defined(HAVE_GETHOSTBYNAME_R_6)</u></td></tr>
+<tr><th id="190">190</th><td>    <i>/* Linux */</i></td></tr>
+<tr><th id="191">191</th><td></td></tr>
+<tr><th id="192">192</th><td>    (<em>void</em>)gethostbyname_r(hostname,</td></tr>
+<tr><th id="193">193</th><td>                        (<b>struct</b> hostent *)buf,</td></tr>
+<tr><th id="194">194</th><td>                        (<em>char</em> *)buf + <b>sizeof</b>(<b>struct</b> hostent),</td></tr>
+<tr><th id="195">195</th><td>                        CURL_HOSTENT_SIZE - <b>sizeof</b>(<b>struct</b> hostent),</td></tr>
+<tr><th id="196">196</th><td>                        &amp;h, <i>/* DIFFERENCE */</i></td></tr>
+<tr><th id="197">197</th><td>                        &amp;h_errnop);</td></tr>
+<tr><th id="198">198</th><td>    <i>/* Redhat 8, using glibc 2.2.93 changed the behavior. Now all of a</i></td></tr>
+<tr><th id="199">199</th><td><i>     * sudden this function returns EAGAIN if the given buffer size is too</i></td></tr>
+<tr><th id="200">200</th><td><i>     * small. Previous versions are known to return ERANGE for the same</i></td></tr>
+<tr><th id="201">201</th><td><i>     * problem.</i></td></tr>
+<tr><th id="202">202</th><td><i>     *</i></td></tr>
+<tr><th id="203">203</th><td><i>     * This wouldn't be such a big problem if older versions wouldn't</i></td></tr>
+<tr><th id="204">204</th><td><i>     * sometimes return EAGAIN on a common failure case. Alas, we can't</i></td></tr>
+<tr><th id="205">205</th><td><i>     * assume that EAGAIN *or* ERANGE means ERANGE for any given version of</i></td></tr>
+<tr><th id="206">206</th><td><i>     * glibc.</i></td></tr>
+<tr><th id="207">207</th><td><i>     *</i></td></tr>
+<tr><th id="208">208</th><td><i>     * For now, we do that and thus we may call the function repeatedly and</i></td></tr>
+<tr><th id="209">209</th><td><i>     * fail for older glibc versions that return EAGAIN, until we run out of</i></td></tr>
+<tr><th id="210">210</th><td><i>     * buffer size (step_size grows beyond CURL_HOSTENT_SIZE).</i></td></tr>
+<tr><th id="211">211</th><td><i>     *</i></td></tr>
+<tr><th id="212">212</th><td><i>     * If anyone has a better fix, please tell us!</i></td></tr>
+<tr><th id="213">213</th><td><i>     *</i></td></tr>
+<tr><th id="214">214</th><td><i>     * -------------------------------------------------------------------</i></td></tr>
+<tr><th id="215">215</th><td><i>     *</i></td></tr>
+<tr><th id="216">216</th><td><i>     * On October 23rd 2003, Dan C dug up more details on the mysteries of</i></td></tr>
+<tr><th id="217">217</th><td><i>     * gethostbyname_r() in glibc:</i></td></tr>
+<tr><th id="218">218</th><td><i>     *</i></td></tr>
+<tr><th id="219">219</th><td><i>     * In glibc 2.2.5 the interface is different (this has also been</i></td></tr>
+<tr><th id="220">220</th><td><i>     * discovered in glibc 2.1.1-6 as shipped by Redhat 6). What I can't</i></td></tr>
+<tr><th id="221">221</th><td><i>     * explain, is that tests performed on glibc 2.2.4-34 and 2.2.4-32</i></td></tr>
+<tr><th id="222">222</th><td><i>     * (shipped/upgraded by Redhat 7.2) don't show this behavior!</i></td></tr>
+<tr><th id="223">223</th><td><i>     *</i></td></tr>
+<tr><th id="224">224</th><td><i>     * In this "buggy" version, the return code is -1 on error and 'errno'</i></td></tr>
+<tr><th id="225">225</th><td><i>     * is set to the ERANGE or EAGAIN code. Note that 'errno' is not a</i></td></tr>
+<tr><th id="226">226</th><td><i>     * thread-safe variable.</i></td></tr>
+<tr><th id="227">227</th><td><i>     */</i></td></tr>
+<tr><th id="228">228</th><td></td></tr>
+<tr><th id="229">229</th><td>    <b>if</b>(!h) <i>/* failure */</i></td></tr>
+<tr><th id="230">230</th><td><u>#elif defined(HAVE_GETHOSTBYNAME_R_3)</u></td></tr>
+<tr><th id="231">231</th><td>    <i>/* AIX, Digital Unix/Tru64, HPUX 10, more? */</i></td></tr>
+<tr><th id="232">232</th><td></td></tr>
+<tr><th id="233">233</th><td>    <i>/* For AIX 4.3 or later, we don't use gethostbyname_r() at all, because of</i></td></tr>
+<tr><th id="234">234</th><td><i>     * the plain fact that it does not return unique full buffers on each</i></td></tr>
+<tr><th id="235">235</th><td><i>     * call, but instead several of the pointers in the hostent structs will</i></td></tr>
+<tr><th id="236">236</th><td><i>     * point to the same actual data! This have the unfortunate down-side that</i></td></tr>
+<tr><th id="237">237</th><td><i>     * our caching system breaks down horribly. Luckily for us though, AIX 4.3</i></td></tr>
+<tr><th id="238">238</th><td><i>     * and more recent versions have a "completely thread-safe"[*] libc where</i></td></tr>
+<tr><th id="239">239</th><td><i>     * all the data is stored in thread-specific memory areas making calls to</i></td></tr>
+<tr><th id="240">240</th><td><i>     * the plain old gethostbyname() work fine even for multi-threaded</i></td></tr>
+<tr><th id="241">241</th><td><i>     * programs.</i></td></tr>
+<tr><th id="242">242</th><td><i>     *</i></td></tr>
+<tr><th id="243">243</th><td><i>     * This AIX 4.3 or later detection is all made in the configure script.</i></td></tr>
+<tr><th id="244">244</th><td><i>     *</i></td></tr>
+<tr><th id="245">245</th><td><i>     * Troels Walsted Hansen helped us work this out on March 3rd, 2003.</i></td></tr>
+<tr><th id="246">246</th><td><i>     *</i></td></tr>
+<tr><th id="247">247</th><td><i>     * [*] = much later we've found out that it isn't at all "completely</i></td></tr>
+<tr><th id="248">248</th><td><i>     * thread-safe", but at least the gethostbyname() function is.</i></td></tr>
+<tr><th id="249">249</th><td><i>     */</i></td></tr>
+<tr><th id="250">250</th><td></td></tr>
+<tr><th id="251">251</th><td>    <b>if</b>(CURL_HOSTENT_SIZE &gt;=</td></tr>
+<tr><th id="252">252</th><td>       (<b>sizeof</b>(<b>struct</b> hostent) + <b>sizeof</b>(<b>struct</b> hostent_data))) {</td></tr>
+<tr><th id="253">253</th><td></td></tr>
+<tr><th id="254">254</th><td>      <i>/* August 22nd, 2000: Albert Chin-A-Young brought an updated version</i></td></tr>
+<tr><th id="255">255</th><td><i>       * that should work! September 20: Richard Prescott worked on the buffer</i></td></tr>
+<tr><th id="256">256</th><td><i>       * size dilemma.</i></td></tr>
+<tr><th id="257">257</th><td><i>       */</i></td></tr>
+<tr><th id="258">258</th><td></td></tr>
+<tr><th id="259">259</th><td>      res = gethostbyname_r(hostname,</td></tr>
+<tr><th id="260">260</th><td>                            (<b>struct</b> hostent *)buf,</td></tr>
+<tr><th id="261">261</th><td>                            (<b>struct</b> hostent_data *)((<em>char</em> *)buf +</td></tr>
+<tr><th id="262">262</th><td>                                                    <b>sizeof</b>(<b>struct</b> hostent)));</td></tr>
+<tr><th id="263">263</th><td>      h_errnop = SOCKERRNO; <i>/* we don't deal with this, but set it anyway */</i></td></tr>
+<tr><th id="264">264</th><td>    }</td></tr>
+<tr><th id="265">265</th><td>    <b>else</b></td></tr>
+<tr><th id="266">266</th><td>      res = -<var>1</var>; <i>/* failure, too smallish buffer size */</i></td></tr>
+<tr><th id="267">267</th><td></td></tr>
+<tr><th id="268">268</th><td>    <b>if</b>(!res) { <i>/* success */</i></td></tr>
+<tr><th id="269">269</th><td></td></tr>
+<tr><th id="270">270</th><td>      h = buf; <i>/* result expected in h */</i></td></tr>
+<tr><th id="271">271</th><td></td></tr>
+<tr><th id="272">272</th><td>      <i>/* This is the worst kind of the different gethostbyname_r() interfaces.</i></td></tr>
+<tr><th id="273">273</th><td><i>       * Since we don't know how big buffer this particular lookup required,</i></td></tr>
+<tr><th id="274">274</th><td><i>       * we can't realloc down the huge alloc without doing closer analysis of</i></td></tr>
+<tr><th id="275">275</th><td><i>       * the returned data. Thus, we always use CURL_HOSTENT_SIZE for every</i></td></tr>
+<tr><th id="276">276</th><td><i>       * name lookup. Fixing this would require an extra malloc() and then</i></td></tr>
+<tr><th id="277">277</th><td><i>       * calling Curl_addrinfo_copy() that subsequent realloc()s down the new</i></td></tr>
+<tr><th id="278">278</th><td><i>       * memory area to the actually used amount.</i></td></tr>
+<tr><th id="279">279</th><td><i>       */</i></td></tr>
+<tr><th id="280">280</th><td>    }</td></tr>
+<tr><th id="281">281</th><td>    <b>else</b></td></tr>
+<tr><th id="282">282</th><td><u>#endif /* HAVE_...BYNAME_R_5 || HAVE_...BYNAME_R_6 || HAVE_...BYNAME_R_3 */</u></td></tr>
+<tr><th id="283">283</th><td>    {</td></tr>
+<tr><th id="284">284</th><td>      h = NULL; <i>/* set return code to NULL */</i></td></tr>
+<tr><th id="285">285</th><td>      free(buf);</td></tr>
+<tr><th id="286">286</th><td>    }</td></tr>
+<tr><th id="287">287</th><td><u>#else /* HAVE_GETADDRINFO_THREADSAFE || HAVE_GETHOSTBYNAME_R */</u></td></tr>
+<tr><th id="288">288</th><td>    <i>/*</i></td></tr>
+<tr><th id="289">289</th><td><i>     * Here is code for platforms that don't have a thread safe</i></td></tr>
+<tr><th id="290">290</th><td><i>     * getaddrinfo() nor gethostbyname_r() function or for which</i></td></tr>
+<tr><th id="291">291</th><td><i>     * gethostbyname() is the preferred one.</i></td></tr>
+<tr><th id="292">292</th><td><i>     */</i></td></tr>
+<tr><th id="293">293</th><td>  <b>else</b> {</td></tr>
+<tr><th id="294">294</th><td>    h = gethostbyname((<em>void</em> *)hostname);</td></tr>
+<tr><th id="295">295</th><td><u>#endif /* HAVE_GETADDRINFO_THREADSAFE || HAVE_GETHOSTBYNAME_R */</u></td></tr>
+<tr><th id="296">296</th><td>  }</td></tr>
+<tr><th id="297">297</th><td></td></tr>
+<tr><th id="298">298</th><td>  <b>if</b>(h) {</td></tr>
+<tr><th id="299">299</th><td>    ai = Curl_he2ai(h, port);</td></tr>
+<tr><th id="300">300</th><td></td></tr>
+<tr><th id="301">301</th><td>    <b>if</b>(buf) <i>/* used a *_r() function */</i></td></tr>
+<tr><th id="302">302</th><td>      free(buf);</td></tr>
+<tr><th id="303">303</th><td>  }</td></tr>
+<tr><th id="304">304</th><td></td></tr>
+<tr><th id="305">305</th><td>  <b>return</b> ai;</td></tr>
+<tr><th id="306">306</th><td>}</td></tr>
+<tr><th id="307">307</th><td><u>#<span data-ppcond="113">endif</span> /* defined(CURLRES_IPV4) &amp;&amp; !defined(CURLRES_ARES) */</u></td></tr>
+<tr><th id="308">308</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

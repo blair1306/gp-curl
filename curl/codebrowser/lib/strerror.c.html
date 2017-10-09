@@ -1,0 +1,1121 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>strerror.c source code [codebrowser/lib/strerror.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/strerror.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='strerror.c.html'>strerror.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 2004 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <a class="macro" href="curl_config.h.html#606" data-ref="_M/HAVE_STRERROR_R">HAVE_STRERROR_R</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#  <span data-ppcond="26">if</span> (!defined(<a class="macro" href="curl_config.h.html#486" data-ref="_M/HAVE_POSIX_STRERROR_R">HAVE_POSIX_STRERROR_R</a>) &amp;&amp; \</u></td></tr>
+<tr><th id="27">27</th><td><u>       !defined(<span class="macro" data-ref="_M/HAVE_GLIBC_STRERROR_R">HAVE_GLIBC_STRERROR_R</span>) &amp;&amp; \</u></td></tr>
+<tr><th id="28">28</th><td><u>       !defined(<span class="macro" data-ref="_M/HAVE_VXWORKS_STRERROR_R">HAVE_VXWORKS_STRERROR_R</span>)) || \</u></td></tr>
+<tr><th id="29">29</th><td><u>      (defined(<a class="macro" href="curl_config.h.html#486" data-ref="_M/HAVE_POSIX_STRERROR_R">HAVE_POSIX_STRERROR_R</a>) &amp;&amp; defined(<span class="macro" data-ref="_M/HAVE_VXWORKS_STRERROR_R">HAVE_VXWORKS_STRERROR_R</span>)) || \</u></td></tr>
+<tr><th id="30">30</th><td><u>      (defined(<span class="macro" data-ref="_M/HAVE_GLIBC_STRERROR_R">HAVE_GLIBC_STRERROR_R</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/HAVE_VXWORKS_STRERROR_R">HAVE_VXWORKS_STRERROR_R</span>)) || \</u></td></tr>
+<tr><th id="31">31</th><td><u>      (defined(<a class="macro" href="curl_config.h.html#486" data-ref="_M/HAVE_POSIX_STRERROR_R">HAVE_POSIX_STRERROR_R</a>) &amp;&amp; defined(<span class="macro" data-ref="_M/HAVE_GLIBC_STRERROR_R">HAVE_GLIBC_STRERROR_R</span>))</u></td></tr>
+<tr><th id="32">32</th><td><u>#    error "strerror_r MUST be either POSIX, glibc or vxworks-style"</u></td></tr>
+<tr><th id="33">33</th><td><u>#  <span data-ppcond="26">endif</span></u></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="38">ifdef</span> <span class="macro" data-ref="_M/USE_LIBIDN2">USE_LIBIDN2</span></u></td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;idn2.h&gt;</u></td></tr>
+<tr><th id="40">40</th><td><u>#<span data-ppcond="38">endif</span></u></td></tr>
+<tr><th id="41">41</th><td></td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="42">ifdef</span> <span class="macro" data-ref="_M/USE_WINDOWS_SSPI">USE_WINDOWS_SSPI</span></u></td></tr>
+<tr><th id="43">43</th><td><u>#include "curl_sspi.h"</u></td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="42">endif</span></u></td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td><u>#include <a href="strerror.h.html">"strerror.h"</a></u></td></tr>
+<tr><th id="47">47</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="48">48</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="49">49</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="50">50</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td><u>#<span data-ppcond="52">if</span> defined(<span class="macro" data-ref="_M/WIN32">WIN32</span>) || defined(<span class="macro" data-ref="_M/_WIN32_WCE">_WIN32_WCE</span>)</u></td></tr>
+<tr><th id="53">53</th><td><u>#define PRESERVE_WINDOWS_ERROR_CODE</u></td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="52">endif</span></u></td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td><em>const</em> <em>char</em> *</td></tr>
+<tr><th id="57">57</th><td><dfn class="decl def" id="curl_easy_strerror" title='curl_easy_strerror' data-ref="curl_easy_strerror">curl_easy_strerror</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col1 decl" id="1error" title='error' data-type='CURLcode' data-ref="1error">error</dfn>)</td></tr>
+<tr><th id="58">58</th><td>{</td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="59">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_VERBOSE_STRINGS">CURL_DISABLE_VERBOSE_STRINGS</span></u></td></tr>
+<tr><th id="60">60</th><td>  <b>switch</b>(<a class="local col1 ref" href="#1error" title='error' data-ref="1error">error</a>) {</td></tr>
+<tr><th id="61">61</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>:</td></tr>
+<tr><th id="62">62</th><td>    <b>return</b> <q>"No error"</q>;</td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_UNSUPPORTED_PROTOCOL" title='CURLE_UNSUPPORTED_PROTOCOL' data-ref="CURLE_UNSUPPORTED_PROTOCOL">CURLE_UNSUPPORTED_PROTOCOL</a>:</td></tr>
+<tr><th id="65">65</th><td>    <b>return</b> <q>"Unsupported protocol"</q>;</td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FAILED_INIT" title='CURLE_FAILED_INIT' data-ref="CURLE_FAILED_INIT">CURLE_FAILED_INIT</a>:</td></tr>
+<tr><th id="68">68</th><td>    <b>return</b> <q>"Failed initialization"</q>;</td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_URL_MALFORMAT" title='CURLE_URL_MALFORMAT' data-ref="CURLE_URL_MALFORMAT">CURLE_URL_MALFORMAT</a>:</td></tr>
+<tr><th id="71">71</th><td>    <b>return</b> <q>"URL using bad/illegal format or missing URL"</q>;</td></tr>
+<tr><th id="72">72</th><td></td></tr>
+<tr><th id="73">73</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_NOT_BUILT_IN" title='CURLE_NOT_BUILT_IN' data-ref="CURLE_NOT_BUILT_IN">CURLE_NOT_BUILT_IN</a>:</td></tr>
+<tr><th id="74">74</th><td>    <b>return</b> <q>"A requested feature, protocol or option was not found built-in in"</q></td></tr>
+<tr><th id="75">75</th><td>      <q>" this libcurl due to a build-time decision."</q>;</td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_COULDNT_RESOLVE_PROXY" title='CURLE_COULDNT_RESOLVE_PROXY' data-ref="CURLE_COULDNT_RESOLVE_PROXY">CURLE_COULDNT_RESOLVE_PROXY</a>:</td></tr>
+<tr><th id="78">78</th><td>    <b>return</b> <q>"Couldn't resolve proxy name"</q>;</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_COULDNT_RESOLVE_HOST" title='CURLE_COULDNT_RESOLVE_HOST' data-ref="CURLE_COULDNT_RESOLVE_HOST">CURLE_COULDNT_RESOLVE_HOST</a>:</td></tr>
+<tr><th id="81">81</th><td>    <b>return</b> <q>"Couldn't resolve host name"</q>;</td></tr>
+<tr><th id="82">82</th><td></td></tr>
+<tr><th id="83">83</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_COULDNT_CONNECT" title='CURLE_COULDNT_CONNECT' data-ref="CURLE_COULDNT_CONNECT">CURLE_COULDNT_CONNECT</a>:</td></tr>
+<tr><th id="84">84</th><td>    <b>return</b> <q>"Couldn't connect to server"</q>;</td></tr>
+<tr><th id="85">85</th><td></td></tr>
+<tr><th id="86">86</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_WEIRD_SERVER_REPLY" title='CURLE_WEIRD_SERVER_REPLY' data-ref="CURLE_WEIRD_SERVER_REPLY">CURLE_WEIRD_SERVER_REPLY</a>:</td></tr>
+<tr><th id="87">87</th><td>    <b>return</b> <q>"Weird server reply"</q>;</td></tr>
+<tr><th id="88">88</th><td></td></tr>
+<tr><th id="89">89</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_REMOTE_ACCESS_DENIED" title='CURLE_REMOTE_ACCESS_DENIED' data-ref="CURLE_REMOTE_ACCESS_DENIED">CURLE_REMOTE_ACCESS_DENIED</a>:</td></tr>
+<tr><th id="90">90</th><td>    <b>return</b> <q>"Access denied to remote resource"</q>;</td></tr>
+<tr><th id="91">91</th><td></td></tr>
+<tr><th id="92">92</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_ACCEPT_FAILED" title='CURLE_FTP_ACCEPT_FAILED' data-ref="CURLE_FTP_ACCEPT_FAILED">CURLE_FTP_ACCEPT_FAILED</a>:</td></tr>
+<tr><th id="93">93</th><td>    <b>return</b> <q>"FTP: The server failed to connect to data port"</q>;</td></tr>
+<tr><th id="94">94</th><td></td></tr>
+<tr><th id="95">95</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_ACCEPT_TIMEOUT" title='CURLE_FTP_ACCEPT_TIMEOUT' data-ref="CURLE_FTP_ACCEPT_TIMEOUT">CURLE_FTP_ACCEPT_TIMEOUT</a>:</td></tr>
+<tr><th id="96">96</th><td>    <b>return</b> <q>"FTP: Accepting server connect has timed out"</q>;</td></tr>
+<tr><th id="97">97</th><td></td></tr>
+<tr><th id="98">98</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_PRET_FAILED" title='CURLE_FTP_PRET_FAILED' data-ref="CURLE_FTP_PRET_FAILED">CURLE_FTP_PRET_FAILED</a>:</td></tr>
+<tr><th id="99">99</th><td>    <b>return</b> <q>"FTP: The server did not accept the PRET command."</q>;</td></tr>
+<tr><th id="100">100</th><td></td></tr>
+<tr><th id="101">101</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_WEIRD_PASS_REPLY" title='CURLE_FTP_WEIRD_PASS_REPLY' data-ref="CURLE_FTP_WEIRD_PASS_REPLY">CURLE_FTP_WEIRD_PASS_REPLY</a>:</td></tr>
+<tr><th id="102">102</th><td>    <b>return</b> <q>"FTP: unknown PASS reply"</q>;</td></tr>
+<tr><th id="103">103</th><td></td></tr>
+<tr><th id="104">104</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_WEIRD_PASV_REPLY" title='CURLE_FTP_WEIRD_PASV_REPLY' data-ref="CURLE_FTP_WEIRD_PASV_REPLY">CURLE_FTP_WEIRD_PASV_REPLY</a>:</td></tr>
+<tr><th id="105">105</th><td>    <b>return</b> <q>"FTP: unknown PASV reply"</q>;</td></tr>
+<tr><th id="106">106</th><td></td></tr>
+<tr><th id="107">107</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_WEIRD_227_FORMAT" title='CURLE_FTP_WEIRD_227_FORMAT' data-ref="CURLE_FTP_WEIRD_227_FORMAT">CURLE_FTP_WEIRD_227_FORMAT</a>:</td></tr>
+<tr><th id="108">108</th><td>    <b>return</b> <q>"FTP: unknown 227 response format"</q>;</td></tr>
+<tr><th id="109">109</th><td></td></tr>
+<tr><th id="110">110</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_CANT_GET_HOST" title='CURLE_FTP_CANT_GET_HOST' data-ref="CURLE_FTP_CANT_GET_HOST">CURLE_FTP_CANT_GET_HOST</a>:</td></tr>
+<tr><th id="111">111</th><td>    <b>return</b> <q>"FTP: can't figure out the host in the PASV response"</q>;</td></tr>
+<tr><th id="112">112</th><td></td></tr>
+<tr><th id="113">113</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_HTTP2" title='CURLE_HTTP2' data-ref="CURLE_HTTP2">CURLE_HTTP2</a>:</td></tr>
+<tr><th id="114">114</th><td>    <b>return</b> <q>"Error in the HTTP2 framing layer"</q>;</td></tr>
+<tr><th id="115">115</th><td></td></tr>
+<tr><th id="116">116</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_COULDNT_SET_TYPE" title='CURLE_FTP_COULDNT_SET_TYPE' data-ref="CURLE_FTP_COULDNT_SET_TYPE">CURLE_FTP_COULDNT_SET_TYPE</a>:</td></tr>
+<tr><th id="117">117</th><td>    <b>return</b> <q>"FTP: couldn't set file type"</q>;</td></tr>
+<tr><th id="118">118</th><td></td></tr>
+<tr><th id="119">119</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_PARTIAL_FILE" title='CURLE_PARTIAL_FILE' data-ref="CURLE_PARTIAL_FILE">CURLE_PARTIAL_FILE</a>:</td></tr>
+<tr><th id="120">120</th><td>    <b>return</b> <q>"Transferred a partial file"</q>;</td></tr>
+<tr><th id="121">121</th><td></td></tr>
+<tr><th id="122">122</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_COULDNT_RETR_FILE" title='CURLE_FTP_COULDNT_RETR_FILE' data-ref="CURLE_FTP_COULDNT_RETR_FILE">CURLE_FTP_COULDNT_RETR_FILE</a>:</td></tr>
+<tr><th id="123">123</th><td>    <b>return</b> <q>"FTP: couldn't retrieve (RETR failed) the specified file"</q>;</td></tr>
+<tr><th id="124">124</th><td></td></tr>
+<tr><th id="125">125</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_QUOTE_ERROR" title='CURLE_QUOTE_ERROR' data-ref="CURLE_QUOTE_ERROR">CURLE_QUOTE_ERROR</a>:</td></tr>
+<tr><th id="126">126</th><td>    <b>return</b> <q>"Quote command returned error"</q>;</td></tr>
+<tr><th id="127">127</th><td></td></tr>
+<tr><th id="128">128</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_HTTP_RETURNED_ERROR" title='CURLE_HTTP_RETURNED_ERROR' data-ref="CURLE_HTTP_RETURNED_ERROR">CURLE_HTTP_RETURNED_ERROR</a>:</td></tr>
+<tr><th id="129">129</th><td>    <b>return</b> <q>"HTTP response code said error"</q>;</td></tr>
+<tr><th id="130">130</th><td></td></tr>
+<tr><th id="131">131</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_WRITE_ERROR" title='CURLE_WRITE_ERROR' data-ref="CURLE_WRITE_ERROR">CURLE_WRITE_ERROR</a>:</td></tr>
+<tr><th id="132">132</th><td>    <b>return</b> <q>"Failed writing received data to disk/application"</q>;</td></tr>
+<tr><th id="133">133</th><td></td></tr>
+<tr><th id="134">134</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_UPLOAD_FAILED" title='CURLE_UPLOAD_FAILED' data-ref="CURLE_UPLOAD_FAILED">CURLE_UPLOAD_FAILED</a>:</td></tr>
+<tr><th id="135">135</th><td>    <b>return</b> <q>"Upload failed (at start/before it took off)"</q>;</td></tr>
+<tr><th id="136">136</th><td></td></tr>
+<tr><th id="137">137</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_READ_ERROR" title='CURLE_READ_ERROR' data-ref="CURLE_READ_ERROR">CURLE_READ_ERROR</a>:</td></tr>
+<tr><th id="138">138</th><td>    <b>return</b> <q>"Failed to open/read local data from file/application"</q>;</td></tr>
+<tr><th id="139">139</th><td></td></tr>
+<tr><th id="140">140</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>:</td></tr>
+<tr><th id="141">141</th><td>    <b>return</b> <q>"Out of memory"</q>;</td></tr>
+<tr><th id="142">142</th><td></td></tr>
+<tr><th id="143">143</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OPERATION_TIMEDOUT" title='CURLE_OPERATION_TIMEDOUT' data-ref="CURLE_OPERATION_TIMEDOUT">CURLE_OPERATION_TIMEDOUT</a>:</td></tr>
+<tr><th id="144">144</th><td>    <b>return</b> <q>"Timeout was reached"</q>;</td></tr>
+<tr><th id="145">145</th><td></td></tr>
+<tr><th id="146">146</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_PORT_FAILED" title='CURLE_FTP_PORT_FAILED' data-ref="CURLE_FTP_PORT_FAILED">CURLE_FTP_PORT_FAILED</a>:</td></tr>
+<tr><th id="147">147</th><td>    <b>return</b> <q>"FTP: command PORT failed"</q>;</td></tr>
+<tr><th id="148">148</th><td></td></tr>
+<tr><th id="149">149</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_COULDNT_USE_REST" title='CURLE_FTP_COULDNT_USE_REST' data-ref="CURLE_FTP_COULDNT_USE_REST">CURLE_FTP_COULDNT_USE_REST</a>:</td></tr>
+<tr><th id="150">150</th><td>    <b>return</b> <q>"FTP: command REST failed"</q>;</td></tr>
+<tr><th id="151">151</th><td></td></tr>
+<tr><th id="152">152</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_RANGE_ERROR" title='CURLE_RANGE_ERROR' data-ref="CURLE_RANGE_ERROR">CURLE_RANGE_ERROR</a>:</td></tr>
+<tr><th id="153">153</th><td>    <b>return</b> <q>"Requested range was not delivered by the server"</q>;</td></tr>
+<tr><th id="154">154</th><td></td></tr>
+<tr><th id="155">155</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_HTTP_POST_ERROR" title='CURLE_HTTP_POST_ERROR' data-ref="CURLE_HTTP_POST_ERROR">CURLE_HTTP_POST_ERROR</a>:</td></tr>
+<tr><th id="156">156</th><td>    <b>return</b> <q>"Internal problem setting up the POST"</q>;</td></tr>
+<tr><th id="157">157</th><td></td></tr>
+<tr><th id="158">158</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_CONNECT_ERROR" title='CURLE_SSL_CONNECT_ERROR' data-ref="CURLE_SSL_CONNECT_ERROR">CURLE_SSL_CONNECT_ERROR</a>:</td></tr>
+<tr><th id="159">159</th><td>    <b>return</b> <q>"SSL connect error"</q>;</td></tr>
+<tr><th id="160">160</th><td></td></tr>
+<tr><th id="161">161</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_BAD_DOWNLOAD_RESUME" title='CURLE_BAD_DOWNLOAD_RESUME' data-ref="CURLE_BAD_DOWNLOAD_RESUME">CURLE_BAD_DOWNLOAD_RESUME</a>:</td></tr>
+<tr><th id="162">162</th><td>    <b>return</b> <q>"Couldn't resume download"</q>;</td></tr>
+<tr><th id="163">163</th><td></td></tr>
+<tr><th id="164">164</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FILE_COULDNT_READ_FILE" title='CURLE_FILE_COULDNT_READ_FILE' data-ref="CURLE_FILE_COULDNT_READ_FILE">CURLE_FILE_COULDNT_READ_FILE</a>:</td></tr>
+<tr><th id="165">165</th><td>    <b>return</b> <q>"Couldn't read a file:// file"</q>;</td></tr>
+<tr><th id="166">166</th><td></td></tr>
+<tr><th id="167">167</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_LDAP_CANNOT_BIND" title='CURLE_LDAP_CANNOT_BIND' data-ref="CURLE_LDAP_CANNOT_BIND">CURLE_LDAP_CANNOT_BIND</a>:</td></tr>
+<tr><th id="168">168</th><td>    <b>return</b> <q>"LDAP: cannot bind"</q>;</td></tr>
+<tr><th id="169">169</th><td></td></tr>
+<tr><th id="170">170</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_LDAP_SEARCH_FAILED" title='CURLE_LDAP_SEARCH_FAILED' data-ref="CURLE_LDAP_SEARCH_FAILED">CURLE_LDAP_SEARCH_FAILED</a>:</td></tr>
+<tr><th id="171">171</th><td>    <b>return</b> <q>"LDAP: search failed"</q>;</td></tr>
+<tr><th id="172">172</th><td></td></tr>
+<tr><th id="173">173</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FUNCTION_NOT_FOUND" title='CURLE_FUNCTION_NOT_FOUND' data-ref="CURLE_FUNCTION_NOT_FOUND">CURLE_FUNCTION_NOT_FOUND</a>:</td></tr>
+<tr><th id="174">174</th><td>    <b>return</b> <q>"A required function in the library was not found"</q>;</td></tr>
+<tr><th id="175">175</th><td></td></tr>
+<tr><th id="176">176</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_ABORTED_BY_CALLBACK" title='CURLE_ABORTED_BY_CALLBACK' data-ref="CURLE_ABORTED_BY_CALLBACK">CURLE_ABORTED_BY_CALLBACK</a>:</td></tr>
+<tr><th id="177">177</th><td>    <b>return</b> <q>"Operation was aborted by an application callback"</q>;</td></tr>
+<tr><th id="178">178</th><td></td></tr>
+<tr><th id="179">179</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_BAD_FUNCTION_ARGUMENT" title='CURLE_BAD_FUNCTION_ARGUMENT' data-ref="CURLE_BAD_FUNCTION_ARGUMENT">CURLE_BAD_FUNCTION_ARGUMENT</a>:</td></tr>
+<tr><th id="180">180</th><td>    <b>return</b> <q>"A libcurl function was given a bad argument"</q>;</td></tr>
+<tr><th id="181">181</th><td></td></tr>
+<tr><th id="182">182</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_INTERFACE_FAILED" title='CURLE_INTERFACE_FAILED' data-ref="CURLE_INTERFACE_FAILED">CURLE_INTERFACE_FAILED</a>:</td></tr>
+<tr><th id="183">183</th><td>    <b>return</b> <q>"Failed binding local connection end"</q>;</td></tr>
+<tr><th id="184">184</th><td></td></tr>
+<tr><th id="185">185</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_TOO_MANY_REDIRECTS" title='CURLE_TOO_MANY_REDIRECTS' data-ref="CURLE_TOO_MANY_REDIRECTS">CURLE_TOO_MANY_REDIRECTS</a> :</td></tr>
+<tr><th id="186">186</th><td>    <b>return</b> <q>"Number of redirects hit maximum amount"</q>;</td></tr>
+<tr><th id="187">187</th><td></td></tr>
+<tr><th id="188">188</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_UNKNOWN_OPTION" title='CURLE_UNKNOWN_OPTION' data-ref="CURLE_UNKNOWN_OPTION">CURLE_UNKNOWN_OPTION</a>:</td></tr>
+<tr><th id="189">189</th><td>    <b>return</b> <q>"An unknown option was passed in to libcurl"</q>;</td></tr>
+<tr><th id="190">190</th><td></td></tr>
+<tr><th id="191">191</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_TELNET_OPTION_SYNTAX" title='CURLE_TELNET_OPTION_SYNTAX' data-ref="CURLE_TELNET_OPTION_SYNTAX">CURLE_TELNET_OPTION_SYNTAX</a> :</td></tr>
+<tr><th id="192">192</th><td>    <b>return</b> <q>"Malformed telnet option"</q>;</td></tr>
+<tr><th id="193">193</th><td></td></tr>
+<tr><th id="194">194</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_PEER_FAILED_VERIFICATION" title='CURLE_PEER_FAILED_VERIFICATION' data-ref="CURLE_PEER_FAILED_VERIFICATION">CURLE_PEER_FAILED_VERIFICATION</a>:</td></tr>
+<tr><th id="195">195</th><td>    <b>return</b> <q>"SSL peer certificate or SSH remote key was not OK"</q>;</td></tr>
+<tr><th id="196">196</th><td></td></tr>
+<tr><th id="197">197</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_GOT_NOTHING" title='CURLE_GOT_NOTHING' data-ref="CURLE_GOT_NOTHING">CURLE_GOT_NOTHING</a>:</td></tr>
+<tr><th id="198">198</th><td>    <b>return</b> <q>"Server returned nothing (no headers, no data)"</q>;</td></tr>
+<tr><th id="199">199</th><td></td></tr>
+<tr><th id="200">200</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_ENGINE_NOTFOUND" title='CURLE_SSL_ENGINE_NOTFOUND' data-ref="CURLE_SSL_ENGINE_NOTFOUND">CURLE_SSL_ENGINE_NOTFOUND</a>:</td></tr>
+<tr><th id="201">201</th><td>    <b>return</b> <q>"SSL crypto engine not found"</q>;</td></tr>
+<tr><th id="202">202</th><td></td></tr>
+<tr><th id="203">203</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_ENGINE_SETFAILED" title='CURLE_SSL_ENGINE_SETFAILED' data-ref="CURLE_SSL_ENGINE_SETFAILED">CURLE_SSL_ENGINE_SETFAILED</a>:</td></tr>
+<tr><th id="204">204</th><td>    <b>return</b> <q>"Can not set SSL crypto engine as default"</q>;</td></tr>
+<tr><th id="205">205</th><td></td></tr>
+<tr><th id="206">206</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_ENGINE_INITFAILED" title='CURLE_SSL_ENGINE_INITFAILED' data-ref="CURLE_SSL_ENGINE_INITFAILED">CURLE_SSL_ENGINE_INITFAILED</a>:</td></tr>
+<tr><th id="207">207</th><td>    <b>return</b> <q>"Failed to initialise SSL crypto engine"</q>;</td></tr>
+<tr><th id="208">208</th><td></td></tr>
+<tr><th id="209">209</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SEND_ERROR" title='CURLE_SEND_ERROR' data-ref="CURLE_SEND_ERROR">CURLE_SEND_ERROR</a>:</td></tr>
+<tr><th id="210">210</th><td>    <b>return</b> <q>"Failed sending data to the peer"</q>;</td></tr>
+<tr><th id="211">211</th><td></td></tr>
+<tr><th id="212">212</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_RECV_ERROR" title='CURLE_RECV_ERROR' data-ref="CURLE_RECV_ERROR">CURLE_RECV_ERROR</a>:</td></tr>
+<tr><th id="213">213</th><td>    <b>return</b> <q>"Failure when receiving data from the peer"</q>;</td></tr>
+<tr><th id="214">214</th><td></td></tr>
+<tr><th id="215">215</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_CERTPROBLEM" title='CURLE_SSL_CERTPROBLEM' data-ref="CURLE_SSL_CERTPROBLEM">CURLE_SSL_CERTPROBLEM</a>:</td></tr>
+<tr><th id="216">216</th><td>    <b>return</b> <q>"Problem with the local SSL certificate"</q>;</td></tr>
+<tr><th id="217">217</th><td></td></tr>
+<tr><th id="218">218</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_CIPHER" title='CURLE_SSL_CIPHER' data-ref="CURLE_SSL_CIPHER">CURLE_SSL_CIPHER</a>:</td></tr>
+<tr><th id="219">219</th><td>    <b>return</b> <q>"Couldn't use specified SSL cipher"</q>;</td></tr>
+<tr><th id="220">220</th><td></td></tr>
+<tr><th id="221">221</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_CACERT" title='CURLE_SSL_CACERT' data-ref="CURLE_SSL_CACERT">CURLE_SSL_CACERT</a>:</td></tr>
+<tr><th id="222">222</th><td>    <b>return</b> <q>"Peer certificate cannot be authenticated with given CA "</q></td></tr>
+<tr><th id="223">223</th><td>      <q>"certificates"</q>;</td></tr>
+<tr><th id="224">224</th><td></td></tr>
+<tr><th id="225">225</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_CACERT_BADFILE" title='CURLE_SSL_CACERT_BADFILE' data-ref="CURLE_SSL_CACERT_BADFILE">CURLE_SSL_CACERT_BADFILE</a>:</td></tr>
+<tr><th id="226">226</th><td>    <b>return</b> <q>"Problem with the SSL CA cert (path? access rights?)"</q>;</td></tr>
+<tr><th id="227">227</th><td></td></tr>
+<tr><th id="228">228</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>:</td></tr>
+<tr><th id="229">229</th><td>    <b>return</b> <q>"Unrecognized or bad HTTP Content or Transfer-Encoding"</q>;</td></tr>
+<tr><th id="230">230</th><td></td></tr>
+<tr><th id="231">231</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_LDAP_INVALID_URL" title='CURLE_LDAP_INVALID_URL' data-ref="CURLE_LDAP_INVALID_URL">CURLE_LDAP_INVALID_URL</a>:</td></tr>
+<tr><th id="232">232</th><td>    <b>return</b> <q>"Invalid LDAP URL"</q>;</td></tr>
+<tr><th id="233">233</th><td></td></tr>
+<tr><th id="234">234</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FILESIZE_EXCEEDED" title='CURLE_FILESIZE_EXCEEDED' data-ref="CURLE_FILESIZE_EXCEEDED">CURLE_FILESIZE_EXCEEDED</a>:</td></tr>
+<tr><th id="235">235</th><td>    <b>return</b> <q>"Maximum file size exceeded"</q>;</td></tr>
+<tr><th id="236">236</th><td></td></tr>
+<tr><th id="237">237</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_USE_SSL_FAILED" title='CURLE_USE_SSL_FAILED' data-ref="CURLE_USE_SSL_FAILED">CURLE_USE_SSL_FAILED</a>:</td></tr>
+<tr><th id="238">238</th><td>    <b>return</b> <q>"Requested SSL level failed"</q>;</td></tr>
+<tr><th id="239">239</th><td></td></tr>
+<tr><th id="240">240</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_SHUTDOWN_FAILED" title='CURLE_SSL_SHUTDOWN_FAILED' data-ref="CURLE_SSL_SHUTDOWN_FAILED">CURLE_SSL_SHUTDOWN_FAILED</a>:</td></tr>
+<tr><th id="241">241</th><td>    <b>return</b> <q>"Failed to shut down the SSL connection"</q>;</td></tr>
+<tr><th id="242">242</th><td></td></tr>
+<tr><th id="243">243</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_CRL_BADFILE" title='CURLE_SSL_CRL_BADFILE' data-ref="CURLE_SSL_CRL_BADFILE">CURLE_SSL_CRL_BADFILE</a>:</td></tr>
+<tr><th id="244">244</th><td>    <b>return</b> <q>"Failed to load CRL file (path? access rights?, format?)"</q>;</td></tr>
+<tr><th id="245">245</th><td></td></tr>
+<tr><th id="246">246</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_ISSUER_ERROR" title='CURLE_SSL_ISSUER_ERROR' data-ref="CURLE_SSL_ISSUER_ERROR">CURLE_SSL_ISSUER_ERROR</a>:</td></tr>
+<tr><th id="247">247</th><td>    <b>return</b> <q>"Issuer check against peer certificate failed"</q>;</td></tr>
+<tr><th id="248">248</th><td></td></tr>
+<tr><th id="249">249</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SEND_FAIL_REWIND" title='CURLE_SEND_FAIL_REWIND' data-ref="CURLE_SEND_FAIL_REWIND">CURLE_SEND_FAIL_REWIND</a>:</td></tr>
+<tr><th id="250">250</th><td>    <b>return</b> <q>"Send failed since rewinding of the data stream failed"</q>;</td></tr>
+<tr><th id="251">251</th><td></td></tr>
+<tr><th id="252">252</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_LOGIN_DENIED" title='CURLE_LOGIN_DENIED' data-ref="CURLE_LOGIN_DENIED">CURLE_LOGIN_DENIED</a>:</td></tr>
+<tr><th id="253">253</th><td>    <b>return</b> <q>"Login denied"</q>;</td></tr>
+<tr><th id="254">254</th><td></td></tr>
+<tr><th id="255">255</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_TFTP_NOTFOUND" title='CURLE_TFTP_NOTFOUND' data-ref="CURLE_TFTP_NOTFOUND">CURLE_TFTP_NOTFOUND</a>:</td></tr>
+<tr><th id="256">256</th><td>    <b>return</b> <q>"TFTP: File Not Found"</q>;</td></tr>
+<tr><th id="257">257</th><td></td></tr>
+<tr><th id="258">258</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_TFTP_PERM" title='CURLE_TFTP_PERM' data-ref="CURLE_TFTP_PERM">CURLE_TFTP_PERM</a>:</td></tr>
+<tr><th id="259">259</th><td>    <b>return</b> <q>"TFTP: Access Violation"</q>;</td></tr>
+<tr><th id="260">260</th><td></td></tr>
+<tr><th id="261">261</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_REMOTE_DISK_FULL" title='CURLE_REMOTE_DISK_FULL' data-ref="CURLE_REMOTE_DISK_FULL">CURLE_REMOTE_DISK_FULL</a>:</td></tr>
+<tr><th id="262">262</th><td>    <b>return</b> <q>"Disk full or allocation exceeded"</q>;</td></tr>
+<tr><th id="263">263</th><td></td></tr>
+<tr><th id="264">264</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_TFTP_ILLEGAL" title='CURLE_TFTP_ILLEGAL' data-ref="CURLE_TFTP_ILLEGAL">CURLE_TFTP_ILLEGAL</a>:</td></tr>
+<tr><th id="265">265</th><td>    <b>return</b> <q>"TFTP: Illegal operation"</q>;</td></tr>
+<tr><th id="266">266</th><td></td></tr>
+<tr><th id="267">267</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_TFTP_UNKNOWNID" title='CURLE_TFTP_UNKNOWNID' data-ref="CURLE_TFTP_UNKNOWNID">CURLE_TFTP_UNKNOWNID</a>:</td></tr>
+<tr><th id="268">268</th><td>    <b>return</b> <q>"TFTP: Unknown transfer ID"</q>;</td></tr>
+<tr><th id="269">269</th><td></td></tr>
+<tr><th id="270">270</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_REMOTE_FILE_EXISTS" title='CURLE_REMOTE_FILE_EXISTS' data-ref="CURLE_REMOTE_FILE_EXISTS">CURLE_REMOTE_FILE_EXISTS</a>:</td></tr>
+<tr><th id="271">271</th><td>    <b>return</b> <q>"Remote file already exists"</q>;</td></tr>
+<tr><th id="272">272</th><td></td></tr>
+<tr><th id="273">273</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_TFTP_NOSUCHUSER" title='CURLE_TFTP_NOSUCHUSER' data-ref="CURLE_TFTP_NOSUCHUSER">CURLE_TFTP_NOSUCHUSER</a>:</td></tr>
+<tr><th id="274">274</th><td>    <b>return</b> <q>"TFTP: No such user"</q>;</td></tr>
+<tr><th id="275">275</th><td></td></tr>
+<tr><th id="276">276</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_CONV_FAILED" title='CURLE_CONV_FAILED' data-ref="CURLE_CONV_FAILED">CURLE_CONV_FAILED</a>:</td></tr>
+<tr><th id="277">277</th><td>    <b>return</b> <q>"Conversion failed"</q>;</td></tr>
+<tr><th id="278">278</th><td></td></tr>
+<tr><th id="279">279</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_CONV_REQD" title='CURLE_CONV_REQD' data-ref="CURLE_CONV_REQD">CURLE_CONV_REQD</a>:</td></tr>
+<tr><th id="280">280</th><td>    <b>return</b> <q>"Caller must register CURLOPT_CONV_ callback options"</q>;</td></tr>
+<tr><th id="281">281</th><td></td></tr>
+<tr><th id="282">282</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_REMOTE_FILE_NOT_FOUND" title='CURLE_REMOTE_FILE_NOT_FOUND' data-ref="CURLE_REMOTE_FILE_NOT_FOUND">CURLE_REMOTE_FILE_NOT_FOUND</a>:</td></tr>
+<tr><th id="283">283</th><td>    <b>return</b> <q>"Remote file not found"</q>;</td></tr>
+<tr><th id="284">284</th><td></td></tr>
+<tr><th id="285">285</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSH" title='CURLE_SSH' data-ref="CURLE_SSH">CURLE_SSH</a>:</td></tr>
+<tr><th id="286">286</th><td>    <b>return</b> <q>"Error in the SSH layer"</q>;</td></tr>
+<tr><th id="287">287</th><td></td></tr>
+<tr><th id="288">288</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_AGAIN" title='CURLE_AGAIN' data-ref="CURLE_AGAIN">CURLE_AGAIN</a>:</td></tr>
+<tr><th id="289">289</th><td>    <b>return</b> <q>"Socket not ready for send/recv"</q>;</td></tr>
+<tr><th id="290">290</th><td></td></tr>
+<tr><th id="291">291</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_RTSP_CSEQ_ERROR" title='CURLE_RTSP_CSEQ_ERROR' data-ref="CURLE_RTSP_CSEQ_ERROR">CURLE_RTSP_CSEQ_ERROR</a>:</td></tr>
+<tr><th id="292">292</th><td>    <b>return</b> <q>"RTSP CSeq mismatch or invalid CSeq"</q>;</td></tr>
+<tr><th id="293">293</th><td></td></tr>
+<tr><th id="294">294</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_RTSP_SESSION_ERROR" title='CURLE_RTSP_SESSION_ERROR' data-ref="CURLE_RTSP_SESSION_ERROR">CURLE_RTSP_SESSION_ERROR</a>:</td></tr>
+<tr><th id="295">295</th><td>    <b>return</b> <q>"RTSP session error"</q>;</td></tr>
+<tr><th id="296">296</th><td></td></tr>
+<tr><th id="297">297</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FTP_BAD_FILE_LIST" title='CURLE_FTP_BAD_FILE_LIST' data-ref="CURLE_FTP_BAD_FILE_LIST">CURLE_FTP_BAD_FILE_LIST</a>:</td></tr>
+<tr><th id="298">298</th><td>    <b>return</b> <q>"Unable to parse FTP file list"</q>;</td></tr>
+<tr><th id="299">299</th><td></td></tr>
+<tr><th id="300">300</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_CHUNK_FAILED" title='CURLE_CHUNK_FAILED' data-ref="CURLE_CHUNK_FAILED">CURLE_CHUNK_FAILED</a>:</td></tr>
+<tr><th id="301">301</th><td>    <b>return</b> <q>"Chunk callback failed"</q>;</td></tr>
+<tr><th id="302">302</th><td></td></tr>
+<tr><th id="303">303</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_NO_CONNECTION_AVAILABLE" title='CURLE_NO_CONNECTION_AVAILABLE' data-ref="CURLE_NO_CONNECTION_AVAILABLE">CURLE_NO_CONNECTION_AVAILABLE</a>:</td></tr>
+<tr><th id="304">304</th><td>    <b>return</b> <q>"The max connection limit is reached"</q>;</td></tr>
+<tr><th id="305">305</th><td></td></tr>
+<tr><th id="306">306</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_PINNEDPUBKEYNOTMATCH" title='CURLE_SSL_PINNEDPUBKEYNOTMATCH' data-ref="CURLE_SSL_PINNEDPUBKEYNOTMATCH">CURLE_SSL_PINNEDPUBKEYNOTMATCH</a>:</td></tr>
+<tr><th id="307">307</th><td>    <b>return</b> <q>"SSL public key does not match pinned public key"</q>;</td></tr>
+<tr><th id="308">308</th><td></td></tr>
+<tr><th id="309">309</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SSL_INVALIDCERTSTATUS" title='CURLE_SSL_INVALIDCERTSTATUS' data-ref="CURLE_SSL_INVALIDCERTSTATUS">CURLE_SSL_INVALIDCERTSTATUS</a>:</td></tr>
+<tr><th id="310">310</th><td>    <b>return</b> <q>"SSL server certificate status verification FAILED"</q>;</td></tr>
+<tr><th id="311">311</th><td></td></tr>
+<tr><th id="312">312</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_HTTP2_STREAM" title='CURLE_HTTP2_STREAM' data-ref="CURLE_HTTP2_STREAM">CURLE_HTTP2_STREAM</a>:</td></tr>
+<tr><th id="313">313</th><td>    <b>return</b> <q>"Stream error in the HTTP/2 framing layer"</q>;</td></tr>
+<tr><th id="314">314</th><td></td></tr>
+<tr><th id="315">315</th><td>    <i>/* error codes not used by current libcurl */</i></td></tr>
+<tr><th id="316">316</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE20" title='CURLE_OBSOLETE20' data-ref="CURLE_OBSOLETE20">CURLE_OBSOLETE20</a>:</td></tr>
+<tr><th id="317">317</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE24" title='CURLE_OBSOLETE24' data-ref="CURLE_OBSOLETE24">CURLE_OBSOLETE24</a>:</td></tr>
+<tr><th id="318">318</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE29" title='CURLE_OBSOLETE29' data-ref="CURLE_OBSOLETE29">CURLE_OBSOLETE29</a>:</td></tr>
+<tr><th id="319">319</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE32" title='CURLE_OBSOLETE32' data-ref="CURLE_OBSOLETE32">CURLE_OBSOLETE32</a>:</td></tr>
+<tr><th id="320">320</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE40" title='CURLE_OBSOLETE40' data-ref="CURLE_OBSOLETE40">CURLE_OBSOLETE40</a>:</td></tr>
+<tr><th id="321">321</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE44" title='CURLE_OBSOLETE44' data-ref="CURLE_OBSOLETE44">CURLE_OBSOLETE44</a>:</td></tr>
+<tr><th id="322">322</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE46" title='CURLE_OBSOLETE46' data-ref="CURLE_OBSOLETE46">CURLE_OBSOLETE46</a>:</td></tr>
+<tr><th id="323">323</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE50" title='CURLE_OBSOLETE50' data-ref="CURLE_OBSOLETE50">CURLE_OBSOLETE50</a>:</td></tr>
+<tr><th id="324">324</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OBSOLETE57" title='CURLE_OBSOLETE57' data-ref="CURLE_OBSOLETE57">CURLE_OBSOLETE57</a>:</td></tr>
+<tr><th id="325">325</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURL_LAST" title='CURL_LAST' data-ref="CURL_LAST">CURL_LAST</a>:</td></tr>
+<tr><th id="326">326</th><td>    <b>break</b>;</td></tr>
+<tr><th id="327">327</th><td>  }</td></tr>
+<tr><th id="328">328</th><td>  <i>/*</i></td></tr>
+<tr><th id="329">329</th><td><i>   * By using a switch, gcc -Wall will complain about enum values</i></td></tr>
+<tr><th id="330">330</th><td><i>   * which do not appear, helping keep this function up-to-date.</i></td></tr>
+<tr><th id="331">331</th><td><i>   * By using gcc -Wall -Werror, you can't forget.</i></td></tr>
+<tr><th id="332">332</th><td><i>   *</i></td></tr>
+<tr><th id="333">333</th><td><i>   * A table would not have the same benefit.  Most compilers will</i></td></tr>
+<tr><th id="334">334</th><td><i>   * generate code very similar to a table in any case, so there</i></td></tr>
+<tr><th id="335">335</th><td><i>   * is little performance gain from a table.  And something is broken</i></td></tr>
+<tr><th id="336">336</th><td><i>   * for the user's application, anyways, so does it matter how fast</i></td></tr>
+<tr><th id="337">337</th><td><i>   * it _doesn't_ work?</i></td></tr>
+<tr><th id="338">338</th><td><i>   *</i></td></tr>
+<tr><th id="339">339</th><td><i>   * The line number for the error will be near this comment, which</i></td></tr>
+<tr><th id="340">340</th><td><i>   * is why it is here, and not at the start of the switch.</i></td></tr>
+<tr><th id="341">341</th><td><i>   */</i></td></tr>
+<tr><th id="342">342</th><td>  <b>return</b> <q>"Unknown error"</q>;</td></tr>
+<tr><th id="343">343</th><td><u>#<span data-ppcond="59">else</span></u></td></tr>
+<tr><th id="344">344</th><td>  <b>if</b>(!error)</td></tr>
+<tr><th id="345">345</th><td>    <b>return</b> <q>"No error"</q>;</td></tr>
+<tr><th id="346">346</th><td>  <b>else</b></td></tr>
+<tr><th id="347">347</th><td>    <b>return</b> <q>"Error"</q>;</td></tr>
+<tr><th id="348">348</th><td><u>#<span data-ppcond="59">endif</span></u></td></tr>
+<tr><th id="349">349</th><td>}</td></tr>
+<tr><th id="350">350</th><td></td></tr>
+<tr><th id="351">351</th><td><em>const</em> <em>char</em> *</td></tr>
+<tr><th id="352">352</th><td><dfn class="decl def" id="curl_multi_strerror" title='curl_multi_strerror' data-ref="curl_multi_strerror">curl_multi_strerror</dfn>(<a class="typedef" href="../include/curl/multi.h.html#CURLMcode" title='CURLMcode' data-type='enum CURLMcode' data-ref="CURLMcode">CURLMcode</a> <dfn class="local col2 decl" id="2error" title='error' data-type='CURLMcode' data-ref="2error">error</dfn>)</td></tr>
+<tr><th id="353">353</th><td>{</td></tr>
+<tr><th id="354">354</th><td><u>#<span data-ppcond="354">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_VERBOSE_STRINGS">CURL_DISABLE_VERBOSE_STRINGS</span></u></td></tr>
+<tr><th id="355">355</th><td>  <b>switch</b>(<a class="local col2 ref" href="#2error" title='error' data-ref="2error">error</a>) {</td></tr>
+<tr><th id="356">356</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_CALL_MULTI_PERFORM" title='CURLM_CALL_MULTI_PERFORM' data-ref="CURLM_CALL_MULTI_PERFORM">CURLM_CALL_MULTI_PERFORM</a>:</td></tr>
+<tr><th id="357">357</th><td>    <b>return</b> <q>"Please call curl_multi_perform() soon"</q>;</td></tr>
+<tr><th id="358">358</th><td></td></tr>
+<tr><th id="359">359</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_OK" title='CURLM_OK' data-ref="CURLM_OK">CURLM_OK</a>:</td></tr>
+<tr><th id="360">360</th><td>    <b>return</b> <q>"No error"</q>;</td></tr>
+<tr><th id="361">361</th><td></td></tr>
+<tr><th id="362">362</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_BAD_HANDLE" title='CURLM_BAD_HANDLE' data-ref="CURLM_BAD_HANDLE">CURLM_BAD_HANDLE</a>:</td></tr>
+<tr><th id="363">363</th><td>    <b>return</b> <q>"Invalid multi handle"</q>;</td></tr>
+<tr><th id="364">364</th><td></td></tr>
+<tr><th id="365">365</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_BAD_EASY_HANDLE" title='CURLM_BAD_EASY_HANDLE' data-ref="CURLM_BAD_EASY_HANDLE">CURLM_BAD_EASY_HANDLE</a>:</td></tr>
+<tr><th id="366">366</th><td>    <b>return</b> <q>"Invalid easy handle"</q>;</td></tr>
+<tr><th id="367">367</th><td></td></tr>
+<tr><th id="368">368</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_OUT_OF_MEMORY" title='CURLM_OUT_OF_MEMORY' data-ref="CURLM_OUT_OF_MEMORY">CURLM_OUT_OF_MEMORY</a>:</td></tr>
+<tr><th id="369">369</th><td>    <b>return</b> <q>"Out of memory"</q>;</td></tr>
+<tr><th id="370">370</th><td></td></tr>
+<tr><th id="371">371</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_INTERNAL_ERROR" title='CURLM_INTERNAL_ERROR' data-ref="CURLM_INTERNAL_ERROR">CURLM_INTERNAL_ERROR</a>:</td></tr>
+<tr><th id="372">372</th><td>    <b>return</b> <q>"Internal error"</q>;</td></tr>
+<tr><th id="373">373</th><td></td></tr>
+<tr><th id="374">374</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_BAD_SOCKET" title='CURLM_BAD_SOCKET' data-ref="CURLM_BAD_SOCKET">CURLM_BAD_SOCKET</a>:</td></tr>
+<tr><th id="375">375</th><td>    <b>return</b> <q>"Invalid socket argument"</q>;</td></tr>
+<tr><th id="376">376</th><td></td></tr>
+<tr><th id="377">377</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_UNKNOWN_OPTION" title='CURLM_UNKNOWN_OPTION' data-ref="CURLM_UNKNOWN_OPTION">CURLM_UNKNOWN_OPTION</a>:</td></tr>
+<tr><th id="378">378</th><td>    <b>return</b> <q>"Unknown option"</q>;</td></tr>
+<tr><th id="379">379</th><td></td></tr>
+<tr><th id="380">380</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_ADDED_ALREADY" title='CURLM_ADDED_ALREADY' data-ref="CURLM_ADDED_ALREADY">CURLM_ADDED_ALREADY</a>:</td></tr>
+<tr><th id="381">381</th><td>    <b>return</b> <q>"The easy handle is already added to a multi handle"</q>;</td></tr>
+<tr><th id="382">382</th><td></td></tr>
+<tr><th id="383">383</th><td>  <b>case</b> <a class="enum" href="../include/curl/multi.h.html#CURLM_LAST" title='CURLM_LAST' data-ref="CURLM_LAST">CURLM_LAST</a>:</td></tr>
+<tr><th id="384">384</th><td>    <b>break</b>;</td></tr>
+<tr><th id="385">385</th><td>  }</td></tr>
+<tr><th id="386">386</th><td></td></tr>
+<tr><th id="387">387</th><td>  <b>return</b> <q>"Unknown error"</q>;</td></tr>
+<tr><th id="388">388</th><td><u>#<span data-ppcond="354">else</span></u></td></tr>
+<tr><th id="389">389</th><td>  <b>if</b>(error == CURLM_OK)</td></tr>
+<tr><th id="390">390</th><td>    <b>return</b> <q>"No error"</q>;</td></tr>
+<tr><th id="391">391</th><td>  <b>else</b></td></tr>
+<tr><th id="392">392</th><td>    <b>return</b> <q>"Error"</q>;</td></tr>
+<tr><th id="393">393</th><td><u>#<span data-ppcond="354">endif</span></u></td></tr>
+<tr><th id="394">394</th><td>}</td></tr>
+<tr><th id="395">395</th><td></td></tr>
+<tr><th id="396">396</th><td><em>const</em> <em>char</em> *</td></tr>
+<tr><th id="397">397</th><td><dfn class="decl def" id="curl_share_strerror" title='curl_share_strerror' data-ref="curl_share_strerror">curl_share_strerror</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURLSHcode" title='CURLSHcode' data-type='enum CURLSHcode' data-ref="CURLSHcode">CURLSHcode</a> <dfn class="local col3 decl" id="3error" title='error' data-type='CURLSHcode' data-ref="3error">error</dfn>)</td></tr>
+<tr><th id="398">398</th><td>{</td></tr>
+<tr><th id="399">399</th><td><u>#<span data-ppcond="399">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_VERBOSE_STRINGS">CURL_DISABLE_VERBOSE_STRINGS</span></u></td></tr>
+<tr><th id="400">400</th><td>  <b>switch</b>(<a class="local col3 ref" href="#3error" title='error' data-ref="3error">error</a>) {</td></tr>
+<tr><th id="401">401</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLSHE_OK" title='CURLSHE_OK' data-ref="CURLSHE_OK">CURLSHE_OK</a>:</td></tr>
+<tr><th id="402">402</th><td>    <b>return</b> <q>"No error"</q>;</td></tr>
+<tr><th id="403">403</th><td></td></tr>
+<tr><th id="404">404</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLSHE_BAD_OPTION" title='CURLSHE_BAD_OPTION' data-ref="CURLSHE_BAD_OPTION">CURLSHE_BAD_OPTION</a>:</td></tr>
+<tr><th id="405">405</th><td>    <b>return</b> <q>"Unknown share option"</q>;</td></tr>
+<tr><th id="406">406</th><td></td></tr>
+<tr><th id="407">407</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLSHE_IN_USE" title='CURLSHE_IN_USE' data-ref="CURLSHE_IN_USE">CURLSHE_IN_USE</a>:</td></tr>
+<tr><th id="408">408</th><td>    <b>return</b> <q>"Share currently in use"</q>;</td></tr>
+<tr><th id="409">409</th><td></td></tr>
+<tr><th id="410">410</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLSHE_INVALID" title='CURLSHE_INVALID' data-ref="CURLSHE_INVALID">CURLSHE_INVALID</a>:</td></tr>
+<tr><th id="411">411</th><td>    <b>return</b> <q>"Invalid share handle"</q>;</td></tr>
+<tr><th id="412">412</th><td></td></tr>
+<tr><th id="413">413</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLSHE_NOMEM" title='CURLSHE_NOMEM' data-ref="CURLSHE_NOMEM">CURLSHE_NOMEM</a>:</td></tr>
+<tr><th id="414">414</th><td>    <b>return</b> <q>"Out of memory"</q>;</td></tr>
+<tr><th id="415">415</th><td></td></tr>
+<tr><th id="416">416</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLSHE_NOT_BUILT_IN" title='CURLSHE_NOT_BUILT_IN' data-ref="CURLSHE_NOT_BUILT_IN">CURLSHE_NOT_BUILT_IN</a>:</td></tr>
+<tr><th id="417">417</th><td>    <b>return</b> <q>"Feature not enabled in this library"</q>;</td></tr>
+<tr><th id="418">418</th><td></td></tr>
+<tr><th id="419">419</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLSHE_LAST" title='CURLSHE_LAST' data-ref="CURLSHE_LAST">CURLSHE_LAST</a>:</td></tr>
+<tr><th id="420">420</th><td>    <b>break</b>;</td></tr>
+<tr><th id="421">421</th><td>  }</td></tr>
+<tr><th id="422">422</th><td></td></tr>
+<tr><th id="423">423</th><td>  <b>return</b> <q>"CURLSHcode unknown"</q>;</td></tr>
+<tr><th id="424">424</th><td><u>#<span data-ppcond="399">else</span></u></td></tr>
+<tr><th id="425">425</th><td>  <b>if</b>(error == CURLSHE_OK)</td></tr>
+<tr><th id="426">426</th><td>    <b>return</b> <q>"No error"</q>;</td></tr>
+<tr><th id="427">427</th><td>  <b>else</b></td></tr>
+<tr><th id="428">428</th><td>    <b>return</b> <q>"Error"</q>;</td></tr>
+<tr><th id="429">429</th><td><u>#<span data-ppcond="399">endif</span></u></td></tr>
+<tr><th id="430">430</th><td>}</td></tr>
+<tr><th id="431">431</th><td></td></tr>
+<tr><th id="432">432</th><td><u>#<span data-ppcond="432">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="433">433</th><td></td></tr>
+<tr><th id="434">434</th><td><i>/* This function handles most / all (?) Winsock errors curl is able to produce.</i></td></tr>
+<tr><th id="435">435</th><td><i> */</i></td></tr>
+<tr><th id="436">436</th><td><em>static</em> <em>const</em> <em>char</em> *</td></tr>
+<tr><th id="437">437</th><td>get_winsock_error (<em>int</em> err, <em>char</em> *buf, size_t len)</td></tr>
+<tr><th id="438">438</th><td>{</td></tr>
+<tr><th id="439">439</th><td><u>#ifdef PRESERVE_WINDOWS_ERROR_CODE</u></td></tr>
+<tr><th id="440">440</th><td>  DWORD old_win_err = GetLastError();</td></tr>
+<tr><th id="441">441</th><td><u>#endif</u></td></tr>
+<tr><th id="442">442</th><td>  <em>int</em> old_errno = errno;</td></tr>
+<tr><th id="443">443</th><td>  <em>const</em> <em>char</em> *p;</td></tr>
+<tr><th id="444">444</th><td></td></tr>
+<tr><th id="445">445</th><td><u>#ifndef CURL_DISABLE_VERBOSE_STRINGS</u></td></tr>
+<tr><th id="446">446</th><td>  <b>switch</b>(err) {</td></tr>
+<tr><th id="447">447</th><td>  <b>case</b> WSAEINTR:</td></tr>
+<tr><th id="448">448</th><td>    p = <q>"Call interrupted"</q>;</td></tr>
+<tr><th id="449">449</th><td>    <b>break</b>;</td></tr>
+<tr><th id="450">450</th><td>  <b>case</b> WSAEBADF:</td></tr>
+<tr><th id="451">451</th><td>    p = <q>"Bad file"</q>;</td></tr>
+<tr><th id="452">452</th><td>    <b>break</b>;</td></tr>
+<tr><th id="453">453</th><td>  <b>case</b> WSAEACCES:</td></tr>
+<tr><th id="454">454</th><td>    p = <q>"Bad access"</q>;</td></tr>
+<tr><th id="455">455</th><td>    <b>break</b>;</td></tr>
+<tr><th id="456">456</th><td>  <b>case</b> WSAEFAULT:</td></tr>
+<tr><th id="457">457</th><td>    p = <q>"Bad argument"</q>;</td></tr>
+<tr><th id="458">458</th><td>    <b>break</b>;</td></tr>
+<tr><th id="459">459</th><td>  <b>case</b> WSAEINVAL:</td></tr>
+<tr><th id="460">460</th><td>    p = <q>"Invalid arguments"</q>;</td></tr>
+<tr><th id="461">461</th><td>    <b>break</b>;</td></tr>
+<tr><th id="462">462</th><td>  <b>case</b> WSAEMFILE:</td></tr>
+<tr><th id="463">463</th><td>    p = <q>"Out of file descriptors"</q>;</td></tr>
+<tr><th id="464">464</th><td>    <b>break</b>;</td></tr>
+<tr><th id="465">465</th><td>  <b>case</b> WSAEWOULDBLOCK:</td></tr>
+<tr><th id="466">466</th><td>    p = <q>"Call would block"</q>;</td></tr>
+<tr><th id="467">467</th><td>    <b>break</b>;</td></tr>
+<tr><th id="468">468</th><td>  <b>case</b> WSAEINPROGRESS:</td></tr>
+<tr><th id="469">469</th><td>  <b>case</b> WSAEALREADY:</td></tr>
+<tr><th id="470">470</th><td>    p = <q>"Blocking call in progress"</q>;</td></tr>
+<tr><th id="471">471</th><td>    <b>break</b>;</td></tr>
+<tr><th id="472">472</th><td>  <b>case</b> WSAENOTSOCK:</td></tr>
+<tr><th id="473">473</th><td>    p = <q>"Descriptor is not a socket"</q>;</td></tr>
+<tr><th id="474">474</th><td>    <b>break</b>;</td></tr>
+<tr><th id="475">475</th><td>  <b>case</b> WSAEDESTADDRREQ:</td></tr>
+<tr><th id="476">476</th><td>    p = <q>"Need destination address"</q>;</td></tr>
+<tr><th id="477">477</th><td>    <b>break</b>;</td></tr>
+<tr><th id="478">478</th><td>  <b>case</b> WSAEMSGSIZE:</td></tr>
+<tr><th id="479">479</th><td>    p = <q>"Bad message size"</q>;</td></tr>
+<tr><th id="480">480</th><td>    <b>break</b>;</td></tr>
+<tr><th id="481">481</th><td>  <b>case</b> WSAEPROTOTYPE:</td></tr>
+<tr><th id="482">482</th><td>    p = <q>"Bad protocol"</q>;</td></tr>
+<tr><th id="483">483</th><td>    <b>break</b>;</td></tr>
+<tr><th id="484">484</th><td>  <b>case</b> WSAENOPROTOOPT:</td></tr>
+<tr><th id="485">485</th><td>    p = <q>"Protocol option is unsupported"</q>;</td></tr>
+<tr><th id="486">486</th><td>    <b>break</b>;</td></tr>
+<tr><th id="487">487</th><td>  <b>case</b> WSAEPROTONOSUPPORT:</td></tr>
+<tr><th id="488">488</th><td>    p = <q>"Protocol is unsupported"</q>;</td></tr>
+<tr><th id="489">489</th><td>    <b>break</b>;</td></tr>
+<tr><th id="490">490</th><td>  <b>case</b> WSAESOCKTNOSUPPORT:</td></tr>
+<tr><th id="491">491</th><td>    p = <q>"Socket is unsupported"</q>;</td></tr>
+<tr><th id="492">492</th><td>    <b>break</b>;</td></tr>
+<tr><th id="493">493</th><td>  <b>case</b> WSAEOPNOTSUPP:</td></tr>
+<tr><th id="494">494</th><td>    p = <q>"Operation not supported"</q>;</td></tr>
+<tr><th id="495">495</th><td>    <b>break</b>;</td></tr>
+<tr><th id="496">496</th><td>  <b>case</b> WSAEAFNOSUPPORT:</td></tr>
+<tr><th id="497">497</th><td>    p = <q>"Address family not supported"</q>;</td></tr>
+<tr><th id="498">498</th><td>    <b>break</b>;</td></tr>
+<tr><th id="499">499</th><td>  <b>case</b> WSAEPFNOSUPPORT:</td></tr>
+<tr><th id="500">500</th><td>    p = <q>"Protocol family not supported"</q>;</td></tr>
+<tr><th id="501">501</th><td>    <b>break</b>;</td></tr>
+<tr><th id="502">502</th><td>  <b>case</b> WSAEADDRINUSE:</td></tr>
+<tr><th id="503">503</th><td>    p = <q>"Address already in use"</q>;</td></tr>
+<tr><th id="504">504</th><td>    <b>break</b>;</td></tr>
+<tr><th id="505">505</th><td>  <b>case</b> WSAEADDRNOTAVAIL:</td></tr>
+<tr><th id="506">506</th><td>    p = <q>"Address not available"</q>;</td></tr>
+<tr><th id="507">507</th><td>    <b>break</b>;</td></tr>
+<tr><th id="508">508</th><td>  <b>case</b> WSAENETDOWN:</td></tr>
+<tr><th id="509">509</th><td>    p = <q>"Network down"</q>;</td></tr>
+<tr><th id="510">510</th><td>    <b>break</b>;</td></tr>
+<tr><th id="511">511</th><td>  <b>case</b> WSAENETUNREACH:</td></tr>
+<tr><th id="512">512</th><td>    p = <q>"Network unreachable"</q>;</td></tr>
+<tr><th id="513">513</th><td>    <b>break</b>;</td></tr>
+<tr><th id="514">514</th><td>  <b>case</b> WSAENETRESET:</td></tr>
+<tr><th id="515">515</th><td>    p = <q>"Network has been reset"</q>;</td></tr>
+<tr><th id="516">516</th><td>    <b>break</b>;</td></tr>
+<tr><th id="517">517</th><td>  <b>case</b> WSAECONNABORTED:</td></tr>
+<tr><th id="518">518</th><td>    p = <q>"Connection was aborted"</q>;</td></tr>
+<tr><th id="519">519</th><td>    <b>break</b>;</td></tr>
+<tr><th id="520">520</th><td>  <b>case</b> WSAECONNRESET:</td></tr>
+<tr><th id="521">521</th><td>    p = <q>"Connection was reset"</q>;</td></tr>
+<tr><th id="522">522</th><td>    <b>break</b>;</td></tr>
+<tr><th id="523">523</th><td>  <b>case</b> WSAENOBUFS:</td></tr>
+<tr><th id="524">524</th><td>    p = <q>"No buffer space"</q>;</td></tr>
+<tr><th id="525">525</th><td>    <b>break</b>;</td></tr>
+<tr><th id="526">526</th><td>  <b>case</b> WSAEISCONN:</td></tr>
+<tr><th id="527">527</th><td>    p = <q>"Socket is already connected"</q>;</td></tr>
+<tr><th id="528">528</th><td>    <b>break</b>;</td></tr>
+<tr><th id="529">529</th><td>  <b>case</b> WSAENOTCONN:</td></tr>
+<tr><th id="530">530</th><td>    p = <q>"Socket is not connected"</q>;</td></tr>
+<tr><th id="531">531</th><td>    <b>break</b>;</td></tr>
+<tr><th id="532">532</th><td>  <b>case</b> WSAESHUTDOWN:</td></tr>
+<tr><th id="533">533</th><td>    p = <q>"Socket has been shut down"</q>;</td></tr>
+<tr><th id="534">534</th><td>    <b>break</b>;</td></tr>
+<tr><th id="535">535</th><td>  <b>case</b> WSAETOOMANYREFS:</td></tr>
+<tr><th id="536">536</th><td>    p = <q>"Too many references"</q>;</td></tr>
+<tr><th id="537">537</th><td>    <b>break</b>;</td></tr>
+<tr><th id="538">538</th><td>  <b>case</b> WSAETIMEDOUT:</td></tr>
+<tr><th id="539">539</th><td>    p = <q>"Timed out"</q>;</td></tr>
+<tr><th id="540">540</th><td>    <b>break</b>;</td></tr>
+<tr><th id="541">541</th><td>  <b>case</b> WSAECONNREFUSED:</td></tr>
+<tr><th id="542">542</th><td>    p = <q>"Connection refused"</q>;</td></tr>
+<tr><th id="543">543</th><td>    <b>break</b>;</td></tr>
+<tr><th id="544">544</th><td>  <b>case</b> WSAELOOP:</td></tr>
+<tr><th id="545">545</th><td>    p = <q>"Loop??"</q>;</td></tr>
+<tr><th id="546">546</th><td>    <b>break</b>;</td></tr>
+<tr><th id="547">547</th><td>  <b>case</b> WSAENAMETOOLONG:</td></tr>
+<tr><th id="548">548</th><td>    p = <q>"Name too long"</q>;</td></tr>
+<tr><th id="549">549</th><td>    <b>break</b>;</td></tr>
+<tr><th id="550">550</th><td>  <b>case</b> WSAEHOSTDOWN:</td></tr>
+<tr><th id="551">551</th><td>    p = <q>"Host down"</q>;</td></tr>
+<tr><th id="552">552</th><td>    <b>break</b>;</td></tr>
+<tr><th id="553">553</th><td>  <b>case</b> WSAEHOSTUNREACH:</td></tr>
+<tr><th id="554">554</th><td>    p = <q>"Host unreachable"</q>;</td></tr>
+<tr><th id="555">555</th><td>    <b>break</b>;</td></tr>
+<tr><th id="556">556</th><td>  <b>case</b> WSAENOTEMPTY:</td></tr>
+<tr><th id="557">557</th><td>    p = <q>"Not empty"</q>;</td></tr>
+<tr><th id="558">558</th><td>    <b>break</b>;</td></tr>
+<tr><th id="559">559</th><td>  <b>case</b> WSAEPROCLIM:</td></tr>
+<tr><th id="560">560</th><td>    p = <q>"Process limit reached"</q>;</td></tr>
+<tr><th id="561">561</th><td>    <b>break</b>;</td></tr>
+<tr><th id="562">562</th><td>  <b>case</b> WSAEUSERS:</td></tr>
+<tr><th id="563">563</th><td>    p = <q>"Too many users"</q>;</td></tr>
+<tr><th id="564">564</th><td>    <b>break</b>;</td></tr>
+<tr><th id="565">565</th><td>  <b>case</b> WSAEDQUOT:</td></tr>
+<tr><th id="566">566</th><td>    p = <q>"Bad quota"</q>;</td></tr>
+<tr><th id="567">567</th><td>    <b>break</b>;</td></tr>
+<tr><th id="568">568</th><td>  <b>case</b> WSAESTALE:</td></tr>
+<tr><th id="569">569</th><td>    p = <q>"Something is stale"</q>;</td></tr>
+<tr><th id="570">570</th><td>    <b>break</b>;</td></tr>
+<tr><th id="571">571</th><td>  <b>case</b> WSAEREMOTE:</td></tr>
+<tr><th id="572">572</th><td>    p = <q>"Remote error"</q>;</td></tr>
+<tr><th id="573">573</th><td>    <b>break</b>;</td></tr>
+<tr><th id="574">574</th><td><u>#ifdef WSAEDISCON  /* missing in SalfordC! */</u></td></tr>
+<tr><th id="575">575</th><td>  <b>case</b> WSAEDISCON:</td></tr>
+<tr><th id="576">576</th><td>    p = <q>"Disconnected"</q>;</td></tr>
+<tr><th id="577">577</th><td>    <b>break</b>;</td></tr>
+<tr><th id="578">578</th><td><u>#endif</u></td></tr>
+<tr><th id="579">579</th><td>    <i>/* Extended Winsock errors */</i></td></tr>
+<tr><th id="580">580</th><td>  <b>case</b> WSASYSNOTREADY:</td></tr>
+<tr><th id="581">581</th><td>    p = <q>"Winsock library is not ready"</q>;</td></tr>
+<tr><th id="582">582</th><td>    <b>break</b>;</td></tr>
+<tr><th id="583">583</th><td>  <b>case</b> WSANOTINITIALISED:</td></tr>
+<tr><th id="584">584</th><td>    p = <q>"Winsock library not initialised"</q>;</td></tr>
+<tr><th id="585">585</th><td>    <b>break</b>;</td></tr>
+<tr><th id="586">586</th><td>  <b>case</b> WSAVERNOTSUPPORTED:</td></tr>
+<tr><th id="587">587</th><td>    p = <q>"Winsock version not supported"</q>;</td></tr>
+<tr><th id="588">588</th><td>    <b>break</b>;</td></tr>
+<tr><th id="589">589</th><td></td></tr>
+<tr><th id="590">590</th><td>    <i>/* getXbyY() errors (already handled in herrmsg):</i></td></tr>
+<tr><th id="591">591</th><td><i>     * Authoritative Answer: Host not found */</i></td></tr>
+<tr><th id="592">592</th><td>  <b>case</b> WSAHOST_NOT_FOUND:</td></tr>
+<tr><th id="593">593</th><td>    p = <q>"Host not found"</q>;</td></tr>
+<tr><th id="594">594</th><td>    <b>break</b>;</td></tr>
+<tr><th id="595">595</th><td></td></tr>
+<tr><th id="596">596</th><td>    <i>/* Non-Authoritative: Host not found, or SERVERFAIL */</i></td></tr>
+<tr><th id="597">597</th><td>  <b>case</b> WSATRY_AGAIN:</td></tr>
+<tr><th id="598">598</th><td>    p = <q>"Host not found, try again"</q>;</td></tr>
+<tr><th id="599">599</th><td>    <b>break</b>;</td></tr>
+<tr><th id="600">600</th><td></td></tr>
+<tr><th id="601">601</th><td>    <i>/* Non recoverable errors, FORMERR, REFUSED, NOTIMP */</i></td></tr>
+<tr><th id="602">602</th><td>  <b>case</b> WSANO_RECOVERY:</td></tr>
+<tr><th id="603">603</th><td>    p = <q>"Unrecoverable error in call to nameserver"</q>;</td></tr>
+<tr><th id="604">604</th><td>    <b>break</b>;</td></tr>
+<tr><th id="605">605</th><td></td></tr>
+<tr><th id="606">606</th><td>    <i>/* Valid name, no data record of requested type */</i></td></tr>
+<tr><th id="607">607</th><td>  <b>case</b> WSANO_DATA:</td></tr>
+<tr><th id="608">608</th><td>    p = <q>"No data record of requested type"</q>;</td></tr>
+<tr><th id="609">609</th><td>    <b>break</b>;</td></tr>
+<tr><th id="610">610</th><td></td></tr>
+<tr><th id="611">611</th><td>  <b>default</b>:</td></tr>
+<tr><th id="612">612</th><td>    <b>return</b> NULL;</td></tr>
+<tr><th id="613">613</th><td>  }</td></tr>
+<tr><th id="614">614</th><td><u>#else</u></td></tr>
+<tr><th id="615">615</th><td>  <b>if</b>(!err)</td></tr>
+<tr><th id="616">616</th><td>    <b>return</b> NULL;</td></tr>
+<tr><th id="617">617</th><td>  <b>else</b></td></tr>
+<tr><th id="618">618</th><td>    p = <q>"error"</q>;</td></tr>
+<tr><th id="619">619</th><td><u>#endif</u></td></tr>
+<tr><th id="620">620</th><td>  strncpy(buf, p, len);</td></tr>
+<tr><th id="621">621</th><td>  buf [len-<var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="622">622</th><td></td></tr>
+<tr><th id="623">623</th><td>  <b>if</b>(errno != old_errno)</td></tr>
+<tr><th id="624">624</th><td>    errno = old_errno;</td></tr>
+<tr><th id="625">625</th><td></td></tr>
+<tr><th id="626">626</th><td><u>#ifdef PRESERVE_WINDOWS_ERROR_CODE</u></td></tr>
+<tr><th id="627">627</th><td>  <b>if</b>(old_win_err != GetLastError())</td></tr>
+<tr><th id="628">628</th><td>    SetLastError(old_win_err);</td></tr>
+<tr><th id="629">629</th><td><u>#endif</u></td></tr>
+<tr><th id="630">630</th><td></td></tr>
+<tr><th id="631">631</th><td>  <b>return</b> buf;</td></tr>
+<tr><th id="632">632</th><td>}</td></tr>
+<tr><th id="633">633</th><td><u>#<span data-ppcond="432">endif</span>   /* USE_WINSOCK */</u></td></tr>
+<tr><th id="634">634</th><td></td></tr>
+<tr><th id="635">635</th><td><i>/*</i></td></tr>
+<tr><th id="636">636</th><td><i> * Our thread-safe and smart strerror() replacement.</i></td></tr>
+<tr><th id="637">637</th><td><i> *</i></td></tr>
+<tr><th id="638">638</th><td><i> * The 'err' argument passed in to this function MUST be a true errno number</i></td></tr>
+<tr><th id="639">639</th><td><i> * as reported on this system. We do no range checking on the number before</i></td></tr>
+<tr><th id="640">640</th><td><i> * we pass it to the "number-to-message" conversion function and there might</i></td></tr>
+<tr><th id="641">641</th><td><i> * be systems that don't do proper range checking in there themselves.</i></td></tr>
+<tr><th id="642">642</th><td><i> *</i></td></tr>
+<tr><th id="643">643</th><td><i> * We don't do range checking (on systems other than Windows) since there is</i></td></tr>
+<tr><th id="644">644</th><td><i> * no good reliable and portable way to do it.</i></td></tr>
+<tr><th id="645">645</th><td><i> */</i></td></tr>
+<tr><th id="646">646</th><td><em>const</em> <em>char</em> *<dfn class="decl def" id="Curl_strerror" title='Curl_strerror' data-ref="Curl_strerror">Curl_strerror</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col4 decl" id="4conn" title='conn' data-type='struct connectdata *' data-ref="4conn">conn</dfn>, <em>int</em> <dfn class="local col5 decl" id="5err" title='err' data-type='int' data-ref="5err">err</dfn>)</td></tr>
+<tr><th id="647">647</th><td>{</td></tr>
+<tr><th id="648">648</th><td><u>#<span data-ppcond="648">ifdef</span> <span class="macro" data-ref="_M/PRESERVE_WINDOWS_ERROR_CODE">PRESERVE_WINDOWS_ERROR_CODE</span></u></td></tr>
+<tr><th id="649">649</th><td>  DWORD old_win_err = GetLastError();</td></tr>
+<tr><th id="650">650</th><td><u>#<span data-ppcond="648">endif</span></u></td></tr>
+<tr><th id="651">651</th><td>  <em>int</em> <dfn class="local col6 decl" id="6old_errno" title='old_errno' data-type='int' data-ref="6old_errno">old_errno</dfn> = <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>;</td></tr>
+<tr><th id="652">652</th><td>  <em>char</em> *<dfn class="local col7 decl" id="7buf" title='buf' data-type='char *' data-ref="7buf">buf</dfn>, *<dfn class="local col8 decl" id="8p" title='p' data-type='char *' data-ref="8p">p</dfn>;</td></tr>
+<tr><th id="653">653</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="9max" title='max' data-type='size_t' data-ref="9max">max</dfn>;</td></tr>
+<tr><th id="654">654</th><td></td></tr>
+<tr><th id="655">655</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(conn);</td></tr>
+<tr><th id="656">656</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(err &gt;= <var>0</var>);</td></tr>
+<tr><th id="657">657</th><td></td></tr>
+<tr><th id="658">658</th><td>  <a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a> = <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::syserr_buf" title='connectdata::syserr_buf' data-ref="connectdata::syserr_buf">syserr_buf</a>;</td></tr>
+<tr><th id="659">659</th><td>  <a class="local col9 ref" href="#9max" title='max' data-ref="9max">max</a> = <b>sizeof</b>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::syserr_buf" title='connectdata::syserr_buf' data-ref="connectdata::syserr_buf">syserr_buf</a>)-<var>1</var>;</td></tr>
+<tr><th id="660">660</th><td>  *<a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a> = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="661">661</th><td></td></tr>
+<tr><th id="662">662</th><td><u>#<span data-ppcond="662">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="663">663</th><td></td></tr>
+<tr><th id="664">664</th><td><u>#ifdef _WIN32_WCE</u></td></tr>
+<tr><th id="665">665</th><td>  {</td></tr>
+<tr><th id="666">666</th><td>    wchar_t wbuf[<var>256</var>];</td></tr>
+<tr><th id="667">667</th><td>    wbuf[<var>0</var>] = L<kbd>'\0'</kbd>;</td></tr>
+<tr><th id="668">668</th><td></td></tr>
+<tr><th id="669">669</th><td>    FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, err,</td></tr>
+<tr><th id="670">670</th><td>                  LANG_NEUTRAL, wbuf, <b>sizeof</b>(wbuf)/<b>sizeof</b>(wchar_t), NULL);</td></tr>
+<tr><th id="671">671</th><td>    wcstombs(buf, wbuf, max);</td></tr>
+<tr><th id="672">672</th><td>  }</td></tr>
+<tr><th id="673">673</th><td><u>#else</u></td></tr>
+<tr><th id="674">674</th><td>  <i>/* 'sys_nerr' is the maximum errno number, it is not widely portable */</i></td></tr>
+<tr><th id="675">675</th><td>  <b>if</b>(err &gt;= <var>0</var> &amp;&amp; err &lt; sys_nerr)</td></tr>
+<tr><th id="676">676</th><td>    strncpy(buf, strerror(err), max);</td></tr>
+<tr><th id="677">677</th><td>  <b>else</b> {</td></tr>
+<tr><th id="678">678</th><td>    <b>if</b>(!get_winsock_error(err, buf, max) &amp;&amp;</td></tr>
+<tr><th id="679">679</th><td>       !FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM, NULL, err,</td></tr>
+<tr><th id="680">680</th><td>                       LANG_NEUTRAL, buf, (DWORD)max, NULL))</td></tr>
+<tr><th id="681">681</th><td>      snprintf(buf, max, <q>"Unknown error %d (%#x)"</q>, err, err);</td></tr>
+<tr><th id="682">682</th><td>  }</td></tr>
+<tr><th id="683">683</th><td><u>#endif</u></td></tr>
+<tr><th id="684">684</th><td></td></tr>
+<tr><th id="685">685</th><td><u>#<span data-ppcond="662">else</span> /* not USE_WINSOCK coming up */</u></td></tr>
+<tr><th id="686">686</th><td></td></tr>
+<tr><th id="687">687</th><td><u>#<span data-ppcond="687">if</span> defined(<a class="macro" href="curl_config.h.html#606" data-ref="_M/HAVE_STRERROR_R">HAVE_STRERROR_R</a>) &amp;&amp; defined(<a class="macro" href="curl_config.h.html#486" data-ref="_M/HAVE_POSIX_STRERROR_R">HAVE_POSIX_STRERROR_R</a>)</u></td></tr>
+<tr><th id="688">688</th><td> <i>/*</i></td></tr>
+<tr><th id="689">689</th><td><i>  * The POSIX-style strerror_r() may set errno to ERANGE if insufficient</i></td></tr>
+<tr><th id="690">690</th><td><i>  * storage is supplied via 'strerrbuf' and 'buflen' to hold the generated</i></td></tr>
+<tr><th id="691">691</th><td><i>  * message string, or EINVAL if 'errnum' is not a valid error number.</i></td></tr>
+<tr><th id="692">692</th><td><i>  */</i></td></tr>
+<tr><th id="693">693</th><td>  <b>if</b>(<var>0</var> != <a class="ref" href="../../include/string.h.html#422" title='strerror_r' data-ref="__xpg_strerror_r">strerror_r</a>(<a class="local col5 ref" href="#5err" title='err' data-ref="5err">err</a>, <a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>, <a class="local col9 ref" href="#9max" title='max' data-ref="9max">max</a>)) {</td></tr>
+<tr><th id="694">694</th><td>    <b>if</b>(<kbd>'\0'</kbd> == <a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>[<var>0</var>])</td></tr>
+<tr><th id="695">695</th><td>      <a class="macro" href="curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>, <a class="local col9 ref" href="#9max" title='max' data-ref="9max">max</a>, <q>"Unknown error %d"</q>, <a class="local col5 ref" href="#5err" title='err' data-ref="5err">err</a>);</td></tr>
+<tr><th id="696">696</th><td>  }</td></tr>
+<tr><th id="697">697</th><td><u>#<span data-ppcond="687">elif</span> defined(HAVE_STRERROR_R) &amp;&amp; defined(HAVE_GLIBC_STRERROR_R)</u></td></tr>
+<tr><th id="698">698</th><td> <i>/*</i></td></tr>
+<tr><th id="699">699</th><td><i>  * The glibc-style strerror_r() only *might* use the buffer we pass to</i></td></tr>
+<tr><th id="700">700</th><td><i>  * the function, but it always returns the error message as a pointer,</i></td></tr>
+<tr><th id="701">701</th><td><i>  * so we must copy that string unconditionally (if non-NULL).</i></td></tr>
+<tr><th id="702">702</th><td><i>  */</i></td></tr>
+<tr><th id="703">703</th><td>  {</td></tr>
+<tr><th id="704">704</th><td>    <em>char</em> buffer[<var>256</var>];</td></tr>
+<tr><th id="705">705</th><td>    <em>char</em> *msg = strerror_r(err, buffer, <b>sizeof</b>(buffer));</td></tr>
+<tr><th id="706">706</th><td>    <b>if</b>(msg)</td></tr>
+<tr><th id="707">707</th><td>      strncpy(buf, msg, max);</td></tr>
+<tr><th id="708">708</th><td>    <b>else</b></td></tr>
+<tr><th id="709">709</th><td>      snprintf(buf, max, <q>"Unknown error %d"</q>, err);</td></tr>
+<tr><th id="710">710</th><td>  }</td></tr>
+<tr><th id="711">711</th><td><u>#elif defined(HAVE_STRERROR_R) &amp;&amp; defined(HAVE_VXWORKS_STRERROR_R)</u></td></tr>
+<tr><th id="712">712</th><td> <i>/*</i></td></tr>
+<tr><th id="713">713</th><td><i>  * The vxworks-style strerror_r() does use the buffer we pass to the function.</i></td></tr>
+<tr><th id="714">714</th><td><i>  * The buffer size should be at least NAME_MAX (256)</i></td></tr>
+<tr><th id="715">715</th><td><i>  */</i></td></tr>
+<tr><th id="716">716</th><td>  {</td></tr>
+<tr><th id="717">717</th><td>    <em>char</em> buffer[<var>256</var>];</td></tr>
+<tr><th id="718">718</th><td>    <b>if</b>(OK == strerror_r(err, buffer))</td></tr>
+<tr><th id="719">719</th><td>      strncpy(buf, buffer, max);</td></tr>
+<tr><th id="720">720</th><td>    <b>else</b></td></tr>
+<tr><th id="721">721</th><td>      snprintf(buf, max, <q>"Unknown error %d"</q>, err);</td></tr>
+<tr><th id="722">722</th><td>  }</td></tr>
+<tr><th id="723">723</th><td><u>#else</u></td></tr>
+<tr><th id="724">724</th><td>  {</td></tr>
+<tr><th id="725">725</th><td>    <em>char</em> *msg = strerror(err);</td></tr>
+<tr><th id="726">726</th><td>    <b>if</b>(msg)</td></tr>
+<tr><th id="727">727</th><td>      strncpy(buf, msg, max);</td></tr>
+<tr><th id="728">728</th><td>    <b>else</b></td></tr>
+<tr><th id="729">729</th><td>      snprintf(buf, max, <q>"Unknown error %d"</q>, err);</td></tr>
+<tr><th id="730">730</th><td>  }</td></tr>
+<tr><th id="731">731</th><td><u>#<span data-ppcond="687">endif</span></u></td></tr>
+<tr><th id="732">732</th><td></td></tr>
+<tr><th id="733">733</th><td><u>#<span data-ppcond="662">endif</span> /* end of ! USE_WINSOCK */</u></td></tr>
+<tr><th id="734">734</th><td></td></tr>
+<tr><th id="735">735</th><td>  <a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>[<a class="local col9 ref" href="#9max" title='max' data-ref="9max">max</a>] = <kbd>'\0'</kbd>; <i>/* make sure the string is zero terminated */</i></td></tr>
+<tr><th id="736">736</th><td></td></tr>
+<tr><th id="737">737</th><td>  <i>/* strip trailing '\r\n' or '\n'. */</i></td></tr>
+<tr><th id="738">738</th><td>  <a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> = <a class="ref" href="../../include/string.h.html#strrchr" title='strrchr' data-ref="strrchr">strrchr</a>(<a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>, <kbd>'\n'</kbd>);</td></tr>
+<tr><th id="739">739</th><td>  <b>if</b>(<a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> &amp;&amp; (<a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> - <a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>) &gt;= <var>2</var>)</td></tr>
+<tr><th id="740">740</th><td>    *<a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="741">741</th><td>  <a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> = <a class="ref" href="../../include/string.h.html#strrchr" title='strrchr' data-ref="strrchr">strrchr</a>(<a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>, <kbd>'\r'</kbd>);</td></tr>
+<tr><th id="742">742</th><td>  <b>if</b>(<a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> &amp;&amp; (<a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> - <a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>) &gt;= <var>1</var>)</td></tr>
+<tr><th id="743">743</th><td>    *<a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="744">744</th><td></td></tr>
+<tr><th id="745">745</th><td>  <b>if</b>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> != <a class="local col6 ref" href="#6old_errno" title='old_errno' data-ref="6old_errno">old_errno</a>)</td></tr>
+<tr><th id="746">746</th><td>    <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <a class="local col6 ref" href="#6old_errno" title='old_errno' data-ref="6old_errno">old_errno</a>;</td></tr>
+<tr><th id="747">747</th><td></td></tr>
+<tr><th id="748">748</th><td><u>#<span data-ppcond="748">ifdef</span> <span class="macro" data-ref="_M/PRESERVE_WINDOWS_ERROR_CODE">PRESERVE_WINDOWS_ERROR_CODE</span></u></td></tr>
+<tr><th id="749">749</th><td>  <b>if</b>(old_win_err != GetLastError())</td></tr>
+<tr><th id="750">750</th><td>    SetLastError(old_win_err);</td></tr>
+<tr><th id="751">751</th><td><u>#<span data-ppcond="748">endif</span></u></td></tr>
+<tr><th id="752">752</th><td></td></tr>
+<tr><th id="753">753</th><td>  <b>return</b> <a class="local col7 ref" href="#7buf" title='buf' data-ref="7buf">buf</a>;</td></tr>
+<tr><th id="754">754</th><td>}</td></tr>
+<tr><th id="755">755</th><td></td></tr>
+<tr><th id="756">756</th><td><u>#<span data-ppcond="756">ifdef</span> <span class="macro" data-ref="_M/USE_WINDOWS_SSPI">USE_WINDOWS_SSPI</span></u></td></tr>
+<tr><th id="757">757</th><td><em>const</em> <em>char</em> *Curl_sspi_strerror (<b>struct</b> connectdata *conn, <em>int</em> err)</td></tr>
+<tr><th id="758">758</th><td>{</td></tr>
+<tr><th id="759">759</th><td><u>#ifdef PRESERVE_WINDOWS_ERROR_CODE</u></td></tr>
+<tr><th id="760">760</th><td>  DWORD old_win_err = GetLastError();</td></tr>
+<tr><th id="761">761</th><td><u>#endif</u></td></tr>
+<tr><th id="762">762</th><td>  <em>int</em> old_errno = errno;</td></tr>
+<tr><th id="763">763</th><td>  <em>const</em> <em>char</em> *txt;</td></tr>
+<tr><th id="764">764</th><td>  <em>char</em> *outbuf;</td></tr>
+<tr><th id="765">765</th><td>  size_t outmax;</td></tr>
+<tr><th id="766">766</th><td><u>#ifndef CURL_DISABLE_VERBOSE_STRINGS</u></td></tr>
+<tr><th id="767">767</th><td>  <em>char</em> txtbuf[<var>80</var>];</td></tr>
+<tr><th id="768">768</th><td>  <em>char</em> msgbuf[<b>sizeof</b>(conn-&gt;syserr_buf)];</td></tr>
+<tr><th id="769">769</th><td>  <em>char</em> *p, *str, *msg = NULL;</td></tr>
+<tr><th id="770">770</th><td>  bool msg_formatted = FALSE;</td></tr>
+<tr><th id="771">771</th><td><u>#endif</u></td></tr>
+<tr><th id="772">772</th><td></td></tr>
+<tr><th id="773">773</th><td>  DEBUGASSERT(conn);</td></tr>
+<tr><th id="774">774</th><td></td></tr>
+<tr><th id="775">775</th><td>  outbuf = conn-&gt;syserr_buf;</td></tr>
+<tr><th id="776">776</th><td>  outmax = <b>sizeof</b>(conn-&gt;syserr_buf)-<var>1</var>;</td></tr>
+<tr><th id="777">777</th><td>  *outbuf = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="778">778</th><td></td></tr>
+<tr><th id="779">779</th><td><u>#ifndef CURL_DISABLE_VERBOSE_STRINGS</u></td></tr>
+<tr><th id="780">780</th><td></td></tr>
+<tr><th id="781">781</th><td>  <b>switch</b>(err) {</td></tr>
+<tr><th id="782">782</th><td>    <b>case</b> SEC_E_OK:</td></tr>
+<tr><th id="783">783</th><td>      txt = <q>"No error"</q>;</td></tr>
+<tr><th id="784">784</th><td>      <b>break</b>;</td></tr>
+<tr><th id="785">785</th><td>    <b>case</b> CRYPT_E_REVOKED:</td></tr>
+<tr><th id="786">786</th><td>      txt = <q>"CRYPT_E_REVOKED"</q>;</td></tr>
+<tr><th id="787">787</th><td>      <b>break</b>;</td></tr>
+<tr><th id="788">788</th><td>    <b>case</b> SEC_E_ALGORITHM_MISMATCH:</td></tr>
+<tr><th id="789">789</th><td>      txt = <q>"SEC_E_ALGORITHM_MISMATCH"</q>;</td></tr>
+<tr><th id="790">790</th><td>      <b>break</b>;</td></tr>
+<tr><th id="791">791</th><td>    <b>case</b> SEC_E_BAD_BINDINGS:</td></tr>
+<tr><th id="792">792</th><td>      txt = <q>"SEC_E_BAD_BINDINGS"</q>;</td></tr>
+<tr><th id="793">793</th><td>      <b>break</b>;</td></tr>
+<tr><th id="794">794</th><td>    <b>case</b> SEC_E_BAD_PKGID:</td></tr>
+<tr><th id="795">795</th><td>      txt = <q>"SEC_E_BAD_PKGID"</q>;</td></tr>
+<tr><th id="796">796</th><td>      <b>break</b>;</td></tr>
+<tr><th id="797">797</th><td>    <b>case</b> SEC_E_BUFFER_TOO_SMALL:</td></tr>
+<tr><th id="798">798</th><td>      txt = <q>"SEC_E_BUFFER_TOO_SMALL"</q>;</td></tr>
+<tr><th id="799">799</th><td>      <b>break</b>;</td></tr>
+<tr><th id="800">800</th><td>    <b>case</b> SEC_E_CANNOT_INSTALL:</td></tr>
+<tr><th id="801">801</th><td>      txt = <q>"SEC_E_CANNOT_INSTALL"</q>;</td></tr>
+<tr><th id="802">802</th><td>      <b>break</b>;</td></tr>
+<tr><th id="803">803</th><td>    <b>case</b> SEC_E_CANNOT_PACK:</td></tr>
+<tr><th id="804">804</th><td>      txt = <q>"SEC_E_CANNOT_PACK"</q>;</td></tr>
+<tr><th id="805">805</th><td>      <b>break</b>;</td></tr>
+<tr><th id="806">806</th><td>    <b>case</b> SEC_E_CERT_EXPIRED:</td></tr>
+<tr><th id="807">807</th><td>      txt = <q>"SEC_E_CERT_EXPIRED"</q>;</td></tr>
+<tr><th id="808">808</th><td>      <b>break</b>;</td></tr>
+<tr><th id="809">809</th><td>    <b>case</b> SEC_E_CERT_UNKNOWN:</td></tr>
+<tr><th id="810">810</th><td>      txt = <q>"SEC_E_CERT_UNKNOWN"</q>;</td></tr>
+<tr><th id="811">811</th><td>      <b>break</b>;</td></tr>
+<tr><th id="812">812</th><td>    <b>case</b> SEC_E_CERT_WRONG_USAGE:</td></tr>
+<tr><th id="813">813</th><td>      txt = <q>"SEC_E_CERT_WRONG_USAGE"</q>;</td></tr>
+<tr><th id="814">814</th><td>      <b>break</b>;</td></tr>
+<tr><th id="815">815</th><td>    <b>case</b> SEC_E_CONTEXT_EXPIRED:</td></tr>
+<tr><th id="816">816</th><td>      txt = <q>"SEC_E_CONTEXT_EXPIRED"</q>;</td></tr>
+<tr><th id="817">817</th><td>      <b>break</b>;</td></tr>
+<tr><th id="818">818</th><td>    <b>case</b> SEC_E_CROSSREALM_DELEGATION_FAILURE:</td></tr>
+<tr><th id="819">819</th><td>      txt = <q>"SEC_E_CROSSREALM_DELEGATION_FAILURE"</q>;</td></tr>
+<tr><th id="820">820</th><td>      <b>break</b>;</td></tr>
+<tr><th id="821">821</th><td>    <b>case</b> SEC_E_CRYPTO_SYSTEM_INVALID:</td></tr>
+<tr><th id="822">822</th><td>      txt = <q>"SEC_E_CRYPTO_SYSTEM_INVALID"</q>;</td></tr>
+<tr><th id="823">823</th><td>      <b>break</b>;</td></tr>
+<tr><th id="824">824</th><td>    <b>case</b> SEC_E_DECRYPT_FAILURE:</td></tr>
+<tr><th id="825">825</th><td>      txt = <q>"SEC_E_DECRYPT_FAILURE"</q>;</td></tr>
+<tr><th id="826">826</th><td>      <b>break</b>;</td></tr>
+<tr><th id="827">827</th><td>    <b>case</b> SEC_E_DELEGATION_POLICY:</td></tr>
+<tr><th id="828">828</th><td>      txt = <q>"SEC_E_DELEGATION_POLICY"</q>;</td></tr>
+<tr><th id="829">829</th><td>      <b>break</b>;</td></tr>
+<tr><th id="830">830</th><td>    <b>case</b> SEC_E_DELEGATION_REQUIRED:</td></tr>
+<tr><th id="831">831</th><td>      txt = <q>"SEC_E_DELEGATION_REQUIRED"</q>;</td></tr>
+<tr><th id="832">832</th><td>      <b>break</b>;</td></tr>
+<tr><th id="833">833</th><td>    <b>case</b> SEC_E_DOWNGRADE_DETECTED:</td></tr>
+<tr><th id="834">834</th><td>      txt = <q>"SEC_E_DOWNGRADE_DETECTED"</q>;</td></tr>
+<tr><th id="835">835</th><td>      <b>break</b>;</td></tr>
+<tr><th id="836">836</th><td>    <b>case</b> SEC_E_ENCRYPT_FAILURE:</td></tr>
+<tr><th id="837">837</th><td>      txt = <q>"SEC_E_ENCRYPT_FAILURE"</q>;</td></tr>
+<tr><th id="838">838</th><td>      <b>break</b>;</td></tr>
+<tr><th id="839">839</th><td>    <b>case</b> SEC_E_ILLEGAL_MESSAGE:</td></tr>
+<tr><th id="840">840</th><td>      txt = <q>"SEC_E_ILLEGAL_MESSAGE"</q>;</td></tr>
+<tr><th id="841">841</th><td>      <b>break</b>;</td></tr>
+<tr><th id="842">842</th><td>    <b>case</b> SEC_E_INCOMPLETE_CREDENTIALS:</td></tr>
+<tr><th id="843">843</th><td>      txt = <q>"SEC_E_INCOMPLETE_CREDENTIALS"</q>;</td></tr>
+<tr><th id="844">844</th><td>      <b>break</b>;</td></tr>
+<tr><th id="845">845</th><td>    <b>case</b> SEC_E_INCOMPLETE_MESSAGE:</td></tr>
+<tr><th id="846">846</th><td>      txt = <q>"SEC_E_INCOMPLETE_MESSAGE"</q>;</td></tr>
+<tr><th id="847">847</th><td>      <b>break</b>;</td></tr>
+<tr><th id="848">848</th><td>    <b>case</b> SEC_E_INSUFFICIENT_MEMORY:</td></tr>
+<tr><th id="849">849</th><td>      txt = <q>"SEC_E_INSUFFICIENT_MEMORY"</q>;</td></tr>
+<tr><th id="850">850</th><td>      <b>break</b>;</td></tr>
+<tr><th id="851">851</th><td>    <b>case</b> SEC_E_INTERNAL_ERROR:</td></tr>
+<tr><th id="852">852</th><td>      txt = <q>"SEC_E_INTERNAL_ERROR"</q>;</td></tr>
+<tr><th id="853">853</th><td>      <b>break</b>;</td></tr>
+<tr><th id="854">854</th><td>    <b>case</b> SEC_E_INVALID_HANDLE:</td></tr>
+<tr><th id="855">855</th><td>      txt = <q>"SEC_E_INVALID_HANDLE"</q>;</td></tr>
+<tr><th id="856">856</th><td>      <b>break</b>;</td></tr>
+<tr><th id="857">857</th><td>    <b>case</b> SEC_E_INVALID_PARAMETER:</td></tr>
+<tr><th id="858">858</th><td>      txt = <q>"SEC_E_INVALID_PARAMETER"</q>;</td></tr>
+<tr><th id="859">859</th><td>      <b>break</b>;</td></tr>
+<tr><th id="860">860</th><td>    <b>case</b> SEC_E_INVALID_TOKEN:</td></tr>
+<tr><th id="861">861</th><td>      txt = <q>"SEC_E_INVALID_TOKEN"</q>;</td></tr>
+<tr><th id="862">862</th><td>      <b>break</b>;</td></tr>
+<tr><th id="863">863</th><td>    <b>case</b> SEC_E_ISSUING_CA_UNTRUSTED:</td></tr>
+<tr><th id="864">864</th><td>      txt = <q>"SEC_E_ISSUING_CA_UNTRUSTED"</q>;</td></tr>
+<tr><th id="865">865</th><td>      <b>break</b>;</td></tr>
+<tr><th id="866">866</th><td>    <b>case</b> SEC_E_ISSUING_CA_UNTRUSTED_KDC:</td></tr>
+<tr><th id="867">867</th><td>      txt = <q>"SEC_E_ISSUING_CA_UNTRUSTED_KDC"</q>;</td></tr>
+<tr><th id="868">868</th><td>      <b>break</b>;</td></tr>
+<tr><th id="869">869</th><td>    <b>case</b> SEC_E_KDC_CERT_EXPIRED:</td></tr>
+<tr><th id="870">870</th><td>      txt = <q>"SEC_E_KDC_CERT_EXPIRED"</q>;</td></tr>
+<tr><th id="871">871</th><td>      <b>break</b>;</td></tr>
+<tr><th id="872">872</th><td>    <b>case</b> SEC_E_KDC_CERT_REVOKED:</td></tr>
+<tr><th id="873">873</th><td>      txt = <q>"SEC_E_KDC_CERT_REVOKED"</q>;</td></tr>
+<tr><th id="874">874</th><td>      <b>break</b>;</td></tr>
+<tr><th id="875">875</th><td>    <b>case</b> SEC_E_KDC_INVALID_REQUEST:</td></tr>
+<tr><th id="876">876</th><td>      txt = <q>"SEC_E_KDC_INVALID_REQUEST"</q>;</td></tr>
+<tr><th id="877">877</th><td>      <b>break</b>;</td></tr>
+<tr><th id="878">878</th><td>    <b>case</b> SEC_E_KDC_UNABLE_TO_REFER:</td></tr>
+<tr><th id="879">879</th><td>      txt = <q>"SEC_E_KDC_UNABLE_TO_REFER"</q>;</td></tr>
+<tr><th id="880">880</th><td>      <b>break</b>;</td></tr>
+<tr><th id="881">881</th><td>    <b>case</b> SEC_E_KDC_UNKNOWN_ETYPE:</td></tr>
+<tr><th id="882">882</th><td>      txt = <q>"SEC_E_KDC_UNKNOWN_ETYPE"</q>;</td></tr>
+<tr><th id="883">883</th><td>      <b>break</b>;</td></tr>
+<tr><th id="884">884</th><td>    <b>case</b> SEC_E_LOGON_DENIED:</td></tr>
+<tr><th id="885">885</th><td>      txt = <q>"SEC_E_LOGON_DENIED"</q>;</td></tr>
+<tr><th id="886">886</th><td>      <b>break</b>;</td></tr>
+<tr><th id="887">887</th><td>    <b>case</b> SEC_E_MAX_REFERRALS_EXCEEDED:</td></tr>
+<tr><th id="888">888</th><td>      txt = <q>"SEC_E_MAX_REFERRALS_EXCEEDED"</q>;</td></tr>
+<tr><th id="889">889</th><td>      <b>break</b>;</td></tr>
+<tr><th id="890">890</th><td>    <b>case</b> SEC_E_MESSAGE_ALTERED:</td></tr>
+<tr><th id="891">891</th><td>      txt = <q>"SEC_E_MESSAGE_ALTERED"</q>;</td></tr>
+<tr><th id="892">892</th><td>      <b>break</b>;</td></tr>
+<tr><th id="893">893</th><td>    <b>case</b> SEC_E_MULTIPLE_ACCOUNTS:</td></tr>
+<tr><th id="894">894</th><td>      txt = <q>"SEC_E_MULTIPLE_ACCOUNTS"</q>;</td></tr>
+<tr><th id="895">895</th><td>      <b>break</b>;</td></tr>
+<tr><th id="896">896</th><td>    <b>case</b> SEC_E_MUST_BE_KDC:</td></tr>
+<tr><th id="897">897</th><td>      txt = <q>"SEC_E_MUST_BE_KDC"</q>;</td></tr>
+<tr><th id="898">898</th><td>      <b>break</b>;</td></tr>
+<tr><th id="899">899</th><td>    <b>case</b> SEC_E_NOT_OWNER:</td></tr>
+<tr><th id="900">900</th><td>      txt = <q>"SEC_E_NOT_OWNER"</q>;</td></tr>
+<tr><th id="901">901</th><td>      <b>break</b>;</td></tr>
+<tr><th id="902">902</th><td>    <b>case</b> SEC_E_NO_AUTHENTICATING_AUTHORITY:</td></tr>
+<tr><th id="903">903</th><td>      txt = <q>"SEC_E_NO_AUTHENTICATING_AUTHORITY"</q>;</td></tr>
+<tr><th id="904">904</th><td>      <b>break</b>;</td></tr>
+<tr><th id="905">905</th><td>    <b>case</b> SEC_E_NO_CREDENTIALS:</td></tr>
+<tr><th id="906">906</th><td>      txt = <q>"SEC_E_NO_CREDENTIALS"</q>;</td></tr>
+<tr><th id="907">907</th><td>      <b>break</b>;</td></tr>
+<tr><th id="908">908</th><td>    <b>case</b> SEC_E_NO_IMPERSONATION:</td></tr>
+<tr><th id="909">909</th><td>      txt = <q>"SEC_E_NO_IMPERSONATION"</q>;</td></tr>
+<tr><th id="910">910</th><td>      <b>break</b>;</td></tr>
+<tr><th id="911">911</th><td>    <b>case</b> SEC_E_NO_IP_ADDRESSES:</td></tr>
+<tr><th id="912">912</th><td>      txt = <q>"SEC_E_NO_IP_ADDRESSES"</q>;</td></tr>
+<tr><th id="913">913</th><td>      <b>break</b>;</td></tr>
+<tr><th id="914">914</th><td>    <b>case</b> SEC_E_NO_KERB_KEY:</td></tr>
+<tr><th id="915">915</th><td>      txt = <q>"SEC_E_NO_KERB_KEY"</q>;</td></tr>
+<tr><th id="916">916</th><td>      <b>break</b>;</td></tr>
+<tr><th id="917">917</th><td>    <b>case</b> SEC_E_NO_PA_DATA:</td></tr>
+<tr><th id="918">918</th><td>      txt = <q>"SEC_E_NO_PA_DATA"</q>;</td></tr>
+<tr><th id="919">919</th><td>      <b>break</b>;</td></tr>
+<tr><th id="920">920</th><td>    <b>case</b> SEC_E_NO_S4U_PROT_SUPPORT:</td></tr>
+<tr><th id="921">921</th><td>      txt = <q>"SEC_E_NO_S4U_PROT_SUPPORT"</q>;</td></tr>
+<tr><th id="922">922</th><td>      <b>break</b>;</td></tr>
+<tr><th id="923">923</th><td>    <b>case</b> SEC_E_NO_TGT_REPLY:</td></tr>
+<tr><th id="924">924</th><td>      txt = <q>"SEC_E_NO_TGT_REPLY"</q>;</td></tr>
+<tr><th id="925">925</th><td>      <b>break</b>;</td></tr>
+<tr><th id="926">926</th><td>    <b>case</b> SEC_E_OUT_OF_SEQUENCE:</td></tr>
+<tr><th id="927">927</th><td>      txt = <q>"SEC_E_OUT_OF_SEQUENCE"</q>;</td></tr>
+<tr><th id="928">928</th><td>      <b>break</b>;</td></tr>
+<tr><th id="929">929</th><td>    <b>case</b> SEC_E_PKINIT_CLIENT_FAILURE:</td></tr>
+<tr><th id="930">930</th><td>      txt = <q>"SEC_E_PKINIT_CLIENT_FAILURE"</q>;</td></tr>
+<tr><th id="931">931</th><td>      <b>break</b>;</td></tr>
+<tr><th id="932">932</th><td>    <b>case</b> SEC_E_PKINIT_NAME_MISMATCH:</td></tr>
+<tr><th id="933">933</th><td>      txt = <q>"SEC_E_PKINIT_NAME_MISMATCH"</q>;</td></tr>
+<tr><th id="934">934</th><td>      <b>break</b>;</td></tr>
+<tr><th id="935">935</th><td>    <b>case</b> SEC_E_POLICY_NLTM_ONLY:</td></tr>
+<tr><th id="936">936</th><td>      txt = <q>"SEC_E_POLICY_NLTM_ONLY"</q>;</td></tr>
+<tr><th id="937">937</th><td>      <b>break</b>;</td></tr>
+<tr><th id="938">938</th><td>    <b>case</b> SEC_E_QOP_NOT_SUPPORTED:</td></tr>
+<tr><th id="939">939</th><td>      txt = <q>"SEC_E_QOP_NOT_SUPPORTED"</q>;</td></tr>
+<tr><th id="940">940</th><td>      <b>break</b>;</td></tr>
+<tr><th id="941">941</th><td>    <b>case</b> SEC_E_REVOCATION_OFFLINE_C:</td></tr>
+<tr><th id="942">942</th><td>      txt = <q>"SEC_E_REVOCATION_OFFLINE_C"</q>;</td></tr>
+<tr><th id="943">943</th><td>      <b>break</b>;</td></tr>
+<tr><th id="944">944</th><td>    <b>case</b> SEC_E_REVOCATION_OFFLINE_KDC:</td></tr>
+<tr><th id="945">945</th><td>      txt = <q>"SEC_E_REVOCATION_OFFLINE_KDC"</q>;</td></tr>
+<tr><th id="946">946</th><td>      <b>break</b>;</td></tr>
+<tr><th id="947">947</th><td>    <b>case</b> SEC_E_SECPKG_NOT_FOUND:</td></tr>
+<tr><th id="948">948</th><td>      txt = <q>"SEC_E_SECPKG_NOT_FOUND"</q>;</td></tr>
+<tr><th id="949">949</th><td>      <b>break</b>;</td></tr>
+<tr><th id="950">950</th><td>    <b>case</b> SEC_E_SECURITY_QOS_FAILED:</td></tr>
+<tr><th id="951">951</th><td>      txt = <q>"SEC_E_SECURITY_QOS_FAILED"</q>;</td></tr>
+<tr><th id="952">952</th><td>      <b>break</b>;</td></tr>
+<tr><th id="953">953</th><td>    <b>case</b> SEC_E_SHUTDOWN_IN_PROGRESS:</td></tr>
+<tr><th id="954">954</th><td>      txt = <q>"SEC_E_SHUTDOWN_IN_PROGRESS"</q>;</td></tr>
+<tr><th id="955">955</th><td>      <b>break</b>;</td></tr>
+<tr><th id="956">956</th><td>    <b>case</b> SEC_E_SMARTCARD_CERT_EXPIRED:</td></tr>
+<tr><th id="957">957</th><td>      txt = <q>"SEC_E_SMARTCARD_CERT_EXPIRED"</q>;</td></tr>
+<tr><th id="958">958</th><td>      <b>break</b>;</td></tr>
+<tr><th id="959">959</th><td>    <b>case</b> SEC_E_SMARTCARD_CERT_REVOKED:</td></tr>
+<tr><th id="960">960</th><td>      txt = <q>"SEC_E_SMARTCARD_CERT_REVOKED"</q>;</td></tr>
+<tr><th id="961">961</th><td>      <b>break</b>;</td></tr>
+<tr><th id="962">962</th><td>    <b>case</b> SEC_E_SMARTCARD_LOGON_REQUIRED:</td></tr>
+<tr><th id="963">963</th><td>      txt = <q>"SEC_E_SMARTCARD_LOGON_REQUIRED"</q>;</td></tr>
+<tr><th id="964">964</th><td>      <b>break</b>;</td></tr>
+<tr><th id="965">965</th><td>    <b>case</b> SEC_E_STRONG_CRYPTO_NOT_SUPPORTED:</td></tr>
+<tr><th id="966">966</th><td>      txt = <q>"SEC_E_STRONG_CRYPTO_NOT_SUPPORTED"</q>;</td></tr>
+<tr><th id="967">967</th><td>      <b>break</b>;</td></tr>
+<tr><th id="968">968</th><td>    <b>case</b> SEC_E_TARGET_UNKNOWN:</td></tr>
+<tr><th id="969">969</th><td>      txt = <q>"SEC_E_TARGET_UNKNOWN"</q>;</td></tr>
+<tr><th id="970">970</th><td>      <b>break</b>;</td></tr>
+<tr><th id="971">971</th><td>    <b>case</b> SEC_E_TIME_SKEW:</td></tr>
+<tr><th id="972">972</th><td>      txt = <q>"SEC_E_TIME_SKEW"</q>;</td></tr>
+<tr><th id="973">973</th><td>      <b>break</b>;</td></tr>
+<tr><th id="974">974</th><td>    <b>case</b> SEC_E_TOO_MANY_PRINCIPALS:</td></tr>
+<tr><th id="975">975</th><td>      txt = <q>"SEC_E_TOO_MANY_PRINCIPALS"</q>;</td></tr>
+<tr><th id="976">976</th><td>      <b>break</b>;</td></tr>
+<tr><th id="977">977</th><td>    <b>case</b> SEC_E_UNFINISHED_CONTEXT_DELETED:</td></tr>
+<tr><th id="978">978</th><td>      txt = <q>"SEC_E_UNFINISHED_CONTEXT_DELETED"</q>;</td></tr>
+<tr><th id="979">979</th><td>      <b>break</b>;</td></tr>
+<tr><th id="980">980</th><td>    <b>case</b> SEC_E_UNKNOWN_CREDENTIALS:</td></tr>
+<tr><th id="981">981</th><td>      txt = <q>"SEC_E_UNKNOWN_CREDENTIALS"</q>;</td></tr>
+<tr><th id="982">982</th><td>      <b>break</b>;</td></tr>
+<tr><th id="983">983</th><td>    <b>case</b> SEC_E_UNSUPPORTED_FUNCTION:</td></tr>
+<tr><th id="984">984</th><td>      txt = <q>"SEC_E_UNSUPPORTED_FUNCTION"</q>;</td></tr>
+<tr><th id="985">985</th><td>      <b>break</b>;</td></tr>
+<tr><th id="986">986</th><td>    <b>case</b> SEC_E_UNSUPPORTED_PREAUTH:</td></tr>
+<tr><th id="987">987</th><td>      txt = <q>"SEC_E_UNSUPPORTED_PREAUTH"</q>;</td></tr>
+<tr><th id="988">988</th><td>      <b>break</b>;</td></tr>
+<tr><th id="989">989</th><td>    <b>case</b> SEC_E_UNTRUSTED_ROOT:</td></tr>
+<tr><th id="990">990</th><td>      txt = <q>"SEC_E_UNTRUSTED_ROOT"</q>;</td></tr>
+<tr><th id="991">991</th><td>      <b>break</b>;</td></tr>
+<tr><th id="992">992</th><td>    <b>case</b> SEC_E_WRONG_CREDENTIAL_HANDLE:</td></tr>
+<tr><th id="993">993</th><td>      txt = <q>"SEC_E_WRONG_CREDENTIAL_HANDLE"</q>;</td></tr>
+<tr><th id="994">994</th><td>      <b>break</b>;</td></tr>
+<tr><th id="995">995</th><td>    <b>case</b> SEC_E_WRONG_PRINCIPAL:</td></tr>
+<tr><th id="996">996</th><td>      txt = <q>"SEC_E_WRONG_PRINCIPAL"</q>;</td></tr>
+<tr><th id="997">997</th><td>      <b>break</b>;</td></tr>
+<tr><th id="998">998</th><td>    <b>case</b> SEC_I_COMPLETE_AND_CONTINUE:</td></tr>
+<tr><th id="999">999</th><td>      txt = <q>"SEC_I_COMPLETE_AND_CONTINUE"</q>;</td></tr>
+<tr><th id="1000">1000</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1001">1001</th><td>    <b>case</b> SEC_I_COMPLETE_NEEDED:</td></tr>
+<tr><th id="1002">1002</th><td>      txt = <q>"SEC_I_COMPLETE_NEEDED"</q>;</td></tr>
+<tr><th id="1003">1003</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1004">1004</th><td>    <b>case</b> SEC_I_CONTEXT_EXPIRED:</td></tr>
+<tr><th id="1005">1005</th><td>      txt = <q>"SEC_I_CONTEXT_EXPIRED"</q>;</td></tr>
+<tr><th id="1006">1006</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1007">1007</th><td>    <b>case</b> SEC_I_CONTINUE_NEEDED:</td></tr>
+<tr><th id="1008">1008</th><td>      txt = <q>"SEC_I_CONTINUE_NEEDED"</q>;</td></tr>
+<tr><th id="1009">1009</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1010">1010</th><td>    <b>case</b> SEC_I_INCOMPLETE_CREDENTIALS:</td></tr>
+<tr><th id="1011">1011</th><td>      txt = <q>"SEC_I_INCOMPLETE_CREDENTIALS"</q>;</td></tr>
+<tr><th id="1012">1012</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1013">1013</th><td>    <b>case</b> SEC_I_LOCAL_LOGON:</td></tr>
+<tr><th id="1014">1014</th><td>      txt = <q>"SEC_I_LOCAL_LOGON"</q>;</td></tr>
+<tr><th id="1015">1015</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1016">1016</th><td>    <b>case</b> SEC_I_NO_LSA_CONTEXT:</td></tr>
+<tr><th id="1017">1017</th><td>      txt = <q>"SEC_I_NO_LSA_CONTEXT"</q>;</td></tr>
+<tr><th id="1018">1018</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1019">1019</th><td>    <b>case</b> SEC_I_RENEGOTIATE:</td></tr>
+<tr><th id="1020">1020</th><td>      txt = <q>"SEC_I_RENEGOTIATE"</q>;</td></tr>
+<tr><th id="1021">1021</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1022">1022</th><td>    <b>case</b> SEC_I_SIGNATURE_NEEDED:</td></tr>
+<tr><th id="1023">1023</th><td>      txt = <q>"SEC_I_SIGNATURE_NEEDED"</q>;</td></tr>
+<tr><th id="1024">1024</th><td>      <b>break</b>;</td></tr>
+<tr><th id="1025">1025</th><td>    <b>default</b>:</td></tr>
+<tr><th id="1026">1026</th><td>      txt = <q>"Unknown error"</q>;</td></tr>
+<tr><th id="1027">1027</th><td>  }</td></tr>
+<tr><th id="1028">1028</th><td></td></tr>
+<tr><th id="1029">1029</th><td>  <b>if</b>(err == SEC_E_OK)</td></tr>
+<tr><th id="1030">1030</th><td>    strncpy(outbuf, txt, outmax);</td></tr>
+<tr><th id="1031">1031</th><td>  <b>else</b> <b>if</b>(err == SEC_E_ILLEGAL_MESSAGE)</td></tr>
+<tr><th id="1032">1032</th><td>    snprintf(outbuf, outmax,</td></tr>
+<tr><th id="1033">1033</th><td>             <q>"SEC_E_ILLEGAL_MESSAGE (0x%08X) - This error usually occurs "</q></td></tr>
+<tr><th id="1034">1034</th><td>             <q>"when a fatal SSL/TLS alert is received (e.g. handshake failed). "</q></td></tr>
+<tr><th id="1035">1035</th><td>             <q>"More detail may be available in the Windows System event log."</q>,</td></tr>
+<tr><th id="1036">1036</th><td>             err);</td></tr>
+<tr><th id="1037">1037</th><td>  <b>else</b> {</td></tr>
+<tr><th id="1038">1038</th><td>    str = txtbuf;</td></tr>
+<tr><th id="1039">1039</th><td>    snprintf(txtbuf, <b>sizeof</b>(txtbuf), <q>"%s (0x%08X)"</q>, txt, err);</td></tr>
+<tr><th id="1040">1040</th><td>    txtbuf[<b>sizeof</b>(txtbuf)-<var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="1041">1041</th><td></td></tr>
+<tr><th id="1042">1042</th><td><u>#ifdef _WIN32_WCE</u></td></tr>
+<tr><th id="1043">1043</th><td>    {</td></tr>
+<tr><th id="1044">1044</th><td>      wchar_t wbuf[<var>256</var>];</td></tr>
+<tr><th id="1045">1045</th><td>      wbuf[<var>0</var>] = L<kbd>'\0'</kbd>;</td></tr>
+<tr><th id="1046">1046</th><td></td></tr>
+<tr><th id="1047">1047</th><td>      <b>if</b>(FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM |</td></tr>
+<tr><th id="1048">1048</th><td>                       FORMAT_MESSAGE_IGNORE_INSERTS,</td></tr>
+<tr><th id="1049">1049</th><td>                       NULL, err, LANG_NEUTRAL,</td></tr>
+<tr><th id="1050">1050</th><td>                       wbuf, <b>sizeof</b>(wbuf)/<b>sizeof</b>(wchar_t), NULL)) {</td></tr>
+<tr><th id="1051">1051</th><td>        wcstombs(msgbuf, wbuf, <b>sizeof</b>(msgbuf)-<var>1</var>);</td></tr>
+<tr><th id="1052">1052</th><td>        msg_formatted = TRUE;</td></tr>
+<tr><th id="1053">1053</th><td>      }</td></tr>
+<tr><th id="1054">1054</th><td>    }</td></tr>
+<tr><th id="1055">1055</th><td><u>#else</u></td></tr>
+<tr><th id="1056">1056</th><td>    <b>if</b>(FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM |</td></tr>
+<tr><th id="1057">1057</th><td>                      FORMAT_MESSAGE_IGNORE_INSERTS,</td></tr>
+<tr><th id="1058">1058</th><td>                      NULL, err, LANG_NEUTRAL,</td></tr>
+<tr><th id="1059">1059</th><td>                      msgbuf, <b>sizeof</b>(msgbuf)-<var>1</var>, NULL)) {</td></tr>
+<tr><th id="1060">1060</th><td>      msg_formatted = TRUE;</td></tr>
+<tr><th id="1061">1061</th><td>    }</td></tr>
+<tr><th id="1062">1062</th><td><u>#endif</u></td></tr>
+<tr><th id="1063">1063</th><td>    <b>if</b>(msg_formatted) {</td></tr>
+<tr><th id="1064">1064</th><td>      msgbuf[<b>sizeof</b>(msgbuf)-<var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="1065">1065</th><td>      <i>/* strip trailing '\r\n' or '\n' */</i></td></tr>
+<tr><th id="1066">1066</th><td>      p = strrchr(msgbuf, <kbd>'\n'</kbd>);</td></tr>
+<tr><th id="1067">1067</th><td>      <b>if</b>(p &amp;&amp; (p - msgbuf) &gt;= <var>2</var>)</td></tr>
+<tr><th id="1068">1068</th><td>        *p = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="1069">1069</th><td>      p = strrchr(msgbuf, <kbd>'\r'</kbd>);</td></tr>
+<tr><th id="1070">1070</th><td>      <b>if</b>(p &amp;&amp; (p - msgbuf) &gt;= <var>1</var>)</td></tr>
+<tr><th id="1071">1071</th><td>        *p = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="1072">1072</th><td>      msg = msgbuf;</td></tr>
+<tr><th id="1073">1073</th><td>    }</td></tr>
+<tr><th id="1074">1074</th><td>    <b>if</b>(msg)</td></tr>
+<tr><th id="1075">1075</th><td>      snprintf(outbuf, outmax, <q>"%s - %s"</q>, str, msg);</td></tr>
+<tr><th id="1076">1076</th><td>    <b>else</b></td></tr>
+<tr><th id="1077">1077</th><td>      strncpy(outbuf, str, outmax);</td></tr>
+<tr><th id="1078">1078</th><td>  }</td></tr>
+<tr><th id="1079">1079</th><td></td></tr>
+<tr><th id="1080">1080</th><td><u>#else</u></td></tr>
+<tr><th id="1081">1081</th><td></td></tr>
+<tr><th id="1082">1082</th><td>  <b>if</b>(err == SEC_E_OK)</td></tr>
+<tr><th id="1083">1083</th><td>    txt = <q>"No error"</q>;</td></tr>
+<tr><th id="1084">1084</th><td>  <b>else</b></td></tr>
+<tr><th id="1085">1085</th><td>    txt = <q>"Error"</q>;</td></tr>
+<tr><th id="1086">1086</th><td></td></tr>
+<tr><th id="1087">1087</th><td>  strncpy(outbuf, txt, outmax);</td></tr>
+<tr><th id="1088">1088</th><td></td></tr>
+<tr><th id="1089">1089</th><td><u>#endif</u></td></tr>
+<tr><th id="1090">1090</th><td></td></tr>
+<tr><th id="1091">1091</th><td>  outbuf[outmax] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="1092">1092</th><td></td></tr>
+<tr><th id="1093">1093</th><td>  <b>if</b>(errno != old_errno)</td></tr>
+<tr><th id="1094">1094</th><td>    errno = old_errno;</td></tr>
+<tr><th id="1095">1095</th><td></td></tr>
+<tr><th id="1096">1096</th><td><u>#ifdef PRESERVE_WINDOWS_ERROR_CODE</u></td></tr>
+<tr><th id="1097">1097</th><td>  <b>if</b>(old_win_err != GetLastError())</td></tr>
+<tr><th id="1098">1098</th><td>    SetLastError(old_win_err);</td></tr>
+<tr><th id="1099">1099</th><td><u>#endif</u></td></tr>
+<tr><th id="1100">1100</th><td></td></tr>
+<tr><th id="1101">1101</th><td>  <b>return</b> outbuf;</td></tr>
+<tr><th id="1102">1102</th><td>}</td></tr>
+<tr><th id="1103">1103</th><td><u>#<span data-ppcond="756">endif</span> /* USE_WINDOWS_SSPI */</u></td></tr>
+<tr><th id="1104">1104</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='771' type='2'/>
+<doc f='codebrowser/include/curl/curl.h' l='771'>/* SSL for the control connection or fail */</doc>
+<use f='codebrowser/lib/ftp.c' l='2730' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2739' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2742' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/src/tool_operate.c' l='1333' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_setopt.c' l='119'/>
+<use f='codebrowser/src/tool_setopt.c' l='119'/>
+<use f='codebrowser/src/tool_setopt.c' l='119'/>
+<use f='codebrowser/src/tool_setopt.c' l='119'/>

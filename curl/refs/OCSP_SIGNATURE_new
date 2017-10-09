@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='557' macro='1' type='OCSP_SIGNATURE * OCSP_SIGNATURE_new()'/>

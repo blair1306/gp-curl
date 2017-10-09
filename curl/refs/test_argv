@@ -1,0 +1,4 @@
+<dec f='codebrowser/tests/libtest/test.h' l='58' type='char **'/>
+<def f='codebrowser/tests/libtest/first.c' l='78' type='char **'/>
+<use f='codebrowser/tests/libtest/first.c' l='162' u='w' c='main'/>
+<use f='codebrowser/tests/libtest/lib540.c' l='45' u='r' c='test'/>

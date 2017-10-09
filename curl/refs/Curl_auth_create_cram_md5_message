@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='83' type='CURLcode Curl_auth_create_cram_md5_message(struct Curl_easy * data, const char * chlg, const char * userp, const char * passwdp, char ** outptr, size_t * outlen)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='475' u='c' c='Curl_sasl_continue'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='82'>/* This is used to generate a CRAM-MD5 response message */</doc>
+<def f='codebrowser/lib/vauth/cram.c' l='91' ll='136' type='CURLcode Curl_auth_create_cram_md5_message(struct Curl_easy * data, const char * chlg, const char * userp, const char * passwdp, char ** outptr, size_t * outlen)'/>
+<doc f='codebrowser/lib/vauth/cram.c' l='73'>/*
+ * Curl_auth_create_cram_md5_message()
+ *
+ * This is used to generate an already encoded CRAM-MD5 response message ready
+ * for sending to the recipient.
+ *
+ * Parameters:
+ *
+ * data    [in]     - The session handle.
+ * chlg    [in]     - The challenge.
+ * userp   [in]     - The user name.
+ * passdwp [in]     - The user&apos;s password.
+ * outptr  [in/out] - The address where a pointer to newly allocated memory
+ *                    holding the result will be stored upon completion.
+ * outlen  [out]    - The length of the output message.
+ *
+ * Returns CURLE_OK on success.
+ */</doc>

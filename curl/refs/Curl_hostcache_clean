@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/hostip.h' l='238' type='void Curl_hostcache_clean(struct Curl_easy * data, struct curl_hash * hash)'/>
+<doc f='codebrowser/lib/hostip.h' l='235'>/*
+ * Clean off entries from the cache
+ */</doc>
+<def f='codebrowser/lib/hostip.c' l='764' ll='774' type='void Curl_hostcache_clean(struct Curl_easy * data, struct curl_hash * hash)'/>
+<doc f='codebrowser/lib/hostip.c' l='757'>/*
+ * Curl_hostcache_clean()
+ *
+ * This _can_ be called with &apos;data&apos; == NULL but then of course no locking
+ * can be done!
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='2237' u='c' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2257' u='c' c='curl_multi_cleanup'/>

@@ -1,0 +1,24 @@
+<dec f='include/stdio.h' l='573' type='int fputc(int __c, FILE * __stream)'/>
+<doc f='include/stdio.h' l='566'>/* Write a character to STREAM.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.
+
+   These functions is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='codebrowser/lib/mprintf.c' l='1142' u='r' c='curl_mprintf'/>
+<use f='codebrowser/lib/mprintf.c' l='1152' u='r' c='curl_mfprintf'/>
+<use f='codebrowser/lib/mprintf.c' l='1167' u='r' c='curl_mvprintf'/>
+<use f='codebrowser/lib/mprintf.c' l='1172' u='r' c='curl_mvfprintf'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='278' u='c' c='dump'/>
+<use f='codebrowser/src/tool_writeout.c' l='119' u='c' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='338' u='c' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='339' u='c' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='347' u='c' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='350' u='c' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='353' u='c' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='357' u='c' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='358' u='c' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_writeout.c' l='364' u='c' c='ourWriteOut'/>
+<use f='codebrowser/tests/libtest/lib552.c' l='80' u='c' c='dump'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='80' u='c' c='libtest_debug_dump'/>

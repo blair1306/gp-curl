@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/share.h' l='45' type='void *'/>
+<offset>192</offset>
+<use f='codebrowser/lib/share.c' l='160' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='181' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='185' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='205' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='223' u='r' c='Curl_share_lock'/>
+<use f='codebrowser/lib/share.c' l='240' u='r' c='Curl_share_unlock'/>

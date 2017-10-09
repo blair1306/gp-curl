@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/mime.h' l='106' type='curl_free_callback'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/mime.h' l='106'>/* Argument free function. */</doc>
+<use f='codebrowser/lib/mime.c' l='1077' u='r' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1078' u='r' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1082' u='w' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1096' u='w' c='mime_subparts_free'/>
+<use f='codebrowser/lib/mime.c' l='1108' u='w' c='mime_subparts_unbind'/>
+<use f='codebrowser/lib/mime.c' l='1273' u='w' c='curl_mime_data'/>
+<use f='codebrowser/lib/mime.c' l='1308' u='w' c='curl_mime_filedata'/>
+<use f='codebrowser/lib/mime.c' l='1402' u='w' c='curl_mime_data_cb'/>
+<use f='codebrowser/lib/mime.c' l='1449' u='w' c='Curl_mime_set_subparts'/>

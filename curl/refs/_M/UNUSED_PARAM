@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/curl_setup.h' l='657'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='990' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='991' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='998' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1004' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1005' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1006' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1014' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1019' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1024' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1025' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1037' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1038' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1045' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1051' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1064' u='c'/>

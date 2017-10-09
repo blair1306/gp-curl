@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='911' type='curl_socket_t'/>
+<offset>7936</offset>
+<doc f='codebrowser/lib/urldata.h' l='909'>/**** curl_get() phase fields */</doc>
+<doc f='codebrowser/lib/urldata.h' l='911'>/* socket to read from or CURL_SOCKET_BAD */</doc>
+<use f='codebrowser/lib/multi.c' l='1234' u='r' c='do_complete'/>
+<use f='codebrowser/lib/multi.c' l='1235' u='r' c='do_complete'/>
+<use f='codebrowser/lib/multi.c' l='1812' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/transfer.c' l='473' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1110' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1286' u='r' c='Curl_single_getsock'/>
+<use f='codebrowser/lib/transfer.c' l='1292' u='r' c='Curl_single_getsock'/>
+<use f='codebrowser/lib/transfer.c' l='2011' u='w' c='Curl_setup_transfer'/>
+<use f='codebrowser/lib/transfer.c' l='2033' u='r' c='Curl_setup_transfer'/>

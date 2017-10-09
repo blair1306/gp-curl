@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/non-ascii.h' l='56'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='479' u='c'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='571' u='c'/>
+<use f='codebrowser/lib/escape.c' l='119' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='4009' u='c'/>
+<use f='codebrowser/lib/http.c' l='1086' u='c'/>
+<use f='codebrowser/lib/pingpong.c' l='201' u='c'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='828' u='c'/>

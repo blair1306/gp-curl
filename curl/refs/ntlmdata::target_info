@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='338' type='void *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/urldata.h' l='338'>/* TargetInfo received in the ntlm type-2 message */</doc>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='754' u='r' c='Curl_ntlm_core_mk_ntlmv2_resp'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='192' u='w' c='ntlm_decode_type2_target'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='193' u='r' c='ntlm_decode_type2_target'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='196' u='r' c='ntlm_decode_type2_target'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='854' u='r' c='Curl_auth_ntlm_cleanup'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='854' u='w' c='Curl_auth_ntlm_cleanup'/>

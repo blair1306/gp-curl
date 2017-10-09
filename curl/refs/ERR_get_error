@@ -1,0 +1,13 @@
+<dec f='include/openssl/err.h' l='321' type='unsigned long ERR_get_error()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='578' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='595' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='625' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='682' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='694' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1093' u='c' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1230' u='c' c='Curl_ossl_shutdown'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2465' u='c' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2487' u='c' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2544' u='c' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3439' u='c' c='ossl_send'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3498' u='c' c='ossl_recv'/>

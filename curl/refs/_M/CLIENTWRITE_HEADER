@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/sendf.h' l='51'/>
+<use f='codebrowser/lib/gopher.c' l='122' u='c'/>
+<use f='codebrowser/lib/gopher.c' l='159' u='c'/>
+<use f='codebrowser/lib/http.c' l='3142' u='c'/>
+<use f='codebrowser/lib/http.c' l='3794' u='c'/>
+<use f='codebrowser/lib/http_chunks.c' l='273' u='c'/>
+<use f='codebrowser/lib/http_proxy.c' l='426' u='c'/>
+<use f='codebrowser/lib/pingpong.c' l='378' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='559' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='599' u='c'/>

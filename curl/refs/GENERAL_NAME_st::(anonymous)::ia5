@@ -1,0 +1,6 @@
+<dec f='include/openssl/x509v3.h' l='202' type='ASN1_IA5STRING *'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1390' u='r' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1391' u='r' c='verifyhost'/>
+<offset>0</offset>
+<doc f='include/openssl/x509v3.h' l='202'>/* rfc822Name, dNSName,
+                                 * uniformResourceIdentifier */</doc>

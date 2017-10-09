@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='55'/>
+<use f='codebrowser/tests/server/sws.c' l='1629' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1647' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1712' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1725' u='c'/>

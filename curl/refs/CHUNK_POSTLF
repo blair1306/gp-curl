@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/http_chunks.h' l='46' type='3'/>
+<doc f='codebrowser/lib/http_chunks.h' l='43'>/* POSTLF should get a CR and then a LF and nothing else, then move back to
+     HEX as the CRLF combination marks the end of a chunk. A missing CR is no
+     big deal. */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='239' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='242' c='Curl_httpchunk_read'/>

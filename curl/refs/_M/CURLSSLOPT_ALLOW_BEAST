@@ -1,0 +1,11 @@
+<dec f='codebrowser/include/curl/curl.h' l='783'/>
+<doc f='codebrowser/include/curl/curl.h' l='778'>/* - ALLOW_BEAST tells libcurl to allow the BEAST SSL vulnerability in the
+   name of improving interoperability with older servers. Some SSL libraries
+   have introduced work-arounds for this flaw but those work-arounds sometimes
+   make the SSL communication fail. To regain functionality with those broken
+   servers, a user can this way allow the vulnerability back. */</doc>
+<use f='codebrowser/lib/url.c' l='2462' u='c'/>
+<use f='codebrowser/lib/url.c' l='2468' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1472' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1480' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='125' u='c'/>

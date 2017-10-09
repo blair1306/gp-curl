@@ -1,0 +1,3 @@
+<dec f='codebrowser/include/curl/multi.h' l='111' type='curl_socket_t'/>
+<offset>0</offset>
+<use f='codebrowser/lib/multi.c' l='1075' u='r' c='curl_multi_wait'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='74' type='void glob_cleanup(URLGlob * glob)'/>
+<use f='codebrowser/src/tool_operate.c' l='1925' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1946' u='c' c='operate_do'/>
+<dec f='codebrowser/src/tool_urlglob.c' l='37' type='void glob_cleanup(URLGlob * glob)'/>
+<use f='codebrowser/src/tool_urlglob.c' l='476' u='c' c='glob_url'/>
+<def f='codebrowser/src/tool_urlglob.c' l='485' ll='503' type='void glob_cleanup(URLGlob * glob)'/>

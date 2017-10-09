@@ -1,0 +1,12 @@
+<def f='include/openssl/ocsp.h' l='102' ll='107'/>
+<size>32</size>
+<doc f='include/openssl/ocsp.h' l='96'>/*-  CertID ::= SEQUENCE {
+ *       hashAlgorithm            AlgorithmIdentifier,
+ *       issuerNameHash     OCTET STRING, -- Hash of Issuer&apos;s DN
+ *       issuerKeyHash      OCTET STRING, -- Hash of Issuers public key (excluding the tag &amp; length fields)
+ *       serialNumber       CertificateSerialNumber }
+ */</doc>
+<mbr r='ocsp_cert_id_st::hashAlgorithm' o='0' t='X509_ALGOR *'/>
+<mbr r='ocsp_cert_id_st::issuerNameHash' o='64' t='ASN1_OCTET_STRING *'/>
+<mbr r='ocsp_cert_id_st::issuerKeyHash' o='128' t='ASN1_OCTET_STRING *'/>
+<mbr r='ocsp_cert_id_st::serialNumber' o='192' t='ASN1_INTEGER *'/>

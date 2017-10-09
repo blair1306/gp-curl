@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1499' type='unsigned long'/>
+<offset>704</offset>
+<doc f='codebrowser/lib/urldata.h' l='1499'>/* kind of SOCKS5 authentication to use (bitmask) */</doc>
+<use f='codebrowser/lib/socks.c' l='390' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/url.c' l='553' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1568' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1569' u='r' c='Curl_setopt'/>

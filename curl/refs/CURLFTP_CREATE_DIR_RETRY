@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='825' type='2'/>
+<doc f='codebrowser/include/curl/curl.h' l='825'>/* (FTP only) if CWD fails, try MKD and then CWD
+                               again even if MKD failed! */</doc>
+<use f='codebrowser/src/tool_operate.c' l='1308' c='operate_do'/>

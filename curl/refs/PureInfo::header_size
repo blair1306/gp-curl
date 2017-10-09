@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1061' type='long'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/urldata.h' l='1061'>/* size of read header(s) in bytes */</doc>
+<use f='codebrowser/lib/getinfo.c' l='65' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='162' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/http.c' l='3154' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3806' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_proxy.c' l='436' u='w' c='CONNECT'/>

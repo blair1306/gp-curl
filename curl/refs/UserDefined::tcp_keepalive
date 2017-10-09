@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1687' type='_Bool'/>
+<offset>16704</offset>
+<use f='codebrowser/lib/connect.c' l='110' u='r' c='tcpkeepalive'/>
+<use f='codebrowser/lib/connect.c' l='1015' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/url.c' l='619' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2893' u='w' c='Curl_setopt'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/mime.h' l='118' type='mime_encoder_state'/>
+<offset>1344</offset>
+<doc f='codebrowser/lib/mime.h' l='118'>/* Data encoder state. */</doc>
+<use f='codebrowser/lib/mime.c' l='356' u='a' c='encoder_nop_read'/>
+<use f='codebrowser/lib/mime.c' l='379' u='a' c='encoder_7bit_read'/>
+<use f='codebrowser/lib/mime.c' l='402' u='a' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='509' u='a' c='encoder_qp_read'/>
+<use f='codebrowser/lib/mime.c' l='762' u='a' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='874' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='1023' u='a' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1087' u='a' c='cleanup_part_content'/>

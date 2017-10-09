@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='831' type='int'/>
+<use f='codebrowser/lib/asyn-thread.c' l='656' u='r' c='Curl_resolver_getaddrinfo'/>
+<offset>1568</offset>
+<doc f='codebrowser/lib/urldata.h' l='831'>/* SOCK_STREAM or SOCK_DGRAM */</doc>
+<use f='codebrowser/lib/connect.c' l='671' u='r' c='Curl_updateconninfo'/>
+<use f='codebrowser/lib/connect.c' l='1059' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1335' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/connect.c' l='1336' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/tftp.c' l='1373' u='w' c='tftp_setup_connection'/>
+<use f='codebrowser/lib/url.c' l='4895' u='w' c='setup_connection_internals'/>

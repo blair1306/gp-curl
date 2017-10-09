@@ -1,0 +1,7 @@
+<def f='codebrowser/lib/arpa_telnet.h' l='82' ll='88' type='const char *const [20]'/>
+<use f='codebrowser/lib/telnet.c' l='320' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='729' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='735' macro='1' u='r'/>
+<doc f='codebrowser/lib/arpa_telnet.h' l='79'>/*
+ * Then those numbers represented as strings:
+ */</doc>

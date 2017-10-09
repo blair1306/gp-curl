@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>lib552.c source code [codebrowser/tests/libtest/lib552.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="data "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/lib552.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='lib552.c.html'>lib552.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><i>/* argv1 = URL</i></td></tr>
+<tr><th id="23">23</th><td><i> * argv2 = proxy with embedded user+password</i></td></tr>
+<tr><th id="24">24</th><td><i> */</i></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="test.h.html">"test.h"</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="../../lib/warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../../lib/memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><b>struct</b> <dfn class="type def" id="data" title='data' data-ref="data">data</dfn> {</td></tr>
+<tr><th id="32">32</th><td>  <em>char</em> <dfn class="tu decl" id="data::trace_ascii" title='data::trace_ascii' data-type='char' data-ref="data::trace_ascii">trace_ascii</dfn>; <i  data-doc="data::trace_ascii">/* 1 or 0 */</i></td></tr>
+<tr><th id="33">33</th><td>};</td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td><em>static</em></td></tr>
+<tr><th id="36">36</th><td><em>void</em> <dfn class="tu decl def" id="dump" title='dump' data-type='void dump(const char * text, FILE * stream, unsigned char * ptr, size_t size, char nohex)' data-ref="dump">dump</dfn>(<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="1text" title='text' data-type='const char *' data-ref="1text">text</dfn>,</td></tr>
+<tr><th id="37">37</th><td>          <a class="typedef" href="../../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col2 decl" id="2stream" title='stream' data-type='FILE *' data-ref="2stream">stream</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col3 decl" id="3ptr" title='ptr' data-type='unsigned char *' data-ref="3ptr">ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="4size" title='size' data-type='size_t' data-ref="4size">size</dfn>,</td></tr>
+<tr><th id="38">38</th><td>          <em>char</em> <dfn class="local col5 decl" id="5nohex" title='nohex' data-type='char' data-ref="5nohex">nohex</dfn>)</td></tr>
+<tr><th id="39">39</th><td>{</td></tr>
+<tr><th id="40">40</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="6i" title='i' data-type='size_t' data-ref="6i">i</dfn>;</td></tr>
+<tr><th id="41">41</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="7c" title='c' data-type='size_t' data-ref="7c">c</dfn>;</td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col8 decl" id="8width" title='width' data-type='unsigned int' data-ref="8width">width</dfn> = <var>0x10</var>;</td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td>  <b>if</b>(<a class="local col5 ref" href="#5nohex" title='nohex' data-ref="5nohex">nohex</a>)</td></tr>
+<tr><th id="46">46</th><td>    <i>/* without the hex output, we can fit more on screen */</i></td></tr>
+<tr><th id="47">47</th><td>    <a class="local col8 ref" href="#8width" title='width' data-ref="8width">width</a> = <var>0x40</var>;</td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col2 ref" href="#2stream" title='stream' data-ref="2stream">stream</a>, <q>"%s, %d bytes (0x%x)\n"</q>, <a class="local col1 ref" href="#1text" title='text' data-ref="1text">text</a>, (<em>int</em>)<a class="local col4 ref" href="#4size" title='size' data-ref="4size">size</a>, (<em>int</em>)<a class="local col4 ref" href="#4size" title='size' data-ref="4size">size</a>);</td></tr>
+<tr><th id="50">50</th><td></td></tr>
+<tr><th id="51">51</th><td>  <b>for</b>(<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> = <var>0</var>; <a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a>&lt;<a class="local col4 ref" href="#4size" title='size' data-ref="4size">size</a>; <a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> += <a class="local col8 ref" href="#8width" title='width' data-ref="8width">width</a>) {</td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col2 ref" href="#2stream" title='stream' data-ref="2stream">stream</a>, <q>"%04x: "</q>, (<em>int</em>)<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a>);</td></tr>
+<tr><th id="54">54</th><td></td></tr>
+<tr><th id="55">55</th><td>    <b>if</b>(!<a class="local col5 ref" href="#5nohex" title='nohex' data-ref="5nohex">nohex</a>) {</td></tr>
+<tr><th id="56">56</th><td>      <i>/* hex not disabled, show it */</i></td></tr>
+<tr><th id="57">57</th><td>      <b>for</b>(<a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> = <var>0</var>; <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> &lt; <a class="local col8 ref" href="#8width" title='width' data-ref="8width">width</a>; <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a>++)</td></tr>
+<tr><th id="58">58</th><td>        <b>if</b>(<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> &lt; <a class="local col4 ref" href="#4size" title='size' data-ref="4size">size</a>)</td></tr>
+<tr><th id="59">59</th><td>          <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col2 ref" href="#2stream" title='stream' data-ref="2stream">stream</a>, <q>"%02x "</q>, <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>[<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a>]);</td></tr>
+<tr><th id="60">60</th><td>        <b>else</b></td></tr>
+<tr><th id="61">61</th><td>          <a class="ref" href="../../../include/stdio.h.html#fputs" title='fputs' data-ref="fputs">fputs</a>(<q>"   "</q>, <a class="local col2 ref" href="#2stream" title='stream' data-ref="2stream">stream</a>);</td></tr>
+<tr><th id="62">62</th><td>    }</td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td>    <b>for</b>(<a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> = <var>0</var>; (<a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> &lt; <a class="local col8 ref" href="#8width" title='width' data-ref="8width">width</a>) &amp;&amp; (<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> &lt; <a class="local col4 ref" href="#4size" title='size' data-ref="4size">size</a>); <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a>++) {</td></tr>
+<tr><th id="65">65</th><td>      <i>/* check for 0D0A; if found, skip past and start a new line of output */</i></td></tr>
+<tr><th id="66">66</th><td>      <b>if</b>(<a class="local col5 ref" href="#5nohex" title='nohex' data-ref="5nohex">nohex</a> &amp;&amp; (<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> + <var>1</var> &lt; <a class="local col4 ref" href="#4size" title='size' data-ref="4size">size</a>) &amp;&amp; <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>[<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a>] == <var>0x0D</var> &amp;&amp;</td></tr>
+<tr><th id="67">67</th><td>         <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>[<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> + <var>1</var>] == <var>0x0A</var>) {</td></tr>
+<tr><th id="68">68</th><td>        <a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> += (<a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> + <var>2</var> - <a class="local col8 ref" href="#8width" title='width' data-ref="8width">width</a>);</td></tr>
+<tr><th id="69">69</th><td>        <b>break</b>;</td></tr>
+<tr><th id="70">70</th><td>      }</td></tr>
+<tr><th id="71">71</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col2 ref" href="#2stream" title='stream' data-ref="2stream">stream</a>, <q>"%c"</q>,</td></tr>
+<tr><th id="72">72</th><td>              (<a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>[<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a>] &gt;= <var>0x20</var>) &amp;&amp; (<a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>[<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a>]&lt;<var>0x80</var>)? <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>[<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a>] : <kbd>'.'</kbd>);</td></tr>
+<tr><th id="73">73</th><td>      <i>/* check again for 0D0A, to avoid an extra \n if it's at width */</i></td></tr>
+<tr><th id="74">74</th><td>      <b>if</b>(<a class="local col5 ref" href="#5nohex" title='nohex' data-ref="5nohex">nohex</a> &amp;&amp; (<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> + <var>2</var> &lt; <a class="local col4 ref" href="#4size" title='size' data-ref="4size">size</a>) &amp;&amp; <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>[<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> + <var>1</var>] == <var>0x0D</var> &amp;&amp;</td></tr>
+<tr><th id="75">75</th><td>         <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>[<a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> + <a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> + <var>2</var>] == <var>0x0A</var>) {</td></tr>
+<tr><th id="76">76</th><td>        <a class="local col6 ref" href="#6i" title='i' data-ref="6i">i</a> += (<a class="local col7 ref" href="#7c" title='c' data-ref="7c">c</a> + <var>3</var> - <a class="local col8 ref" href="#8width" title='width' data-ref="8width">width</a>);</td></tr>
+<tr><th id="77">77</th><td>        <b>break</b>;</td></tr>
+<tr><th id="78">78</th><td>      }</td></tr>
+<tr><th id="79">79</th><td>    }</td></tr>
+<tr><th id="80">80</th><td>    <a class="ref" href="../../../include/stdio.h.html#fputc" title='fputc' data-ref="fputc">fputc</a>(<kbd>'\n'</kbd>, <a class="local col2 ref" href="#2stream" title='stream' data-ref="2stream">stream</a>); <i>/* newline */</i></td></tr>
+<tr><th id="81">81</th><td>  }</td></tr>
+<tr><th id="82">82</th><td>  <a class="ref" href="../../../include/stdio.h.html#fflush" title='fflush' data-ref="fflush">fflush</a>(<a class="local col2 ref" href="#2stream" title='stream' data-ref="2stream">stream</a>);</td></tr>
+<tr><th id="83">83</th><td>}</td></tr>
+<tr><th id="84">84</th><td></td></tr>
+<tr><th id="85">85</th><td><em>static</em></td></tr>
+<tr><th id="86">86</th><td><em>int</em> <dfn class="tu decl def" id="my_trace" title='my_trace' data-type='int my_trace(CURL * handle, curl_infotype type, char * data, size_t size, void * userp)' data-ref="my_trace">my_trace</dfn>(<a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col9 decl" id="9handle" title='handle' data-type='CURL *' data-ref="9handle">handle</dfn>, <a class="typedef" href="../../include/curl/curl.h.html#curl_infotype" title='curl_infotype' data-type='enum curl_infotype' data-ref="curl_infotype">curl_infotype</a> <dfn class="local col0 decl" id="10type" title='type' data-type='curl_infotype' data-ref="10type">type</dfn>,</td></tr>
+<tr><th id="87">87</th><td>             <em>char</em> *<dfn class="local col1 decl" id="11data" title='data' data-type='char *' data-ref="11data">data</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="12size" title='size' data-type='size_t' data-ref="12size">size</dfn>,</td></tr>
+<tr><th id="88">88</th><td>             <em>void</em> *<dfn class="local col3 decl" id="13userp" title='userp' data-type='void *' data-ref="13userp">userp</dfn>)</td></tr>
+<tr><th id="89">89</th><td>{</td></tr>
+<tr><th id="90">90</th><td>  <b>struct</b> <a class="type" href="#data" title='data' data-ref="data">data</a> *<dfn class="local col4 decl" id="14config" title='config' data-type='struct data *' data-ref="14config">config</dfn> = (<b>struct</b> <a class="type" href="#data" title='data' data-ref="data">data</a> *)<a class="local col3 ref" href="#13userp" title='userp' data-ref="13userp">userp</a>;</td></tr>
+<tr><th id="91">91</th><td>  <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="15text" title='text' data-type='const char *' data-ref="15text">text</dfn>;</td></tr>
+<tr><th id="92">92</th><td>  (<em>void</em>)<a class="local col9 ref" href="#9handle" title='handle' data-ref="9handle">handle</a>; <i>/* prevent compiler warning */</i></td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td>  <b>switch</b>(<a class="local col0 ref" href="#10type" title='type' data-ref="10type">type</a>) {</td></tr>
+<tr><th id="95">95</th><td>  <b>case</b> <a class="enum" href="../../include/curl/curl.h.html#CURLINFO_TEXT" title='CURLINFO_TEXT' data-ref="CURLINFO_TEXT">CURLINFO_TEXT</a>:</td></tr>
+<tr><th id="96">96</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"== Info: %s"</q>, (<em>char</em> *)<a class="local col1 ref" href="#11data" title='data' data-ref="11data">data</a>);</td></tr>
+<tr><th id="97">97</th><td>    <i>/* FALLTHROUGH */</i></td></tr>
+<tr><th id="98">98</th><td>  <b>default</b>: <i>/* in case a new one is introduced to shock us */</i></td></tr>
+<tr><th id="99">99</th><td>    <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="100">100</th><td></td></tr>
+<tr><th id="101">101</th><td>  <b>case</b> <a class="enum" href="../../include/curl/curl.h.html#CURLINFO_HEADER_OUT" title='CURLINFO_HEADER_OUT' data-ref="CURLINFO_HEADER_OUT">CURLINFO_HEADER_OUT</a>:</td></tr>
+<tr><th id="102">102</th><td>    <a class="local col5 ref" href="#15text" title='text' data-ref="15text">text</a> = <q>"=&gt; Send header"</q>;</td></tr>
+<tr><th id="103">103</th><td>    <b>break</b>;</td></tr>
+<tr><th id="104">104</th><td>  <b>case</b> <a class="enum" href="../../include/curl/curl.h.html#CURLINFO_DATA_OUT" title='CURLINFO_DATA_OUT' data-ref="CURLINFO_DATA_OUT">CURLINFO_DATA_OUT</a>:</td></tr>
+<tr><th id="105">105</th><td>    <a class="local col5 ref" href="#15text" title='text' data-ref="15text">text</a> = <q>"=&gt; Send data"</q>;</td></tr>
+<tr><th id="106">106</th><td>    <b>break</b>;</td></tr>
+<tr><th id="107">107</th><td>  <b>case</b> <a class="enum" href="../../include/curl/curl.h.html#CURLINFO_SSL_DATA_OUT" title='CURLINFO_SSL_DATA_OUT' data-ref="CURLINFO_SSL_DATA_OUT">CURLINFO_SSL_DATA_OUT</a>:</td></tr>
+<tr><th id="108">108</th><td>    <a class="local col5 ref" href="#15text" title='text' data-ref="15text">text</a> = <q>"=&gt; Send SSL data"</q>;</td></tr>
+<tr><th id="109">109</th><td>    <b>break</b>;</td></tr>
+<tr><th id="110">110</th><td>  <b>case</b> <a class="enum" href="../../include/curl/curl.h.html#CURLINFO_HEADER_IN" title='CURLINFO_HEADER_IN' data-ref="CURLINFO_HEADER_IN">CURLINFO_HEADER_IN</a>:</td></tr>
+<tr><th id="111">111</th><td>    <a class="local col5 ref" href="#15text" title='text' data-ref="15text">text</a> = <q>"&lt;= Recv header"</q>;</td></tr>
+<tr><th id="112">112</th><td>    <b>break</b>;</td></tr>
+<tr><th id="113">113</th><td>  <b>case</b> <a class="enum" href="../../include/curl/curl.h.html#CURLINFO_DATA_IN" title='CURLINFO_DATA_IN' data-ref="CURLINFO_DATA_IN">CURLINFO_DATA_IN</a>:</td></tr>
+<tr><th id="114">114</th><td>    <a class="local col5 ref" href="#15text" title='text' data-ref="15text">text</a> = <q>"&lt;= Recv data"</q>;</td></tr>
+<tr><th id="115">115</th><td>    <b>break</b>;</td></tr>
+<tr><th id="116">116</th><td>  <b>case</b> <a class="enum" href="../../include/curl/curl.h.html#CURLINFO_SSL_DATA_IN" title='CURLINFO_SSL_DATA_IN' data-ref="CURLINFO_SSL_DATA_IN">CURLINFO_SSL_DATA_IN</a>:</td></tr>
+<tr><th id="117">117</th><td>    <a class="local col5 ref" href="#15text" title='text' data-ref="15text">text</a> = <q>"&lt;= Recv SSL data"</q>;</td></tr>
+<tr><th id="118">118</th><td>    <b>break</b>;</td></tr>
+<tr><th id="119">119</th><td>  }</td></tr>
+<tr><th id="120">120</th><td></td></tr>
+<tr><th id="121">121</th><td>  <a class="tu ref" href="#dump" title='dump' data-use='c' data-ref="dump">dump</a>(<a class="local col5 ref" href="#15text" title='text' data-ref="15text">text</a>, <a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, (<em>unsigned</em> <em>char</em> *)<a class="local col1 ref" href="#11data" title='data' data-ref="11data">data</a>, <a class="local col2 ref" href="#12size" title='size' data-ref="12size">size</a>, <a class="local col4 ref" href="#14config" title='config' data-ref="14config">config</a>-&gt;<a class="tu ref" href="#data::trace_ascii" title='data::trace_ascii' data-use='r' data-ref="data::trace_ascii">trace_ascii</a>);</td></tr>
+<tr><th id="122">122</th><td>  <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="123">123</th><td>}</td></tr>
+<tr><th id="124">124</th><td></td></tr>
+<tr><th id="125">125</th><td></td></tr>
+<tr><th id="126">126</th><td><em>static</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="tu decl def" id="current_offset" title='current_offset' data-type='size_t' data-ref="current_offset">current_offset</dfn> = <var>0</var>;</td></tr>
+<tr><th id="127">127</th><td><em>static</em> <em>char</em> <dfn class="tu decl def" id="databuf" title='databuf' data-type='char [70000]' data-ref="databuf">databuf</dfn>[<var>70000</var>]; <i  data-doc="databuf">/* MUST be more than 64k OR</i></td></tr>
+<tr><th id="128">128</th><td><i  data-doc="databuf">                               MAX_INITIAL_POST_SIZE */</i></td></tr>
+<tr><th id="129">129</th><td></td></tr>
+<tr><th id="130">130</th><td><em>static</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="tu decl def" id="read_callback" title='read_callback' data-type='size_t read_callback(void * ptr, size_t size, size_t nmemb, void * stream)' data-ref="read_callback">read_callback</dfn>(<em>void</em> *<dfn class="local col6 decl" id="16ptr" title='ptr' data-type='void *' data-ref="16ptr">ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="17size" title='size' data-type='size_t' data-ref="17size">size</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="18nmemb" title='nmemb' data-type='size_t' data-ref="18nmemb">nmemb</dfn>, <em>void</em> *<dfn class="local col9 decl" id="19stream" title='stream' data-type='void *' data-ref="19stream">stream</dfn>)</td></tr>
+<tr><th id="131">131</th><td>{</td></tr>
+<tr><th id="132">132</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>  <dfn class="local col0 decl" id="20amount" title='amount' data-type='size_t' data-ref="20amount">amount</dfn> = <a class="local col8 ref" href="#18nmemb" title='nmemb' data-ref="18nmemb">nmemb</a> * <a class="local col7 ref" href="#17size" title='size' data-ref="17size">size</a>; <i>/* Total bytes curl wants */</i></td></tr>
+<tr><th id="133">133</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>  <dfn class="local col1 decl" id="21available" title='available' data-type='size_t' data-ref="21available">available</dfn> = <b>sizeof</b>(<a class="tu ref" href="#databuf" title='databuf' data-use='r' data-ref="databuf">databuf</a>) - <a class="tu ref" href="#current_offset" title='current_offset' data-use='r' data-ref="current_offset">current_offset</a>; <i>/* What we have to</i></td></tr>
+<tr><th id="134">134</th><td><i>                                                           give */</i></td></tr>
+<tr><th id="135">135</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>  <dfn class="local col2 decl" id="22given" title='given' data-type='size_t' data-ref="22given">given</dfn> = <a class="local col0 ref" href="#20amount" title='amount' data-ref="20amount">amount</a> &lt; <a class="local col1 ref" href="#21available" title='available' data-ref="21available">available</a> ? <a class="local col0 ref" href="#20amount" title='amount' data-ref="20amount">amount</a> : <a class="local col1 ref" href="#21available" title='available' data-ref="21available">available</a>; <i>/* What is given */</i></td></tr>
+<tr><th id="136">136</th><td>  (<em>void</em>)<a class="local col9 ref" href="#19stream" title='stream' data-ref="19stream">stream</a>;</td></tr>
+<tr><th id="137">137</th><td>  <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col6 ref" href="#16ptr" title='ptr' data-ref="16ptr">ptr</a>, <a class="tu ref" href="#databuf" title='databuf' data-use='r' data-ref="databuf">databuf</a> + <a class="tu ref" href="#current_offset" title='current_offset' data-use='r' data-ref="current_offset">current_offset</a>, <a class="local col2 ref" href="#22given" title='given' data-ref="22given">given</a>);</td></tr>
+<tr><th id="138">138</th><td>  <a class="tu ref" href="#current_offset" title='current_offset' data-use='w' data-ref="current_offset">current_offset</a> += <a class="local col2 ref" href="#22given" title='given' data-ref="22given">given</a>;</td></tr>
+<tr><th id="139">139</th><td>  <b>return</b> <a class="local col2 ref" href="#22given" title='given' data-ref="22given">given</a>;</td></tr>
+<tr><th id="140">140</th><td>}</td></tr>
+<tr><th id="141">141</th><td></td></tr>
+<tr><th id="142">142</th><td></td></tr>
+<tr><th id="143">143</th><td><em>static</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="tu decl def" id="write_callback" title='write_callback' data-type='size_t write_callback(void * ptr, size_t size, size_t nmemb, void * stream)' data-ref="write_callback">write_callback</dfn>(<em>void</em> *<dfn class="local col3 decl" id="23ptr" title='ptr' data-type='void *' data-ref="23ptr">ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="24size" title='size' data-type='size_t' data-ref="24size">size</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="25nmemb" title='nmemb' data-type='size_t' data-ref="25nmemb">nmemb</dfn>,</td></tr>
+<tr><th id="144">144</th><td>                             <em>void</em> *<dfn class="local col6 decl" id="26stream" title='stream' data-type='void *' data-ref="26stream">stream</dfn>)</td></tr>
+<tr><th id="145">145</th><td>{</td></tr>
+<tr><th id="146">146</th><td>  <em>int</em> <dfn class="local col7 decl" id="27amount" title='amount' data-type='int' data-ref="27amount">amount</dfn> = <a class="ref" href="../../lib/warnless.h.html#curlx_uztosi" title='curlx_uztosi' data-ref="curlx_uztosi">curlx_uztosi</a>(<a class="local col4 ref" href="#24size" title='size' data-ref="24size">size</a> * <a class="local col5 ref" href="#25nmemb" title='nmemb' data-ref="25nmemb">nmemb</a>);</td></tr>
+<tr><th id="147">147</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"%.*s"</q>, <a class="local col7 ref" href="#27amount" title='amount' data-ref="27amount">amount</a>, (<em>char</em> *)<a class="local col3 ref" href="#23ptr" title='ptr' data-ref="23ptr">ptr</a>);</td></tr>
+<tr><th id="148">148</th><td>  (<em>void</em>)<a class="local col6 ref" href="#26stream" title='stream' data-ref="26stream">stream</a>;</td></tr>
+<tr><th id="149">149</th><td>  <b>return</b> <a class="local col4 ref" href="#24size" title='size' data-ref="24size">size</a> * <a class="local col5 ref" href="#25nmemb" title='nmemb' data-ref="25nmemb">nmemb</a>;</td></tr>
+<tr><th id="150">150</th><td>}</td></tr>
+<tr><th id="151">151</th><td></td></tr>
+<tr><th id="152">152</th><td></td></tr>
+<tr><th id="153">153</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#curlioerr" title='curlioerr' data-type='enum curlioerr' data-ref="curlioerr">curlioerr</a> <dfn class="tu decl def" id="ioctl_callback" title='ioctl_callback' data-type='curlioerr ioctl_callback(CURL * handle, int cmd, void * clientp)' data-ref="ioctl_callback">ioctl_callback</dfn>(<a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col8 decl" id="28handle" title='handle' data-type='CURL *' data-ref="28handle">handle</dfn>, <em>int</em> <dfn class="local col9 decl" id="29cmd" title='cmd' data-type='int' data-ref="29cmd">cmd</dfn>, <em>void</em> *<dfn class="local col0 decl" id="30clientp" title='clientp' data-type='void *' data-ref="30clientp">clientp</dfn>)</td></tr>
+<tr><th id="154">154</th><td>{</td></tr>
+<tr><th id="155">155</th><td>  (<em>void</em>)<a class="local col0 ref" href="#30clientp" title='clientp' data-ref="30clientp">clientp</a>;</td></tr>
+<tr><th id="156">156</th><td>  <b>if</b>(<a class="local col9 ref" href="#29cmd" title='cmd' data-ref="29cmd">cmd</a> == <a class="enum" href="../../include/curl/curl.h.html#CURLIOCMD_RESTARTREAD" title='CURLIOCMD_RESTARTREAD' data-ref="CURLIOCMD_RESTARTREAD">CURLIOCMD_RESTARTREAD</a>) {</td></tr>
+<tr><th id="157">157</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"APPLICATION: received a CURLIOCMD_RESTARTREAD request\n"</q>);</td></tr>
+<tr><th id="158">158</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"APPLICATION: ** REWINDING! **\n"</q>);</td></tr>
+<tr><th id="159">159</th><td>    <a class="tu ref" href="#current_offset" title='current_offset' data-use='w' data-ref="current_offset">current_offset</a> = <var>0</var>;</td></tr>
+<tr><th id="160">160</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLIOE_OK" title='CURLIOE_OK' data-ref="CURLIOE_OK">CURLIOE_OK</a>;</td></tr>
+<tr><th id="161">161</th><td>  }</td></tr>
+<tr><th id="162">162</th><td>  (<em>void</em>)<a class="local col8 ref" href="#28handle" title='handle' data-ref="28handle">handle</a>;</td></tr>
+<tr><th id="163">163</th><td>  <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLIOE_UNKNOWNCMD" title='CURLIOE_UNKNOWNCMD' data-ref="CURLIOE_UNKNOWNCMD">CURLIOE_UNKNOWNCMD</a>;</td></tr>
+<tr><th id="164">164</th><td>}</td></tr>
+<tr><th id="165">165</th><td></td></tr>
+<tr><th id="166">166</th><td></td></tr>
+<tr><th id="167">167</th><td></td></tr>
+<tr><th id="168">168</th><td><em>int</em> <dfn class="decl def" id="test" title='test' data-ref="test">test</dfn>(<em>char</em> *<dfn class="local col1 decl" id="31URL" title='URL' data-type='char *' data-ref="31URL">URL</dfn>)</td></tr>
+<tr><th id="169">169</th><td>{</td></tr>
+<tr><th id="170">170</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col2 decl" id="32curl" title='curl' data-type='CURL *' data-ref="32curl">curl</dfn>;</td></tr>
+<tr><th id="171">171</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col3 decl" id="33res" title='res' data-type='CURLcode' data-ref="33res">res</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="172">172</th><td>  <b>struct</b> <a class="type" href="#data" title='data' data-ref="data">data</a> <dfn class="local col4 decl" id="34config" title='config' data-type='struct data' data-ref="34config">config</dfn>;</td></tr>
+<tr><th id="173">173</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="35i" title='i' data-type='size_t' data-ref="35i">i</dfn>;</td></tr>
+<tr><th id="174">174</th><td>  <em>static</em> <em>const</em> <em>char</em> <dfn class="local col6 decl" id="36fill" title='fill' data-type='const char [10]' data-ref="36fill">fill</dfn>[] = <q>"test data"</q>;</td></tr>
+<tr><th id="175">175</th><td></td></tr>
+<tr><th id="176">176</th><td>  <a class="local col4 ref" href="#34config" title='config' data-ref="34config">config</a>.<a class="tu ref" href="#data::trace_ascii" title='data::trace_ascii' data-use='w' data-ref="data::trace_ascii">trace_ascii</a> = <var>1</var>; <i>/* enable ascii tracing */</i></td></tr>
+<tr><th id="177">177</th><td></td></tr>
+<tr><th id="178">178</th><td>  <a class="macro" href="test.h.html#431" title="do { do { CURLcode ec; if((ec = curl_global_init((((((1&lt;&lt;0)|(1&lt;&lt;1))))))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_global_init() failed, &quot; &quot;with code %d (%s)\n&quot;, (((&quot;/home/jon/workspace/curl/tests/libtest/lib552.c&quot;))), (((178))), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0); if(res) return res; } while(0)" data-ref="_M/global_init">global_init</a>(<a class="macro" href="../../include/curl/curl.h.html#2519" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_ALL">CURL_GLOBAL_ALL</a>);</td></tr>
+<tr><th id="179">179</th><td>  <a class="macro" href="test.h.html#145" title="do { do { if(((((curl))) = curl_easy_init()) == ((void*)0)) { curl_mfprintf(stderr, &quot;%s:%d curl_easy_init() failed\n&quot;, (((&quot;/home/jon/workspace/curl/tests/libtest/lib552.c&quot;))), (((179)))); res = 124; } } while(0); if(res) goto test_cleanup; } while(0)" data-ref="_M/easy_init">easy_init</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>);</td></tr>
+<tr><th id="180">180</th><td></td></tr>
+<tr><th id="181">181</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_DEBUGFUNCTION),(my_trace))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1214" title='CURLOPT_DEBUGFUNCTION' data-ref="CURLOPT_DEBUGFUNCTION">CURLOPT_DEBUGFUNCTION</a>, <a class="tu ref" href="#my_trace" title='my_trace' data-ref="my_trace">my_trace</a>);</td></tr>
+<tr><th id="182">182</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_DEBUGDATA),(&amp;config))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1217" title='CURLOPT_DEBUGDATA' data-ref="CURLOPT_DEBUGDATA">CURLOPT_DEBUGDATA</a>, &amp;<a class="local col4 ref" href="#34config" title='config' data-ref="34config">config</a>);</td></tr>
+<tr><th id="183">183</th><td>  <i>/* the DEBUGFUNCTION has no effect until we enable VERBOSE */</i></td></tr>
+<tr><th id="184">184</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_VERBOSE),(1L))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1055" title='CURLOPT_VERBOSE' data-ref="CURLOPT_VERBOSE">CURLOPT_VERBOSE</a>, <var>1L</var>);</td></tr>
+<tr><th id="185">185</th><td></td></tr>
+<tr><th id="186">186</th><td>  <i>/* setup repeated data string */</i></td></tr>
+<tr><th id="187">187</th><td>  <b>for</b>(<a class="local col5 ref" href="#35i" title='i' data-ref="35i">i</a> = <var>0</var>; <a class="local col5 ref" href="#35i" title='i' data-ref="35i">i</a> &lt; <b>sizeof</b>(<a class="tu ref" href="#databuf" title='databuf' data-use='r' data-ref="databuf">databuf</a>); ++<a class="local col5 ref" href="#35i" title='i' data-ref="35i">i</a>)</td></tr>
+<tr><th id="188">188</th><td>      <a class="tu ref" href="#databuf" title='databuf' data-use='w' data-ref="databuf">databuf</a>[<a class="local col5 ref" href="#35i" title='i' data-ref="35i">i</a>] = <a class="local col6 ref" href="#36fill" title='fill' data-ref="36fill">fill</a>[<a class="local col5 ref" href="#35i" title='i' data-ref="35i">i</a> % <b>sizeof</b> <a class="local col6 ref" href="#36fill" title='fill' data-ref="36fill">fill</a>];</td></tr>
+<tr><th id="189">189</th><td></td></tr>
+<tr><th id="190">190</th><td>  <i>/* Post */</i></td></tr>
+<tr><th id="191">191</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_POST),(1L))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1061" title='CURLOPT_POST' data-ref="CURLOPT_POST">CURLOPT_POST</a>, <var>1L</var>);</td></tr>
+<tr><th id="192">192</th><td></td></tr>
+<tr><th id="193">193</th><td><u>#<span data-ppcond="193">ifdef</span> <span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span></u></td></tr>
+<tr><th id="194">194</th><td>  <i>/* Convert the POST data to ASCII */</i></td></tr>
+<tr><th id="195">195</th><td>  test_setopt(curl, CURLOPT_TRANSFERTEXT, <var>1L</var>);</td></tr>
+<tr><th id="196">196</th><td><u>#<span data-ppcond="193">endif</span></u></td></tr>
+<tr><th id="197">197</th><td></td></tr>
+<tr><th id="198">198</th><td>  <i>/* Setup read callback */</i></td></tr>
+<tr><th id="199">199</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_POSTFIELDSIZE),((long) sizeof(databuf)))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1096" title='CURLOPT_POSTFIELDSIZE' data-ref="CURLOPT_POSTFIELDSIZE">CURLOPT_POSTFIELDSIZE</a>, (<em>long</em>) <b>sizeof</b>(<a class="tu ref" href="#databuf" title='databuf' data-ref="databuf">databuf</a>));</td></tr>
+<tr><th id="200">200</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_READFUNCTION),(read_callback))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#947" title='CURLOPT_READFUNCTION' data-ref="CURLOPT_READFUNCTION">CURLOPT_READFUNCTION</a>, <a class="tu ref" href="#read_callback" title='read_callback' data-ref="read_callback">read_callback</a>);</td></tr>
+<tr><th id="201">201</th><td></td></tr>
+<tr><th id="202">202</th><td>  <i>/* Write callback */</i></td></tr>
+<tr><th id="203">203</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_WRITEFUNCTION),(write_callback))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#943" title='CURLOPT_WRITEFUNCTION' data-ref="CURLOPT_WRITEFUNCTION">CURLOPT_WRITEFUNCTION</a>, <a class="tu ref" href="#write_callback" title='write_callback' data-ref="write_callback">write_callback</a>);</td></tr>
+<tr><th id="204">204</th><td></td></tr>
+<tr><th id="205">205</th><td>  <i>/* Ioctl function */</i></td></tr>
+<tr><th id="206">206</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_IOCTLFUNCTION),(ioctl_callback))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1361" title='CURLOPT_IOCTLFUNCTION' data-ref="CURLOPT_IOCTLFUNCTION">CURLOPT_IOCTLFUNCTION</a>, <a class="tu ref" href="#ioctl_callback" title='ioctl_callback' data-ref="ioctl_callback">ioctl_callback</a>);</td></tr>
+<tr><th id="207">207</th><td></td></tr>
+<tr><th id="208">208</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_PROXY),(libtest_arg2))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#921" title='CURLOPT_PROXY' data-ref="CURLOPT_PROXY">CURLOPT_PROXY</a>, <a class="ref" href="test.h.html#libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</a>);</td></tr>
+<tr><th id="209">209</th><td></td></tr>
+<tr><th id="210">210</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_URL),(URL))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#915" title='CURLOPT_URL' data-ref="CURLOPT_URL">CURLOPT_URL</a>, <a class="local col1 ref" href="#31URL" title='URL' data-ref="31URL">URL</a>);</td></tr>
+<tr><th id="211">211</th><td></td></tr>
+<tr><th id="212">212</th><td>  <i>/* Accept any auth. But for this bug configure proxy with DIGEST, basic</i></td></tr>
+<tr><th id="213">213</th><td><i>     might work too, not NTLM */</i></td></tr>
+<tr><th id="214">214</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_PROXYAUTH),((long)(~(((unsigned long)1)&lt;&lt;4))))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1286" title='CURLOPT_PROXYAUTH' data-ref="CURLOPT_PROXYAUTH">CURLOPT_PROXYAUTH</a>, (<em>long</em>)<a class="macro" href="../../include/curl/curl.h.html#708" title="(~(((unsigned long)1)&lt;&lt;4))" data-ref="_M/CURLAUTH_ANY">CURLAUTH_ANY</a>);</td></tr>
+<tr><th id="215">215</th><td></td></tr>
+<tr><th id="216">216</th><td>  <a class="local col3 ref" href="#33res" title='res' data-ref="33res">res</a> = <a class="ref" href="../../include/curl/easy.h.html#curl_easy_perform" title='curl_easy_perform' data-ref="curl_easy_perform">curl_easy_perform</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>);</td></tr>
+<tr><th id="217">217</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"curl_easy_perform = %d\n"</q>, (<em>int</em>)<a class="local col3 ref" href="#33res" title='res' data-ref="33res">res</a>);</td></tr>
+<tr><th id="218">218</th><td></td></tr>
+<tr><th id="219">219</th><td><dfn class="lbl" id="37test_cleanup" data-ref="37test_cleanup">test_cleanup</dfn>:</td></tr>
+<tr><th id="220">220</th><td></td></tr>
+<tr><th id="221">221</th><td>  <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="local col2 ref" href="#32curl" title='curl' data-ref="32curl">curl</a>);</td></tr>
+<tr><th id="222">222</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="223">223</th><td>  <b>return</b> (<em>int</em>)<a class="local col3 ref" href="#33res" title='res' data-ref="33res">res</a>;</td></tr>
+<tr><th id="224">224</th><td>}</td></tr>
+<tr><th id="225">225</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,26 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='146' type='CURLcode Curl_auth_create_oauth_bearer_message(struct Curl_easy * data, const char * user, const char * host, const long port, const char * bearer, char ** outptr, size_t * outlen)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='347' u='c' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='359' u='c' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='555' u='c' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='565' u='c' c='Curl_sasl_continue'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='145'>/* This is used to generate a base64 encoded OAuth 2.0 message */</doc>
+<def f='codebrowser/lib/vauth/oauth2.c' l='58' ll='86' type='CURLcode Curl_auth_create_oauth_bearer_message(struct Curl_easy * data, const char * user, const char * host, const long port, const char * bearer, char ** outptr, size_t * outlen)'/>
+<doc f='codebrowser/lib/vauth/oauth2.c' l='39'>/*
+ * Curl_auth_create_oauth_bearer_message()
+ *
+ * This is used to generate an already encoded OAuth 2.0 message ready for
+ * sending to the recipient.
+ *
+ * Parameters:
+ *
+ * data[in]         - The session handle.
+ * user[in]         - The user name.
+ * host[in]         - The host name(for OAUTHBEARER).
+ * port[in]         - The port(for OAUTHBEARER when not Port 80).
+ * bearer[in]       - The bearer token.
+ * outptr[in / out] - The address where a pointer to newly allocated memory
+ *                    holding the result will be stored upon completion.
+ * outlen[out]      - The length of the output message.
+ *
+ * Returns CURLE_OK on success.
+ */</doc>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='822' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='822'>/* (FTP/SFTP) if CWD fails, try MKD and then CWD
+                               again if MKD succeeded, for SFTP this does
+                               similar magic */</doc>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/pop3.h' l='63' type='_Bool'/>
+<offset>928</offset>
+<use f='codebrowser/lib/pop3.c' l='357' u='a' c='pop3_perform_upgrade_tls'/>
+<use f='codebrowser/lib/pop3.c' l='363' u='r' c='pop3_perform_upgrade_tls'/>
+<use f='codebrowser/lib/pop3.c' l='1007' u='r' c='pop3_multi_statemach'/>
+<use f='codebrowser/lib/pop3.c' l='1008' u='a' c='pop3_multi_statemach'/>
+<use f='codebrowser/lib/pop3.c' l='1009' u='r' c='pop3_multi_statemach'/>

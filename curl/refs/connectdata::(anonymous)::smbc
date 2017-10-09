@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='1006' type='struct smb_conn'/>
+<offset>0</offset>
+<use f='codebrowser/lib/smb.c' l='192' u='a' c='conn_state'/>
+<use f='codebrowser/lib/smb.c' l='253' u='a' c='smb_connect'/>
+<use f='codebrowser/lib/smb.c' l='296' u='a' c='smb_recv_message'/>
+<use f='codebrowser/lib/smb.c' l='343' u='a' c='smb_pop_message'/>
+<use f='codebrowser/lib/smb.c' l='351' u='a' c='smb_format_message'/>
+<use f='codebrowser/lib/smb.c' l='372' u='a' c='smb_send'/>
+<use f='codebrowser/lib/smb.c' l='393' u='a' c='smb_flush'/>
+<use f='codebrowser/lib/smb.c' l='435' u='a' c='smb_send_setup'/>
+<use f='codebrowser/lib/smb.c' l='607' u='a' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/smb.c' l='642' u='a' c='smb_connection_state'/>
+<use f='codebrowser/lib/smb.c' l='739' u='a' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='925' u='a' c='smb_disconnect'/>
+<use f='codebrowser/lib/smb.c' l='944' u='a' c='smb_getsock'/>

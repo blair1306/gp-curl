@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/select.h' l='79'/>
+<use f='codebrowser/lib/connect.c' l='1408' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='690' u='c'/>
+<use f='codebrowser/lib/rtsp.c' l='155' u='c'/>
+<use f='codebrowser/lib/socks.c' l='69' u='c'/>
+<use f='codebrowser/lib/socks.c' l='468' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='1248' u='c'/>
+<use f='codebrowser/lib/url.c' l='3167' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1202' u='c'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='293'/>
+<use f='codebrowser/lib/cookie.c' l='413' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='452' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='454' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='463' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='470' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='601' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='1029' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='376' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='268' u='c'/>

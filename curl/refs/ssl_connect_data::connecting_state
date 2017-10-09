@@ -1,0 +1,25 @@
+<dec f='codebrowser/lib/urldata.h' l='201' type='ssl_connect_state'/>
+<offset>64</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2491' u='w' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2523' u='w' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2527' u='w' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2540' u='w' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2594' u='w' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3180' u='w' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3245' u='w' c='ossl_connect_step3'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3271' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3286' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3287' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3288' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3300' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3301' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3304' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3306' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3335' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3336' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3337' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3342' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3348' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3358' u='w' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='523' u='r' c='Curl_ssl_getsock'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='528' u='r' c='Curl_ssl_getsock'/>

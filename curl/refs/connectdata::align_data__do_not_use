@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1041' type='long long *'/>
+<offset>14976</offset>
+<doc f='codebrowser/lib/urldata.h' l='1035'>/*
+   * To avoid multiple malloc() calls, the ssl_connect_data structures
+   * associated with a connectdata struct are allocated in the same block
+   * as the latter. This field forces alignment to an 8-byte boundary so
+   * that this all works.
+   */</doc>
+<use f='codebrowser/lib/url.c' l='4292' u='a' c='allocate_conn'/>

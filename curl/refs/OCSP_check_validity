@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='455' type='int OCSP_check_validity(ASN1_GENERALIZEDTIME * thisupd, ASN1_GENERALIZEDTIME * nextupd, long sec, long maxsec)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1626' u='c' c='verifystatus'/>

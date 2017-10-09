@@ -1,0 +1,4 @@
+<dec f='include/openssl/ssl.h' l='603'/>
+<doc f='include/openssl/ssl.h' l='602'>/* added in 0.9.6e */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='2192' u='a'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2196' u='c'/>

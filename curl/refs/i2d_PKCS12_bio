@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='269' type='int i2d_PKCS12_bio(BIO * bp, PKCS12 * p12)'/>

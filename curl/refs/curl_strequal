@@ -1,0 +1,31 @@
+<dec f='codebrowser/include/curl/curl.h' l='1970' type='int curl_strequal(const char * s1, const char * s2)'/>
+<use f='codebrowser/lib/mime.c' l='1673' u='c' c='Curl_mime_prepare_headers'/>
+<def f='codebrowser/lib/strcase.c' l='170' ll='173' type='int curl_strequal(const char * first, const char * second)'/>
+<doc f='codebrowser/lib/strcase.c' l='168'>/* --- public functions --- */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='466' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1420' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1454' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1508' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_helpers.c' l='111' u='c' c='customrequest_helper'/>
+<use f='codebrowser/src/tool_helpers.c' l='115' u='c' c='customrequest_helper'/>
+<use f='codebrowser/src/tool_libinfo.c' l='92' u='c' c='get_libcurl_info'/>
+<use f='codebrowser/src/tool_operate.c' l='2007' u='c' c='operate'/>
+<use f='codebrowser/src/tool_operate.c' l='2008' u='c' c='operate'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='340' u='c' c='proto2num'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='383' u='c' c='check_protocol'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='499' u='c' c='ftpfilemethod'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='501' u='c' c='ftpfilemethod'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='503' u='c' c='ftpfilemethod'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='514' u='c' c='ftpcccmethod'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='516' u='c' c='ftpcccmethod'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='527' u='c' c='delegation'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='529' u='c' c='delegation'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='531' u='c' c='delegation'/>
+<use f='codebrowser/src/tool_writeout.c' l='138' u='c' c='ourWriteOut'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='74' u='c' c='parse_auth_name'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='76' u='c' c='parse_auth_name'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='78' u='c' c='parse_auth_name'/>
+<use f='codebrowser/tests/unit/unit1301.c' l='33' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1301.c' l='36' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1301.c' l='39' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1301.c' l='42' u='c' c='test'/>

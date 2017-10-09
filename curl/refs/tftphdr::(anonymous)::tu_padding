@@ -1,0 +1,3 @@
+<dec f='include/arpa/tftp.h' l='52' type='char [3]'/>
+<offset>0</offset>
+<doc f='include/arpa/tftp.h' l='52'>/* sizeof() compat */</doc>

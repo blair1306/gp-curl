@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='168' type='_Bool Curl_ssl_data_pending(const struct connectdata * conn, int connindex)'/>
+<use f='codebrowser/lib/connect.c' l='1404' u='c' c='Curl_conn_data_pending'/>
+<use f='codebrowser/lib/pingpong.c' l='104' u='c' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/pingpong.c' l='109' u='c' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/transfer.c' l='356' u='c' c='data_pending'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='636' ll='640' macro='1' type='_Bool Curl_ssl_data_pending(const struct connectdata * conn, int connindex)'/>

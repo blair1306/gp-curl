@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/conncache.h' l='49' type='struct connectbundle * Curl_conncache_find_bundle(struct connectdata * conn, struct conncache * connc)'/>
+<doc f='codebrowser/lib/conncache.h' l='48'>/* return the correct bundle, to a host or a proxy */</doc>
+<def f='codebrowser/lib/conncache.c' l='145' ll='156' type='struct connectbundle * Curl_conncache_find_bundle(struct connectdata * conn, struct conncache * connc)'/>
+<use f='codebrowser/lib/conncache.c' l='199' u='c' c='Curl_conncache_add_conn'/>
+<doc f='codebrowser/lib/conncache.c' l='143'>/* Look up the bundle with all the connections to the same host this
+   connectdata struct is setup to use. */</doc>
+<use f='codebrowser/lib/url.c' l='3520' u='c' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='6812' u='c' c='create_conn'/>

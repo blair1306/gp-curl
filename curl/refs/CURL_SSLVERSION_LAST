@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='1922' type='8'/>
+<use f='codebrowser/include/curl/curl.h' l='1934' u='r'/>
+<doc f='codebrowser/include/curl/curl.h' l='1922'>/* never use, keep last */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='186' u='r' c='ssl_prefs_check'/>

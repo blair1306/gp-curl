@@ -1,0 +1,8 @@
+<def f='codebrowser/lib/file.h' l='29' ll='34'/>
+<size>24</size>
+<doc f='codebrowser/lib/file.h' l='26'>/****************************************************************************
+ * FILE unique setup
+ ***************************************************************************/</doc>
+<mbr r='FILEPROTO::path' o='0' t='char *'/>
+<mbr r='FILEPROTO::freepath' o='64' t='char *'/>
+<mbr r='FILEPROTO::fd' o='128' t='int'/>

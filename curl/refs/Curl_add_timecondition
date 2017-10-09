@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/http.h' l='70' type='CURLcode Curl_add_timecondition(struct Curl_easy * data, Curl_send_buffer * buf)'/>
+<def f='codebrowser/lib/http.c' l='1684' ll='1741' type='CURLcode Curl_add_timecondition(struct Curl_easy * data, Curl_send_buffer * req_buffer)'/>
+<use f='codebrowser/lib/http.c' l='2424' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/rtsp.c' l='517' u='c' c='rtsp_do'/>

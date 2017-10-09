@@ -1,0 +1,5 @@
+<def f='codebrowser/lib/multi.c' l='172' ll='177'/>
+<size>24</size>
+<doc f='codebrowser/lib/multi.c' l='168'>/*
+ * We add one of these structs to the sockhash for a particular socket
+ */</doc>

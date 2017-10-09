@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/multihandle.h' l='102' type='struct Curl_tree *'/>
+<offset>1408</offset>
+<doc f='codebrowser/lib/multihandle.h' l='100'>/* timetree points to the splay-tree of time nodes to figure out expire
+     times of all currently set timers */</doc>
+<use f='codebrowser/lib/multi.c' l='2181' u='w' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='2181' u='r' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='2541' u='w' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2541' u='r' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2667' u='w' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2667' u='r' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2784' u='r' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2789' u='w' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2789' u='r' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2791' u='r' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2791' u='r' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2791' u='r' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2791' u='r' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2793' u='r' c='multi_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2852' u='r' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2852' u='r' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2852' u='r' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2852' u='r' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2855' u='r' c='update_timer'/>
+<use f='codebrowser/lib/multi.c' l='2978' u='r' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='2980' u='a' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='2989' u='w' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='2989' u='r' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='3026' u='r' c='Curl_expire_clear'/>
+<use f='codebrowser/lib/multi.c' l='3028' u='a' c='Curl_expire_clear'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/url.h' l='32' type='CURLcode Curl_init_userdefined(struct UserDefined * set)'/>
+<use f='codebrowser/lib/easy.c' l='981' u='c' c='curl_easy_reset'/>
+<def f='codebrowser/lib/url.c' l='507' ll='634' type='CURLcode Curl_init_userdefined(struct UserDefined * set)'/>
+<use f='codebrowser/lib/url.c' l='682' u='c' c='Curl_open'/>
+<doc f='codebrowser/lib/url.c' l='503'>/*
+ * Initialize the UserDefined fields within a Curl_easy.
+ * This may be safely called on a new or existing Curl_easy.
+ */</doc>

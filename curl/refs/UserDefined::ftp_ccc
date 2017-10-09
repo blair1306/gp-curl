@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1646' type='curl_ftpccc'/>
+<offset>11776</offset>
+<doc f='codebrowser/lib/urldata.h' l='1646'>/* FTP CCC options */</doc>
+<use f='codebrowser/lib/ftp.c' l='2746' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/url.c' l='1644' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1196' u='r' c='Curl_ossl_shutdown'/>

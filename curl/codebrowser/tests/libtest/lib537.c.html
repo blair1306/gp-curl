@@ -1,0 +1,543 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>lib537.c source code [codebrowser/tests/libtest/lib537.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/lib537.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='lib537.c.html'>lib537.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="test.h.html">"test.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#<span data-ppcond="24">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#663" data-ref="_M/HAVE_SYS_RESOURCE_H">HAVE_SYS_RESOURCE_H</a></u></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../../../include/x86_64-linux-gnu/sys/resource.h.html">&lt;sys/resource.h&gt;</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#<span data-ppcond="24">endif</span></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#161" data-ref="_M/HAVE_FCNTL_H">HAVE_FCNTL_H</a></u></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="../../../include/fcntl.h.html">&lt;fcntl.h&gt;</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="27">endif</span></u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#402" data-ref="_M/HAVE_LIMITS_H">HAVE_LIMITS_H</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include &lt;limits.h&gt;</u></td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="30">endif</span></u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="../../lib/warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="../../lib/memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="37">if</span> !defined(<a class="macro" href="../../lib/curl_config.h.html#480" data-ref="_M/HAVE_POLL_FINE">HAVE_POLL_FINE</a>)    &amp;&amp; \</u></td></tr>
+<tr><th id="38">38</th><td><u>    !defined(<span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span>)       &amp;&amp; \</u></td></tr>
+<tr><th id="39">39</th><td><u>    !defined(<span class="macro" data-ref="_M/TPF">TPF</span>)               &amp;&amp; \</u></td></tr>
+<tr><th id="40">40</th><td><u>    !defined(<a class="macro" href="../../../include/x86_64-linux-gnu/sys/select.h.html#78" data-ref="_M/FD_SETSIZE">FD_SETSIZE</a>)</u></td></tr>
+<tr><th id="41">41</th><td><u>#error "this test requires FD_SETSIZE"</u></td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="37">endif</span></u></td></tr>
+<tr><th id="43">43</th><td></td></tr>
+<tr><th id="44">44</th><td><u>#define <dfn class="macro" id="_M/SAFETY_MARGIN" data-ref="_M/SAFETY_MARGIN">SAFETY_MARGIN</dfn> (11)</u></td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td><u>#<span data-ppcond="46">if</span> defined(<span class="macro" data-ref="_M/WIN32">WIN32</span>) || defined(<span class="macro" data-ref="_M/_WIN32">_WIN32</span>) || defined(<span class="macro" data-ref="_M/MSDOS">MSDOS</span>)</u></td></tr>
+<tr><th id="47">47</th><td><u>#define DEV_NULL "NUL"</u></td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="46">else</span></u></td></tr>
+<tr><th id="49">49</th><td><u>#define <dfn class="macro" id="_M/DEV_NULL" data-ref="_M/DEV_NULL">DEV_NULL</dfn> "/dev/null"</u></td></tr>
+<tr><th id="50">50</th><td><u>#<span data-ppcond="46">endif</span></u></td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td><u>#<span data-ppcond="52">if</span> defined(<a class="macro" href="../../lib/curl_config.h.html#239" data-ref="_M/HAVE_GETRLIMIT">HAVE_GETRLIMIT</a>) &amp;&amp; defined(<a class="macro" href="../../lib/curl_config.h.html#537" data-ref="_M/HAVE_SETRLIMIT">HAVE_SETRLIMIT</a>)</u></td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td><em>static</em> <em>int</em> *<dfn class="tu decl def" id="fd" title='fd' data-type='int *' data-ref="fd">fd</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="55">55</th><td><em>static</em> <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit" title='rlimit' data-ref="rlimit">rlimit</a> <dfn class="tu decl def" id="num_open" title='num_open' data-type='struct rlimit' data-ref="num_open">num_open</dfn>;</td></tr>
+<tr><th id="56">56</th><td><em>static</em> <em>char</em> <dfn class="tu decl def" id="msgbuff" title='msgbuff' data-type='char [256]' data-ref="msgbuff">msgbuff</dfn>[<var>256</var>];</td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="store_errmsg" title='store_errmsg' data-type='void store_errmsg(const char * msg, int err)' data-ref="store_errmsg">store_errmsg</dfn>(<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="1msg" title='msg' data-type='const char *' data-ref="1msg">msg</dfn>, <em>int</em> <dfn class="local col2 decl" id="2err" title='err' data-type='int' data-ref="2err">err</dfn>)</td></tr>
+<tr><th id="59">59</th><td>{</td></tr>
+<tr><th id="60">60</th><td>  <b>if</b>(!<a class="local col2 ref" href="#2err" title='err' data-ref="2err">err</a>)</td></tr>
+<tr><th id="61">61</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="tu ref" href="#msgbuff" title='msgbuff' data-use='r' data-ref="msgbuff">msgbuff</a>, <b>sizeof</b>(<a class="tu ref" href="#msgbuff" title='msgbuff' data-use='r' data-ref="msgbuff">msgbuff</a>), <q>"%s"</q>, <a class="local col1 ref" href="#1msg" title='msg' data-ref="1msg">msg</a>);</td></tr>
+<tr><th id="62">62</th><td>  <b>else</b></td></tr>
+<tr><th id="63">63</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="tu ref" href="#msgbuff" title='msgbuff' data-use='r' data-ref="msgbuff">msgbuff</a>, <b>sizeof</b>(<a class="tu ref" href="#msgbuff" title='msgbuff' data-use='r' data-ref="msgbuff">msgbuff</a>), <q>"%s, errno %d, %s"</q>, <a class="local col1 ref" href="#1msg" title='msg' data-ref="1msg">msg</a>, <a class="local col2 ref" href="#2err" title='err' data-ref="2err">err</a>,</td></tr>
+<tr><th id="64">64</th><td>             <a class="ref" href="../../../include/string.h.html#strerror" title='strerror' data-ref="strerror">strerror</a>(<a class="local col2 ref" href="#2err" title='err' data-ref="2err">err</a>));</td></tr>
+<tr><th id="65">65</th><td>}</td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="close_file_descriptors" title='close_file_descriptors' data-type='void close_file_descriptors()' data-ref="close_file_descriptors">close_file_descriptors</dfn>(<em>void</em>)</td></tr>
+<tr><th id="68">68</th><td>{</td></tr>
+<tr><th id="69">69</th><td>  <b>for</b>(<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> = <var>0</var>;</td></tr>
+<tr><th id="70">70</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> &lt; <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>;</td></tr>
+<tr><th id="71">71</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>++)</td></tr>
+<tr><th id="72">72</th><td>    <b>if</b>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>] &gt; <var>0</var>)</td></tr>
+<tr><th id="73">73</th><td>      <a class="ref" href="../../../include/unistd.h.html#close" title='close' data-ref="close">close</a>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>]);</td></tr>
+<tr><th id="74">74</th><td>  <a class="ref" href="../../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>);</td></tr>
+<tr><th id="75">75</th><td>  <a class="tu ref" href="#fd" title='fd' data-use='w' data-ref="fd">fd</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="76">76</th><td>}</td></tr>
+<tr><th id="77">77</th><td></td></tr>
+<tr><th id="78">78</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="fopen_works" title='fopen_works' data-type='int fopen_works()' data-ref="fopen_works">fopen_works</dfn>(<em>void</em>)</td></tr>
+<tr><th id="79">79</th><td>{</td></tr>
+<tr><th id="80">80</th><td>  <a class="typedef" href="../../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col3 decl" id="3fpa" title='fpa' data-type='FILE *[3]' data-ref="3fpa">fpa</dfn>[<var>3</var>];</td></tr>
+<tr><th id="81">81</th><td>  <em>int</em> <dfn class="local col4 decl" id="4i" title='i' data-type='int' data-ref="4i">i</dfn>;</td></tr>
+<tr><th id="82">82</th><td>  <em>int</em> <dfn class="local col5 decl" id="5ret" title='ret' data-type='int' data-ref="5ret">ret</dfn> = <var>1</var>;</td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td>  <b>for</b>(<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> = <var>0</var>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> &lt; <var>3</var>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>++) {</td></tr>
+<tr><th id="85">85</th><td>    <a class="local col3 ref" href="#3fpa" title='fpa' data-ref="3fpa">fpa</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>] = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="86">86</th><td>  }</td></tr>
+<tr><th id="87">87</th><td>  <b>for</b>(<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> = <var>0</var>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> &lt; <var>3</var>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>++) {</td></tr>
+<tr><th id="88">88</th><td>    <a class="local col3 ref" href="#3fpa" title='fpa' data-ref="3fpa">fpa</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>] = <a class="ref" href="../../../include/stdio.h.html#283" title='fopen' data-ref="fopen64">fopen</a>(<a class="macro" href="#49" title="&quot;/dev/null&quot;" data-ref="_M/DEV_NULL">DEV_NULL</a>, <a class="macro" href="../../lib/curl_setup.h.html#732" title="&quot;r&quot;" data-ref="_M/FOPEN_READTEXT">FOPEN_READTEXT</a>);</td></tr>
+<tr><th id="89">89</th><td>    <b>if</b>(<a class="local col3 ref" href="#3fpa" title='fpa' data-ref="3fpa">fpa</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>] == <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) {</td></tr>
+<tr><th id="90">90</th><td>      <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<q>"fopen failed"</q>, <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>);</td></tr>
+<tr><th id="91">91</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="92">92</th><td>      <a class="local col5 ref" href="#5ret" title='ret' data-ref="5ret">ret</a> = <var>0</var>;</td></tr>
+<tr><th id="93">93</th><td>      <b>break</b>;</td></tr>
+<tr><th id="94">94</th><td>    }</td></tr>
+<tr><th id="95">95</th><td>  }</td></tr>
+<tr><th id="96">96</th><td>  <b>for</b>(<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> = <var>0</var>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> &lt; <var>3</var>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>++) {</td></tr>
+<tr><th id="97">97</th><td>    <b>if</b>(<a class="local col3 ref" href="#3fpa" title='fpa' data-ref="3fpa">fpa</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>] != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>)</td></tr>
+<tr><th id="98">98</th><td>      <a class="ref" href="../../../include/stdio.h.html#fclose" title='fclose' data-ref="fclose">fclose</a>(<a class="local col3 ref" href="#3fpa" title='fpa' data-ref="3fpa">fpa</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>]);</td></tr>
+<tr><th id="99">99</th><td>  }</td></tr>
+<tr><th id="100">100</th><td>  <b>return</b> <a class="local col5 ref" href="#5ret" title='ret' data-ref="5ret">ret</a>;</td></tr>
+<tr><th id="101">101</th><td>}</td></tr>
+<tr><th id="102">102</th><td></td></tr>
+<tr><th id="103">103</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="rlimit" title='rlimit' data-type='int rlimit(int keep_open)' data-ref="rlimit">rlimit</dfn>(<em>int</em> <dfn class="local col6 decl" id="6keep_open" title='keep_open' data-type='int' data-ref="6keep_open">keep_open</dfn>)</td></tr>
+<tr><th id="104">104</th><td>{</td></tr>
+<tr><th id="105">105</th><td>  <em>int</em> *<dfn class="local col7 decl" id="7tmpfd" title='tmpfd' data-type='int *' data-ref="7tmpfd">tmpfd</dfn>;</td></tr>
+<tr><th id="106">106</th><td>  <a class="typedef" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlim_t" title='rlim_t' data-type='__rlim64_t' data-ref="rlim_t">rlim_t</a> <dfn class="local col8 decl" id="8nitems" title='nitems' data-type='rlim_t' data-ref="8nitems">nitems</dfn>, <dfn class="local col9 decl" id="9i" title='i' data-type='rlim_t' data-ref="9i">i</dfn>;</td></tr>
+<tr><th id="107">107</th><td>  <em>int</em> *<dfn class="local col0 decl" id="10memchunk" title='memchunk' data-type='int *' data-ref="10memchunk">memchunk</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="108">108</th><td>  <em>char</em> *<dfn class="local col1 decl" id="11fmt" title='fmt' data-type='char *' data-ref="11fmt">fmt</dfn>;</td></tr>
+<tr><th id="109">109</th><td>  <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit" title='rlimit' data-ref="rlimit">rlimit</a> <dfn class="local col2 decl" id="12rl" title='rl' data-type='struct rlimit' data-ref="12rl">rl</dfn>;</td></tr>
+<tr><th id="110">110</th><td>  <em>char</em> <dfn class="local col3 decl" id="13strbuff" title='strbuff' data-type='char [256]' data-ref="13strbuff">strbuff</dfn>[<var>256</var>];</td></tr>
+<tr><th id="111">111</th><td>  <em>char</em> <dfn class="local col4 decl" id="14strbuff1" title='strbuff1' data-type='char [81]' data-ref="14strbuff1">strbuff1</dfn>[<var>81</var>];</td></tr>
+<tr><th id="112">112</th><td>  <em>char</em> <dfn class="local col5 decl" id="15fmt_u" title='fmt_u' data-type='char [3]' data-ref="15fmt_u">fmt_u</dfn>[] = <q>"%u"</q>;</td></tr>
+<tr><th id="113">113</th><td>  <em>char</em> <dfn class="local col6 decl" id="16fmt_lu" title='fmt_lu' data-type='char [4]' data-ref="16fmt_lu">fmt_lu</dfn>[] = <q>"%lu"</q>;</td></tr>
+<tr><th id="114">114</th><td><u>#<span data-ppcond="114">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#414" data-ref="_M/HAVE_LONGLONG">HAVE_LONGLONG</a></u></td></tr>
+<tr><th id="115">115</th><td>  <em>char</em> <dfn class="local col7 decl" id="17fmt_llu" title='fmt_llu' data-type='char [5]' data-ref="17fmt_llu">fmt_llu</dfn>[] = <q>"%llu"</q>;</td></tr>
+<tr><th id="116">116</th><td></td></tr>
+<tr><th id="117">117</th><td>  <b>if</b>(<b>sizeof</b>(<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>) &gt; <b>sizeof</b>(<em>long</em>))</td></tr>
+<tr><th id="118">118</th><td>    <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a> = <a class="local col7 ref" href="#17fmt_llu" title='fmt_llu' data-ref="17fmt_llu">fmt_llu</a>;</td></tr>
+<tr><th id="119">119</th><td>  <b>else</b></td></tr>
+<tr><th id="120">120</th><td><u>#<span data-ppcond="114">endif</span></u></td></tr>
+<tr><th id="121">121</th><td>    <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a> = (<b>sizeof</b>(<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>) &lt; <b>sizeof</b>(<em>long</em>))?<a class="local col5 ref" href="#15fmt_u" title='fmt_u' data-ref="15fmt_u">fmt_u</a>:<a class="local col6 ref" href="#16fmt_lu" title='fmt_lu' data-ref="16fmt_lu">fmt_lu</a>;</td></tr>
+<tr><th id="122">122</th><td></td></tr>
+<tr><th id="123">123</th><td>  <i>/* get initial open file limits */</i></td></tr>
+<tr><th id="124">124</th><td></td></tr>
+<tr><th id="125">125</th><td>  <b>if</b>(<a class="ref" href="../../../include/x86_64-linux-gnu/sys/resource.h.html#54" title='getrlimit' data-ref="getrlimit64">getrlimit</a>(<a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#63" title="RLIMIT_NOFILE" data-ref="_M/RLIMIT_NOFILE">RLIMIT_NOFILE</a>, &amp;<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>) != <var>0</var>) {</td></tr>
+<tr><th id="126">126</th><td>    <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<q>"getrlimit() failed"</q>, <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>);</td></tr>
+<tr><th id="127">127</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="128">128</th><td>    <b>return</b> -<var>1</var>;</td></tr>
+<tr><th id="129">129</th><td>  }</td></tr>
+<tr><th id="130">130</th><td></td></tr>
+<tr><th id="131">131</th><td>  <i>/* show initial open file limits */</i></td></tr>
+<tr><th id="132">132</th><td></td></tr>
+<tr><th id="133">133</th><td><u>#<span data-ppcond="133">ifdef</span> <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a></u></td></tr>
+<tr><th id="134">134</th><td>  <b>if</b>(<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> == <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" title="0xffffffffffffffffuLL" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a>)</td></tr>
+<tr><th id="135">135</th><td>    <a class="ref" href="../../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <q>"INFINITY"</q>);</td></tr>
+<tr><th id="136">136</th><td>  <b>else</b></td></tr>
+<tr><th id="137">137</th><td><u>#<span data-ppcond="133">endif</span></u></td></tr>
+<tr><th id="138">138</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>);</td></tr>
+<tr><th id="139">139</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"initial soft limit: %s\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="140">140</th><td></td></tr>
+<tr><th id="141">141</th><td><u>#<span data-ppcond="141">ifdef</span> <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a></u></td></tr>
+<tr><th id="142">142</th><td>  <b>if</b>(<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a> == <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" title="0xffffffffffffffffuLL" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a>)</td></tr>
+<tr><th id="143">143</th><td>    <a class="ref" href="../../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <q>"INFINITY"</q>);</td></tr>
+<tr><th id="144">144</th><td>  <b>else</b></td></tr>
+<tr><th id="145">145</th><td><u>#<span data-ppcond="141">endif</span></u></td></tr>
+<tr><th id="146">146</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="147">147</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"initial hard limit: %s\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="148">148</th><td></td></tr>
+<tr><th id="149">149</th><td>  <i>/*</i></td></tr>
+<tr><th id="150">150</th><td><i>   * if soft limit and hard limit are different we ask the</i></td></tr>
+<tr><th id="151">151</th><td><i>   * system to raise soft limit all the way up to the hard</i></td></tr>
+<tr><th id="152">152</th><td><i>   * limit. Due to some other system limit the soft limit</i></td></tr>
+<tr><th id="153">153</th><td><i>   * might not be raised up to the hard limit. So from this</i></td></tr>
+<tr><th id="154">154</th><td><i>   * point the resulting soft limit is our limit. Trying to</i></td></tr>
+<tr><th id="155">155</th><td><i>   * open more than soft limit file descriptors will fail.</i></td></tr>
+<tr><th id="156">156</th><td><i>   */</i></td></tr>
+<tr><th id="157">157</th><td></td></tr>
+<tr><th id="158">158</th><td>  <b>if</b>(<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> != <a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>) {</td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td><u>#<span data-ppcond="160">ifdef</span> <span class="macro" data-ref="_M/OPEN_MAX">OPEN_MAX</span></u></td></tr>
+<tr><th id="161">161</th><td>    <b>if</b>((rl.rlim_cur &gt; <var>0</var>) &amp;&amp;</td></tr>
+<tr><th id="162">162</th><td>        (rl.rlim_cur &lt; OPEN_MAX)) {</td></tr>
+<tr><th id="163">163</th><td>      fprintf(stderr, <q>"raising soft limit up to OPEN_MAX\n"</q>);</td></tr>
+<tr><th id="164">164</th><td>      rl.rlim_cur = OPEN_MAX;</td></tr>
+<tr><th id="165">165</th><td>      <b>if</b>(setrlimit(RLIMIT_NOFILE, &amp;rl) != <var>0</var>) {</td></tr>
+<tr><th id="166">166</th><td>        <i>/* on failure don't abort just issue a warning */</i></td></tr>
+<tr><th id="167">167</th><td>        store_errmsg(<q>"setrlimit() failed"</q>, errno);</td></tr>
+<tr><th id="168">168</th><td>        fprintf(stderr, <q>"%s\n"</q>, msgbuff);</td></tr>
+<tr><th id="169">169</th><td>        msgbuff[<var>0</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="170">170</th><td>      }</td></tr>
+<tr><th id="171">171</th><td>    }</td></tr>
+<tr><th id="172">172</th><td><u>#<span data-ppcond="160">endif</span></u></td></tr>
+<tr><th id="173">173</th><td></td></tr>
+<tr><th id="174">174</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"raising soft limit up to hard limit\n"</q>);</td></tr>
+<tr><th id="175">175</th><td>    <a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> = <a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>;</td></tr>
+<tr><th id="176">176</th><td>    <b>if</b>(<a class="ref" href="../../../include/x86_64-linux-gnu/sys/resource.h.html#73" title='setrlimit' data-ref="setrlimit64">setrlimit</a>(<a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#63" title="RLIMIT_NOFILE" data-ref="_M/RLIMIT_NOFILE">RLIMIT_NOFILE</a>, &amp;<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>) != <var>0</var>) {</td></tr>
+<tr><th id="177">177</th><td>      <i>/* on failure don't abort just issue a warning */</i></td></tr>
+<tr><th id="178">178</th><td>      <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<q>"setrlimit() failed"</q>, <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>);</td></tr>
+<tr><th id="179">179</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="180">180</th><td>      <a class="tu ref" href="#msgbuff" title='msgbuff' data-use='w' data-ref="msgbuff">msgbuff</a>[<var>0</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="181">181</th><td>    }</td></tr>
+<tr><th id="182">182</th><td></td></tr>
+<tr><th id="183">183</th><td>    <i>/* get current open file limits */</i></td></tr>
+<tr><th id="184">184</th><td></td></tr>
+<tr><th id="185">185</th><td>    <b>if</b>(<a class="ref" href="../../../include/x86_64-linux-gnu/sys/resource.h.html#54" title='getrlimit' data-ref="getrlimit64">getrlimit</a>(<a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#63" title="RLIMIT_NOFILE" data-ref="_M/RLIMIT_NOFILE">RLIMIT_NOFILE</a>, &amp;<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>) != <var>0</var>) {</td></tr>
+<tr><th id="186">186</th><td>      <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<q>"getrlimit() failed"</q>, <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>);</td></tr>
+<tr><th id="187">187</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="188">188</th><td>      <b>return</b> -<var>3</var>;</td></tr>
+<tr><th id="189">189</th><td>    }</td></tr>
+<tr><th id="190">190</th><td></td></tr>
+<tr><th id="191">191</th><td>    <i>/* show current open file limits */</i></td></tr>
+<tr><th id="192">192</th><td></td></tr>
+<tr><th id="193">193</th><td><u>#<span data-ppcond="193">ifdef</span> <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a></u></td></tr>
+<tr><th id="194">194</th><td>    <b>if</b>(<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> == <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" title="0xffffffffffffffffuLL" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a>)</td></tr>
+<tr><th id="195">195</th><td>      <a class="ref" href="../../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <q>"INFINITY"</q>);</td></tr>
+<tr><th id="196">196</th><td>    <b>else</b></td></tr>
+<tr><th id="197">197</th><td><u>#<span data-ppcond="193">endif</span></u></td></tr>
+<tr><th id="198">198</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>);</td></tr>
+<tr><th id="199">199</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"current soft limit: %s\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="200">200</th><td></td></tr>
+<tr><th id="201">201</th><td><u>#<span data-ppcond="201">ifdef</span> <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a></u></td></tr>
+<tr><th id="202">202</th><td>    <b>if</b>(<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a> == <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" title="0xffffffffffffffffuLL" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a>)</td></tr>
+<tr><th id="203">203</th><td>      <a class="ref" href="../../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <q>"INFINITY"</q>);</td></tr>
+<tr><th id="204">204</th><td>    <b>else</b></td></tr>
+<tr><th id="205">205</th><td><u>#<span data-ppcond="201">endif</span></u></td></tr>
+<tr><th id="206">206</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="207">207</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"current hard limit: %s\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="208">208</th><td></td></tr>
+<tr><th id="209">209</th><td>  } <i>/* (rl.rlim_cur != rl.rlim_max) */</i></td></tr>
+<tr><th id="210">210</th><td></td></tr>
+<tr><th id="211">211</th><td>  <i>/*</i></td></tr>
+<tr><th id="212">212</th><td><i>   * test 537 is all about testing libcurl functionality</i></td></tr>
+<tr><th id="213">213</th><td><i>   * when the system has nearly exhausted the number of</i></td></tr>
+<tr><th id="214">214</th><td><i>   * available file descriptors. Test 537 will try to run</i></td></tr>
+<tr><th id="215">215</th><td><i>   * with a very small number of file descriptors available.</i></td></tr>
+<tr><th id="216">216</th><td><i>   * This implies that any file descriptor which is open</i></td></tr>
+<tr><th id="217">217</th><td><i>   * when the test runs will have a number in the high range</i></td></tr>
+<tr><th id="218">218</th><td><i>   * of whatever the system supports.</i></td></tr>
+<tr><th id="219">219</th><td><i>   */</i></td></tr>
+<tr><th id="220">220</th><td></td></tr>
+<tr><th id="221">221</th><td>  <i>/*</i></td></tr>
+<tr><th id="222">222</th><td><i>   * reserve a chunk of memory before opening file descriptors to</i></td></tr>
+<tr><th id="223">223</th><td><i>   * avoid a low memory condition once the file descriptors are</i></td></tr>
+<tr><th id="224">224</th><td><i>   * open. System conditions that could make the test fail should</i></td></tr>
+<tr><th id="225">225</th><td><i>   * be addressed in the precheck phase. This chunk of memory shall</i></td></tr>
+<tr><th id="226">226</th><td><i>   * be always free()ed before exiting the rlimit() function so</i></td></tr>
+<tr><th id="227">227</th><td><i>   * that it becomes available to the test.</i></td></tr>
+<tr><th id="228">228</th><td><i>   */</i></td></tr>
+<tr><th id="229">229</th><td></td></tr>
+<tr><th id="230">230</th><td>  <b>for</b>(<a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> = <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a> = <var>1</var>; <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> &lt;= <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>; <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a> *= <var>2</var>)</td></tr>
+<tr><th id="231">231</th><td>    <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> = <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>;</td></tr>
+<tr><th id="232">232</th><td>  <b>if</b>(<a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> &gt; <var>0x7fff</var>)</td></tr>
+<tr><th id="233">233</th><td>    <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> = <var>0x40000</var>;</td></tr>
+<tr><th id="234">234</th><td>  <b>do</b> {</td></tr>
+<tr><th id="235">235</th><td>    <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a> = <b>sizeof</b>(*<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>) * <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a>;</td></tr>
+<tr><th id="236">236</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="237">237</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"allocating memchunk %s byte array\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="238">238</th><td>    <a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a> = <a class="ref" href="../../../include/stdlib.h.html#malloc" title='malloc' data-ref="malloc">malloc</a>(<b>sizeof</b>(*<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>) * (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)<a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a>);</td></tr>
+<tr><th id="239">239</th><td>    <b>if</b>(!<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>) {</td></tr>
+<tr><th id="240">240</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"memchunk, malloc() failed\n"</q>);</td></tr>
+<tr><th id="241">241</th><td>      <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> /= <var>2</var>;</td></tr>
+<tr><th id="242">242</th><td>    }</td></tr>
+<tr><th id="243">243</th><td>  } <b>while</b>(<a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> &amp;&amp; !<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>);</td></tr>
+<tr><th id="244">244</th><td>  <b>if</b>(!<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>) {</td></tr>
+<tr><th id="245">245</th><td>    <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<q>"memchunk, malloc() failed"</q>, <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>);</td></tr>
+<tr><th id="246">246</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="247">247</th><td>    <b>return</b> -<var>4</var>;</td></tr>
+<tr><th id="248">248</th><td>  }</td></tr>
+<tr><th id="249">249</th><td></td></tr>
+<tr><th id="250">250</th><td>  <i>/* initialize it to fight lazy allocation */</i></td></tr>
+<tr><th id="251">251</th><td></td></tr>
+<tr><th id="252">252</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"initializing memchunk array\n"</q>);</td></tr>
+<tr><th id="253">253</th><td></td></tr>
+<tr><th id="254">254</th><td>  <b>for</b>(<a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a> = <var>0</var>; <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a> &lt; <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a>; <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>++)</td></tr>
+<tr><th id="255">255</th><td>    <a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>[<a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>] = -<var>1</var>;</td></tr>
+<tr><th id="256">256</th><td></td></tr>
+<tr><th id="257">257</th><td>  <i>/* set the number of file descriptors we will try to open */</i></td></tr>
+<tr><th id="258">258</th><td></td></tr>
+<tr><th id="259">259</th><td><u>#<span data-ppcond="259">ifdef</span> <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a></u></td></tr>
+<tr><th id="260">260</th><td>  <b>if</b>((<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> &gt; <var>0</var>) &amp;&amp; (<a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> != <a class="macro" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#117" title="0xffffffffffffffffuLL" data-ref="_M/RLIM_INFINITY">RLIM_INFINITY</a>)) {</td></tr>
+<tr><th id="261">261</th><td><u>#<span data-ppcond="259">else</span></u></td></tr>
+<tr><th id="262">262</th><td>  <b>if</b>(rl.rlim_cur &gt; <var>0</var>) {</td></tr>
+<tr><th id="263">263</th><td><u>#<span data-ppcond="259">endif</span></u></td></tr>
+<tr><th id="264">264</th><td>    <i>/* soft limit minus SAFETY_MARGIN */</i></td></tr>
+<tr><th id="265">265</th><td>    <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a> = <a class="local col2 ref" href="#12rl" title='rl' data-ref="12rl">rl</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> - <a class="macro" href="#44" title="(11)" data-ref="_M/SAFETY_MARGIN">SAFETY_MARGIN</a>;</td></tr>
+<tr><th id="266">266</th><td>  }</td></tr>
+<tr><th id="267">267</th><td>  <b>else</b> {</td></tr>
+<tr><th id="268">268</th><td>    <i>/* a huge number of file descriptors */</i></td></tr>
+<tr><th id="269">269</th><td>    <b>for</b>(<a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> = <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a> = <var>1</var>; <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> &lt;= <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>; <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a> *= <var>2</var>)</td></tr>
+<tr><th id="270">270</th><td>      <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> = <a class="local col9 ref" href="#9i" title='i' data-ref="9i">i</a>;</td></tr>
+<tr><th id="271">271</th><td>    <b>if</b>(<a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> &gt; <var>0x7fff</var>)</td></tr>
+<tr><th id="272">272</th><td>      <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a> = <var>0x40000</var>;</td></tr>
+<tr><th id="273">273</th><td>    <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a> = <a class="local col8 ref" href="#8nitems" title='nitems' data-ref="8nitems">nitems</a>;</td></tr>
+<tr><th id="274">274</th><td>  }</td></tr>
+<tr><th id="275">275</th><td></td></tr>
+<tr><th id="276">276</th><td>  <i>/* verify that we won't overflow size_t in malloc() */</i></td></tr>
+<tr><th id="277">277</th><td></td></tr>
+<tr><th id="278">278</th><td>  <b>if</b>((<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)(<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>) &gt; ((<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)-<var>1</var>) / <b>sizeof</b>(*<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>)) {</td></tr>
+<tr><th id="279">279</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>, <b>sizeof</b>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="280">280</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <q>"unable to allocate an array for %s "</q></td></tr>
+<tr><th id="281">281</th><td>             <q>"file descriptors, would overflow size_t"</q>, <a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>);</td></tr>
+<tr><th id="282">282</th><td>    <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <var>0</var>);</td></tr>
+<tr><th id="283">283</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="284">284</th><td>    <a class="ref" href="../../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>);</td></tr>
+<tr><th id="285">285</th><td>    <b>return</b> -<var>5</var>;</td></tr>
+<tr><th id="286">286</th><td>  }</td></tr>
+<tr><th id="287">287</th><td></td></tr>
+<tr><th id="288">288</th><td>  <i>/* allocate array for file descriptors */</i></td></tr>
+<tr><th id="289">289</th><td></td></tr>
+<tr><th id="290">290</th><td>  <b>do</b> {</td></tr>
+<tr><th id="291">291</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="292">292</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"allocating array for %s file descriptors\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="293">293</th><td>    <a class="tu ref" href="#fd" title='fd' data-use='w' data-ref="fd">fd</a> = <a class="ref" href="../../../include/stdlib.h.html#malloc" title='malloc' data-ref="malloc">malloc</a>(<b>sizeof</b>(*<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>) * (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)(<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>));</td></tr>
+<tr><th id="294">294</th><td>    <b>if</b>(!<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>) {</td></tr>
+<tr><th id="295">295</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"fd, malloc() failed\n"</q>);</td></tr>
+<tr><th id="296">296</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a> /= <var>2</var>;</td></tr>
+<tr><th id="297">297</th><td>    }</td></tr>
+<tr><th id="298">298</th><td>  } <b>while</b>(<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a> &amp;&amp; !<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>);</td></tr>
+<tr><th id="299">299</th><td>  <b>if</b>(!<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>) {</td></tr>
+<tr><th id="300">300</th><td>    <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<q>"fd, malloc() failed"</q>, <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>);</td></tr>
+<tr><th id="301">301</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="302">302</th><td>    <a class="ref" href="../../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>);</td></tr>
+<tr><th id="303">303</th><td>    <b>return</b> -<var>6</var>;</td></tr>
+<tr><th id="304">304</th><td>  }</td></tr>
+<tr><th id="305">305</th><td></td></tr>
+<tr><th id="306">306</th><td>  <i>/* initialize it to fight lazy allocation */</i></td></tr>
+<tr><th id="307">307</th><td></td></tr>
+<tr><th id="308">308</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"initializing fd array\n"</q>);</td></tr>
+<tr><th id="309">309</th><td></td></tr>
+<tr><th id="310">310</th><td>  <b>for</b>(<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> = <var>0</var>;</td></tr>
+<tr><th id="311">311</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> &lt; <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>;</td></tr>
+<tr><th id="312">312</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>++)</td></tr>
+<tr><th id="313">313</th><td>    <a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>] = -<var>1</var>;</td></tr>
+<tr><th id="314">314</th><td></td></tr>
+<tr><th id="315">315</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="316">316</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"trying to open %s file descriptors\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="317">317</th><td></td></tr>
+<tr><th id="318">318</th><td>  <i>/* open a dummy descriptor */</i></td></tr>
+<tr><th id="319">319</th><td></td></tr>
+<tr><th id="320">320</th><td>  <a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<var>0</var>] = <a class="ref" href="../../../include/fcntl.h.html#159" title='open' data-ref="open64">open</a>(<a class="macro" href="#49" title="&quot;/dev/null&quot;" data-ref="_M/DEV_NULL">DEV_NULL</a>, <a class="macro" href="../../../include/x86_64-linux-gnu/bits/fcntl-linux.h.html#43" title="00" data-ref="_M/O_RDONLY">O_RDONLY</a>);</td></tr>
+<tr><th id="321">321</th><td>  <b>if</b>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<var>0</var>] &lt; <var>0</var>) {</td></tr>
+<tr><th id="322">322</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <q>"opening of %s failed"</q>, <a class="macro" href="#49" title="&quot;/dev/null&quot;" data-ref="_M/DEV_NULL">DEV_NULL</a>);</td></tr>
+<tr><th id="323">323</th><td>    <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>);</td></tr>
+<tr><th id="324">324</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="325">325</th><td>    <a class="ref" href="../../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>);</td></tr>
+<tr><th id="326">326</th><td>    <a class="tu ref" href="#fd" title='fd' data-use='w' data-ref="fd">fd</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="327">327</th><td>    <a class="ref" href="../../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>);</td></tr>
+<tr><th id="328">328</th><td>    <b>return</b> -<var>7</var>;</td></tr>
+<tr><th id="329">329</th><td>  }</td></tr>
+<tr><th id="330">330</th><td></td></tr>
+<tr><th id="331">331</th><td>  <i>/* create a bunch of file descriptors */</i></td></tr>
+<tr><th id="332">332</th><td></td></tr>
+<tr><th id="333">333</th><td>  <b>for</b>(<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> = <var>1</var>;</td></tr>
+<tr><th id="334">334</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> &lt; <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>;</td></tr>
+<tr><th id="335">335</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>++) {</td></tr>
+<tr><th id="336">336</th><td></td></tr>
+<tr><th id="337">337</th><td>    <a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>] = <a class="ref" href="../../../include/unistd.h.html#dup" title='dup' data-ref="dup">dup</a>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<var>0</var>]);</td></tr>
+<tr><th id="338">338</th><td></td></tr>
+<tr><th id="339">339</th><td>    <b>if</b>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>] &lt; <var>0</var>) {</td></tr>
+<tr><th id="340">340</th><td></td></tr>
+<tr><th id="341">341</th><td>      <a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>] = -<var>1</var>;</td></tr>
+<tr><th id="342">342</th><td></td></tr>
+<tr><th id="343">343</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>, <b>sizeof</b>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>);</td></tr>
+<tr><th id="344">344</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <q>"dup() attempt %s failed"</q>, <a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>);</td></tr>
+<tr><th id="345">345</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="346">346</th><td></td></tr>
+<tr><th id="347">347</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>, <b>sizeof</b>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>);</td></tr>
+<tr><th id="348">348</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <q>"fds system limit seems close to %s"</q>,</td></tr>
+<tr><th id="349">349</th><td>               <a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>);</td></tr>
+<tr><th id="350">350</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="351">351</th><td></td></tr>
+<tr><th id="352">352</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a> = <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> - <a class="macro" href="#44" title="(11)" data-ref="_M/SAFETY_MARGIN">SAFETY_MARGIN</a>;</td></tr>
+<tr><th id="353">353</th><td></td></tr>
+<tr><th id="354">354</th><td>      <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> -= <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>;</td></tr>
+<tr><th id="355">355</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>, <b>sizeof</b>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>);</td></tr>
+<tr><th id="356">356</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <q>"closing %s file descriptors"</q>,</td></tr>
+<tr><th id="357">357</th><td>               <a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>);</td></tr>
+<tr><th id="358">358</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="359">359</th><td></td></tr>
+<tr><th id="360">360</th><td>      <b>for</b>(<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a> = <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>;</td></tr>
+<tr><th id="361">361</th><td>          <a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>] &gt;= <var>0</var>;</td></tr>
+<tr><th id="362">362</th><td>          <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>++) {</td></tr>
+<tr><th id="363">363</th><td>        <a class="ref" href="../../../include/unistd.h.html#close" title='close' data-ref="close">close</a>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>]);</td></tr>
+<tr><th id="364">364</th><td>        <a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>[<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_cur" title='rlimit::rlim_cur' data-ref="rlimit::rlim_cur">rlim_cur</a>] = -<var>1</var>;</td></tr>
+<tr><th id="365">365</th><td>      }</td></tr>
+<tr><th id="366">366</th><td></td></tr>
+<tr><th id="367">367</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="368">368</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"shrinking array for %s file descriptors\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="369">369</th><td></td></tr>
+<tr><th id="370">370</th><td>      <i>/* we don't care if we can't shrink it */</i></td></tr>
+<tr><th id="371">371</th><td></td></tr>
+<tr><th id="372">372</th><td>      <a class="local col7 ref" href="#7tmpfd" title='tmpfd' data-ref="7tmpfd">tmpfd</a> = <a class="ref" href="../../../include/stdlib.h.html#realloc" title='realloc' data-ref="realloc">realloc</a>(<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>, <b>sizeof</b>(*<a class="tu ref" href="#fd" title='fd' data-use='r' data-ref="fd">fd</a>) * (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)(<a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>));</td></tr>
+<tr><th id="373">373</th><td>      <b>if</b>(<a class="local col7 ref" href="#7tmpfd" title='tmpfd' data-ref="7tmpfd">tmpfd</a>) {</td></tr>
+<tr><th id="374">374</th><td>        <a class="tu ref" href="#fd" title='fd' data-use='w' data-ref="fd">fd</a> = <a class="local col7 ref" href="#7tmpfd" title='tmpfd' data-ref="7tmpfd">tmpfd</a>;</td></tr>
+<tr><th id="375">375</th><td>        <a class="local col7 ref" href="#7tmpfd" title='tmpfd' data-ref="7tmpfd">tmpfd</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="376">376</th><td>      }</td></tr>
+<tr><th id="377">377</th><td></td></tr>
+<tr><th id="378">378</th><td>      <b>break</b>;</td></tr>
+<tr><th id="379">379</th><td></td></tr>
+<tr><th id="380">380</th><td>    }</td></tr>
+<tr><th id="381">381</th><td></td></tr>
+<tr><th id="382">382</th><td>  }</td></tr>
+<tr><th id="383">383</th><td></td></tr>
+<tr><th id="384">384</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="385">385</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s file descriptors open\n"</q>, <a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>);</td></tr>
+<tr><th id="386">386</th><td></td></tr>
+<tr><th id="387">387</th><td><u>#<span data-ppcond="387">if</span> !defined(<a class="macro" href="../../lib/curl_config.h.html#480" data-ref="_M/HAVE_POLL_FINE">HAVE_POLL_FINE</a>)    &amp;&amp; \</u></td></tr>
+<tr><th id="388">388</th><td><u>    !defined(<span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span>)       &amp;&amp; \</u></td></tr>
+<tr><th id="389">389</th><td><u>    !defined(<span class="macro" data-ref="_M/TPF">TPF</span>)</u></td></tr>
+<tr><th id="390">390</th><td></td></tr>
+<tr><th id="391">391</th><td>  <i>/*</i></td></tr>
+<tr><th id="392">392</th><td><i>   * when using select() instead of poll() we cannot test</i></td></tr>
+<tr><th id="393">393</th><td><i>   * libcurl functionality with a socket number equal or</i></td></tr>
+<tr><th id="394">394</th><td><i>   * greater than FD_SETSIZE. In any case, macro VERIFY_SOCK</i></td></tr>
+<tr><th id="395">395</th><td><i>   * in lib/select.c enforces this check and protects libcurl</i></td></tr>
+<tr><th id="396">396</th><td><i>   * from a possible crash. The effect of this protection</i></td></tr>
+<tr><th id="397">397</th><td><i>   * is that test 537 will always fail, since the actual</i></td></tr>
+<tr><th id="398">398</th><td><i>   * call to select() never takes place. We skip test 537</i></td></tr>
+<tr><th id="399">399</th><td><i>   * with an indication that select limit would be exceeded.</i></td></tr>
+<tr><th id="400">400</th><td><i>   */</i></td></tr>
+<tr><th id="401">401</th><td></td></tr>
+<tr><th id="402">402</th><td>  num_open.rlim_cur = FD_SETSIZE - SAFETY_MARGIN;</td></tr>
+<tr><th id="403">403</th><td>  <b>if</b>(num_open.rlim_max &gt; num_open.rlim_cur) {</td></tr>
+<tr><th id="404">404</th><td>    snprintf(strbuff, <b>sizeof</b>(strbuff), <q>"select limit is FD_SETSIZE %d"</q>,</td></tr>
+<tr><th id="405">405</th><td>             FD_SETSIZE);</td></tr>
+<tr><th id="406">406</th><td>    store_errmsg(strbuff, <var>0</var>);</td></tr>
+<tr><th id="407">407</th><td>    fprintf(stderr, <q>"%s\n"</q>, msgbuff);</td></tr>
+<tr><th id="408">408</th><td>    close_file_descriptors();</td></tr>
+<tr><th id="409">409</th><td>    free(memchunk);</td></tr>
+<tr><th id="410">410</th><td>    <b>return</b> -<var>8</var>;</td></tr>
+<tr><th id="411">411</th><td>  }</td></tr>
+<tr><th id="412">412</th><td></td></tr>
+<tr><th id="413">413</th><td>  num_open.rlim_cur = FD_SETSIZE - SAFETY_MARGIN;</td></tr>
+<tr><th id="414">414</th><td>  <b>for</b>(rl.rlim_cur = <var>0</var>;</td></tr>
+<tr><th id="415">415</th><td>      rl.rlim_cur &lt; num_open.rlim_max;</td></tr>
+<tr><th id="416">416</th><td>      rl.rlim_cur++) {</td></tr>
+<tr><th id="417">417</th><td>    <b>if</b>((fd[rl.rlim_cur] &gt; <var>0</var>) &amp;&amp;</td></tr>
+<tr><th id="418">418</th><td>       ((<em>unsigned</em> <em>int</em>)fd[rl.rlim_cur] &gt; num_open.rlim_cur)) {</td></tr>
+<tr><th id="419">419</th><td>      snprintf(strbuff, <b>sizeof</b>(strbuff), <q>"select limit is FD_SETSIZE %d"</q>,</td></tr>
+<tr><th id="420">420</th><td>               FD_SETSIZE);</td></tr>
+<tr><th id="421">421</th><td>      store_errmsg(strbuff, <var>0</var>);</td></tr>
+<tr><th id="422">422</th><td>      fprintf(stderr, <q>"%s\n"</q>, msgbuff);</td></tr>
+<tr><th id="423">423</th><td>      close_file_descriptors();</td></tr>
+<tr><th id="424">424</th><td>      free(memchunk);</td></tr>
+<tr><th id="425">425</th><td>      <b>return</b> -<var>9</var>;</td></tr>
+<tr><th id="426">426</th><td>    }</td></tr>
+<tr><th id="427">427</th><td>  }</td></tr>
+<tr><th id="428">428</th><td></td></tr>
+<tr><th id="429">429</th><td><u>#<span data-ppcond="387">endif</span> /* using a FD_SETSIZE bound select() */</u></td></tr>
+<tr><th id="430">430</th><td></td></tr>
+<tr><th id="431">431</th><td>  <i>/*</i></td></tr>
+<tr><th id="432">432</th><td><i>   * Old or 'backwards compatible' implementations of stdio do not allow</i></td></tr>
+<tr><th id="433">433</th><td><i>   * handling of streams with an underlying file descriptor number greater</i></td></tr>
+<tr><th id="434">434</th><td><i>   * than 255, even when allowing high numbered file descriptors for sockets.</i></td></tr>
+<tr><th id="435">435</th><td><i>   * At this point we have a big number of file descriptors which have been</i></td></tr>
+<tr><th id="436">436</th><td><i>   * opened using dup(), so lets test the stdio implementation and discover</i></td></tr>
+<tr><th id="437">437</th><td><i>   * if it is capable of fopen()ing some additional files.</i></td></tr>
+<tr><th id="438">438</th><td><i>   */</i></td></tr>
+<tr><th id="439">439</th><td></td></tr>
+<tr><th id="440">440</th><td>  <b>if</b>(!<a class="tu ref" href="#fopen_works" title='fopen_works' data-use='c' data-ref="fopen_works">fopen_works</a>()) {</td></tr>
+<tr><th id="441">441</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>, <b>sizeof</b>(<a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>), <a class="local col1 ref" href="#11fmt" title='fmt' data-ref="11fmt">fmt</a>, <a class="tu ref" href="#num_open" title='num_open' data-use='m' data-ref="num_open">num_open</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/resource.h.html#rlimit::rlim_max" title='rlimit::rlim_max' data-ref="rlimit::rlim_max">rlim_max</a>);</td></tr>
+<tr><th id="442">442</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <q>"fopen fails with %s fds open"</q>,</td></tr>
+<tr><th id="443">443</th><td>            <a class="local col4 ref" href="#14strbuff1" title='strbuff1' data-ref="14strbuff1">strbuff1</a>);</td></tr>
+<tr><th id="444">444</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"%s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="445">445</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <b>sizeof</b>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>), <q>"fopen fails with lots of fds open"</q>);</td></tr>
+<tr><th id="446">446</th><td>    <a class="tu ref" href="#store_errmsg" title='store_errmsg' data-use='c' data-ref="store_errmsg">store_errmsg</a>(<a class="local col3 ref" href="#13strbuff" title='strbuff' data-ref="13strbuff">strbuff</a>, <var>0</var>);</td></tr>
+<tr><th id="447">447</th><td>    <a class="tu ref" href="#close_file_descriptors" title='close_file_descriptors' data-use='c' data-ref="close_file_descriptors">close_file_descriptors</a>();</td></tr>
+<tr><th id="448">448</th><td>    <a class="ref" href="../../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>);</td></tr>
+<tr><th id="449">449</th><td>    <b>return</b> -<var>10</var>;</td></tr>
+<tr><th id="450">450</th><td>  }</td></tr>
+<tr><th id="451">451</th><td></td></tr>
+<tr><th id="452">452</th><td>  <i>/* free the chunk of memory we were reserving so that it</i></td></tr>
+<tr><th id="453">453</th><td><i>     becomes becomes available to the test */</i></td></tr>
+<tr><th id="454">454</th><td></td></tr>
+<tr><th id="455">455</th><td>  <a class="ref" href="../../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="local col0 ref" href="#10memchunk" title='memchunk' data-ref="10memchunk">memchunk</a>);</td></tr>
+<tr><th id="456">456</th><td></td></tr>
+<tr><th id="457">457</th><td>  <i>/* close file descriptors unless instructed to keep them */</i></td></tr>
+<tr><th id="458">458</th><td></td></tr>
+<tr><th id="459">459</th><td>  <b>if</b>(!<a class="local col6 ref" href="#6keep_open" title='keep_open' data-ref="6keep_open">keep_open</a>) {</td></tr>
+<tr><th id="460">460</th><td>    <a class="tu ref" href="#close_file_descriptors" title='close_file_descriptors' data-use='c' data-ref="close_file_descriptors">close_file_descriptors</a>();</td></tr>
+<tr><th id="461">461</th><td>  }</td></tr>
+<tr><th id="462">462</th><td></td></tr>
+<tr><th id="463">463</th><td>  <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="464">464</th><td>}</td></tr>
+<tr><th id="465">465</th><td></td></tr>
+<tr><th id="466">466</th><td><em>int</em> <dfn class="decl def" id="test" title='test' data-ref="test">test</dfn>(<em>char</em> *<dfn class="local col8 decl" id="18URL" title='URL' data-type='char *' data-ref="18URL">URL</dfn>)</td></tr>
+<tr><th id="467">467</th><td>{</td></tr>
+<tr><th id="468">468</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col9 decl" id="19res" title='res' data-type='CURLcode' data-ref="19res">res</dfn>;</td></tr>
+<tr><th id="469">469</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col0 decl" id="20curl" title='curl' data-type='CURL *' data-ref="20curl">curl</dfn>;</td></tr>
+<tr><th id="470">470</th><td></td></tr>
+<tr><th id="471">471</th><td>  <b>if</b>(!<a class="ref" href="../../../include/string.h.html#strcmp" title='strcmp' data-ref="strcmp">strcmp</a>(<a class="local col8 ref" href="#18URL" title='URL' data-ref="18URL">URL</a>, <q>"check"</q>)) {</td></tr>
+<tr><th id="472">472</th><td>    <i>/* used by the test script to ask if we can run this test or not */</i></td></tr>
+<tr><th id="473">473</th><td>    <b>if</b>(<a class="tu ref" href="#rlimit" title='rlimit' data-use='c' data-ref="rlimit">rlimit</a>(<a class="macro" href="../../lib/curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>)) {</td></tr>
+<tr><th id="474">474</th><td>      <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#173" title="stdout" data-ref="_M/stdout">stdout</a>, <q>"rlimit problem: %s\n"</q>, <a class="tu ref" href="#msgbuff" title='msgbuff' data-ref="msgbuff">msgbuff</a>);</td></tr>
+<tr><th id="475">475</th><td>      <b>return</b> <var>1</var>;</td></tr>
+<tr><th id="476">476</th><td>    }</td></tr>
+<tr><th id="477">477</th><td>    <b>return</b> <var>0</var>; <i>/* sure, run this! */</i></td></tr>
+<tr><th id="478">478</th><td>  }</td></tr>
+<tr><th id="479">479</th><td></td></tr>
+<tr><th id="480">480</th><td>  <b>if</b>(<a class="tu ref" href="#rlimit" title='rlimit' data-use='c' data-ref="rlimit">rlimit</a>(<a class="macro" href="../../lib/curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>)) {</td></tr>
+<tr><th id="481">481</th><td>    <i>/* failure */</i></td></tr>
+<tr><th id="482">482</th><td>    <b>return</b> <a class="macro" href="test.h.html#85" title="126" data-ref="_M/TEST_ERR_MAJOR_BAD">TEST_ERR_MAJOR_BAD</a>;</td></tr>
+<tr><th id="483">483</th><td>  }</td></tr>
+<tr><th id="484">484</th><td></td></tr>
+<tr><th id="485">485</th><td>  <i>/* run the test with the bunch of open file descriptors</i></td></tr>
+<tr><th id="486">486</th><td><i>     and close them all once the test is over */</i></td></tr>
+<tr><th id="487">487</th><td></td></tr>
+<tr><th id="488">488</th><td>  <b>if</b>(<a class="ref" href="../../include/curl/curl.h.html#curl_global_init" title='curl_global_init' data-ref="curl_global_init">curl_global_init</a>(<a class="macro" href="../../include/curl/curl.h.html#2519" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_ALL">CURL_GLOBAL_ALL</a>) != <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>) {</td></tr>
+<tr><th id="489">489</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"curl_global_init() failed\n"</q>);</td></tr>
+<tr><th id="490">490</th><td>    <a class="tu ref" href="#close_file_descriptors" title='close_file_descriptors' data-use='c' data-ref="close_file_descriptors">close_file_descriptors</a>();</td></tr>
+<tr><th id="491">491</th><td>    <b>return</b> <a class="macro" href="test.h.html#85" title="126" data-ref="_M/TEST_ERR_MAJOR_BAD">TEST_ERR_MAJOR_BAD</a>;</td></tr>
+<tr><th id="492">492</th><td>  }</td></tr>
+<tr><th id="493">493</th><td></td></tr>
+<tr><th id="494">494</th><td>  <a class="local col0 ref" href="#20curl" title='curl' data-ref="20curl">curl</a> = <a class="ref" href="../../include/curl/easy.h.html#curl_easy_init" title='curl_easy_init' data-ref="curl_easy_init">curl_easy_init</a>();</td></tr>
+<tr><th id="495">495</th><td>  <b>if</b>(!<a class="local col0 ref" href="#20curl" title='curl' data-ref="20curl">curl</a>) {</td></tr>
+<tr><th id="496">496</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"curl_easy_init() failed\n"</q>);</td></tr>
+<tr><th id="497">497</th><td>    <a class="tu ref" href="#close_file_descriptors" title='close_file_descriptors' data-use='c' data-ref="close_file_descriptors">close_file_descriptors</a>();</td></tr>
+<tr><th id="498">498</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="499">499</th><td>    <b>return</b> <a class="macro" href="test.h.html#85" title="126" data-ref="_M/TEST_ERR_MAJOR_BAD">TEST_ERR_MAJOR_BAD</a>;</td></tr>
+<tr><th id="500">500</th><td>  }</td></tr>
+<tr><th id="501">501</th><td></td></tr>
+<tr><th id="502">502</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_URL),(URL))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col0 ref" href="#20curl" title='curl' data-ref="20curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#915" title='CURLOPT_URL' data-ref="CURLOPT_URL">CURLOPT_URL</a>, <a class="local col8 ref" href="#18URL" title='URL' data-ref="18URL">URL</a>);</td></tr>
+<tr><th id="503">503</th><td>  <a class="macro" href="test.h.html#47" title="if((res = curl_easy_setopt((curl),(CURLOPT_HEADER),(1L))) != CURLE_OK) goto test_cleanup" data-ref="_M/test_setopt">test_setopt</a>(<a class="local col0 ref" href="#20curl" title='curl' data-ref="20curl">curl</a>, <a class="enum" href="../../include/curl/curl.h.html#1056" title='CURLOPT_HEADER' data-ref="CURLOPT_HEADER">CURLOPT_HEADER</a>, <var>1L</var>);</td></tr>
+<tr><th id="504">504</th><td></td></tr>
+<tr><th id="505">505</th><td>  <a class="local col9 ref" href="#19res" title='res' data-ref="19res">res</a> = <a class="ref" href="../../include/curl/easy.h.html#curl_easy_perform" title='curl_easy_perform' data-ref="curl_easy_perform">curl_easy_perform</a>(<a class="local col0 ref" href="#20curl" title='curl' data-ref="20curl">curl</a>);</td></tr>
+<tr><th id="506">506</th><td></td></tr>
+<tr><th id="507">507</th><td><dfn class="lbl" id="21test_cleanup" data-ref="21test_cleanup">test_cleanup</dfn>:</td></tr>
+<tr><th id="508">508</th><td></td></tr>
+<tr><th id="509">509</th><td>  <a class="tu ref" href="#close_file_descriptors" title='close_file_descriptors' data-use='c' data-ref="close_file_descriptors">close_file_descriptors</a>();</td></tr>
+<tr><th id="510">510</th><td>  <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="local col0 ref" href="#20curl" title='curl' data-ref="20curl">curl</a>);</td></tr>
+<tr><th id="511">511</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="512">512</th><td></td></tr>
+<tr><th id="513">513</th><td>  <b>return</b> (<em>int</em>)<a class="local col9 ref" href="#19res" title='res' data-ref="19res">res</a>;</td></tr>
+<tr><th id="514">514</th><td>}</td></tr>
+<tr><th id="515">515</th><td></td></tr>
+<tr><th id="516">516</th><td><u>#<span data-ppcond="52">else</span> /* defined(HAVE_GETRLIMIT) &amp;&amp; defined(HAVE_SETRLIMIT) */</u></td></tr>
+<tr><th id="517">517</th><td></td></tr>
+<tr><th id="518">518</th><td><em>int</em> test(<em>char</em> *URL)</td></tr>
+<tr><th id="519">519</th><td>{</td></tr>
+<tr><th id="520">520</th><td>  (<em>void</em>)URL;</td></tr>
+<tr><th id="521">521</th><td>  printf(<q>"system lacks necessary system function(s)"</q>);</td></tr>
+<tr><th id="522">522</th><td>  <b>return</b> <var>1</var>; <i>/* skip test */</i></td></tr>
+<tr><th id="523">523</th><td>}</td></tr>
+<tr><th id="524">524</th><td></td></tr>
+<tr><th id="525">525</th><td><u>#<span data-ppcond="52">endif</span> /* defined(HAVE_GETRLIMIT) &amp;&amp; defined(HAVE_SETRLIMIT) */</u></td></tr>
+<tr><th id="526">526</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

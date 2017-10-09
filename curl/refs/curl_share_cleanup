@@ -1,0 +1,12 @@
+<dec f='codebrowser/include/curl/curl.h' l='2584' type='CURLSHcode curl_share_cleanup(CURLSH * )'/>
+<def f='codebrowser/lib/share.c' l='173' ll='209' type='CURLSHcode curl_share_cleanup(struct Curl_share * share)'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='228' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='237' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='283' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='311' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='351' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='370' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='179' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='205' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='220' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='237' u='c' c='test'/>

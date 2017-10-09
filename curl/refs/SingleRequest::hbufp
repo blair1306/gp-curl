@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='548' type='char *'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/urldata.h' l='548'>/* points at *end* of header line */</doc>
+<use f='codebrowser/lib/http.c' l='2890' u='r' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2898' u='w' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2900' u='r' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2901' u='w' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2903' u='r' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='3000' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3297' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3810' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/url.c' l='7089' u='w' c='Curl_init_do'/>

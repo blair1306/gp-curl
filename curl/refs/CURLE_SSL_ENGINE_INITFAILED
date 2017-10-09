@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='536' type='66'/>
+<doc f='codebrowser/include/curl/curl.h' l='536'>/* 66 - failed to initialise ENGINE */</doc>
+<use f='codebrowser/lib/strerror.c' l='206' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1094' u='r' c='Curl_ossl_set_engine'/>

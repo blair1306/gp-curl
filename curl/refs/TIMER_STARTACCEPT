@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/progress.h' l='38' type='9'/>
+<use f='codebrowser/lib/ftp.c' l='505' u='r' c='AllowServerConnect'/>
+<use f='codebrowser/lib/progress.c' l='181' c='Curl_pgrsTime'/>

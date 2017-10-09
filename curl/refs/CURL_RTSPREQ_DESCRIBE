@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='1887' type='2'/>
+<use f='codebrowser/lib/url.c' l='2721' c='Curl_setopt'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='114' c='test'/>
+<use f='codebrowser/tests/libtest/lib571.c' l='175' c='test'/>

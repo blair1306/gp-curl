@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/multihandle.h' l='77' type='struct Curl_easy *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/multihandle.h' l='76'>/* We have a doubly-linked circular list with easy handles */</doc>
+<use f='codebrowser/lib/multi.c' l='418' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='427' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='774' u='w' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='937' u='r' c='curl_multi_fdset'/>
+<use f='codebrowser/lib/multi.c' l='998' u='r' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1045' u='r' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='2155' u='r' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='2229' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2565' u='r' c='multi_socket'/>

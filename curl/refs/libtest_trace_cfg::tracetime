@@ -1,0 +1,6 @@
+<dec f='codebrowser/tests/libtest/testtrace.h' l='26' type='int'/>
+<use f='codebrowser/tests/libtest/lib500.c' l='82' u='w' c='test'/>
+<offset>0</offset>
+<doc f='codebrowser/tests/libtest/testtrace.h' l='26'>/* 0 represents FALSE, anything else TRUE */</doc>
+<use f='codebrowser/tests/libtest/lib573.c' l='59' u='w' c='test'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='103' u='r' c='libtest_debug_cb'/>

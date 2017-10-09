@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/http_proxy.h' l='30' type='CURLcode Curl_proxyCONNECT(struct connectdata * conn, int tunnelsocket, const char * hostname, int remote_port)'/>
+<use f='codebrowser/lib/ftp.c' l='3549' u='c' c='ftp_do_more'/>
+<doc f='codebrowser/lib/http_proxy.h' l='29'>/* ftp can use this as well */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='125' u='c' c='Curl_proxy_connect'/>
+<def f='codebrowser/lib/http_proxy.c' l='661' ll='678' type='CURLcode Curl_proxyCONNECT(struct connectdata * conn, int sockindex, const char * hostname, int remote_port)'/>
+<doc f='codebrowser/lib/http_proxy.c' l='655'>/*
+ * Curl_proxyCONNECT() requires that we&apos;re connected to a HTTP proxy. This
+ * function will issue the necessary commands to get a seamless tunnel through
+ * this proxy. After that, the socket can be used just as a normal socket.
+ */</doc>

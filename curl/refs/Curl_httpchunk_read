@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/http.h' l='84' type='CHUNKcode Curl_httpchunk_read(struct connectdata * conn, char * datap, ssize_t length, ssize_t * wrote)'/>
+<def f='codebrowser/lib/http_chunks.c' l='105' ll='357' type='CHUNKcode Curl_httpchunk_read(struct connectdata * conn, char * datap, ssize_t datalen, ssize_t * wrotep)'/>
+<doc f='codebrowser/lib/http_chunks.c' l='94'>/*
+ * chunk_read() returns a OK for normal operations, or a positive return code
+ * for errors. STOP means this sequence of chunks is complete.  The &apos;wrote&apos;
+ * argument is set to tell the caller how many bytes we actually passed to the
+ * client (for byte-counting and whatever).
+ *
+ * The states and the state-machine is further explained in the header file.
+ *
+ * This function always uses ASCII hex values to accommodate non-ASCII hosts.
+ * For example, 0x0d and 0x0a are used instead of &apos;\r&apos; and &apos;\n&apos;.
+ */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='392' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='476' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/transfer.c' l='674' u='c' c='readwrite_data'/>

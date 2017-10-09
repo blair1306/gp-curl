@@ -1,0 +1,7 @@
+<dec f='include/netdb.h' l='106' type='char **'/>
+<offset>192</offset>
+<doc f='include/netdb.h' l='106'>/* List of addresses from name server.  */</doc>
+<use f='codebrowser/lib/curl_addrinfo.c' l='289' u='r' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='443' u='w' c='Curl_ip2addr'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='444' u='r' c='Curl_ip2addr'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='445' u='r' c='Curl_ip2addr'/>

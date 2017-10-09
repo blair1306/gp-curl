@@ -1,0 +1,2 @@
+<dec f='include/openssl/rand.h' l='104' type='void RAND_add(const void * buf, int num, double entropy)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='460' u='c' c='Curl_ossl_seed'/>

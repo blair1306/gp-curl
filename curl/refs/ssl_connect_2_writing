@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='180' type='3'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2527' u='r' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3288' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3301' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3303' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3337' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='523' u='r' c='Curl_ssl_getsock'/>

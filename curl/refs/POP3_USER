@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/pop3.h' l='41' type='7'/>
+<use f='codebrowser/lib/pop3.c' l='394' u='r' c='pop3_perform_user'/>
+<use f='codebrowser/lib/pop3.c' l='977' c='pop3_statemach_act'/>

@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/urldata.h' l='822' type='Curl_addrinfo *[2]'/>
+<offset>1024</offset>
+<doc f='codebrowser/lib/urldata.h' l='822'>/* for happy eyeballs */</doc>
+<use f='codebrowser/lib/connect.c' l='558' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='560' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='561' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='564' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='566' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='568' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='573' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='586' u='w' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='775' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='786' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='822' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='825' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='829' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='848' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='1160' u='w' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1161' u='w' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1167' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1170' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1171' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1174' u='w' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1174' u='r' c='Curl_connecthost'/>

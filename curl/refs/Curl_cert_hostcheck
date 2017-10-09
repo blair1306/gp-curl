@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/hostcheck.h' l='29' type='int Curl_cert_hostcheck(const char * match_pattern, const char * hostname)'/>
+<def f='codebrowser/lib/hostcheck.c' l='126' ll='148' type='int Curl_cert_hostcheck(const char * match_pattern, const char * hostname)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1408' u='c' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1516' u='c' c='verifyhost'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='43' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='45' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='47' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='49' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='51' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='54' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='55' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='56' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='57' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='58' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='59' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='60' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='61' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='62' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='63' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='64' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='65' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='66' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='69' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1397.c' l='71' u='c' c='test'/>

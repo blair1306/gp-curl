@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/hostip.h' l='191' type='struct Curl_dns_entry * Curl_cache_addr(struct Curl_easy * data, Curl_addrinfo * addr, const char * hostname, int port)'/>
+<doc f='codebrowser/lib/hostip.h' l='185'>/*
+ * Curl_cache_addr() stores a &apos;Curl_addrinfo&apos; struct in the DNS cache.
+ *
+ * Returns the Curl_dns_entry entry pointer or NULL if the storage failed.
+ */</doc>
+<use f='codebrowser/lib/hostasyn.c' l='85' u='c' c='Curl_addrinfo_callback'/>
+<def f='codebrowser/lib/hostip.c' l='374' ll='421' type='struct Curl_dns_entry * Curl_cache_addr(struct Curl_easy * data, Curl_addrinfo * addr, const char * hostname, int port)'/>
+<use f='codebrowser/lib/hostip.c' l='511' u='c' c='Curl_resolv'/>
+<use f='codebrowser/lib/hostip.c' l='858' u='c' c='Curl_loadhostpairs'/>
+<doc f='codebrowser/lib/hostip.c' l='365'>/*
+ * Curl_cache_addr() stores a &apos;Curl_addrinfo&apos; struct in the DNS cache.
+ *
+ * When calling Curl_resolv() has resulted in a response with a returned
+ * address, we call this function to store the information in the dns
+ * cache etc
+ *
+ * Returns the Curl_dns_entry entry pointer or NULL if the storage failed.
+ */</doc>

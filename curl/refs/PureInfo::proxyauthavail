@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1063' type='unsigned long'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/urldata.h' l='1063'>/* what proxy auth types were announced */</doc>
+<use f='codebrowser/lib/getinfo.c' l='67' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='182' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/http.c' l='750' u='a' c='Curl_http_input_auth'/>

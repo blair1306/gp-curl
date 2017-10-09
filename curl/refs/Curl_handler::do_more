@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='636' type='Curl_do_more_func'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/urldata.h' l='632'>/* If the curl_do() function is better made in two halves, this
+   * curl_do_more() function will be called afterwards, if set. For example
+   * for doing the FTP stuff after the PASV/PORT command.
+   */</doc>
+<use f='codebrowser/lib/multi.c' l='1294' u='r' c='multi_do_more'/>
+<use f='codebrowser/lib/multi.c' l='1295' u='r' c='multi_do_more'/>

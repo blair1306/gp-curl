@@ -1,0 +1,4 @@
+<dec f='include/asm-generic/errno.h' l='97'/>
+<use f='codebrowser/lib/connect.c' l='1106' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='386' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1030' u='c'/>

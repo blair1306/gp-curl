@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/warnless.h' l='29' type='unsigned short curlx_ultous(unsigned long ulnum)'/>
+<use f='codebrowser/lib/ftp.c' l='1021' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1024' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/url.c' l='5831' u='c' c='parse_remote_port'/>
+<def f='codebrowser/lib/warnless.c' l='124' ll='137' type='unsigned short curlx_ultous(unsigned long ulnum)'/>
+<doc f='codebrowser/lib/warnless.c' l='120'>/*
+** unsigned long to unsigned short
+*/</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='1250' u='c' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1405' u='c' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1422' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='596' u='c' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='2071' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='730' u='c' c='main'/>

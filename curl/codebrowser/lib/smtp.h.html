@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>smtp.h source code [codebrowser/lib/smtp.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="SMTP,smtp_conn "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/smtp.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='smtp.h.html'>smtp.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_SMTP_H">HEADER_CURL_SMTP_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_SMTP_H" data-ref="_M/HEADER_CURL_SMTP_H">HEADER_CURL_SMTP_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 2009 - 2014, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="pingpong.h.html">"pingpong.h"</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="curl_sasl.h.html">"curl_sasl.h"</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><i>/****************************************************************************</i></td></tr>
+<tr><th id="29">29</th><td><i> * SMTP unique setup</i></td></tr>
+<tr><th id="30">30</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="31">31</th><td><b>typedef</b> <b>enum</b> {</td></tr>
+<tr><th id="32">32</th><td>  <dfn class="enum" id="SMTP_STOP" title='SMTP_STOP' data-ref="SMTP_STOP">SMTP_STOP</dfn>,        <i>/* do nothing state, stops the state machine */</i></td></tr>
+<tr><th id="33">33</th><td>  <dfn class="enum" id="SMTP_SERVERGREET" title='SMTP_SERVERGREET' data-ref="SMTP_SERVERGREET">SMTP_SERVERGREET</dfn>, <i>/* waiting for the initial greeting immediately after</i></td></tr>
+<tr><th id="34">34</th><td><i>                       a connect */</i></td></tr>
+<tr><th id="35">35</th><td>  <dfn class="enum" id="SMTP_EHLO" title='SMTP_EHLO' data-ref="SMTP_EHLO">SMTP_EHLO</dfn>,</td></tr>
+<tr><th id="36">36</th><td>  <dfn class="enum" id="SMTP_HELO" title='SMTP_HELO' data-ref="SMTP_HELO">SMTP_HELO</dfn>,</td></tr>
+<tr><th id="37">37</th><td>  <dfn class="enum" id="SMTP_STARTTLS" title='SMTP_STARTTLS' data-ref="SMTP_STARTTLS">SMTP_STARTTLS</dfn>,</td></tr>
+<tr><th id="38">38</th><td>  <dfn class="enum" id="SMTP_UPGRADETLS" title='SMTP_UPGRADETLS' data-ref="SMTP_UPGRADETLS">SMTP_UPGRADETLS</dfn>,  <i>/* asynchronously upgrade the connection to SSL/TLS</i></td></tr>
+<tr><th id="39">39</th><td><i>                       (multi mode only) */</i></td></tr>
+<tr><th id="40">40</th><td>  <dfn class="enum" id="SMTP_AUTH" title='SMTP_AUTH' data-ref="SMTP_AUTH">SMTP_AUTH</dfn>,</td></tr>
+<tr><th id="41">41</th><td>  <dfn class="enum" id="SMTP_COMMAND" title='SMTP_COMMAND' data-ref="SMTP_COMMAND">SMTP_COMMAND</dfn>,     <i>/* VRFY, EXPN, NOOP, RSET and HELP */</i></td></tr>
+<tr><th id="42">42</th><td>  <dfn class="enum" id="SMTP_MAIL" title='SMTP_MAIL' data-ref="SMTP_MAIL">SMTP_MAIL</dfn>,        <i>/* MAIL FROM */</i></td></tr>
+<tr><th id="43">43</th><td>  <dfn class="enum" id="SMTP_RCPT" title='SMTP_RCPT' data-ref="SMTP_RCPT">SMTP_RCPT</dfn>,        <i>/* RCPT TO */</i></td></tr>
+<tr><th id="44">44</th><td>  <dfn class="enum" id="SMTP_DATA" title='SMTP_DATA' data-ref="SMTP_DATA">SMTP_DATA</dfn>,</td></tr>
+<tr><th id="45">45</th><td>  <dfn class="enum" id="SMTP_POSTDATA" title='SMTP_POSTDATA' data-ref="SMTP_POSTDATA">SMTP_POSTDATA</dfn>,</td></tr>
+<tr><th id="46">46</th><td>  <dfn class="enum" id="SMTP_QUIT" title='SMTP_QUIT' data-ref="SMTP_QUIT">SMTP_QUIT</dfn>,</td></tr>
+<tr><th id="47">47</th><td>  <dfn class="enum" id="SMTP_LAST" title='SMTP_LAST' data-ref="SMTP_LAST">SMTP_LAST</dfn>         <i>/* never used */</i></td></tr>
+<tr><th id="48">48</th><td>} <dfn class="typedef" id="smtpstate" title='smtpstate' data-type='enum smtpstate' data-ref="smtpstate">smtpstate</dfn>;</td></tr>
+<tr><th id="49">49</th><td></td></tr>
+<tr><th id="50">50</th><td><i>/* This SMTP struct is used in the Curl_easy. All SMTP data that is</i></td></tr>
+<tr><th id="51">51</th><td><i>   connection-oriented must be in smtp_conn to properly deal with the fact that</i></td></tr>
+<tr><th id="52">52</th><td><i>   perhaps the Curl_easy is changed between the times the connection is</i></td></tr>
+<tr><th id="53">53</th><td><i>   used. */</i></td></tr>
+<tr><th id="54">54</th><td><b>struct</b> <dfn class="type def" id="SMTP" title='SMTP' data-ref="SMTP">SMTP</dfn> {</td></tr>
+<tr><th id="55">55</th><td>  <a class="typedef" href="pingpong.h.html#curl_pp_transfer" title='curl_pp_transfer' data-type='enum curl_pp_transfer' data-ref="curl_pp_transfer">curl_pp_transfer</a> <dfn class="decl" id="SMTP::transfer" title='SMTP::transfer' data-ref="SMTP::transfer">transfer</dfn>;</td></tr>
+<tr><th id="56">56</th><td>  <em>char</em> *<dfn class="decl" id="SMTP::custom" title='SMTP::custom' data-ref="SMTP::custom">custom</dfn>;            <i>/* Custom Request */</i></td></tr>
+<tr><th id="57">57</th><td>  <b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="decl" id="SMTP::rcpt" title='SMTP::rcpt' data-ref="SMTP::rcpt">rcpt</dfn>; <i>/* Recipient list */</i></td></tr>
+<tr><th id="58">58</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="SMTP::eob" title='SMTP::eob' data-ref="SMTP::eob">eob</dfn>;              <i>/* Number of bytes of the EOB (End Of Body) that</i></td></tr>
+<tr><th id="59">59</th><td><i>                              have been received so far */</i></td></tr>
+<tr><th id="60">60</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="SMTP::trailing_crlf" title='SMTP::trailing_crlf' data-ref="SMTP::trailing_crlf">trailing_crlf</dfn>;      <i>/* Specifies if the tailing CRLF is present */</i></td></tr>
+<tr><th id="61">61</th><td>};</td></tr>
+<tr><th id="62">62</th><td></td></tr>
+<tr><th id="63">63</th><td><i>/* smtp_conn is used for struct connection-oriented data in the connectdata</i></td></tr>
+<tr><th id="64">64</th><td><i>   struct */</i></td></tr>
+<tr><th id="65">65</th><td><b>struct</b> <dfn class="type def" id="smtp_conn" title='smtp_conn' data-ref="smtp_conn">smtp_conn</dfn> {</td></tr>
+<tr><th id="66">66</th><td>  <b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> <dfn class="decl" id="smtp_conn::pp" title='smtp_conn::pp' data-ref="smtp_conn::pp">pp</dfn>;</td></tr>
+<tr><th id="67">67</th><td>  <a class="typedef" href="#smtpstate" title='smtpstate' data-type='enum smtpstate' data-ref="smtpstate">smtpstate</a> <dfn class="decl" id="smtp_conn::state" title='smtp_conn::state' data-ref="smtp_conn::state">state</dfn>;         <i>/* Always use smtp.c:state() to change state! */</i></td></tr>
+<tr><th id="68">68</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="smtp_conn::ssldone" title='smtp_conn::ssldone' data-ref="smtp_conn::ssldone">ssldone</dfn>;            <i>/* Is connect() over SSL done? */</i></td></tr>
+<tr><th id="69">69</th><td>  <em>char</em> *<dfn class="decl" id="smtp_conn::domain" title='smtp_conn::domain' data-ref="smtp_conn::domain">domain</dfn>;            <i>/* Client address/name to send in the EHLO */</i></td></tr>
+<tr><th id="70">70</th><td>  <b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> <dfn class="decl" id="smtp_conn::sasl" title='smtp_conn::sasl' data-ref="smtp_conn::sasl">sasl</dfn>;        <i>/* SASL-related storage */</i></td></tr>
+<tr><th id="71">71</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="smtp_conn::tls_supported" title='smtp_conn::tls_supported' data-ref="smtp_conn::tls_supported">tls_supported</dfn>;      <i>/* StartTLS capability supported by server */</i></td></tr>
+<tr><th id="72">72</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="smtp_conn::size_supported" title='smtp_conn::size_supported' data-ref="smtp_conn::size_supported">size_supported</dfn>;     <i>/* If server supports SIZE extension according to</i></td></tr>
+<tr><th id="73">73</th><td><i>                              RFC 1870 */</i></td></tr>
+<tr><th id="74">74</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="smtp_conn::auth_supported" title='smtp_conn::auth_supported' data-ref="smtp_conn::auth_supported">auth_supported</dfn>;     <i>/* AUTH capability supported by server */</i></td></tr>
+<tr><th id="75">75</th><td>};</td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_smtp" title='Curl_handler_smtp' data-ref="Curl_handler_smtp">Curl_handler_smtp</dfn>;</td></tr>
+<tr><th id="78">78</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_smtps" title='Curl_handler_smtps' data-ref="Curl_handler_smtps">Curl_handler_smtps</dfn>;</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td><i>/* this is the 5-bytes End-Of-Body marker for SMTP */</i></td></tr>
+<tr><th id="81">81</th><td><u>#define <dfn class="macro" id="_M/SMTP_EOB" data-ref="_M/SMTP_EOB">SMTP_EOB</dfn> "\x0d\x0a\x2e\x0d\x0a"</u></td></tr>
+<tr><th id="82">82</th><td><u>#define <dfn class="macro" id="_M/SMTP_EOB_LEN" data-ref="_M/SMTP_EOB_LEN">SMTP_EOB_LEN</dfn> 5</u></td></tr>
+<tr><th id="83">83</th><td><u>#define <dfn class="macro" id="_M/SMTP_EOB_FIND_LEN" data-ref="_M/SMTP_EOB_FIND_LEN">SMTP_EOB_FIND_LEN</dfn> 3</u></td></tr>
+<tr><th id="84">84</th><td></td></tr>
+<tr><th id="85">85</th><td><i>/* if found in data, replace it with this string instead */</i></td></tr>
+<tr><th id="86">86</th><td><u>#define <dfn class="macro" id="_M/SMTP_EOB_REPL" data-ref="_M/SMTP_EOB_REPL">SMTP_EOB_REPL</dfn> "\x0d\x0a\x2e\x2e"</u></td></tr>
+<tr><th id="87">87</th><td><u>#define <dfn class="macro" id="_M/SMTP_EOB_REPL_LEN" data-ref="_M/SMTP_EOB_REPL_LEN">SMTP_EOB_REPL_LEN</dfn> 4</u></td></tr>
+<tr><th id="88">88</th><td></td></tr>
+<tr><th id="89">89</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_smtp_escape_eob" title='Curl_smtp_escape_eob' data-ref="Curl_smtp_escape_eob">Curl_smtp_escape_eob</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="582conn" title='conn' data-type='struct connectdata *' data-ref="582conn">conn</dfn>, <em>const</em> <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col3 decl" id="583nread" title='nread' data-type='const ssize_t' data-ref="583nread">nread</dfn>);</td></tr>
+<tr><th id="90">90</th><td></td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_SMTP_H */</u></td></tr>
+<tr><th id="92">92</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='asyn-thread.c.html'>codebrowser/lib/asyn-thread.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

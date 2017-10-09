@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1527' type='void *'/>
+<offset>1856</offset>
+<doc f='codebrowser/lib/urldata.h' l='1527'>/* pointer to pass to the socket options callback */</doc>
+<use f='codebrowser/lib/connect.c' l='1020' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/ftp.c' l='312' u='r' c='AcceptServerConnect'/>
+<use f='codebrowser/lib/url.c' l='2531' u='w' c='Curl_setopt'/>

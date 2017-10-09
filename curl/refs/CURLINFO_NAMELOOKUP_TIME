@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='2444' type='3145732'/>
+<use f='codebrowser/lib/getinfo.c' l='290' c='getinfo_double'/>
+<use f='codebrowser/src/tool_writeout.c' l='191' u='r' c='ourWriteOut'/>
+<use f='codebrowser/tests/libtest/lib500.c' l='105' u='r' c='test'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='131' type='_Bool'/>
+<offset>1168</offset>
+<use f='codebrowser/lib/ftp.c' l='879' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='4295' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4314' u='w' c='ftp_parse_url_path'/>

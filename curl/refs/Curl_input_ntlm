@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/http_ntlm.h' l='30' type='CURLcode Curl_input_ntlm(struct connectdata * conn, _Bool proxy, const char * header)'/>
+<use f='codebrowser/lib/http.c' l='815' u='c' c='Curl_http_input_auth'/>
+<doc f='codebrowser/lib/http_ntlm.h' l='29'>/* this is for ntlm header input */</doc>
+<def f='codebrowser/lib/http_ntlm.c' l='64' ll='109' type='CURLcode Curl_input_ntlm(struct connectdata * conn, _Bool proxy, const char * header)'/>

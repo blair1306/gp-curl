@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/sendf.h' l='62' type='CURLcode Curl_read_plain(curl_socket_t sockfd, char * buf, size_t bytesfromsocket, ssize_t * n)'/>
+<doc f='codebrowser/lib/sendf.h' l='61'>/* internal read-function, does plain socket only */</doc>
+<def f='codebrowser/lib/sendf.c' l='655' ll='678' type='CURLcode Curl_read_plain(curl_socket_t sockfd, char * buf, size_t bytesfromsocket, ssize_t * n)'/>
+<use f='codebrowser/lib/socks.c' l='73' u='c' c='Curl_blockread_all'/>

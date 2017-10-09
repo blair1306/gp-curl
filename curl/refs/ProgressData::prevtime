@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_cb_prg.h' l='32' type='struct timeval'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='64' u='r' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='98' u='w' c='tool_progress_cb'/>
+<offset>128</offset>

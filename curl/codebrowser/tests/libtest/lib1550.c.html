@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>lib1550.c source code [codebrowser/tests/libtest/lib1550.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/lib1550.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='lib1550.c.html'>lib1550.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="test.h.html">"test.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../../lib/memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../include/curl/multi.h.html">&lt;curl/multi.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><em>int</em> <dfn class="decl def" id="test" title='test' data-ref="test">test</dfn>(<em>char</em> *<dfn class="local col1 decl" id="1URL" title='URL' data-type='char *' data-ref="1URL">URL</dfn>)</td></tr>
+<tr><th id="29">29</th><td>{</td></tr>
+<tr><th id="30">30</th><td>  <a class="typedef" href="../../include/curl/multi.h.html#CURLM" title='CURLM' data-type='struct Curl_multi' data-ref="CURLM">CURLM</a> *<dfn class="local col2 decl" id="2handle" title='handle' data-type='CURLM *' data-ref="2handle">handle</dfn>;</td></tr>
+<tr><th id="31">31</th><td>  <em>int</em> <dfn class="local col3 decl" id="3res" title='res' data-type='int' data-ref="3res">res</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="32">32</th><td>  <em>static</em> <em>const</em> <em>char</em> * <em>const</em> <dfn class="local col4 decl" id="4bl_servers" title='bl_servers' data-type='const char *const [3]' data-ref="4bl_servers">bl_servers</dfn>[] =</td></tr>
+<tr><th id="33">33</th><td>     {<q>"Microsoft-IIS/6.0"</q>, <q>"nginx/0.8.54"</q>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>};</td></tr>
+<tr><th id="34">34</th><td>  <em>static</em> <em>const</em> <em>char</em> * <em>const</em> <dfn class="local col5 decl" id="5bl_sites" title='bl_sites' data-type='const char *const [3]' data-ref="5bl_sites">bl_sites</dfn>[] =</td></tr>
+<tr><th id="35">35</th><td>     {<q>"curl.haxx.se:443"</q>, <q>"example.com:80"</q>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>};</td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td>  <a class="macro" href="test.h.html#431" title="do { do { CURLcode ec; if((ec = curl_global_init((((((1&lt;&lt;0)|(1&lt;&lt;1))))))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_global_init() failed, &quot; &quot;with code %d (%s)\n&quot;, (((&quot;/home/jon/workspace/curl/tests/libtest/lib1550.c&quot;))), (((37))), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0); if(res) return res; } while(0)" data-ref="_M/global_init">global_init</a>(<a class="macro" href="../../include/curl/curl.h.html#2519" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_ALL">CURL_GLOBAL_ALL</a>);</td></tr>
+<tr><th id="38">38</th><td>  <a class="local col2 ref" href="#2handle" title='handle' data-ref="2handle">handle</a> = <a class="ref" href="../../include/curl/multi.h.html#curl_multi_init" title='curl_multi_init' data-ref="curl_multi_init">curl_multi_init</a>();</td></tr>
+<tr><th id="39">39</th><td>  (<em>void</em>)<a class="local col1 ref" href="#1URL" title='URL' data-ref="1URL">URL</a>; <i>/* unused */</i></td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td>  <a class="macro" href="../../include/curl/curl.h.html#2736" title="curl_multi_setopt(handle,CURLMOPT_PIPELINING_SERVER_BL,bl_servers)" data-ref="_M/curl_multi_setopt">curl_multi_setopt</a>(<a class="local col2 ref" href="#2handle" title='handle' data-ref="2handle">handle</a>, <a class="enum" href="../../include/curl/multi.h.html#372" title='CURLMOPT_PIPELINING_SERVER_BL' data-ref="CURLMOPT_PIPELINING_SERVER_BL">CURLMOPT_PIPELINING_SERVER_BL</a>, <a class="local col4 ref" href="#4bl_servers" title='bl_servers' data-ref="4bl_servers">bl_servers</a>);</td></tr>
+<tr><th id="42">42</th><td>  <a class="macro" href="../../include/curl/curl.h.html#2736" title="curl_multi_setopt(handle,CURLMOPT_PIPELINING_SITE_BL,bl_sites)" data-ref="_M/curl_multi_setopt">curl_multi_setopt</a>(<a class="local col2 ref" href="#2handle" title='handle' data-ref="2handle">handle</a>, <a class="enum" href="../../include/curl/multi.h.html#368" title='CURLMOPT_PIPELINING_SITE_BL' data-ref="CURLMOPT_PIPELINING_SITE_BL">CURLMOPT_PIPELINING_SITE_BL</a>, <a class="local col5 ref" href="#5bl_sites" title='bl_sites' data-ref="5bl_sites">bl_sites</a>);</td></tr>
+<tr><th id="43">43</th><td>  <a class="ref" href="../../include/curl/multi.h.html#curl_multi_cleanup" title='curl_multi_cleanup' data-ref="curl_multi_cleanup">curl_multi_cleanup</a>(<a class="local col2 ref" href="#2handle" title='handle' data-ref="2handle">handle</a>);</td></tr>
+<tr><th id="44">44</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="45">45</th><td>  <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="46">46</th><td>}</td></tr>
+<tr><th id="47">47</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

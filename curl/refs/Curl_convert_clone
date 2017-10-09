@@ -1,0 +1,9 @@
+<dec f='codebrowser/tests/server/getpart.c' l='77' type='CURLcode Curl_convert_clone(struct Curl_easy * data, const char * indata, size_t insize, char ** outbuf)'/>
+<def f='codebrowser/tests/server/getpart.c' l='81' ll='96' type='CURLcode Curl_convert_clone(struct Curl_easy * data, const char * indata, size_t insize, char ** outbuf)'/>
+<doc f='codebrowser/tests/server/getpart.c' l='70'>/*
+ * Curl_convert_clone() returns a malloced copy of the source string (if
+ * returning CURLE_OK), with the data converted to network format. This
+ * function is used by base64 code in libcurl built to support data
+ * conversion. This is a DUMMY VERSION that returns data unmodified - for
+ * use by the test server only.
+ */</doc>

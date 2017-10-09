@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/mprintf.c' l='128' type='4'/>
+<use f='codebrowser/lib/mprintf.c' l='292' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='361' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='663' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='692' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='696' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='770' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='789' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='798' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='834' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='840' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='869' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='874' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='900' u='r' c='dprintf_formatf'/>

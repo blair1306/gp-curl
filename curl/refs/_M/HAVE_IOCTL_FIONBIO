@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='324'/>
+<doc f='codebrowser/lib/curl_config.h' l='323'>/* Define to 1 if you have a working ioctl FIONBIO function. */</doc>
+<use f='codebrowser/lib/connect.c' l='47' u='a'/>
+<use f='codebrowser/lib/nonblock.c' l='32' u='a'/>

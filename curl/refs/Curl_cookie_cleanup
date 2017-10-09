@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/cookie.h' l='100' type='void Curl_cookie_cleanup(struct CookieInfo * )'/>
+<use f='codebrowser/lib/cookie.c' l='1049' u='c' c='Curl_cookie_init'/>
+<def f='codebrowser/lib/cookie.c' l='1308' ll='1315' type='void Curl_cookie_cleanup(struct CookieInfo * c)'/>
+<use f='codebrowser/lib/cookie.c' l='1474' u='c' c='Curl_flush_cookies'/>
+<doc f='codebrowser/lib/cookie.c' l='1301'>/*****************************************************************************
+ *
+ * Curl_cookie_cleanup()
+ *
+ * Free a &quot;cookie object&quot; previous created with Curl_cookie_init().
+ *
+ ****************************************************************************/</doc>
+<use f='codebrowser/lib/share.c' l='123' u='c' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='192' u='c' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/url.c' l='2421' u='c' c='Curl_setopt'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/hash.h' l='63' type='char [1]'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/hash.h' l='63'>/* allocated memory following the struct */</doc>
+<use f='codebrowser/lib/conncache.c' l='183' u='r' c='conncache_remove_bundle'/>
+<use f='codebrowser/lib/hash.c' l='93' u='r' c='mk_hash_element'/>
+<use f='codebrowser/lib/hash.c' l='118' c='Curl_hash_add'/>
+<use f='codebrowser/lib/hash.c' l='148' c='Curl_hash_delete'/>
+<use f='codebrowser/lib/hash.c' l='172' c='Curl_hash_pick'/>

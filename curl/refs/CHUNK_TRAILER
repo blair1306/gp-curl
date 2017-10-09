@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/http_chunks.h' l='55' type='5'/>
+<doc f='codebrowser/lib/http_chunks.h' l='53'>/* At this point optional trailer headers can be found, unless the next line
+     is CRLF */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='172' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='253' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='330' u='r' c='Curl_httpchunk_read'/>

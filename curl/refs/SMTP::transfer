@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/smtp.h' l='55' type='curl_pp_transfer'/>
+<offset>0</offset>
+<use f='codebrowser/lib/smtp.c' l='1253' u='w' c='smtp_done'/>
+<use f='codebrowser/lib/smtp.c' l='1277' u='w' c='smtp_perform'/>
+<use f='codebrowser/lib/smtp.c' l='1372' u='r' c='smtp_dophase_done'/>

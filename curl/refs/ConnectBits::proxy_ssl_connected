@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='436' type='_Bool [2]'/>
+<offset>256</offset>
+<use f='codebrowser/lib/ftp.c' l='2650' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3574' macro='1' u='r'/>
+<use f='codebrowser/lib/http.c' l='1354' macro='1' u='r'/>
+<use f='codebrowser/lib/http_proxy.c' l='55' u='r' c='https_proxy_connect'/>
+<use f='codebrowser/lib/http_proxy.c' l='59' u='a' c='https_proxy_connect'/>
+<use f='codebrowser/lib/http_proxy.c' l='78' u='r' c='Curl_proxy_connect'/>
+<use f='codebrowser/lib/multi.c' l='813' macro='1' u='r'/>
+<use f='codebrowser/lib/multi.c' l='1567' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1583' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/url.c' l='4061' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='235' u='r' c='Curl_ssl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='261' u='r' c='Curl_ssl_connect_nonblocking'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='312' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='420' macro='1' u='r'/>

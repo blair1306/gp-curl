@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/http.h' l='234' type='CURLcode Curl_http_readwrite_headers(struct Curl_easy * data, struct connectdata * conn, ssize_t * nread, _Bool * stop_reading)'/>
+<def f='codebrowser/lib/http.c' l='2948' ll='3820' type='CURLcode Curl_http_readwrite_headers(struct Curl_easy * data, struct connectdata * conn, ssize_t * nread, _Bool * stop_reading)'/>
+<doc f='codebrowser/lib/http.c' l='2945'>/*
+ * Read any HTTP header lines from the server and pass them to the client app.
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='530' u='c' c='readwrite_data'/>

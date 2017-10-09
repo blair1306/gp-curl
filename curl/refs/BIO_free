@@ -1,0 +1,6 @@
+<dec f='include/openssl/bio.h' l='661' type='int BIO_free(BIO * a)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='895' u='c' c='x509_name_oneline'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2737' u='c' c='X509V3_ext'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2951' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3046' u='c' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3070' u='c' c='servercert'/>

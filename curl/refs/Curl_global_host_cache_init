@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/hostip.h' l='63' type='struct curl_hash * Curl_global_host_cache_init()'/>
+<doc f='codebrowser/lib/hostip.h' l='56'>/*
+ * Curl_global_host_cache_init() initializes and sets up a global DNS cache.
+ * Global DNS cache is general badness. Do not use. This will be removed in
+ * a future version. Use the share interface instead!
+ *
+ * Returns a struct curl_hash pointer on success, NULL on failure.
+ */</doc>
+<def f='codebrowser/lib/hostip.c' l='122' ll='132' type='struct curl_hash * Curl_global_host_cache_init()'/>
+<doc f='codebrowser/lib/hostip.c' l='115'>/*
+ * Curl_global_host_cache_init() initializes and sets up a global DNS cache.
+ * Global DNS cache is general badness. Do not use. This will be removed in
+ * a future version. Use the share interface instead!
+ *
+ * Returns a struct curl_hash pointer on success, NULL on failure.
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='393' u='c' c='curl_multi_add_handle'/>

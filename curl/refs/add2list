@@ -1,0 +1,13 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='46' type='ParameterError add2list(struct curl_slist ** list, const char * ptr)'/>
+<use f='codebrowser/src/tool_getparam.c' l='974' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='992' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1064' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1653' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1655' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1670' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1672' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1832' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1837' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1840' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1907' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='486' ll='495' type='ParameterError add2list(struct curl_slist ** list, const char * ptr)'/>

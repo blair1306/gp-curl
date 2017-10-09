@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/urldata.h' l='1563' type='curl_mimepart'/>
+<offset>3520</offset>
+<doc f='codebrowser/lib/urldata.h' l='1563'>/* MIME/POST data. */</doc>
+<use f='codebrowser/lib/http.c' l='1938' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='723' u='m' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='725' u='m' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='728' u='a' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='729' u='a' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='734' u='m' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='739' u='a' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='744' u='a' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='748' u='a' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='1458' u='m' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1460' u='m' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1530' u='m' c='imap_perform'/>
+<use f='codebrowser/lib/smtp.c' l='535' u='m' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='537' u='m' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='540' u='a' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='541' u='a' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='546' u='m' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='551' u='a' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='559' u='a' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='563' u='a' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='1196' u='m' c='smtp_done'/>
+<use f='codebrowser/lib/smtp.c' l='1286' u='m' c='smtp_perform'/>
+<use f='codebrowser/lib/transfer.c' l='271' u='a' c='Curl_readrewind'/>
+<use f='codebrowser/lib/url.c' l='483' u='a' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='674' u='a' c='Curl_open'/>
+<use f='codebrowser/lib/url.c' l='1161' u='a' c='Curl_setopt'/>

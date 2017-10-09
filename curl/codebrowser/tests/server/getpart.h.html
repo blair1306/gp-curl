@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>getpart.h source code [codebrowser/tests/server/getpart.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/server/getpart.h'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>server</a>/<a href='getpart.h.html'>getpart.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_SERVER_GETPART_H">HEADER_CURL_SERVER_GETPART_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_SERVER_GETPART_H" data-ref="_M/HEADER_CURL_SERVER_GETPART_H">HEADER_CURL_SERVER_GETPART_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2012, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="server_setup.h.html">"server_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/GPE_NO_BUFFER_SPACE" data-ref="_M/GPE_NO_BUFFER_SPACE">GPE_NO_BUFFER_SPACE</dfn> -2</u></td></tr>
+<tr><th id="27">27</th><td><u>#define <dfn class="macro" id="_M/GPE_OUT_OF_MEMORY" data-ref="_M/GPE_OUT_OF_MEMORY">GPE_OUT_OF_MEMORY</dfn>   -1</u></td></tr>
+<tr><th id="28">28</th><td><u>#define <dfn class="macro" id="_M/GPE_OK" data-ref="_M/GPE_OK">GPE_OK</dfn>               0</u></td></tr>
+<tr><th id="29">29</th><td><u>#define <dfn class="macro" id="_M/GPE_END_OF_FILE" data-ref="_M/GPE_END_OF_FILE">GPE_END_OF_FILE</dfn>      1</u></td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><em>int</em> <dfn class="decl" id="getpart" title='getpart' data-ref="getpart">getpart</dfn>(<em>char</em> **<dfn class="local col1 decl" id="1outbuf" title='outbuf' data-type='char **' data-ref="1outbuf">outbuf</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col2 decl" id="2outlen" title='outlen' data-type='size_t *' data-ref="2outlen">outlen</dfn>,</td></tr>
+<tr><th id="32">32</th><td>            <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="3main" title='main' data-type='const char *' data-ref="3main">main</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="4sub" title='sub' data-type='const char *' data-ref="4sub">sub</dfn>, <a class="typedef" href="../../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col5 decl" id="5stream" title='stream' data-type='FILE *' data-ref="5stream">stream</dfn>);</td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_SERVER_GETPART_H */</u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='fake_ntlm.c.html'>codebrowser/tests/server/fake_ntlm.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

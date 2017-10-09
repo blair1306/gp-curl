@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/strtoofft.h' l='54' type='2'/>
+<doc f='codebrowser/lib/strtoofft.h' l='54'>/* nothing was parsed */</doc>
+<use f='codebrowser/lib/file.c' l='152' u='r' c='file_range'/>
+<use f='codebrowser/lib/file.c' l='158' u='r' c='file_range'/>
+<use f='codebrowser/lib/ftp.c' l='3489' u='r' c='ftp_range'/>
+<use f='codebrowser/lib/ftp.c' l='3495' u='r' c='ftp_range'/>
+<use f='codebrowser/lib/strtoofft.c' l='230' u='r' c='curlx_strtoofft'/>
+<use f='codebrowser/lib/strtoofft.c' l='240' u='r' c='curlx_strtoofft'/>

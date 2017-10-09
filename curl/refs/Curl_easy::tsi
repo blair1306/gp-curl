@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1773' type='struct curl_tlssessioninfo'/>
+<offset>169088</offset>
+<doc f='codebrowser/lib/urldata.h' l='1773'>/* Information about the TLS session, only
+                                     valid after a client has asked for it */</doc>
+<use f='codebrowser/lib/getinfo.c' l='362' u='a' c='getinfo_slist'/>

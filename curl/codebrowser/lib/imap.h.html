@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>imap.h source code [codebrowser/lib/imap.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="IMAP,imap_conn "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/imap.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='imap.h.html'>imap.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_IMAP_H">HEADER_CURL_IMAP_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_IMAP_H" data-ref="_M/HEADER_CURL_IMAP_H">HEADER_CURL_IMAP_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 2009 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="pingpong.h.html">"pingpong.h"</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="curl_sasl.h.html">"curl_sasl.h"</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><i>/****************************************************************************</i></td></tr>
+<tr><th id="29">29</th><td><i> * IMAP unique setup</i></td></tr>
+<tr><th id="30">30</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="31">31</th><td><b>typedef</b> <b>enum</b> {</td></tr>
+<tr><th id="32">32</th><td>  <dfn class="enum" id="IMAP_STOP" title='IMAP_STOP' data-ref="IMAP_STOP">IMAP_STOP</dfn>,         <i>/* do nothing state, stops the state machine */</i></td></tr>
+<tr><th id="33">33</th><td>  <dfn class="enum" id="IMAP_SERVERGREET" title='IMAP_SERVERGREET' data-ref="IMAP_SERVERGREET">IMAP_SERVERGREET</dfn>,  <i>/* waiting for the initial greeting immediately after</i></td></tr>
+<tr><th id="34">34</th><td><i>                        a connect */</i></td></tr>
+<tr><th id="35">35</th><td>  <dfn class="enum" id="IMAP_CAPABILITY" title='IMAP_CAPABILITY' data-ref="IMAP_CAPABILITY">IMAP_CAPABILITY</dfn>,</td></tr>
+<tr><th id="36">36</th><td>  <dfn class="enum" id="IMAP_STARTTLS" title='IMAP_STARTTLS' data-ref="IMAP_STARTTLS">IMAP_STARTTLS</dfn>,</td></tr>
+<tr><th id="37">37</th><td>  <dfn class="enum" id="IMAP_UPGRADETLS" title='IMAP_UPGRADETLS' data-ref="IMAP_UPGRADETLS">IMAP_UPGRADETLS</dfn>,   <i>/* asynchronously upgrade the connection to SSL/TLS</i></td></tr>
+<tr><th id="38">38</th><td><i>                       (multi mode only) */</i></td></tr>
+<tr><th id="39">39</th><td>  <dfn class="enum" id="IMAP_AUTHENTICATE" title='IMAP_AUTHENTICATE' data-ref="IMAP_AUTHENTICATE">IMAP_AUTHENTICATE</dfn>,</td></tr>
+<tr><th id="40">40</th><td>  <dfn class="enum" id="IMAP_LOGIN" title='IMAP_LOGIN' data-ref="IMAP_LOGIN">IMAP_LOGIN</dfn>,</td></tr>
+<tr><th id="41">41</th><td>  <dfn class="enum" id="IMAP_LIST" title='IMAP_LIST' data-ref="IMAP_LIST">IMAP_LIST</dfn>,</td></tr>
+<tr><th id="42">42</th><td>  <dfn class="enum" id="IMAP_SELECT" title='IMAP_SELECT' data-ref="IMAP_SELECT">IMAP_SELECT</dfn>,</td></tr>
+<tr><th id="43">43</th><td>  <dfn class="enum" id="IMAP_FETCH" title='IMAP_FETCH' data-ref="IMAP_FETCH">IMAP_FETCH</dfn>,</td></tr>
+<tr><th id="44">44</th><td>  <dfn class="enum" id="IMAP_FETCH_FINAL" title='IMAP_FETCH_FINAL' data-ref="IMAP_FETCH_FINAL">IMAP_FETCH_FINAL</dfn>,</td></tr>
+<tr><th id="45">45</th><td>  <dfn class="enum" id="IMAP_APPEND" title='IMAP_APPEND' data-ref="IMAP_APPEND">IMAP_APPEND</dfn>,</td></tr>
+<tr><th id="46">46</th><td>  <dfn class="enum" id="IMAP_APPEND_FINAL" title='IMAP_APPEND_FINAL' data-ref="IMAP_APPEND_FINAL">IMAP_APPEND_FINAL</dfn>,</td></tr>
+<tr><th id="47">47</th><td>  <dfn class="enum" id="IMAP_SEARCH" title='IMAP_SEARCH' data-ref="IMAP_SEARCH">IMAP_SEARCH</dfn>,</td></tr>
+<tr><th id="48">48</th><td>  <dfn class="enum" id="IMAP_LOGOUT" title='IMAP_LOGOUT' data-ref="IMAP_LOGOUT">IMAP_LOGOUT</dfn>,</td></tr>
+<tr><th id="49">49</th><td>  <dfn class="enum" id="IMAP_LAST" title='IMAP_LAST' data-ref="IMAP_LAST">IMAP_LAST</dfn>          <i>/* never used */</i></td></tr>
+<tr><th id="50">50</th><td>} <dfn class="typedef" id="imapstate" title='imapstate' data-type='enum imapstate' data-ref="imapstate">imapstate</dfn>;</td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td><i>/* This IMAP struct is used in the Curl_easy. All IMAP data that is</i></td></tr>
+<tr><th id="53">53</th><td><i>   connection-oriented must be in imap_conn to properly deal with the fact that</i></td></tr>
+<tr><th id="54">54</th><td><i>   perhaps the Curl_easy is changed between the times the connection is</i></td></tr>
+<tr><th id="55">55</th><td><i>   used. */</i></td></tr>
+<tr><th id="56">56</th><td><b>struct</b> <dfn class="type def" id="IMAP" title='IMAP' data-ref="IMAP">IMAP</dfn> {</td></tr>
+<tr><th id="57">57</th><td>  <a class="typedef" href="pingpong.h.html#curl_pp_transfer" title='curl_pp_transfer' data-type='enum curl_pp_transfer' data-ref="curl_pp_transfer">curl_pp_transfer</a> <dfn class="decl" id="IMAP::transfer" title='IMAP::transfer' data-ref="IMAP::transfer">transfer</dfn>;</td></tr>
+<tr><th id="58">58</th><td>  <em>char</em> *<dfn class="decl" id="IMAP::mailbox" title='IMAP::mailbox' data-ref="IMAP::mailbox">mailbox</dfn>;          <i>/* Mailbox to select */</i></td></tr>
+<tr><th id="59">59</th><td>  <em>char</em> *<dfn class="decl" id="IMAP::uidvalidity" title='IMAP::uidvalidity' data-ref="IMAP::uidvalidity">uidvalidity</dfn>;      <i>/* UIDVALIDITY to check in select */</i></td></tr>
+<tr><th id="60">60</th><td>  <em>char</em> *<dfn class="decl" id="IMAP::uid" title='IMAP::uid' data-ref="IMAP::uid">uid</dfn>;              <i>/* Message UID to fetch */</i></td></tr>
+<tr><th id="61">61</th><td>  <em>char</em> *<dfn class="decl" id="IMAP::section" title='IMAP::section' data-ref="IMAP::section">section</dfn>;          <i>/* Message SECTION to fetch */</i></td></tr>
+<tr><th id="62">62</th><td>  <em>char</em> *<dfn class="decl" id="IMAP::partial" title='IMAP::partial' data-ref="IMAP::partial">partial</dfn>;          <i>/* Message PARTIAL to fetch */</i></td></tr>
+<tr><th id="63">63</th><td>  <em>char</em> *<dfn class="decl" id="IMAP::query" title='IMAP::query' data-ref="IMAP::query">query</dfn>;            <i>/* Query to search for */</i></td></tr>
+<tr><th id="64">64</th><td>  <em>char</em> *<dfn class="decl" id="IMAP::custom" title='IMAP::custom' data-ref="IMAP::custom">custom</dfn>;           <i>/* Custom request */</i></td></tr>
+<tr><th id="65">65</th><td>  <em>char</em> *<dfn class="decl" id="IMAP::custom_params" title='IMAP::custom_params' data-ref="IMAP::custom_params">custom_params</dfn>;    <i>/* Parameters for the custom request */</i></td></tr>
+<tr><th id="66">66</th><td>};</td></tr>
+<tr><th id="67">67</th><td></td></tr>
+<tr><th id="68">68</th><td><i>/* imap_conn is used for struct connection-oriented data in the connectdata</i></td></tr>
+<tr><th id="69">69</th><td><i>   struct */</i></td></tr>
+<tr><th id="70">70</th><td><b>struct</b> <dfn class="type def" id="imap_conn" title='imap_conn' data-ref="imap_conn">imap_conn</dfn> {</td></tr>
+<tr><th id="71">71</th><td>  <b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> <dfn class="decl" id="imap_conn::pp" title='imap_conn::pp' data-ref="imap_conn::pp">pp</dfn>;</td></tr>
+<tr><th id="72">72</th><td>  <a class="typedef" href="#imapstate" title='imapstate' data-type='enum imapstate' data-ref="imapstate">imapstate</a> <dfn class="decl" id="imap_conn::state" title='imap_conn::state' data-ref="imap_conn::state">state</dfn>;            <i>/* Always use imap.c:state() to change state! */</i></td></tr>
+<tr><th id="73">73</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="imap_conn::ssldone" title='imap_conn::ssldone' data-ref="imap_conn::ssldone">ssldone</dfn>;               <i>/* Is connect() over SSL done? */</i></td></tr>
+<tr><th id="74">74</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="imap_conn::preauth" title='imap_conn::preauth' data-ref="imap_conn::preauth">preauth</dfn>;               <i>/* Is this connection PREAUTH? */</i></td></tr>
+<tr><th id="75">75</th><td>  <b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> <dfn class="decl" id="imap_conn::sasl" title='imap_conn::sasl' data-ref="imap_conn::sasl">sasl</dfn>;           <i>/* SASL-related parameters */</i></td></tr>
+<tr><th id="76">76</th><td>  <em>unsigned</em> <em>int</em> <dfn class="decl" id="imap_conn::preftype" title='imap_conn::preftype' data-ref="imap_conn::preftype">preftype</dfn>;      <i>/* Preferred authentication type */</i></td></tr>
+<tr><th id="77">77</th><td>  <em>int</em> <dfn class="decl" id="imap_conn::cmdid" title='imap_conn::cmdid' data-ref="imap_conn::cmdid">cmdid</dfn>;                  <i>/* Last used command ID */</i></td></tr>
+<tr><th id="78">78</th><td>  <em>char</em> <dfn class="decl" id="imap_conn::resptag" title='imap_conn::resptag' data-ref="imap_conn::resptag">resptag</dfn>[<var>5</var>];            <i>/* Response tag to wait for */</i></td></tr>
+<tr><th id="79">79</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="imap_conn::tls_supported" title='imap_conn::tls_supported' data-ref="imap_conn::tls_supported">tls_supported</dfn>;         <i>/* StartTLS capability supported by server */</i></td></tr>
+<tr><th id="80">80</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="imap_conn::login_disabled" title='imap_conn::login_disabled' data-ref="imap_conn::login_disabled">login_disabled</dfn>;        <i>/* LOGIN command disabled by server */</i></td></tr>
+<tr><th id="81">81</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="imap_conn::ir_supported" title='imap_conn::ir_supported' data-ref="imap_conn::ir_supported">ir_supported</dfn>;          <i>/* Initial response supported by server */</i></td></tr>
+<tr><th id="82">82</th><td>  <em>char</em> *<dfn class="decl" id="imap_conn::mailbox" title='imap_conn::mailbox' data-ref="imap_conn::mailbox">mailbox</dfn>;              <i>/* The last selected mailbox */</i></td></tr>
+<tr><th id="83">83</th><td>  <em>char</em> *<dfn class="decl" id="imap_conn::mailbox_uidvalidity" title='imap_conn::mailbox_uidvalidity' data-ref="imap_conn::mailbox_uidvalidity">mailbox_uidvalidity</dfn>;  <i>/* UIDVALIDITY parsed from select response */</i></td></tr>
+<tr><th id="84">84</th><td>};</td></tr>
+<tr><th id="85">85</th><td></td></tr>
+<tr><th id="86">86</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler" id="Curl_handler"><a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a></a> <dfn class="decl" id="Curl_handler_imap" title='Curl_handler_imap' data-ref="Curl_handler_imap">Curl_handler_imap</dfn>;</td></tr>
+<tr><th id="87">87</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_imaps" title='Curl_handler_imaps' data-ref="Curl_handler_imaps">Curl_handler_imaps</dfn>;</td></tr>
+<tr><th id="88">88</th><td></td></tr>
+<tr><th id="89">89</th><td><i>/* Authentication type flags */</i></td></tr>
+<tr><th id="90">90</th><td><u>#define <dfn class="macro" id="_M/IMAP_TYPE_CLEARTEXT" data-ref="_M/IMAP_TYPE_CLEARTEXT">IMAP_TYPE_CLEARTEXT</dfn> (1 &lt;&lt; 0)</u></td></tr>
+<tr><th id="91">91</th><td><u>#define <dfn class="macro" id="_M/IMAP_TYPE_SASL" data-ref="_M/IMAP_TYPE_SASL">IMAP_TYPE_SASL</dfn>      (1 &lt;&lt; 1)</u></td></tr>
+<tr><th id="92">92</th><td></td></tr>
+<tr><th id="93">93</th><td><i>/* Authentication type values */</i></td></tr>
+<tr><th id="94">94</th><td><u>#define <dfn class="macro" id="_M/IMAP_TYPE_NONE" data-ref="_M/IMAP_TYPE_NONE">IMAP_TYPE_NONE</dfn>      0</u></td></tr>
+<tr><th id="95">95</th><td><u>#define <dfn class="macro" id="_M/IMAP_TYPE_ANY" data-ref="_M/IMAP_TYPE_ANY">IMAP_TYPE_ANY</dfn>       ~0U</u></td></tr>
+<tr><th id="96">96</th><td></td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_IMAP_H */</u></td></tr>
+<tr><th id="98">98</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='asyn-thread.c.html'>codebrowser/lib/asyn-thread.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

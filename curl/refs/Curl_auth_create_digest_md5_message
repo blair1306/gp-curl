@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='93' type='CURLcode Curl_auth_create_digest_md5_message(struct Curl_easy * data, const char * chlg64, const char * userp, const char * passwdp, const char * service, char ** outptr, size_t * outlen)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='481' u='c' c='Curl_sasl_continue'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='92'>/* This is used to generate a base64 encoded DIGEST-MD5 response message */</doc>
+<def f='codebrowser/lib/vauth/digest.c' l='342' ll='495' type='CURLcode Curl_auth_create_digest_md5_message(struct Curl_easy * data, const char * chlg64, const char * userp, const char * passwdp, const char * service, char ** outptr, size_t * outlen)'/>
+<doc f='codebrowser/lib/vauth/digest.c' l='323'>/*
+ * Curl_auth_create_digest_md5_message()
+ *
+ * This is used to generate an already encoded DIGEST-MD5 response message
+ * ready for sending to the recipient.
+ *
+ * Parameters:
+ *
+ * data    [in]     - The session handle.
+ * chlg64  [in]     - The base64 encoded challenge message.
+ * userp   [in]     - The user name.
+ * passdwp [in]     - The user&apos;s password.
+ * service [in]     - The service type such as http, smtp, pop or imap.
+ * outptr  [in/out] - The address where a pointer to newly allocated memory
+ *                    holding the result will be stored upon completion.
+ * outlen  [out]    - The length of the output message.
+ *
+ * Returns CURLE_OK on success.
+ */</doc>

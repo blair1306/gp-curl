@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1783'/>
+<use f='codebrowser/lib/dict.c' l='185' u='c'/>
+<use f='codebrowser/lib/dict.c' l='236' u='c'/>
+<use f='codebrowser/lib/dict.c' l='265' u='c'/>
+<use f='codebrowser/lib/url.c' l='4389' u='c'/>
+<use f='codebrowser/lib/version.c' l='88' u='c'/>

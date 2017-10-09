@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/connect.h' l='33' type='CURLcode Curl_connecthost(struct connectdata * conn, const struct Curl_dns_entry * host)'/>
+<def f='codebrowser/lib/connect.c' l='1144' ll='1187' type='CURLcode Curl_connecthost(struct connectdata * conn, const struct Curl_dns_entry * remotehost)'/>
+<doc f='codebrowser/lib/connect.c' l='1138'>/*
+ * TCP connect to the given host with timeout, proxy or remote doesn&apos;t matter.
+ * There might be more than one IP address to try out. Fill in the passed
+ * pointer with the connected socket.
+ */</doc>
+<doc f='codebrowser/lib/connect.c' l='1144'>/* context */</doc>
+<use f='codebrowser/lib/ftp.c' l='1969' u='c' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/url.c' l='6978' u='c' c='Curl_setup_conn'/>

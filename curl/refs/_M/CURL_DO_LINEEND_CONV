@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1322'/>
+<doc f='codebrowser/lib/urldata.h' l='1321'>/* do FTP line-end conversions on most platforms */</doc>
+<use f='codebrowser/lib/ftp.c' l='3316' u='a'/>
+<use f='codebrowser/lib/sendf.c' l='43' u='a'/>
+<use f='codebrowser/lib/sendf.c' l='646' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='196' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='970' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='1220' u='a'/>
+<use f='codebrowser/lib/url.c' l='6968' u='a'/>

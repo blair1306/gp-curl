@@ -1,0 +1,516 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>des_old.h source code [include/openssl/des_old.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="_ossl_old_des_ks_struct "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/openssl/des_old.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>include</a>/<a href='./'>openssl</a>/<a href='des_old.h.html'>des_old.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* crypto/des/des_old.h */</i></td></tr>
+<tr><th id="2">2</th><td></td></tr>
+<tr><th id="3">3</th><td><i>/*-</i></td></tr>
+<tr><th id="4">4</th><td><i> * WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING</i></td></tr>
+<tr><th id="5">5</th><td><i> *</i></td></tr>
+<tr><th id="6">6</th><td><i> * The function names in here are deprecated and are only present to</i></td></tr>
+<tr><th id="7">7</th><td><i> * provide an interface compatible with openssl 0.9.6 and older as</i></td></tr>
+<tr><th id="8">8</th><td><i> * well as libdes.  OpenSSL now provides functions where "des_" has</i></td></tr>
+<tr><th id="9">9</th><td><i> * been replaced with "DES_" in the names, to make it possible to</i></td></tr>
+<tr><th id="10">10</th><td><i> * make incompatible changes that are needed for C type security and</i></td></tr>
+<tr><th id="11">11</th><td><i> * other stuff.</i></td></tr>
+<tr><th id="12">12</th><td><i> *</i></td></tr>
+<tr><th id="13">13</th><td><i> * This include files has two compatibility modes:</i></td></tr>
+<tr><th id="14">14</th><td><i> *</i></td></tr>
+<tr><th id="15">15</th><td><i> *   - If OPENSSL_DES_LIBDES_COMPATIBILITY is defined, you get an API</i></td></tr>
+<tr><th id="16">16</th><td><i> *     that is compatible with libdes and SSLeay.</i></td></tr>
+<tr><th id="17">17</th><td><i> *   - If OPENSSL_DES_LIBDES_COMPATIBILITY isn't defined, you get an</i></td></tr>
+<tr><th id="18">18</th><td><i> *     API that is compatible with OpenSSL 0.9.5x to 0.9.6x.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * Note that these modes break earlier snapshots of OpenSSL, where</i></td></tr>
+<tr><th id="21">21</th><td><i> * libdes compatibility was the only available mode or (later on) the</i></td></tr>
+<tr><th id="22">22</th><td><i> * prefered compatibility mode.  However, after much consideration</i></td></tr>
+<tr><th id="23">23</th><td><i> * (and more or less violent discussions with external parties), it</i></td></tr>
+<tr><th id="24">24</th><td><i> * was concluded that OpenSSL should be compatible with earlier versions</i></td></tr>
+<tr><th id="25">25</th><td><i> * of itself before anything else.  Also, in all honesty, libdes is</i></td></tr>
+<tr><th id="26">26</th><td><i> * an old beast that shouldn't really be used any more.</i></td></tr>
+<tr><th id="27">27</th><td><i> *</i></td></tr>
+<tr><th id="28">28</th><td><i> * Please consider starting to use the DES_ functions rather than the</i></td></tr>
+<tr><th id="29">29</th><td><i> * des_ ones.  The des_ functions will disappear completely before</i></td></tr>
+<tr><th id="30">30</th><td><i> * OpenSSL 1.0!</i></td></tr>
+<tr><th id="31">31</th><td><i> *</i></td></tr>
+<tr><th id="32">32</th><td><i> * WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING</i></td></tr>
+<tr><th id="33">33</th><td><i> */</i></td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td><i>/*</i></td></tr>
+<tr><th id="36">36</th><td><i> * Written by Richard Levitte (richard@levitte.org) for the OpenSSL project</i></td></tr>
+<tr><th id="37">37</th><td><i> * 2001.</i></td></tr>
+<tr><th id="38">38</th><td><i> */</i></td></tr>
+<tr><th id="39">39</th><td><i>/* ====================================================================</i></td></tr>
+<tr><th id="40">40</th><td><i> * Copyright (c) 1998-2002 The OpenSSL Project.  All rights reserved.</i></td></tr>
+<tr><th id="41">41</th><td><i> *</i></td></tr>
+<tr><th id="42">42</th><td><i> * Redistribution and use in source and binary forms, with or without</i></td></tr>
+<tr><th id="43">43</th><td><i> * modification, are permitted provided that the following conditions</i></td></tr>
+<tr><th id="44">44</th><td><i> * are met:</i></td></tr>
+<tr><th id="45">45</th><td><i> *</i></td></tr>
+<tr><th id="46">46</th><td><i> * 1. Redistributions of source code must retain the above copyright</i></td></tr>
+<tr><th id="47">47</th><td><i> *    notice, this list of conditions and the following disclaimer.</i></td></tr>
+<tr><th id="48">48</th><td><i> *</i></td></tr>
+<tr><th id="49">49</th><td><i> * 2. Redistributions in binary form must reproduce the above copyright</i></td></tr>
+<tr><th id="50">50</th><td><i> *    notice, this list of conditions and the following disclaimer in</i></td></tr>
+<tr><th id="51">51</th><td><i> *    the documentation and/or other materials provided with the</i></td></tr>
+<tr><th id="52">52</th><td><i> *    distribution.</i></td></tr>
+<tr><th id="53">53</th><td><i> *</i></td></tr>
+<tr><th id="54">54</th><td><i> * 3. All advertising materials mentioning features or use of this</i></td></tr>
+<tr><th id="55">55</th><td><i> *    software must display the following acknowledgment:</i></td></tr>
+<tr><th id="56">56</th><td><i> *    "This product includes software developed by the OpenSSL Project</i></td></tr>
+<tr><th id="57">57</th><td><i> *    for use in the OpenSSL Toolkit. (<a href="http://www.openssl.org/">http://www.openssl.org/</a>)"</i></td></tr>
+<tr><th id="58">58</th><td><i> *</i></td></tr>
+<tr><th id="59">59</th><td><i> * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to</i></td></tr>
+<tr><th id="60">60</th><td><i> *    endorse or promote products derived from this software without</i></td></tr>
+<tr><th id="61">61</th><td><i> *    prior written permission. For written permission, please contact</i></td></tr>
+<tr><th id="62">62</th><td><i> *    openssl-core@openssl.org.</i></td></tr>
+<tr><th id="63">63</th><td><i> *</i></td></tr>
+<tr><th id="64">64</th><td><i> * 5. Products derived from this software may not be called "OpenSSL"</i></td></tr>
+<tr><th id="65">65</th><td><i> *    nor may "OpenSSL" appear in their names without prior written</i></td></tr>
+<tr><th id="66">66</th><td><i> *    permission of the OpenSSL Project.</i></td></tr>
+<tr><th id="67">67</th><td><i> *</i></td></tr>
+<tr><th id="68">68</th><td><i> * 6. Redistributions of any form whatsoever must retain the following</i></td></tr>
+<tr><th id="69">69</th><td><i> *    acknowledgment:</i></td></tr>
+<tr><th id="70">70</th><td><i> *    "This product includes software developed by the OpenSSL Project</i></td></tr>
+<tr><th id="71">71</th><td><i> *    for use in the OpenSSL Toolkit (<a href="http://www.openssl.org/">http://www.openssl.org/</a>)"</i></td></tr>
+<tr><th id="72">72</th><td><i> *</i></td></tr>
+<tr><th id="73">73</th><td><i> * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY</i></td></tr>
+<tr><th id="74">74</th><td><i> * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</i></td></tr>
+<tr><th id="75">75</th><td><i> * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</i></td></tr>
+<tr><th id="76">76</th><td><i> * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR</i></td></tr>
+<tr><th id="77">77</th><td><i> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</i></td></tr>
+<tr><th id="78">78</th><td><i> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</i></td></tr>
+<tr><th id="79">79</th><td><i> * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</i></td></tr>
+<tr><th id="80">80</th><td><i> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</i></td></tr>
+<tr><th id="81">81</th><td><i> * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,</i></td></tr>
+<tr><th id="82">82</th><td><i> * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</i></td></tr>
+<tr><th id="83">83</th><td><i> * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED</i></td></tr>
+<tr><th id="84">84</th><td><i> * OF THE POSSIBILITY OF SUCH DAMAGE.</i></td></tr>
+<tr><th id="85">85</th><td><i> * ====================================================================</i></td></tr>
+<tr><th id="86">86</th><td><i> *</i></td></tr>
+<tr><th id="87">87</th><td><i> * This product includes cryptographic software written by Eric Young</i></td></tr>
+<tr><th id="88">88</th><td><i> * (eay@cryptsoft.com).  This product includes software written by Tim</i></td></tr>
+<tr><th id="89">89</th><td><i> * Hudson (tjh@cryptsoft.com).</i></td></tr>
+<tr><th id="90">90</th><td><i> *</i></td></tr>
+<tr><th id="91">91</th><td><i> */</i></td></tr>
+<tr><th id="92">92</th><td></td></tr>
+<tr><th id="93">93</th><td><u>#<span data-ppcond="93">ifndef</span> <span class="macro" data-ref="_M/HEADER_DES_H">HEADER_DES_H</span></u></td></tr>
+<tr><th id="94">94</th><td><u># define <dfn class="macro" id="_M/HEADER_DES_H" data-ref="_M/HEADER_DES_H">HEADER_DES_H</dfn></u></td></tr>
+<tr><th id="95">95</th><td></td></tr>
+<tr><th id="96">96</th><td><u># include <a href="e_os2.h.html">&lt;openssl/e_os2.h&gt;</a>     /* OPENSSL_EXTERN, OPENSSL_NO_DES, DES_LONG */</u></td></tr>
+<tr><th id="97">97</th><td></td></tr>
+<tr><th id="98">98</th><td><u># <span data-ppcond="98">ifdef</span> <span class="macro" data-ref="_M/OPENSSL_NO_DES">OPENSSL_NO_DES</span></u></td></tr>
+<tr><th id="99">99</th><td><u>#  error DES is disabled.</u></td></tr>
+<tr><th id="100">100</th><td><u># <span data-ppcond="98">endif</span></u></td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td><u># <span data-ppcond="102">ifndef</span> <a class="macro" href="des.h.html#60" data-ref="_M/HEADER_NEW_DES_H">HEADER_NEW_DES_H</a></u></td></tr>
+<tr><th id="103">103</th><td><u>#  error You must include des.h, not des_old.h directly.</u></td></tr>
+<tr><th id="104">104</th><td><u># <span data-ppcond="102">endif</span></u></td></tr>
+<tr><th id="105">105</th><td></td></tr>
+<tr><th id="106">106</th><td><u># <span data-ppcond="106">ifdef</span> <span class="macro" data-ref="_M/_KERBEROS_DES_H">_KERBEROS_DES_H</span></u></td></tr>
+<tr><th id="107">107</th><td><u>#  error &lt;openssl/des_old.h&gt; replaces &lt;kerberos/des.h&gt;.</u></td></tr>
+<tr><th id="108">108</th><td><u># <span data-ppcond="106">endif</span></u></td></tr>
+<tr><th id="109">109</th><td></td></tr>
+<tr><th id="110">110</th><td><u># include <a href="symhacks.h.html">&lt;openssl/symhacks.h&gt;</a></u></td></tr>
+<tr><th id="111">111</th><td></td></tr>
+<tr><th id="112">112</th><td><u># <span data-ppcond="112">ifdef</span> <span class="macro" data-ref="_M/OPENSSL_BUILD_SHLIBCRYPTO">OPENSSL_BUILD_SHLIBCRYPTO</span></u></td></tr>
+<tr><th id="113">113</th><td><u>#  undef OPENSSL_EXTERN</u></td></tr>
+<tr><th id="114">114</th><td><u>#  define OPENSSL_EXTERN OPENSSL_EXPORT</u></td></tr>
+<tr><th id="115">115</th><td><u># <span data-ppcond="112">endif</span></u></td></tr>
+<tr><th id="116">116</th><td></td></tr>
+<tr><th id="117">117</th><td><u>#<span data-ppcond="117">ifdef</span>  <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u></td></tr>
+<tr><th id="118">118</th><td><b>extern</b> <q>"C"</q> {</td></tr>
+<tr><th id="119">119</th><td><u>#<span data-ppcond="117">endif</span></u></td></tr>
+<tr><th id="120">120</th><td></td></tr>
+<tr><th id="121">121</th><td><u># <span data-ppcond="121">ifdef</span> <span class="macro" data-ref="_M/_">_</span></u></td></tr>
+<tr><th id="122">122</th><td><u>#  undef _</u></td></tr>
+<tr><th id="123">123</th><td><u># <span data-ppcond="121">endif</span></u></td></tr>
+<tr><th id="124">124</th><td></td></tr>
+<tr><th id="125">125</th><td><b>typedef</b> <em>unsigned</em> <em>char</em> <dfn class="typedef" id="_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</dfn>[<var>8</var>];</td></tr>
+<tr><th id="126">126</th><td><b>typedef</b> <b>struct</b> <dfn class="type def" id="_ossl_old_des_ks_struct" title='_ossl_old_des_ks_struct' data-ref="_ossl_old_des_ks_struct"><a class="type" href="#_ossl_old_des_ks_struct" title='_ossl_old_des_ks_struct' data-ref="_ossl_old_des_ks_struct">_ossl_old_des_ks_struct</a></dfn> {</td></tr>
+<tr><th id="127">127</th><td>    <b>union</b> {</td></tr>
+<tr><th id="128">128</th><td>        <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> <dfn class="decl" id="_ossl_old_des_ks_struct::(anonymous)::_" title='_ossl_old_des_ks_struct::(anonymous union)::_' data-ref="_ossl_old_des_ks_struct::(anonymous)::_">_</dfn>;</td></tr>
+<tr><th id="129">129</th><td>        <i>/*</i></td></tr>
+<tr><th id="130">130</th><td><i>         * make sure things are correct size on machines with 8 byte longs</i></td></tr>
+<tr><th id="131">131</th><td><i>         */</i></td></tr>
+<tr><th id="132">132</th><td>        <a class="macro" href="../x86_64-linux-gnu/openssl/opensslconf.h.html#174" title="unsigned int" data-ref="_M/DES_LONG">DES_LONG</a> <dfn class="decl" id="_ossl_old_des_ks_struct::(anonymous)::pad" title='_ossl_old_des_ks_struct::(anonymous union)::pad' data-ref="_ossl_old_des_ks_struct::(anonymous)::pad">pad</dfn>[<var>2</var>];</td></tr>
+<tr><th id="133">133</th><td>    } <dfn class="decl" id="_ossl_old_des_ks_struct::ks" title='_ossl_old_des_ks_struct::ks' data-ref="_ossl_old_des_ks_struct::ks">ks</dfn>;</td></tr>
+<tr><th id="134">134</th><td>} <dfn class="typedef" id="_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</dfn>[<var>16</var>];</td></tr>
+<tr><th id="135">135</th><td></td></tr>
+<tr><th id="136">136</th><td><u># <span data-ppcond="136">ifndef</span> <span class="macro" data-ref="_M/OPENSSL_DES_LIBDES_COMPATIBILITY">OPENSSL_DES_LIBDES_COMPATIBILITY</span></u></td></tr>
+<tr><th id="137">137</th><td><u>#  define <dfn class="macro" id="_M/des_cblock" data-ref="_M/des_cblock">des_cblock</dfn> <a class="typedef" href="des.h.html#DES_cblock" title='DES_cblock' data-type='unsigned char [8]' data-ref="DES_cblock">DES_cblock</a></u></td></tr>
+<tr><th id="138">138</th><td><u>#  define <dfn class="macro" id="_M/const_des_cblock" data-ref="_M/const_des_cblock">const_des_cblock</dfn> const_DES_cblock</u></td></tr>
+<tr><th id="139">139</th><td><u>#  define <dfn class="macro" id="_M/des_key_schedule" data-ref="_M/des_key_schedule">des_key_schedule</dfn> DES_key_schedule</u></td></tr>
+<tr><th id="140">140</th><td><u>#  define <dfn class="macro" id="_M/des_ecb3_encrypt" data-ref="_M/des_ecb3_encrypt">des_ecb3_encrypt</dfn>(i,o,k1,k2,k3,e)\</u></td></tr>
+<tr><th id="141">141</th><td><u>        DES_ecb3_encrypt((i),(o),&amp;(k1),&amp;(k2),&amp;(k3),(e))</u></td></tr>
+<tr><th id="142">142</th><td><u>#  define <dfn class="macro" id="_M/des_ede3_cbc_encrypt" data-ref="_M/des_ede3_cbc_encrypt">des_ede3_cbc_encrypt</dfn>(i,o,l,k1,k2,k3,iv,e)\</u></td></tr>
+<tr><th id="143">143</th><td><u>        DES_ede3_cbc_encrypt((i),(o),(l),&amp;(k1),&amp;(k2),&amp;(k3),(iv),(e))</u></td></tr>
+<tr><th id="144">144</th><td><u>#  define <dfn class="macro" id="_M/des_ede3_cbcm_encrypt" data-ref="_M/des_ede3_cbcm_encrypt">des_ede3_cbcm_encrypt</dfn>(i,o,l,k1,k2,k3,iv1,iv2,e)\</u></td></tr>
+<tr><th id="145">145</th><td><u>        DES_ede3_cbcm_encrypt((i),(o),(l),&amp;(k1),&amp;(k2),&amp;(k3),(iv1),(iv2),(e))</u></td></tr>
+<tr><th id="146">146</th><td><u>#  define <dfn class="macro" id="_M/des_ede3_cfb64_encrypt" data-ref="_M/des_ede3_cfb64_encrypt">des_ede3_cfb64_encrypt</dfn>(i,o,l,k1,k2,k3,iv,n,e)\</u></td></tr>
+<tr><th id="147">147</th><td><u>        DES_ede3_cfb64_encrypt((i),(o),(l),&amp;(k1),&amp;(k2),&amp;(k3),(iv),(n),(e))</u></td></tr>
+<tr><th id="148">148</th><td><u>#  define <dfn class="macro" id="_M/des_ede3_ofb64_encrypt" data-ref="_M/des_ede3_ofb64_encrypt">des_ede3_ofb64_encrypt</dfn>(i,o,l,k1,k2,k3,iv,n)\</u></td></tr>
+<tr><th id="149">149</th><td><u>        DES_ede3_ofb64_encrypt((i),(o),(l),&amp;(k1),&amp;(k2),&amp;(k3),(iv),(n))</u></td></tr>
+<tr><th id="150">150</th><td><u>#  define <dfn class="macro" id="_M/des_options" data-ref="_M/des_options">des_options</dfn>()\</u></td></tr>
+<tr><th id="151">151</th><td><u>        DES_options()</u></td></tr>
+<tr><th id="152">152</th><td><u>#  define <dfn class="macro" id="_M/des_cbc_cksum" data-ref="_M/des_cbc_cksum">des_cbc_cksum</dfn>(i,o,l,k,iv)\</u></td></tr>
+<tr><th id="153">153</th><td><u>        DES_cbc_cksum((i),(o),(l),&amp;(k),(iv))</u></td></tr>
+<tr><th id="154">154</th><td><u>#  define <dfn class="macro" id="_M/des_cbc_encrypt" data-ref="_M/des_cbc_encrypt">des_cbc_encrypt</dfn>(i,o,l,k,iv,e)\</u></td></tr>
+<tr><th id="155">155</th><td><u>        DES_cbc_encrypt((i),(o),(l),&amp;(k),(iv),(e))</u></td></tr>
+<tr><th id="156">156</th><td><u>#  define <dfn class="macro" id="_M/des_ncbc_encrypt" data-ref="_M/des_ncbc_encrypt">des_ncbc_encrypt</dfn>(i,o,l,k,iv,e)\</u></td></tr>
+<tr><th id="157">157</th><td><u>        DES_ncbc_encrypt((i),(o),(l),&amp;(k),(iv),(e))</u></td></tr>
+<tr><th id="158">158</th><td><u>#  define <dfn class="macro" id="_M/des_xcbc_encrypt" data-ref="_M/des_xcbc_encrypt">des_xcbc_encrypt</dfn>(i,o,l,k,iv,inw,outw,e)\</u></td></tr>
+<tr><th id="159">159</th><td><u>        DES_xcbc_encrypt((i),(o),(l),&amp;(k),(iv),(inw),(outw),(e))</u></td></tr>
+<tr><th id="160">160</th><td><u>#  define <dfn class="macro" id="_M/des_cfb_encrypt" data-ref="_M/des_cfb_encrypt">des_cfb_encrypt</dfn>(i,o,n,l,k,iv,e)\</u></td></tr>
+<tr><th id="161">161</th><td><u>        DES_cfb_encrypt((i),(o),(n),(l),&amp;(k),(iv),(e))</u></td></tr>
+<tr><th id="162">162</th><td><u>#  define <dfn class="macro" id="_M/des_ecb_encrypt" data-ref="_M/des_ecb_encrypt">des_ecb_encrypt</dfn>(i,o,k,e)\</u></td></tr>
+<tr><th id="163">163</th><td><u>        DES_ecb_encrypt((i),(o),&amp;(k),(e))</u></td></tr>
+<tr><th id="164">164</th><td><u>#  define <dfn class="macro" id="_M/des_encrypt1" data-ref="_M/des_encrypt1">des_encrypt1</dfn>(d,k,e)\</u></td></tr>
+<tr><th id="165">165</th><td><u>        DES_encrypt1((d),&amp;(k),(e))</u></td></tr>
+<tr><th id="166">166</th><td><u>#  define <dfn class="macro" id="_M/des_encrypt2" data-ref="_M/des_encrypt2">des_encrypt2</dfn>(d,k,e)\</u></td></tr>
+<tr><th id="167">167</th><td><u>        DES_encrypt2((d),&amp;(k),(e))</u></td></tr>
+<tr><th id="168">168</th><td><u>#  define <dfn class="macro" id="_M/des_encrypt3" data-ref="_M/des_encrypt3">des_encrypt3</dfn>(d,k1,k2,k3)\</u></td></tr>
+<tr><th id="169">169</th><td><u>        DES_encrypt3((d),&amp;(k1),&amp;(k2),&amp;(k3))</u></td></tr>
+<tr><th id="170">170</th><td><u>#  define <dfn class="macro" id="_M/des_decrypt3" data-ref="_M/des_decrypt3">des_decrypt3</dfn>(d,k1,k2,k3)\</u></td></tr>
+<tr><th id="171">171</th><td><u>        DES_decrypt3((d),&amp;(k1),&amp;(k2),&amp;(k3))</u></td></tr>
+<tr><th id="172">172</th><td><u>#  define <dfn class="macro" id="_M/des_xwhite_in2out" data-ref="_M/des_xwhite_in2out">des_xwhite_in2out</dfn>(k,i,o)\</u></td></tr>
+<tr><th id="173">173</th><td><u>        DES_xwhite_in2out((k),(i),(o))</u></td></tr>
+<tr><th id="174">174</th><td><u>#  define <dfn class="macro" id="_M/des_enc_read" data-ref="_M/des_enc_read">des_enc_read</dfn>(f,b,l,k,iv)\</u></td></tr>
+<tr><th id="175">175</th><td><u>        DES_enc_read((f),(b),(l),&amp;(k),(iv))</u></td></tr>
+<tr><th id="176">176</th><td><u>#  define <dfn class="macro" id="_M/des_enc_write" data-ref="_M/des_enc_write">des_enc_write</dfn>(f,b,l,k,iv)\</u></td></tr>
+<tr><th id="177">177</th><td><u>        DES_enc_write((f),(b),(l),&amp;(k),(iv))</u></td></tr>
+<tr><th id="178">178</th><td><u>#  define <dfn class="macro" id="_M/des_fcrypt" data-ref="_M/des_fcrypt">des_fcrypt</dfn>(b,s,r)\</u></td></tr>
+<tr><th id="179">179</th><td><u>        DES_fcrypt((b),(s),(r))</u></td></tr>
+<tr><th id="180">180</th><td><u>#  <span data-ppcond="180">if</span> 0</u></td></tr>
+<tr><th id="181">181</th><td><u>#   define des_crypt(b,s)\</u></td></tr>
+<tr><th id="182">182</th><td><u>        DES_crypt((b),(s))</u></td></tr>
+<tr><th id="183">183</th><td><u>#   if !defined(PERL5) &amp;&amp; !defined(__FreeBSD__) &amp;&amp; !defined(NeXT) &amp;&amp; !defined(__OpenBSD__)</u></td></tr>
+<tr><th id="184">184</th><td><u>#    define crypt(b,s)\</u></td></tr>
+<tr><th id="185">185</th><td><u>        DES_crypt((b),(s))</u></td></tr>
+<tr><th id="186">186</th><td><u>#   endif</u></td></tr>
+<tr><th id="187">187</th><td><u>#  <span data-ppcond="180">endif</span></u></td></tr>
+<tr><th id="188">188</th><td><u>#  define <dfn class="macro" id="_M/des_ofb_encrypt" data-ref="_M/des_ofb_encrypt">des_ofb_encrypt</dfn>(i,o,n,l,k,iv)\</u></td></tr>
+<tr><th id="189">189</th><td><u>        DES_ofb_encrypt((i),(o),(n),(l),&amp;(k),(iv))</u></td></tr>
+<tr><th id="190">190</th><td><u>#  define <dfn class="macro" id="_M/des_pcbc_encrypt" data-ref="_M/des_pcbc_encrypt">des_pcbc_encrypt</dfn>(i,o,l,k,iv,e)\</u></td></tr>
+<tr><th id="191">191</th><td><u>        DES_pcbc_encrypt((i),(o),(l),&amp;(k),(iv),(e))</u></td></tr>
+<tr><th id="192">192</th><td><u>#  define <dfn class="macro" id="_M/des_quad_cksum" data-ref="_M/des_quad_cksum">des_quad_cksum</dfn>(i,o,l,c,s)\</u></td></tr>
+<tr><th id="193">193</th><td><u>        DES_quad_cksum((i),(o),(l),(c),(s))</u></td></tr>
+<tr><th id="194">194</th><td><u>#  define <dfn class="macro" id="_M/des_random_seed" data-ref="_M/des_random_seed">des_random_seed</dfn>(k)\</u></td></tr>
+<tr><th id="195">195</th><td><u>        _ossl_096_des_random_seed((k))</u></td></tr>
+<tr><th id="196">196</th><td><u>#  define <dfn class="macro" id="_M/des_random_key" data-ref="_M/des_random_key">des_random_key</dfn>(r)\</u></td></tr>
+<tr><th id="197">197</th><td><u>        DES_random_key((r))</u></td></tr>
+<tr><th id="198">198</th><td><u>#  define <dfn class="macro" id="_M/des_read_password" data-ref="_M/des_read_password">des_read_password</dfn>(k,p,v) \</u></td></tr>
+<tr><th id="199">199</th><td><u>        DES_read_password((k),(p),(v))</u></td></tr>
+<tr><th id="200">200</th><td><u>#  define <dfn class="macro" id="_M/des_read_2passwords" data-ref="_M/des_read_2passwords">des_read_2passwords</dfn>(k1,k2,p,v) \</u></td></tr>
+<tr><th id="201">201</th><td><u>        DES_read_2passwords((k1),(k2),(p),(v))</u></td></tr>
+<tr><th id="202">202</th><td><u>#  define <dfn class="macro" id="_M/des_set_odd_parity" data-ref="_M/des_set_odd_parity">des_set_odd_parity</dfn>(k)\</u></td></tr>
+<tr><th id="203">203</th><td><u>        DES_set_odd_parity((k))</u></td></tr>
+<tr><th id="204">204</th><td><u>#  define <dfn class="macro" id="_M/des_check_key_parity" data-ref="_M/des_check_key_parity">des_check_key_parity</dfn>(k)\</u></td></tr>
+<tr><th id="205">205</th><td><u>        DES_check_key_parity((k))</u></td></tr>
+<tr><th id="206">206</th><td><u>#  define <dfn class="macro" id="_M/des_is_weak_key" data-ref="_M/des_is_weak_key">des_is_weak_key</dfn>(k)\</u></td></tr>
+<tr><th id="207">207</th><td><u>        DES_is_weak_key((k))</u></td></tr>
+<tr><th id="208">208</th><td><u>#  define <dfn class="macro" id="_M/des_set_key" data-ref="_M/des_set_key">des_set_key</dfn>(k,ks)\</u></td></tr>
+<tr><th id="209">209</th><td><u>        DES_set_key((k),&amp;(ks))</u></td></tr>
+<tr><th id="210">210</th><td><u>#  define <dfn class="macro" id="_M/des_key_sched" data-ref="_M/des_key_sched">des_key_sched</dfn>(k,ks)\</u></td></tr>
+<tr><th id="211">211</th><td><u>        DES_key_sched((k),&amp;(ks))</u></td></tr>
+<tr><th id="212">212</th><td><u>#  define <dfn class="macro" id="_M/des_set_key_checked" data-ref="_M/des_set_key_checked">des_set_key_checked</dfn>(k,ks)\</u></td></tr>
+<tr><th id="213">213</th><td><u>        DES_set_key_checked((k),&amp;(ks))</u></td></tr>
+<tr><th id="214">214</th><td><u>#  define <dfn class="macro" id="_M/des_set_key_unchecked" data-ref="_M/des_set_key_unchecked">des_set_key_unchecked</dfn>(k,ks)\</u></td></tr>
+<tr><th id="215">215</th><td><u>        DES_set_key_unchecked((k),&amp;(ks))</u></td></tr>
+<tr><th id="216">216</th><td><u>#  define <dfn class="macro" id="_M/des_string_to_key" data-ref="_M/des_string_to_key">des_string_to_key</dfn>(s,k)\</u></td></tr>
+<tr><th id="217">217</th><td><u>        DES_string_to_key((s),(k))</u></td></tr>
+<tr><th id="218">218</th><td><u>#  define <dfn class="macro" id="_M/des_string_to_2keys" data-ref="_M/des_string_to_2keys">des_string_to_2keys</dfn>(s,k1,k2)\</u></td></tr>
+<tr><th id="219">219</th><td><u>        DES_string_to_2keys((s),(k1),(k2))</u></td></tr>
+<tr><th id="220">220</th><td><u>#  define <dfn class="macro" id="_M/des_cfb64_encrypt" data-ref="_M/des_cfb64_encrypt">des_cfb64_encrypt</dfn>(i,o,l,ks,iv,n,e)\</u></td></tr>
+<tr><th id="221">221</th><td><u>        DES_cfb64_encrypt((i),(o),(l),&amp;(ks),(iv),(n),(e))</u></td></tr>
+<tr><th id="222">222</th><td><u>#  define <dfn class="macro" id="_M/des_ofb64_encrypt" data-ref="_M/des_ofb64_encrypt">des_ofb64_encrypt</dfn>(i,o,l,ks,iv,n)\</u></td></tr>
+<tr><th id="223">223</th><td><u>        DES_ofb64_encrypt((i),(o),(l),&amp;(ks),(iv),(n))</u></td></tr>
+<tr><th id="224">224</th><td></td></tr>
+<tr><th id="225">225</th><td><u>#  define <dfn class="macro" id="_M/des_ecb2_encrypt" data-ref="_M/des_ecb2_encrypt">des_ecb2_encrypt</dfn>(i,o,k1,k2,e) \</u></td></tr>
+<tr><th id="226">226</th><td><u>        des_ecb3_encrypt((i),(o),(k1),(k2),(k1),(e))</u></td></tr>
+<tr><th id="227">227</th><td></td></tr>
+<tr><th id="228">228</th><td><u>#  define <dfn class="macro" id="_M/des_ede2_cbc_encrypt" data-ref="_M/des_ede2_cbc_encrypt">des_ede2_cbc_encrypt</dfn>(i,o,l,k1,k2,iv,e) \</u></td></tr>
+<tr><th id="229">229</th><td><u>        des_ede3_cbc_encrypt((i),(o),(l),(k1),(k2),(k1),(iv),(e))</u></td></tr>
+<tr><th id="230">230</th><td></td></tr>
+<tr><th id="231">231</th><td><u>#  define <dfn class="macro" id="_M/des_ede2_cfb64_encrypt" data-ref="_M/des_ede2_cfb64_encrypt">des_ede2_cfb64_encrypt</dfn>(i,o,l,k1,k2,iv,n,e) \</u></td></tr>
+<tr><th id="232">232</th><td><u>        des_ede3_cfb64_encrypt((i),(o),(l),(k1),(k2),(k1),(iv),(n),(e))</u></td></tr>
+<tr><th id="233">233</th><td></td></tr>
+<tr><th id="234">234</th><td><u>#  define <dfn class="macro" id="_M/des_ede2_ofb64_encrypt" data-ref="_M/des_ede2_ofb64_encrypt">des_ede2_ofb64_encrypt</dfn>(i,o,l,k1,k2,iv,n) \</u></td></tr>
+<tr><th id="235">235</th><td><u>        des_ede3_ofb64_encrypt((i),(o),(l),(k1),(k2),(k1),(iv),(n))</u></td></tr>
+<tr><th id="236">236</th><td></td></tr>
+<tr><th id="237">237</th><td><u>#  define <dfn class="macro" id="_M/des_check_key" data-ref="_M/des_check_key">des_check_key</dfn> DES_check_key</u></td></tr>
+<tr><th id="238">238</th><td><u>#  define <dfn class="macro" id="_M/des_rw_mode" data-ref="_M/des_rw_mode">des_rw_mode</dfn> DES_rw_mode</u></td></tr>
+<tr><th id="239">239</th><td><u># <span data-ppcond="136">else</span>                          /* libdes compatibility */</u></td></tr>
+<tr><th id="240">240</th><td><i>/*</i></td></tr>
+<tr><th id="241">241</th><td><i> * Map all symbol names to _ossl_old_des_* form, so we avoid all clashes with</i></td></tr>
+<tr><th id="242">242</th><td><i> * libdes</i></td></tr>
+<tr><th id="243">243</th><td><i> */</i></td></tr>
+<tr><th id="244">244</th><td><u>#  define des_cblock _ossl_old_des_cblock</u></td></tr>
+<tr><th id="245">245</th><td><u>#  define des_key_schedule _ossl_old_des_key_schedule</u></td></tr>
+<tr><th id="246">246</th><td><u>#  define des_ecb3_encrypt(i,o,k1,k2,k3,e)\</u></td></tr>
+<tr><th id="247">247</th><td><u>        _ossl_old_des_ecb3_encrypt((i),(o),(k1),(k2),(k3),(e))</u></td></tr>
+<tr><th id="248">248</th><td><u>#  define des_ede3_cbc_encrypt(i,o,l,k1,k2,k3,iv,e)\</u></td></tr>
+<tr><th id="249">249</th><td><u>        _ossl_old_des_ede3_cbc_encrypt((i),(o),(l),(k1),(k2),(k3),(iv),(e))</u></td></tr>
+<tr><th id="250">250</th><td><u>#  define des_ede3_cfb64_encrypt(i,o,l,k1,k2,k3,iv,n,e)\</u></td></tr>
+<tr><th id="251">251</th><td><u>        _ossl_old_des_ede3_cfb64_encrypt((i),(o),(l),(k1),(k2),(k3),(iv),(n),(e))</u></td></tr>
+<tr><th id="252">252</th><td><u>#  define des_ede3_ofb64_encrypt(i,o,l,k1,k2,k3,iv,n)\</u></td></tr>
+<tr><th id="253">253</th><td><u>        _ossl_old_des_ede3_ofb64_encrypt((i),(o),(l),(k1),(k2),(k3),(iv),(n))</u></td></tr>
+<tr><th id="254">254</th><td><u>#  define des_options()\</u></td></tr>
+<tr><th id="255">255</th><td><u>        _ossl_old_des_options()</u></td></tr>
+<tr><th id="256">256</th><td><u>#  define des_cbc_cksum(i,o,l,k,iv)\</u></td></tr>
+<tr><th id="257">257</th><td><u>        _ossl_old_des_cbc_cksum((i),(o),(l),(k),(iv))</u></td></tr>
+<tr><th id="258">258</th><td><u>#  define des_cbc_encrypt(i,o,l,k,iv,e)\</u></td></tr>
+<tr><th id="259">259</th><td><u>        _ossl_old_des_cbc_encrypt((i),(o),(l),(k),(iv),(e))</u></td></tr>
+<tr><th id="260">260</th><td><u>#  define des_ncbc_encrypt(i,o,l,k,iv,e)\</u></td></tr>
+<tr><th id="261">261</th><td><u>        _ossl_old_des_ncbc_encrypt((i),(o),(l),(k),(iv),(e))</u></td></tr>
+<tr><th id="262">262</th><td><u>#  define des_xcbc_encrypt(i,o,l,k,iv,inw,outw,e)\</u></td></tr>
+<tr><th id="263">263</th><td><u>        _ossl_old_des_xcbc_encrypt((i),(o),(l),(k),(iv),(inw),(outw),(e))</u></td></tr>
+<tr><th id="264">264</th><td><u>#  define des_cfb_encrypt(i,o,n,l,k,iv,e)\</u></td></tr>
+<tr><th id="265">265</th><td><u>        _ossl_old_des_cfb_encrypt((i),(o),(n),(l),(k),(iv),(e))</u></td></tr>
+<tr><th id="266">266</th><td><u>#  define des_ecb_encrypt(i,o,k,e)\</u></td></tr>
+<tr><th id="267">267</th><td><u>        _ossl_old_des_ecb_encrypt((i),(o),(k),(e))</u></td></tr>
+<tr><th id="268">268</th><td><u>#  define des_encrypt(d,k,e)\</u></td></tr>
+<tr><th id="269">269</th><td><u>        _ossl_old_des_encrypt((d),(k),(e))</u></td></tr>
+<tr><th id="270">270</th><td><u>#  define des_encrypt2(d,k,e)\</u></td></tr>
+<tr><th id="271">271</th><td><u>        _ossl_old_des_encrypt2((d),(k),(e))</u></td></tr>
+<tr><th id="272">272</th><td><u>#  define des_encrypt3(d,k1,k2,k3)\</u></td></tr>
+<tr><th id="273">273</th><td><u>        _ossl_old_des_encrypt3((d),(k1),(k2),(k3))</u></td></tr>
+<tr><th id="274">274</th><td><u>#  define des_decrypt3(d,k1,k2,k3)\</u></td></tr>
+<tr><th id="275">275</th><td><u>        _ossl_old_des_decrypt3((d),(k1),(k2),(k3))</u></td></tr>
+<tr><th id="276">276</th><td><u>#  define des_xwhite_in2out(k,i,o)\</u></td></tr>
+<tr><th id="277">277</th><td><u>        _ossl_old_des_xwhite_in2out((k),(i),(o))</u></td></tr>
+<tr><th id="278">278</th><td><u>#  define des_enc_read(f,b,l,k,iv)\</u></td></tr>
+<tr><th id="279">279</th><td><u>        _ossl_old_des_enc_read((f),(b),(l),(k),(iv))</u></td></tr>
+<tr><th id="280">280</th><td><u>#  define des_enc_write(f,b,l,k,iv)\</u></td></tr>
+<tr><th id="281">281</th><td><u>        _ossl_old_des_enc_write((f),(b),(l),(k),(iv))</u></td></tr>
+<tr><th id="282">282</th><td><u>#  define des_fcrypt(b,s,r)\</u></td></tr>
+<tr><th id="283">283</th><td><u>        _ossl_old_des_fcrypt((b),(s),(r))</u></td></tr>
+<tr><th id="284">284</th><td><u>#  define des_crypt(b,s)\</u></td></tr>
+<tr><th id="285">285</th><td><u>        _ossl_old_des_crypt((b),(s))</u></td></tr>
+<tr><th id="286">286</th><td><u>#  if 0</u></td></tr>
+<tr><th id="287">287</th><td><u>#   define crypt(b,s)\</u></td></tr>
+<tr><th id="288">288</th><td><u>        _ossl_old_crypt((b),(s))</u></td></tr>
+<tr><th id="289">289</th><td><u>#  endif</u></td></tr>
+<tr><th id="290">290</th><td><u>#  define des_ofb_encrypt(i,o,n,l,k,iv)\</u></td></tr>
+<tr><th id="291">291</th><td><u>        _ossl_old_des_ofb_encrypt((i),(o),(n),(l),(k),(iv))</u></td></tr>
+<tr><th id="292">292</th><td><u>#  define des_pcbc_encrypt(i,o,l,k,iv,e)\</u></td></tr>
+<tr><th id="293">293</th><td><u>        _ossl_old_des_pcbc_encrypt((i),(o),(l),(k),(iv),(e))</u></td></tr>
+<tr><th id="294">294</th><td><u>#  define des_quad_cksum(i,o,l,c,s)\</u></td></tr>
+<tr><th id="295">295</th><td><u>        _ossl_old_des_quad_cksum((i),(o),(l),(c),(s))</u></td></tr>
+<tr><th id="296">296</th><td><u>#  define des_random_seed(k)\</u></td></tr>
+<tr><th id="297">297</th><td><u>        _ossl_old_des_random_seed((k))</u></td></tr>
+<tr><th id="298">298</th><td><u>#  define des_random_key(r)\</u></td></tr>
+<tr><th id="299">299</th><td><u>        _ossl_old_des_random_key((r))</u></td></tr>
+<tr><th id="300">300</th><td><u>#  define des_read_password(k,p,v) \</u></td></tr>
+<tr><th id="301">301</th><td><u>        _ossl_old_des_read_password((k),(p),(v))</u></td></tr>
+<tr><th id="302">302</th><td><u>#  define des_read_2passwords(k1,k2,p,v) \</u></td></tr>
+<tr><th id="303">303</th><td><u>        _ossl_old_des_read_2passwords((k1),(k2),(p),(v))</u></td></tr>
+<tr><th id="304">304</th><td><u>#  define des_set_odd_parity(k)\</u></td></tr>
+<tr><th id="305">305</th><td><u>        _ossl_old_des_set_odd_parity((k))</u></td></tr>
+<tr><th id="306">306</th><td><u>#  define des_is_weak_key(k)\</u></td></tr>
+<tr><th id="307">307</th><td><u>        _ossl_old_des_is_weak_key((k))</u></td></tr>
+<tr><th id="308">308</th><td><u>#  define des_set_key(k,ks)\</u></td></tr>
+<tr><th id="309">309</th><td><u>        _ossl_old_des_set_key((k),(ks))</u></td></tr>
+<tr><th id="310">310</th><td><u>#  define des_key_sched(k,ks)\</u></td></tr>
+<tr><th id="311">311</th><td><u>        _ossl_old_des_key_sched((k),(ks))</u></td></tr>
+<tr><th id="312">312</th><td><u>#  define des_string_to_key(s,k)\</u></td></tr>
+<tr><th id="313">313</th><td><u>        _ossl_old_des_string_to_key((s),(k))</u></td></tr>
+<tr><th id="314">314</th><td><u>#  define des_string_to_2keys(s,k1,k2)\</u></td></tr>
+<tr><th id="315">315</th><td><u>        _ossl_old_des_string_to_2keys((s),(k1),(k2))</u></td></tr>
+<tr><th id="316">316</th><td><u>#  define des_cfb64_encrypt(i,o,l,ks,iv,n,e)\</u></td></tr>
+<tr><th id="317">317</th><td><u>        _ossl_old_des_cfb64_encrypt((i),(o),(l),(ks),(iv),(n),(e))</u></td></tr>
+<tr><th id="318">318</th><td><u>#  define des_ofb64_encrypt(i,o,l,ks,iv,n)\</u></td></tr>
+<tr><th id="319">319</th><td><u>        _ossl_old_des_ofb64_encrypt((i),(o),(l),(ks),(iv),(n))</u></td></tr>
+<tr><th id="320">320</th><td></td></tr>
+<tr><th id="321">321</th><td><u>#  define des_ecb2_encrypt(i,o,k1,k2,e) \</u></td></tr>
+<tr><th id="322">322</th><td><u>        des_ecb3_encrypt((i),(o),(k1),(k2),(k1),(e))</u></td></tr>
+<tr><th id="323">323</th><td></td></tr>
+<tr><th id="324">324</th><td><u>#  define des_ede2_cbc_encrypt(i,o,l,k1,k2,iv,e) \</u></td></tr>
+<tr><th id="325">325</th><td><u>        des_ede3_cbc_encrypt((i),(o),(l),(k1),(k2),(k1),(iv),(e))</u></td></tr>
+<tr><th id="326">326</th><td></td></tr>
+<tr><th id="327">327</th><td><u>#  define des_ede2_cfb64_encrypt(i,o,l,k1,k2,iv,n,e) \</u></td></tr>
+<tr><th id="328">328</th><td><u>        des_ede3_cfb64_encrypt((i),(o),(l),(k1),(k2),(k1),(iv),(n),(e))</u></td></tr>
+<tr><th id="329">329</th><td></td></tr>
+<tr><th id="330">330</th><td><u>#  define des_ede2_ofb64_encrypt(i,o,l,k1,k2,iv,n) \</u></td></tr>
+<tr><th id="331">331</th><td><u>        des_ede3_ofb64_encrypt((i),(o),(l),(k1),(k2),(k1),(iv),(n))</u></td></tr>
+<tr><th id="332">332</th><td></td></tr>
+<tr><th id="333">333</th><td><u>#  define des_check_key DES_check_key</u></td></tr>
+<tr><th id="334">334</th><td><u>#  define des_rw_mode DES_rw_mode</u></td></tr>
+<tr><th id="335">335</th><td><u># <span data-ppcond="136">endif</span></u></td></tr>
+<tr><th id="336">336</th><td></td></tr>
+<tr><th id="337">337</th><td><em>const</em> <em>char</em> *<dfn class="decl" id="_ossl_old_des_options" title='_ossl_old_des_options' data-ref="_ossl_old_des_options">_ossl_old_des_options</dfn>(<em>void</em>);</td></tr>
+<tr><th id="338">338</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_ecb3_encrypt" title='_ossl_old_des_ecb3_encrypt' data-ref="_ossl_old_des_ecb3_encrypt">_ossl_old_des_ecb3_encrypt</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col1 decl" id="1input" title='input' data-type='_ossl_old_des_cblock *' data-ref="1input">input</dfn>,</td></tr>
+<tr><th id="339">339</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col2 decl" id="2output" title='output' data-type='_ossl_old_des_cblock *' data-ref="2output">output</dfn>,</td></tr>
+<tr><th id="340">340</th><td>                                <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col3 decl" id="3ks1" title='ks1' data-type='struct _ossl_old_des_ks_struct *' data-ref="3ks1">ks1</dfn>,</td></tr>
+<tr><th id="341">341</th><td>                                <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col4 decl" id="4ks2" title='ks2' data-type='struct _ossl_old_des_ks_struct *' data-ref="4ks2">ks2</dfn>,</td></tr>
+<tr><th id="342">342</th><td>                                <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col5 decl" id="5ks3" title='ks3' data-type='struct _ossl_old_des_ks_struct *' data-ref="5ks3">ks3</dfn>, <em>int</em> <dfn class="local col6 decl" id="6enc" title='enc' data-type='int' data-ref="6enc">enc</dfn>);</td></tr>
+<tr><th id="343">343</th><td><a class="macro" href="../x86_64-linux-gnu/openssl/opensslconf.h.html#174" title="unsigned int" data-ref="_M/DES_LONG">DES_LONG</a> <dfn class="decl" id="_ossl_old_des_cbc_cksum" title='_ossl_old_des_cbc_cksum' data-ref="_ossl_old_des_cbc_cksum">_ossl_old_des_cbc_cksum</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col7 decl" id="7input" title='input' data-type='_ossl_old_des_cblock *' data-ref="7input">input</dfn>,</td></tr>
+<tr><th id="344">344</th><td>                                 <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col8 decl" id="8output" title='output' data-type='_ossl_old_des_cblock *' data-ref="8output">output</dfn>, <em>long</em> <dfn class="local col9 decl" id="9length" title='length' data-type='long' data-ref="9length">length</dfn>,</td></tr>
+<tr><th id="345">345</th><td>                                 <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col0 decl" id="10schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="10schedule">schedule</dfn>,</td></tr>
+<tr><th id="346">346</th><td>                                 <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col1 decl" id="11ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="11ivec">ivec</dfn>);</td></tr>
+<tr><th id="347">347</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_cbc_encrypt" title='_ossl_old_des_cbc_encrypt' data-ref="_ossl_old_des_cbc_encrypt">_ossl_old_des_cbc_encrypt</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col2 decl" id="12input" title='input' data-type='_ossl_old_des_cblock *' data-ref="12input">input</dfn>,</td></tr>
+<tr><th id="348">348</th><td>                               <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col3 decl" id="13output" title='output' data-type='_ossl_old_des_cblock *' data-ref="13output">output</dfn>, <em>long</em> <dfn class="local col4 decl" id="14length" title='length' data-type='long' data-ref="14length">length</dfn>,</td></tr>
+<tr><th id="349">349</th><td>                               <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col5 decl" id="15schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="15schedule">schedule</dfn>,</td></tr>
+<tr><th id="350">350</th><td>                               <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col6 decl" id="16ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="16ivec">ivec</dfn>, <em>int</em> <dfn class="local col7 decl" id="17enc" title='enc' data-type='int' data-ref="17enc">enc</dfn>);</td></tr>
+<tr><th id="351">351</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_ncbc_encrypt" title='_ossl_old_des_ncbc_encrypt' data-ref="_ossl_old_des_ncbc_encrypt">_ossl_old_des_ncbc_encrypt</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col8 decl" id="18input" title='input' data-type='_ossl_old_des_cblock *' data-ref="18input">input</dfn>,</td></tr>
+<tr><th id="352">352</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col9 decl" id="19output" title='output' data-type='_ossl_old_des_cblock *' data-ref="19output">output</dfn>, <em>long</em> <dfn class="local col0 decl" id="20length" title='length' data-type='long' data-ref="20length">length</dfn>,</td></tr>
+<tr><th id="353">353</th><td>                                <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col1 decl" id="21schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="21schedule">schedule</dfn>,</td></tr>
+<tr><th id="354">354</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col2 decl" id="22ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="22ivec">ivec</dfn>, <em>int</em> <dfn class="local col3 decl" id="23enc" title='enc' data-type='int' data-ref="23enc">enc</dfn>);</td></tr>
+<tr><th id="355">355</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_xcbc_encrypt" title='_ossl_old_des_xcbc_encrypt' data-ref="_ossl_old_des_xcbc_encrypt">_ossl_old_des_xcbc_encrypt</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col4 decl" id="24input" title='input' data-type='_ossl_old_des_cblock *' data-ref="24input">input</dfn>,</td></tr>
+<tr><th id="356">356</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col5 decl" id="25output" title='output' data-type='_ossl_old_des_cblock *' data-ref="25output">output</dfn>, <em>long</em> <dfn class="local col6 decl" id="26length" title='length' data-type='long' data-ref="26length">length</dfn>,</td></tr>
+<tr><th id="357">357</th><td>                                <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col7 decl" id="27schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="27schedule">schedule</dfn>,</td></tr>
+<tr><th id="358">358</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col8 decl" id="28ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="28ivec">ivec</dfn>,</td></tr>
+<tr><th id="359">359</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col9 decl" id="29inw" title='inw' data-type='_ossl_old_des_cblock *' data-ref="29inw">inw</dfn>,</td></tr>
+<tr><th id="360">360</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col0 decl" id="30outw" title='outw' data-type='_ossl_old_des_cblock *' data-ref="30outw">outw</dfn>, <em>int</em> <dfn class="local col1 decl" id="31enc" title='enc' data-type='int' data-ref="31enc">enc</dfn>);</td></tr>
+<tr><th id="361">361</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_cfb_encrypt" title='_ossl_old_des_cfb_encrypt' data-ref="_ossl_old_des_cfb_encrypt">_ossl_old_des_cfb_encrypt</dfn>(<em>unsigned</em> <em>char</em> *<dfn class="local col2 decl" id="32in" title='in' data-type='unsigned char *' data-ref="32in">in</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col3 decl" id="33out" title='out' data-type='unsigned char *' data-ref="33out">out</dfn>,</td></tr>
+<tr><th id="362">362</th><td>                               <em>int</em> <dfn class="local col4 decl" id="34numbits" title='numbits' data-type='int' data-ref="34numbits">numbits</dfn>, <em>long</em> <dfn class="local col5 decl" id="35length" title='length' data-type='long' data-ref="35length">length</dfn>,</td></tr>
+<tr><th id="363">363</th><td>                               <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col6 decl" id="36schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="36schedule">schedule</dfn>,</td></tr>
+<tr><th id="364">364</th><td>                               <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col7 decl" id="37ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="37ivec">ivec</dfn>, <em>int</em> <dfn class="local col8 decl" id="38enc" title='enc' data-type='int' data-ref="38enc">enc</dfn>);</td></tr>
+<tr><th id="365">365</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_ecb_encrypt" title='_ossl_old_des_ecb_encrypt' data-ref="_ossl_old_des_ecb_encrypt">_ossl_old_des_ecb_encrypt</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col9 decl" id="39input" title='input' data-type='_ossl_old_des_cblock *' data-ref="39input">input</dfn>,</td></tr>
+<tr><th id="366">366</th><td>                               <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col0 decl" id="40output" title='output' data-type='_ossl_old_des_cblock *' data-ref="40output">output</dfn>,</td></tr>
+<tr><th id="367">367</th><td>                               <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col1 decl" id="41ks" title='ks' data-type='struct _ossl_old_des_ks_struct *' data-ref="41ks">ks</dfn>, <em>int</em> <dfn class="local col2 decl" id="42enc" title='enc' data-type='int' data-ref="42enc">enc</dfn>);</td></tr>
+<tr><th id="368">368</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_encrypt" title='_ossl_old_des_encrypt' data-ref="_ossl_old_des_encrypt">_ossl_old_des_encrypt</dfn>(<a class="macro" href="../x86_64-linux-gnu/openssl/opensslconf.h.html#174" title="unsigned int" data-ref="_M/DES_LONG">DES_LONG</a> *<dfn class="local col3 decl" id="43data" title='data' data-type='unsigned int *' data-ref="43data">data</dfn>, <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col4 decl" id="44ks" title='ks' data-type='struct _ossl_old_des_ks_struct *' data-ref="44ks">ks</dfn>,</td></tr>
+<tr><th id="369">369</th><td>                           <em>int</em> <dfn class="local col5 decl" id="45enc" title='enc' data-type='int' data-ref="45enc">enc</dfn>);</td></tr>
+<tr><th id="370">370</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_encrypt2" title='_ossl_old_des_encrypt2' data-ref="_ossl_old_des_encrypt2">_ossl_old_des_encrypt2</dfn>(<a class="macro" href="../x86_64-linux-gnu/openssl/opensslconf.h.html#174" title="unsigned int" data-ref="_M/DES_LONG">DES_LONG</a> *<dfn class="local col6 decl" id="46data" title='data' data-type='unsigned int *' data-ref="46data">data</dfn>, <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col7 decl" id="47ks" title='ks' data-type='struct _ossl_old_des_ks_struct *' data-ref="47ks">ks</dfn>,</td></tr>
+<tr><th id="371">371</th><td>                            <em>int</em> <dfn class="local col8 decl" id="48enc" title='enc' data-type='int' data-ref="48enc">enc</dfn>);</td></tr>
+<tr><th id="372">372</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_encrypt3" title='_ossl_old_des_encrypt3' data-ref="_ossl_old_des_encrypt3">_ossl_old_des_encrypt3</dfn>(<a class="macro" href="../x86_64-linux-gnu/openssl/opensslconf.h.html#174" title="unsigned int" data-ref="_M/DES_LONG">DES_LONG</a> *<dfn class="local col9 decl" id="49data" title='data' data-type='unsigned int *' data-ref="49data">data</dfn>, <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col0 decl" id="50ks1" title='ks1' data-type='struct _ossl_old_des_ks_struct *' data-ref="50ks1">ks1</dfn>,</td></tr>
+<tr><th id="373">373</th><td>                            <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col1 decl" id="51ks2" title='ks2' data-type='struct _ossl_old_des_ks_struct *' data-ref="51ks2">ks2</dfn>,</td></tr>
+<tr><th id="374">374</th><td>                            <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col2 decl" id="52ks3" title='ks3' data-type='struct _ossl_old_des_ks_struct *' data-ref="52ks3">ks3</dfn>);</td></tr>
+<tr><th id="375">375</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_decrypt3" title='_ossl_old_des_decrypt3' data-ref="_ossl_old_des_decrypt3">_ossl_old_des_decrypt3</dfn>(<a class="macro" href="../x86_64-linux-gnu/openssl/opensslconf.h.html#174" title="unsigned int" data-ref="_M/DES_LONG">DES_LONG</a> *<dfn class="local col3 decl" id="53data" title='data' data-type='unsigned int *' data-ref="53data">data</dfn>, <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col4 decl" id="54ks1" title='ks1' data-type='struct _ossl_old_des_ks_struct *' data-ref="54ks1">ks1</dfn>,</td></tr>
+<tr><th id="376">376</th><td>                            <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col5 decl" id="55ks2" title='ks2' data-type='struct _ossl_old_des_ks_struct *' data-ref="55ks2">ks2</dfn>,</td></tr>
+<tr><th id="377">377</th><td>                            <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col6 decl" id="56ks3" title='ks3' data-type='struct _ossl_old_des_ks_struct *' data-ref="56ks3">ks3</dfn>);</td></tr>
+<tr><th id="378">378</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_ede3_cbc_encrypt" title='_ossl_old_des_ede3_cbc_encrypt' data-ref="_ossl_old_des_ede3_cbc_encrypt">_ossl_old_des_ede3_cbc_encrypt</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col7 decl" id="57input" title='input' data-type='_ossl_old_des_cblock *' data-ref="57input">input</dfn>,</td></tr>
+<tr><th id="379">379</th><td>                                    <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col8 decl" id="58output" title='output' data-type='_ossl_old_des_cblock *' data-ref="58output">output</dfn>, <em>long</em> <dfn class="local col9 decl" id="59length" title='length' data-type='long' data-ref="59length">length</dfn>,</td></tr>
+<tr><th id="380">380</th><td>                                    <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col0 decl" id="60ks1" title='ks1' data-type='struct _ossl_old_des_ks_struct *' data-ref="60ks1">ks1</dfn>,</td></tr>
+<tr><th id="381">381</th><td>                                    <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col1 decl" id="61ks2" title='ks2' data-type='struct _ossl_old_des_ks_struct *' data-ref="61ks2">ks2</dfn>,</td></tr>
+<tr><th id="382">382</th><td>                                    <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col2 decl" id="62ks3" title='ks3' data-type='struct _ossl_old_des_ks_struct *' data-ref="62ks3">ks3</dfn>,</td></tr>
+<tr><th id="383">383</th><td>                                    <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col3 decl" id="63ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="63ivec">ivec</dfn>, <em>int</em> <dfn class="local col4 decl" id="64enc" title='enc' data-type='int' data-ref="64enc">enc</dfn>);</td></tr>
+<tr><th id="384">384</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_ede3_cfb64_encrypt" title='_ossl_old_des_ede3_cfb64_encrypt' data-ref="_ossl_old_des_ede3_cfb64_encrypt">_ossl_old_des_ede3_cfb64_encrypt</dfn>(<em>unsigned</em> <em>char</em> *<dfn class="local col5 decl" id="65in" title='in' data-type='unsigned char *' data-ref="65in">in</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col6 decl" id="66out" title='out' data-type='unsigned char *' data-ref="66out">out</dfn>,</td></tr>
+<tr><th id="385">385</th><td>                                      <em>long</em> <dfn class="local col7 decl" id="67length" title='length' data-type='long' data-ref="67length">length</dfn>,</td></tr>
+<tr><th id="386">386</th><td>                                      <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col8 decl" id="68ks1" title='ks1' data-type='struct _ossl_old_des_ks_struct *' data-ref="68ks1">ks1</dfn>,</td></tr>
+<tr><th id="387">387</th><td>                                      <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col9 decl" id="69ks2" title='ks2' data-type='struct _ossl_old_des_ks_struct *' data-ref="69ks2">ks2</dfn>,</td></tr>
+<tr><th id="388">388</th><td>                                      <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col0 decl" id="70ks3" title='ks3' data-type='struct _ossl_old_des_ks_struct *' data-ref="70ks3">ks3</dfn>,</td></tr>
+<tr><th id="389">389</th><td>                                      <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col1 decl" id="71ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="71ivec">ivec</dfn>, <em>int</em> *<dfn class="local col2 decl" id="72num" title='num' data-type='int *' data-ref="72num">num</dfn>,</td></tr>
+<tr><th id="390">390</th><td>                                      <em>int</em> <dfn class="local col3 decl" id="73enc" title='enc' data-type='int' data-ref="73enc">enc</dfn>);</td></tr>
+<tr><th id="391">391</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_ede3_ofb64_encrypt" title='_ossl_old_des_ede3_ofb64_encrypt' data-ref="_ossl_old_des_ede3_ofb64_encrypt">_ossl_old_des_ede3_ofb64_encrypt</dfn>(<em>unsigned</em> <em>char</em> *<dfn class="local col4 decl" id="74in" title='in' data-type='unsigned char *' data-ref="74in">in</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col5 decl" id="75out" title='out' data-type='unsigned char *' data-ref="75out">out</dfn>,</td></tr>
+<tr><th id="392">392</th><td>                                      <em>long</em> <dfn class="local col6 decl" id="76length" title='length' data-type='long' data-ref="76length">length</dfn>,</td></tr>
+<tr><th id="393">393</th><td>                                      <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col7 decl" id="77ks1" title='ks1' data-type='struct _ossl_old_des_ks_struct *' data-ref="77ks1">ks1</dfn>,</td></tr>
+<tr><th id="394">394</th><td>                                      <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col8 decl" id="78ks2" title='ks2' data-type='struct _ossl_old_des_ks_struct *' data-ref="78ks2">ks2</dfn>,</td></tr>
+<tr><th id="395">395</th><td>                                      <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col9 decl" id="79ks3" title='ks3' data-type='struct _ossl_old_des_ks_struct *' data-ref="79ks3">ks3</dfn>,</td></tr>
+<tr><th id="396">396</th><td>                                      <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col0 decl" id="80ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="80ivec">ivec</dfn>, <em>int</em> *<dfn class="local col1 decl" id="81num" title='num' data-type='int *' data-ref="81num">num</dfn>);</td></tr>
+<tr><th id="397">397</th><td><u># <span data-ppcond="397">if</span> 0</u></td></tr>
+<tr><th id="398">398</th><td><em>void</em> _ossl_old_des_xwhite_in2out(_ossl_old_des_cblock (*des_key),</td></tr>
+<tr><th id="399">399</th><td>                                 _ossl_old_des_cblock (*in_white),</td></tr>
+<tr><th id="400">400</th><td>                                 _ossl_old_des_cblock (*out_white));</td></tr>
+<tr><th id="401">401</th><td><u># <span data-ppcond="397">endif</span></u></td></tr>
+<tr><th id="402">402</th><td></td></tr>
+<tr><th id="403">403</th><td><em>int</em> <dfn class="decl" id="_ossl_old_des_enc_read" title='_ossl_old_des_enc_read' data-ref="_ossl_old_des_enc_read">_ossl_old_des_enc_read</dfn>(<em>int</em> <dfn class="local col2 decl" id="82fd" title='fd' data-type='int' data-ref="82fd">fd</dfn>, <em>char</em> *<dfn class="local col3 decl" id="83buf" title='buf' data-type='char *' data-ref="83buf">buf</dfn>, <em>int</em> <dfn class="local col4 decl" id="84len" title='len' data-type='int' data-ref="84len">len</dfn>,</td></tr>
+<tr><th id="404">404</th><td>                           <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col5 decl" id="85sched" title='sched' data-type='struct _ossl_old_des_ks_struct *' data-ref="85sched">sched</dfn>,</td></tr>
+<tr><th id="405">405</th><td>                           <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col6 decl" id="86iv" title='iv' data-type='_ossl_old_des_cblock *' data-ref="86iv">iv</dfn>);</td></tr>
+<tr><th id="406">406</th><td><em>int</em> <dfn class="decl" id="_ossl_old_des_enc_write" title='_ossl_old_des_enc_write' data-ref="_ossl_old_des_enc_write">_ossl_old_des_enc_write</dfn>(<em>int</em> <dfn class="local col7 decl" id="87fd" title='fd' data-type='int' data-ref="87fd">fd</dfn>, <em>char</em> *<dfn class="local col8 decl" id="88buf" title='buf' data-type='char *' data-ref="88buf">buf</dfn>, <em>int</em> <dfn class="local col9 decl" id="89len" title='len' data-type='int' data-ref="89len">len</dfn>,</td></tr>
+<tr><th id="407">407</th><td>                            <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col0 decl" id="90sched" title='sched' data-type='struct _ossl_old_des_ks_struct *' data-ref="90sched">sched</dfn>,</td></tr>
+<tr><th id="408">408</th><td>                            <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col1 decl" id="91iv" title='iv' data-type='_ossl_old_des_cblock *' data-ref="91iv">iv</dfn>);</td></tr>
+<tr><th id="409">409</th><td><em>char</em> *<dfn class="decl" id="_ossl_old_des_fcrypt" title='_ossl_old_des_fcrypt' data-ref="_ossl_old_des_fcrypt">_ossl_old_des_fcrypt</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="92buf" title='buf' data-type='const char *' data-ref="92buf">buf</dfn>, <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="93salt" title='salt' data-type='const char *' data-ref="93salt">salt</dfn>, <em>char</em> *<dfn class="local col4 decl" id="94ret" title='ret' data-type='char *' data-ref="94ret">ret</dfn>);</td></tr>
+<tr><th id="410">410</th><td><em>char</em> *<dfn class="decl" id="_ossl_old_des_crypt" title='_ossl_old_des_crypt' data-ref="_ossl_old_des_crypt">_ossl_old_des_crypt</dfn>(<em>const</em> <em>char</em> *<dfn class="local col5 decl" id="95buf" title='buf' data-type='const char *' data-ref="95buf">buf</dfn>, <em>const</em> <em>char</em> *<dfn class="local col6 decl" id="96salt" title='salt' data-type='const char *' data-ref="96salt">salt</dfn>);</td></tr>
+<tr><th id="411">411</th><td><u># <span data-ppcond="411">if</span> !defined(<span class="macro" data-ref="_M/PERL5">PERL5</span>) &amp;&amp; !defined(<span class="macro" data-ref="_M/NeXT">NeXT</span>)</u></td></tr>
+<tr><th id="412">412</th><td><em>char</em> *<dfn class="decl" id="_ossl_old_crypt" title='_ossl_old_crypt' data-ref="_ossl_old_crypt">_ossl_old_crypt</dfn>(<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="97buf" title='buf' data-type='const char *' data-ref="97buf">buf</dfn>, <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="98salt" title='salt' data-type='const char *' data-ref="98salt">salt</dfn>);</td></tr>
+<tr><th id="413">413</th><td><u># <span data-ppcond="411">endif</span></u></td></tr>
+<tr><th id="414">414</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_ofb_encrypt" title='_ossl_old_des_ofb_encrypt' data-ref="_ossl_old_des_ofb_encrypt">_ossl_old_des_ofb_encrypt</dfn>(<em>unsigned</em> <em>char</em> *<dfn class="local col9 decl" id="99in" title='in' data-type='unsigned char *' data-ref="99in">in</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col0 decl" id="100out" title='out' data-type='unsigned char *' data-ref="100out">out</dfn>,</td></tr>
+<tr><th id="415">415</th><td>                               <em>int</em> <dfn class="local col1 decl" id="101numbits" title='numbits' data-type='int' data-ref="101numbits">numbits</dfn>, <em>long</em> <dfn class="local col2 decl" id="102length" title='length' data-type='long' data-ref="102length">length</dfn>,</td></tr>
+<tr><th id="416">416</th><td>                               <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col3 decl" id="103schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="103schedule">schedule</dfn>,</td></tr>
+<tr><th id="417">417</th><td>                               <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col4 decl" id="104ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="104ivec">ivec</dfn>);</td></tr>
+<tr><th id="418">418</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_pcbc_encrypt" title='_ossl_old_des_pcbc_encrypt' data-ref="_ossl_old_des_pcbc_encrypt">_ossl_old_des_pcbc_encrypt</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col5 decl" id="105input" title='input' data-type='_ossl_old_des_cblock *' data-ref="105input">input</dfn>,</td></tr>
+<tr><th id="419">419</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col6 decl" id="106output" title='output' data-type='_ossl_old_des_cblock *' data-ref="106output">output</dfn>, <em>long</em> <dfn class="local col7 decl" id="107length" title='length' data-type='long' data-ref="107length">length</dfn>,</td></tr>
+<tr><th id="420">420</th><td>                                <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col8 decl" id="108schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="108schedule">schedule</dfn>,</td></tr>
+<tr><th id="421">421</th><td>                                <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col9 decl" id="109ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="109ivec">ivec</dfn>, <em>int</em> <dfn class="local col0 decl" id="110enc" title='enc' data-type='int' data-ref="110enc">enc</dfn>);</td></tr>
+<tr><th id="422">422</th><td><a class="macro" href="../x86_64-linux-gnu/openssl/opensslconf.h.html#174" title="unsigned int" data-ref="_M/DES_LONG">DES_LONG</a> <dfn class="decl" id="_ossl_old_des_quad_cksum" title='_ossl_old_des_quad_cksum' data-ref="_ossl_old_des_quad_cksum">_ossl_old_des_quad_cksum</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col1 decl" id="111input" title='input' data-type='_ossl_old_des_cblock *' data-ref="111input">input</dfn>,</td></tr>
+<tr><th id="423">423</th><td>                                  <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col2 decl" id="112output" title='output' data-type='_ossl_old_des_cblock *' data-ref="112output">output</dfn>, <em>long</em> <dfn class="local col3 decl" id="113length" title='length' data-type='long' data-ref="113length">length</dfn>,</td></tr>
+<tr><th id="424">424</th><td>                                  <em>int</em> <dfn class="local col4 decl" id="114out_count" title='out_count' data-type='int' data-ref="114out_count">out_count</dfn>, <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col5 decl" id="115seed" title='seed' data-type='_ossl_old_des_cblock *' data-ref="115seed">seed</dfn>);</td></tr>
+<tr><th id="425">425</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_random_seed" title='_ossl_old_des_random_seed' data-ref="_ossl_old_des_random_seed">_ossl_old_des_random_seed</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> <dfn class="local col6 decl" id="116key" title='key' data-type='unsigned char *' data-ref="116key">key</dfn>);</td></tr>
+<tr><th id="426">426</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_random_key" title='_ossl_old_des_random_key' data-ref="_ossl_old_des_random_key">_ossl_old_des_random_key</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> <dfn class="local col7 decl" id="117ret" title='ret' data-type='unsigned char *' data-ref="117ret">ret</dfn>);</td></tr>
+<tr><th id="427">427</th><td><em>int</em> <dfn class="decl" id="_ossl_old_des_read_password" title='_ossl_old_des_read_password' data-ref="_ossl_old_des_read_password">_ossl_old_des_read_password</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col8 decl" id="118key" title='key' data-type='_ossl_old_des_cblock *' data-ref="118key">key</dfn>, <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="119prompt" title='prompt' data-type='const char *' data-ref="119prompt">prompt</dfn>,</td></tr>
+<tr><th id="428">428</th><td>                                <em>int</em> <dfn class="local col0 decl" id="120verify" title='verify' data-type='int' data-ref="120verify">verify</dfn>);</td></tr>
+<tr><th id="429">429</th><td><em>int</em> <dfn class="decl" id="_ossl_old_des_read_2passwords" title='_ossl_old_des_read_2passwords' data-ref="_ossl_old_des_read_2passwords">_ossl_old_des_read_2passwords</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col1 decl" id="121key1" title='key1' data-type='_ossl_old_des_cblock *' data-ref="121key1">key1</dfn>,</td></tr>
+<tr><th id="430">430</th><td>                                  <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col2 decl" id="122key2" title='key2' data-type='_ossl_old_des_cblock *' data-ref="122key2">key2</dfn>,</td></tr>
+<tr><th id="431">431</th><td>                                  <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="123prompt" title='prompt' data-type='const char *' data-ref="123prompt">prompt</dfn>, <em>int</em> <dfn class="local col4 decl" id="124verify" title='verify' data-type='int' data-ref="124verify">verify</dfn>);</td></tr>
+<tr><th id="432">432</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_set_odd_parity" title='_ossl_old_des_set_odd_parity' data-ref="_ossl_old_des_set_odd_parity">_ossl_old_des_set_odd_parity</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col5 decl" id="125key" title='key' data-type='_ossl_old_des_cblock *' data-ref="125key">key</dfn>);</td></tr>
+<tr><th id="433">433</th><td><em>int</em> <dfn class="decl" id="_ossl_old_des_is_weak_key" title='_ossl_old_des_is_weak_key' data-ref="_ossl_old_des_is_weak_key">_ossl_old_des_is_weak_key</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col6 decl" id="126key" title='key' data-type='_ossl_old_des_cblock *' data-ref="126key">key</dfn>);</td></tr>
+<tr><th id="434">434</th><td><em>int</em> <dfn class="decl" id="_ossl_old_des_set_key" title='_ossl_old_des_set_key' data-ref="_ossl_old_des_set_key">_ossl_old_des_set_key</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col7 decl" id="127key" title='key' data-type='_ossl_old_des_cblock *' data-ref="127key">key</dfn>,</td></tr>
+<tr><th id="435">435</th><td>                          <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col8 decl" id="128schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="128schedule">schedule</dfn>);</td></tr>
+<tr><th id="436">436</th><td><em>int</em> <dfn class="decl" id="_ossl_old_des_key_sched" title='_ossl_old_des_key_sched' data-ref="_ossl_old_des_key_sched">_ossl_old_des_key_sched</dfn>(<a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col9 decl" id="129key" title='key' data-type='_ossl_old_des_cblock *' data-ref="129key">key</dfn>,</td></tr>
+<tr><th id="437">437</th><td>                            <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col0 decl" id="130schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="130schedule">schedule</dfn>);</td></tr>
+<tr><th id="438">438</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_string_to_key" title='_ossl_old_des_string_to_key' data-ref="_ossl_old_des_string_to_key">_ossl_old_des_string_to_key</dfn>(<em>char</em> *<dfn class="local col1 decl" id="131str" title='str' data-type='char *' data-ref="131str">str</dfn>, <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col2 decl" id="132key" title='key' data-type='_ossl_old_des_cblock *' data-ref="132key">key</dfn>);</td></tr>
+<tr><th id="439">439</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_string_to_2keys" title='_ossl_old_des_string_to_2keys' data-ref="_ossl_old_des_string_to_2keys">_ossl_old_des_string_to_2keys</dfn>(<em>char</em> *<dfn class="local col3 decl" id="133str" title='str' data-type='char *' data-ref="133str">str</dfn>, <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col4 decl" id="134key1" title='key1' data-type='_ossl_old_des_cblock *' data-ref="134key1">key1</dfn>,</td></tr>
+<tr><th id="440">440</th><td>                                   <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col5 decl" id="135key2" title='key2' data-type='_ossl_old_des_cblock *' data-ref="135key2">key2</dfn>);</td></tr>
+<tr><th id="441">441</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_cfb64_encrypt" title='_ossl_old_des_cfb64_encrypt' data-ref="_ossl_old_des_cfb64_encrypt">_ossl_old_des_cfb64_encrypt</dfn>(<em>unsigned</em> <em>char</em> *<dfn class="local col6 decl" id="136in" title='in' data-type='unsigned char *' data-ref="136in">in</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col7 decl" id="137out" title='out' data-type='unsigned char *' data-ref="137out">out</dfn>,</td></tr>
+<tr><th id="442">442</th><td>                                 <em>long</em> <dfn class="local col8 decl" id="138length" title='length' data-type='long' data-ref="138length">length</dfn>,</td></tr>
+<tr><th id="443">443</th><td>                                 <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col9 decl" id="139schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="139schedule">schedule</dfn>,</td></tr>
+<tr><th id="444">444</th><td>                                 <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col0 decl" id="140ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="140ivec">ivec</dfn>, <em>int</em> *<dfn class="local col1 decl" id="141num" title='num' data-type='int *' data-ref="141num">num</dfn>,</td></tr>
+<tr><th id="445">445</th><td>                                 <em>int</em> <dfn class="local col2 decl" id="142enc" title='enc' data-type='int' data-ref="142enc">enc</dfn>);</td></tr>
+<tr><th id="446">446</th><td><em>void</em> <dfn class="decl" id="_ossl_old_des_ofb64_encrypt" title='_ossl_old_des_ofb64_encrypt' data-ref="_ossl_old_des_ofb64_encrypt">_ossl_old_des_ofb64_encrypt</dfn>(<em>unsigned</em> <em>char</em> *<dfn class="local col3 decl" id="143in" title='in' data-type='unsigned char *' data-ref="143in">in</dfn>, <em>unsigned</em> <em>char</em> *<dfn class="local col4 decl" id="144out" title='out' data-type='unsigned char *' data-ref="144out">out</dfn>,</td></tr>
+<tr><th id="447">447</th><td>                                 <em>long</em> <dfn class="local col5 decl" id="145length" title='length' data-type='long' data-ref="145length">length</dfn>,</td></tr>
+<tr><th id="448">448</th><td>                                 <a class="typedef" href="#_ossl_old_des_key_schedule" title='_ossl_old_des_key_schedule' data-type='struct _ossl_old_des_ks_struct [16]' data-ref="_ossl_old_des_key_schedule">_ossl_old_des_key_schedule</a> <dfn class="local col6 decl" id="146schedule" title='schedule' data-type='struct _ossl_old_des_ks_struct *' data-ref="146schedule">schedule</dfn>,</td></tr>
+<tr><th id="449">449</th><td>                                 <a class="typedef" href="#_ossl_old_des_cblock" title='_ossl_old_des_cblock' data-type='unsigned char [8]' data-ref="_ossl_old_des_cblock">_ossl_old_des_cblock</a> *<dfn class="local col7 decl" id="147ivec" title='ivec' data-type='_ossl_old_des_cblock *' data-ref="147ivec">ivec</dfn>, <em>int</em> *<dfn class="local col8 decl" id="148num" title='num' data-type='int *' data-ref="148num">num</dfn>);</td></tr>
+<tr><th id="450">450</th><td></td></tr>
+<tr><th id="451">451</th><td><em>void</em> <dfn class="decl" id="_ossl_096_des_random_seed" title='_ossl_096_des_random_seed' data-ref="_ossl_096_des_random_seed">_ossl_096_des_random_seed</dfn>(<a class="macro" href="#137" title="DES_cblock" data-ref="_M/des_cblock">des_cblock</a> *<dfn class="local col9 decl" id="149key" title='key' data-type='DES_cblock *' data-ref="149key">key</dfn>);</td></tr>
+<tr><th id="452">452</th><td></td></tr>
+<tr><th id="453">453</th><td><i>/*</i></td></tr>
+<tr><th id="454">454</th><td><i> * The following definitions provide compatibility with the MIT Kerberos</i></td></tr>
+<tr><th id="455">455</th><td><i> * library. The _ossl_old_des_key_schedule structure is not binary</i></td></tr>
+<tr><th id="456">456</th><td><i> * compatible.</i></td></tr>
+<tr><th id="457">457</th><td><i> */</i></td></tr>
+<tr><th id="458">458</th><td></td></tr>
+<tr><th id="459">459</th><td><u># define <dfn class="macro" id="_M/_KERBEROS_DES_H" data-ref="_M/_KERBEROS_DES_H">_KERBEROS_DES_H</dfn></u></td></tr>
+<tr><th id="460">460</th><td></td></tr>
+<tr><th id="461">461</th><td><u># define <dfn class="macro" id="_M/KRBDES_ENCRYPT" data-ref="_M/KRBDES_ENCRYPT">KRBDES_ENCRYPT</dfn> DES_ENCRYPT</u></td></tr>
+<tr><th id="462">462</th><td><u># define <dfn class="macro" id="_M/KRBDES_DECRYPT" data-ref="_M/KRBDES_DECRYPT">KRBDES_DECRYPT</dfn> DES_DECRYPT</u></td></tr>
+<tr><th id="463">463</th><td></td></tr>
+<tr><th id="464">464</th><td><u># <span data-ppcond="464">ifdef</span> <span class="macro" data-ref="_M/KERBEROS">KERBEROS</span></u></td></tr>
+<tr><th id="465">465</th><td><u>#  define ENCRYPT DES_ENCRYPT</u></td></tr>
+<tr><th id="466">466</th><td><u>#  define DECRYPT DES_DECRYPT</u></td></tr>
+<tr><th id="467">467</th><td><u># <span data-ppcond="464">endif</span></u></td></tr>
+<tr><th id="468">468</th><td></td></tr>
+<tr><th id="469">469</th><td><u># <span data-ppcond="469">ifndef</span> <span class="macro" data-ref="_M/NCOMPAT">NCOMPAT</span></u></td></tr>
+<tr><th id="470">470</th><td><u>#  define <dfn class="macro" id="_M/C_Block" data-ref="_M/C_Block">C_Block</dfn> des_cblock</u></td></tr>
+<tr><th id="471">471</th><td><u>#  define <dfn class="macro" id="_M/Key_schedule" data-ref="_M/Key_schedule">Key_schedule</dfn> des_key_schedule</u></td></tr>
+<tr><th id="472">472</th><td><u>#  define <dfn class="macro" id="_M/KEY_SZ" data-ref="_M/KEY_SZ">KEY_SZ</dfn> DES_KEY_SZ</u></td></tr>
+<tr><th id="473">473</th><td><u>#  define <dfn class="macro" id="_M/string_to_key" data-ref="_M/string_to_key">string_to_key</dfn> des_string_to_key</u></td></tr>
+<tr><th id="474">474</th><td><u>#  define <dfn class="macro" id="_M/read_pw_string" data-ref="_M/read_pw_string">read_pw_string</dfn> des_read_pw_string</u></td></tr>
+<tr><th id="475">475</th><td><u>#  define <dfn class="macro" id="_M/random_key" data-ref="_M/random_key">random_key</dfn> des_random_key</u></td></tr>
+<tr><th id="476">476</th><td><u>#  define <dfn class="macro" id="_M/pcbc_encrypt" data-ref="_M/pcbc_encrypt">pcbc_encrypt</dfn> des_pcbc_encrypt</u></td></tr>
+<tr><th id="477">477</th><td><u>#  define <dfn class="macro" id="_M/set_key" data-ref="_M/set_key">set_key</dfn> des_set_key</u></td></tr>
+<tr><th id="478">478</th><td><u>#  define <dfn class="macro" id="_M/key_sched" data-ref="_M/key_sched">key_sched</dfn> des_key_sched</u></td></tr>
+<tr><th id="479">479</th><td><u>#  define <dfn class="macro" id="_M/ecb_encrypt" data-ref="_M/ecb_encrypt">ecb_encrypt</dfn> des_ecb_encrypt</u></td></tr>
+<tr><th id="480">480</th><td><u>#  define <dfn class="macro" id="_M/cbc_encrypt" data-ref="_M/cbc_encrypt">cbc_encrypt</dfn> des_cbc_encrypt</u></td></tr>
+<tr><th id="481">481</th><td><u>#  define <dfn class="macro" id="_M/ncbc_encrypt" data-ref="_M/ncbc_encrypt">ncbc_encrypt</dfn> des_ncbc_encrypt</u></td></tr>
+<tr><th id="482">482</th><td><u>#  define <dfn class="macro" id="_M/xcbc_encrypt" data-ref="_M/xcbc_encrypt">xcbc_encrypt</dfn> des_xcbc_encrypt</u></td></tr>
+<tr><th id="483">483</th><td><u>#  define <dfn class="macro" id="_M/cbc_cksum" data-ref="_M/cbc_cksum">cbc_cksum</dfn> des_cbc_cksum</u></td></tr>
+<tr><th id="484">484</th><td><u>#  define <dfn class="macro" id="_M/quad_cksum" data-ref="_M/quad_cksum">quad_cksum</dfn> des_quad_cksum</u></td></tr>
+<tr><th id="485">485</th><td><u>#  define <dfn class="macro" id="_M/check_parity" data-ref="_M/check_parity">check_parity</dfn> des_check_key_parity</u></td></tr>
+<tr><th id="486">486</th><td><u># <span data-ppcond="469">endif</span></u></td></tr>
+<tr><th id="487">487</th><td></td></tr>
+<tr><th id="488">488</th><td><u># define <dfn class="macro" id="_M/des_fixup_key_parity" data-ref="_M/des_fixup_key_parity">des_fixup_key_parity</dfn> DES_fixup_key_parity</u></td></tr>
+<tr><th id="489">489</th><td></td></tr>
+<tr><th id="490">490</th><td><u>#<span data-ppcond="490">ifdef</span>  <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u></td></tr>
+<tr><th id="491">491</th><td>}</td></tr>
+<tr><th id="492">492</th><td><u>#<span data-ppcond="490">endif</span></u></td></tr>
+<tr><th id="493">493</th><td></td></tr>
+<tr><th id="494">494</th><td><i>/* for DES_read_pw_string et al */</i></td></tr>
+<tr><th id="495">495</th><td><u># include <a href="ui_compat.h.html">&lt;openssl/ui_compat.h&gt;</a></u></td></tr>
+<tr><th id="496">496</th><td></td></tr>
+<tr><th id="497">497</th><td><u>#<span data-ppcond="93">endif</span></u></td></tr>
+<tr><th id="498">498</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../codebrowser/lib/curl_ntlm_core.c.html'>codebrowser/lib/curl_ntlm_core.c</a><br/>Generated on <em>2017-Oct-09</em> from project include<br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/multihandle.h' l='58' type='18'/>
+<doc f='codebrowser/lib/multihandle.h' l='58'>/* 18 - the operation complete message is sent */</doc>
+<use f='codebrowser/lib/multi.c' l='2060' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2134' u='r' c='multi_runsingle'/>

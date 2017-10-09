@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/transfer.h' l='46' type='CURLcode Curl_readwrite(struct connectdata * conn, struct Curl_easy * data, _Bool * done, _Bool * comeback)'/>
+<use f='codebrowser/lib/multi.c' l='1896' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/transfer.c' l='1091' ll='1255' type='CURLcode Curl_readwrite(struct connectdata * conn, struct Curl_easy * data, _Bool * done, _Bool * comeback)'/>
+<doc f='codebrowser/lib/transfer.c' l='1084'>/*
+ * Curl_readwrite() is the low-level function to be called when data is to
+ * be read and written to/from the connection.
+ *
+ * return &apos;*comeback&apos; TRUE if we didn&apos;t properly drain the socket so this
+ * function should get called again without select() or similar in between!
+ */</doc>

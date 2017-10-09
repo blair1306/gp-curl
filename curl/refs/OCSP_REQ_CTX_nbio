@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='400' type='int OCSP_REQ_CTX_nbio(OCSP_REQ_CTX * rctx)'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1468' type='53'/>
+<doc f='codebrowser/lib/urldata.h' l='1468'>/* &lt;bearer&gt;, if used */</doc>
+<use f='codebrowser/lib/url.c' l='1790' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6529' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6530' u='r' c='create_conn'/>

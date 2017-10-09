@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/ftp.h' l='35' type='CURLcode Curl_GetFTPResponse(ssize_t * nread, struct connectdata * conn, int * ftpcode)'/>
+<use f='codebrowser/lib/ftp.c' l='399' u='c' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='421' u='c' c='ReceivedServerConnect'/>
+<def f='codebrowser/lib/ftp.c' l='624' ll='725' type='CURLcode Curl_GetFTPResponse(ssize_t * nreadp, struct connectdata * conn, int * ftpcode)'/>
+<use f='codebrowser/lib/ftp.c' l='3268' u='c' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3388' u='c' c='ftp_sendquote'/>
+<doc f='codebrowser/lib/ftp.c' l='618'>/*
+ * Curl_GetFTPResponse() is a BLOCKING function to read the full response
+ * from a server after a command.
+ *
+ */</doc>
+<doc f='codebrowser/lib/ftp.c' l='624'>/* return number of bytes read */</doc>

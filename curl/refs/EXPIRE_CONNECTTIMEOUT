@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/urldata.h' l='1215' type='2'/>
+<use f='codebrowser/lib/transfer.c' l='1395' u='r' c='Curl_pretransfer'/>

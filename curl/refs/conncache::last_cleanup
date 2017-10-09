@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/conncache.h' l='30' type='struct curltime'/>
+<offset>512</offset>
+<use f='codebrowser/lib/url.c' l='3459' u='r' c='prune_dead_connections'/>
+<use f='codebrowser/lib/url.c' l='3464' u='w' c='prune_dead_connections'/>

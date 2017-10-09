@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='391' type='_Bool'/>
+<offset>88</offset>
+<use f='codebrowser/lib/ftp.c' l='302' u='w' c='AcceptServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='1998' u='w' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='4344' u='w' c='ftp_dophase_done'/>
+<use f='codebrowser/lib/multi.c' l='1681' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1761' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/url.c' l='7065' u='w' c='Curl_init_do'/>

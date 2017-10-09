@@ -1,0 +1,4 @@
+<dec f='include/openssl/x509v3.h' l='206' type='union (anonymous union at /usr/include/openssl/x509v3.h:188:5)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1390' u='m' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1391' u='m' c='verifyhost'/>
+<offset>64</offset>

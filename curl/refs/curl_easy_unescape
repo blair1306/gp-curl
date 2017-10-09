@@ -1,0 +1,14 @@
+<dec f='codebrowser/include/curl/curl.h' l='2273' type='char * curl_easy_unescape(CURL * handle, const char * string, int length, int * outlength)'/>
+<use f='codebrowser/lib/escape.c' l='76' u='c' c='curl_unescape'/>
+<def f='codebrowser/lib/escape.c' l='213' ll='234' type='char * curl_easy_unescape(struct Curl_easy * data, const char * string, int length, int * olen)'/>
+<doc f='codebrowser/lib/escape.c' l='207'>/*
+ * Unescapes the given URL escaped string of given length. Returns a
+ * pointer to a malloced string with length given in *olen.
+ * If length == 0, the length is assumed to be strlen(string).
+ * If olen == NULL, no output length is stored.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='5241' u='c' c='parse_proxy'/>
+<use f='codebrowser/lib/url.c' l='5251' u='c' c='parse_proxy'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='57' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='85' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1396.c' l='86' u='c' c='test'/>

@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='257' type='void *'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/urldata.h' l='257'>/* as returned from the SSL layer */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='335' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='351' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='367' u='r' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='371' u='r' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='373' u='w' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='394' u='r' c='Curl_ssl_delsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='459' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='472' u='w' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='486' u='w' c='Curl_ssl_addsessionid'/>

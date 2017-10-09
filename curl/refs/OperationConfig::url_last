@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='114' type='struct getout *'/>
+<offset>3520</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='114'>/* point to the last/current node */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='100' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='43' u='r' c='new_getout'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='52' u='w' c='new_getout'/>

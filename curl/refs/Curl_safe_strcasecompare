@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/strcase.h' l='39' type='int Curl_safe_strcasecompare(const char * first, const char * second)'/>
+<def f='codebrowser/lib/strcase.c' l='124' ll='132' type='int Curl_safe_strcasecompare(const char * first, const char * second)'/>
+<use f='codebrowser/lib/url.c' l='3349' u='c' c='proxy_info_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='94' u='c' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='95' u='c' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='96' u='c' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='97' u='c' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='98' u='c' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='99' u='c' c='Curl_ssl_config_matches'/>

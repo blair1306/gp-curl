@@ -1,0 +1,7 @@
+<dec f='include/openssl/engine.h' l='265'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='601' u='a'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='614' u='c'/>
+<doc f='include/openssl/engine.h' l='261'>/*
+ * The &apos;void*&apos; argument is a command name (cast from &apos;const char *&apos;), and the
+ * return value is the command that corresponds to it.
+ */</doc>

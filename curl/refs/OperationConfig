@@ -1,0 +1,194 @@
+<def f='codebrowser/src/tool_cfgable.h' l='38' ll='254'/>
+<size>1120</size>
+<mbr r='OperationConfig::easy' o='0' t='CURL *'/>
+<mbr r='OperationConfig::remote_time' o='64' t='_Bool'/>
+<mbr r='OperationConfig::random_file' o='128' t='char *'/>
+<mbr r='OperationConfig::egd_file' o='192' t='char *'/>
+<mbr r='OperationConfig::useragent' o='256' t='char *'/>
+<mbr r='OperationConfig::cookie' o='320' t='char *'/>
+<mbr r='OperationConfig::cookiejar' o='384' t='char *'/>
+<mbr r='OperationConfig::cookiefile' o='448' t='char *'/>
+<mbr r='OperationConfig::cookiesession' o='512' t='_Bool'/>
+<mbr r='OperationConfig::encoding' o='520' t='_Bool'/>
+<mbr r='OperationConfig::tr_encoding' o='528' t='_Bool'/>
+<mbr r='OperationConfig::authtype' o='576' t='unsigned long'/>
+<mbr r='OperationConfig::use_resume' o='640' t='_Bool'/>
+<mbr r='OperationConfig::resume_from_current' o='648' t='_Bool'/>
+<mbr r='OperationConfig::disable_epsv' o='656' t='_Bool'/>
+<mbr r='OperationConfig::disable_eprt' o='664' t='_Bool'/>
+<mbr r='OperationConfig::ftp_pret' o='672' t='_Bool'/>
+<mbr r='OperationConfig::proto' o='704' t='long'/>
+<mbr r='OperationConfig::proto_present' o='768' t='_Bool'/>
+<mbr r='OperationConfig::proto_redir' o='832' t='long'/>
+<mbr r='OperationConfig::proto_redir_present' o='896' t='_Bool'/>
+<mbr r='OperationConfig::proto_default' o='960' t='char *'/>
+<mbr r='OperationConfig::resume_from' o='1024' t='curl_off_t'/>
+<mbr r='OperationConfig::postfields' o='1088' t='char *'/>
+<mbr r='OperationConfig::postfieldsize' o='1152' t='curl_off_t'/>
+<mbr r='OperationConfig::referer' o='1216' t='char *'/>
+<mbr r='OperationConfig::timeout' o='1280' t='double'/>
+<mbr r='OperationConfig::connecttimeout' o='1344' t='double'/>
+<mbr r='OperationConfig::maxredirs' o='1408' t='long'/>
+<mbr r='OperationConfig::max_filesize' o='1472' t='curl_off_t'/>
+<mbr r='OperationConfig::headerfile' o='1536' t='char *'/>
+<mbr r='OperationConfig::ftpport' o='1600' t='char *'/>
+<mbr r='OperationConfig::iface' o='1664' t='char *'/>
+<mbr r='OperationConfig::localport' o='1728' t='int'/>
+<mbr r='OperationConfig::localportrange' o='1760' t='int'/>
+<mbr r='OperationConfig::porttouse' o='1792' t='unsigned short'/>
+<mbr r='OperationConfig::range' o='1856' t='char *'/>
+<mbr r='OperationConfig::low_speed_limit' o='1920' t='long'/>
+<mbr r='OperationConfig::low_speed_time' o='1984' t='long'/>
+<mbr r='OperationConfig::dns_servers' o='2048' t='char *'/>
+<mbr r='OperationConfig::dns_interface' o='2112' t='char *'/>
+<mbr r='OperationConfig::dns_ipv4_addr' o='2176' t='char *'/>
+<mbr r='OperationConfig::dns_ipv6_addr' o='2240' t='char *'/>
+<mbr r='OperationConfig::userpwd' o='2304' t='char *'/>
+<mbr r='OperationConfig::login_options' o='2368' t='char *'/>
+<mbr r='OperationConfig::tls_username' o='2432' t='char *'/>
+<mbr r='OperationConfig::tls_password' o='2496' t='char *'/>
+<mbr r='OperationConfig::tls_authtype' o='2560' t='char *'/>
+<mbr r='OperationConfig::proxy_tls_username' o='2624' t='char *'/>
+<mbr r='OperationConfig::proxy_tls_password' o='2688' t='char *'/>
+<mbr r='OperationConfig::proxy_tls_authtype' o='2752' t='char *'/>
+<mbr r='OperationConfig::proxyuserpwd' o='2816' t='char *'/>
+<mbr r='OperationConfig::proxy' o='2880' t='char *'/>
+<mbr r='OperationConfig::proxyver' o='2944' t='int'/>
+<mbr r='OperationConfig::noproxy' o='3008' t='char *'/>
+<mbr r='OperationConfig::mail_from' o='3072' t='char *'/>
+<mbr r='OperationConfig::mail_rcpt' o='3136' t='struct curl_slist *'/>
+<mbr r='OperationConfig::mail_auth' o='3200' t='char *'/>
+<mbr r='OperationConfig::sasl_ir' o='3264' t='_Bool'/>
+<mbr r='OperationConfig::proxytunnel' o='3272' t='_Bool'/>
+<mbr r='OperationConfig::ftp_append' o='3280' t='_Bool'/>
+<mbr r='OperationConfig::use_ascii' o='3288' t='_Bool'/>
+<mbr r='OperationConfig::autoreferer' o='3296' t='_Bool'/>
+<mbr r='OperationConfig::failonerror' o='3304' t='_Bool'/>
+<mbr r='OperationConfig::include_headers' o='3312' t='_Bool'/>
+<mbr r='OperationConfig::no_body' o='3320' t='_Bool'/>
+<mbr r='OperationConfig::dirlistonly' o='3328' t='_Bool'/>
+<mbr r='OperationConfig::followlocation' o='3336' t='_Bool'/>
+<mbr r='OperationConfig::unrestricted_auth' o='3344' t='_Bool'/>
+<mbr r='OperationConfig::netrc_opt' o='3352' t='_Bool'/>
+<mbr r='OperationConfig::netrc' o='3360' t='_Bool'/>
+<mbr r='OperationConfig::netrc_file' o='3392' t='char *'/>
+<mbr r='OperationConfig::url_list' o='3456' t='struct getout *'/>
+<mbr r='OperationConfig::url_last' o='3520' t='struct getout *'/>
+<mbr r='OperationConfig::url_get' o='3584' t='struct getout *'/>
+<mbr r='OperationConfig::url_out' o='3648' t='struct getout *'/>
+<mbr r='OperationConfig::cipher_list' o='3712' t='char *'/>
+<mbr r='OperationConfig::proxy_cipher_list' o='3776' t='char *'/>
+<mbr r='OperationConfig::cert' o='3840' t='char *'/>
+<mbr r='OperationConfig::proxy_cert' o='3904' t='char *'/>
+<mbr r='OperationConfig::cert_type' o='3968' t='char *'/>
+<mbr r='OperationConfig::proxy_cert_type' o='4032' t='char *'/>
+<mbr r='OperationConfig::cacert' o='4096' t='char *'/>
+<mbr r='OperationConfig::proxy_cacert' o='4160' t='char *'/>
+<mbr r='OperationConfig::capath' o='4224' t='char *'/>
+<mbr r='OperationConfig::proxy_capath' o='4288' t='char *'/>
+<mbr r='OperationConfig::crlfile' o='4352' t='char *'/>
+<mbr r='OperationConfig::proxy_crlfile' o='4416' t='char *'/>
+<mbr r='OperationConfig::pinnedpubkey' o='4480' t='char *'/>
+<mbr r='OperationConfig::key' o='4544' t='char *'/>
+<mbr r='OperationConfig::proxy_key' o='4608' t='char *'/>
+<mbr r='OperationConfig::key_type' o='4672' t='char *'/>
+<mbr r='OperationConfig::proxy_key_type' o='4736' t='char *'/>
+<mbr r='OperationConfig::key_passwd' o='4800' t='char *'/>
+<mbr r='OperationConfig::proxy_key_passwd' o='4864' t='char *'/>
+<mbr r='OperationConfig::pubkey' o='4928' t='char *'/>
+<mbr r='OperationConfig::hostpubmd5' o='4992' t='char *'/>
+<mbr r='OperationConfig::engine' o='5056' t='char *'/>
+<mbr r='OperationConfig::crlf' o='5120' t='_Bool'/>
+<mbr r='OperationConfig::customrequest' o='5184' t='char *'/>
+<mbr r='OperationConfig::krblevel' o='5248' t='char *'/>
+<mbr r='OperationConfig::request_target' o='5312' t='char *'/>
+<mbr r='OperationConfig::httpversion' o='5376' t='long'/>
+<mbr r='OperationConfig::nobuffer' o='5440' t='_Bool'/>
+<mbr r='OperationConfig::readbusy' o='5448' t='_Bool'/>
+<mbr r='OperationConfig::globoff' o='5456' t='_Bool'/>
+<mbr r='OperationConfig::use_httpget' o='5464' t='_Bool'/>
+<mbr r='OperationConfig::insecure_ok' o='5472' t='_Bool'/>
+<mbr r='OperationConfig::proxy_insecure_ok' o='5480' t='_Bool'/>
+<mbr r='OperationConfig::terminal_binary_ok' o='5488' t='_Bool'/>
+<mbr r='OperationConfig::verifystatus' o='5496' t='_Bool'/>
+<mbr r='OperationConfig::create_dirs' o='5504' t='_Bool'/>
+<mbr r='OperationConfig::ftp_create_dirs' o='5512' t='_Bool'/>
+<mbr r='OperationConfig::ftp_skip_ip' o='5520' t='_Bool'/>
+<mbr r='OperationConfig::proxynegotiate' o='5528' t='_Bool'/>
+<mbr r='OperationConfig::proxyntlm' o='5536' t='_Bool'/>
+<mbr r='OperationConfig::proxydigest' o='5544' t='_Bool'/>
+<mbr r='OperationConfig::proxybasic' o='5552' t='_Bool'/>
+<mbr r='OperationConfig::proxyanyauth' o='5560' t='_Bool'/>
+<mbr r='OperationConfig::writeout' o='5568' t='char *'/>
+<mbr r='OperationConfig::quote' o='5632' t='struct curl_slist *'/>
+<mbr r='OperationConfig::postquote' o='5696' t='struct curl_slist *'/>
+<mbr r='OperationConfig::prequote' o='5760' t='struct curl_slist *'/>
+<mbr r='OperationConfig::ssl_version' o='5824' t='long'/>
+<mbr r='OperationConfig::ssl_version_max' o='5888' t='long'/>
+<mbr r='OperationConfig::proxy_ssl_version' o='5952' t='long'/>
+<mbr r='OperationConfig::ip_version' o='6016' t='long'/>
+<mbr r='OperationConfig::timecond' o='6080' t='curl_TimeCond'/>
+<mbr r='OperationConfig::condtime' o='6144' t='time_t'/>
+<mbr r='OperationConfig::headers' o='6208' t='struct curl_slist *'/>
+<mbr r='OperationConfig::proxyheaders' o='6272' t='struct curl_slist *'/>
+<mbr r='OperationConfig::mimepost' o='6336' t='curl_mime *'/>
+<mbr r='OperationConfig::mimecurrent' o='6400' t='curl_mime *'/>
+<mbr r='OperationConfig::telnet_options' o='6464' t='struct curl_slist *'/>
+<mbr r='OperationConfig::resolve' o='6528' t='struct curl_slist *'/>
+<mbr r='OperationConfig::connect_to' o='6592' t='struct curl_slist *'/>
+<mbr r='OperationConfig::httpreq' o='6656' t='HttpReq'/>
+<mbr r='OperationConfig::sendpersecond' o='6720' t='curl_off_t'/>
+<mbr r='OperationConfig::recvpersecond' o='6784' t='curl_off_t'/>
+<mbr r='OperationConfig::ftp_ssl' o='6848' t='_Bool'/>
+<mbr r='OperationConfig::ftp_ssl_reqd' o='6856' t='_Bool'/>
+<mbr r='OperationConfig::ftp_ssl_control' o='6864' t='_Bool'/>
+<mbr r='OperationConfig::ftp_ssl_ccc' o='6872' t='_Bool'/>
+<mbr r='OperationConfig::ftp_ssl_ccc_mode' o='6880' t='int'/>
+<mbr r='OperationConfig::preproxy' o='6912' t='char *'/>
+<mbr r='OperationConfig::socks5_gssapi_nec' o='6976' t='int'/>
+<mbr r='OperationConfig::socks5_auth' o='7040' t='unsigned long'/>
+<mbr r='OperationConfig::proxy_service_name' o='7104' t='char *'/>
+<mbr r='OperationConfig::service_name' o='7168' t='char *'/>
+<mbr r='OperationConfig::tcp_nodelay' o='7232' t='_Bool'/>
+<mbr r='OperationConfig::tcp_fastopen' o='7240' t='_Bool'/>
+<mbr r='OperationConfig::req_retry' o='7296' t='long'/>
+<mbr r='OperationConfig::retry_connrefused' o='7360' t='_Bool'/>
+<mbr r='OperationConfig::retry_delay' o='7424' t='long'/>
+<mbr r='OperationConfig::retry_maxtime' o='7488' t='long'/>
+<mbr r='OperationConfig::ftp_account' o='7552' t='char *'/>
+<mbr r='OperationConfig::ftp_alternative_to_user' o='7616' t='char *'/>
+<mbr r='OperationConfig::ftp_filemethod' o='7680' t='int'/>
+<mbr r='OperationConfig::tftp_blksize' o='7744' t='long'/>
+<mbr r='OperationConfig::tftp_no_options' o='7808' t='_Bool'/>
+<mbr r='OperationConfig::ignorecl' o='7816' t='_Bool'/>
+<mbr r='OperationConfig::disable_sessionid' o='7824' t='_Bool'/>
+<mbr r='OperationConfig::raw' o='7832' t='_Bool'/>
+<mbr r='OperationConfig::post301' o='7840' t='_Bool'/>
+<mbr r='OperationConfig::post302' o='7848' t='_Bool'/>
+<mbr r='OperationConfig::post303' o='7856' t='_Bool'/>
+<mbr r='OperationConfig::nokeepalive' o='7864' t='_Bool'/>
+<mbr r='OperationConfig::alivetime' o='7872' t='long'/>
+<mbr r='OperationConfig::content_disposition' o='7936' t='_Bool'/>
+<mbr r='OperationConfig::default_node_flags' o='7968' t='int'/>
+<mbr r='OperationConfig::xattr' o='8000' t='_Bool'/>
+<mbr r='OperationConfig::gssapi_delegation' o='8064' t='long'/>
+<mbr r='OperationConfig::ssl_allow_beast' o='8128' t='_Bool'/>
+<mbr r='OperationConfig::proxy_ssl_allow_beast' o='8136' t='_Bool'/>
+<mbr r='OperationConfig::ssl_no_revoke' o='8144' t='_Bool'/>
+<mbr r='OperationConfig::use_metalink' o='8152' t='_Bool'/>
+<mbr r='OperationConfig::metalinkfile_list' o='8192' t='metalinkfile *'/>
+<mbr r='OperationConfig::metalinkfile_last' o='8256' t='metalinkfile *'/>
+<mbr r='OperationConfig::oauth_bearer' o='8320' t='char *'/>
+<mbr r='OperationConfig::nonpn' o='8384' t='_Bool'/>
+<mbr r='OperationConfig::noalpn' o='8392' t='_Bool'/>
+<mbr r='OperationConfig::unix_socket_path' o='8448' t='char *'/>
+<mbr r='OperationConfig::abstract_unix_socket' o='8512' t='_Bool'/>
+<mbr r='OperationConfig::falsestart' o='8520' t='_Bool'/>
+<mbr r='OperationConfig::path_as_is' o='8528' t='_Bool'/>
+<mbr r='OperationConfig::expect100timeout' o='8576' t='double'/>
+<mbr r='OperationConfig::suppress_connect_headers' o='8640' t='_Bool'/>
+<mbr r='OperationConfig::synthetic_error' o='8672' t='curl_error'/>
+<mbr r='OperationConfig::ssh_compression' o='8704' t='_Bool'/>
+<mbr r='OperationConfig::global' o='8768' t='struct GlobalConfig *'/>
+<mbr r='OperationConfig::prev' o='8832' t='struct OperationConfig *'/>
+<mbr r='OperationConfig::next' o='8896' t='struct OperationConfig *'/>

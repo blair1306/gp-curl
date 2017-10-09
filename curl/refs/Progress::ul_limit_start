@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1126' type='struct curltime'/>
+<offset>1664</offset>
+<doc f='codebrowser/lib/urldata.h' l='1125'>/* upload speed limit */</doc>
+<use f='codebrowser/lib/multi.c' l='1842' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1874' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/progress.c' l='231' u='m' c='Curl_pgrsStartNow'/>
+<use f='codebrowser/lib/progress.c' l='232' u='m' c='Curl_pgrsStartNow'/>
+<use f='codebrowser/lib/progress.c' l='315' u='r' c='Curl_pgrsSetUploadCounter'/>
+<use f='codebrowser/lib/progress.c' l='317' u='w' c='Curl_pgrsSetUploadCounter'/>

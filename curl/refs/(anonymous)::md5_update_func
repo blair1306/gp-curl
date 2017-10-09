@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_md5.h' l='38' type='Curl_MD5_update_func'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/curl_md5.h' l='38'>/* Update context with data */</doc>
+<use f='codebrowser/lib/md5.c' l='548' u='r' c='Curl_MD5_update'/>

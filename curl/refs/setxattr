@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/xattr.h' l='41' type='int setxattr(const char * __path, const char * __name, const void * __value, size_t __size, int __flags)'/>
+<doc f='include/x86_64-linux-gnu/sys/xattr.h' l='39'>/* Set the attribute NAME of the file pointed to by PATH to VALUE (which
+   is SIZE bytes long).  Return 0 on success, -1 for errors.  */</doc>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1301' type='struct curltime'/>
+<offset>134656</offset>
+<doc f='codebrowser/lib/urldata.h' l='1301'>/* set this with Curl_expire() only */</doc>
+<use f='codebrowser/lib/multi.c' l='2507' u='a' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2937' u='a' c='Curl_expire'/>
+<use f='codebrowser/lib/multi.c' l='3013' u='a' c='Curl_expire_clear'/>

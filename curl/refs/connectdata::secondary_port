@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='845' type='unsigned short'/>
+<offset>3328</offset>
+<doc f='codebrowser/lib/urldata.h' l='845'>/* secondary socket remote port to connect to
+                                    (ftp) */</doc>
+<use f='codebrowser/lib/ftp.c' l='1993' u='w' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/http_proxy.c' l='120' u='r' c='Curl_proxy_connect'/>
+<use f='codebrowser/lib/url.c' l='3926' u='r' c='Curl_connected_proxy'/>

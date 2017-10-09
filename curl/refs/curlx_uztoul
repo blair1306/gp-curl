@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/warnless.h' l='39' type='unsigned long curlx_uztoul(size_t uznum)'/>
+<def f='codebrowser/lib/warnless.c' l='222' ll='237' type='unsigned long curlx_uztoul(size_t uznum)'/>
+<doc f='codebrowser/lib/warnless.c' l='218'>/*
+** unsigned size_t to unsigned long
+*/</doc>
+<use f='codebrowser/tests/libtest/lib1509.c' l='94' u='c' c='WriteHeader'/>

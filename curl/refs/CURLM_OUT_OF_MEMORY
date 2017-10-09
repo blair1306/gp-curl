@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/multi.h' l='67' type='3'/>
+<doc f='codebrowser/include/curl/multi.h' l='67'>/* if you ever get this, you&apos;re in deep sh*t */</doc>
+<use f='codebrowser/lib/easy.c' l='723' u='r' c='easy_transfer'/>
+<use f='codebrowser/lib/easy.c' l='782' u='r' c='easy_perform'/>
+<use f='codebrowser/lib/multi.c' l='1032' u='r' c='curl_multi_wait'/>
+<use f='codebrowser/lib/pipeline.c' l='210' u='r' c='Curl_pipeline_set_site_blacklist'/>
+<use f='codebrowser/lib/pipeline.c' l='279' u='r' c='Curl_pipeline_set_server_blacklist'/>
+<use f='codebrowser/lib/strerror.c' l='368' c='curl_multi_strerror'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='467' type='int OCSP_request_onereq_count(OCSP_REQUEST * req)'/>

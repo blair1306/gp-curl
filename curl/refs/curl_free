@@ -1,0 +1,28 @@
+<dec f='codebrowser/include/curl/curl.h' l='2290' type='void curl_free(void * p)'/>
+<def f='codebrowser/lib/escape.c' l='239' ll='242' type='void curl_free(void * p)'/>
+<doc f='codebrowser/lib/escape.c' l='236'>/* For operating systems/environments that use different malloc/free
+   systems for the app and for this library, we provide a free that uses
+   the library&apos;s memory system */</doc>
+<use f='codebrowser/src/tool_cb_prg.c' l='134' u='c' c='progressbarinit'/>
+<use f='codebrowser/src/tool_easysrc.c' l='121' u='c' c='easysrc_addf'/>
+<use f='codebrowser/src/tool_getparam.c' l='1269' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1280' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='314' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='325' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='337' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='347' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1191' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operhlp.c' l='112' u='c' c='add_file_name_to_url'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='47' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='62' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='75' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='77' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1537.c' l='90' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='274' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='304' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='366' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib509.c' l='140' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib543.c' l='56' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib558.c' l='47' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1396.c' l='97' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1396.c' l='112' u='c' c='test'/>

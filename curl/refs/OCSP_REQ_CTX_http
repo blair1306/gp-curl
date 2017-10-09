@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='412' type='int OCSP_REQ_CTX_http(OCSP_REQ_CTX * rctx, const char * op, const char * path)'/>

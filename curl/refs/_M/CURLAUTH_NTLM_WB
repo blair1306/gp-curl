@@ -1,0 +1,16 @@
+<dec f='codebrowser/include/curl/curl.h' l='706'/>
+<use f='codebrowser/lib/http.c' l='333' u='c'/>
+<use f='codebrowser/lib/http.c' l='334' u='c'/>
+<use f='codebrowser/lib/http.c' l='427' u='c'/>
+<use f='codebrowser/lib/http.c' l='428' u='c'/>
+<use f='codebrowser/lib/http.c' l='807' u='c'/>
+<use f='codebrowser/lib/http.c' l='813' u='c'/>
+<use f='codebrowser/lib/url.c' l='1413' u='c'/>
+<use f='codebrowser/lib/url.c' l='1492' u='c'/>
+<use f='codebrowser/lib/url.c' l='3502' u='c'/>
+<use f='codebrowser/lib/url.c' l='3506' u='c'/>
+<use f='codebrowser/lib/url.c' l='6873' u='c'/>
+<use f='codebrowser/lib/url.c' l='6880' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='673' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='678' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='74' u='c'/>

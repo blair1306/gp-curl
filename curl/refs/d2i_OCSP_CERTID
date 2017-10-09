@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='555' macro='1' type='OCSP_CERTID * d2i_OCSP_CERTID(OCSP_CERTID ** a, const unsigned char ** in, long len)'/>

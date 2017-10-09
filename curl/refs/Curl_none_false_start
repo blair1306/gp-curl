@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='96' type='_Bool Curl_none_false_start()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3645' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3645' u='r'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='1057' ll='1060' macro='1' type='_Bool Curl_none_false_start()'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1156'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1156'/>

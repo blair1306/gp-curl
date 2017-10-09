@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/curl_setup.h' l='385'/>
+<use f='codebrowser/lib/file.c' l='320' u='c'/>
+<use f='codebrowser/lib/file.c' l='433' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1292' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='2059' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='651' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='691' u='c'/>
+<use f='codebrowser/tests/libtest/lib505.c' l='43' u='c'/>
+<use f='codebrowser/tests/libtest/lib525.c' l='38' u='c'/>
+<use f='codebrowser/tests/libtest/lib541.c' l='40' u='c'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='48' u='c'/>
+<use f='codebrowser/tests/libtest/lib572.c' l='48' u='c'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='231' u='c'/>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='179' type='CURLcode Curl_ssl_push_certinfo(struct Curl_easy * data, int certnum, const char * label, const char * value)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2735' u='c' c='X509V3_ext'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='723' ll='731' type='CURLcode Curl_ssl_push_certinfo(struct Curl_easy * data, int certnum, const char * label, const char * value)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='719'>/*
+ * This is a convenience function for push_certinfo_len that takes a zero
+ * terminated value.
+ */</doc>

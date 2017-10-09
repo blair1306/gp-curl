@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/curl.h' l='468' type='10'/>
+<doc f='codebrowser/include/curl/curl.h' l='468'>/* 10 - [was obsoleted in April 2006 for
+                                    7.15.4, reused in Dec 2011 for 7.24.0]*/</doc>
+<use f='codebrowser/lib/ftp.c' l='400' u='r' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='410' u='r' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='424' u='r' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='3150' c='ftp_done'/>
+<use f='codebrowser/lib/strerror.c' l='92' c='curl_easy_strerror'/>

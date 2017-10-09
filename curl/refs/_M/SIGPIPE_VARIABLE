@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/sigpipe.h' l='34'/>
+<use f='codebrowser/lib/easy.c' l='755' u='c'/>
+<use f='codebrowser/lib/easy.c' l='834' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2158' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2202' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2224' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2587' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2652' u='c'/>

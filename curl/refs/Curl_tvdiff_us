@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/timeval.h' l='53' type='time_t Curl_tvdiff_us(struct curltime newer, struct curltime older)'/>
+<doc f='codebrowser/lib/timeval.h' l='47'>/*
+ * Make sure that the first argument (t1) is the more recent time and t2 is
+ * the older time, as otherwise you get a weird negative time-diff back...
+ *
+ * Returns: the time difference in number of microseconds.
+ */</doc>
+<use f='codebrowser/lib/progress.c' l='215' u='c' c='Curl_pgrsTime'/>
+<use f='codebrowser/lib/progress.c' l='219' u='c' c='Curl_pgrsTime'/>
+<use f='codebrowser/lib/progress.c' l='376' u='c' c='Curl_pgrsUpdate'/>
+<def f='codebrowser/lib/timeval.c' l='148' ll='162' type='time_t Curl_tvdiff_us(struct curltime newer, struct curltime older)'/>
+<doc f='codebrowser/lib/timeval.c' l='141'>/*
+ * Make sure that the first argument is the more recent time, as otherwise
+ * we&apos;ll get a weird negative time-diff back...
+ *
+ * Returns: the time difference in number of microseconds. For too large diffs
+ * it returns max value.
+ */</doc>

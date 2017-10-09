@@ -1,0 +1,19 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='113' type='struct getout *'/>
+<offset>3456</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='113'>/* point to the first node */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='90' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='99' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='774' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1775' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1916' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='2114' u='r' c='parse_args'/>
+<use f='codebrowser/src/tool_getparam.c' l='2114' u='r' c='parse_args'/>
+<use f='codebrowser/src/tool_operate.c' l='290' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='290' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='411' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='2012' u='r' c='operate'/>
+<use f='codebrowser/src/tool_operhlp.c' l='41' u='r' c='clean_getout'/>
+<use f='codebrowser/src/tool_operhlp.c' l='51' u='w' c='clean_getout'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='49' u='w' c='new_getout'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='228' u='r' c='parseconfig'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='228' u='r' c='parseconfig'/>

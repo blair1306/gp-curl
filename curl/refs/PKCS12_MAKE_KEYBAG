@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='179' type='PKCS12_SAFEBAG * PKCS12_MAKE_KEYBAG(PKCS8_PRIV_KEY_INFO * p8)'/>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/curl_config.h' l='892'/>
+<doc f='codebrowser/lib/curl_config.h' l='891'>/* The size of `curl_off_t&apos;, as computed by sizeof. */</doc>
+<use f='codebrowser/lib/strtoofft.h' l='43' u='c'/>
+<use f='codebrowser/lib/mprintf.c' l='354' u='c'/>
+<use f='codebrowser/lib/strtoofft.c' l='36' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='88' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='91' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='94' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='178' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='186' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1845' u='c'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='404' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='40' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='1162' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='1205' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='1272' u='c'/>

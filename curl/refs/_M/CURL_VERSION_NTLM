@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='2638'/>
+<use f='codebrowser/lib/version.c' l='278' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='661' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='718' u='c'/>
+<use f='codebrowser/src/tool_help.c' l='498' u='c'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='872' type='int'/>
+<offset>4512</offset>
+<doc f='codebrowser/lib/urldata.h' l='872'>/* the RTSP version*10 reported by the server */</doc>
+<use f='codebrowser/lib/http.c' l='3394' u='a' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3398' u='w' c='Curl_http_readwrite_headers'/>

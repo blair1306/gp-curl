@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='65' type='21'/>
+<doc f='codebrowser/lib/ftp.h' l='65'>/* set type when about to RETR a file */</doc>
+<use f='codebrowser/lib/ftp.c' l='2167' u='r' c='ftp_state_type_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2993' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3661' u='r' c='ftp_do_more'/>

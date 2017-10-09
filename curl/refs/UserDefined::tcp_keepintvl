@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1689' type='long'/>
+<offset>16832</offset>
+<doc f='codebrowser/lib/urldata.h' l='1689'>/* seconds between TCP keepalive probes */</doc>
+<use f='codebrowser/lib/connect.c' l='143' u='r' c='tcpkeepalive'/>
+<use f='codebrowser/lib/url.c' l='620' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2899' u='w' c='Curl_setopt'/>

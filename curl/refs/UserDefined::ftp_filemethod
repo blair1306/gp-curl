@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='1601' type='curl_ftpfile'/>
+<offset>11264</offset>
+<doc f='codebrowser/lib/urldata.h' l='1601'>/* how to get to a file when FTP is used  */</doc>
+<use f='codebrowser/lib/ftp.c' l='890' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='1462' u='r' c='ftp_state_list'/>
+<use f='codebrowser/lib/ftp.c' l='3203' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3204' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3797' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3798' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='4150' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4312' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/url.c' l='540' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='910' u='w' c='Curl_setopt'/>

@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='405' type='int OCSP_REQ_CTX_i2d(OCSP_REQ_CTX * rctx, const ASN1_ITEM * it, ASN1_VALUE * val)'/>
+<dec f='include/openssl/ocsp.h' l='410' type='int OCSP_REQ_CTX_i2d(OCSP_REQ_CTX * rctx, const ASN1_ITEM * it, ASN1_VALUE * val)'/>

@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/connect.h' l='77' type='int Curl_closesocket(struct connectdata * conn, curl_socket_t sock)'/>
+<use f='codebrowser/lib/connect.c' l='593' u='c' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='791' u='c' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='997' u='c' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1027' u='c' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1041' u='c' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1127' u='c' c='singleipconnect'/>
+<def f='codebrowser/lib/connect.c' l='1280' ll='1303' type='int Curl_closesocket(struct connectdata * conn, curl_socket_t sock)'/>
+<doc f='codebrowser/lib/connect.c' l='1275'>/*
+ * Close a socket.
+ *
+ * &apos;conn&apos; can be NULL, beware!
+ */</doc>
+<use f='codebrowser/lib/ftp.c' l='220' u='c' c='close_secondarysocket'/>
+<use f='codebrowser/lib/ftp.c' l='293' u='c' c='AcceptServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='1153' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1163' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1176' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1186' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1194' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1249' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1278' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/hostip6.c' l='112' u='c' c='Curl_ipv6works'/>
+<use f='codebrowser/lib/http_proxy.c' l='586' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='612' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/url.c' l='3030' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3032' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3034' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3036' u='c' c='conn_free'/>

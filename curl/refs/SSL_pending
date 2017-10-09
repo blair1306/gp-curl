@@ -1,0 +1,3 @@
+<dec f='include/openssl/ssl.h' l='2154' type='int SSL_pending(const SSL * s)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3391' u='c' c='Curl_ossl_data_pending'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3393' u='c' c='Curl_ossl_data_pending'/>

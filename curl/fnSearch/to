@@ -1,0 +1,17 @@
+tool_debug_cb|tool_debug_cb
+tool_header_cb|tool_header_cb
+tool_progress_cb|tool_progress_cb
+tool_read_cb|tool_read_cb
+tool_seek_cb|tool_seek_cb
+tool_create_output_file|tool_create_output_file
+tool_write_cb|tool_write_cb
+tool_help|tool_help
+tool_list_engines|tool_list_engines
+tool_version_info|tool_version_info
+tool_setopt|tool_setopt
+tool_setopt_bitmask|tool_setopt_bitmask
+tool_setopt_enum|tool_setopt_enum
+tool_setopt_flags|tool_setopt_flags
+tool_setopt_mimepost|tool_setopt_mimepost
+tool_setopt_slist|tool_setopt_slist
+tool_go_sleep|tool_go_sleep

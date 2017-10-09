@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='555' type='curl_off_t'/>
+<offset>1344</offset>
+<doc f='codebrowser/lib/urldata.h' l='555'>/* possible resume offset read from the
+                                   Content-Range: header */</doc>
+<use f='codebrowser/lib/http.c' l='3708' u='a' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3709' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/smb.c' l='564' u='r' c='smb_send_read'/>
+<use f='codebrowser/lib/smb.c' l='583' u='r' c='smb_send_write'/>
+<use f='codebrowser/lib/smb.c' l='790' u='w' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='832' u='w' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='846' u='w' c='smb_request_state'/>

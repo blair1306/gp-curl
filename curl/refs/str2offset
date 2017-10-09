@@ -1,0 +1,12 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='42' type='ParameterError str2offset(curl_off_t * val, const char * str)'/>
+<use f='codebrowser/src/tool_getparam.c' l='756' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1184' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='397' ll='422' type='ParameterError str2offset(curl_off_t * val, const char * str)'/>
+<doc f='codebrowser/src/tool_paramhlp.c' l='389'>/**
+ * Parses the given string looking for an offset (which may be a
+ * larger-than-integer value). The offset CANNOT be negative!
+ *
+ * @param val  the offset to populate
+ * @param str  the buffer containing the offset
+ * @return PARAM_OK if successful, a parameter specific error enum if failure.
+ */</doc>

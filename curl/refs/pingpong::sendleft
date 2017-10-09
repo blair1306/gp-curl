@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/pingpong.h' l='59' type='size_t'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/pingpong.h' l='59'>/* number of bytes left to send from the sendthis buffer */</doc>
+<use f='codebrowser/lib/ftp.c' l='2610' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1252' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/pingpong.c' l='109' u='r' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/pingpong.c' l='113' u='r' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/pingpong.c' l='115' u='r' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/pingpong.c' l='232' u='w' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='237' u='w' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='474' u='r' c='Curl_pp_getsock'/>
+<use f='codebrowser/lib/pingpong.c' l='490' u='r' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pingpong.c' l='490' u='r' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pingpong.c' l='494' u='r' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pingpong.c' l='496' u='w' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pingpong.c' l='501' u='w' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pingpong.c' l='516' u='r' c='Curl_pp_moredata'/>
+<use f='codebrowser/lib/pop3.c' l='941' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='994' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1229' u='w' c='smtp_done'/>

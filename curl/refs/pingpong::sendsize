@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/pingpong.h' l='60' type='size_t'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/pingpong.h' l='60'>/* total size of the sendthis buffer */</doc>
+<use f='codebrowser/lib/pingpong.c' l='231' u='w' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='237' u='w' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='489' u='r' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pingpong.c' l='501' u='w' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/smtp.c' l='1228' u='w' c='smtp_done'/>

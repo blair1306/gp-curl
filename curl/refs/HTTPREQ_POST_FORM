@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='1143' type='3'/>
+<doc f='codebrowser/lib/urldata.h' l='1143'>/* we make a difference internally */</doc>
+<use f='codebrowser/lib/http.c' l='411' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='1460' c='Curl_http_done'/>
+<use f='codebrowser/lib/http.c' l='1618' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1840' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1940' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1986' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2485' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3187' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='293' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/transfer.c' l='1869' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1894' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='1152' u='r' c='Curl_setopt'/>

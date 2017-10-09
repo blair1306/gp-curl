@@ -1,0 +1,15 @@
+<dec f='include/x86_64-linux-gnu/sys/poll.h' l='41' type='int'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/sys/poll.h' l='41'>/* File descriptor to poll.  */</doc>
+<use f='codebrowser/lib/multi.c' l='1053' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1059' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1075' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/select.c' l='194' u='w' c='Curl_socket_check'/>
+<use f='codebrowser/lib/select.c' l='200' u='w' c='Curl_socket_check'/>
+<use f='codebrowser/lib/select.c' l='206' u='w' c='Curl_socket_check'/>
+<use f='codebrowser/lib/select.c' l='410' u='r' c='Curl_poll'/>
+<use f='codebrowser/lib/select.c' l='459' u='r' c='Curl_poll'/>
+<use f='codebrowser/lib/telnet.c' l='1259' u='w' c='send_telnet_data'/>
+<use f='codebrowser/lib/telnet.c' l='1587' u='w' c='telnet_do'/>
+<use f='codebrowser/lib/telnet.c' l='1596' u='w' c='telnet_do'/>
+<use f='codebrowser/lib/telnet.c' l='1650' u='r' c='telnet_do'/>

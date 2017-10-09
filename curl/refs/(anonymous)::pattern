@@ -1,0 +1,16 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='62' type='URLPattern [100]'/>
+<offset>0</offset>
+<use f='codebrowser/src/tool_urlglob.c' l='41' u='a' c='glob_fixed'/>
+<use f='codebrowser/src/tool_urlglob.c' l='93' u='a' c='glob_set'/>
+<use f='codebrowser/src/tool_urlglob.c' l='188' u='a' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='491' u='m' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='492' u='m' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='493' u='m' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='496' u='m' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='496' u='m' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='498' u='m' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='498' u='m' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='524' u='a' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='561' u='a' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='632' u='m' c='glob_match_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='633' u='a' c='glob_match_url'/>

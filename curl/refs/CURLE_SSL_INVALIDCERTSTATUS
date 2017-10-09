@@ -1,0 +1,11 @@
+<dec f='codebrowser/include/curl/curl.h' l='577' type='91'/>
+<doc f='codebrowser/include/curl/curl.h' l='577'>/* 91 - invalid certificate status */</doc>
+<use f='codebrowser/lib/strerror.c' l='309' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1550' u='r' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1557' u='r' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1565' u='r' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1572' u='r' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1609' u='r' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1628' u='r' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1640' u='r' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1647' u='r' c='verifystatus'/>

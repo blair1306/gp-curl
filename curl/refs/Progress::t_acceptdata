@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1121' type='struct curltime'/>
+<offset>1472</offset>
+<use f='codebrowser/lib/ftp.c' l='354' u='r' c='ftp_timeleft_accept'/>
+<use f='codebrowser/lib/progress.c' l='182' u='w' c='Curl_pgrsTime'/>

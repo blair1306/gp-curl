@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/urldata.h' l='1771' type='struct WildcardData'/>
+<offset>166592</offset>
+<doc f='codebrowser/lib/urldata.h' l='1771'>/* wildcard download state info */</doc>
+<use f='codebrowser/lib/ftp.c' l='3184' u='m' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3744' u='a' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3835' u='a' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3925' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3969' u='m' c='ftp_do'/>
+<use f='codebrowser/lib/ftp.c' l='3970' u='m' c='ftp_do'/>
+<use f='codebrowser/lib/ftplistparser.c' l='269' u='m' c='PL_ERROR'/>
+<use f='codebrowser/lib/ftplistparser.c' l='281' u='a' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/ftplistparser.c' l='335' u='m' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/multi.c' l='733' u='a' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='1665' u='a' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2034' u='m' c='multi_runsingle'/>
+<use f='codebrowser/lib/transfer.c' l='1404' u='a' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='494' u='a' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='2830' u='m' c='Curl_setopt'/>

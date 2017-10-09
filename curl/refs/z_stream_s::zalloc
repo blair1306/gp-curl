@@ -1,0 +1,6 @@
+<dec f='include/zlib.h' l='97' type='alloc_func'/>
+<offset>512</offset>
+<doc f='include/zlib.h' l='97'>/* used to allocate the internal state */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='176' u='w' c='Curl_unencode_deflate_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='286' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10019' u='w' c='hugehelp'/>

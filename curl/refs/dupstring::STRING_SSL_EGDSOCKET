@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1429' type='34'/>
+<doc f='codebrowser/lib/urldata.h' l='1429'>/* path to file containing the EGD daemon socket */</doc>
+<use f='codebrowser/lib/url.c' l='760' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6694' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6695' u='r' c='create_conn'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/http_ntlm.h' l='36' type='void Curl_http_ntlm_cleanup(struct connectdata * conn)'/>
+<use f='codebrowser/lib/http_ntlm.c' l='91' u='c' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='95' u='c' c='Curl_input_ntlm'/>
+<def f='codebrowser/lib/http_ntlm.c' l='231' ll='239' type='void Curl_http_ntlm_cleanup(struct connectdata * conn)'/>
+<use f='codebrowser/lib/url.c' l='3128' u='c' c='Curl_disconnect'/>

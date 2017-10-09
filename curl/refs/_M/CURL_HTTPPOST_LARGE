@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='189'/>
+<doc f='codebrowser/include/curl/curl.h' l='188'>/* use size in &apos;contentlen&apos;, added in 7.46.0 */</doc>
+<use f='codebrowser/lib/formdata.c' l='95' u='c'/>
+<use f='codebrowser/lib/formdata.c' l='381' u='c'/>
+<use f='codebrowser/lib/formdata.c' l='921' u='c'/>

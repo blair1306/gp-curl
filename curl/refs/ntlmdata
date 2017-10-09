@@ -1,0 +1,7 @@
+<def f='codebrowser/lib/urldata.h' l='324' ll='341'/>
+<size>32</size>
+<mbr r='ntlmdata::state' o='0' t='curlntlm'/>
+<mbr r='ntlmdata::flags' o='32' t='unsigned int'/>
+<mbr r='ntlmdata::nonce' o='64' t='unsigned char [8]'/>
+<mbr r='ntlmdata::target_info' o='128' t='void *'/>
+<mbr r='ntlmdata::target_info_len' o='192' t='unsigned int'/>

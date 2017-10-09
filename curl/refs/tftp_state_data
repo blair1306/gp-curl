@@ -1,0 +1,24 @@
+<def f='codebrowser/lib/tftp.c' l='122' ll='145'/>
+<size>368</size>
+<mbr r='tftp_state_data::state' o='0' t='tftp_state_t'/>
+<mbr r='tftp_state_data::mode' o='32' t='tftp_mode_t'/>
+<mbr r='tftp_state_data::error' o='64' t='tftp_error_t'/>
+<mbr r='tftp_state_data::event' o='96' t='tftp_event_t'/>
+<mbr r='tftp_state_data::conn' o='128' t='struct connectdata *'/>
+<mbr r='tftp_state_data::sockfd' o='192' t='curl_socket_t'/>
+<mbr r='tftp_state_data::retries' o='224' t='int'/>
+<mbr r='tftp_state_data::retry_time' o='256' t='int'/>
+<mbr r='tftp_state_data::retry_max' o='288' t='int'/>
+<mbr r='tftp_state_data::start_time' o='320' t='time_t'/>
+<mbr r='tftp_state_data::max_time' o='384' t='time_t'/>
+<mbr r='tftp_state_data::rx_time' o='448' t='time_t'/>
+<mbr r='tftp_state_data::block' o='512' t='unsigned short'/>
+<mbr r='tftp_state_data::local_addr' o='576' t='struct Curl_sockaddr_storage'/>
+<mbr r='tftp_state_data::remote_addr' o='1600' t='struct Curl_sockaddr_storage'/>
+<mbr r='tftp_state_data::remote_addrlen' o='2624' t='curl_socklen_t'/>
+<mbr r='tftp_state_data::rbytes' o='2656' t='int'/>
+<mbr r='tftp_state_data::sbytes' o='2688' t='int'/>
+<mbr r='tftp_state_data::blksize' o='2720' t='int'/>
+<mbr r='tftp_state_data::requested_blksize' o='2752' t='int'/>
+<mbr r='tftp_state_data::rpacket' o='2816' t='tftp_packet_t'/>
+<mbr r='tftp_state_data::spacket' o='2880' t='tftp_packet_t'/>

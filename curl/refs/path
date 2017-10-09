@@ -1,0 +1,9 @@
+<dec f='codebrowser/tests/server/util.h' l='34' type='const char *'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='186' u='w' c='main'/>
+<doc f='codebrowser/tests/server/util.h' l='33'>/* global variable, where to find the &apos;data&apos; dir */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='1257' u='w' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2078' u='w' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='737' u='w' c='main'/>
+<def f='codebrowser/tests/server/util.c' l='192' type='const char *'/>
+<use f='codebrowser/tests/server/util.c' l='197' u='r' c='test2file'/>
+<doc f='codebrowser/tests/server/util.c' l='191'>/* set by the main code to point to where the test dir is */</doc>

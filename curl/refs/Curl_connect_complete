@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/http_proxy.h' l='39' type='_Bool Curl_connect_complete(struct connectdata * conn)'/>
+<def f='codebrowser/lib/http_proxy.c' l='138' ll='142' macro='1' type='_Bool Curl_connect_complete(struct connectdata * conn)'/>
+<use f='codebrowser/lib/http_proxy.c' l='198' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='674' u='c' c='Curl_proxyCONNECT'/>
+<use f='codebrowser/lib/multi.c' l='1568' u='c' c='multi_runsingle'/>

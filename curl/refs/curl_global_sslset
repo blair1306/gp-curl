@@ -1,0 +1,2 @@
+<dec f='codebrowser/include/curl/curl.h' l='2378' type='CURLsslset curl_global_sslset(curl_sslbackend id, const char * name, const curl_ssl_backend *** avail)'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='1295' ll='1314' type='CURLsslset curl_global_sslset(curl_sslbackend id, const char * name, const curl_ssl_backend *** avail)'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/tests/libtest/testtrace.h' l='30' type='struct libtest_trace_cfg'/>
+<use f='codebrowser/tests/libtest/lib500.c' l='81' u='m' c='test'/>
+<use f='codebrowser/tests/libtest/lib500.c' l='82' u='m' c='test'/>
+<use f='codebrowser/tests/libtest/lib500.c' l='83' u='a' c='test'/>
+<use f='codebrowser/tests/libtest/lib573.c' l='58' u='m' c='test'/>
+<use f='codebrowser/tests/libtest/lib573.c' l='59' u='m' c='test'/>
+<use f='codebrowser/tests/libtest/lib573.c' l='60' u='a' c='test'/>
+<def f='codebrowser/tests/libtest/testtrace.c' l='28' type='struct libtest_trace_cfg'/>

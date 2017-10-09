@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/url.h' l='30' type='CURLcode Curl_init_do(struct Curl_easy * data, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/url.h' l='26'>/*
+ * Prototypes for library-wide functions provided by url.c
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='1161' u='c' c='Curl_multi_add_perform'/>
+<use f='codebrowser/lib/url.c' l='6672' u='c' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6893' u='c' c='create_conn'/>
+<def f='codebrowser/lib/url.c' l='7060' ll='7098' type='CURLcode Curl_init_do(struct Curl_easy * data, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/url.c' l='7050'>/*
+ * Curl_init_do() inits the readwrite session. This is inited each time (in
+ * the DO function before the protocol-specific DO functions are invoked) for
+ * a transfer, sometimes multiple times on the same Curl_easy. Make sure
+ * nothing in here depends on stuff that are setup dynamically for the
+ * transfer.
+ *
+ * Allow this function to get called with &apos;conn&apos; set to NULL.
+ */</doc>

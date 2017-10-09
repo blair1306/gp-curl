@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='900' type='int'/>
+<offset>7616</offset>
+<doc f='codebrowser/lib/urldata.h' l='899'>/* The two fields below get set in Curl_connecthost */</doc>
+<doc f='codebrowser/lib/urldata.h' l='900'>/* number of addresses to try to connect to */</doc>
+<use f='codebrowser/lib/connect.c' l='1055' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1159' u='w' c='Curl_connecthost'/>

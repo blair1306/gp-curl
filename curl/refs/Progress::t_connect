@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1112' type='time_t'/>
+<offset>768</offset>
+<use f='codebrowser/lib/getinfo.c' l='51' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='294' u='r' c='getinfo_double'/>
+<use f='codebrowser/lib/progress.c' l='188' u='a' c='Curl_pgrsTime'/>

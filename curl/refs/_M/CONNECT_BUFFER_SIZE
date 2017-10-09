@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/urldata.h' l='765'/>
+<use f='codebrowser/lib/urldata.h' l='769' u='c'/>
+<use f='codebrowser/lib/http_proxy.c' l='335' u='c'/>

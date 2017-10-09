@@ -1,0 +1,14 @@
+<def f='include/openssl/ocsp.h' l='263' ll='269'/>
+<size>40</size>
+<doc f='include/openssl/ocsp.h' l='256'>/*-  ResponseData ::= SEQUENCE {
+ *      version              [0] EXPLICIT Version DEFAULT v1,
+ *      responderID              ResponderID,
+ *      producedAt               GeneralizedTime,
+ *      responses                SEQUENCE OF SingleResponse,
+ *      responseExtensions   [1] EXPLICIT Extensions OPTIONAL }
+ */</doc>
+<mbr r='ocsp_response_data_st::version' o='0' t='ASN1_INTEGER *'/>
+<mbr r='ocsp_response_data_st::responderId' o='64' t='OCSP_RESPID *'/>
+<mbr r='ocsp_response_data_st::producedAt' o='128' t='ASN1_GENERALIZEDTIME *'/>
+<mbr r='ocsp_response_data_st::responses' o='192' t='struct stack_st_OCSP_SINGLERESP *'/>
+<mbr r='ocsp_response_data_st::responseExtensions' o='256' t='struct stack_st_X509_EXTENSION *'/>

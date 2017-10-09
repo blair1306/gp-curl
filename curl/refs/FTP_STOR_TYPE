@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='66' type='22'/>
+<doc f='codebrowser/lib/ftp.h' l='66'>/* set type when about to STOR a file */</doc>
+<use f='codebrowser/lib/ftp.c' l='2169' u='r' c='ftp_state_type_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2994' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3627' u='r' c='ftp_do_more'/>

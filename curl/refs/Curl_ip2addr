@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='78' type='Curl_addrinfo * Curl_ip2addr(int af, const void * inaddr, const char * hostname, int port)'/>
+<use f='codebrowser/lib/asyn-thread.c' l='620' u='c' c='Curl_resolver_getaddrinfo'/>
+<use f='codebrowser/lib/asyn-thread.c' l='628' u='c' c='Curl_resolver_getaddrinfo'/>
+<def f='codebrowser/lib/curl_addrinfo.c' l='389' ll='459' type='Curl_addrinfo * Curl_ip2addr(int af, const void * inaddr, const char * hostname, int port)'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='470' u='c' c='Curl_str2addr'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='476' u='c' c='Curl_str2addr'/>
+<doc f='codebrowser/lib/curl_addrinfo.c' l='380'>/*
+ * Curl_ip2addr()
+ *
+ * This function takes an internet address, in binary form, as input parameter
+ * along with its address family and the string version of the address, and it
+ * returns a Curl_addrinfo chain filled in correctly with information for the
+ * given address/host
+ */</doc>

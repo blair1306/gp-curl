@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/urldata.h' l='501' type='3'/>
+<doc f='codebrowser/lib/urldata.h' l='501'>/* used on 417 Expectation Failed */</doc>
+<use f='codebrowser/lib/http.c' l='3208' u='r' c='Curl_http_readwrite_headers'/>

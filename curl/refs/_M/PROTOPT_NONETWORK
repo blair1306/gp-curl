@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='708'/>
+<use f='codebrowser/lib/file.c' l='114' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='577' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='149' u='c'/>
+<use f='codebrowser/lib/url.c' l='5381' u='c'/>
+<use f='codebrowser/lib/url.c' l='5387' u='c'/>
+<use f='codebrowser/lib/url.c' l='6642' u='c'/>
+<use f='codebrowser/lib/url.c' l='6940' u='c'/>

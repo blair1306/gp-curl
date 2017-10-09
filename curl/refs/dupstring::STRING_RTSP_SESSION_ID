@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='1443' type='47'/>
+<doc f='codebrowser/lib/urldata.h' l='1443'>/* Session ID to use */</doc>
+<use f='codebrowser/lib/getinfo.c' l='128' u='r' c='getinfo_char'/>
+<use f='codebrowser/lib/rtsp.c' l='341' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='818' u='r' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/rtsp.c' l='820' u='r' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/rtsp.c' l='821' u='r' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/rtsp.c' l='823' u='r' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/rtsp.c' l='840' u='w' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/rtsp.c' l='841' u='r' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/rtsp.c' l='843' u='r' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/rtsp.c' l='844' u='r' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/url.c' l='2774' u='a' c='Curl_setopt'/>

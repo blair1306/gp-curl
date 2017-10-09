@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cb_prg.h' l='33' type='int'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='87' u='r' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='131' u='w' c='progressbarinit'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='133' u='w' c='progressbarinit'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='137' u='w' c='progressbarinit'/>
+<offset>256</offset>

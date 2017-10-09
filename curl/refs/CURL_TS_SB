@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/telnet.c' l='148' type='7'/>
+<use f='codebrowser/lib/telnet.c' l='1130' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1174' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1204' u='r' c='telrcv'/>
+<doc f='codebrowser/lib/telnet.c' l='148'>/* sub-option collection */</doc>

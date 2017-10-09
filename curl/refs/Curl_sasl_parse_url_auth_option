@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='126' type='CURLcode Curl_sasl_parse_url_auth_option(struct SASL * sasl, const char * value, size_t len)'/>
+<doc f='codebrowser/lib/curl_sasl.h' l='125'>/* Parse the URL login options */</doc>
+<def f='codebrowser/lib/curl_sasl.c' l='145' ll='171' type='CURLcode Curl_sasl_parse_url_auth_option(struct SASL * sasl, const char * value, size_t len)'/>
+<doc f='codebrowser/lib/curl_sasl.c' l='140'>/*
+ * Curl_sasl_parse_url_auth_option()
+ *
+ * Parse the URL login options.
+ */</doc>
+<use f='codebrowser/lib/imap.c' l='1900' u='c' c='imap_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1340' u='c' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/smtp.c' l='1475' u='c' c='smtp_parse_url_options'/>

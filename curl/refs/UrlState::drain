@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1348' type='size_t'/>
+<offset>140160</offset>
+<doc f='codebrowser/lib/urldata.h' l='1348'>/* Increased when this stream has data to read, even if its
+                   socket is not necessarily is readable. Decreased when
+                   checked. */</doc>
+<use f='codebrowser/lib/transfer.c' l='1119' u='r' c='Curl_readwrite'/>

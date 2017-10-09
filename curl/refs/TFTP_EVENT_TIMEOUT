@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/tftp.c' l='99' type='7'/>
+<use f='codebrowser/lib/tftp.c' l='465' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='659' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='803' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='1125' u='r' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1205' u='r' c='tftp_state_timeout'/>

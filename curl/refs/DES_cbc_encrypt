@@ -1,0 +1,2 @@
+<dec f='include/openssl/des.h' l='139' type='void DES_cbc_encrypt(const unsigned char * input, unsigned char * output, long length, DES_key_schedule * schedule, DES_cblock * ivec, int enc)'/>
+<doc f='include/openssl/des.h' l='138'>/* DES_cbc_encrypt does not update the IV!  Use DES_ncbc_encrypt instead. */</doc>

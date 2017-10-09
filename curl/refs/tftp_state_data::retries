@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/tftp.c' l='129' type='int'/>
+<use f='codebrowser/lib/tftp.c' l='467' u='w' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='468' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='601' u='w' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='642' u='w' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='661' u='w' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='664' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='665' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='736' u='w' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='738' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='766' u='w' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='805' u='w' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='807' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='809' u='r' c='tftp_tx'/>
+<offset>224</offset>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/curl.h' l='161' type='char *'/>
+<offset>192</offset>
+<doc f='codebrowser/include/curl/curl.h' l='161'>/* pointer to allocated data contents */</doc>
+<use f='codebrowser/lib/formdata.c' l='87' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='819' u='r' c='curl_formfree'/>
+<use f='codebrowser/lib/formdata.c' l='927' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='938' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='951' u='r' c='Curl_getformdata'/>

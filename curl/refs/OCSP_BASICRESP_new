@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='549' macro='1' type='OCSP_BASICRESP * OCSP_BASICRESP_new()'/>

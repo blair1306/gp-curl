@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/smtp.h' l='41' type='7'/>
+<doc f='codebrowser/lib/smtp.h' l='41'>/* VRFY, EXPN, NOOP, RSET and HELP */</doc>
+<use f='codebrowser/lib/smtp.c' l='219' u='r' c='smtp_endofresp'/>
+<use f='codebrowser/lib/smtp.c' l='488' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='1032' c='smtp_statemach_act'/>

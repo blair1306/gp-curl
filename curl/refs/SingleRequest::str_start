@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='551' type='char *'/>
+<offset>1088</offset>
+<doc f='codebrowser/lib/urldata.h' l='551'>/* within buf */</doc>
+<use f='codebrowser/lib/http.c' l='2900' u='r' c='header_append'/>
+<use f='codebrowser/lib/http.c' l='2963' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='2966' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='2994' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3291' u='r' c='Curl_http_readwrite_headers'/>

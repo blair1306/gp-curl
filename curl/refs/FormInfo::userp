@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/formdata.h' l='41' type='char *'/>
+<offset>832</offset>
+<doc f='codebrowser/lib/formdata.h' l='41'>/* pointer for the read callback */</doc>
+<use f='codebrowser/lib/formdata.c' l='481' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='487' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='687' u='r' c='FormAdd'/>

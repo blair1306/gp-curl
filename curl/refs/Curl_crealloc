@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/curl_memory.h' l='103' type='curl_realloc_callback'/>
+<def f='codebrowser/lib/easy.c' l='174' type='curl_realloc_callback'/>
+<use f='codebrowser/lib/easy.c' l='209' u='w' c='global_init'/>
+<use f='codebrowser/lib/easy.c' l='301' u='w' c='curl_global_init_mem'/>
+<use f='codebrowser/lib/ftp.c' l='4263' macro='1' u='r'/>
+<use f='codebrowser/lib/ftplistparser.c' l='383' macro='1' u='r'/>
+<use f='codebrowser/lib/http.c' l='2891' macro='1' u='r'/>
+<use f='codebrowser/lib/http_chunks.c' l='299' macro='1' u='r'/>
+<use f='codebrowser/lib/mprintf.c' l='1049' macro='1' u='r'/>
+<use f='codebrowser/lib/sendf.c' l='501' macro='1' u='r'/>
+<use f='codebrowser/lib/strdup.c' l='95' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='2357' macro='1' u='r'/>
+<def f='codebrowser/tests/server/getpart.c' l='58' type='curl_realloc_callback'/>
+<use f='codebrowser/tests/server/getpart.c' l='142' macro='1' u='r'/>
+<use f='codebrowser/tests/server/getpart.c' l='203' macro='1' u='r'/>

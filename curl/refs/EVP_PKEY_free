@@ -1,0 +1,6 @@
+<dec f='include/openssl/evp.h' l='981' type='void EVP_PKEY_free(EVP_PKEY * pkey)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='736' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='798' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='801' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='837' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2938' u='c' c='get_cert_chain'/>

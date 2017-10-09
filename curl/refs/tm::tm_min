@@ -1,0 +1,8 @@
+<dec f='include/time.h' l='136' type='int'/>
+<offset>32</offset>
+<use f='codebrowser/lib/file.c' l='507' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='2092' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/http.c' l='1735' u='r' c='Curl_add_timecondition'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='70' u='r' c='tool_debug_cb'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='112' u='r' c='libtest_debug_cb'/>
+<use f='codebrowser/tests/server/util.c' l='124' u='r' c='logmsg'/>

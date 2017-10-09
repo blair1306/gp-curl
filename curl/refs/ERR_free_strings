@@ -1,0 +1,2 @@
+<dec f='include/openssl/err.h' l='353' type='void ERR_free_strings()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='982' u='c' c='Curl_ossl_cleanup'/>

@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='218' type='char *'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/urldata.h' l='218'>/* path to file containing the EGD daemon socket */</doc>
+<use f='codebrowser/lib/url.c' l='6694' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6695' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='98' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='98' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='120' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='120' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='120' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='120' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='120' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='132' u='r' c='Curl_free_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='132' u='w' c='Curl_free_primary_ssl_config'/>

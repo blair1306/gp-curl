@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='62' type='3'/>
+<use f='codebrowser/lib/curl_sasl.c' l='367' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='461' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='463' c='Curl_sasl_continue'/>

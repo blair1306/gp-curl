@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/http.h' l='91' type='CURLcode Curl_http_auth_act(struct connectdata * conn)'/>
+<def f='codebrowser/lib/http.c' l='476' ll='544' type='CURLcode Curl_http_auth_act(struct connectdata * conn)'/>
+<use f='codebrowser/lib/http.c' l='3163' u='c' c='Curl_http_readwrite_headers'/>
+<doc f='codebrowser/lib/http.c' l='469'>/*
+ * Curl_http_auth_act() gets called when all HTTP headers have been received
+ * and it checks what authentication methods that are available and decides
+ * which one (if any) to use. It will set &apos;newurl&apos; if an auth method was
+ * picked.
+ */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='573' u='c' c='CONNECT'/>

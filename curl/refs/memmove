@@ -1,0 +1,21 @@
+<dec f='include/string.h' l='46' type='void * memmove(void * __dest, const void * __src, size_t __n)'/>
+<doc f='include/string.h' l='44'>/* Copy N bytes of SRC to DEST, guaranteeing
+   correct behavior for overlapping strings.  */</doc>
+<use f='codebrowser/lib/cookie.c' l='233' u='c' c='sanitize_cookie_path'/>
+<use f='codebrowser/lib/http.c' l='2035' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='1143' u='c' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/mime.c' l='793' u='c' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/pingpong.c' l='387' u='c' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/sendf.c' l='66' u='c' c='convert_lineends'/>
+<use f='codebrowser/lib/url.c' l='4484' u='c' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4525' u='c' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4644' u='c' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4668' u='c' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4774' u='c' c='parseurlandfillconn'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='204' u='c' c='parse_filename'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='57' u='c' c='removeFd'/>
+<use f='codebrowser/tests/server/rtspd.c' l='824' u='c' c='get_request'/>
+<use f='codebrowser/tests/server/sws.c' l='980' u='c' c='get_request'/>
+<use f='codebrowser/tests/server/sws.c' l='1673' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1693' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='2268' u='c' c='main'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='1274' type='int'/>
+<offset>132768</offset>
+<doc f='codebrowser/lib/urldata.h' l='1274'>/* filled in with errno whenever an error occurs */</doc>
+<use f='codebrowser/lib/connect.c' l='439' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='464' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='820' u='w' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='1124' u='w' c='singleipconnect'/>
+<use f='codebrowser/lib/getinfo.c' l='185' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/sendf.c' l='396' u='w' c='Curl_send_plain'/>
+<use f='codebrowser/lib/sendf.c' l='461' u='w' c='Curl_recv_plain'/>

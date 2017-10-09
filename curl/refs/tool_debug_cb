@@ -1,0 +1,9 @@
+<dec f='codebrowser/src/tool_cb_dbg.h' l='30' type='int tool_debug_cb(CURL * handle, curl_infotype type, char * data, size_t size, void * userdata)'/>
+<def f='codebrowser/src/tool_cb_dbg.c' l='44' ll='217' type='int tool_debug_cb(CURL * handle, curl_infotype type, char * data, size_t size, void * userdata)'/>
+<doc f='codebrowser/src/tool_cb_dbg.c' l='40'>/*
+** callback for CURLOPT_DEBUGFUNCTION
+*/</doc>
+<doc f='codebrowser/src/tool_cb_dbg.h' l='26'>/*
+** callback for CURLOPT_DEBUGFUNCTION
+*/</doc>
+<use f='codebrowser/src/tool_operate.c' l='1292' c='operate_do'/>

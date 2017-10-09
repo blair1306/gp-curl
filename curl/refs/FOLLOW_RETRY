@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/transfer.h' l='38' type='2'/>
+<doc f='codebrowser/lib/transfer.h' l='38'>/* set if this is a request retry as opposed to a real
+                          redirect following */</doc>
+<use f='codebrowser/lib/multi.c' l='1721' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1969' u='r' c='multi_runsingle'/>

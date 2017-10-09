@@ -1,0 +1,39 @@
+<def f='codebrowser/lib/urldata.h' l='1732' ll='1781'/>
+<size>21160</size>
+<doc f='codebrowser/lib/urldata.h' l='1722'>/*
+ * The &apos;connectdata&apos; struct MUST have all the connection oriented stuff as we
+ * may have several simultaneous connections and connection structs in memory.
+ *
+ * The &apos;struct UserDefined&apos; must only contain data that is set once to go for
+ * many (perhaps) independent connections. Values that are generated or
+ * calculated internally for the &quot;session handle&quot; must be defined within the
+ * &apos;struct UrlState&apos; instead.
+ */</doc>
+<mbr r='Curl_easy::next' o='0' t='struct Curl_easy *'/>
+<mbr r='Curl_easy::prev' o='64' t='struct Curl_easy *'/>
+<mbr r='Curl_easy::easy_conn' o='128' t='struct connectdata *'/>
+<mbr r='Curl_easy::connect_queue' o='192' t='struct curl_llist_element'/>
+<mbr r='Curl_easy::pipeline_queue' o='384' t='struct curl_llist_element'/>
+<mbr r='Curl_easy::mstate' o='576' t='CURLMstate'/>
+<mbr r='Curl_easy::result' o='608' t='CURLcode'/>
+<mbr r='Curl_easy::msg' o='640' t='struct Curl_message'/>
+<mbr r='Curl_easy::sockets' o='1024' t='curl_socket_t [5]'/>
+<mbr r='Curl_easy::numsocks' o='1184' t='int'/>
+<mbr r='Curl_easy::dns' o='1216' t='struct Names'/>
+<mbr r='Curl_easy::multi' o='1344' t='struct Curl_multi *'/>
+<mbr r='Curl_easy::multi_easy' o='1408' t='struct Curl_multi *'/>
+<mbr r='Curl_easy::share' o='1472' t='struct Curl_share *'/>
+<mbr r='Curl_easy::req' o='1536' t='struct SingleRequest'/>
+<mbr r='Curl_easy::set' o='4864' t='struct UserDefined'/>
+<mbr r='Curl_easy::change' o='22336' t='struct DynamicStatic'/>
+<mbr r='Curl_easy::cookies' o='22720' t='struct CookieInfo *'/>
+<mbr r='Curl_easy::progress' o='22784' t='struct Progress'/>
+<mbr r='Curl_easy::state' o='26048' t='struct UrlState'/>
+<mbr r='Curl_easy::wildcard' o='166592' t='struct WildcardData'/>
+<mbr r='Curl_easy::info' o='167232' t='struct PureInfo'/>
+<mbr r='Curl_easy::tsi' o='169088' t='struct curl_tlssessioninfo'/>
+<mbr r='Curl_easy::magic' o='169216' t='unsigned int'/>
+<def f='codebrowser/tests/server/getpart.c' l='32' ll='34'/>
+<size>4</size>
+<doc f='codebrowser/tests/server/getpart.c' l='31'>/* just to please curl_base64.h we create a fake struct */</doc>
+<mbr r='Curl_easy::fake' o='0' t='int'/>

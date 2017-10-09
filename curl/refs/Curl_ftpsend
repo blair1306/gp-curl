@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/ftp.h' l='34' type='CURLcode Curl_ftpsend(struct connectdata * , const char * cmd)'/>
+<def f='codebrowser/lib/ftp.c' l='3989' ll='4041' type='CURLcode Curl_ftpsend(struct connectdata * conn, const char * cmd)'/>

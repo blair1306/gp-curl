@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/pop3.h' l='62' type='pop3state'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/pop3.h' l='62'>/* Always use pop3.c:state() to change state! */</doc>
+<use f='codebrowser/lib/pop3.c' l='209' u='r' c='pop3_endofresp'/>
+<use f='codebrowser/lib/pop3.c' l='298' u='w' c='state'/>
+<use f='codebrowser/lib/pop3.c' l='360' u='r' c='pop3_perform_upgrade_tls'/>
+<use f='codebrowser/lib/pop3.c' l='937' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='954' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='956' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='960' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='964' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='968' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='973' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='978' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='982' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='986' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='996' u='r' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='1014' u='r' c='pop3_multi_statemach'/>
+<use f='codebrowser/lib/pop3.c' l='1024' u='r' c='pop3_block_statemach'/>

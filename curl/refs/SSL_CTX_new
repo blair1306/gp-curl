@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2131' type='SSL_CTX * SSL_CTX_new(const SSL_METHOD * meth)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2121' u='c' c='ossl_connect_step1'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1546' type='void *'/>
+<offset>2496</offset>
+<doc f='codebrowser/lib/urldata.h' l='1546'>/* pointer to pass to the ioctl callback */</doc>
+<use f='codebrowser/lib/transfer.c' l='313' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/url.c' l='2004' u='w' c='Curl_setopt'/>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='1734' type='struct Curl_easy *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/urldata.h' l='1733'>/* first, two fields for the linked list of these */</doc>
+<use f='codebrowser/lib/multi.c' l='417' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='420' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='772' u='w' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='772' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='774' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='777' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='778' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='959' u='r' c='curl_multi_fdset'/>
+<use f='codebrowser/lib/multi.c' l='1018' u='r' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1069' u='r' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='2167' u='r' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='2231' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2568' u='r' c='multi_socket'/>

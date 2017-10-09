@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/hostip.h' l='161' type='CURLcode Curl_addrinfo_callback(struct connectdata * conn, int status, Curl_addrinfo * ai)'/>
+<use f='codebrowser/lib/asyn-thread.c' l='252' u='c' c='getaddrinfo_complete'/>
+<doc f='codebrowser/lib/hostip.h' l='155'>/*
+ * Curl_addrinfo_callback() is used when we build with any asynch specialty.
+ * Handles end of async request processing. Inserts ai into hostcache when
+ * status is CURL_ASYNC_SUCCESS. Twiddles fields in conn to indicate async
+ * request completed whether successful or failed.
+ */</doc>
+<def f='codebrowser/lib/hostasyn.c' l='69' ll='112' type='CURLcode Curl_addrinfo_callback(struct connectdata * conn, int status, struct Curl_addrinfo * ai)'/>
+<doc f='codebrowser/lib/hostasyn.c' l='59'>/*
+ * Curl_addrinfo_callback() gets called by ares, gethostbyname_thread()
+ * or getaddrinfo_thread() when we got the name resolved (or not!).
+ *
+ * If the status argument is CURL_ASYNC_SUCCESS, this function takes
+ * ownership of the Curl_addrinfo passed, storing the resolved data
+ * in the DNS cache.
+ *
+ * The storage operation locks and unlocks the DNS cache.
+ */</doc>

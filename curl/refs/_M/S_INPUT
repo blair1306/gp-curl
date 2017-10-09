@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/stropts.h' l='102'/>
+<doc f='include/x86_64-linux-gnu/bits/stropts.h' l='101'>/* Possible arguments for `I_SETSIG&apos;.  */</doc>

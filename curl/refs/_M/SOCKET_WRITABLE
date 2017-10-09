@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/select.h' l='81'/>
+<use f='codebrowser/lib/connect.c' l='764' u='c'/>
+<use f='codebrowser/lib/gopher.c' l='143' u='c'/>
+<use f='codebrowser/lib/socks.c' l='416' u='c'/>

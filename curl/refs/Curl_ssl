@@ -1,0 +1,81 @@
+<def f='codebrowser/lib/vtls/vtls.h' l='29' ll='77'/>
+<dec f='codebrowser/lib/vtls/vtls.h' l='80' type='const struct Curl_ssl *'/>
+<size>192</size>
+<mbr r='Curl_ssl::info' o='0' t='curl_ssl_backend'/>
+<mbr r='Curl_ssl::have_ca_path' o='128' t='unsigned int'/>
+<mbr r='Curl_ssl::have_certinfo' o='129' t='unsigned int'/>
+<mbr r='Curl_ssl::have_pinnedpubkey' o='130' t='unsigned int'/>
+<mbr r='Curl_ssl::have_ssl_ctx' o='131' t='unsigned int'/>
+<mbr r='Curl_ssl::support_https_proxy' o='132' t='unsigned int'/>
+<mbr r='Curl_ssl::sizeof_ssl_backend_data' o='192' t='size_t'/>
+<mbr r='Curl_ssl::init' o='256' t='int (*)(void)'/>
+<mbr r='Curl_ssl::cleanup' o='320' t='void (*)(void)'/>
+<mbr r='Curl_ssl::version' o='384' t='size_t (*)(char *, size_t)'/>
+<mbr r='Curl_ssl::check_cxn' o='448' t='int (*)(struct connectdata *)'/>
+<mbr r='Curl_ssl::shutdown' o='512' t='int (*)(struct connectdata *, int)'/>
+<mbr r='Curl_ssl::data_pending' o='576' t='_Bool (*)(const struct connectdata *, int)'/>
+<mbr r='Curl_ssl::random' o='640' t='CURLcode (*)(struct Curl_easy *, unsigned char *, size_t)'/>
+<mbr r='Curl_ssl::cert_status_request' o='704' t='_Bool (*)(void)'/>
+<mbr r='Curl_ssl::connect' o='768' t='CURLcode (*)(struct connectdata *, int)'/>
+<mbr r='Curl_ssl::connect_nonblocking' o='832' t='CURLcode (*)(struct connectdata *, int, _Bool *)'/>
+<mbr r='Curl_ssl::get_internals' o='896' t='void *(*)(struct ssl_connect_data *, CURLINFO)'/>
+<mbr r='Curl_ssl::close' o='960' t='void (*)(struct connectdata *, int)'/>
+<mbr r='Curl_ssl::close_all' o='1024' t='void (*)(struct Curl_easy *)'/>
+<mbr r='Curl_ssl::session_free' o='1088' t='void (*)(void *)'/>
+<mbr r='Curl_ssl::set_engine' o='1152' t='CURLcode (*)(struct Curl_easy *, const char *)'/>
+<mbr r='Curl_ssl::set_engine_default' o='1216' t='CURLcode (*)(struct Curl_easy *)'/>
+<mbr r='Curl_ssl::engines_list' o='1280' t='struct curl_slist *(*)(struct Curl_easy *)'/>
+<mbr r='Curl_ssl::false_start' o='1344' t='_Bool (*)(void)'/>
+<mbr r='Curl_ssl::md5sum' o='1408' t='CURLcode (*)(unsigned char *, size_t, unsigned char *, size_t)'/>
+<mbr r='Curl_ssl::sha256sum' o='1472' t='void (*)(const unsigned char *, size_t, unsigned char *, size_t)'/>
+<use f='codebrowser/lib/getinfo.c' l='376' u='r' c='getinfo_slist'/>
+<use f='codebrowser/lib/url.c' l='2205' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2216' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2235' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2247' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2260' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2288' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2302' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4199' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4295' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4297' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4299' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='5127' u='r' c='parse_proxy'/>
+<use f='codebrowser/lib/version.c' l='358' u='r' c='curl_version_info'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='144' u='r' c='Curl_ssl_backend'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='168' u='r' c='Curl_ssl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='177' u='r' c='Curl_ssl_cleanup'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='214' u='r' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='223' u='r' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='248' u='r' c='Curl_ssl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='272' u='r' c='Curl_ssl_connect_nonblocking'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='371' u='r' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='509' u='r' c='Curl_ssl_close_all'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='552' u='r' c='Curl_ssl_close'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='557' u='r' c='Curl_ssl_shutdown'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='573' u='r' c='Curl_ssl_set_engine'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='580' u='r' c='Curl_ssl_set_engine_default'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='586' u='r' c='Curl_ssl_engines_list'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='619' u='r' c='Curl_ssl_version'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='633' u='r' c='Curl_ssl_check_cxn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='639' u='r' c='Curl_ssl_data_pending'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='737' u='r' c='Curl_ssl_random'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='825' u='r' c='Curl_pin_peer_pubkey'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='834' u='r' c='Curl_pin_peer_pubkey'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='958' u='r' c='Curl_ssl_md5sum'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='967' u='r' c='Curl_ssl_cert_status_request'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='975' u='r' c='Curl_ssl_false_start'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1095' u='r' c='Curl_multissl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1102' u='r' c='Curl_multissl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1110' u='r' c='Curl_multissl_connect_nonblocking'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1118' u='r' c='Curl_multissl_get_internals'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1125' u='r' c='Curl_multissl_close'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='1161' ll='1179' type='const struct Curl_ssl *'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1229' u='r' c='Curl_multissl_version'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1229' u='r' c='Curl_multissl_version'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1265' u='r' c='multissl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1269' u='w' c='multissl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1284' u='w' c='multissl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1291' u='w' c='multissl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1300' u='r' c='curl_global_sslset'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1301' u='r' c='curl_global_sslset'/>

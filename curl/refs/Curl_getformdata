@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/formdata.h' l='46' type='CURLcode Curl_getformdata(struct Curl_easy * data, curl_mimepart * , struct curl_httppost * post, curl_read_callback fread_func)'/>
+<use f='codebrowser/lib/formdata.c' l='769' u='c' c='curl_formget'/>
+<def f='codebrowser/lib/formdata.c' l='856' ll='972' type='CURLcode Curl_getformdata(struct Curl_easy * data, curl_mimepart * finalform, struct curl_httppost * post, curl_read_callback fread_func)'/>
+<doc f='codebrowser/lib/formdata.c' l='846'>/*
+ * Curl_getformdata() converts a linked list of &quot;meta data&quot; into a mime
+ * structure. The input list is in &apos;post&apos;, while the output is stored in
+ * mime part at &apos;*finalform&apos;.
+ *
+ * This function will not do a failf() for the potential memory failures but
+ * should for all other errors it spots. Just note that this function MAY get
+ * a NULL pointer in the &apos;data&apos; argument.
+ */</doc>
+<use f='codebrowser/lib/http.c' l='1943' u='c' c='Curl_http'/>

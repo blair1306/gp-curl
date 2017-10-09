@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/sendf.h' l='77' type='CURLcode Curl_write(struct connectdata * conn, curl_socket_t sockfd, const void * mem, size_t len, ssize_t * written)'/>
+<doc f='codebrowser/lib/sendf.h' l='76'>/* internal write-function, does plain socket, SSL, SCP, SFTP and krb4 */</doc>
+<use f='codebrowser/lib/easy.c' l='1129' u='c' c='curl_easy_send'/>
+<use f='codebrowser/lib/ftp.c' l='4018' u='c' c='Curl_ftpsend'/>
+<use f='codebrowser/lib/gopher.c' l='120' u='c' c='gopher_do'/>
+<use f='codebrowser/lib/http.c' l='1117' u='c' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/pingpong.c' l='211' u='c' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='489' u='c' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/sendf.c' l='288' u='c' c='Curl_sendf'/>
+<def f='codebrowser/lib/sendf.c' l='318' ll='349' type='CURLcode Curl_write(struct connectdata * conn, curl_socket_t sockfd, const void * mem, size_t len, ssize_t * written)'/>
+<doc f='codebrowser/lib/sendf.c' l='311'>/*
+ * Curl_write() is an internal write function that sends data to the
+ * server. Works with plain sockets, SCP, SSL or kerberos.
+ *
+ * If the write would block (CURLE_AGAIN), we return CURLE_OK and
+ * (*written == 0). Otherwise we return regular CURLcode value.
+ */</doc>
+<use f='codebrowser/lib/smb.c' l='376' u='c' c='smb_send'/>
+<use f='codebrowser/lib/smb.c' l='401' u='c' c='smb_flush'/>
+<use f='codebrowser/lib/smtp.c' l='1218' u='c' c='smtp_done'/>
+<use f='codebrowser/lib/telnet.c' l='1268' u='c' c='send_telnet_data'/>
+<use f='codebrowser/lib/transfer.c' l='1033' u='c' c='readwrite_upload'/>

@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/cookie.h' l='50' type='struct Cookie *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/cookie.h' l='49'>/* linked list of cookies we know of */</doc>
+<use f='codebrowser/lib/cookie.c' l='307' u='r' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='312' u='r' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='313' u='w' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='842' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='928' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1141' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1150' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1238' u='r' c='Curl_cookie_clearall'/>
+<use f='codebrowser/lib/cookie.c' l='1239' u='w' c='Curl_cookie_clearall'/>
+<use f='codebrowser/lib/cookie.c' l='1274' u='r' c='Curl_cookie_clearsess'/>
+<use f='codebrowser/lib/cookie.c' l='1277' u='r' c='Curl_cookie_clearsess'/>
+<use f='codebrowser/lib/cookie.c' l='1297' u='w' c='Curl_cookie_clearsess'/>
+<use f='codebrowser/lib/cookie.c' l='1312' u='r' c='Curl_cookie_cleanup'/>
+<use f='codebrowser/lib/cookie.c' l='1386' u='r' c='cookie_output'/>
+<use f='codebrowser/lib/cookie.c' l='1417' u='r' c='cookie_list'/>

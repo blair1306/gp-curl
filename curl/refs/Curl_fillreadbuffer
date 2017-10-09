@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/transfer.h' l='53' type='CURLcode Curl_fillreadbuffer(struct connectdata * conn, int bytes, int * nreadp)'/>
+<use f='codebrowser/lib/file.c' l='368' u='c' c='file_upload'/>
+<use f='codebrowser/lib/smb.c' l='615' u='c' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/tftp.c' l='781' u='c' c='tftp_tx'/>
+<def f='codebrowser/lib/transfer.c' l='112' ll='260' type='CURLcode Curl_fillreadbuffer(struct connectdata * conn, int bytes, int * nreadp)'/>
+<use f='codebrowser/lib/transfer.c' l='945' u='c' c='readwrite_upload'/>
+<doc f='codebrowser/lib/transfer.c' l='108'>/*
+ * This function will call the read callback to fill our buffer with data
+ * to upload.
+ */</doc>

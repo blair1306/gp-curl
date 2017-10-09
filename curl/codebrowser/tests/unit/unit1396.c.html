@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>unit1396.c source code [codebrowser/tests/unit/unit1396.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="test "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/unit/unit1396.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>unit</a>/<a href='unit1396.c.html'>unit1396.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="curlcheck.h.html">"curlcheck.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="tu decl def" id="hnd" title='hnd' data-type='CURL *' data-ref="hnd">hnd</dfn>;</td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="unit_setup" title='unit_setup' data-type='CURLcode unit_setup()' data-ref="unit_setup">unit_setup</dfn>(<em>void</em>)</td></tr>
+<tr><th id="27">27</th><td>{</td></tr>
+<tr><th id="28">28</th><td>  <em>int</em> <dfn class="local col1 decl" id="1res" title='res' data-type='int' data-ref="1res">res</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td>  <a class="macro" href="../libtest/test.h.html#431" title="do { do { CURLcode ec; if((ec = curl_global_init((((((1&lt;&lt;0)|(1&lt;&lt;1))))))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_global_init() failed, &quot; &quot;with code %d (%s)\n&quot;, (((&quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;))), (((30))), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0); if(res) return res; } while(0)" data-ref="_M/global_init">global_init</a>(<a class="macro" href="../../include/curl/curl.h.html#2519" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_ALL">CURL_GLOBAL_ALL</a>);</td></tr>
+<tr><th id="31">31</th><td>  <b>return</b> <a class="local col1 ref" href="#1res" title='res' data-ref="1res">res</a>;</td></tr>
+<tr><th id="32">32</th><td>}</td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="unit_stop" title='unit_stop' data-type='void unit_stop()' data-ref="unit_stop">unit_stop</dfn>(<em>void</em>)</td></tr>
+<tr><th id="35">35</th><td>{</td></tr>
+<tr><th id="36">36</th><td>  <b>if</b>(<a class="tu ref" href="#hnd" title='hnd' data-use='r' data-ref="hnd">hnd</a>)</td></tr>
+<tr><th id="37">37</th><td>    <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="tu ref" href="#hnd" title='hnd' data-use='r' data-ref="hnd">hnd</a>);</td></tr>
+<tr><th id="38">38</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="39">39</th><td>}</td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td><b>struct</b> <dfn class="type def" id="test" title='test' data-ref="test">test</dfn> {</td></tr>
+<tr><th id="42">42</th><td>  <em>const</em> <em>char</em> *<dfn class="tu decl" id="test::in" title='test::in' data-type='const char *' data-ref="test::in">in</dfn>;</td></tr>
+<tr><th id="43">43</th><td>  <em>int</em> <dfn class="tu decl" id="test::inlen" title='test::inlen' data-type='int' data-ref="test::inlen">inlen</dfn>;</td></tr>
+<tr><th id="44">44</th><td>  <em>const</em> <em>char</em> *<dfn class="tu decl" id="test::out" title='test::out' data-type='const char *' data-ref="test::out">out</dfn>;</td></tr>
+<tr><th id="45">45</th><td>  <em>int</em> <dfn class="tu decl" id="test::outlen" title='test::outlen' data-type='int' data-ref="test::outlen">outlen</dfn>;</td></tr>
+<tr><th id="46">46</th><td>};</td></tr>
+<tr><th id="47">47</th><td></td></tr>
+<tr><th id="48">48</th><td><a class="macro" href="curlcheck.h.html#86" title="int test(char *arg) { (void)arg; if(unit_setup()) { do { curl_mfprintf(stderr, &quot;%s:%d test failed: &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;, 48, &quot;unit_setup() failure&quot;); unitfail++; } while(0); } else {" data-ref="_M/UNITTEST_START">UNITTEST_START</a></td></tr>
+<tr><th id="49">49</th><td>{</td></tr>
+<tr><th id="50">50</th><td>  <i>/* unescape, this =&gt; that */</i></td></tr>
+<tr><th id="51">51</th><td>  <em>const</em> <b>struct</b> <a class="type" href="#test" title='test' data-ref="test">test</a> <dfn class="local col2 decl" id="2list1" title='list1' data-type='const struct test [13]' data-ref="2list1">list1</dfn>[]={</td></tr>
+<tr><th id="52">52</th><td>    {<q>"%61"</q>, <var>3</var>, <q>"a"</q>, <var>1</var>},</td></tr>
+<tr><th id="53">53</th><td>    {<q>"%61a"</q>, <var>4</var>, <q>"aa"</q>, <var>2</var>},</td></tr>
+<tr><th id="54">54</th><td>    {<q>"%61b"</q>, <var>4</var>, <q>"ab"</q>, <var>2</var>},</td></tr>
+<tr><th id="55">55</th><td>    {<q>"%6 1"</q>, <var>4</var>, <q>"%6 1"</q>, <var>4</var>},</td></tr>
+<tr><th id="56">56</th><td>    {<q>"%61"</q>, <var>1</var>, <q>"%"</q>, <var>1</var>},</td></tr>
+<tr><th id="57">57</th><td>    {<q>"%61"</q>, <var>2</var>, <q>"%6"</q>, <var>2</var>},</td></tr>
+<tr><th id="58">58</th><td>    {<q>"%6%a"</q>, <var>4</var>, <q>"%6%a"</q>, <var>4</var>},</td></tr>
+<tr><th id="59">59</th><td>    {<q>"%6a"</q>, <var>0</var>, <q>"j"</q>, <var>1</var>},</td></tr>
+<tr><th id="60">60</th><td>    {<q>"%FF"</q>, <var>0</var>, <q>"\xff"</q>, <var>1</var>},</td></tr>
+<tr><th id="61">61</th><td>    {<q>"%FF%00%ff"</q>, <var>9</var>, <q>"\xff\x00\xff"</q>, <var>3</var>},</td></tr>
+<tr><th id="62">62</th><td>    {<q>"%-2"</q>, <var>0</var>, <q>"%-2"</q>, <var>3</var>},</td></tr>
+<tr><th id="63">63</th><td>    {<q>"%FG"</q>, <var>0</var>, <q>"%FG"</q>, <var>3</var>},</td></tr>
+<tr><th id="64">64</th><td>    {<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>0</var>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>0</var>} <i>/* end of list marker */</i></td></tr>
+<tr><th id="65">65</th><td>  };</td></tr>
+<tr><th id="66">66</th><td>  <i>/* escape, this =&gt; that */</i></td></tr>
+<tr><th id="67">67</th><td>  <em>const</em> <b>struct</b> <a class="type" href="#test" title='test' data-ref="test">test</a> <dfn class="local col3 decl" id="3list2" title='list2' data-type='const struct test [11]' data-ref="3list2">list2</dfn>[]={</td></tr>
+<tr><th id="68">68</th><td>    {<q>"a"</q>, <var>1</var>, <q>"a"</q>, <var>1</var>},</td></tr>
+<tr><th id="69">69</th><td>    {<q>"/"</q>, <var>1</var>, <q>"%2F"</q>, <var>3</var>},</td></tr>
+<tr><th id="70">70</th><td>    {<q>"a=b"</q>, <var>3</var>, <q>"a%3Db"</q>, <var>5</var>},</td></tr>
+<tr><th id="71">71</th><td>    {<q>"a=b"</q>, <var>0</var>, <q>"a%3Db"</q>, <var>5</var>},</td></tr>
+<tr><th id="72">72</th><td>    {<q>"a=b"</q>, <var>1</var>, <q>"a"</q>, <var>1</var>},</td></tr>
+<tr><th id="73">73</th><td>    {<q>"a=b"</q>, <var>2</var>, <q>"a%3D"</q>, <var>4</var>},</td></tr>
+<tr><th id="74">74</th><td>    {<q>"1/./0"</q>, <var>5</var>, <q>"1%2F.%2F0"</q>, <var>9</var>},</td></tr>
+<tr><th id="75">75</th><td>    {<q>"-._~!#%&amp;"</q>, <var>0</var>, <q>"-._~%21%23%25%26"</q>, <var>16</var>},</td></tr>
+<tr><th id="76">76</th><td>    {<q>"a"</q>, <var>2</var>, <q>"a%00"</q>, <var>4</var>},</td></tr>
+<tr><th id="77">77</th><td>    {<q>"a\xff\x01g"</q>, <var>4</var>, <q>"a%FF%01g"</q>, <var>8</var>},</td></tr>
+<tr><th id="78">78</th><td>    {<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>0</var>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>0</var>} <i>/* end of list marker */</i></td></tr>
+<tr><th id="79">79</th><td>  };</td></tr>
+<tr><th id="80">80</th><td>  <em>int</em> <dfn class="local col4 decl" id="4i" title='i' data-type='int' data-ref="4i">i</dfn>;</td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td>  <a class="tu ref" href="#hnd" title='hnd' data-use='w' data-ref="hnd">hnd</a> = <a class="ref" href="../../include/curl/easy.h.html#curl_easy_init" title='curl_easy_init' data-ref="curl_easy_init">curl_easy_init</a>();</td></tr>
+<tr><th id="83">83</th><td>  <a class="macro" href="curlcheck.h.html#67" title="if(!(hnd != ((void*)0))) { curl_mfprintf(stderr, &quot;%s:%d Abort assertion &apos;%s&apos; failed: %s\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;, 83, &quot;hnd != NULL&quot;, &quot;returned NULL!&quot;); unitfail++; goto unit_test_abort; }" data-ref="_M/abort_unless">abort_unless</a>(<a class="tu ref" href="#hnd" title='hnd' data-use='r' data-ref="hnd">hnd</a> != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <q>"returned NULL!"</q>);</td></tr>
+<tr><th id="84">84</th><td>  <b>for</b>(<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> = <var>0</var>; <a class="local col2 ref" href="#2list1" title='list1' data-ref="2list1">list1</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::in" title='test::in' data-use='r' data-ref="test::in">in</a>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>++) {</td></tr>
+<tr><th id="85">85</th><td>    <em>int</em> <dfn class="local col5 decl" id="5outlen" title='outlen' data-type='int' data-ref="5outlen">outlen</dfn>;</td></tr>
+<tr><th id="86">86</th><td>    <em>char</em> *<dfn class="local col6 decl" id="6out" title='out' data-type='char *' data-ref="6out">out</dfn> = <a class="ref" href="../../include/curl/curl.h.html#curl_easy_unescape" title='curl_easy_unescape' data-ref="curl_easy_unescape">curl_easy_unescape</a>(<a class="tu ref" href="#hnd" title='hnd' data-use='r' data-ref="hnd">hnd</a>,</td></tr>
+<tr><th id="87">87</th><td>                                   <a class="local col2 ref" href="#2list1" title='list1' data-ref="2list1">list1</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::in" title='test::in' data-use='r' data-ref="test::in">in</a>, <a class="local col2 ref" href="#2list1" title='list1' data-ref="2list1">list1</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::inlen" title='test::inlen' data-use='r' data-ref="test::inlen">inlen</a>,</td></tr>
+<tr><th id="88">88</th><td>                                   &amp;<a class="local col5 ref" href="#5outlen" title='outlen' data-ref="5outlen">outlen</a>);</td></tr>
+<tr><th id="89">89</th><td></td></tr>
+<tr><th id="90">90</th><td>    <a class="macro" href="curlcheck.h.html#67" title="if(!(out != ((void*)0))) { curl_mfprintf(stderr, &quot;%s:%d Abort assertion &apos;%s&apos; failed: %s\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;, 90, &quot;out != NULL&quot;, &quot;returned NULL!&quot;); unitfail++; goto unit_test_abort; }" data-ref="_M/abort_unless">abort_unless</a>(<a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a> != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <q>"returned NULL!"</q>);</td></tr>
+<tr><th id="91">91</th><td>    <a class="macro" href="curlcheck.h.html#32" title="if(!(outlen == list1[i].outlen)) { curl_mfprintf(stderr, &quot;%s:%d Assertion &apos;%s&apos; failed: %s\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;, 91, &quot;outlen == list1[i].outlen&quot;, &quot;wrong output length returned&quot;); unitfail++; }" data-ref="_M/fail_unless">fail_unless</a>(<a class="local col5 ref" href="#5outlen" title='outlen' data-ref="5outlen">outlen</a> == <a class="local col2 ref" href="#2list1" title='list1' data-ref="2list1">list1</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::outlen" title='test::outlen' data-use='r' data-ref="test::outlen">outlen</a>, <q>"wrong output length returned"</q>);</td></tr>
+<tr><th id="92">92</th><td>    <a class="macro" href="curlcheck.h.html#32" title="if(!(!memcmp(out, list1[i].out, list1[i].outlen))) { curl_mfprintf(stderr, &quot;%s:%d Assertion &apos;%s&apos; failed: %s\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;, 93, &quot;!memcmp(out, list1[i].out, list1[i].outlen)&quot;, &quot;bad output data returned&quot;); unitfail++; }" data-ref="_M/fail_unless">fail_unless</a>(!<a class="ref" href="../../../include/string.h.html#memcmp" title='memcmp' data-ref="memcmp">memcmp</a>(<a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>, <a class="local col2 ref" href="#2list1" title='list1' data-ref="2list1">list1</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::out" title='test::out' data-use='r' data-ref="test::out">out</a>, <a class="local col2 ref" href="#2list1" title='list1' data-ref="2list1">list1</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::outlen" title='test::outlen' data-use='r' data-ref="test::outlen">outlen</a>),</td></tr>
+<tr><th id="93">93</th><td>                <q>"bad output data returned"</q>);</td></tr>
+<tr><th id="94">94</th><td></td></tr>
+<tr><th id="95">95</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"curl_easy_unescape test %d DONE\n"</q>, <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>);</td></tr>
+<tr><th id="96">96</th><td></td></tr>
+<tr><th id="97">97</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_free" title='curl_free' data-ref="curl_free">curl_free</a>(<a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>);</td></tr>
+<tr><th id="98">98</th><td>  }</td></tr>
+<tr><th id="99">99</th><td></td></tr>
+<tr><th id="100">100</th><td>  <b>for</b>(<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> = <var>0</var>; <a class="local col3 ref" href="#3list2" title='list2' data-ref="3list2">list2</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::in" title='test::in' data-use='r' data-ref="test::in">in</a>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>++) {</td></tr>
+<tr><th id="101">101</th><td>    <em>int</em> <dfn class="local col7 decl" id="7outlen" title='outlen' data-type='int' data-ref="7outlen">outlen</dfn>;</td></tr>
+<tr><th id="102">102</th><td>    <em>char</em> *<dfn class="local col8 decl" id="8out" title='out' data-type='char *' data-ref="8out">out</dfn> = <a class="ref" href="../../include/curl/curl.h.html#curl_easy_escape" title='curl_easy_escape' data-ref="curl_easy_escape">curl_easy_escape</a>(<a class="tu ref" href="#hnd" title='hnd' data-use='r' data-ref="hnd">hnd</a>, <a class="local col3 ref" href="#3list2" title='list2' data-ref="3list2">list2</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::in" title='test::in' data-use='r' data-ref="test::in">in</a>, <a class="local col3 ref" href="#3list2" title='list2' data-ref="3list2">list2</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::inlen" title='test::inlen' data-use='r' data-ref="test::inlen">inlen</a>);</td></tr>
+<tr><th id="103">103</th><td>    <a class="macro" href="curlcheck.h.html#67" title="if(!(out != ((void*)0))) { curl_mfprintf(stderr, &quot;%s:%d Abort assertion &apos;%s&apos; failed: %s\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;, 103, &quot;out != NULL&quot;, &quot;returned NULL!&quot;); unitfail++; goto unit_test_abort; }" data-ref="_M/abort_unless">abort_unless</a>(<a class="local col8 ref" href="#8out" title='out' data-ref="8out">out</a> != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <q>"returned NULL!"</q>);</td></tr>
+<tr><th id="104">104</th><td></td></tr>
+<tr><th id="105">105</th><td>    <a class="local col7 ref" href="#7outlen" title='outlen' data-ref="7outlen">outlen</a> = (<em>int</em>)<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col8 ref" href="#8out" title='out' data-ref="8out">out</a>);</td></tr>
+<tr><th id="106">106</th><td>    <a class="macro" href="curlcheck.h.html#32" title="if(!(outlen == list2[i].outlen)) { curl_mfprintf(stderr, &quot;%s:%d Assertion &apos;%s&apos; failed: %s\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;, 106, &quot;outlen == list2[i].outlen&quot;, &quot;wrong output length returned&quot;); unitfail++; }" data-ref="_M/fail_unless">fail_unless</a>(<a class="local col7 ref" href="#7outlen" title='outlen' data-ref="7outlen">outlen</a> == <a class="local col3 ref" href="#3list2" title='list2' data-ref="3list2">list2</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::outlen" title='test::outlen' data-use='r' data-ref="test::outlen">outlen</a>, <q>"wrong output length returned"</q>);</td></tr>
+<tr><th id="107">107</th><td>    <a class="macro" href="curlcheck.h.html#32" title="if(!(!memcmp(out, list2[i].out, list2[i].outlen))) { curl_mfprintf(stderr, &quot;%s:%d Assertion &apos;%s&apos; failed: %s\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1396.c&quot;, 108, &quot;!memcmp(out, list2[i].out, list2[i].outlen)&quot;, &quot;bad output data returned&quot;); unitfail++; }" data-ref="_M/fail_unless">fail_unless</a>(!<a class="ref" href="../../../include/string.h.html#memcmp" title='memcmp' data-ref="memcmp">memcmp</a>(<a class="local col8 ref" href="#8out" title='out' data-ref="8out">out</a>, <a class="local col3 ref" href="#3list2" title='list2' data-ref="3list2">list2</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::out" title='test::out' data-use='r' data-ref="test::out">out</a>, <a class="local col3 ref" href="#3list2" title='list2' data-ref="3list2">list2</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>].<a class="tu ref" href="#test::outlen" title='test::outlen' data-use='r' data-ref="test::outlen">outlen</a>),</td></tr>
+<tr><th id="108">108</th><td>                <q>"bad output data returned"</q>);</td></tr>
+<tr><th id="109">109</th><td></td></tr>
+<tr><th id="110">110</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#40" title="curl_mprintf" data-ref="_M/printf">printf</a>(<q>"curl_easy_escape test %d DONE (%s)\n"</q>, <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>, <a class="local col8 ref" href="#8out" title='out' data-ref="8out">out</a>);</td></tr>
+<tr><th id="111">111</th><td></td></tr>
+<tr><th id="112">112</th><td>    <a class="ref" href="../../include/curl/curl.h.html#curl_free" title='curl_free' data-ref="curl_free">curl_free</a>(<a class="local col8 ref" href="#8out" title='out' data-ref="8out">out</a>);</td></tr>
+<tr><th id="113">113</th><td>  }</td></tr>
+<tr><th id="114">114</th><td>}</td></tr>
+<tr><th id="115">115</th><td><a class="macro" href="curlcheck.h.html#95" title="goto unit_test_abort; unit_test_abort: unit_stop(); } return unitfail; }" data-ref="_M/UNITTEST_STOP">UNITTEST_STOP</a></td></tr>
+<tr><th id="116">116</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

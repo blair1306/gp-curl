@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/curl_memory.h' l='128'/>
+<use f='codebrowser/lib/ftp.c' l='4263' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='383' u='c'/>
+<use f='codebrowser/lib/http.c' l='2891' u='c'/>
+<use f='codebrowser/lib/http_chunks.c' l='299' u='c'/>
+<use f='codebrowser/lib/mprintf.c' l='1049' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='501' u='c'/>
+<use f='codebrowser/lib/strdup.c' l='95' u='c'/>
+<use f='codebrowser/lib/url.c' l='2357' u='c'/>
+<use f='codebrowser/tests/server/getpart.c' l='142' u='c'/>
+<use f='codebrowser/tests/server/getpart.c' l='203' u='c'/>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/multihandle.h' l='107' type='struct curl_hash'/>
+<offset>1472</offset>
+<doc f='codebrowser/lib/multihandle.h' l='104'>/* &apos;sockhash&apos; is the lookup hash for socket descriptor =&gt; easy handles (note
+     the pluralis form, there can be more than one easy handle waiting on the
+     same actual socket) */</doc>
+<use f='codebrowser/lib/multi.c' l='318' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='343' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='2263' u='a' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2353' u='a' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2368' u='a' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2400' u='a' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2452' u='a' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2477' u='a' c='Curl_multi_closed'/>
+<use f='codebrowser/lib/multi.c' l='2486' u='a' c='Curl_multi_closed'/>
+<use f='codebrowser/lib/multi.c' l='2577' u='a' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='3053' u='a' c='curl_multi_assign'/>

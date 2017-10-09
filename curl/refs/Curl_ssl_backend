@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='146' type='int Curl_ssl_backend()'/>
+<use f='codebrowser/lib/getinfo.c' l='368' u='c' c='getinfo_slist'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='140' ll='148' type='int Curl_ssl_backend()'/>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/include/curl/curl.h' l='456' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='456'>/* 1 */</doc>
+<use f='codebrowser/lib/connect.c' l='299' u='r' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='1042' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/curl_sasl.c' l='603' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/easy.c' l='1071' u='r' c='easy_connection'/>
+<use f='codebrowser/lib/easy.c' l='1078' u='r' c='easy_connection'/>
+<use f='codebrowser/lib/http.c' l='1781' macro='1' u='r'/>
+<use f='codebrowser/lib/http.c' l='1806' macro='1' u='r'/>
+<use f='codebrowser/lib/http.c' l='2366' macro='1' u='r'/>
+<use f='codebrowser/lib/http.c' l='3081' macro='1' u='r'/>
+<use f='codebrowser/lib/http.c' l='3386' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/strerror.c' l='64' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/url.c' l='1370' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4392' u='r' c='findprotocol'/>
+<use f='codebrowser/src/tool_operate.c' l='2037' u='r' c='operate'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='840'/>
+<doc f='codebrowser/include/curl/curl.h' l='839'>/* bitmask defines for CURLOPT_HEADEROPT */</doc>
+<use f='codebrowser/tests/libtest/lib1525.c' l='76' u='c'/>
+<use f='codebrowser/tests/libtest/lib1527.c' l='87' u='c'/>

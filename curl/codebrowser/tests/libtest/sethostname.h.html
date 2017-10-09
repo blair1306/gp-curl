@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>sethostname.h source code [codebrowser/tests/libtest/sethostname.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/sethostname.h'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='sethostname.h.html'>sethostname.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2013, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="23">ifdef</span> <span class="macro" data-ref="_M/CURL_STATICLIB">CURL_STATICLIB</span></u></td></tr>
+<tr><th id="24">24</th><td><u>#  define LIBHOSTNAME_EXTERN</u></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="23">elif</span> defined(<span class="macro" data-ref="_M/WIN32">WIN32</span>) || defined(<span class="macro" data-ref="_M/__SYMBIAN32__">__SYMBIAN32__</span>)</u></td></tr>
+<tr><th id="26">26</th><td><u>#  define LIBHOSTNAME_EXTERN  __declspec(dllexport)</u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="23">elif</span> defined(<span class="macro" data-ref="_M/CURL_HIDDEN_SYMBOLS">CURL_HIDDEN_SYMBOLS</span>)</u></td></tr>
+<tr><th id="28">28</th><td><u>#  define <dfn class="macro" id="_M/LIBHOSTNAME_EXTERN" data-ref="_M/LIBHOSTNAME_EXTERN">LIBHOSTNAME_EXTERN</dfn> CURL_EXTERN_SYMBOL</u></td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="23">else</span></u></td></tr>
+<tr><th id="30">30</th><td><u>#  define LIBHOSTNAME_EXTERN</u></td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="23">endif</span></u></td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="34">34</th><td><u>#  define FUNCALLCONV __stdcall</u></td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="33">else</span></u></td></tr>
+<tr><th id="36">36</th><td><u>#  define <dfn class="macro" id="_M/FUNCALLCONV" data-ref="_M/FUNCALLCONV">FUNCALLCONV</dfn></u></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="33">endif</span></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><a class="macro" href="#28" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/LIBHOSTNAME_EXTERN">LIBHOSTNAME_EXTERN</a> <em>int</em> <a class="macro" href="#36" title="" data-ref="_M/FUNCALLCONV">FUNCALLCONV</a></td></tr>
+<tr><th id="40">40</th><td>  <a class="decl" href="sethostname.c.html#gethostname" title='gethostname' data-ref="gethostname" id="gethostname">gethostname</a>(<em>char</em> *<dfn class="local col1 decl" id="1name" title='name' data-type='char *' data-ref="1name">name</dfn>, <a class="macro" href="../../lib/curl_setup.h.html#427" title="size_t" data-ref="_M/GETHOSTNAME_TYPE_ARG2">GETHOSTNAME_TYPE_ARG2</a> <dfn class="local col2 decl" id="2namelen" title='namelen' data-type='size_t' data-ref="2namelen">namelen</dfn>);</td></tr>
+<tr><th id="41">41</th><td></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='sethostname.c.html'>codebrowser/tests/libtest/sethostname.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

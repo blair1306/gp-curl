@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/if2ip.h' l='33' type='unsigned int Curl_ipv6_scope(const struct sockaddr * sa)'/>
+<use f='codebrowser/lib/connect.c' l='1039' u='c' c='singleipconnect'/>
+<use f='codebrowser/lib/ftp.c' l='1044' u='c' c='ftp_state_use_port'/>
+<def f='codebrowser/lib/if2ip.c' l='64' ll='94' type='unsigned int Curl_ipv6_scope(const struct sockaddr * sa)'/>
+<doc f='codebrowser/lib/if2ip.c' l='63'>/* Return the scope of the given address. */</doc>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_hugehelp.h' l='26' type='void hugehelp()'/>
+<def f='codebrowser/src/tool_hugehelp.c' l='10007' ll='10044' type='void hugehelp()'/>
+<doc f='codebrowser/src/tool_hugehelp.c' l='10006'>/* Decompress and send to stdout a gzip-compressed buffer */</doc>
+<use f='codebrowser/src/tool_operate.c' l='2029' u='c' c='operate'/>

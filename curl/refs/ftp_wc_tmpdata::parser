@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/ftp.h' l='85' type='struct ftp_parselist_data *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/ftp.c' l='3736' u='a' c='wc_data_dtor'/>
+<use f='codebrowser/lib/ftp.c' l='3786' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3787' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3857' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3936' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftplistparser.c' l='270' u='r' c='PL_ERROR'/>
+<use f='codebrowser/lib/ftplistparser.c' l='284' u='r' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/ftplistparser.c' l='326' u='r' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/ftplistparser.c' l='336' u='r' c='Curl_ftp_parselist'/>

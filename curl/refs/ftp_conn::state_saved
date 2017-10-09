@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/ftp.h' l='145' type='ftpstate'/>
+<offset>1536</offset>
+<doc f='codebrowser/lib/ftp.h' l='145'>/* transfer type saved to be reloaded after
+                           data connection is established */</doc>
+<use f='codebrowser/lib/ftp.c' l='459' u='r' c='InitiateTransfer'/>
+<use f='codebrowser/lib/ftp.c' l='2346' u='w' c='ftp_state_stor_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2460' u='w' c='ftp_state_get_resp'/>

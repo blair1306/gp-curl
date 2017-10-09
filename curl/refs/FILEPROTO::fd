@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/file.h' l='33' type='int'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/file.h' l='33'>/* open file descriptor to read from! */</doc>
+<use f='codebrowser/lib/file.c' l='256' u='w' c='file_connect'/>
+<use f='codebrowser/lib/file.c' l='277' u='r' c='file_done'/>
+<use f='codebrowser/lib/file.c' l='278' u='r' c='file_done'/>
+<use f='codebrowser/lib/file.c' l='279' u='w' c='file_done'/>
+<use f='codebrowser/lib/file.c' l='294' u='r' c='file_disconnect'/>
+<use f='codebrowser/lib/file.c' l='295' u='r' c='file_disconnect'/>
+<use f='codebrowser/lib/file.c' l='296' u='w' c='file_disconnect'/>
+<use f='codebrowser/lib/file.c' l='457' u='r' c='file_do'/>

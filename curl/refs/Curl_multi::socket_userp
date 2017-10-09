@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/multihandle.h' l='91' type='void *'/>
+<offset>832</offset>
+<use f='codebrowser/lib/multi.c' l='2379' u='r' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2450' u='r' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2482' u='r' c='Curl_multi_closed'/>
+<use f='codebrowser/lib/multi.c' l='2696' u='w' c='curl_multi_setopt'/>

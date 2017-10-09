@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/asyn.h' l='53' type='void Curl_resolver_global_cleanup()'/>
+<def f='codebrowser/lib/asyn-thread.c' l='97' ll='99' type='void Curl_resolver_global_cleanup()'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='92'>/*
+ * Curl_resolver_global_cleanup()
+ * Called from curl_global_cleanup() to destroy global resolver environment.
+ * Does nothing here.
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='49'>/*
+ * Curl_resolver_global_cleanup()
+ * Called from curl_global_cleanup() to destroy global resolver environment.
+ */</doc>
+<use f='codebrowser/lib/easy.c' l='325' u='c' c='curl_global_cleanup'/>

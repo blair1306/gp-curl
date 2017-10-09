@@ -1,0 +1,7 @@
+<dec f='codebrowser/include/curl/curl.h' l='869'/>
+<use f='codebrowser/lib/gopher.c' l='70' u='c'/>
+<use f='codebrowser/lib/url.c' l='7193' u='c'/>
+<use f='codebrowser/lib/url.c' l='7194' u='c'/>
+<use f='codebrowser/src/tool_libinfo.c' l='57' u='c'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='299' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='145' u='c'/>

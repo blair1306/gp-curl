@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/multihandle.h' l='40' type='3'/>
+<doc f='codebrowser/lib/multihandle.h' l='40'>/* 3 - awaiting the resolve to finalize */</doc>
+<use f='codebrowser/lib/multi.c' l='890' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1381' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1459' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1482' c='multi_runsingle'/>

@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/http.h' l='88' type='void Curl_http_auth_stage(struct Curl_easy * data, int stage)'/>
+<doc f='codebrowser/lib/http.h' l='87'>/* These functions are in http.c */</doc>

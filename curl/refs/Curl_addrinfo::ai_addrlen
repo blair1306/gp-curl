@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='56' type='curl_socklen_t'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/curl_addrinfo.h' l='56'>/* Follow rfc3493 struct addrinfo */</doc>
+<use f='codebrowser/lib/connect.c' l='1337' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='164' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='332' u='w' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='519' u='w' c='Curl_unix2addr'/>
+<use f='codebrowser/lib/ftp.c' l='1127' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1128' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/sendf.c' l='366' u='r' c='Curl_send_plain'/>
+<use f='codebrowser/lib/tftp.c' l='541' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='1032' u='r' c='tftp_connect'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='98' u='w' c='fake_ai'/>

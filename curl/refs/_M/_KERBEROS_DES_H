@@ -1,0 +1,6 @@
+<dec f='include/openssl/des_old.h' l='459'/>
+<doc f='include/openssl/des_old.h' l='453'>/*
+ * The following definitions provide compatibility with the MIT Kerberos
+ * library. The _ossl_old_des_key_schedule structure is not binary
+ * compatible.
+ */</doc>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/smb.h' l='37' type='unsigned char [8]'/>
+<offset>192</offset>
+<use f='codebrowser/lib/smb.c' l='450' u='r' c='smb_send_setup'/>
+<use f='codebrowser/lib/smb.c' l='453' u='r' c='smb_send_setup'/>
+<use f='codebrowser/lib/smb.c' l='683' u='r' c='smb_connection_state'/>
+<use f='codebrowser/lib/smb.c' l='688' u='r' c='smb_connection_state'/>
+<use f='codebrowser/lib/smb.c' l='688' u='r' c='smb_connection_state'/>

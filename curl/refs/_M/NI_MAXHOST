@@ -1,0 +1,3 @@
+<dec f='include/netdb.h' l='640'/>
+<use f='codebrowser/lib/ftp.c' l='85' u='a'/>
+<use f='codebrowser/lib/ftp.c' l='938' u='c'/>

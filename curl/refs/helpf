@@ -1,0 +1,25 @@
+<dec f='codebrowser/src/tool_msgs.h' l='29' type='void helpf(FILE * errors, const char * fmt)'/>
+<use f='codebrowser/src/tool_getparam.c' l='2158' u='c' c='parse_args'/>
+<use f='codebrowser/src/tool_getparam.c' l='2160' u='c' c='parse_args'/>
+<use f='codebrowser/src/tool_main.c' l='170' u='c' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='176' u='c' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='181' u='c' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='186' u='c' c='main_init'/>
+<def f='codebrowser/src/tool_msgs.c' l='106' ll='120' type='void helpf(FILE * errors, const char * fmt)'/>
+<doc f='codebrowser/src/tool_msgs.c' l='102'>/*
+ * Emit help formatted message on given stream.
+ */</doc>
+<use f='codebrowser/src/tool_operate.c' l='291' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='315' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='326' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='338' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='363' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='456' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='493' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='498' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='612' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='672' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='734' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='2013' u='c' c='operate'/>
+<use f='codebrowser/src/tool_operate.c' l='2085' u='c' c='operate'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='571' u='c' c='get_args'/>

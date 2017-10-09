@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/multiif.h' l='30' type='void Curl_expire_clear(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/multi.c' l='706' u='c' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2057' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/multi.c' l='3010' ll='3043' type='void Curl_expire_clear(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/multi.c' l='3005'>/*
+ * Curl_expire_clear()
+ *
+ * Clear ALL timeout values for this handle.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='412' u='c' c='Curl_close'/>

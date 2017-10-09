@@ -1,0 +1,8 @@
+<dec f='include/openssl/engine.h' l='657' type='int ENGINE_finish(ENGINE * e)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1084' u='c' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1290' u='c' c='Curl_ossl_close_all'/>
+<doc f='include/openssl/engine.h' l='652'>/*
+ * Free a functional reference to a engine type. This does not require a
+ * corresponding call to ENGINE_free as it also releases a structural
+ * reference.
+ */</doc>

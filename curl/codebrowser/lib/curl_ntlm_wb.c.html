@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>curl_ntlm_wb.c source code [codebrowser/lib/curl_ntlm_wb.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/curl_ntlm_wb.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='curl_ntlm_wb.c.html'>curl_ntlm_wb.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">if</span> !defined(<span class="macro" data-ref="_M/CURL_DISABLE_HTTP">CURL_DISABLE_HTTP</span>) &amp;&amp; defined(<a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a>) &amp;&amp; \</u></td></tr>
+<tr><th id="26">26</th><td><u>    defined(<span class="macro" data-ref="_M/NTLM_WB_ENABLED">NTLM_WB_ENABLED</span>)</u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><i>/*</i></td></tr>
+<tr><th id="29">29</th><td><i> * NTLM details:</i></td></tr>
+<tr><th id="30">30</th><td><i> *</i></td></tr>
+<tr><th id="31">31</th><td><i> * <a href="https://davenport.sourceforge.io/ntlm.html">https://davenport.sourceforge.io/ntlm.html</a></i></td></tr>
+<tr><th id="32">32</th><td><i> * <a href="https://www.innovation.ch/java/ntlm.html">https://www.innovation.ch/java/ntlm.html</a></i></td></tr>
+<tr><th id="33">33</th><td><i> */</i></td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td><u>#define DEBUG_ME 0</u></td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td><u>#ifdef HAVE_SYS_WAIT_H</u></td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;sys/wait.h&gt;</u></td></tr>
+<tr><th id="39">39</th><td><u>#endif</u></td></tr>
+<tr><th id="40">40</th><td><u>#ifdef HAVE_SIGNAL_H</u></td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;signal.h&gt;</u></td></tr>
+<tr><th id="42">42</th><td><u>#endif</u></td></tr>
+<tr><th id="43">43</th><td><u>#ifdef HAVE_PWD_H</u></td></tr>
+<tr><th id="44">44</th><td><u>#include &lt;pwd.h&gt;</u></td></tr>
+<tr><th id="45">45</th><td><u>#endif</u></td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><u>#include "urldata.h"</u></td></tr>
+<tr><th id="48">48</th><td><u>#include "sendf.h"</u></td></tr>
+<tr><th id="49">49</th><td><u>#include "select.h"</u></td></tr>
+<tr><th id="50">50</th><td><u>#include "vauth/ntlm.h"</u></td></tr>
+<tr><th id="51">51</th><td><u>#include "curl_ntlm_core.h"</u></td></tr>
+<tr><th id="52">52</th><td><u>#include "curl_ntlm_wb.h"</u></td></tr>
+<tr><th id="53">53</th><td><u>#include "url.h"</u></td></tr>
+<tr><th id="54">54</th><td><u>#include "strerror.h"</u></td></tr>
+<tr><th id="55">55</th><td><u>#include "strdup.h"</u></td></tr>
+<tr><th id="56">56</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="57">57</th><td><u>#include "curl_printf.h"</u></td></tr>
+<tr><th id="58">58</th><td><u>#include "curl_memory.h"</u></td></tr>
+<tr><th id="59">59</th><td><u>#include "memdebug.h"</u></td></tr>
+<tr><th id="60">60</th><td></td></tr>
+<tr><th id="61">61</th><td><u>#if DEBUG_ME</u></td></tr>
+<tr><th id="62">62</th><td><u># define DEBUG_OUT(x) x</u></td></tr>
+<tr><th id="63">63</th><td><u>#else</u></td></tr>
+<tr><th id="64">64</th><td><u># define DEBUG_OUT(x) Curl_nop_stmt</u></td></tr>
+<tr><th id="65">65</th><td><u>#endif</u></td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td><i>/* Portable 'sclose_nolog' used only in child process instead of 'sclose'</i></td></tr>
+<tr><th id="68">68</th><td><i>   to avoid fooling the socket leak detector */</i></td></tr>
+<tr><th id="69">69</th><td><u>#if defined(HAVE_CLOSESOCKET)</u></td></tr>
+<tr><th id="70">70</th><td><u>#  define sclose_nolog(x)  closesocket((x))</u></td></tr>
+<tr><th id="71">71</th><td><u>#elif defined(HAVE_CLOSESOCKET_CAMEL)</u></td></tr>
+<tr><th id="72">72</th><td><u>#  define sclose_nolog(x)  CloseSocket((x))</u></td></tr>
+<tr><th id="73">73</th><td><u>#else</u></td></tr>
+<tr><th id="74">74</th><td><u>#  define sclose_nolog(x)  close((x))</u></td></tr>
+<tr><th id="75">75</th><td><u>#endif</u></td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td><em>void</em> Curl_ntlm_wb_cleanup(<b>struct</b> connectdata *conn)</td></tr>
+<tr><th id="78">78</th><td>{</td></tr>
+<tr><th id="79">79</th><td>  <b>if</b>(conn-&gt;ntlm_auth_hlpr_socket != CURL_SOCKET_BAD) {</td></tr>
+<tr><th id="80">80</th><td>    sclose(conn-&gt;ntlm_auth_hlpr_socket);</td></tr>
+<tr><th id="81">81</th><td>    conn-&gt;ntlm_auth_hlpr_socket = CURL_SOCKET_BAD;</td></tr>
+<tr><th id="82">82</th><td>  }</td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td>  <b>if</b>(conn-&gt;ntlm_auth_hlpr_pid) {</td></tr>
+<tr><th id="85">85</th><td>    <em>int</em> i;</td></tr>
+<tr><th id="86">86</th><td>    <b>for</b>(i = <var>0</var>; i &lt; <var>4</var>; i++) {</td></tr>
+<tr><th id="87">87</th><td>      pid_t ret = waitpid(conn-&gt;ntlm_auth_hlpr_pid, NULL, WNOHANG);</td></tr>
+<tr><th id="88">88</th><td>      <b>if</b>(ret == conn-&gt;ntlm_auth_hlpr_pid || errno == ECHILD)</td></tr>
+<tr><th id="89">89</th><td>        <b>break</b>;</td></tr>
+<tr><th id="90">90</th><td>      <b>switch</b>(i) {</td></tr>
+<tr><th id="91">91</th><td>      <b>case</b> <var>0</var>:</td></tr>
+<tr><th id="92">92</th><td>        kill(conn-&gt;ntlm_auth_hlpr_pid, SIGTERM);</td></tr>
+<tr><th id="93">93</th><td>        <b>break</b>;</td></tr>
+<tr><th id="94">94</th><td>      <b>case</b> <var>1</var>:</td></tr>
+<tr><th id="95">95</th><td>        <i>/* Give the process another moment to shut down cleanly before</i></td></tr>
+<tr><th id="96">96</th><td><i>           bringing down the axe */</i></td></tr>
+<tr><th id="97">97</th><td>        Curl_wait_ms(<var>1</var>);</td></tr>
+<tr><th id="98">98</th><td>        <b>break</b>;</td></tr>
+<tr><th id="99">99</th><td>      <b>case</b> <var>2</var>:</td></tr>
+<tr><th id="100">100</th><td>        kill(conn-&gt;ntlm_auth_hlpr_pid, SIGKILL);</td></tr>
+<tr><th id="101">101</th><td>        <b>break</b>;</td></tr>
+<tr><th id="102">102</th><td>      <b>case</b> <var>3</var>:</td></tr>
+<tr><th id="103">103</th><td>        <b>break</b>;</td></tr>
+<tr><th id="104">104</th><td>      }</td></tr>
+<tr><th id="105">105</th><td>    }</td></tr>
+<tr><th id="106">106</th><td>    conn-&gt;ntlm_auth_hlpr_pid = <var>0</var>;</td></tr>
+<tr><th id="107">107</th><td>  }</td></tr>
+<tr><th id="108">108</th><td></td></tr>
+<tr><th id="109">109</th><td>  free(conn-&gt;challenge_header);</td></tr>
+<tr><th id="110">110</th><td>  conn-&gt;challenge_header = NULL;</td></tr>
+<tr><th id="111">111</th><td>  free(conn-&gt;response_header);</td></tr>
+<tr><th id="112">112</th><td>  conn-&gt;response_header = NULL;</td></tr>
+<tr><th id="113">113</th><td>}</td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td><em>static</em> CURLcode ntlm_wb_init(<b>struct</b> connectdata *conn, <em>const</em> <em>char</em> *userp)</td></tr>
+<tr><th id="116">116</th><td>{</td></tr>
+<tr><th id="117">117</th><td>  curl_socket_t sockfds[<var>2</var>];</td></tr>
+<tr><th id="118">118</th><td>  pid_t child_pid;</td></tr>
+<tr><th id="119">119</th><td>  <em>const</em> <em>char</em> *username;</td></tr>
+<tr><th id="120">120</th><td>  <em>char</em> *slash, *domain = NULL;</td></tr>
+<tr><th id="121">121</th><td>  <em>const</em> <em>char</em> *ntlm_auth = NULL;</td></tr>
+<tr><th id="122">122</th><td>  <em>char</em> *ntlm_auth_alloc = NULL;</td></tr>
+<tr><th id="123">123</th><td><u>#if defined(HAVE_GETPWUID_R) &amp;&amp; defined(HAVE_GETEUID)</u></td></tr>
+<tr><th id="124">124</th><td>  <b>struct</b> passwd pw, *pw_res;</td></tr>
+<tr><th id="125">125</th><td>  <em>char</em> pwbuf[<var>1024</var>];</td></tr>
+<tr><th id="126">126</th><td><u>#endif</u></td></tr>
+<tr><th id="127">127</th><td></td></tr>
+<tr><th id="128">128</th><td>  <i>/* Return if communication with ntlm_auth already set up */</i></td></tr>
+<tr><th id="129">129</th><td>  <b>if</b>(conn-&gt;ntlm_auth_hlpr_socket != CURL_SOCKET_BAD ||</td></tr>
+<tr><th id="130">130</th><td>     conn-&gt;ntlm_auth_hlpr_pid)</td></tr>
+<tr><th id="131">131</th><td>    <b>return</b> CURLE_OK;</td></tr>
+<tr><th id="132">132</th><td></td></tr>
+<tr><th id="133">133</th><td>  username = userp;</td></tr>
+<tr><th id="134">134</th><td>  <i>/* The real ntlm_auth really doesn't like being invoked with an</i></td></tr>
+<tr><th id="135">135</th><td><i>     empty username. It won't make inferences for itself, and expects</i></td></tr>
+<tr><th id="136">136</th><td><i>     the client to do so (mostly because it's really designed for</i></td></tr>
+<tr><th id="137">137</th><td><i>     servers like squid to use for auth, and client support is an</i></td></tr>
+<tr><th id="138">138</th><td><i>     afterthought for it). So try hard to provide a suitable username</i></td></tr>
+<tr><th id="139">139</th><td><i>     if we don't already have one. But if we can't, provide the</i></td></tr>
+<tr><th id="140">140</th><td><i>     empty one anyway. Perhaps they have an implementation of the</i></td></tr>
+<tr><th id="141">141</th><td><i>     ntlm_auth helper which *doesn't* need it so we might as well try */</i></td></tr>
+<tr><th id="142">142</th><td>  <b>if</b>(!username || !username[<var>0</var>]) {</td></tr>
+<tr><th id="143">143</th><td>    username = getenv(<q>"NTLMUSER"</q>);</td></tr>
+<tr><th id="144">144</th><td>    <b>if</b>(!username || !username[<var>0</var>])</td></tr>
+<tr><th id="145">145</th><td>      username = getenv(<q>"LOGNAME"</q>);</td></tr>
+<tr><th id="146">146</th><td>    <b>if</b>(!username || !username[<var>0</var>])</td></tr>
+<tr><th id="147">147</th><td>      username = getenv(<q>"USER"</q>);</td></tr>
+<tr><th id="148">148</th><td><u>#if defined(HAVE_GETPWUID_R) &amp;&amp; defined(HAVE_GETEUID)</u></td></tr>
+<tr><th id="149">149</th><td>    <b>if</b>((!username || !username[<var>0</var>]) &amp;&amp;</td></tr>
+<tr><th id="150">150</th><td>       !getpwuid_r(geteuid(), &amp;pw, pwbuf, <b>sizeof</b>(pwbuf), &amp;pw_res) &amp;&amp;</td></tr>
+<tr><th id="151">151</th><td>       pw_res) {</td></tr>
+<tr><th id="152">152</th><td>      username = pw.pw_name;</td></tr>
+<tr><th id="153">153</th><td>    }</td></tr>
+<tr><th id="154">154</th><td><u>#endif</u></td></tr>
+<tr><th id="155">155</th><td>    <b>if</b>(!username || !username[<var>0</var>])</td></tr>
+<tr><th id="156">156</th><td>      username = userp;</td></tr>
+<tr><th id="157">157</th><td>  }</td></tr>
+<tr><th id="158">158</th><td>  slash = strpbrk(username, <q>"\\/"</q>);</td></tr>
+<tr><th id="159">159</th><td>  <b>if</b>(slash) {</td></tr>
+<tr><th id="160">160</th><td>    domain = strdup(username);</td></tr>
+<tr><th id="161">161</th><td>    <b>if</b>(!domain)</td></tr>
+<tr><th id="162">162</th><td>      <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="163">163</th><td>    slash = domain + (slash - username);</td></tr>
+<tr><th id="164">164</th><td>    *slash = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="165">165</th><td>    username = username + (slash - domain) + <var>1</var>;</td></tr>
+<tr><th id="166">166</th><td>  }</td></tr>
+<tr><th id="167">167</th><td></td></tr>
+<tr><th id="168">168</th><td>  <i>/* For testing purposes, when DEBUGBUILD is defined and environment</i></td></tr>
+<tr><th id="169">169</th><td><i>     variable CURL_NTLM_WB_FILE is set a fake_ntlm is used to perform</i></td></tr>
+<tr><th id="170">170</th><td><i>     NTLM challenge/response which only accepts commands and output</i></td></tr>
+<tr><th id="171">171</th><td><i>     strings pre-written in test case definitions */</i></td></tr>
+<tr><th id="172">172</th><td><u>#ifdef DEBUGBUILD</u></td></tr>
+<tr><th id="173">173</th><td>  ntlm_auth_alloc = curl_getenv(<q>"CURL_NTLM_WB_FILE"</q>);</td></tr>
+<tr><th id="174">174</th><td>  <b>if</b>(ntlm_auth_alloc)</td></tr>
+<tr><th id="175">175</th><td>    ntlm_auth = ntlm_auth_alloc;</td></tr>
+<tr><th id="176">176</th><td>  <b>else</b></td></tr>
+<tr><th id="177">177</th><td><u>#endif</u></td></tr>
+<tr><th id="178">178</th><td>    ntlm_auth = NTLM_WB_FILE;</td></tr>
+<tr><th id="179">179</th><td></td></tr>
+<tr><th id="180">180</th><td>  <b>if</b>(access(ntlm_auth, X_OK) != <var>0</var>) {</td></tr>
+<tr><th id="181">181</th><td>    failf(conn-&gt;data, <q>"Could not access ntlm_auth: %s errno %d: %s"</q>,</td></tr>
+<tr><th id="182">182</th><td>          ntlm_auth, errno, Curl_strerror(conn, errno));</td></tr>
+<tr><th id="183">183</th><td>    <b>goto</b> done;</td></tr>
+<tr><th id="184">184</th><td>  }</td></tr>
+<tr><th id="185">185</th><td></td></tr>
+<tr><th id="186">186</th><td>  <b>if</b>(socketpair(AF_UNIX, SOCK_STREAM, <var>0</var>, sockfds)) {</td></tr>
+<tr><th id="187">187</th><td>    failf(conn-&gt;data, <q>"Could not open socket pair. errno %d: %s"</q>,</td></tr>
+<tr><th id="188">188</th><td>          errno, Curl_strerror(conn, errno));</td></tr>
+<tr><th id="189">189</th><td>    <b>goto</b> done;</td></tr>
+<tr><th id="190">190</th><td>  }</td></tr>
+<tr><th id="191">191</th><td></td></tr>
+<tr><th id="192">192</th><td>  child_pid = fork();</td></tr>
+<tr><th id="193">193</th><td>  <b>if</b>(child_pid == -<var>1</var>) {</td></tr>
+<tr><th id="194">194</th><td>    sclose(sockfds[<var>0</var>]);</td></tr>
+<tr><th id="195">195</th><td>    sclose(sockfds[<var>1</var>]);</td></tr>
+<tr><th id="196">196</th><td>    failf(conn-&gt;data, <q>"Could not fork. errno %d: %s"</q>,</td></tr>
+<tr><th id="197">197</th><td>          errno, Curl_strerror(conn, errno));</td></tr>
+<tr><th id="198">198</th><td>    <b>goto</b> done;</td></tr>
+<tr><th id="199">199</th><td>  }</td></tr>
+<tr><th id="200">200</th><td>  <b>else</b> <b>if</b>(!child_pid) {</td></tr>
+<tr><th id="201">201</th><td>    <i>/*</i></td></tr>
+<tr><th id="202">202</th><td><i>     * child process</i></td></tr>
+<tr><th id="203">203</th><td><i>     */</i></td></tr>
+<tr><th id="204">204</th><td></td></tr>
+<tr><th id="205">205</th><td>    <i>/* Don't use sclose in the child since it fools the socket leak detector */</i></td></tr>
+<tr><th id="206">206</th><td>    sclose_nolog(sockfds[<var>0</var>]);</td></tr>
+<tr><th id="207">207</th><td>    <b>if</b>(dup2(sockfds[<var>1</var>], STDIN_FILENO) == -<var>1</var>) {</td></tr>
+<tr><th id="208">208</th><td>      failf(conn-&gt;data, <q>"Could not redirect child stdin. errno %d: %s"</q>,</td></tr>
+<tr><th id="209">209</th><td>            errno, Curl_strerror(conn, errno));</td></tr>
+<tr><th id="210">210</th><td>      exit(<var>1</var>);</td></tr>
+<tr><th id="211">211</th><td>    }</td></tr>
+<tr><th id="212">212</th><td></td></tr>
+<tr><th id="213">213</th><td>    <b>if</b>(dup2(sockfds[<var>1</var>], STDOUT_FILENO) == -<var>1</var>) {</td></tr>
+<tr><th id="214">214</th><td>      failf(conn-&gt;data, <q>"Could not redirect child stdout. errno %d: %s"</q>,</td></tr>
+<tr><th id="215">215</th><td>            errno, Curl_strerror(conn, errno));</td></tr>
+<tr><th id="216">216</th><td>      exit(<var>1</var>);</td></tr>
+<tr><th id="217">217</th><td>    }</td></tr>
+<tr><th id="218">218</th><td></td></tr>
+<tr><th id="219">219</th><td>    <b>if</b>(domain)</td></tr>
+<tr><th id="220">220</th><td>      execl(ntlm_auth, ntlm_auth,</td></tr>
+<tr><th id="221">221</th><td>            <q>"--helper-protocol"</q>, <q>"ntlmssp-client-1"</q>,</td></tr>
+<tr><th id="222">222</th><td>            <q>"--use-cached-creds"</q>,</td></tr>
+<tr><th id="223">223</th><td>            <q>"--username"</q>, username,</td></tr>
+<tr><th id="224">224</th><td>            <q>"--domain"</q>, domain,</td></tr>
+<tr><th id="225">225</th><td>            NULL);</td></tr>
+<tr><th id="226">226</th><td>    <b>else</b></td></tr>
+<tr><th id="227">227</th><td>      execl(ntlm_auth, ntlm_auth,</td></tr>
+<tr><th id="228">228</th><td>            <q>"--helper-protocol"</q>, <q>"ntlmssp-client-1"</q>,</td></tr>
+<tr><th id="229">229</th><td>            <q>"--use-cached-creds"</q>,</td></tr>
+<tr><th id="230">230</th><td>            <q>"--username"</q>, username,</td></tr>
+<tr><th id="231">231</th><td>            NULL);</td></tr>
+<tr><th id="232">232</th><td></td></tr>
+<tr><th id="233">233</th><td>    sclose_nolog(sockfds[<var>1</var>]);</td></tr>
+<tr><th id="234">234</th><td>    failf(conn-&gt;data, <q>"Could not execl(). errno %d: %s"</q>,</td></tr>
+<tr><th id="235">235</th><td>          errno, Curl_strerror(conn, errno));</td></tr>
+<tr><th id="236">236</th><td>    exit(<var>1</var>);</td></tr>
+<tr><th id="237">237</th><td>  }</td></tr>
+<tr><th id="238">238</th><td></td></tr>
+<tr><th id="239">239</th><td>  sclose(sockfds[<var>1</var>]);</td></tr>
+<tr><th id="240">240</th><td>  conn-&gt;ntlm_auth_hlpr_socket = sockfds[<var>0</var>];</td></tr>
+<tr><th id="241">241</th><td>  conn-&gt;ntlm_auth_hlpr_pid = child_pid;</td></tr>
+<tr><th id="242">242</th><td>  free(domain);</td></tr>
+<tr><th id="243">243</th><td>  free(ntlm_auth_alloc);</td></tr>
+<tr><th id="244">244</th><td>  <b>return</b> CURLE_OK;</td></tr>
+<tr><th id="245">245</th><td></td></tr>
+<tr><th id="246">246</th><td>done:</td></tr>
+<tr><th id="247">247</th><td>  free(domain);</td></tr>
+<tr><th id="248">248</th><td>  free(ntlm_auth_alloc);</td></tr>
+<tr><th id="249">249</th><td>  <b>return</b> CURLE_REMOTE_ACCESS_DENIED;</td></tr>
+<tr><th id="250">250</th><td>}</td></tr>
+<tr><th id="251">251</th><td></td></tr>
+<tr><th id="252">252</th><td><em>static</em> CURLcode ntlm_wb_response(<b>struct</b> connectdata *conn,</td></tr>
+<tr><th id="253">253</th><td>                                 <em>const</em> <em>char</em> *input, curlntlm state)</td></tr>
+<tr><th id="254">254</th><td>{</td></tr>
+<tr><th id="255">255</th><td>  <em>char</em> *buf = malloc(NTLM_BUFSIZE);</td></tr>
+<tr><th id="256">256</th><td>  size_t len_in = strlen(input), len_out = <var>0</var>;</td></tr>
+<tr><th id="257">257</th><td></td></tr>
+<tr><th id="258">258</th><td>  <b>if</b>(!buf)</td></tr>
+<tr><th id="259">259</th><td>    <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="260">260</th><td></td></tr>
+<tr><th id="261">261</th><td>  <b>while</b>(len_in &gt; <var>0</var>) {</td></tr>
+<tr><th id="262">262</th><td>    ssize_t written = swrite(conn-&gt;ntlm_auth_hlpr_socket, input, len_in);</td></tr>
+<tr><th id="263">263</th><td>    <b>if</b>(written == -<var>1</var>) {</td></tr>
+<tr><th id="264">264</th><td>      <i>/* Interrupted by a signal, retry it */</i></td></tr>
+<tr><th id="265">265</th><td>      <b>if</b>(errno == EINTR)</td></tr>
+<tr><th id="266">266</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="267">267</th><td>      <i>/* write failed if other errors happen */</i></td></tr>
+<tr><th id="268">268</th><td>      <b>goto</b> done;</td></tr>
+<tr><th id="269">269</th><td>    }</td></tr>
+<tr><th id="270">270</th><td>    input += written;</td></tr>
+<tr><th id="271">271</th><td>    len_in -= written;</td></tr>
+<tr><th id="272">272</th><td>  }</td></tr>
+<tr><th id="273">273</th><td>  <i>/* Read one line */</i></td></tr>
+<tr><th id="274">274</th><td>  <b>while</b>(<var>1</var>) {</td></tr>
+<tr><th id="275">275</th><td>    ssize_t size;</td></tr>
+<tr><th id="276">276</th><td>    <em>char</em> *newbuf;</td></tr>
+<tr><th id="277">277</th><td></td></tr>
+<tr><th id="278">278</th><td>    size = sread(conn-&gt;ntlm_auth_hlpr_socket, buf + len_out, NTLM_BUFSIZE);</td></tr>
+<tr><th id="279">279</th><td>    <b>if</b>(size == -<var>1</var>) {</td></tr>
+<tr><th id="280">280</th><td>      <b>if</b>(errno == EINTR)</td></tr>
+<tr><th id="281">281</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="282">282</th><td>      <b>goto</b> done;</td></tr>
+<tr><th id="283">283</th><td>    }</td></tr>
+<tr><th id="284">284</th><td>    <b>else</b> <b>if</b>(size == <var>0</var>)</td></tr>
+<tr><th id="285">285</th><td>      <b>goto</b> done;</td></tr>
+<tr><th id="286">286</th><td></td></tr>
+<tr><th id="287">287</th><td>    len_out += size;</td></tr>
+<tr><th id="288">288</th><td>    <b>if</b>(buf[len_out - <var>1</var>] == <kbd>'\n'</kbd>) {</td></tr>
+<tr><th id="289">289</th><td>      buf[len_out - <var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="290">290</th><td>      <b>break</b>;</td></tr>
+<tr><th id="291">291</th><td>    }</td></tr>
+<tr><th id="292">292</th><td>    newbuf = Curl_saferealloc(buf, len_out + NTLM_BUFSIZE);</td></tr>
+<tr><th id="293">293</th><td>    <b>if</b>(!newbuf)</td></tr>
+<tr><th id="294">294</th><td>      <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="295">295</th><td></td></tr>
+<tr><th id="296">296</th><td>    buf = newbuf;</td></tr>
+<tr><th id="297">297</th><td>  }</td></tr>
+<tr><th id="298">298</th><td></td></tr>
+<tr><th id="299">299</th><td>  <i>/* Samba/winbind installed but not configured */</i></td></tr>
+<tr><th id="300">300</th><td>  <b>if</b>(state == NTLMSTATE_TYPE1 &amp;&amp;</td></tr>
+<tr><th id="301">301</th><td>     len_out == <var>3</var> &amp;&amp;</td></tr>
+<tr><th id="302">302</th><td>     buf[<var>0</var>] == <kbd>'P'</kbd> &amp;&amp; buf[<var>1</var>] == <kbd>'W'</kbd>)</td></tr>
+<tr><th id="303">303</th><td>    <b>goto</b> done;</td></tr>
+<tr><th id="304">304</th><td>  <i>/* invalid response */</i></td></tr>
+<tr><th id="305">305</th><td>  <b>if</b>(len_out &lt; <var>4</var>)</td></tr>
+<tr><th id="306">306</th><td>    <b>goto</b> done;</td></tr>
+<tr><th id="307">307</th><td>  <b>if</b>(state == NTLMSTATE_TYPE1 &amp;&amp;</td></tr>
+<tr><th id="308">308</th><td>     (buf[<var>0</var>]!=<kbd>'Y'</kbd> || buf[<var>1</var>]!=<kbd>'R'</kbd> || buf[<var>2</var>]!=<kbd>' '</kbd>))</td></tr>
+<tr><th id="309">309</th><td>    <b>goto</b> done;</td></tr>
+<tr><th id="310">310</th><td>  <b>if</b>(state == NTLMSTATE_TYPE2 &amp;&amp;</td></tr>
+<tr><th id="311">311</th><td>     (buf[<var>0</var>]!=<kbd>'K'</kbd> || buf[<var>1</var>]!=<kbd>'K'</kbd> || buf[<var>2</var>]!=<kbd>' '</kbd>) &amp;&amp;</td></tr>
+<tr><th id="312">312</th><td>     (buf[<var>0</var>]!=<kbd>'A'</kbd> || buf[<var>1</var>]!=<kbd>'F'</kbd> || buf[<var>2</var>]!=<kbd>' '</kbd>))</td></tr>
+<tr><th id="313">313</th><td>    <b>goto</b> done;</td></tr>
+<tr><th id="314">314</th><td></td></tr>
+<tr><th id="315">315</th><td>  conn-&gt;response_header = aprintf(<q>"NTLM %.*s"</q>, len_out - <var>4</var>, buf + <var>3</var>);</td></tr>
+<tr><th id="316">316</th><td>  free(buf);</td></tr>
+<tr><th id="317">317</th><td>  <b>return</b> CURLE_OK;</td></tr>
+<tr><th id="318">318</th><td>done:</td></tr>
+<tr><th id="319">319</th><td>  free(buf);</td></tr>
+<tr><th id="320">320</th><td>  <b>return</b> CURLE_REMOTE_ACCESS_DENIED;</td></tr>
+<tr><th id="321">321</th><td>}</td></tr>
+<tr><th id="322">322</th><td></td></tr>
+<tr><th id="323">323</th><td><i>/*</i></td></tr>
+<tr><th id="324">324</th><td><i> * This is for creating ntlm header output by delegating challenge/response</i></td></tr>
+<tr><th id="325">325</th><td><i> * to Samba's winbind daemon helper ntlm_auth.</i></td></tr>
+<tr><th id="326">326</th><td><i> */</i></td></tr>
+<tr><th id="327">327</th><td>CURLcode Curl_output_ntlm_wb(<b>struct</b> connectdata *conn,</td></tr>
+<tr><th id="328">328</th><td>                              bool proxy)</td></tr>
+<tr><th id="329">329</th><td>{</td></tr>
+<tr><th id="330">330</th><td>  <i>/* point to the address of the pointer that holds the string to send to the</i></td></tr>
+<tr><th id="331">331</th><td><i>     server, which is for a plain host or for a HTTP proxy */</i></td></tr>
+<tr><th id="332">332</th><td>  <em>char</em> **allocuserpwd;</td></tr>
+<tr><th id="333">333</th><td>  <i>/* point to the name and password for this */</i></td></tr>
+<tr><th id="334">334</th><td>  <em>const</em> <em>char</em> *userp;</td></tr>
+<tr><th id="335">335</th><td>  <i>/* point to the correct struct with this */</i></td></tr>
+<tr><th id="336">336</th><td>  <b>struct</b> ntlmdata *ntlm;</td></tr>
+<tr><th id="337">337</th><td>  <b>struct</b> auth *authp;</td></tr>
+<tr><th id="338">338</th><td></td></tr>
+<tr><th id="339">339</th><td>  CURLcode res = CURLE_OK;</td></tr>
+<tr><th id="340">340</th><td>  <em>char</em> *input;</td></tr>
+<tr><th id="341">341</th><td></td></tr>
+<tr><th id="342">342</th><td>  DEBUGASSERT(conn);</td></tr>
+<tr><th id="343">343</th><td>  DEBUGASSERT(conn-&gt;data);</td></tr>
+<tr><th id="344">344</th><td></td></tr>
+<tr><th id="345">345</th><td>  <b>if</b>(proxy) {</td></tr>
+<tr><th id="346">346</th><td>    allocuserpwd = &amp;conn-&gt;allocptr.proxyuserpwd;</td></tr>
+<tr><th id="347">347</th><td>    userp = conn-&gt;http_proxy.user;</td></tr>
+<tr><th id="348">348</th><td>    ntlm = &amp;conn-&gt;proxyntlm;</td></tr>
+<tr><th id="349">349</th><td>    authp = &amp;conn-&gt;data-&gt;state.authproxy;</td></tr>
+<tr><th id="350">350</th><td>  }</td></tr>
+<tr><th id="351">351</th><td>  <b>else</b> {</td></tr>
+<tr><th id="352">352</th><td>    allocuserpwd = &amp;conn-&gt;allocptr.userpwd;</td></tr>
+<tr><th id="353">353</th><td>    userp = conn-&gt;user;</td></tr>
+<tr><th id="354">354</th><td>    ntlm = &amp;conn-&gt;ntlm;</td></tr>
+<tr><th id="355">355</th><td>    authp = &amp;conn-&gt;data-&gt;state.authhost;</td></tr>
+<tr><th id="356">356</th><td>  }</td></tr>
+<tr><th id="357">357</th><td>  authp-&gt;done = FALSE;</td></tr>
+<tr><th id="358">358</th><td></td></tr>
+<tr><th id="359">359</th><td>  <i>/* not set means empty */</i></td></tr>
+<tr><th id="360">360</th><td>  <b>if</b>(!userp)</td></tr>
+<tr><th id="361">361</th><td>    userp = <q>""</q>;</td></tr>
+<tr><th id="362">362</th><td></td></tr>
+<tr><th id="363">363</th><td>  <b>switch</b>(ntlm-&gt;state) {</td></tr>
+<tr><th id="364">364</th><td>  <b>case</b> NTLMSTATE_TYPE1:</td></tr>
+<tr><th id="365">365</th><td>  <b>default</b>:</td></tr>
+<tr><th id="366">366</th><td>    <i>/* Use Samba's 'winbind' daemon to support NTLM authentication,</i></td></tr>
+<tr><th id="367">367</th><td><i>     * by delegating the NTLM challenge/response protocal to a helper</i></td></tr>
+<tr><th id="368">368</th><td><i>     * in ntlm_auth.</i></td></tr>
+<tr><th id="369">369</th><td><i>     * <a href="http://devel.squid-cache.org/ntlm/squid_helper_protocol.html">http://devel.squid-cache.org/ntlm/squid_helper_protocol.html</a></i></td></tr>
+<tr><th id="370">370</th><td><i>     * <a href="https://www.samba.org/samba/docs/man/manpages-3/winbindd.8.html">https://www.samba.org/samba/docs/man/manpages-3/winbindd.8.html</a></i></td></tr>
+<tr><th id="371">371</th><td><i>     * <a href="https://www.samba.org/samba/docs/man/manpages-3/ntlm_auth.1.html">https://www.samba.org/samba/docs/man/manpages-3/ntlm_auth.1.html</a></i></td></tr>
+<tr><th id="372">372</th><td><i>     * Preprocessor symbol 'NTLM_WB_ENABLED' is defined when this</i></td></tr>
+<tr><th id="373">373</th><td><i>     * feature is enabled and 'NTLM_WB_FILE' symbol holds absolute</i></td></tr>
+<tr><th id="374">374</th><td><i>     * filename of ntlm_auth helper.</i></td></tr>
+<tr><th id="375">375</th><td><i>     * If NTLM authentication using winbind fails, go back to original</i></td></tr>
+<tr><th id="376">376</th><td><i>     * request handling process.</i></td></tr>
+<tr><th id="377">377</th><td><i>     */</i></td></tr>
+<tr><th id="378">378</th><td>    <i>/* Create communication with ntlm_auth */</i></td></tr>
+<tr><th id="379">379</th><td>    res = ntlm_wb_init(conn, userp);</td></tr>
+<tr><th id="380">380</th><td>    <b>if</b>(res)</td></tr>
+<tr><th id="381">381</th><td>      <b>return</b> res;</td></tr>
+<tr><th id="382">382</th><td>    res = ntlm_wb_response(conn, <q>"YR\n"</q>, ntlm-&gt;state);</td></tr>
+<tr><th id="383">383</th><td>    <b>if</b>(res)</td></tr>
+<tr><th id="384">384</th><td>      <b>return</b> res;</td></tr>
+<tr><th id="385">385</th><td></td></tr>
+<tr><th id="386">386</th><td>    free(*allocuserpwd);</td></tr>
+<tr><th id="387">387</th><td>    *allocuserpwd = aprintf(<q>"%sAuthorization: %s\r\n"</q>,</td></tr>
+<tr><th id="388">388</th><td>                            proxy ? <q>"Proxy-"</q> : <q>""</q>,</td></tr>
+<tr><th id="389">389</th><td>                            conn-&gt;response_header);</td></tr>
+<tr><th id="390">390</th><td>    DEBUG_OUT(fprintf(stderr, <q>"**** Header %s\n "</q>, *allocuserpwd));</td></tr>
+<tr><th id="391">391</th><td>    free(conn-&gt;response_header);</td></tr>
+<tr><th id="392">392</th><td>    conn-&gt;response_header = NULL;</td></tr>
+<tr><th id="393">393</th><td>    <b>break</b>;</td></tr>
+<tr><th id="394">394</th><td>  <b>case</b> NTLMSTATE_TYPE2:</td></tr>
+<tr><th id="395">395</th><td>    input = aprintf(<q>"TT %s\n"</q>, conn-&gt;challenge_header);</td></tr>
+<tr><th id="396">396</th><td>    <b>if</b>(!input)</td></tr>
+<tr><th id="397">397</th><td>      <b>return</b> CURLE_OUT_OF_MEMORY;</td></tr>
+<tr><th id="398">398</th><td>    res = ntlm_wb_response(conn, input, ntlm-&gt;state);</td></tr>
+<tr><th id="399">399</th><td>    free(input);</td></tr>
+<tr><th id="400">400</th><td>    input = NULL;</td></tr>
+<tr><th id="401">401</th><td>    <b>if</b>(res)</td></tr>
+<tr><th id="402">402</th><td>      <b>return</b> res;</td></tr>
+<tr><th id="403">403</th><td></td></tr>
+<tr><th id="404">404</th><td>    free(*allocuserpwd);</td></tr>
+<tr><th id="405">405</th><td>    *allocuserpwd = aprintf(<q>"%sAuthorization: %s\r\n"</q>,</td></tr>
+<tr><th id="406">406</th><td>                            proxy ? <q>"Proxy-"</q> : <q>""</q>,</td></tr>
+<tr><th id="407">407</th><td>                            conn-&gt;response_header);</td></tr>
+<tr><th id="408">408</th><td>    DEBUG_OUT(fprintf(stderr, <q>"**** %s\n "</q>, *allocuserpwd));</td></tr>
+<tr><th id="409">409</th><td>    ntlm-&gt;state = NTLMSTATE_TYPE3; <i>/* we sent a type-3 */</i></td></tr>
+<tr><th id="410">410</th><td>    authp-&gt;done = TRUE;</td></tr>
+<tr><th id="411">411</th><td>    Curl_ntlm_wb_cleanup(conn);</td></tr>
+<tr><th id="412">412</th><td>    <b>break</b>;</td></tr>
+<tr><th id="413">413</th><td>  <b>case</b> NTLMSTATE_TYPE3:</td></tr>
+<tr><th id="414">414</th><td>    <i>/* connection is already authenticated,</i></td></tr>
+<tr><th id="415">415</th><td><i>     * don't send a header in future requests */</i></td></tr>
+<tr><th id="416">416</th><td>    free(*allocuserpwd);</td></tr>
+<tr><th id="417">417</th><td>    *allocuserpwd = NULL;</td></tr>
+<tr><th id="418">418</th><td>    authp-&gt;done = TRUE;</td></tr>
+<tr><th id="419">419</th><td>    <b>break</b>;</td></tr>
+<tr><th id="420">420</th><td>  }</td></tr>
+<tr><th id="421">421</th><td></td></tr>
+<tr><th id="422">422</th><td>  <b>return</b> CURLE_OK;</td></tr>
+<tr><th id="423">423</th><td>}</td></tr>
+<tr><th id="424">424</th><td></td></tr>
+<tr><th id="425">425</th><td><u>#<span data-ppcond="25">endif</span> /* !CURL_DISABLE_HTTP &amp;&amp; USE_NTLM &amp;&amp; NTLM_WB_ENABLED */</u></td></tr>
+<tr><th id="426">426</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

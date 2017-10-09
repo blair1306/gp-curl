@@ -1,0 +1,5 @@
+<dec f='include/netdb.h' l='102' type='char *'/>
+<offset>0</offset>
+<doc f='include/netdb.h' l='102'>/* Official name of host.  */</doc>
+<use f='codebrowser/lib/curl_addrinfo.c' l='304' u='r' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='439' u='w' c='Curl_ip2addr'/>

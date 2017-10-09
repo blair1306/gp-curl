@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/http.h' l='43' type='char * Curl_copy_header_value(const char * header)'/>
+<def f='codebrowser/lib/http.c' l='208' ll='255' type='char * Curl_copy_header_value(const char * header)'/>
+<use f='codebrowser/lib/http.c' l='2021' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3537' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3551' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3746' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3761' u='c' c='Curl_http_readwrite_headers'/>
+<doc f='codebrowser/lib/http.c' l='202'>/*
+ * Strip off leading and trailing whitespace from the value in the
+ * given HTTP header line and return a strdupped copy. Returns NULL in
+ * case of allocation failure. Returns an empty string if the header value
+ * consists entirely of whitespace.
+ */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='507' u='c' c='CONNECT'/>

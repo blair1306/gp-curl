@@ -1,0 +1,17 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='35' type='ParameterError str2unum(long * val, const char * str)'/>
+<use f='codebrowser/src/tool_getparam.c' l='839' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='847' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='852' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='942' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='965' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='2021' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='2029' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='189' ll='198' type='ParameterError str2unum(long * val, const char * str)'/>
+<doc f='codebrowser/src/tool_paramhlp.c' l='180'>/*
+ * Parse the string and write the long in the given address. Return PARAM_OK
+ * on success, otherwise a parameter error enum. ONLY ACCEPTS POSITIVE NUMBERS!
+ *
+ * Since this function gets called with the &apos;nextarg&apos; pointer from within the
+ * getparameter a lot, we must check it for NULL before accessing the str
+ * data.
+ */</doc>

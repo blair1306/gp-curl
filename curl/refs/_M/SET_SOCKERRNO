@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='434'/>
+<use f='codebrowser/lib/connect.c' l='821' u='c'/>
+<use f='codebrowser/lib/select.c' l='90' u='c'/>
+<use f='codebrowser/tests/libtest/first.c' l='49' u='c'/>

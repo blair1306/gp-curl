@@ -1,0 +1,19 @@
+<dec f='codebrowser/include/curl/curl.h' l='2536' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='2532'>/*  CURL_LOCK_DATA_SHARE is used internally to say that
+   *  the locking is just made to change the internal state of the share
+   *  itself.
+   */</doc>
+<use f='codebrowser/lib/share.c' l='39' u='r' c='curl_share_init'/>
+<use f='codebrowser/lib/share.c' l='180' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='185' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='205' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/url.c' l='487' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='489' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='2384' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2401' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2409' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2430' u='r' c='Curl_setopt'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='54' c='my_lock'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='90' c='my_unlock'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='49' c='my_lock'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='76' c='my_unlock'/>

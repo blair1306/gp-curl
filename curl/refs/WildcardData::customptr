@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/wildcard.h' l='53' type='void *'/>
+<offset>576</offset>
+<doc f='codebrowser/lib/wildcard.h' l='53'>/* for CURLOPT_CHUNK_DATA pointer */</doc>
+<use f='codebrowser/lib/ftp.c' l='3184' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3888' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3925' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/url.c' l='2830' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/wildcard.c' l='61' u='w' c='Curl_wildcard_dtor'/>

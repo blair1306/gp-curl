@@ -1,0 +1,14 @@
+<dec f='include/netinet/in.h' l='377' type='uint16_t ntohs(uint16_t __netshort)'/>
+<use f='codebrowser/lib/connect.c' l='454' u='c' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='457' u='c' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='629' u='c' c='getaddressinfo'/>
+<use f='codebrowser/lib/connect.c' l='639' u='c' c='getaddressinfo'/>
+<use f='codebrowser/lib/ftp.c' l='1223' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1227' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1295' u='c' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1299' u='c' c='sockdaemon'/>
+<use f='codebrowser/tests/server/tftpd.c' l='883' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1287' u='c' c='sendtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1288' u='c' c='sendtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1356' u='c' c='recvtftp'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1357' u='c' c='recvtftp'/>

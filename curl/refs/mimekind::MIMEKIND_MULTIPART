@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/mime.h' l='39' type='4'/>
+<doc f='codebrowser/lib/mime.h' l='39'>/* Data is a mime subpart. */</doc>
+<use f='codebrowser/lib/http.c' l='1964' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/mime.c' l='1421' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1452' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1526' u='r' c='Curl_mime_size'/>
+<use f='codebrowser/lib/mime.c' l='1642' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1658' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1719' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1735' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/src/tool_setopt.c' l='498' c='libcurl_generate_mime'/>

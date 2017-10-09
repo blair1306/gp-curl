@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='54' type='0'/>
+<doc f='include/x86_64-linux-gnu/sys/socket.h' l='54'>/* No more receptions.  */</doc>
+<use f='codebrowser/tests/server/sws.c' l='1629' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1647' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1712' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1725' macro='1' u='r'/>

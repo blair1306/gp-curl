@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>http_negotiate.c source code [codebrowser/lib/http_negotiate.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/http_negotiate.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='http_negotiate.c.html'>http_negotiate.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">if</span> !defined(<span class="macro" data-ref="_M/CURL_DISABLE_HTTP">CURL_DISABLE_HTTP</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/USE_SPNEGO">USE_SPNEGO</span>)</u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#include "urldata.h"</u></td></tr>
+<tr><th id="28">28</th><td><u>#include "sendf.h"</u></td></tr>
+<tr><th id="29">29</th><td><u>#include "http_negotiate.h"</u></td></tr>
+<tr><th id="30">30</th><td><u>#include "vauth/vauth.h"</u></td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="33">33</th><td><u>#include "curl_printf.h"</u></td></tr>
+<tr><th id="34">34</th><td><u>#include "curl_memory.h"</u></td></tr>
+<tr><th id="35">35</th><td><u>#include "memdebug.h"</u></td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td>CURLcode Curl_input_negotiate(<b>struct</b> connectdata *conn, bool proxy,</td></tr>
+<tr><th id="38">38</th><td>                              <em>const</em> <em>char</em> *header)</td></tr>
+<tr><th id="39">39</th><td>{</td></tr>
+<tr><th id="40">40</th><td>  CURLcode result;</td></tr>
+<tr><th id="41">41</th><td>  <b>struct</b> Curl_easy *data = conn-&gt;data;</td></tr>
+<tr><th id="42">42</th><td>  size_t len;</td></tr>
+<tr><th id="43">43</th><td></td></tr>
+<tr><th id="44">44</th><td>  <i>/* Point to the username, password, service and host */</i></td></tr>
+<tr><th id="45">45</th><td>  <em>const</em> <em>char</em> *userp;</td></tr>
+<tr><th id="46">46</th><td>  <em>const</em> <em>char</em> *passwdp;</td></tr>
+<tr><th id="47">47</th><td>  <em>const</em> <em>char</em> *service;</td></tr>
+<tr><th id="48">48</th><td>  <em>const</em> <em>char</em> *host;</td></tr>
+<tr><th id="49">49</th><td></td></tr>
+<tr><th id="50">50</th><td>  <i>/* Point to the correct struct with this */</i></td></tr>
+<tr><th id="51">51</th><td>  <b>struct</b> negotiatedata *neg_ctx;</td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td>  <b>if</b>(proxy) {</td></tr>
+<tr><th id="54">54</th><td>    userp = conn-&gt;http_proxy.user;</td></tr>
+<tr><th id="55">55</th><td>    passwdp = conn-&gt;http_proxy.passwd;</td></tr>
+<tr><th id="56">56</th><td>    service = data-&gt;set.str[STRING_PROXY_SERVICE_NAME] ?</td></tr>
+<tr><th id="57">57</th><td>              data-&gt;set.str[STRING_PROXY_SERVICE_NAME] : <q>"HTTP"</q>;</td></tr>
+<tr><th id="58">58</th><td>    host = conn-&gt;http_proxy.host.name;</td></tr>
+<tr><th id="59">59</th><td>    neg_ctx = &amp;data-&gt;state.proxyneg;</td></tr>
+<tr><th id="60">60</th><td>  }</td></tr>
+<tr><th id="61">61</th><td>  <b>else</b> {</td></tr>
+<tr><th id="62">62</th><td>    userp = conn-&gt;user;</td></tr>
+<tr><th id="63">63</th><td>    passwdp = conn-&gt;passwd;</td></tr>
+<tr><th id="64">64</th><td>    service = data-&gt;set.str[STRING_SERVICE_NAME] ?</td></tr>
+<tr><th id="65">65</th><td>              data-&gt;set.str[STRING_SERVICE_NAME] : <q>"HTTP"</q>;</td></tr>
+<tr><th id="66">66</th><td>    host = conn-&gt;host.name;</td></tr>
+<tr><th id="67">67</th><td>    neg_ctx = &amp;data-&gt;state.negotiate;</td></tr>
+<tr><th id="68">68</th><td>  }</td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td>  <i>/* Not set means empty */</i></td></tr>
+<tr><th id="71">71</th><td>  <b>if</b>(!userp)</td></tr>
+<tr><th id="72">72</th><td>    userp = <q>""</q>;</td></tr>
+<tr><th id="73">73</th><td></td></tr>
+<tr><th id="74">74</th><td>  <b>if</b>(!passwdp)</td></tr>
+<tr><th id="75">75</th><td>    passwdp = <q>""</q>;</td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td>  <i>/* Obtain the input token, if any */</i></td></tr>
+<tr><th id="78">78</th><td>  header += strlen(<q>"Negotiate"</q>);</td></tr>
+<tr><th id="79">79</th><td>  <b>while</b>(*header &amp;&amp; ISSPACE(*header))</td></tr>
+<tr><th id="80">80</th><td>    header++;</td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td>  len = strlen(header);</td></tr>
+<tr><th id="83">83</th><td>  <b>if</b>(!len) {</td></tr>
+<tr><th id="84">84</th><td>    <i>/* Is this the first call in a new negotiation? */</i></td></tr>
+<tr><th id="85">85</th><td>    <b>if</b>(neg_ctx-&gt;context) {</td></tr>
+<tr><th id="86">86</th><td>      <i>/* The server rejected our authentication and hasn't suppled any more</i></td></tr>
+<tr><th id="87">87</th><td><i>      negotiation mechanisms */</i></td></tr>
+<tr><th id="88">88</th><td>      <b>return</b> CURLE_LOGIN_DENIED;</td></tr>
+<tr><th id="89">89</th><td>    }</td></tr>
+<tr><th id="90">90</th><td>  }</td></tr>
+<tr><th id="91">91</th><td></td></tr>
+<tr><th id="92">92</th><td>  <i>/* Initilise the security context and decode our challenge */</i></td></tr>
+<tr><th id="93">93</th><td>  result = Curl_auth_decode_spnego_message(data, userp, passwdp, service,</td></tr>
+<tr><th id="94">94</th><td>                                           host, header, neg_ctx);</td></tr>
+<tr><th id="95">95</th><td></td></tr>
+<tr><th id="96">96</th><td>  <b>if</b>(result)</td></tr>
+<tr><th id="97">97</th><td>    Curl_auth_spnego_cleanup(neg_ctx);</td></tr>
+<tr><th id="98">98</th><td></td></tr>
+<tr><th id="99">99</th><td>  <b>return</b> result;</td></tr>
+<tr><th id="100">100</th><td>}</td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td>CURLcode Curl_output_negotiate(<b>struct</b> connectdata *conn, bool proxy)</td></tr>
+<tr><th id="103">103</th><td>{</td></tr>
+<tr><th id="104">104</th><td>  <b>struct</b> negotiatedata *neg_ctx = proxy ? &amp;conn-&gt;data-&gt;state.proxyneg :</td></tr>
+<tr><th id="105">105</th><td>    &amp;conn-&gt;data-&gt;state.negotiate;</td></tr>
+<tr><th id="106">106</th><td>  <em>char</em> *base64 = NULL;</td></tr>
+<tr><th id="107">107</th><td>  size_t len = <var>0</var>;</td></tr>
+<tr><th id="108">108</th><td>  <em>char</em> *userp;</td></tr>
+<tr><th id="109">109</th><td>  CURLcode result;</td></tr>
+<tr><th id="110">110</th><td></td></tr>
+<tr><th id="111">111</th><td>  result = Curl_auth_create_spnego_message(conn-&gt;data, neg_ctx, &amp;base64, &amp;len);</td></tr>
+<tr><th id="112">112</th><td>  <b>if</b>(result)</td></tr>
+<tr><th id="113">113</th><td>    <b>return</b> result;</td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td>  userp = aprintf(<q>"%sAuthorization: Negotiate %s\r\n"</q>, proxy ? <q>"Proxy-"</q> : <q>""</q>,</td></tr>
+<tr><th id="116">116</th><td>                  base64);</td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td>  <b>if</b>(proxy) {</td></tr>
+<tr><th id="119">119</th><td>    Curl_safefree(conn-&gt;allocptr.proxyuserpwd);</td></tr>
+<tr><th id="120">120</th><td>    conn-&gt;allocptr.proxyuserpwd = userp;</td></tr>
+<tr><th id="121">121</th><td>  }</td></tr>
+<tr><th id="122">122</th><td>  <b>else</b> {</td></tr>
+<tr><th id="123">123</th><td>    Curl_safefree(conn-&gt;allocptr.userpwd);</td></tr>
+<tr><th id="124">124</th><td>    conn-&gt;allocptr.userpwd = userp;</td></tr>
+<tr><th id="125">125</th><td>  }</td></tr>
+<tr><th id="126">126</th><td></td></tr>
+<tr><th id="127">127</th><td>  free(base64);</td></tr>
+<tr><th id="128">128</th><td></td></tr>
+<tr><th id="129">129</th><td>  <b>return</b> (userp == NULL) ? CURLE_OUT_OF_MEMORY : CURLE_OK;</td></tr>
+<tr><th id="130">130</th><td>}</td></tr>
+<tr><th id="131">131</th><td></td></tr>
+<tr><th id="132">132</th><td><em>void</em> Curl_cleanup_negotiate(<b>struct</b> Curl_easy *data)</td></tr>
+<tr><th id="133">133</th><td>{</td></tr>
+<tr><th id="134">134</th><td>  Curl_auth_spnego_cleanup(&amp;data-&gt;state.negotiate);</td></tr>
+<tr><th id="135">135</th><td>  Curl_auth_spnego_cleanup(&amp;data-&gt;state.proxyneg);</td></tr>
+<tr><th id="136">136</th><td>}</td></tr>
+<tr><th id="137">137</th><td></td></tr>
+<tr><th id="138">138</th><td><u>#<span data-ppcond="25">endif</span> /* !CURL_DISABLE_HTTP &amp;&amp; USE_SPNEGO */</u></td></tr>
+<tr><th id="139">139</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

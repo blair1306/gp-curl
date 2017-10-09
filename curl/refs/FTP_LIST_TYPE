@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='64' type='20'/>
+<doc f='codebrowser/lib/ftp.h' l='64'>/* set type when about to do a dir list */</doc>
+<use f='codebrowser/lib/ftp.c' l='2165' u='r' c='ftp_state_type_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2992' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3654' u='r' c='ftp_do_more'/>

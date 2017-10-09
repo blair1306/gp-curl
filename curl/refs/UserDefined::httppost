@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1562' type='struct curl_httppost *'/>
+<offset>3456</offset>
+<doc f='codebrowser/lib/urldata.h' l='1562'>/* linked list of old POST data */</doc>
+<use f='codebrowser/lib/http.c' l='1943' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='1151' u='w' c='Curl_setopt'/>

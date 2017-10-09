@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/tftp.c' l='85' type='1'/>
+<use f='codebrowser/lib/tftp.c' l='441' u='r' c='tftp_connect_for_rx'/>
+<use f='codebrowser/lib/tftp.c' l='634' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='655' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='919' c='tftp_state_machine'/>

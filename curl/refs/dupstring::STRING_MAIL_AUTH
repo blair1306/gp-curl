@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1460' type='52'/>
+<use f='codebrowser/lib/smtp.c' l='520' u='r' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='521' u='r' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='522' u='r' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/url.c' l='2694' u='a' c='Curl_setopt'/>

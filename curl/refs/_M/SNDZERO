@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/stropts.h' l='142'/>
+<doc f='include/x86_64-linux-gnu/bits/stropts.h' l='141'>/* Possible mode for `I_SWROPT&apos;.  */</doc>

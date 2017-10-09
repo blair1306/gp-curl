@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='644' type='CURLcode (*)(struct connectdata *, _Bool *)'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/urldata.h' l='638'>/* This function *MAY* be set to a protocol-dependent function that is run
+   * after the connect() and everything is done, as a step in the connection.
+   * The &apos;done&apos; pointer points to a bool that should be set to TRUE if the
+   * function completes before return. If it doesn&apos;t complete, the caller
+   * should call the curl_connecting() function until it is.
+   */</doc>
+<use f='codebrowser/lib/url.c' l='4071' u='r' c='Curl_protocol_connect'/>
+<use f='codebrowser/lib/url.c' l='4075' u='r' c='Curl_protocol_connect'/>
+<use f='codebrowser/lib/url.c' l='6647' u='r' c='create_conn'/>

@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/warnless.h' l='41' type='unsigned int curlx_uztoui(size_t uznum)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='668' u='c' c='Curl_ntlm_core_mk_ntlmv2_hash'/>
+<use f='codebrowser/lib/md5.c' l='516' u='c' c='Curl_md5it'/>
+<use f='codebrowser/lib/pop3.c' l='429' u='c' c='pop3_perform_apop'/>
+<use f='codebrowser/lib/pop3.c' l='432' u='c' c='pop3_perform_apop'/>
+<use f='codebrowser/lib/vauth/cram.c' l='109' u='c' c='Curl_auth_create_cram_md5_message'/>
+<use f='codebrowser/lib/vauth/cram.c' l='116' u='c' c='Curl_auth_create_cram_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='400' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='403' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='406' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='416' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='419' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='440' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='443' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='460' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='464' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='467' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='470' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1073' u='c' c='Curl_none_md5sum'/>
+<def f='codebrowser/lib/warnless.c' l='243' ll='258' type='unsigned int curlx_uztoui(size_t uznum)'/>
+<doc f='codebrowser/lib/warnless.c' l='239'>/*
+** unsigned size_t to unsigned int
+*/</doc>

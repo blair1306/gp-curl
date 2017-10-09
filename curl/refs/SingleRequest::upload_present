@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='597' type='ssize_t'/>
+<offset>3072</offset>
+<doc f='codebrowser/lib/urldata.h' l='595'>/* &apos;upload_present&apos; is used to keep a byte counter of how much data there is
+     still left in the buffer, aimed for upload. */</doc>
+<use f='codebrowser/lib/smtp.c' l='1625' u='w' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/transfer.c' l='911' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='966' u='w' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1015' u='w' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1036' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1055' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1059' u='w' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1068' u='w' c='readwrite_upload'/>

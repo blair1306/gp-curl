@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_getparam.h' l='38' type='11'/>
+<use f='codebrowser/src/tool_helpers.c' l='57' c='param2text'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='195' u='r' c='str2unum'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='252' u='r' c='str2udouble'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='402' u='r' c='str2offset'/>

@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='382' type='_Bool'/>
+<offset>32</offset>
+<use f='codebrowser/lib/ftp.c' l='1931' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/http.c' l='192' u='r' c='Curl_checkProxyheaders'/>
+<use f='codebrowser/lib/url.c' l='4251' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4253' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4258' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4262' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='5458' u='w' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5460' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5462' u='w' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='6220' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6787' u='r' c='create_conn'/>

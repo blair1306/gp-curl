@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/curl_endian.h' l='35' type='void Curl_write32_le(const int value, unsigned char * buffer)'/>
+<def f='codebrowser/lib/curl_endian.c' l='95' ll='101' type='void Curl_write32_le(const int value, unsigned char * buffer)'/>
+<use f='codebrowser/lib/curl_endian.c' l='121' u='c' c='Curl_write64_le'/>
+<use f='codebrowser/lib/curl_endian.c' l='122' u='c' c='Curl_write64_le'/>
+<doc f='codebrowser/lib/curl_endian.c' l='84'>/*
+ * Curl_write32_le()
+ *
+ * This function converts a 32-bit integer from the native endian format,
+ * to little endian format ready for sending down the wire.
+ *
+ * Parameters:
+ *
+ * value    [in]     - The 32-bit integer value.
+ * buffer   [in]     - A pointer to the output buffer.
+ */</doc>
+<doc f='codebrowser/lib/curl_endian.h' l='34'>/* Converts a 32-bit integer to little endian */</doc>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/include/curl/curl.h' l='196' type='curl_off_t'/>
+<offset>832</offset>
+<doc f='codebrowser/include/curl/curl.h' l='196'>/* alternative length of contents
+                                       field. Used if CURL_HTTPPOST_LARGE is
+                                       set. Added in 7.46.0 */</doc>
+<use f='codebrowser/lib/formdata.c' l='88' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='922' u='r' c='Curl_getformdata'/>

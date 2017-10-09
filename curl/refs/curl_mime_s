@@ -1,0 +1,9 @@
+<def f='codebrowser/lib/mime.h' l='88' ll='95'/>
+<size>64</size>
+<doc f='codebrowser/lib/mime.h' l='87'>/* A mime multipart. */</doc>
+<mbr r='curl_mime_s::easy' o='0' t='struct Curl_easy *'/>
+<mbr r='curl_mime_s::parent' o='64' t='curl_mimepart *'/>
+<mbr r='curl_mime_s::firstpart' o='128' t='curl_mimepart *'/>
+<mbr r='curl_mime_s::lastpart' o='192' t='curl_mimepart *'/>
+<mbr r='curl_mime_s::boundary' o='256' t='char *'/>
+<mbr r='curl_mime_s::state' o='320' t='mime_state'/>

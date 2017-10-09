@@ -1,0 +1,164 @@
+<def f='codebrowser/lib/urldata.h' l='1485' ll='1710'/>
+<size>2184</size>
+<mbr r='UserDefined::err' o='0' t='FILE *'/>
+<mbr r='UserDefined::debugdata' o='64' t='void *'/>
+<mbr r='UserDefined::errorbuffer' o='128' t='char *'/>
+<mbr r='UserDefined::proxyport' o='192' t='long'/>
+<mbr r='UserDefined::out' o='256' t='void *'/>
+<mbr r='UserDefined::in_set' o='320' t='void *'/>
+<mbr r='UserDefined::writeheader' o='384' t='void *'/>
+<mbr r='UserDefined::rtp_out' o='448' t='void *'/>
+<mbr r='UserDefined::use_port' o='512' t='long'/>
+<mbr r='UserDefined::httpauth' o='576' t='unsigned long'/>
+<mbr r='UserDefined::proxyauth' o='640' t='unsigned long'/>
+<mbr r='UserDefined::socks5auth' o='704' t='unsigned long'/>
+<mbr r='UserDefined::followlocation' o='768' t='long'/>
+<mbr r='UserDefined::maxredirs' o='832' t='long'/>
+<mbr r='UserDefined::keep_post' o='896' t='int'/>
+<mbr r='UserDefined::free_referer' o='928' t='_Bool'/>
+<mbr r='UserDefined::postfields' o='960' t='void *'/>
+<mbr r='UserDefined::seek_func' o='1024' t='curl_seek_callback'/>
+<mbr r='UserDefined::postfieldsize' o='1088' t='curl_off_t'/>
+<mbr r='UserDefined::localport' o='1152' t='unsigned short'/>
+<mbr r='UserDefined::localportrange' o='1184' t='int'/>
+<mbr r='UserDefined::fwrite_func' o='1216' t='curl_write_callback'/>
+<mbr r='UserDefined::fwrite_header' o='1280' t='curl_write_callback'/>
+<mbr r='UserDefined::fwrite_rtp' o='1344' t='curl_write_callback'/>
+<mbr r='UserDefined::fread_func_set' o='1408' t='curl_read_callback'/>
+<mbr r='UserDefined::is_fread_set' o='1472' t='int'/>
+<mbr r='UserDefined::is_fwrite_set' o='1504' t='int'/>
+<mbr r='UserDefined::fprogress' o='1536' t='curl_progress_callback'/>
+<mbr r='UserDefined::fxferinfo' o='1600' t='curl_xferinfo_callback'/>
+<mbr r='UserDefined::fdebug' o='1664' t='curl_debug_callback'/>
+<mbr r='UserDefined::ioctl_func' o='1728' t='curl_ioctl_callback'/>
+<mbr r='UserDefined::fsockopt' o='1792' t='curl_sockopt_callback'/>
+<mbr r='UserDefined::sockopt_client' o='1856' t='void *'/>
+<mbr r='UserDefined::fopensocket' o='1920' t='curl_opensocket_callback'/>
+<mbr r='UserDefined::opensocket_client' o='1984' t='void *'/>
+<mbr r='UserDefined::fclosesocket' o='2048' t='curl_closesocket_callback'/>
+<mbr r='UserDefined::closesocket_client' o='2112' t='void *'/>
+<mbr r='UserDefined::seek_client' o='2176' t='void *'/>
+<mbr r='UserDefined::convfromnetwork' o='2240' t='curl_conv_callback'/>
+<mbr r='UserDefined::convtonetwork' o='2304' t='curl_conv_callback'/>
+<mbr r='UserDefined::convfromutf8' o='2368' t='curl_conv_callback'/>
+<mbr r='UserDefined::progress_client' o='2432' t='void *'/>
+<mbr r='UserDefined::ioctl_client' o='2496' t='void *'/>
+<mbr r='UserDefined::timeout' o='2560' t='long'/>
+<mbr r='UserDefined::connecttimeout' o='2624' t='long'/>
+<mbr r='UserDefined::accepttimeout' o='2688' t='long'/>
+<mbr r='UserDefined::server_response_timeout' o='2752' t='long'/>
+<mbr r='UserDefined::tftp_blksize' o='2816' t='long'/>
+<mbr r='UserDefined::tftp_no_options' o='2880' t='_Bool'/>
+<mbr r='UserDefined::filesize' o='2944' t='curl_off_t'/>
+<mbr r='UserDefined::low_speed_limit' o='3008' t='long'/>
+<mbr r='UserDefined::low_speed_time' o='3072' t='long'/>
+<mbr r='UserDefined::max_send_speed' o='3136' t='curl_off_t'/>
+<mbr r='UserDefined::max_recv_speed' o='3200' t='curl_off_t'/>
+<mbr r='UserDefined::set_resume_from' o='3264' t='curl_off_t'/>
+<mbr r='UserDefined::headers' o='3328' t='struct curl_slist *'/>
+<mbr r='UserDefined::proxyheaders' o='3392' t='struct curl_slist *'/>
+<mbr r='UserDefined::httppost' o='3456' t='struct curl_httppost *'/>
+<mbr r='UserDefined::mimepost' o='3520' t='curl_mimepart'/>
+<mbr r='UserDefined::sep_headers' o='7104' t='_Bool'/>
+<mbr r='UserDefined::cookiesession' o='7112' t='_Bool'/>
+<mbr r='UserDefined::crlf' o='7120' t='_Bool'/>
+<mbr r='UserDefined::quote' o='7168' t='struct curl_slist *'/>
+<mbr r='UserDefined::postquote' o='7232' t='struct curl_slist *'/>
+<mbr r='UserDefined::prequote' o='7296' t='struct curl_slist *'/>
+<mbr r='UserDefined::source_quote' o='7360' t='struct curl_slist *'/>
+<mbr r='UserDefined::source_prequote' o='7424' t='struct curl_slist *'/>
+<mbr r='UserDefined::source_postquote' o='7488' t='struct curl_slist *'/>
+<mbr r='UserDefined::telnet_options' o='7552' t='struct curl_slist *'/>
+<mbr r='UserDefined::resolve' o='7616' t='struct curl_slist *'/>
+<mbr r='UserDefined::connect_to' o='7680' t='struct curl_slist *'/>
+<mbr r='UserDefined::timecondition' o='7744' t='curl_TimeCond'/>
+<mbr r='UserDefined::timevalue' o='7808' t='time_t'/>
+<mbr r='UserDefined::httpreq' o='7872' t='Curl_HttpReq'/>
+<mbr r='UserDefined::httpversion' o='7936' t='long'/>
+<mbr r='UserDefined::strip_path_slash' o='8000' t='_Bool'/>
+<mbr r='UserDefined::ssl' o='8064' t='struct ssl_config_data'/>
+<mbr r='UserDefined::proxy_ssl' o='9408' t='struct ssl_config_data'/>
+<mbr r='UserDefined::general_ssl' o='10752' t='struct ssl_general_config'/>
+<mbr r='UserDefined::proxytype' o='10816' t='curl_proxytype'/>
+<mbr r='UserDefined::dns_cache_timeout' o='10880' t='long'/>
+<mbr r='UserDefined::buffer_size' o='10944' t='long'/>
+<mbr r='UserDefined::private_data' o='11008' t='void *'/>
+<mbr r='UserDefined::http200aliases' o='11072' t='struct curl_slist *'/>
+<mbr r='UserDefined::ipver' o='11136' t='long'/>
+<mbr r='UserDefined::max_filesize' o='11200' t='curl_off_t'/>
+<mbr r='UserDefined::ftp_filemethod' o='11264' t='curl_ftpfile'/>
+<mbr r='UserDefined::ftp_create_missing_dirs' o='11296' t='int'/>
+<mbr r='UserDefined::ssh_keyfunc' o='11328' t='curl_sshkeycallback'/>
+<mbr r='UserDefined::ssh_keyfunc_userp' o='11392' t='void *'/>
+<mbr r='UserDefined::ssh_compression' o='11456' t='_Bool'/>
+<mbr r='UserDefined::printhost' o='11464' t='_Bool'/>
+<mbr r='UserDefined::get_filetime' o='11472' t='_Bool'/>
+<mbr r='UserDefined::tunnel_thru_httpproxy' o='11480' t='_Bool'/>
+<mbr r='UserDefined::prefer_ascii' o='11488' t='_Bool'/>
+<mbr r='UserDefined::ftp_append' o='11496' t='_Bool'/>
+<mbr r='UserDefined::ftp_list_only' o='11504' t='_Bool'/>
+<mbr r='UserDefined::ftp_use_port' o='11512' t='_Bool'/>
+<mbr r='UserDefined::hide_progress' o='11520' t='_Bool'/>
+<mbr r='UserDefined::http_fail_on_error' o='11528' t='_Bool'/>
+<mbr r='UserDefined::http_keep_sending_on_error' o='11536' t='_Bool'/>
+<mbr r='UserDefined::http_follow_location' o='11544' t='_Bool'/>
+<mbr r='UserDefined::http_transfer_encoding' o='11552' t='_Bool'/>
+<mbr r='UserDefined::http_disable_hostname_check_before_authentication' o='11560' t='_Bool'/>
+<mbr r='UserDefined::include_header' o='11568' t='_Bool'/>
+<mbr r='UserDefined::http_set_referer' o='11576' t='_Bool'/>
+<mbr r='UserDefined::http_auto_referer' o='11584' t='_Bool'/>
+<mbr r='UserDefined::opt_no_body' o='11592' t='_Bool'/>
+<mbr r='UserDefined::upload' o='11600' t='_Bool'/>
+<mbr r='UserDefined::use_netrc' o='11616' t='enum CURL_NETRC_OPTION'/>
+<mbr r='UserDefined::verbose' o='11648' t='_Bool'/>
+<mbr r='UserDefined::krb' o='11656' t='_Bool'/>
+<mbr r='UserDefined::reuse_forbid' o='11664' t='_Bool'/>
+<mbr r='UserDefined::reuse_fresh' o='11672' t='_Bool'/>
+<mbr r='UserDefined::ftp_use_epsv' o='11680' t='_Bool'/>
+<mbr r='UserDefined::ftp_use_eprt' o='11688' t='_Bool'/>
+<mbr r='UserDefined::ftp_use_pret' o='11696' t='_Bool'/>
+<mbr r='UserDefined::use_ssl' o='11712' t='curl_usessl'/>
+<mbr r='UserDefined::ftpsslauth' o='11744' t='curl_ftpauth'/>
+<mbr r='UserDefined::ftp_ccc' o='11776' t='curl_ftpccc'/>
+<mbr r='UserDefined::no_signal' o='11808' t='_Bool'/>
+<mbr r='UserDefined::global_dns_cache' o='11816' t='_Bool'/>
+<mbr r='UserDefined::tcp_nodelay' o='11824' t='_Bool'/>
+<mbr r='UserDefined::ignorecl' o='11832' t='_Bool'/>
+<mbr r='UserDefined::ftp_skip_ip' o='11840' t='_Bool'/>
+<mbr r='UserDefined::connect_only' o='11848' t='_Bool'/>
+<mbr r='UserDefined::ssh_auth_types' o='11904' t='long'/>
+<mbr r='UserDefined::http_te_skip' o='11968' t='_Bool'/>
+<mbr r='UserDefined::http_ce_skip' o='11976' t='_Bool'/>
+<mbr r='UserDefined::new_file_perms' o='12032' t='long'/>
+<mbr r='UserDefined::new_directory_perms' o='12096' t='long'/>
+<mbr r='UserDefined::proxy_transfer_mode' o='12160' t='_Bool'/>
+<mbr r='UserDefined::str' o='12224' t='char *[58]'/>
+<mbr r='UserDefined::scope_id' o='15936' t='unsigned int'/>
+<mbr r='UserDefined::allowed_protocols' o='16000' t='long'/>
+<mbr r='UserDefined::redir_protocols' o='16064' t='long'/>
+<mbr r='UserDefined::mail_rcpt' o='16128' t='struct curl_slist *'/>
+<mbr r='UserDefined::sasl_ir' o='16192' t='_Bool'/>
+<mbr r='UserDefined::rtspreq' o='16224' t='Curl_RtspReq'/>
+<mbr r='UserDefined::rtspversion' o='16256' t='long'/>
+<mbr r='UserDefined::wildcardmatch' o='16320' t='_Bool'/>
+<mbr r='UserDefined::chunk_bgn' o='16384' t='curl_chunk_bgn_callback'/>
+<mbr r='UserDefined::chunk_end' o='16448' t='curl_chunk_end_callback'/>
+<mbr r='UserDefined::fnmatch' o='16512' t='curl_fnmatch_callback'/>
+<mbr r='UserDefined::fnmatch_data' o='16576' t='void *'/>
+<mbr r='UserDefined::gssapi_delegation' o='16640' t='long'/>
+<mbr r='UserDefined::tcp_keepalive' o='16704' t='_Bool'/>
+<mbr r='UserDefined::tcp_keepidle' o='16768' t='long'/>
+<mbr r='UserDefined::tcp_keepintvl' o='16832' t='long'/>
+<mbr r='UserDefined::tcp_fastopen' o='16896' t='_Bool'/>
+<mbr r='UserDefined::maxconnects' o='16960' t='size_t'/>
+<mbr r='UserDefined::ssl_enable_npn' o='17024' t='_Bool'/>
+<mbr r='UserDefined::ssl_enable_alpn' o='17032' t='_Bool'/>
+<mbr r='UserDefined::path_as_is' o='17040' t='_Bool'/>
+<mbr r='UserDefined::pipewait' o='17048' t='_Bool'/>
+<mbr r='UserDefined::expect_100_timeout' o='17088' t='long'/>
+<mbr r='UserDefined::suppress_connect_headers' o='17152' t='_Bool'/>
+<mbr r='UserDefined::stream_depends_on' o='17216' t='struct Curl_easy *'/>
+<mbr r='UserDefined::stream_depends_e' o='17280' t='_Bool'/>
+<mbr r='UserDefined::stream_weight' o='17312' t='int'/>
+<mbr r='UserDefined::stream_dependents' o='17344' t='struct Curl_http2_dep *'/>
+<mbr r='UserDefined::abstract_unix_socket' o='17408' t='_Bool'/>

@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/if2ip.h' l='35' type='_Bool Curl_if_is_interface_name(const char * interf)'/>
+<def f='codebrowser/lib/if2ip.c' l='199' ll='206' macro='1' type='_Bool Curl_if_is_interface_name(const char * interf)'/>

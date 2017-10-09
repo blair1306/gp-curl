@@ -1,0 +1,4 @@
+<dec f='include/openssl/asn1.h' l='250' type='unsigned char *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2789' u='r' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2943' u='r' c='get_cert_chain'/>

@@ -1,0 +1,10 @@
+<def f='codebrowser/lib/urldata.h' l='1203' ll='1209'/>
+<size>24</size>
+<doc f='codebrowser/lib/urldata.h' l='1198'>/*
+ * This struct is for holding data that was attemped to get sent to the user&apos;s
+ * callback but is held due to pausing. One instance per type (BOTH, HEADER,
+ * BODY).
+ */</doc>
+<mbr r='tempbuf::buf' o='0' t='char *'/>
+<mbr r='tempbuf::len' o='64' t='size_t'/>
+<mbr r='tempbuf::type' o='128' t='int'/>

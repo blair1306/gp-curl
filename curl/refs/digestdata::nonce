@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='280' type='char *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/http_digest.c' l='122' u='r' c='Curl_output_digest'/>
+<use f='codebrowser/lib/vauth/digest.c' l='520' u='r' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='537' u='r' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='538' u='w' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='539' u='r' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='631' u='r' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='718' u='r' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='763' u='r' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='772' u='r' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='812' u='r' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='832' u='r' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='880' u='r' c='Curl_auth_digest_cleanup'/>
+<use f='codebrowser/lib/vauth/digest.c' l='880' u='w' c='Curl_auth_digest_cleanup'/>

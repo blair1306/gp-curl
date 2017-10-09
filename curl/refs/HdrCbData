@@ -1,0 +1,19 @@
+<def f='codebrowser/src/tool_cb_hdr.h' l='41' ll='45'/>
+<size>24</size>
+<doc f='codebrowser/src/tool_cb_hdr.h' l='26'>/*
+ * curl operates using a single HdrCbData struct variable, a
+ * pointer to this is passed as userdata pointer to tool_header_cb.
+ *
+ * &apos;outs&apos; member is a pointer to the OutStruct variable used to keep
+ * track of information relative to curl&apos;s output writing.
+ *
+ * &apos;heads&apos; member is a pointer to the OutStruct variable used to keep
+ * track of information relative to header response writing.
+ *
+ * &apos;honor_cd_filename&apos; member is TRUE when tool_header_cb is allowed
+ * to honor Content-Disposition filename property and accordingly
+ * set &apos;outs&apos; filename, otherwise FALSE;
+ */</doc>
+<mbr r='HdrCbData::outs' o='0' t='struct OutStruct *'/>
+<mbr r='HdrCbData::heads' o='64' t='struct OutStruct *'/>
+<mbr r='HdrCbData::honor_cd_filename' o='128' t='_Bool'/>

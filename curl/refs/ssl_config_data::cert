@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='235' type='char *'/>
+<offset>1024</offset>
+<doc f='codebrowser/lib/urldata.h' l='235'>/* client certificate file name */</doc>
+<use f='codebrowser/lib/url.c' l='6705' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6706' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2053' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2053' u='r' c='ossl_connect_step1'/>

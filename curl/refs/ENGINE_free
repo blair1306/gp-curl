@@ -1,0 +1,4 @@
+<dec f='include/openssl/engine.h' l='551' type='int ENGINE_free(ENGINE * e)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1085' u='c' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1091' u='c' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1291' u='c' c='Curl_ossl_close_all'/>

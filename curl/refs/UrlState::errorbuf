@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1271' type='_Bool'/>
+<offset>132736</offset>
+<use f='codebrowser/lib/ftp.c' l='1797' u='w' c='ftp_epsv_disable'/>
+<use f='codebrowser/lib/sendf.c' l='252' u='r' c='Curl_failf'/>
+<use f='codebrowser/lib/sendf.c' l='254' u='w' c='Curl_failf'/>
+<use f='codebrowser/lib/transfer.c' l='1348' u='w' c='Curl_pretransfer'/>

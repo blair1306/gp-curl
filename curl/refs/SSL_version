@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2440' type='int SSL_version(const SSL * ssl)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1926' u='c' c='get_ssl_version_txt'/>

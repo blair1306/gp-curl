@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/ftp.h' l='144' type='ftpstate'/>
+<offset>1504</offset>
+<doc f='codebrowser/lib/ftp.h' l='144'>/* always use ftp.c:state() to change state! */</doc>
+<use f='codebrowser/lib/ftp.c' l='790' u='w' c='_state'/>
+<use f='codebrowser/lib/ftp.c' l='839' u='r' c='ftp_domore_getsock'/>
+<use f='codebrowser/lib/ftp.c' l='2538' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2619' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2623' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2721' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2937' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2995' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3001' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3006' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3028' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3032' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3058' u='r' c='ftp_multi_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3069' u='r' c='ftp_block_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3582' u='r' c='ftp_do_more'/>

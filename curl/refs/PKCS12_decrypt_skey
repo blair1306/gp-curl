@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='182' type='PKCS8_PRIV_KEY_INFO * PKCS12_decrypt_skey(PKCS12_SAFEBAG * bag, const char * pass, int passlen)'/>

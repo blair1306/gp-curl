@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='59' type='_Bool Curl_auth_user_contains_domain(const char * user)'/>
+<def f='codebrowser/lib/vauth/vauth.c' l='128' ll='147' macro='1' type='_Bool Curl_auth_user_contains_domain(const char * user)'/>

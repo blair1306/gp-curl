@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1696' type='_Bool'/>
+<offset>17040</offset>
+<use f='codebrowser/lib/url.c' l='2929' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4672' u='r' c='parseurlandfillconn'/>

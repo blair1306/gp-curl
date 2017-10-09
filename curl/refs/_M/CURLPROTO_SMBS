@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/curl.h' l='871'/>
+<use f='codebrowser/lib/smb.c' l='115' u='c'/>
+<use f='codebrowser/lib/url.c' l='582' u='c'/>
+<use f='codebrowser/lib/url.c' l='7198' u='c'/>
+<use f='codebrowser/src/tool_cfgable.c' l='41' u='c'/>
+<use f='codebrowser/src/tool_libinfo.c' l='71' u='c'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='301' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='158' u='c'/>

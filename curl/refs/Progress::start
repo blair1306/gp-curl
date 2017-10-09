@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1118' type='struct curltime'/>
+<offset>1088</offset>
+<use f='codebrowser/lib/progress.c' l='215' u='r' c='Curl_pgrsTime'/>
+<use f='codebrowser/lib/progress.c' l='229' u='w' c='Curl_pgrsStartNow'/>
+<use f='codebrowser/lib/progress.c' l='376' u='r' c='Curl_pgrsUpdate'/>

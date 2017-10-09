@@ -1,0 +1,7 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='32' type='void cleanarg(char * str)'/>
+<use f='codebrowser/src/tool_getparam.c' l='424' u='c' c='GetFileAndPassword'/>
+<use f='codebrowser/src/tool_getparam.c' l='1416' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1534' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1948' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1953' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='139' ll='152' type='void cleanarg(char * str)'/>

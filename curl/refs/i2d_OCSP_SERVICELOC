@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='560' macro='1' type='int i2d_OCSP_SERVICELOC(OCSP_SERVICELOC * a, unsigned char ** out)'/>

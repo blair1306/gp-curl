@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/transfer.h' l='30' type='CURLcode Curl_pretransfer(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/multi.c' l='1419' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/transfer.c' l='1323' ll='1414' type='CURLcode Curl_pretransfer(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/transfer.c' l='1318'>/*
+ * Curl_pretransfer() is called immediately before a transfer starts, and only
+ * once for one transfer no matter if it has redirects or do multi-pass
+ * authentication etc.
+ */</doc>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_paramhlp.h source code [codebrowser/src/tool_paramhlp.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_paramhlp.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_paramhlp.h.html'>tool_paramhlp.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_TOOL_PARAMHLP_H">HEADER_CURL_TOOL_PARAMHLP_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_TOOL_PARAMHLP_H" data-ref="_M/HEADER_CURL_TOOL_PARAMHLP_H">HEADER_CURL_TOOL_PARAMHLP_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><b>struct</b> <a class="type" href="tool_sdecls.h.html#getout" title='getout' data-ref="getout">getout</a> *<dfn class="decl" id="new_getout" title='new_getout' data-ref="new_getout">new_getout</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col6 decl" id="16config" title='config' data-type='struct OperationConfig *' data-ref="16config">config</dfn>);</td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl" id="file2string" title='file2string' data-ref="file2string">file2string</dfn>(<em>char</em> **<dfn class="local col7 decl" id="17bufp" title='bufp' data-type='char **' data-ref="17bufp">bufp</dfn>, <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col8 decl" id="18file" title='file' data-type='FILE *' data-ref="18file">file</dfn>);</td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl" id="file2memory" title='file2memory' data-ref="file2memory">file2memory</dfn>(<em>char</em> **<dfn class="local col9 decl" id="19bufp" title='bufp' data-type='char **' data-ref="19bufp">bufp</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col0 decl" id="20size" title='size' data-type='size_t *' data-ref="20size">size</dfn>, <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col1 decl" id="21file" title='file' data-type='FILE *' data-ref="21file">file</dfn>);</td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><em>void</em> <dfn class="decl" id="cleanarg" title='cleanarg' data-ref="cleanarg">cleanarg</dfn>(<em>char</em> *<dfn class="local col2 decl" id="22str" title='str' data-type='char *' data-ref="22str">str</dfn>);</td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl" id="str2num" title='str2num' data-ref="str2num">str2num</dfn>(<em>long</em> *<dfn class="local col3 decl" id="23val" title='val' data-type='long *' data-ref="23val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="24str" title='str' data-type='const char *' data-ref="24str">str</dfn>);</td></tr>
+<tr><th id="35">35</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl" id="str2unum" title='str2unum' data-ref="str2unum">str2unum</dfn>(<em>long</em> *<dfn class="local col5 decl" id="25val" title='val' data-type='long *' data-ref="25val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col6 decl" id="26str" title='str' data-type='const char *' data-ref="26str">str</dfn>);</td></tr>
+<tr><th id="36">36</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl" id="str2udouble" title='str2udouble' data-ref="str2udouble">str2udouble</dfn>(<em>double</em> *<dfn class="local col7 decl" id="27val" title='val' data-type='double *' data-ref="27val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="28str" title='str' data-type='const char *' data-ref="28str">str</dfn>, <em>long</em> <dfn class="local col9 decl" id="29max" title='max' data-type='long' data-ref="29max">max</dfn>);</td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><em>long</em> <dfn class="decl" id="proto2num" title='proto2num' data-ref="proto2num">proto2num</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col0 decl" id="30config" title='config' data-type='struct OperationConfig *' data-ref="30config">config</dfn>, <em>long</em> *<dfn class="local col1 decl" id="31val" title='val' data-type='long *' data-ref="31val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="32str" title='str' data-type='const char *' data-ref="32str">str</dfn>);</td></tr>
+<tr><th id="39">39</th><td></td></tr>
+<tr><th id="40">40</th><td><em>int</em> <dfn class="decl" id="check_protocol" title='check_protocol' data-ref="check_protocol">check_protocol</dfn>(<em>const</em> <em>char</em> *<dfn class="local col3 decl" id="33str" title='str' data-type='const char *' data-ref="33str">str</dfn>);</td></tr>
+<tr><th id="41">41</th><td></td></tr>
+<tr><th id="42">42</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl" id="str2offset" title='str2offset' data-ref="str2offset">str2offset</dfn>(<a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> *<dfn class="local col4 decl" id="34val" title='val' data-type='curl_off_t *' data-ref="34val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="35str" title='str' data-type='const char *' data-ref="35str">str</dfn>);</td></tr>
+<tr><th id="43">43</th><td></td></tr>
+<tr><th id="44">44</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="get_args" title='get_args' data-ref="get_args">get_args</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col6 decl" id="36config" title='config' data-type='struct OperationConfig *' data-ref="36config">config</dfn>, <em>const</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="37i" title='i' data-type='const size_t' data-ref="37i">i</dfn>);</td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl" id="add2list" title='add2list' data-ref="add2list">add2list</dfn>(<b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> **<dfn class="local col8 decl" id="38list" title='list' data-type='struct curl_slist **' data-ref="38list">list</dfn>, <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="39ptr" title='ptr' data-type='const char *' data-ref="39ptr">ptr</dfn>);</td></tr>
+<tr><th id="47">47</th><td></td></tr>
+<tr><th id="48">48</th><td><em>int</em> <dfn class="decl" id="ftpfilemethod" title='ftpfilemethod' data-ref="ftpfilemethod">ftpfilemethod</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col0 decl" id="40config" title='config' data-type='struct OperationConfig *' data-ref="40config">config</dfn>, <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="41str" title='str' data-type='const char *' data-ref="41str">str</dfn>);</td></tr>
+<tr><th id="49">49</th><td></td></tr>
+<tr><th id="50">50</th><td><em>int</em> <dfn class="decl" id="ftpcccmethod" title='ftpcccmethod' data-ref="ftpcccmethod">ftpcccmethod</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col2 decl" id="42config" title='config' data-type='struct OperationConfig *' data-ref="42config">config</dfn>, <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="43str" title='str' data-type='const char *' data-ref="43str">str</dfn>);</td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td><em>long</em> <dfn class="decl" id="delegation" title='delegation' data-ref="delegation">delegation</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col4 decl" id="44config" title='config' data-type='struct OperationConfig *' data-ref="44config">config</dfn>, <em>char</em> *<dfn class="local col5 decl" id="45str" title='str' data-type='char *' data-ref="45str">str</dfn>);</td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td><a class="typedef" href="tool_getparam.h.html#ParameterError" title='ParameterError' data-type='enum ParameterError' data-ref="ParameterError">ParameterError</a> <dfn class="decl" id="str2tls_max" title='str2tls_max' data-ref="str2tls_max">str2tls_max</dfn>(<em>long</em> *<dfn class="local col6 decl" id="46val" title='val' data-type='long *' data-ref="46val">val</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="47str" title='str' data-type='const char *' data-ref="47str">str</dfn>);</td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_TOOL_PARAMHLP_H */</u></td></tr>
+<tr><th id="57">57</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='tool_getparam.c.html'>codebrowser/src/tool_getparam.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

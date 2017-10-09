@@ -1,0 +1,13 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='115' type='struct getout *'/>
+<offset>3584</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='115'>/* point to the node to fill in URL */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='101' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='773' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='774' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='776' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='779' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='779' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='780' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='780' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='785' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='787' u='r' c='getparameter'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/wildcard.h' l='32' type='1'/>
+<use f='codebrowser/lib/ftp.c' l='3839' c='wc_statemach'/>
+<use f='codebrowser/lib/transfer.c' l='1405' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/wildcard.c' l='36' u='r' c='Curl_wildcard_init'/>
+<use f='codebrowser/lib/wildcard.c' l='62' u='r' c='Curl_wildcard_dtor'/>

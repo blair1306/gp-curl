@@ -1,0 +1,24 @@
+<dec f='codebrowser/include/curl/curl.h' l='486' type='23'/>
+<doc f='codebrowser/include/curl/curl.h' l='486'>/* 23 */</doc>
+<use f='codebrowser/lib/file.c' l='349' u='r' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='361' u='r' c='file_upload'/>
+<use f='codebrowser/lib/ftp.c' l='3159' c='ftp_done'/>
+<use f='codebrowser/lib/multi.c' l='551' c='multi_done'/>
+<use f='codebrowser/lib/rtsp.c' l='756' u='r' c='rtp_client_write'/>
+<use f='codebrowser/lib/rtsp.c' l='777' u='r' c='rtp_client_write'/>
+<use f='codebrowser/lib/rtsp.c' l='782' u='r' c='rtp_client_write'/>
+<use f='codebrowser/lib/sendf.c' l='582' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/sendf.c' l='588' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/sendf.c' l='603' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/strerror.c' l='131' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/transfer.c' l='679' u='r' c='readwrite_data'/>
+<use f='codebrowser/src/tool_dirhie.c' l='145' u='r' c='create_dir_hierarchy'/>
+<use f='codebrowser/src/tool_operate.c' l='389' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='613' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='635' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='673' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1573' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1691' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1708' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1821' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1830' u='r' c='operate_do'/>

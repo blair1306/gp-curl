@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/sendf.h' l='54' type='CURLcode Curl_client_chop_write(struct connectdata * conn, int type, char * ptr, size_t len)'/>
+<use f='codebrowser/lib/easy.c' l='1040' u='c' c='curl_easy_pause'/>
+<def f='codebrowser/lib/sendf.c' l='539' ll='612' type='CURLcode Curl_client_chop_write(struct connectdata * conn, int type, char * ptr, size_t len)'/>
+<use f='codebrowser/lib/sendf.c' l='652' u='c' c='Curl_client_write'/>
+<doc f='codebrowser/lib/sendf.c' l='535'>/* Curl_client_chop_write() writes chunks of data not larger than
+ * CURL_MAX_WRITE_SIZE via client write callback(s) and
+ * takes care of pause requests from the callbacks.
+ */</doc>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='94' type='CURLcode (*)(struct connectdata *, const char *)'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/curl_sasl.h' l='93'>/* Send authentication command */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='610' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='615' u='r' c='Curl_sasl_continue'/>

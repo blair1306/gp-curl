@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/http_chunks.h' l='41' type='2'/>
+<doc f='codebrowser/lib/http_chunks.h' l='39'>/* We eat the amount of data specified. When done, we move on to the
+     POST_CR state. */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='176' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='183' c='Curl_httpchunk_read'/>

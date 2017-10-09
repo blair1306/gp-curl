@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/hash.h' l='89' type='size_t Curl_str_key_compare(void * k1, size_t key1_len, void * k2, size_t key2_len)'/>
+<use f='codebrowser/lib/conncache.c' l='113' u='r' c='Curl_conncache_init'/>
+<def f='codebrowser/lib/hash.c' l='274' ll='281' type='size_t Curl_str_key_compare(void * k1, size_t key1_len, void * k2, size_t key2_len)'/>
+<use f='codebrowser/lib/hostip.c' l='127' u='r' c='Curl_global_host_cache_init'/>
+<use f='codebrowser/lib/hostip.c' l='753' u='r' c='Curl_mk_dnscache'/>
+<use f='codebrowser/tests/unit/unit1603.c' l='43' u='r' c='unit_setup'/>

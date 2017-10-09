@@ -1,0 +1,17 @@
+<def f='codebrowser/lib/urldata.h' l='222' ll='246'/>
+<size>168</size>
+<mbr r='ssl_config_data::primary' o='0' t='struct ssl_primary_config'/>
+<mbr r='ssl_config_data::enable_beast' o='576' t='_Bool'/>
+<mbr r='ssl_config_data::no_revoke' o='584' t='_Bool'/>
+<mbr r='ssl_config_data::certverifyresult' o='640' t='long'/>
+<mbr r='ssl_config_data::CRLfile' o='704' t='char *'/>
+<mbr r='ssl_config_data::issuercert' o='768' t='char *'/>
+<mbr r='ssl_config_data::fsslctx' o='832' t='curl_ssl_ctx_callback'/>
+<mbr r='ssl_config_data::fsslctxp' o='896' t='void *'/>
+<mbr r='ssl_config_data::certinfo' o='960' t='_Bool'/>
+<mbr r='ssl_config_data::falsestart' o='968' t='_Bool'/>
+<mbr r='ssl_config_data::cert' o='1024' t='char *'/>
+<mbr r='ssl_config_data::cert_type' o='1088' t='char *'/>
+<mbr r='ssl_config_data::key' o='1152' t='char *'/>
+<mbr r='ssl_config_data::key_type' o='1216' t='char *'/>
+<mbr r='ssl_config_data::key_passwd' o='1280' t='char *'/>

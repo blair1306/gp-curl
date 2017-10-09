@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1634' type='enum CURL_NETRC_OPTION'/>
+<offset>11616</offset>
+<use f='codebrowser/lib/url.c' l='916' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='5531' u='r' c='parse_url_login'/>
+<use f='codebrowser/lib/url.c' l='5879' u='r' c='override_login'/>

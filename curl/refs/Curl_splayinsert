@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/splay.h' l='39' type='struct Curl_tree * Curl_splayinsert(struct curltime key, struct Curl_tree * t, struct Curl_tree * newnode)'/>
+<use f='codebrowser/lib/multi.c' l='2541' u='c' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2989' u='c' c='Curl_expire'/>
+<def f='codebrowser/lib/splay.c' l='100' ll='149' type='struct Curl_tree * Curl_splayinsert(struct curltime i, struct Curl_tree * t, struct Curl_tree * node)'/>
+<doc f='codebrowser/lib/splay.c' l='95'>/* Insert key i into the tree t.  Return a pointer to the resulting tree or
+ * NULL if something went wrong.
+ *
+ * @unittest: 1309
+ */</doc>
+<use f='codebrowser/tests/unit/unit1309.c' l='90' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='123' u='c' c='test'/>

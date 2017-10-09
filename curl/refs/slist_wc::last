@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/slist_wc.h' l='31' type='struct curl_slist *'/>
+<use f='codebrowser/src/slist_wc.c' l='53' u='w' c='slist_wc_append'/>
+<use f='codebrowser/src/slist_wc.c' l='57' u='r' c='slist_wc_append'/>
+<use f='codebrowser/src/slist_wc.c' l='58' u='w' c='slist_wc_append'/>
+<use f='codebrowser/src/slist_wc.c' l='58' u='r' c='slist_wc_append'/>
+<offset>64</offset>

@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/urldata.h' l='971' type='struct ntlmdata'/>
+<offset>9536</offset>
+<doc f='codebrowser/lib/urldata.h' l='971'>/* NTLM differs from other authentication schemes
+                               because it authenticates connections, not
+                               single requests! */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='93' u='a' c='Curl_sasl_cleanup'/>
+<use f='codebrowser/lib/curl_sasl.c' l='336' u='a' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='499' u='a' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='506' u='a' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='509' u='a' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/http.c' l='430' u='m' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='3122' u='m' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_ntlm.c' l='73' u='a' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='151' u='a' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='233' u='a' c='Curl_http_ntlm_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='617' u='m' c='multi_done'/>
+<use f='codebrowser/lib/url.c' l='3793' u='m' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3819' u='m' c='ConnectionExists'/>

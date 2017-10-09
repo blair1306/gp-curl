@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/imap.h' l='76' type='unsigned int'/>
+<offset>1216</offset>
+<doc f='codebrowser/lib/imap.h' l='76'>/* Preferred authentication type */</doc>
+<use f='codebrowser/lib/imap.c' l='581' u='r' c='imap_perform_authentication'/>
+<use f='codebrowser/lib/imap.c' l='971' u='r' c='imap_state_auth_resp'/>
+<use f='codebrowser/lib/imap.c' l='1409' u='w' c='imap_connect'/>
+<use f='codebrowser/lib/imap.c' l='1911' u='w' c='imap_parse_url_options'/>
+<use f='codebrowser/lib/imap.c' l='1914' u='w' c='imap_parse_url_options'/>
+<use f='codebrowser/lib/imap.c' l='1917' u='w' c='imap_parse_url_options'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='527' type='58'/>
+<doc f='codebrowser/include/curl/curl.h' l='527'>/* 58 - problem with the local certificate */</doc>
+<use f='codebrowser/lib/strerror.c' l='215' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2295' u='r' c='ossl_connect_step1'/>

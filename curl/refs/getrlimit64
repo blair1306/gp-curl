@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/sys/resource.h' l='54' type='int getrlimit(__rlimit_resource_t __resource, struct rlimit * __rlimits)'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='124' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='190' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='125' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='185' u='c' c='rlimit'/>

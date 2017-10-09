@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='71' type='CURLcode glob_url(URLGlob ** , char * , unsigned long * , FILE * )'/>
+<use f='codebrowser/src/tool_operate.c' l='466' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='517' u='c' c='operate_do'/>
+<def f='codebrowser/src/tool_urlglob.c' l='430' ll='483' type='CURLcode glob_url(URLGlob ** glob, char * url, unsigned long * urlnum, FILE * error)'/>

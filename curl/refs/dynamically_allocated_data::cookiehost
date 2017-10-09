@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='926' type='char *'/>
+<offset>448</offset>
+<use f='codebrowser/lib/http.c' l='2045' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2045' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2046' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2379' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2380' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3726' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3727' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/url.c' l='3059' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3059' u='w' c='conn_free'/>

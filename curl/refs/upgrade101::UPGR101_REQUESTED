@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='506' type='1'/>
+<doc f='codebrowser/lib/urldata.h' l='506'>/* upgrade requested */</doc>
+<use f='codebrowser/lib/http.c' l='3070' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3449' u='r' c='Curl_http_readwrite_headers'/>

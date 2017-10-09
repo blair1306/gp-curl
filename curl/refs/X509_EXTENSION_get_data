@@ -1,0 +1,2 @@
+<dec f='include/openssl/x509.h' l='1108' type='ASN1_OCTET_STRING * X509_EXTENSION_get_data(X509_EXTENSION * ne)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2718' u='c' c='X509V3_ext'/>

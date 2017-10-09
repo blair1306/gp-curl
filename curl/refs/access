@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='290' type='int access(const char * __name, int __type)'/>
+<doc f='include/unistd.h' l='289'>/* Test for access to NAME using the real UID and real GID.  */</doc>
+<use f='codebrowser/lib/mime.c' l='1294' u='c' c='curl_mime_filedata'/>
+<use f='codebrowser/src/tool_dirhie.c' l='142' u='c' c='create_dir_hierarchy'/>

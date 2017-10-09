@@ -1,0 +1,6 @@
+<dec f='codebrowser/tests/server/rtspd.c' l='162' type='-1'/>
+<use f='codebrowser/tests/server/rtspd.c' l='567' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/rtspd.c' l='971' c='send_doc'/>
+<dec f='codebrowser/tests/server/sws.c' l='183' type='-1'/>
+<use f='codebrowser/tests/server/sws.c' l='645' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='1119' c='send_doc'/>

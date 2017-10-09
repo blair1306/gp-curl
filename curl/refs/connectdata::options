@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='867' type='char *'/>
+<offset>4352</offset>
+<doc f='codebrowser/lib/urldata.h' l='867'>/* options string, allocated */</doc>
+<use f='codebrowser/lib/imap.c' l='1883' u='r' c='imap_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1323' u='r' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/smtp.c' l='1458' u='r' c='smtp_parse_url_options'/>
+<use f='codebrowser/lib/url.c' l='3046' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3046' u='w' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='5942' u='w' c='set_login'/>
+<use f='codebrowser/lib/url.c' l='5944' u='r' c='set_login'/>

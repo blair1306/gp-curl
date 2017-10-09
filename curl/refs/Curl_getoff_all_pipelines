@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/url.h' l='64' type='void Curl_getoff_all_pipelines(struct Curl_easy * data, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/url.h' l='62'>/* remove the specified connection from all (possible) pipelines and related
+   queues */</doc>
+<use f='codebrowser/lib/multi.c' l='540' u='c' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='723' u='c' c='curl_multi_remove_handle'/>
+<def f='codebrowser/lib/url.c' l='3250' ll='3262' type='void Curl_getoff_all_pipelines(struct Curl_easy * data, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/url.c' l='3248'>/* remove the specified connection from all (possible) pipelines and related
+   queues */</doc>

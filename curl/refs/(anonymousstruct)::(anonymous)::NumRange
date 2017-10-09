@@ -1,0 +1,21 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='54' type='struct (anonymous struct at /home/jon/workspace/curl/src/tool_urlglob.h:48:5)'/>
+<offset>0</offset>
+<use f='codebrowser/src/tool_urlglob.c' l='247' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='254' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='308' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='308' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='309' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='310' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='312' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='313' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='314' u='m' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='543' u='m' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='543' u='m' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='544' u='m' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='544' u='m' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='545' u='m' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='545' u='m' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='581' u='m' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='582' u='m' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='656' u='m' c='glob_match_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='657' u='m' c='glob_match_url'/>

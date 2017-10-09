@@ -1,0 +1,6 @@
+<dec f='include/asm-generic/errno-base.h' l='31'/>
+<use f='codebrowser/lib/inet_ntop.c' l='66' u='c'/>
+<use f='codebrowser/lib/inet_ntop.c' l='145' u='c'/>
+<use f='codebrowser/lib/inet_ntop.c' l='163' u='c'/>
+<use f='codebrowser/src/tool_dirhie.c' l='69' u='a'/>
+<use f='codebrowser/src/tool_dirhie.c' l='70' u='c'/>

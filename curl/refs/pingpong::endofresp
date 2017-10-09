@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/pingpong.h' l='74' type='_Bool (*)(struct connectdata *, char *, size_t, int *)'/>
+<offset>832</offset>
+<use f='codebrowser/lib/ftp.c' l='3100' u='w' c='ftp_connect'/>
+<use f='codebrowser/lib/imap.c' l='1405' u='w' c='imap_connect'/>
+<use f='codebrowser/lib/pingpong.c' l='383' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pop3.c' l='1076' u='w' c='pop3_connect'/>
+<use f='codebrowser/lib/smtp.c' l='1139' u='w' c='smtp_connect'/>

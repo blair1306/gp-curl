@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/rtsp.h' l='59' type='struct HTTP'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/rtsp.h' l='51'>/*
+   * http_wrapper MUST be the first element of this structure for the wrap
+   * logic to work. In this way, we get a cheap polymorphism because
+   * &amp;(data-&gt;state.proto.rtsp) == &amp;(data-&gt;state.proto.http) per the C spec
+   *
+   * HTTP functions can safely treat this as an HTTP struct, but RTSP aware
+   * functions can also index into the later elements.
+   */</doc>
+<doc f='codebrowser/lib/rtsp.h' l='59'>/*wrap HTTP to do the heavy lifting */</doc>
+<use f='codebrowser/lib/rtsp.c' l='275' u='a' c='rtsp_do'/>

@@ -1,0 +1,14 @@
+<dec f='include/stdio.h' l='140'/>
+<doc f='include/stdio.h' l='138'>/* The possibilities for the third argument to `fseek&apos;.
+   These values should not be changed.  */</doc>
+<use f='include/zconf.h' l='474' u='a'/>
+<dec f='include/fcntl.h' l='136'/>
+<use f='codebrowser/lib/file.c' l='554' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='1621' u='c'/>
+<use f='codebrowser/lib/http.c' l='2188' u='c'/>
+<use f='codebrowser/lib/mime.c' l='689' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1027' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1056' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='303' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='327' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='895' u='c'/>

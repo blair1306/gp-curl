@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='168' type='long'/>
+<offset>6016</offset>
+<use f='codebrowser/src/tool_getparam.c' l='1147' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1151' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1316' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1318' u='r' c='operate_do'/>

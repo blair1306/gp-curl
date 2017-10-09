@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='563' type='int'/>
+<offset>1664</offset>
+<doc f='codebrowser/lib/urldata.h' l='563'>/* What content encoding. sec 3.5, RFC2616. */</doc>
+<use f='codebrowser/lib/http.c' l='3636' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3641' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3645' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3649' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3653' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3681' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3683' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3686' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_chunks.c' l='192' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/transfer.c' l='782' u='r' c='readwrite_data'/>

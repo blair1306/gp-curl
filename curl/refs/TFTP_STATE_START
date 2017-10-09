@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/tftp.c' l='84' type='0'/>
+<use f='codebrowser/lib/tftp.c' l='204' u='r' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='915' c='tftp_state_machine'/>
+<use f='codebrowser/lib/tftp.c' l='1007' u='r' c='tftp_connect'/>

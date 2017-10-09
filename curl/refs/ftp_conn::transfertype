@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/ftp.h' l='139' type='char'/>
+<offset>1376</offset>
+<doc f='codebrowser/lib/ftp.h' l='139'>/* set by ftp_transfertype for use by Curl_client_write()a
+                        and others (A/I or zero) */</doc>
+<use f='codebrowser/lib/ftp.c' l='3413' u='r' c='ftp_need_type'/>
+<use f='codebrowser/lib/ftp.c' l='3431' u='r' c='ftp_nb_type'/>
+<use f='codebrowser/lib/ftp.c' l='3440' u='w' c='ftp_nb_type'/>
+<use f='codebrowser/lib/sendf.c' l='639' u='r' c='Curl_client_write'/>

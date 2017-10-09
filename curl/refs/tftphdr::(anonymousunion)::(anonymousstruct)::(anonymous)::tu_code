@@ -1,0 +1,5 @@
+<dec f='include/arpa/tftp.h' l='56' type='short'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1418' macro='1' u='w'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1424' macro='1' u='w'/>
+<offset>0</offset>
+<doc f='include/arpa/tftp.h' l='56'>/* error code */</doc>

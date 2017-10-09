@@ -1,0 +1,26 @@
+<dec f='codebrowser/lib/vtls/openssl.c' l='194' type='SSL_CTX *'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1159' u='r' c='ossl_close'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1160' u='r' c='ossl_close'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1161' u='w' c='ossl_close'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1577' u='r' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2119' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2120' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2121' u='w' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2123' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2130' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2136' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2137' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2254' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2258' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2286' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2291' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2303' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2338' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2373' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2382' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2406' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2418' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2429' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3614' u='r' c='Curl_ossl_get_internals'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/vtls/openssl.c' l='193'>/* these ones requires specific SSL-types */</doc>

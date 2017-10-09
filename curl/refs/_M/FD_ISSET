@@ -1,0 +1,11 @@
+<dec f='include/x86_64-linux-gnu/sys/select.h' l='92'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='219' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1037' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1136' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1553' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1624' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1642' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1659' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1679' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2307' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2320' u='c'/>

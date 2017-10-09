@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/formdata.h' l='27' type='char *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/formdata.c' l='339' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='345' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='583' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='583' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='609' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='639' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='643' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='654' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='656' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='656' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='658' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='660' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='682' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='706' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='706' u='w' c='FormAdd'/>

@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='928' type='char *'/>
+<offset>576</offset>
+<doc f='codebrowser/lib/urldata.h' l='928'>/* TE: request header */</doc>
+<use f='codebrowser/lib/http.c' l='1631' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1925' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1925' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1928' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1931' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2339' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2339' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='3055' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3055' u='w' c='conn_free'/>

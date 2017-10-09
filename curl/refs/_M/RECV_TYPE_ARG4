@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='838'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='161' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='837'>/* Define to the type of arg 4 for recv. */</doc>
+<use f='codebrowser/lib/connect.c' l='1267' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1023' u='c'/>

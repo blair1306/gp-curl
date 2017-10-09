@@ -1,0 +1,2 @@
+<dec f='codebrowser/include/curl/mprintf.h' l='40' type='int curl_mvsprintf(char * buffer, const char * format, struct __va_list_tag * args)'/>
+<def f='codebrowser/lib/mprintf.c' l='1157' ll='1163' type='int curl_mvsprintf(char * buffer, const char * format, struct __va_list_tag * ap_save)'/>

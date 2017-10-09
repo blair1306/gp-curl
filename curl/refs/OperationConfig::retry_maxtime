@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='203' type='long'/>
+<offset>7488</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='203'>/* maximum time to keep retrying */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='852' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1583' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1585' u='r' c='operate_do'/>

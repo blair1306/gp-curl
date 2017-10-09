@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='1719' type='enum (anonymous enum at /home/jon/workspace/curl/lib/urldata.h:1714:3)'/>
+<offset>64</offset>
+<use f='codebrowser/lib/multi.c' l='391' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='397' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='403' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='405' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='726' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='730' u='w' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2235' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2239' u='w' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/url.c' l='2386' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2388' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2416' u='w' c='Curl_setopt'/>

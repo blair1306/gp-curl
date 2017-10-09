@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='530' type='long'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/urldata.h' l='530'>/* this amount of bytes doesn&apos;t count when we check
+                             if anything has been transferred at the end of a
+                             connection. We use this counter to make only a
+                             100 reply (without a following second response
+                             code) result in a CURLE_GOT_NOTHING error code */</doc>
+<use f='codebrowser/lib/http.c' l='1477' u='r' c='Curl_http_done'/>
+<use f='codebrowser/lib/http.c' l='3157' u='w' c='Curl_http_readwrite_headers'/>

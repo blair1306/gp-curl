@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/llist.h' l='49' type='void Curl_llist_destroy(struct curl_llist * , void * )'/>
+<use f='codebrowser/lib/conncache.c' l='68' u='c' c='bundle_destroy'/>
+<use f='codebrowser/lib/hash.c' l='213' u='c' c='Curl_hash_destroy'/>
+<def f='codebrowser/lib/llist.c' l='129' ll='136' type='void Curl_llist_destroy(struct curl_llist * list, void * user)'/>
+<use f='codebrowser/lib/multi.c' l='348' u='c' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='349' u='c' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='737' u='c' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2265' u='c' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2266' u='c' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/pipeline.c' l='197' u='c' c='Curl_pipeline_set_site_blacklist'/>
+<use f='codebrowser/lib/pipeline.c' l='209' u='c' c='Curl_pipeline_set_site_blacklist'/>
+<use f='codebrowser/lib/pipeline.c' l='266' u='c' c='Curl_pipeline_set_server_blacklist'/>
+<use f='codebrowser/lib/pipeline.c' l='278' u='c' c='Curl_pipeline_set_server_blacklist'/>
+<use f='codebrowser/lib/url.c' l='429' u='c' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='3072' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3073' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='4344' u='c' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4345' u='c' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='6356' u='c' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6357' u='c' c='reuse_conn'/>
+<use f='codebrowser/lib/wildcard.c' l='53' u='c' c='Curl_wildcard_dtor'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='46' u='c' c='unit_stop'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='47' u='c' c='unit_stop'/>

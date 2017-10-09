@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='578' type='92'/>
+<doc f='codebrowser/include/curl/curl.h' l='578'>/* 92 - stream error in HTTP/2 framing layer
+                                    */</doc>
+<use f='codebrowser/lib/multi.c' l='1935' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/strerror.c' l='312' c='curl_easy_strerror'/>

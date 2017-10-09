@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1576' type='struct curl_slist *'/>
+<offset>7616</offset>
+<doc f='codebrowser/lib/urldata.h' l='1576'>/* list of names to add/remove from
+                                     DNS cache */</doc>
+<use f='codebrowser/lib/url.c' l='1823' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1824' u='r' c='Curl_setopt'/>

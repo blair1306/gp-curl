@@ -1,0 +1,22 @@
+<dec f='codebrowser/include/curl/curl.h' l='537' type='67'/>
+<doc f='codebrowser/include/curl/curl.h' l='537'>/* 67 - user, password or similar was not
+                                    accepted and we failed to login */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='437' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='447' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='590' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/ftp.c' l='2556' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2576' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/imap.c' l='587' u='r' c='imap_perform_authentication'/>
+<use f='codebrowser/lib/imap.c' l='976' u='r' c='imap_state_auth_resp'/>
+<use f='codebrowser/lib/imap.c' l='998' u='r' c='imap_state_login_resp'/>
+<use f='codebrowser/lib/imap.c' l='1074' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/pop3.c' l='533' u='r' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='795' u='r' c='pop3_state_auth_resp'/>
+<use f='codebrowser/lib/pop3.c' l='817' u='r' c='pop3_state_apop_resp'/>
+<use f='codebrowser/lib/pop3.c' l='838' u='r' c='pop3_state_user_resp'/>
+<use f='codebrowser/lib/pop3.c' l='861' u='r' c='pop3_state_pass_resp'/>
+<use f='codebrowser/lib/smb.c' l='260' u='r' c='smb_connect'/>
+<use f='codebrowser/lib/smb.c' l='701' u='r' c='smb_connection_state'/>
+<use f='codebrowser/lib/smtp.c' l='457' u='r' c='smtp_perform_authentication'/>
+<use f='codebrowser/lib/smtp.c' l='826' u='r' c='smtp_state_auth_resp'/>
+<use f='codebrowser/lib/strerror.c' l='252' c='curl_easy_strerror'/>

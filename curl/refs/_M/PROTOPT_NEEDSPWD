@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='709'/>
+<use f='codebrowser/lib/ftp.c' l='184' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='213' u='c'/>
+<use f='codebrowser/lib/url.c' l='5914' u='c'/>

@@ -1,0 +1,20 @@
+<def f='codebrowser/src/tool_cfgable.h' l='256' ll='277'/>
+<size>104</size>
+<mbr r='GlobalConfig::easy' o='0' t='CURL *'/>
+<mbr r='GlobalConfig::showerror' o='64' t='int'/>
+<mbr r='GlobalConfig::mute' o='96' t='_Bool'/>
+<mbr r='GlobalConfig::noprogress' o='104' t='_Bool'/>
+<mbr r='GlobalConfig::isatty' o='112' t='_Bool'/>
+<mbr r='GlobalConfig::errors' o='128' t='FILE *'/>
+<mbr r='GlobalConfig::errors_fopened' o='192' t='_Bool'/>
+<mbr r='GlobalConfig::trace_dump' o='256' t='char *'/>
+<mbr r='GlobalConfig::trace_stream' o='320' t='FILE *'/>
+<mbr r='GlobalConfig::trace_fopened' o='384' t='_Bool'/>
+<mbr r='GlobalConfig::tracetype' o='416' t='trace'/>
+<mbr r='GlobalConfig::tracetime' o='448' t='_Bool'/>
+<mbr r='GlobalConfig::progressmode' o='480' t='int'/>
+<mbr r='GlobalConfig::libcurl' o='512' t='char *'/>
+<mbr r='GlobalConfig::fail_early' o='576' t='_Bool'/>
+<mbr r='GlobalConfig::first' o='640' t='struct OperationConfig *'/>
+<mbr r='GlobalConfig::current' o='704' t='struct OperationConfig *'/>
+<mbr r='GlobalConfig::last' o='768' t='struct OperationConfig *'/>

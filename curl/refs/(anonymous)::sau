@@ -1,0 +1,12 @@
+<dec f='codebrowser/tests/server/server_sockaddr.h' l='37' type='struct sockaddr_un'/>
+<offset>0</offset>
+<use f='codebrowser/tests/server/sws.c' l='2048' u='m' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2050' u='m' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2167' u='a' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2167' u='r' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2168' u='m' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2169' u='m' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2169' u='m' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2170' u='r' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2182' u='r' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2211' u='r' c='main'/>

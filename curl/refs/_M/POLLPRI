@@ -1,0 +1,7 @@
+<dec f='include/x86_64-linux-gnu/bits/poll.h' l='26'/>
+<use f='codebrowser/lib/multi.c' l='1080' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1106' u='c'/>
+<use f='codebrowser/lib/select.c' l='195' u='c'/>
+<use f='codebrowser/lib/select.c' l='201' u='c'/>
+<use f='codebrowser/lib/select.c' l='242' u='c'/>
+<use f='codebrowser/lib/select.c' l='249' u='c'/>

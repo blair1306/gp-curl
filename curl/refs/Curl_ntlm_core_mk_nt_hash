@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/curl_ntlm_core.h' l='73' type='CURLcode Curl_ntlm_core_mk_nt_hash(struct Curl_easy * data, const char * password, unsigned char * ntbuffer)'/>
+<def f='codebrowser/lib/curl_ntlm_core.c' l='555' ll='626' type='CURLcode Curl_ntlm_core_mk_nt_hash(struct Curl_easy * data, const char * password, unsigned char * ntbuffer)'/>
+<doc f='codebrowser/lib/curl_ntlm_core.c' l='551'>/*
+ * Set up nt hashed passwords
+ * @unittest: 1600
+ */</doc>
+<use f='codebrowser/lib/smb.c' l='452' u='c' c='smb_send_setup'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='569' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='622' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='641' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='52' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='58' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='65' u='c' c='test'/>

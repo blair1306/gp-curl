@@ -1,0 +1,15 @@
+<dec f='include/x86_64-linux-gnu/sys/poll.h' l='42' type='short'/>
+<offset>32</offset>
+<doc f='include/x86_64-linux-gnu/sys/poll.h' l='42'>/* Types of events poller cares about.  */</doc>
+<use f='codebrowser/lib/multi.c' l='1054' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1060' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1076' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1078' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1080' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/multi.c' l='1082' u='w' c='curl_multi_wait'/>
+<use f='codebrowser/lib/select.c' l='195' u='w' c='Curl_socket_check'/>
+<use f='codebrowser/lib/select.c' l='201' u='w' c='Curl_socket_check'/>
+<use f='codebrowser/lib/select.c' l='207' u='w' c='Curl_socket_check'/>
+<use f='codebrowser/lib/telnet.c' l='1260' u='w' c='send_telnet_data'/>
+<use f='codebrowser/lib/telnet.c' l='1588' u='w' c='telnet_do'/>
+<use f='codebrowser/lib/telnet.c' l='1597' u='w' c='telnet_do'/>

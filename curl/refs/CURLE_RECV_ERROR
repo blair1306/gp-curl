@@ -1,0 +1,20 @@
+<dec f='codebrowser/include/curl/curl.h' l='525' type='56'/>
+<doc f='codebrowser/include/curl/curl.h' l='525'>/* 56 - failure in receiving network data */</doc>
+<use f='codebrowser/lib/ftp.c' l='694' u='r' c='Curl_GetFTPResponse'/>
+<use f='codebrowser/lib/http_proxy.c' l='337' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='568' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='624' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/multi.c' l='1908' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/pingpong.c' l='345' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pop3.c' l='885' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/sendf.c' l='462' u='r' c='Curl_recv_plain'/>
+<use f='codebrowser/lib/sendf.c' l='672' u='r' c='Curl_read_plain'/>
+<use f='codebrowser/lib/sendf.c' l='692' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/smb.c' l='808' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smb.c' l='819' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smtp.c' l='850' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='971' u='r' c='smtp_state_postdata_resp'/>
+<use f='codebrowser/lib/socks.c' l='481' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/strerror.c' l='212' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/transfer.c' l='682' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3507' u='r' c='ossl_recv'/>

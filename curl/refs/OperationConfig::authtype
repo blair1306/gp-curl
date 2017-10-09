@@ -1,0 +1,17 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='50' type='unsigned long'/>
+<offset>576</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='50'>/* auth bitmask */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='643' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='645' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='651' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='656' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='662' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='667' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='673' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='678' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='683' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='685' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='690' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='755' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1004' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1005' u='r' c='operate_do'/>

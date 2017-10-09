@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='446' type='void _ossl_old_des_ofb64_encrypt(unsigned char * in, unsigned char * out, long length, struct _ossl_old_des_ks_struct * schedule, _ossl_old_des_cblock * ivec, int * num)'/>

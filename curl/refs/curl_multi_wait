@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/multi.h' l='168' type='CURLMcode curl_multi_wait(CURLM * multi_handle, struct curl_waitfd * extra_fds, unsigned int extra_nfds, int timeout_ms, int * ret)'/>
+<use f='codebrowser/lib/easy.c' l='684' u='c' c='easy_transfer'/>
+<def f='codebrowser/lib/multi.c' l='969' ll='1119' type='CURLMcode curl_multi_wait(struct Curl_multi * multi, struct curl_waitfd * extra_fds, unsigned int extra_nfds, int timeout_ms, int * ret)'/>
+<use f='codebrowser/tests/libtest/lib1500.c' l='58' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1552.c' l='61' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1553.c' l='83' u='c' c='test'/>

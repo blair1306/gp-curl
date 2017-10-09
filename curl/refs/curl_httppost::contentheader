@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='167' type='struct curl_slist *'/>
+<offset>512</offset>
+<doc f='codebrowser/include/curl/curl.h' l='167'>/* list of extra headers for this form */</doc>
+<use f='codebrowser/lib/formdata.c' l='92' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='907' u='r' c='Curl_getformdata'/>

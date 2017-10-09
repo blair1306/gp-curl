@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/curl_config.h' l='880'/>
+<doc f='codebrowser/lib/curl_config.h' l='879'>/* The size of `int&apos;, as computed by sizeof. */</doc>
+<use f='codebrowser/lib/select.c' l='167' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='56' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='59' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='107' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='250' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='272' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='294' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='374' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='407' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='428' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='557' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='600' u='c'/>

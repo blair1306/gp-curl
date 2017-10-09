@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/http.h' l='141' type='curl_mimepart'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/http.h' l='140'>/* For FORM posting */</doc>
+<use f='codebrowser/lib/http.c' l='166' u='a' c='Curl_http_setup_conn'/>
+<use f='codebrowser/lib/http.c' l='1456' u='a' c='Curl_http_done'/>
+<use f='codebrowser/lib/http.c' l='1942' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1943' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1947' u='a' c='Curl_http'/>

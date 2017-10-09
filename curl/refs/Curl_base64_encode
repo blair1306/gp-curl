@@ -1,0 +1,56 @@
+<dec f='codebrowser/lib/curl_base64.h' l='25' type='CURLcode Curl_base64_encode(struct Curl_easy * data, const char * inputbuff, size_t insize, char ** outptr, size_t * outlen)'/>
+<def f='codebrowser/lib/base64.c' l='291' ll='296' type='CURLcode Curl_base64_encode(struct Curl_easy * data, const char * inputbuff, size_t insize, char ** outptr, size_t * outlen)'/>
+<doc f='codebrowser/lib/base64.c' l='274'>/*
+ * Curl_base64_encode()
+ *
+ * Given a pointer to an input buffer and an input size, encode it and
+ * return a pointer in *outptr to a newly allocated memory area holding
+ * encoded data. Size of encoded data is returned in variable pointed by
+ * outlen.
+ *
+ * Input length of 0 indicates input buffer holds a NUL-terminated string.
+ *
+ * Returns CURLE_OK on success, otherwise specific error code. Function
+ * output shall not be considered valid unless CURLE_OK is returned.
+ *
+ * When encoded data length is 0, returns NULL in *outptr.
+ *
+ * @unittest: 1302
+ */</doc>
+<doc f='codebrowser/lib/curl_base64.h' l='3'>/***************************************************************************
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ &lt;| |___
+ *                             \___|\___/|_| \_\_____|
+ *
+ * Copyright (C) 1998 - 2014, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.
+ *
+ * This software is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution. The terms
+ * are also available at https://curl.haxx.se/docs/copyright.html.
+ *
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the COPYING file.
+ *
+ * This software is distributed on an &quot;AS IS&quot; basis, WITHOUT WARRANTY OF ANY
+ * KIND, either express or implied.
+ *
+ ***************************************************************************/</doc>
+<use f='codebrowser/lib/http.c' l='289' u='c' c='http_output_basic'/>
+<use f='codebrowser/lib/vauth/cleartext.c' l='99' u='c' c='Curl_auth_create_plain_message'/>
+<use f='codebrowser/lib/vauth/cleartext.c' l='140' u='c' c='Curl_auth_create_login_message'/>
+<use f='codebrowser/lib/vauth/cram.c' l='131' u='c' c='Curl_auth_create_cram_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='490' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='687' u='c' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='465' u='c' c='Curl_auth_create_ntlm_type1_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='834' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/oauth2.c' l='81' u='c' c='Curl_auth_create_oauth_bearer_message'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='836' u='c' c='Curl_pin_peer_pubkey'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='56' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='62' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='68' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='74' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='80' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='99' u='c' c='test'/>

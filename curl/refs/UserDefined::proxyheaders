@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1561' type='struct curl_slist *'/>
+<offset>3392</offset>
+<doc f='codebrowser/lib/urldata.h' l='1561'>/* linked list of extra CONNECT headers */</doc>
+<use f='codebrowser/lib/http.c' l='193' u='r' c='Curl_checkProxyheaders'/>
+<use f='codebrowser/lib/http.c' l='1585' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1591' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/url.c' l='1209' u='w' c='Curl_setopt'/>

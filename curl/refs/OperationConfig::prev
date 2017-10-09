@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='252' type='struct OperationConfig *'/>
+<offset>8832</offset>
+<use f='codebrowser/src/tool_cfgable.c' l='167' u='r' c='config_free'/>
+<use f='codebrowser/src/tool_getparam.c' l='2131' u='w' c='parse_args'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='245' u='w' c='parseconfig'/>

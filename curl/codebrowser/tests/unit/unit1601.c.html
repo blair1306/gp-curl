@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>unit1601.c source code [codebrowser/tests/unit/unit1601.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/unit/unit1601.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>unit</a>/<a href='unit1601.c.html'>unit1601.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="curlcheck.h.html">"curlcheck.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../../lib/curl_md5.h.html">"curl_md5.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="unit_setup" title='unit_setup' data-type='CURLcode unit_setup()' data-ref="unit_setup">unit_setup</dfn>(<em>void</em>)</td></tr>
+<tr><th id="27">27</th><td>{</td></tr>
+<tr><th id="28">28</th><td>  <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="29">29</th><td>}</td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="unit_stop" title='unit_stop' data-type='void unit_stop()' data-ref="unit_stop">unit_stop</dfn>(<em>void</em>)</td></tr>
+<tr><th id="32">32</th><td>{</td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td>}</td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><a class="macro" href="curlcheck.h.html#86" title="int test(char *arg) { (void)arg; if(unit_setup()) { do { curl_mfprintf(stderr, &quot;%s:%d test failed: &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1601.c&quot;, 36, &quot;unit_setup() failure&quot;); unitfail++; } while(0); } else {" data-ref="_M/UNITTEST_START">UNITTEST_START</a></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="38">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_CRYPTO_AUTH">CURL_DISABLE_CRYPTO_AUTH</span></u></td></tr>
+<tr><th id="39">39</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col1 decl" id="1output" title='output' data-type='unsigned char [16]' data-ref="1output">output</dfn>[<var>16</var>];</td></tr>
+<tr><th id="40">40</th><td>  <em>unsigned</em> <em>char</em> *<dfn class="local col2 decl" id="2testp" title='testp' data-type='unsigned char *' data-ref="2testp">testp</dfn> = <a class="local col1 ref" href="#1output" title='output' data-ref="1output">output</a>;</td></tr>
+<tr><th id="41">41</th><td>  <a class="ref" href="../../lib/curl_md5.h.html#Curl_md5it" title='Curl_md5it' data-ref="Curl_md5it">Curl_md5it</a>(<a class="local col1 ref" href="#1output" title='output' data-ref="1output">output</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *)<q>"1"</q>);</td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><i>/* !checksrc! disable LONGLINE 2 */</i></td></tr>
+<tr><th id="44">44</th><td>  <a class="macro" href="curlcheck.h.html#39" title="if(testp &amp;&amp; memcmp(testp, &quot;\xc4\xca\x42\x38\xa0\xb9\x23\x82\x0d\xcc\x50\x9a\x6f\x75\x84\x9b&quot;, 16)) { curl_mfprintf(stderr, &quot;%s:%d Memory buffer mismatch size %d. &apos;%s&apos; is not\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1601.c&quot;, 45, 16, hexdump((const unsigned char *)&quot;\xc4\xca\x42\x38\xa0\xb9\x23\x82\x0d\xcc\x50\x9a\x6f\x75\x84\x9b&quot;, 16)); curl_mfprintf(stderr, &quot;%s:%d the same as &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1601.c&quot;, 45, hexdump((const unsigned char *)testp, 16)); unitfail++; }" data-ref="_M/verify_memory">verify_memory</a>(<a class="local col2 ref" href="#2testp" title='testp' data-ref="2testp">testp</a>,</td></tr>
+<tr><th id="45">45</th><td>                <q>"\xc4\xca\x42\x38\xa0\xb9\x23\x82\x0d\xcc\x50\x9a\x6f\x75\x84\x9b"</q>, <var>16</var>);</td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td>  <a class="ref" href="../../lib/curl_md5.h.html#Curl_md5it" title='Curl_md5it' data-ref="Curl_md5it">Curl_md5it</a>(<a class="local col1 ref" href="#1output" title='output' data-ref="1output">output</a>, (<em>const</em> <em>unsigned</em> <em>char</em> *)<q>"hello-you-fool"</q>);</td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td>  <a class="macro" href="curlcheck.h.html#39" title="if(testp &amp;&amp; memcmp(testp, &quot;\x88\x67\x0b\x6d\x5d\x74\x2f\xad\xa5\xcd\xf9\xb6\x82\x87\x5f\x22&quot;, 16)) { curl_mfprintf(stderr, &quot;%s:%d Memory buffer mismatch size %d. &apos;%s&apos; is not\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1601.c&quot;, 50, 16, hexdump((const unsigned char *)&quot;\x88\x67\x0b\x6d\x5d\x74\x2f\xad\xa5\xcd\xf9\xb6\x82\x87\x5f\x22&quot;, 16)); curl_mfprintf(stderr, &quot;%s:%d the same as &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1601.c&quot;, 50, hexdump((const unsigned char *)testp, 16)); unitfail++; }" data-ref="_M/verify_memory">verify_memory</a>(<a class="local col2 ref" href="#2testp" title='testp' data-ref="2testp">testp</a>,</td></tr>
+<tr><th id="50">50</th><td>                <q>"\x88\x67\x0b\x6d\x5d\x74\x2f\xad\xa5\xcd\xf9\xb6\x82\x87\x5f\x22"</q>, <var>16</var>);</td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="38">endif</span></u></td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td><a class="macro" href="curlcheck.h.html#95" title="goto unit_test_abort; unit_test_abort: unit_stop(); } return unitfail; }" data-ref="_M/UNITTEST_STOP">UNITTEST_STOP</a></td></tr>
+<tr><th id="55">55</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

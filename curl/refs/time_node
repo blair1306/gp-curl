@@ -1,0 +1,8 @@
+<def f='codebrowser/lib/urldata.h' l='1229' ll='1233'/>
+<size>48</size>
+<doc f='codebrowser/lib/urldata.h' l='1226'>/*
+ * One instance for each timeout an easy handle can set.
+ */</doc>
+<mbr r='time_node::list' o='0' t='struct curl_llist_element'/>
+<mbr r='time_node::time' o='192' t='struct curltime'/>
+<mbr r='time_node::eid' o='320' t='expire_id'/>

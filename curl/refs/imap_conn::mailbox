@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/imap.h' l='82' type='char *'/>
+<offset>1344</offset>
+<doc f='codebrowser/lib/imap.h' l='82'>/* The last selected mailbox */</doc>
+<use f='codebrowser/lib/imap.c' l='644' u='r' c='imap_perform_select'/>
+<use f='codebrowser/lib/imap.c' l='644' u='w' c='imap_perform_select'/>
+<use f='codebrowser/lib/imap.c' l='1062' u='w' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1523' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1524' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1622' u='r' c='imap_disconnect'/>
+<use f='codebrowser/lib/imap.c' l='1622' u='w' c='imap_disconnect'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='200' type='long'/>
+<offset>7296</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='200'>/* number of retries */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='839' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1525' u='r' c='operate_do'/>

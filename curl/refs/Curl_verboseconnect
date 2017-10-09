@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/url.h' l='78' type='void Curl_verboseconnect(struct connectdata * conn)'/>
+<use f='codebrowser/lib/connect.c' l='806' u='c' c='Curl_is_connected'/>
+<def f='codebrowser/lib/url.c' l='3960' ll='3969' type='void Curl_verboseconnect(struct connectdata * conn)'/>
+<use f='codebrowser/lib/url.c' l='6988' u='c' c='Curl_setup_conn'/>

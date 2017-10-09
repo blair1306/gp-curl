@@ -1,0 +1,8 @@
+<dec f='include/openssl/engine.h' l='514' type='int ENGINE_ctrl_cmd(ENGINE * e, const char * cmd_name, long i, void * p, void (*)(void) f, int cmd_optional)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='621' u='c' c='cert_stuff'/>
+<doc f='include/openssl/engine.h' l='508'>/*
+ * This function works like ENGINE_ctrl() with the exception of taking a
+ * command name instead of a command number, and can handle optional
+ * commands. See the comment on ENGINE_ctrl_cmd_string() for an explanation
+ * on how to use the cmd_name and cmd_optional.
+ */</doc>

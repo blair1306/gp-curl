@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1023' type='unsigned short'/>
+<offset>14592</offset>
+<use f='codebrowser/lib/url.c' l='3705' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3717' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3717' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='4334' u='w' c='allocate_conn'/>

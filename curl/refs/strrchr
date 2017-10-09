@@ -1,0 +1,22 @@
+<dec f='include/string.h' l='258' type='char * strrchr(const char * __s, int __c)'/>
+<use f='codebrowser/lib/cookie.c' l='660' u='c' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/ftp.c' l='1475' u='c' c='ftp_state_list'/>
+<use f='codebrowser/lib/ftp.c' l='3748' u='c' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='4181' u='c' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/strerror.c' l='738' u='c' c='Curl_strerror'/>
+<use f='codebrowser/lib/strerror.c' l='741' u='c' c='Curl_strerror'/>
+<use f='codebrowser/lib/transfer.c' l='1617' u='c' c='concat_url'/>
+<use f='codebrowser/lib/transfer.c' l='1646' u='c' c='concat_url'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='165' u='c' c='parse_filename'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='177' u='c' c='parse_filename'/>
+<use f='codebrowser/src/tool_operate.c' l='817' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operhlp.c' l='82' u='c' c='add_file_name_to_url'/>
+<use f='codebrowser/src/tool_operhlp.c' l='90' u='c' c='add_file_name_to_url'/>
+<use f='codebrowser/src/tool_operhlp.c' l='91' u='c' c='add_file_name_to_url'/>
+<use f='codebrowser/src/tool_operhlp.c' l='143' u='c' c='get_url_file_name'/>
+<use f='codebrowser/src/tool_operhlp.c' l='144' u='c' c='get_url_file_name'/>
+<use f='codebrowser/tests/server/rtspd.c' l='376' u='c' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='495' u='c' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='618' u='c' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='669' u='c' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1161' u='c' c='validate_access'/>

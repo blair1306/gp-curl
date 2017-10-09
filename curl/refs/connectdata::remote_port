@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/urldata.h' l='842' type='int'/>
+<offset>3264</offset>
+<doc f='codebrowser/lib/urldata.h' l='842'>/* the remote port, not the proxy port! */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='267' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='417' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/http.c' l='1821' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2064' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2066' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2078' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http_proxy.c' l='124' u='r' c='Curl_proxy_connect'/>
+<use f='codebrowser/lib/pipeline.c' l='180' u='r' c='Curl_pipeline_site_blacklisted'/>
+<use f='codebrowser/lib/pipeline.c' l='182' u='r' c='Curl_pipeline_site_blacklisted'/>
+<use f='codebrowser/lib/url.c' l='3748' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3748' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3928' u='r' c='Curl_connected_proxy'/>
+<use f='codebrowser/lib/url.c' l='4219' u='w' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='5774' u='w' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5795' u='r' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5831' u='w' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5843' u='r' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5844' u='w' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='6101' u='r' c='parse_connect_to_string'/>
+<use f='codebrowser/lib/url.c' l='6232' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6338' u='w' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6338' u='r' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6611' u='r' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2580' u='r' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='318' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='482' u='r' c='Curl_ssl_addsessionid'/>

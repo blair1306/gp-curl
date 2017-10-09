@@ -1,0 +1,6 @@
+<dec f='include/pthread.h' l='773' type='int pthread_mutex_unlock(pthread_mutex_t * __mutex)'/>
+<use f='codebrowser/lib/asyn-thread.c' l='293' macro='1' u='c'/>
+<use f='codebrowser/lib/asyn-thread.c' l='299' macro='1' u='c'/>
+<use f='codebrowser/lib/asyn-thread.c' l='356' macro='1' u='c'/>
+<use f='codebrowser/lib/asyn-thread.c' l='523' macro='1' u='c'/>
+<doc f='include/pthread.h' l='772'>/* Unlock a mutex.  */</doc>

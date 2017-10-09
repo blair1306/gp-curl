@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/pipeline.h' l='28' type='void Curl_move_handle_from_send_to_recv_pipe(struct Curl_easy * handle, struct connectdata * conn)'/>
+<use f='codebrowser/lib/multi.c' l='1806' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/pipeline.c' l='132' ll='162' type='void Curl_move_handle_from_send_to_recv_pipe(struct Curl_easy * handle, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/pipeline.c' l='126'>/* Move this transfer from the sending list to the receiving list.
+
+   Pay special attention to the new sending list &quot;leader&quot; as it needs to get
+   checked to update what sockets it acts on.
+
+*/</doc>

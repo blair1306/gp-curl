@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/mime.h' l='91' type='curl_mimepart *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/mime.h' l='91'>/* First part. */</doc>
+<use f='codebrowser/lib/mime.c' l='945' u='r' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='1062' u='r' c='mime_subparts_seek'/>
+<use f='codebrowser/lib/mime.c' l='1134' u='r' c='curl_mime_free'/>
+<use f='codebrowser/lib/mime.c' l='1135' u='r' c='curl_mime_free'/>
+<use f='codebrowser/lib/mime.c' l='1136' u='w' c='curl_mime_free'/>
+<use f='codebrowser/lib/mime.c' l='1160' u='w' c='curl_mime_init'/>
+<use f='codebrowser/lib/mime.c' l='1204' u='w' c='curl_mime_addpart'/>
+<use f='codebrowser/lib/mime.c' l='1508' u='r' c='multipart_size'/>
+<use f='codebrowser/lib/mime.c' l='1741' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/src/tool_setopt.c' l='429' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='431' u='r' c='libcurl_generate_mime'/>

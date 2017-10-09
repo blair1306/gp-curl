@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/url.h' l='46' type='void Curl_free_request_state(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/easy.c' l='976' u='c' c='curl_easy_reset'/>
+<use f='codebrowser/lib/multi.c' l='649' u='c' c='multi_done'/>
+<use f='codebrowser/lib/url.c' l='443' u='c' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='4890' u='c' c='setup_connection_internals'/>
+<def f='codebrowser/lib/url.c' l='4922' ll='4926' type='void Curl_free_request_state(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/url.c' l='4917'>/*
+ * Curl_free_request_state() should free temp data that was allocated in the
+ * Curl_easy for this single request.
+ */</doc>

@@ -1,0 +1,9 @@
+<dec f='codebrowser/include/curl/curl.h' l='532' type='63'/>
+<doc f='codebrowser/include/curl/curl.h' l='532'>/* 63 - Maximum file size exceeded */</doc>
+<use f='codebrowser/lib/ftp.c' l='2185' u='r' c='ftp_state_retr'/>
+<use f='codebrowser/lib/ftp.c' l='3157' c='ftp_done'/>
+<use f='codebrowser/lib/http.c' l='3513' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/smb.c' l='447' u='r' c='smb_send_setup'/>
+<use f='codebrowser/lib/smb.c' l='492' u='r' c='smb_send_tree_connect'/>
+<use f='codebrowser/lib/smb.c' l='517' u='r' c='smb_send_open'/>
+<use f='codebrowser/lib/strerror.c' l='234' c='curl_easy_strerror'/>

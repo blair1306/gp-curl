@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/http.h' l='64' type='CURLcode Curl_add_buffer_send(Curl_send_buffer * in, struct connectdata * conn, long * bytes_written, size_t included_body_bytes, int socketindex)'/>
+<def f='codebrowser/lib/http.c' l='1050' ll='1195' type='CURLcode Curl_add_buffer_send(Curl_send_buffer * in, struct connectdata * conn, long * bytes_written, size_t included_body_bytes, int socketindex)'/>
+<use f='codebrowser/lib/http.c' l='2472' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2494' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2563' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2719' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2736' u='c' c='Curl_http'/>
+<doc f='codebrowser/lib/http.c' l='1044'>/*
+ * Curl_add_buffer_send() sends a header buffer and frees all associated
+ * memory.  Body data may be appended to the header data if desired.
+ *
+ * Returns CURLcode
+ */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='300' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/rtsp.c' l='596' u='c' c='rtsp_do'/>

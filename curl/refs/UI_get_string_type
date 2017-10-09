@@ -1,0 +1,4 @@
+<dec f='include/openssl/ui.h' l='351' type='enum UI_string_types UI_get_string_type(UI_STRING * uis)'/>
+<doc f='include/openssl/ui.h' l='350'>/* Return type of the UI_STRING */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='508' u='c' c='ssl_ui_reader'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='527' u='c' c='ssl_ui_writer'/>

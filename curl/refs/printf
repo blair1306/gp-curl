@@ -1,0 +1,16 @@
+<dec f='include/stdio.h' l='362' type='int printf(const char *restrict __format)'/>
+<doc f='include/stdio.h' l='358'>/* Write formatted output to stdout.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='codebrowser/src/tool_help.c' l='515' u='c' c='tool_help'/>
+<use f='codebrowser/src/tool_help.c' l='527' u='c' c='tool_version_info'/>
+<use f='codebrowser/src/tool_help.c' l='532' u='c' c='tool_version_info'/>
+<use f='codebrowser/src/tool_help.c' l='535' u='c' c='tool_version_info'/>
+<use f='codebrowser/src/tool_help.c' l='537' u='c' c='tool_version_info'/>
+<use f='codebrowser/src/tool_help.c' l='543' u='c' c='tool_version_info'/>
+<use f='codebrowser/src/tool_help.c' l='546' u='c' c='tool_version_info'/>
+<use f='codebrowser/src/tool_help.c' l='568' u='c' c='tool_list_engines'/>
+<use f='codebrowser/tests/libtest/chkhostname.c' l='32' u='c' c='main'/>
+<use f='codebrowser/tests/libtest/chkhostname.c' l='37' u='c' c='main'/>
+<use f='codebrowser/tests/libtest/chkhostname.c' l='43' u='c' c='main'/>

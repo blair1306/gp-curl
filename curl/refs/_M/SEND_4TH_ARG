@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='123'/>
+<use f='codebrowser/lib/tftp.c' l='621' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='646' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='672' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='686' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='746' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='790' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='816' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='833' u='c'/>

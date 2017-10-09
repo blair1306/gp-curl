@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='498' type='31'/>
+<doc f='codebrowser/include/curl/curl.h' l='498'>/* 31 - the REST command failed */</doc>
+<use f='codebrowser/lib/ftp.c' l='1628' u='r' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/ftp.c' l='1646' u='r' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/ftp.c' l='2321' u='r' c='ftp_state_rest_resp'/>
+<use f='codebrowser/lib/strerror.c' l='149' c='curl_easy_strerror'/>

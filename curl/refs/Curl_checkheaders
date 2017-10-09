@@ -1,0 +1,63 @@
+<dec f='codebrowser/lib/transfer.h' l='25' type='char * Curl_checkheaders(const struct connectdata * conn, const char * thisheader)'/>
+<doc f='codebrowser/lib/transfer.h' l='3'>/***************************************************************************
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ &lt;| |___
+ *                             \___|\___/|_| \_\_____|
+ *
+ * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.
+ *
+ * This software is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution. The terms
+ * are also available at https://curl.haxx.se/docs/copyright.html.
+ *
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the COPYING file.
+ *
+ * This software is distributed on an &quot;AS IS&quot; basis, WITHOUT WARRANTY OF ANY
+ * KIND, either express or implied.
+ *
+ ***************************************************************************/</doc>
+<use f='codebrowser/lib/http.c' l='620' u='c' c='output_auth_headers'/>
+<use f='codebrowser/lib/http.c' l='1537' u='c' c='expect100'/>
+<use f='codebrowser/lib/http.c' l='1865' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1886' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1895' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1899' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1915' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1922' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1954' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1978' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2012' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2160' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2239' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2246' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2449' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2511' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2536' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2590' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2600' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2612' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='733' u='c' c='imap_perform_append'/>
+<use f='codebrowser/lib/rtsp.c' l='360' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='384' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='388' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='405' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='409' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='424' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='441' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='451' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='455' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='545' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='555' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='564' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/smtp.c' l='545' u='c' c='smtp_perform_mail'/>
+<def f='codebrowser/lib/transfer.c' l='92' ll='105' type='char * Curl_checkheaders(const struct connectdata * conn, const char * thisheader)'/>
+<doc f='codebrowser/lib/transfer.c' l='86'>/*
+ * checkheaders() checks the linked list of custom headers for a
+ * particular header (prefix).
+ *
+ * Returns a pointer to the first matching header or NULL if none matched.
+ */</doc>

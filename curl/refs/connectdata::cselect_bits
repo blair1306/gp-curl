@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1010' type='int'/>
+<offset>14464</offset>
+<doc f='codebrowser/lib/urldata.h' l='1010'>/* bitmask of socket events */</doc>
+<use f='codebrowser/lib/multi.c' l='2610' u='w' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2619' u='w' c='multi_socket'/>
+<use f='codebrowser/lib/transfer.c' l='856' u='w' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1102' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1104' u='w' c='Curl_readwrite'/>

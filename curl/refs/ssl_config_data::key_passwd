@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='239' type='char *'/>
+<offset>1280</offset>
+<doc f='codebrowser/lib/urldata.h' l='239'>/* plain text private key password */</doc>
+<use f='codebrowser/lib/url.c' l='6713' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6714' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2293' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2293' u='r' c='ossl_connect_step1'/>

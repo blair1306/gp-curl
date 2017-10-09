@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/strcase.h' l='48' type='void Curl_strntoupper(char * dest, const char * src, size_t n)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='472' u='c' c='Curl_ntlm_core_mk_lm_hash'/>
+<def f='codebrowser/lib/strcase.c' l='158' ll='166' type='void Curl_strntoupper(char * dest, const char * src, size_t n)'/>
+<doc f='codebrowser/lib/strcase.c' l='153'>/* Copy an upper case version of the string from src to dest.  The
+ * strings may overlap.  No more than n characters of the string are copied
+ * (including any NUL) and the destination string will NOT be
+ * NUL-terminated if that limit is reached.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='5060' u='c' c='detect_proxy'/>

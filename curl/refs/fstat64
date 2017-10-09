@@ -1,0 +1,10 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='219' type='int fstat(int __fd, struct stat * __buf)'/>
+<use f='codebrowser/lib/file.c' l='358' u='c' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='460' u='c' c='file_do'/>
+<use f='codebrowser/src/tool_operate.c' l='731' u='c' c='operate_do'/>
+<use f='codebrowser/tests/libtest/lib505.c' l='64' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib525.c' l='64' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib541.c' l='56' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='80' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib572.c' l='99' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='253' u='c' c='test'/>

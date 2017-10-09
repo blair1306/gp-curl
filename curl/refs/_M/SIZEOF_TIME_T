@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/curl_config.h' l='898'/>
+<use f='codebrowser/lib/curl_setup.h' l='602' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='897'>/* The size of `time_t&apos;, as computed by sizeof. */</doc>
+<use f='codebrowser/lib/parsedate.c' l='496' u='c'/>
+<use f='codebrowser/lib/select.c' l='167' u='c'/>
+<use f='codebrowser/lib/timeval.c' l='130' u='c'/>
+<use f='codebrowser/lib/timeval.c' l='151' u='c'/>

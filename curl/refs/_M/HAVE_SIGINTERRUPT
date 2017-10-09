@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_config.h' l='552'/>
+<doc f='codebrowser/lib/curl_config.h' l='551'>/* Define to 1 if you have the siginterrupt function. */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='203' u='a'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='149' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='208' u='a'/>
+<use f='codebrowser/tests/server/tftpd.c' l='225' u='a'/>

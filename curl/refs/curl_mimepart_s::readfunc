@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/mime.h' l='104' type='curl_read_callback'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/mime.h' l='104'>/* Read function. */</doc>
+<use f='codebrowser/lib/mime.c' l='753' u='r' c='read_part_content'/>
+<use f='codebrowser/lib/mime.c' l='754' u='r' c='read_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1080' u='w' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1271' u='w' c='curl_mime_data'/>
+<use f='codebrowser/lib/mime.c' l='1307' u='w' c='curl_mime_filedata'/>
+<use f='codebrowser/lib/mime.c' l='1400' u='w' c='curl_mime_data_cb'/>
+<use f='codebrowser/lib/mime.c' l='1447' u='w' c='Curl_mime_set_subparts'/>

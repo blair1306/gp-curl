@@ -1,0 +1,6 @@
+<dec f='include/openssl/ui.h' l='255' type='UI_METHOD * UI_OpenSSL()'/>
+<doc f='include/openssl/ui.h' l='254'>/* The method with all the built-in thingies */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='519' u='c' c='ssl_ui_reader'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='537' u='c' c='ssl_ui_writer'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='782' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='783' u='c' c='cert_stuff'/>

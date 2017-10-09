@@ -1,0 +1,5 @@
+<dec f='include/netinet/in.h' l='260' type='uint32_t'/>
+<offset>192</offset>
+<doc f='include/netinet/in.h' l='260'>/* IPv6 scope-id */</doc>
+<use f='codebrowser/lib/connect.c' l='394' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='1367' u='w' c='Curl_socket'/>

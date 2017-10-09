@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='101' type='CURLcode Curl_auth_decode_digest_http_message(const char * chlg, struct digestdata * digest)'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='100'>/* This is used to decode a HTTP DIGEST challenge message */</doc>
+<use f='codebrowser/lib/http_digest.c' l='67' u='c' c='Curl_input_digest'/>
+<def f='codebrowser/lib/vauth/digest.c' l='510' ll='635' type='CURLcode Curl_auth_decode_digest_http_message(const char * chlg, struct digestdata * digest)'/>
+<doc f='codebrowser/lib/vauth/digest.c' l='497'>/*
+ * Curl_auth_decode_digest_http_message()
+ *
+ * This is used to decode a HTTP DIGEST challenge message into the separate
+ * attributes.
+ *
+ * Parameters:
+ *
+ * chlg    [in]     - The challenge message.
+ * digest  [in/out] - The digest data struct being used and modified.
+ *
+ * Returns CURLE_OK on success.
+ */</doc>

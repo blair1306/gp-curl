@@ -1,0 +1,38 @@
+<dec f='codebrowser/lib/select.h' l='75' type='int Curl_socket_check(curl_socket_t readfd, curl_socket_t readfd2, curl_socket_t writefd, time_t timeout_ms)'/>
+<use f='codebrowser/lib/connect.c' l='764' macro='1' u='c'/>
+<use f='codebrowser/lib/connect.c' l='1408' macro='1' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='403' u='c' c='ReceivedServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='690' macro='1' u='c'/>
+<use f='codebrowser/lib/gopher.c' l='143' macro='1' u='c'/>
+<use f='codebrowser/lib/pingpong.c' l='113' u='c' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/rtsp.c' l='155' macro='1' u='c'/>
+<def f='codebrowser/lib/select.c' l='145' ll='376' type='int Curl_socket_check(curl_socket_t readfd0, curl_socket_t readfd1, curl_socket_t writefd, time_t timeout_ms)'/>
+<doc f='codebrowser/lib/select.c' l='125'>/*
+ * Wait for read or write events on a set of file descriptors. It uses poll()
+ * when a fine poll() is available, in order to avoid limits with FD_SETSIZE,
+ * otherwise select() is used.  An error is returned if select() is being used
+ * and a file descriptor is too large for FD_SETSIZE.
+ *
+ * A negative timeout value makes this function wait indefinitely,
+ * unless no valid file descriptor is given, when this happens the
+ * negative timeout is ignored and the function times out immediately.
+ *
+ * Return values:
+ *   -1 = system call error or fd &gt;= FD_SETSIZE
+ *    0 = timeout
+ *    [bitmask] = action as described below
+ *
+ * CURL_CSELECT_IN - first socket is readable
+ * CURL_CSELECT_IN2 - second socket is readable
+ * CURL_CSELECT_OUT - write socket is writable
+ * CURL_CSELECT_ERR - an error condition occurred
+ */</doc>
+<doc f='codebrowser/lib/select.c' l='145'>/* two sockets to read from */</doc>
+<use f='codebrowser/lib/socks.c' l='69' macro='1' u='c'/>
+<use f='codebrowser/lib/socks.c' l='416' macro='1' u='c'/>
+<use f='codebrowser/lib/socks.c' l='468' macro='1' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='1248' macro='1' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1126' u='c' c='Curl_readwrite'/>
+<use f='codebrowser/lib/url.c' l='3167' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1202' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3308' u='c' c='ossl_connect_common'/>

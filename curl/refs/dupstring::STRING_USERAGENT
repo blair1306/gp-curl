@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1431' type='36'/>
+<doc f='codebrowser/lib/urldata.h' l='1431'>/* User-Agent string */</doc>
+<use f='codebrowser/lib/http.c' l='2334' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2335' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http_proxy.c' l='267' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/rtsp.c' l='410' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='1186' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6958' u='r' c='Curl_setup_conn'/>
+<use f='codebrowser/lib/url.c' l='6961' u='r' c='Curl_setup_conn'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/http.h' l='136' type='const char *'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/http.h' l='136'>/* Accept: string */</doc>
+<use f='codebrowser/lib/http.c' l='2160' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2338' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2338' u='r' c='Curl_http'/>

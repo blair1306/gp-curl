@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/urldata.h' l='550' type='char *'/>
+<offset>1024</offset>
+<doc f='codebrowser/lib/urldata.h' l='550'>/* within buf */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='185' u='r' c='Curl_unencode_deflate_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='307' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='336' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='338' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='356' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='379' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='386' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='407' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/http.c' l='2963' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='2989' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='2992' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='2994' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3813' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_chunks.c' l='207' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='214' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/rtsp.c' l='644' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='651' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='726' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='514' u='w' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='572' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='657' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='661' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='674' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='792' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='796' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='834' u='w' c='readwrite_data'/>

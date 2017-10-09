@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/mime.h' l='109' type='struct curl_slist *'/>
+<offset>640</offset>
+<doc f='codebrowser/lib/mime.h' l='109'>/* Part headers. */</doc>
+<use f='codebrowser/lib/http.c' l='2525' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='734' u='a' c='imap_perform_append'/>
+<use f='codebrowser/lib/mime.c' l='837' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='1118' u='r' c='Curl_mime_cleanpart'/>
+<use f='codebrowser/lib/mime.c' l='1536' u='r' c='Curl_mime_size'/>
+<use f='codebrowser/lib/mime.c' l='1627' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1628' u='w' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1691' u='a' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1709' u='a' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1722' u='a' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1732' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/smtp.c' l='546' u='a' c='smtp_perform_mail'/>

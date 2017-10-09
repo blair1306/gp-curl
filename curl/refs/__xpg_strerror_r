@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='422' type='int strerror_r(int __errnum, char * __buf, size_t __buflen)'/>
+<use f='codebrowser/lib/strerror.c' l='693' u='c' c='Curl_strerror'/>

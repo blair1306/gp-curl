@@ -1,0 +1,5 @@
+<dec f='include/zlib.h' l='508' type='int inflateEnd(z_streamp strm)'/>
+<use f='codebrowser/lib/content_encoding.c' l='84' u='c' c='exit_zlib'/>
+<use f='codebrowser/lib/content_encoding.c' l='131' u='c' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='148' u='c' c='inflate_stream'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10043' u='c' c='hugehelp'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1378' type='struct curl_slist *'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/urldata.h' l='1378'>/* set to point to the set.resolve list when
+                                 this should be dealt with in pretransfer */</doc>
+<use f='codebrowser/lib/hostip.c' l='784' u='r' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/hostip.c' l='881' u='w' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/transfer.c' l='1370' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='1824' u='w' c='Curl_setopt'/>

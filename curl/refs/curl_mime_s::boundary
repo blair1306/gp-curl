@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/mime.h' l='93' type='char *'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/mime.h' l='93'>/* The part boundary. */</doc>
+<use f='codebrowser/lib/mime.c' l='957' u='r' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='958' u='r' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='1141' u='r' c='curl_mime_free'/>
+<use f='codebrowser/lib/mime.c' l='1164' u='w' c='curl_mime_init'/>
+<use f='codebrowser/lib/mime.c' l='1165' u='r' c='curl_mime_init'/>
+<use f='codebrowser/lib/mime.c' l='1170' u='r' c='curl_mime_init'/>
+<use f='codebrowser/lib/mime.c' l='1171' u='r' c='curl_mime_init'/>
+<use f='codebrowser/lib/mime.c' l='1505' u='r' c='multipart_size'/>
+<use f='codebrowser/lib/mime.c' l='1661' u='r' c='Curl_mime_prepare_headers'/>

@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/mime.h' l='112' type='char *'/>
+<offset>832</offset>
+<doc f='codebrowser/lib/mime.h' l='112'>/* Remote file name. */</doc>
+<use f='codebrowser/lib/mime.c' l='1123' u='r' c='Curl_mime_cleanpart'/>
+<use f='codebrowser/lib/mime.c' l='1123' u='w' c='Curl_mime_cleanpart'/>
+<use f='codebrowser/lib/mime.c' l='1236' u='r' c='curl_mime_filename'/>
+<use f='codebrowser/lib/mime.c' l='1236' u='w' c='curl_mime_filename'/>
+<use f='codebrowser/lib/mime.c' l='1237' u='w' c='curl_mime_filename'/>
+<use f='codebrowser/lib/mime.c' l='1240' u='w' c='curl_mime_filename'/>
+<use f='codebrowser/lib/mime.c' l='1241' u='r' c='curl_mime_filename'/>
+<use f='codebrowser/lib/mime.c' l='1646' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1649' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1653' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1664' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1670' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1674' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1685' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1686' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/src/tool_setopt.c' l='433' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='449' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='449' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='452' u='r' c='libcurl_generate_mime'/>

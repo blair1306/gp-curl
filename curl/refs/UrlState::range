@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/urldata.h' l='1336' type='char *'/>
+<offset>139776</offset>
+<doc f='codebrowser/lib/urldata.h' l='1336'>/* range, if used. See README for detailed specification on
+                  this syntax. */</doc>
+<use f='codebrowser/lib/file.c' l='141' u='r' c='file_range'/>
+<use f='codebrowser/lib/file.c' l='144' u='r' c='file_range'/>
+<use f='codebrowser/lib/file.c' l='468' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='3478' u='r' c='ftp_range'/>
+<use f='codebrowser/lib/ftp.c' l='3481' u='r' c='ftp_range'/>
+<use f='codebrowser/lib/http.c' l='2243' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2268' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2276' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/rtsp.c' l='441' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='443' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/transfer.c' l='625' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/url.c' l='436' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='4848' u='r' c='setup_range'/>
+<use f='codebrowser/lib/url.c' l='4851' u='w' c='setup_range'/>
+<use f='codebrowser/lib/url.c' l='4853' u='w' c='setup_range'/>
+<use f='codebrowser/lib/url.c' l='4855' u='r' c='setup_range'/>
+<use f='codebrowser/lib/url.c' l='4857' u='r' c='setup_range'/>

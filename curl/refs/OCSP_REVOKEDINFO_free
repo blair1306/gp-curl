@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='548' macro='1' type='void OCSP_REVOKEDINFO_free(OCSP_REVOKEDINFO * a)'/>

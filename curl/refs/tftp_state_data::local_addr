@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/tftp.c' l='136' type='struct Curl_sockaddr_storage'/>
+<use f='codebrowser/lib/tftp.c' l='1012' u='a' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1031' u='a' c='tftp_connect'/>
+<offset>576</offset>

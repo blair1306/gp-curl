@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='377' type='_Bool'/>
+<offset>8</offset>
+<use f='codebrowser/lib/connect.c' l='675' u='r' c='Curl_updateconninfo'/>
+<use f='codebrowser/lib/ftp.c' l='893' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/multi.c' l='1250' u='r' c='multi_do'/>
+<use f='codebrowser/lib/multi.c' l='1694' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/transfer.c' l='1951' u='r' c='Curl_retry_request'/>
+<use f='codebrowser/lib/url.c' l='6178' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6346' u='w' c='reuse_conn'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='460'/>
+<use f='codebrowser/lib/easy.c' l='1013' u='c'/>
+<use f='codebrowser/lib/easy.c' l='1017' u='c'/>
+<use f='codebrowser/lib/easy.c' l='1053' u='c'/>
+<use f='codebrowser/lib/easy.c' l='1054' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='158' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='954' u='c'/>
+<use f='codebrowser/lib/transfer.c' l='1252' u='c'/>

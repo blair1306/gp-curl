@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/http.h' l='137' type='curl_off_t'/>
+<offset>320</offset>
+<use f='codebrowser/lib/http.c' l='1462' u='r' c='Curl_http_done'/>
+<use f='codebrowser/lib/http.c' l='1475' u='r' c='Curl_http_done'/>
+<use f='codebrowser/lib/http.c' l='1823' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2479' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2500' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2570' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2726' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2743' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/rtsp.c' l='336' u='a' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='603' u='a' c='rtsp_do'/>

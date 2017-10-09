@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='396' type='0'/>
+<doc f='codebrowser/include/curl/curl.h' l='396'>/* I/O operation successful */</doc>
+<use f='codebrowser/tests/libtest/lib552.c' l='160' u='r' c='ioctl_callback'/>
+<use f='codebrowser/tests/libtest/lib555.c' l='72' u='r' c='ioctlcallback'/>

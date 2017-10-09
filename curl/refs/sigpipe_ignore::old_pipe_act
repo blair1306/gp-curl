@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/sigpipe.h' l='30' type='struct sigaction'/>
+<use f='codebrowser/lib/sigpipe.h' l='50' u='a' c='sigpipe_ignore'/>
+<use f='codebrowser/lib/sigpipe.h' l='51' u='a' c='sigpipe_ignore'/>
+<use f='codebrowser/lib/sigpipe.h' l='52' u='r' c='sigpipe_ignore'/>
+<use f='codebrowser/lib/sigpipe.h' l='68' u='a' c='sigpipe_restore'/>
+<offset>0</offset>

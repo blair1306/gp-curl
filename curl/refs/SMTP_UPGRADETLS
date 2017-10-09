@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/smtp.h' l='38' type='5'/>
+<doc f='codebrowser/lib/smtp.h' l='38'>/* asynchronously upgrade the connection to SSL/TLS
+                       (multi mode only) */</doc>
+<use f='codebrowser/lib/smtp.c' l='376' u='r' c='smtp_perform_upgrade_tls'/>
+<use f='codebrowser/lib/smtp.c' l='377' u='r' c='smtp_perform_upgrade_tls'/>
+<use f='codebrowser/lib/smtp.c' l='990' u='r' c='smtp_statemach_act'/>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>cookie.h source code [codebrowser/lib/cookie.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="Cookie,CookieInfo "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/cookie.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='cookie.h.html'>cookie.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_COOKIE_H">HEADER_CURL_COOKIE_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_COOKIE_H" data-ref="_M/HEADER_CURL_COOKIE_H">HEADER_CURL_COOKIE_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><b>struct</b> <dfn class="type def" id="Cookie" title='Cookie' data-ref="Cookie">Cookie</dfn> {</td></tr>
+<tr><th id="29">29</th><td>  <b>struct</b> <a class="type" href="#Cookie" title='Cookie' data-ref="Cookie">Cookie</a> *<dfn class="decl" id="Cookie::next" title='Cookie::next' data-ref="Cookie::next">next</dfn>; <i>/* next in the chain */</i></td></tr>
+<tr><th id="30">30</th><td>  <em>char</em> *<dfn class="decl" id="Cookie::name" title='Cookie::name' data-ref="Cookie::name">name</dfn>;        <i>/* &lt;this&gt; = value */</i></td></tr>
+<tr><th id="31">31</th><td>  <em>char</em> *<dfn class="decl" id="Cookie::value" title='Cookie::value' data-ref="Cookie::value">value</dfn>;       <i>/* name = &lt;this&gt; */</i></td></tr>
+<tr><th id="32">32</th><td>  <em>char</em> *<dfn class="decl" id="Cookie::path" title='Cookie::path' data-ref="Cookie::path">path</dfn>;         <i>/* path = &lt;this&gt; which is in Set-Cookie: */</i></td></tr>
+<tr><th id="33">33</th><td>  <em>char</em> *<dfn class="decl" id="Cookie::spath" title='Cookie::spath' data-ref="Cookie::spath">spath</dfn>;        <i>/* sanitized cookie path */</i></td></tr>
+<tr><th id="34">34</th><td>  <em>char</em> *<dfn class="decl" id="Cookie::domain" title='Cookie::domain' data-ref="Cookie::domain">domain</dfn>;      <i>/* domain = &lt;this&gt; */</i></td></tr>
+<tr><th id="35">35</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="Cookie::expires" title='Cookie::expires' data-ref="Cookie::expires">expires</dfn>;  <i>/* expires = &lt;this&gt; */</i></td></tr>
+<tr><th id="36">36</th><td>  <em>char</em> *<dfn class="decl" id="Cookie::expirestr" title='Cookie::expirestr' data-ref="Cookie::expirestr">expirestr</dfn>;   <i>/* the plain text version */</i></td></tr>
+<tr><th id="37">37</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Cookie::tailmatch" title='Cookie::tailmatch' data-ref="Cookie::tailmatch">tailmatch</dfn>;    <i>/* weather we do tail-matchning of the domain name */</i></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td>  <i>/* RFC 2109 keywords. Version=1 means 2109-compliant cookie sending */</i></td></tr>
+<tr><th id="40">40</th><td>  <em>char</em> *<dfn class="decl" id="Cookie::version" title='Cookie::version' data-ref="Cookie::version">version</dfn>;     <i>/* Version = &lt;value&gt; */</i></td></tr>
+<tr><th id="41">41</th><td>  <em>char</em> *<dfn class="decl" id="Cookie::maxage" title='Cookie::maxage' data-ref="Cookie::maxage">maxage</dfn>;      <i>/* Max-Age = &lt;value&gt; */</i></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Cookie::secure" title='Cookie::secure' data-ref="Cookie::secure">secure</dfn>;       <i>/* whether the 'secure' keyword was used */</i></td></tr>
+<tr><th id="44">44</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Cookie::livecookie" title='Cookie::livecookie' data-ref="Cookie::livecookie">livecookie</dfn>;   <i>/* updated from a server, not a stored file */</i></td></tr>
+<tr><th id="45">45</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Cookie::httponly" title='Cookie::httponly' data-ref="Cookie::httponly">httponly</dfn>;     <i>/* true if the httponly directive is present */</i></td></tr>
+<tr><th id="46">46</th><td>};</td></tr>
+<tr><th id="47">47</th><td></td></tr>
+<tr><th id="48">48</th><td><b>struct</b> <dfn class="type def" id="CookieInfo" title='CookieInfo' data-ref="CookieInfo">CookieInfo</dfn> {</td></tr>
+<tr><th id="49">49</th><td>  <i>/* linked list of cookies we know of */</i></td></tr>
+<tr><th id="50">50</th><td>  <b>struct</b> <a class="type" href="#Cookie" title='Cookie' data-ref="Cookie">Cookie</a> *<dfn class="decl" id="CookieInfo::cookies" title='CookieInfo::cookies' data-ref="CookieInfo::cookies">cookies</dfn>;</td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td>  <em>char</em> *<dfn class="decl" id="CookieInfo::filename" title='CookieInfo::filename' data-ref="CookieInfo::filename">filename</dfn>;  <i>/* file we read from/write to */</i></td></tr>
+<tr><th id="53">53</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="CookieInfo::running" title='CookieInfo::running' data-ref="CookieInfo::running">running</dfn>;    <i>/* state info, for cookie adding information */</i></td></tr>
+<tr><th id="54">54</th><td>  <em>long</em> <dfn class="decl" id="CookieInfo::numcookies" title='CookieInfo::numcookies' data-ref="CookieInfo::numcookies">numcookies</dfn>; <i>/* number of cookies in the "jar" */</i></td></tr>
+<tr><th id="55">55</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="CookieInfo::newsession" title='CookieInfo::newsession' data-ref="CookieInfo::newsession">newsession</dfn>; <i>/* new session, discard session cookies on load */</i></td></tr>
+<tr><th id="56">56</th><td>};</td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td><i>/* This is the maximum line length we accept for a cookie line. RFC 2109</i></td></tr>
+<tr><th id="59">59</th><td><i>   section 6.3 says:</i></td></tr>
+<tr><th id="60">60</th><td><i></i></td></tr>
+<tr><th id="61">61</th><td><i>   "at least 4096 bytes per cookie (as measured by the size of the characters</i></td></tr>
+<tr><th id="62">62</th><td><i>   that comprise the cookie non-terminal in the syntax description of the</i></td></tr>
+<tr><th id="63">63</th><td><i>   Set-Cookie header)"</i></td></tr>
+<tr><th id="64">64</th><td><i></i></td></tr>
+<tr><th id="65">65</th><td><i>   We allow max 5000 bytes cookie header. Max 4095 bytes length per cookie</i></td></tr>
+<tr><th id="66">66</th><td><i>   name and value. Name + value may not exceed 4096 bytes.</i></td></tr>
+<tr><th id="67">67</th><td><i></i></td></tr>
+<tr><th id="68">68</th><td><i>*/</i></td></tr>
+<tr><th id="69">69</th><td><u>#define <dfn class="macro" id="_M/MAX_COOKIE_LINE" data-ref="_M/MAX_COOKIE_LINE">MAX_COOKIE_LINE</dfn> 5000</u></td></tr>
+<tr><th id="70">70</th><td><u>#define <dfn class="macro" id="_M/MAX_COOKIE_LINE_TXT" data-ref="_M/MAX_COOKIE_LINE_TXT">MAX_COOKIE_LINE_TXT</dfn> "4999"</u></td></tr>
+<tr><th id="71">71</th><td></td></tr>
+<tr><th id="72">72</th><td><i>/* This is the maximum length of a cookie name or content we deal with: */</i></td></tr>
+<tr><th id="73">73</th><td><u>#define <dfn class="macro" id="_M/MAX_NAME" data-ref="_M/MAX_NAME">MAX_NAME</dfn> 4096</u></td></tr>
+<tr><th id="74">74</th><td><u>#define <dfn class="macro" id="_M/MAX_NAME_TXT" data-ref="_M/MAX_NAME_TXT">MAX_NAME_TXT</dfn> "4095"</u></td></tr>
+<tr><th id="75">75</th><td></td></tr>
+<tr><th id="76">76</th><td><b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy" id="Curl_easy">Curl_easy</a>;</td></tr>
+<tr><th id="77">77</th><td><i>/*</i></td></tr>
+<tr><th id="78">78</th><td><i> * Add a cookie to the internal list of cookies. The domain and path arguments</i></td></tr>
+<tr><th id="79">79</th><td><i> * are only used if the header boolean is TRUE.</i></td></tr>
+<tr><th id="80">80</th><td><i> */</i></td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td><b>struct</b> <a class="type" href="#Cookie" title='Cookie' data-ref="Cookie">Cookie</a> *<dfn class="decl" id="Curl_cookie_add" title='Curl_cookie_add' data-ref="Curl_cookie_add">Curl_cookie_add</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="193data" title='data' data-type='struct Curl_easy *' data-ref="193data">data</dfn>,</td></tr>
+<tr><th id="83">83</th><td>                               <b>struct</b> <a class="type" href="#CookieInfo" title='CookieInfo' data-ref="CookieInfo">CookieInfo</a> *, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col4 decl" id="194header" title='header' data-type='_Bool' data-ref="194header">header</dfn>, <em>char</em> *<dfn class="local col5 decl" id="195lineptr" title='lineptr' data-type='char *' data-ref="195lineptr">lineptr</dfn>,</td></tr>
+<tr><th id="84">84</th><td>                               <em>const</em> <em>char</em> *<dfn class="local col6 decl" id="196domain" title='domain' data-type='const char *' data-ref="196domain">domain</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="197path" title='path' data-type='const char *' data-ref="197path">path</dfn>);</td></tr>
+<tr><th id="85">85</th><td></td></tr>
+<tr><th id="86">86</th><td><b>struct</b> <a class="type" href="#Cookie" title='Cookie' data-ref="Cookie">Cookie</a> *<dfn class="decl" id="Curl_cookie_getlist" title='Curl_cookie_getlist' data-ref="Curl_cookie_getlist">Curl_cookie_getlist</dfn>(<b>struct</b> <a class="type" href="#CookieInfo" title='CookieInfo' data-ref="CookieInfo">CookieInfo</a> *, <em>const</em> <em>char</em> *,</td></tr>
+<tr><th id="87">87</th><td>                                   <em>const</em> <em>char</em> *, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span>);</td></tr>
+<tr><th id="88">88</th><td><em>void</em> <dfn class="decl" id="Curl_cookie_freelist" title='Curl_cookie_freelist' data-ref="Curl_cookie_freelist">Curl_cookie_freelist</dfn>(<b>struct</b> <a class="type" href="#Cookie" title='Cookie' data-ref="Cookie">Cookie</a> *<dfn class="local col8 decl" id="198cookies" title='cookies' data-type='struct Cookie *' data-ref="198cookies">cookies</dfn>);</td></tr>
+<tr><th id="89">89</th><td><em>void</em> <dfn class="decl" id="Curl_cookie_clearall" title='Curl_cookie_clearall' data-ref="Curl_cookie_clearall">Curl_cookie_clearall</dfn>(<b>struct</b> <a class="type" href="#CookieInfo" title='CookieInfo' data-ref="CookieInfo">CookieInfo</a> *<dfn class="local col9 decl" id="199cookies" title='cookies' data-type='struct CookieInfo *' data-ref="199cookies">cookies</dfn>);</td></tr>
+<tr><th id="90">90</th><td><em>void</em> <dfn class="decl" id="Curl_cookie_clearsess" title='Curl_cookie_clearsess' data-ref="Curl_cookie_clearsess">Curl_cookie_clearsess</dfn>(<b>struct</b> <a class="type" href="#CookieInfo" title='CookieInfo' data-ref="CookieInfo">CookieInfo</a> *<dfn class="local col0 decl" id="200cookies" title='cookies' data-type='struct CookieInfo *' data-ref="200cookies">cookies</dfn>);</td></tr>
+<tr><th id="91">91</th><td></td></tr>
+<tr><th id="92">92</th><td><u>#<span data-ppcond="92">if</span> defined(<span class="macro" data-ref="_M/CURL_DISABLE_HTTP">CURL_DISABLE_HTTP</span>) || defined(<span class="macro" data-ref="_M/CURL_DISABLE_COOKIES">CURL_DISABLE_COOKIES</span>)</u></td></tr>
+<tr><th id="93">93</th><td><u>#define Curl_cookie_list(x) NULL</u></td></tr>
+<tr><th id="94">94</th><td><u>#define Curl_cookie_loadfiles(x) Curl_nop_stmt</u></td></tr>
+<tr><th id="95">95</th><td><u>#define Curl_cookie_init(x,y,z,w) NULL</u></td></tr>
+<tr><th id="96">96</th><td><u>#define Curl_cookie_cleanup(x) Curl_nop_stmt</u></td></tr>
+<tr><th id="97">97</th><td><u>#define Curl_flush_cookies(x,y) Curl_nop_stmt</u></td></tr>
+<tr><th id="98">98</th><td><u>#<span data-ppcond="92">else</span></u></td></tr>
+<tr><th id="99">99</th><td><em>void</em> <dfn class="decl" id="Curl_flush_cookies" title='Curl_flush_cookies' data-ref="Curl_flush_cookies">Curl_flush_cookies</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="201data" title='data' data-type='struct Curl_easy *' data-ref="201data">data</dfn>, <em>int</em> <dfn class="local col2 decl" id="202cleanup" title='cleanup' data-type='int' data-ref="202cleanup">cleanup</dfn>);</td></tr>
+<tr><th id="100">100</th><td><em>void</em> <dfn class="decl" id="Curl_cookie_cleanup" title='Curl_cookie_cleanup' data-ref="Curl_cookie_cleanup">Curl_cookie_cleanup</dfn>(<b>struct</b> <a class="type" href="#CookieInfo" title='CookieInfo' data-ref="CookieInfo">CookieInfo</a> *);</td></tr>
+<tr><th id="101">101</th><td><b>struct</b> <a class="type" href="#CookieInfo" title='CookieInfo' data-ref="CookieInfo">CookieInfo</a> *<dfn class="decl" id="Curl_cookie_init" title='Curl_cookie_init' data-ref="Curl_cookie_init">Curl_cookie_init</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="203data" title='data' data-type='struct Curl_easy *' data-ref="203data">data</dfn>,</td></tr>
+<tr><th id="102">102</th><td>                                    <em>const</em> <em>char</em> *, <b>struct</b> <a class="type" href="#CookieInfo" title='CookieInfo' data-ref="CookieInfo">CookieInfo</a> *, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span>);</td></tr>
+<tr><th id="103">103</th><td><b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="decl" id="Curl_cookie_list" title='Curl_cookie_list' data-ref="Curl_cookie_list">Curl_cookie_list</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col4 decl" id="204data" title='data' data-type='struct Curl_easy *' data-ref="204data">data</dfn>);</td></tr>
+<tr><th id="104">104</th><td><em>void</em> <dfn class="decl" id="Curl_cookie_loadfiles" title='Curl_cookie_loadfiles' data-ref="Curl_cookie_loadfiles">Curl_cookie_loadfiles</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="205data" title='data' data-type='struct Curl_easy *' data-ref="205data">data</dfn>);</td></tr>
+<tr><th id="105">105</th><td><u>#<span data-ppcond="92">endif</span></u></td></tr>
+<tr><th id="106">106</th><td></td></tr>
+<tr><th id="107">107</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_COOKIE_H */</u></td></tr>
+<tr><th id="108">108</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='asyn-thread.c.html'>codebrowser/lib/asyn-thread.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/des.h' l='219' type='unsigned int DES_quad_cksum(const unsigned char * input, DES_cblock * output, long length, int out_count, DES_cblock * seed)'/>

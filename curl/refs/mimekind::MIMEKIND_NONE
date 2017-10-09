@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/mime.h' l='35' type='0'/>
+<doc f='codebrowser/lib/mime.h' l='35'>/* Part not set. */</doc>
+<use f='codebrowser/lib/imap.c' l='723' u='r' c='imap_perform_append'/>
+<use f='codebrowser/lib/imap.c' l='1458' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1460' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1530' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/mime.c' l='1088' u='r' c='cleanup_part_content'/>
+<use f='codebrowser/lib/smtp.c' l='535' u='r' c='smtp_perform_mail'/>

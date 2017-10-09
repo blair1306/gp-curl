@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>hostsyn.c source code [codebrowser/lib/hostsyn.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/hostsyn.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='hostsyn.c.html'>hostsyn.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2015, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <a class="macro" href="curl_config.h.html#429" data-ref="_M/HAVE_NETINET_IN_H">HAVE_NETINET_IN_H</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../include/netinet/in.h.html">&lt;netinet/in.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="28">ifdef</span> <a class="macro" href="curl_config.h.html#426" data-ref="_M/HAVE_NETDB_H">HAVE_NETDB_H</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../../include/netdb.h.html">&lt;netdb.h&gt;</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="28">endif</span></u></td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="31">ifdef</span> <a class="macro" href="curl_config.h.html#116" data-ref="_M/HAVE_ARPA_INET_H">HAVE_ARPA_INET_H</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="../../include/arpa/inet.h.html">&lt;arpa/inet.h&gt;</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="31">endif</span></u></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifdef</span> <span class="macro" data-ref="_M/__VMS">__VMS</span></u></td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;in.h&gt;</u></td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;inet.h&gt;</u></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="34">endif</span></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">ifdef</span> <span class="macro" data-ref="_M/HAVE_PROCESS_H">HAVE_PROCESS_H</span></u></td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;process.h&gt;</u></td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="39">endif</span></u></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="45">45</th><td><u>#include <a href="hostip.h.html">"hostip.h"</a></u></td></tr>
+<tr><th id="46">46</th><td><u>#include <a href="hash.h.html">"hash.h"</a></u></td></tr>
+<tr><th id="47">47</th><td><u>#include <a href="share.h.html">"share.h"</a></u></td></tr>
+<tr><th id="48">48</th><td><u>#include <a href="strerror.h.html">"strerror.h"</a></u></td></tr>
+<tr><th id="49">49</th><td><u>#include <a href="url.h.html">"url.h"</a></u></td></tr>
+<tr><th id="50">50</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="51">51</th><td><i>/* The last #include file should be: */</i></td></tr>
+<tr><th id="52">52</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td><i>/***********************************************************************</i></td></tr>
+<tr><th id="55">55</th><td><i> * Only for builds using synchronous name resolves</i></td></tr>
+<tr><th id="56">56</th><td><i> **********************************************************************/</i></td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="57">ifdef</span> <span class="macro" data-ref="_M/CURLRES_SYNCH">CURLRES_SYNCH</span></u></td></tr>
+<tr><th id="58">58</th><td></td></tr>
+<tr><th id="59">59</th><td><i>/*</i></td></tr>
+<tr><th id="60">60</th><td><i> * Function provided by the resolver backend to set DNS servers to use.</i></td></tr>
+<tr><th id="61">61</th><td><i> */</i></td></tr>
+<tr><th id="62">62</th><td>CURLcode Curl_set_dns_servers(<b>struct</b> Curl_easy *data,</td></tr>
+<tr><th id="63">63</th><td>                              <em>char</em> *servers)</td></tr>
+<tr><th id="64">64</th><td>{</td></tr>
+<tr><th id="65">65</th><td>  (<em>void</em>)data;</td></tr>
+<tr><th id="66">66</th><td>  (<em>void</em>)servers;</td></tr>
+<tr><th id="67">67</th><td>  <b>return</b> CURLE_NOT_BUILT_IN;</td></tr>
+<tr><th id="68">68</th><td></td></tr>
+<tr><th id="69">69</th><td>}</td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td><i>/*</i></td></tr>
+<tr><th id="72">72</th><td><i> * Function provided by the resolver backend to set</i></td></tr>
+<tr><th id="73">73</th><td><i> * outgoing interface to use for DNS requests</i></td></tr>
+<tr><th id="74">74</th><td><i> */</i></td></tr>
+<tr><th id="75">75</th><td>CURLcode Curl_set_dns_interface(<b>struct</b> Curl_easy *data,</td></tr>
+<tr><th id="76">76</th><td>                                <em>const</em> <em>char</em> *interf)</td></tr>
+<tr><th id="77">77</th><td>{</td></tr>
+<tr><th id="78">78</th><td>  (<em>void</em>)data;</td></tr>
+<tr><th id="79">79</th><td>  (<em>void</em>)interf;</td></tr>
+<tr><th id="80">80</th><td>  <b>return</b> CURLE_NOT_BUILT_IN;</td></tr>
+<tr><th id="81">81</th><td>}</td></tr>
+<tr><th id="82">82</th><td></td></tr>
+<tr><th id="83">83</th><td><i>/*</i></td></tr>
+<tr><th id="84">84</th><td><i> * Function provided by the resolver backend to set</i></td></tr>
+<tr><th id="85">85</th><td><i> * local IPv4 address to use as source address for DNS requests</i></td></tr>
+<tr><th id="86">86</th><td><i> */</i></td></tr>
+<tr><th id="87">87</th><td>CURLcode Curl_set_dns_local_ip4(<b>struct</b> Curl_easy *data,</td></tr>
+<tr><th id="88">88</th><td>                                <em>const</em> <em>char</em> *local_ip4)</td></tr>
+<tr><th id="89">89</th><td>{</td></tr>
+<tr><th id="90">90</th><td>  (<em>void</em>)data;</td></tr>
+<tr><th id="91">91</th><td>  (<em>void</em>)local_ip4;</td></tr>
+<tr><th id="92">92</th><td>  <b>return</b> CURLE_NOT_BUILT_IN;</td></tr>
+<tr><th id="93">93</th><td>}</td></tr>
+<tr><th id="94">94</th><td></td></tr>
+<tr><th id="95">95</th><td><i>/*</i></td></tr>
+<tr><th id="96">96</th><td><i> * Function provided by the resolver backend to set</i></td></tr>
+<tr><th id="97">97</th><td><i> * local IPv6 address to use as source address for DNS requests</i></td></tr>
+<tr><th id="98">98</th><td><i> */</i></td></tr>
+<tr><th id="99">99</th><td>CURLcode Curl_set_dns_local_ip6(<b>struct</b> Curl_easy *data,</td></tr>
+<tr><th id="100">100</th><td>                                <em>const</em> <em>char</em> *local_ip6)</td></tr>
+<tr><th id="101">101</th><td>{</td></tr>
+<tr><th id="102">102</th><td>  (<em>void</em>)data;</td></tr>
+<tr><th id="103">103</th><td>  (<em>void</em>)local_ip6;</td></tr>
+<tr><th id="104">104</th><td>  <b>return</b> CURLE_NOT_BUILT_IN;</td></tr>
+<tr><th id="105">105</th><td>}</td></tr>
+<tr><th id="106">106</th><td></td></tr>
+<tr><th id="107">107</th><td><u>#<span data-ppcond="57">endif</span> /* truly sync */</u></td></tr>
+<tr><th id="108">108</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

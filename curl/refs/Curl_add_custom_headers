@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/http.h' l='72' type='CURLcode Curl_add_custom_headers(struct connectdata * conn, _Bool is_connect, Curl_send_buffer * req_buffer)'/>
+<def f='codebrowser/lib/http.c' l='1559' ll='1682' type='CURLcode Curl_add_custom_headers(struct connectdata * conn, _Bool is_connect, Curl_send_buffer * req_buffer)'/>
+<use f='codebrowser/lib/http.c' l='2428' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http_proxy.c' l='290' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/rtsp.c' l='522' u='c' c='rtsp_do'/>

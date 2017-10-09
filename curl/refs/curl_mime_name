@@ -1,0 +1,13 @@
+<dec f='codebrowser/include/curl/curl.h' l='2013' type='CURLcode curl_mime_name(curl_mimepart * part, const char * name)'/>
+<use f='codebrowser/lib/formdata.c' l='835' u='c' c='setname'/>
+<use f='codebrowser/lib/formdata.c' l='841' u='c' c='setname'/>
+<def f='codebrowser/lib/mime.c' l='1213' ll='1228' type='CURLcode curl_mime_name(curl_mimepart * part, const char * name)'/>
+<doc f='codebrowser/lib/mime.c' l='1212'>/* Set mime part name. */</doc>
+<use f='codebrowser/src/tool_formparse.c' l='736' u='c' c='formparse'/>
+<use f='codebrowser/tests/libtest/lib1553.c' l='64' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='116' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='125' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='154' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='172' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='196' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='219' u='c' c='once'/>

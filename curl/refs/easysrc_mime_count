@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_easysrc.h' l='35' type='int'/>
+<def f='codebrowser/src/tool_easysrc.c' l='45' type='int'/>
+<doc f='codebrowser/src/tool_easysrc.h' l='35'>/* Number of curl_mime variables */</doc>
+<use f='codebrowser/src/tool_setopt.c' l='422' u='w' c='libcurl_generate_mime'/>

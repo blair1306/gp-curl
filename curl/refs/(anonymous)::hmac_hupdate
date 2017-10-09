@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='38' type='HMAC_hupdate_func'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/curl_hmac.h' l='38'>/* Update context with data. */</doc>
+<use f='codebrowser/lib/hmac.c' l='76' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='89' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='91' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='95' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='96' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='108' u='r' c='Curl_HMAC_update'/>
+<use f='codebrowser/lib/hmac.c' l='125' u='r' c='Curl_HMAC_final'/>

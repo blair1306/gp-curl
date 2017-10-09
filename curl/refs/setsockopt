@@ -1,0 +1,18 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='226' type='int setsockopt(int __fd, int __level, int __optname, const void * __optval, socklen_t __optlen)'/>
+<doc f='include/x86_64-linux-gnu/sys/socket.h' l='223'>/* Set socket FD&apos;s option OPTNAME at protocol level LEVEL
+   to *OPTVAL (which is OPTLEN bytes long).
+   Returns 0 on success, -1 for errors.  */</doc>
+<use f='codebrowser/lib/connect.c' l='113' u='c' c='tcpkeepalive'/>
+<use f='codebrowser/lib/connect.c' l='137' u='c' c='tcpkeepalive'/>
+<use f='codebrowser/lib/connect.c' l='145' u='c' c='tcpkeepalive'/>
+<use f='codebrowser/lib/connect.c' l='321' u='c' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='883' u='c' c='Curl_tcpnodelay'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1300' u='c' c='main'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1382' u='c' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1210' u='c' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sws.c' l='1356' u='c' c='connect_to'/>
+<use f='codebrowser/tests/server/sws.c' l='1565' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1864' u='c' c='accept_connection'/>
+<use f='codebrowser/tests/server/sws.c' l='1894' u='c' c='accept_connection'/>
+<use f='codebrowser/tests/server/sws.c' l='2134' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='781' u='c' c='main'/>

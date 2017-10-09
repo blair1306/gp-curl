@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/pop3.h' l='33' type='1'/>
+<doc f='codebrowser/lib/pop3.h' l='33'>/* waiting for the initial greeting immediately after
+                        a connect */</doc>
+<use f='codebrowser/lib/pop3.c' l='955' c='pop3_statemach_act'/>
+<use f='codebrowser/lib/pop3.c' l='1092' u='r' c='pop3_connect'/>

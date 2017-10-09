@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/http_digest.h' l='27' type='CURLcode Curl_input_digest(struct connectdata * conn, _Bool proxy, const char * header)'/>
+<use f='codebrowser/lib/http.c' l='865' u='c' c='Curl_http_input_auth'/>
+<doc f='codebrowser/lib/http_digest.h' l='26'>/* this is for digest header input */</doc>
+<def f='codebrowser/lib/http_digest.c' l='43' ll='68' type='CURLcode Curl_input_digest(struct connectdata * conn, _Bool proxy, const char * header)'/>
+<doc f='codebrowser/lib/http_digest.c' l='36'>/* Test example headers:
+
+WWW-Authenticate: Digest realm=&quot;testrealm&quot;, nonce=&quot;1053604598&quot;
+Proxy-Authenticate: Digest realm=&quot;testrealm&quot;, nonce=&quot;1053604598&quot;
+
+*/</doc>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/multiif.h' l='32' type='_Bool Curl_pipeline_wanted(const struct Curl_multi * multi, int bits)'/>
+<def f='codebrowser/lib/multi.c' l='791' ll='794' macro='1' type='_Bool Curl_pipeline_wanted(const struct Curl_multi * multi, int bits)'/>
+<use f='codebrowser/lib/multi.c' l='1467' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1532' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1609' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1626' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/sendf.c' l='699' u='c' c='Curl_read'/>
+<use f='codebrowser/lib/transfer.c' l='547' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='699' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='722' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/url.c' l='3147' u='c' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3190' u='c' c='IsPipeliningPossible'/>
+<use f='codebrowser/lib/url.c' l='3197' u='c' c='IsPipeliningPossible'/>
+<use f='codebrowser/lib/url.c' l='3549' u='c' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3555' u='c' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='4311' u='c' c='allocate_conn'/>

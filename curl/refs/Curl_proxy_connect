@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/http_proxy.h' l='37' type='CURLcode Curl_proxy_connect(struct connectdata * conn, int sockindex)'/>
+<use f='codebrowser/lib/ftp.c' l='3570' u='c' c='ftp_do_more'/>
+<use f='codebrowser/lib/http.c' l='1346' u='c' c='Curl_http_connect'/>
+<def f='codebrowser/lib/http_proxy.c' l='72' ll='136' type='CURLcode Curl_proxy_connect(struct connectdata * conn, int sockindex)'/>
+<use f='codebrowser/lib/url.c' l='4057' u='c' c='Curl_protocol_connect'/>

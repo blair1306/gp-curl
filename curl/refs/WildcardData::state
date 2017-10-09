@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/wildcard.h' l='47' type='curl_wildcard_states'/>
+<offset>0</offset>
+<use f='codebrowser/lib/ftp.c' l='3752' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3769' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3838' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3841' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3844' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3855' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3859' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3864' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3893' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3901' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3916' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3927' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3938' u='w' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3969' u='r' c='ftp_do'/>
+<use f='codebrowser/lib/ftp.c' l='3970' u='r' c='ftp_do'/>
+<use f='codebrowser/lib/multi.c' l='1666' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1666' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2034' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/transfer.c' l='1405' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/wildcard.c' l='36' u='w' c='Curl_wildcard_init'/>
+<use f='codebrowser/lib/wildcard.c' l='62' u='w' c='Curl_wildcard_dtor'/>

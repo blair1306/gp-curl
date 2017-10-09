@@ -1,0 +1,417 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>util.c source code [codebrowser/tests/server/util.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/server/util.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>server</a>/<a href='util.c.html'>util.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="server_setup.h.html">"server_setup.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#<span data-ppcond="24">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#558" data-ref="_M/HAVE_SIGNAL_H">HAVE_SIGNAL_H</a></u></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../../../include/signal.h.html">&lt;signal.h&gt;</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#<span data-ppcond="24">endif</span></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#429" data-ref="_M/HAVE_NETINET_IN_H">HAVE_NETINET_IN_H</a></u></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="../../../include/netinet/in.h.html">&lt;netinet/in.h&gt;</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="27">endif</span></u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifdef</span> <span class="macro" data-ref="_M/_XOPEN_SOURCE_EXTENDED">_XOPEN_SOURCE_EXTENDED</span></u></td></tr>
+<tr><th id="31">31</th><td><i>/* This define is "almost" required to build on HPUX 11 */</i></td></tr>
+<tr><th id="32">32</th><td><u>#include &lt;arpa/inet.h&gt;</u></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="30">endif</span></u></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#426" data-ref="_M/HAVE_NETDB_H">HAVE_NETDB_H</a></u></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="../../../include/netdb.h.html">&lt;netdb.h&gt;</a></u></td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="34">endif</span></u></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="37">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#483" data-ref="_M/HAVE_POLL_H">HAVE_POLL_H</a></u></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="../../../include/poll.h.html">&lt;poll.h&gt;</a></u></td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="37">elif</span> defined(HAVE_SYS_POLL_H)</u></td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;sys/poll.h&gt;</u></td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="37">endif</span></u></td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="42">ifdef</span> <span class="macro" data-ref="_M/__MINGW32__">__MINGW32__</span></u></td></tr>
+<tr><th id="43">43</th><td><u>#include &lt;w32api.h&gt;</u></td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="42">endif</span></u></td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td><u>#define <dfn class="macro" id="_M/ENABLE_CURLX_PRINTF" data-ref="_M/ENABLE_CURLX_PRINTF">ENABLE_CURLX_PRINTF</dfn></u></td></tr>
+<tr><th id="47">47</th><td><i>/* make the curlx header define all printf() functions to use the curlx_*</i></td></tr>
+<tr><th id="48">48</th><td><i>   versions instead */</i></td></tr>
+<tr><th id="49">49</th><td><u>#include <a href="../../lib/curlx.h.html">"curlx.h"</a> /* from the private lib dir */</u></td></tr>
+<tr><th id="50">50</th><td><u>#include <a href="getpart.h.html">"getpart.h"</a></u></td></tr>
+<tr><th id="51">51</th><td><u>#include <a href="util.h.html">"util.h"</a></u></td></tr>
+<tr><th id="52">52</th><td><u>#include <a href="../../lib/timeval.h.html">"timeval.h"</a></u></td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="54">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="55">55</th><td><u>#undef  EINTR</u></td></tr>
+<tr><th id="56">56</th><td><u>#define EINTR    4 /* errno.h value */</u></td></tr>
+<tr><th id="57">57</th><td><u>#undef  EINVAL</u></td></tr>
+<tr><th id="58">58</th><td><u>#define EINVAL  22 /* errno.h value */</u></td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="54">endif</span></u></td></tr>
+<tr><th id="60">60</th><td></td></tr>
+<tr><th id="61">61</th><td><i>/* MinGW with w32api version &lt; 3.6 declared in6addr_any as extern,</i></td></tr>
+<tr><th id="62">62</th><td><i>   but lacked the definition */</i></td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="63">if</span> defined(<a class="macro" href="../../lib/curl_config.h.html#86" data-ref="_M/ENABLE_IPV6">ENABLE_IPV6</a>) &amp;&amp; defined(<span class="macro" data-ref="_M/__MINGW32__">__MINGW32__</span>)</u></td></tr>
+<tr><th id="64">64</th><td><u>#if (__W32API_MAJOR_VERSION &lt; 3) || \</u></td></tr>
+<tr><th id="65">65</th><td><u>    ((__W32API_MAJOR_VERSION == 3) &amp;&amp; (__W32API_MINOR_VERSION &lt; 6))</u></td></tr>
+<tr><th id="66">66</th><td><em>const</em> <b>struct</b> in6_addr in6addr_any = {{ IN6ADDR_ANY_INIT }};</td></tr>
+<tr><th id="67">67</th><td><u>#endif /* w32api &lt; 3.6 */</u></td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="63">endif</span> /* ENABLE_IPV6 &amp;&amp; __MINGW32__*/</u></td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td><i>/* This function returns a pointer to STATIC memory. It converts the given</i></td></tr>
+<tr><th id="71">71</th><td><i> * binary lump to a hex formatted string usable for output in logs or</i></td></tr>
+<tr><th id="72">72</th><td><i> * whatever.</i></td></tr>
+<tr><th id="73">73</th><td><i> */</i></td></tr>
+<tr><th id="74">74</th><td><em>char</em> *<dfn class="decl def" id="data_to_hex" title='data_to_hex' data-ref="data_to_hex">data_to_hex</dfn>(<em>char</em> *<dfn class="local col1 decl" id="1data" title='data' data-type='char *' data-ref="1data">data</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="2len" title='len' data-type='size_t' data-ref="2len">len</dfn>)</td></tr>
+<tr><th id="75">75</th><td>{</td></tr>
+<tr><th id="76">76</th><td>  <em>static</em> <em>char</em> <dfn class="local col3 decl" id="3buf" title='buf' data-type='char [768]' data-ref="3buf">buf</dfn>[<var>256</var>*<var>3</var>];</td></tr>
+<tr><th id="77">77</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="4i" title='i' data-type='size_t' data-ref="4i">i</dfn>;</td></tr>
+<tr><th id="78">78</th><td>  <em>char</em> *<dfn class="local col5 decl" id="5optr" title='optr' data-type='char *' data-ref="5optr">optr</dfn> = <a class="local col3 ref" href="#3buf" title='buf' data-ref="3buf">buf</a>;</td></tr>
+<tr><th id="79">79</th><td>  <em>char</em> *<dfn class="local col6 decl" id="6iptr" title='iptr' data-type='char *' data-ref="6iptr">iptr</dfn> = <a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>;</td></tr>
+<tr><th id="80">80</th><td></td></tr>
+<tr><th id="81">81</th><td>  <b>if</b>(<a class="local col2 ref" href="#2len" title='len' data-ref="2len">len</a> &gt; <var>255</var>)</td></tr>
+<tr><th id="82">82</th><td>    <a class="local col2 ref" href="#2len" title='len' data-ref="2len">len</a> = <var>255</var>;</td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td>  <b>for</b>(<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> = <var>0</var>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a> &lt; <a class="local col2 ref" href="#2len" title='len' data-ref="2len">len</a>; <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>++) {</td></tr>
+<tr><th id="85">85</th><td>    <b>if</b>((<a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>] &gt;= <var>0x20</var>) &amp;&amp; (<a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>[<a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>] &lt; <var>0x7f</var>))</td></tr>
+<tr><th id="86">86</th><td>      *<a class="local col5 ref" href="#5optr" title='optr' data-ref="5optr">optr</a>++ = *<a class="local col6 ref" href="#6iptr" title='iptr' data-ref="6iptr">iptr</a>++;</td></tr>
+<tr><th id="87">87</th><td>    <b>else</b> {</td></tr>
+<tr><th id="88">88</th><td>      <a class="macro" href="../../lib/curlx.h.html#105" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col5 ref" href="#5optr" title='optr' data-ref="5optr">optr</a>, <var>4</var>, <q>"%%%02x"</q>, *<a class="local col6 ref" href="#6iptr" title='iptr' data-ref="6iptr">iptr</a>++);</td></tr>
+<tr><th id="89">89</th><td>      <a class="local col5 ref" href="#5optr" title='optr' data-ref="5optr">optr</a> += <var>3</var>;</td></tr>
+<tr><th id="90">90</th><td>    }</td></tr>
+<tr><th id="91">91</th><td>  }</td></tr>
+<tr><th id="92">92</th><td>  *<a class="local col5 ref" href="#5optr" title='optr' data-ref="5optr">optr</a> = <var>0</var>; <i>/* in case no sprintf was used */</i></td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td>  <b>return</b> <a class="local col3 ref" href="#3buf" title='buf' data-ref="3buf">buf</a>;</td></tr>
+<tr><th id="95">95</th><td>}</td></tr>
+<tr><th id="96">96</th><td></td></tr>
+<tr><th id="97">97</th><td><em>void</em> <dfn class="decl def" id="logmsg" title='logmsg' data-ref="logmsg">logmsg</dfn>(<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="7msg" title='msg' data-type='const char *' data-ref="7msg">msg</dfn>, ...)</td></tr>
+<tr><th id="98">98</th><td>{</td></tr>
+<tr><th id="99">99</th><td>  <span class='typedef' title='va_list' data-type='__gnuc_va_list' data-ref="va_list">va_list</span> <dfn class="local col8 decl" id="8ap" title='ap' data-type='va_list' data-ref="8ap">ap</dfn>;</td></tr>
+<tr><th id="100">100</th><td>  <em>char</em> <dfn class="local col9 decl" id="9buffer" title='buffer' data-type='char [2049]' data-ref="9buffer">buffer</dfn>[<var>2048</var> + <var>1</var>];</td></tr>
+<tr><th id="101">101</th><td>  <a class="typedef" href="../../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col0 decl" id="10logfp" title='logfp' data-type='FILE *' data-ref="10logfp">logfp</dfn>;</td></tr>
+<tr><th id="102">102</th><td>  <em>int</em> <dfn class="local col1 decl" id="11error" title='error' data-type='int' data-ref="11error">error</dfn>;</td></tr>
+<tr><th id="103">103</th><td>  <b>struct</b> <a class="type" href="../../lib/timeval.h.html#curltime" title='curltime' data-ref="curltime">curltime</a> <dfn class="local col2 decl" id="12tv" title='tv' data-type='struct curltime' data-ref="12tv">tv</dfn>;</td></tr>
+<tr><th id="104">104</th><td>  <a class="typedef" href="../../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col3 decl" id="13sec" title='sec' data-type='time_t' data-ref="13sec">sec</dfn>;</td></tr>
+<tr><th id="105">105</th><td>  <b>struct</b> <a class="type" href="../../../include/time.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col4 decl" id="14now" title='now' data-type='struct tm *' data-ref="14now">now</dfn>;</td></tr>
+<tr><th id="106">106</th><td>  <em>char</em> <dfn class="local col5 decl" id="15timebuf" title='timebuf' data-type='char [20]' data-ref="15timebuf">timebuf</dfn>[<var>20</var>];</td></tr>
+<tr><th id="107">107</th><td>  <em>static</em> <a class="typedef" href="../../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col6 decl" id="16epoch_offset" title='epoch_offset' data-type='time_t' data-ref="16epoch_offset">epoch_offset</dfn>;</td></tr>
+<tr><th id="108">108</th><td>  <em>static</em> <em>int</em>    <dfn class="local col7 decl" id="17known_offset" title='known_offset' data-type='int' data-ref="17known_offset">known_offset</dfn>;</td></tr>
+<tr><th id="109">109</th><td></td></tr>
+<tr><th id="110">110</th><td>  <b>if</b>(!<a class="ref" href="util.h.html#serverlogfile" title='serverlogfile' data-ref="serverlogfile">serverlogfile</a>) {</td></tr>
+<tr><th id="111">111</th><td>    <a class="macro" href="../../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"Error: serverlogfile not set\n"</q>);</td></tr>
+<tr><th id="112">112</th><td>    <b>return</b>;</td></tr>
+<tr><th id="113">113</th><td>  }</td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td>  <a class="local col2 ref" href="#12tv" title='tv' data-ref="12tv">tv</a> = <a class="ref" href="../../lib/timeval.h.html#curlx_tvnow" title='curlx_tvnow' data-ref="curlx_tvnow">curlx_tvnow</a>();</td></tr>
+<tr><th id="116">116</th><td>  <b>if</b>(!<a class="local col7 ref" href="#17known_offset" title='known_offset' data-ref="17known_offset">known_offset</a>) {</td></tr>
+<tr><th id="117">117</th><td>    <a class="local col6 ref" href="#16epoch_offset" title='epoch_offset' data-ref="16epoch_offset">epoch_offset</a> = <a class="ref" href="../../../include/time.h.html#time" title='time' data-ref="time">time</a>(<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) - <a class="local col2 ref" href="#12tv" title='tv' data-ref="12tv">tv</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_sec" title='curltime::tv_sec' data-ref="curltime::tv_sec">tv_sec</a>;</td></tr>
+<tr><th id="118">118</th><td>    <a class="local col7 ref" href="#17known_offset" title='known_offset' data-ref="17known_offset">known_offset</a> = <var>1</var>;</td></tr>
+<tr><th id="119">119</th><td>  }</td></tr>
+<tr><th id="120">120</th><td>  <a class="local col3 ref" href="#13sec" title='sec' data-ref="13sec">sec</a> = <a class="local col6 ref" href="#16epoch_offset" title='epoch_offset' data-ref="16epoch_offset">epoch_offset</a> + <a class="local col2 ref" href="#12tv" title='tv' data-ref="12tv">tv</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_sec" title='curltime::tv_sec' data-ref="curltime::tv_sec">tv_sec</a>;</td></tr>
+<tr><th id="121">121</th><td>  <a class="local col4 ref" href="#14now" title='now' data-ref="14now">now</a> = <a class="ref" href="../../../include/time.h.html#localtime" title='localtime' data-ref="localtime">localtime</a>(&amp;<a class="local col3 ref" href="#13sec" title='sec' data-ref="13sec">sec</a>); <i>/* not thread safe but we don't care */</i></td></tr>
+<tr><th id="122">122</th><td></td></tr>
+<tr><th id="123">123</th><td>  <a class="macro" href="../../lib/curlx.h.html#105" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col5 ref" href="#15timebuf" title='timebuf' data-ref="15timebuf">timebuf</a>, <b>sizeof</b>(<a class="local col5 ref" href="#15timebuf" title='timebuf' data-ref="15timebuf">timebuf</a>), <q>"%02d:%02d:%02d.%06ld"</q>,</td></tr>
+<tr><th id="124">124</th><td>    (<em>int</em>)<a class="local col4 ref" href="#14now" title='now' data-ref="14now">now</a>-&gt;<a class="ref" href="../../../include/time.h.html#tm::tm_hour" title='tm::tm_hour' data-ref="tm::tm_hour">tm_hour</a>, (<em>int</em>)<a class="local col4 ref" href="#14now" title='now' data-ref="14now">now</a>-&gt;<a class="ref" href="../../../include/time.h.html#tm::tm_min" title='tm::tm_min' data-ref="tm::tm_min">tm_min</a>, (<em>int</em>)<a class="local col4 ref" href="#14now" title='now' data-ref="14now">now</a>-&gt;<a class="ref" href="../../../include/time.h.html#tm::tm_sec" title='tm::tm_sec' data-ref="tm::tm_sec">tm_sec</a>, (<em>long</em>)<a class="local col2 ref" href="#12tv" title='tv' data-ref="12tv">tv</a>.<a class="ref" href="../../lib/timeval.h.html#curltime::tv_usec" title='curltime::tv_usec' data-ref="curltime::tv_usec">tv_usec</a>);</td></tr>
+<tr><th id="125">125</th><td></td></tr>
+<tr><th id="126">126</th><td>  <span class="macro" title="__builtin_va_start(ap, msg)" data-ref="_M/va_start">va_start</span>(<a class="local col8 ref" href="#8ap" title='ap' data-ref="8ap">ap</a>, <a class="local col7 ref" href="#7msg" title='msg' data-ref="7msg">msg</a>);</td></tr>
+<tr><th id="127">127</th><td>  <a class="macro" href="../../lib/curlx.h.html#109" title="curl_mvsnprintf" data-ref="_M/vsnprintf">vsnprintf</a>(<a class="local col9 ref" href="#9buffer" title='buffer' data-ref="9buffer">buffer</a>, <b>sizeof</b>(<a class="local col9 ref" href="#9buffer" title='buffer' data-ref="9buffer">buffer</a>), <a class="local col7 ref" href="#7msg" title='msg' data-ref="7msg">msg</a>, <a class="local col8 ref" href="#8ap" title='ap' data-ref="8ap">ap</a>);</td></tr>
+<tr><th id="128">128</th><td>  <span class="macro" title="__builtin_va_end(ap)" data-ref="_M/va_end">va_end</span>(<a class="local col8 ref" href="#8ap" title='ap' data-ref="8ap">ap</a>);</td></tr>
+<tr><th id="129">129</th><td></td></tr>
+<tr><th id="130">130</th><td>  <a class="local col0 ref" href="#10logfp" title='logfp' data-ref="10logfp">logfp</a> = <a class="ref" href="../../../include/stdio.h.html#283" title='fopen' data-ref="fopen64">fopen</a>(<a class="ref" href="util.h.html#serverlogfile" title='serverlogfile' data-ref="serverlogfile">serverlogfile</a>, <q>"ab"</q>);</td></tr>
+<tr><th id="131">131</th><td>  <b>if</b>(<a class="local col0 ref" href="#10logfp" title='logfp' data-ref="10logfp">logfp</a>) {</td></tr>
+<tr><th id="132">132</th><td>    <a class="macro" href="../../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col0 ref" href="#10logfp" title='logfp' data-ref="10logfp">logfp</a>, <q>"%s %s\n"</q>, <a class="local col5 ref" href="#15timebuf" title='timebuf' data-ref="15timebuf">timebuf</a>, <a class="local col9 ref" href="#9buffer" title='buffer' data-ref="9buffer">buffer</a>);</td></tr>
+<tr><th id="133">133</th><td>    <a class="ref" href="../../../include/stdio.h.html#fclose" title='fclose' data-ref="fclose">fclose</a>(<a class="local col0 ref" href="#10logfp" title='logfp' data-ref="10logfp">logfp</a>);</td></tr>
+<tr><th id="134">134</th><td>  }</td></tr>
+<tr><th id="135">135</th><td>  <b>else</b> {</td></tr>
+<tr><th id="136">136</th><td>    <a class="local col1 ref" href="#11error" title='error' data-ref="11error">error</a> = <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>;</td></tr>
+<tr><th id="137">137</th><td>    <a class="macro" href="../../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"fopen() failed with error: %d %s\n"</q>,</td></tr>
+<tr><th id="138">138</th><td>            <a class="local col1 ref" href="#11error" title='error' data-ref="11error">error</a>, <a class="ref" href="../../../include/string.h.html#strerror" title='strerror' data-ref="strerror">strerror</a>(<a class="local col1 ref" href="#11error" title='error' data-ref="11error">error</a>));</td></tr>
+<tr><th id="139">139</th><td>    <a class="macro" href="../../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"Error opening file: %s\n"</q>, <a class="ref" href="util.h.html#serverlogfile" title='serverlogfile' data-ref="serverlogfile">serverlogfile</a>);</td></tr>
+<tr><th id="140">140</th><td>    <a class="macro" href="../../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"Msg not logged: %s %s\n"</q>, <a class="local col5 ref" href="#15timebuf" title='timebuf' data-ref="15timebuf">timebuf</a>, <a class="local col9 ref" href="#9buffer" title='buffer' data-ref="9buffer">buffer</a>);</td></tr>
+<tr><th id="141">141</th><td>  }</td></tr>
+<tr><th id="142">142</th><td>}</td></tr>
+<tr><th id="143">143</th><td></td></tr>
+<tr><th id="144">144</th><td><u>#<span data-ppcond="144">ifdef</span> <span class="macro" data-ref="_M/WIN32">WIN32</span></u></td></tr>
+<tr><th id="145">145</th><td><i>/* use instead of perror() on generic windows */</i></td></tr>
+<tr><th id="146">146</th><td><em>void</em> win32_perror(<em>const</em> <em>char</em> *msg)</td></tr>
+<tr><th id="147">147</th><td>{</td></tr>
+<tr><th id="148">148</th><td>  <em>char</em> buf[<var>512</var>];</td></tr>
+<tr><th id="149">149</th><td>  DWORD err = SOCKERRNO;</td></tr>
+<tr><th id="150">150</th><td></td></tr>
+<tr><th id="151">151</th><td>  <b>if</b>(!FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, err,</td></tr>
+<tr><th id="152">152</th><td>                    LANG_NEUTRAL, buf, <b>sizeof</b>(buf), NULL))</td></tr>
+<tr><th id="153">153</th><td>     snprintf(buf, <b>sizeof</b>(buf), <q>"Unknown error %lu (%#lx)"</q>, err, err);</td></tr>
+<tr><th id="154">154</th><td>  <b>if</b>(msg)</td></tr>
+<tr><th id="155">155</th><td>    fprintf(stderr, <q>"%s: "</q>, msg);</td></tr>
+<tr><th id="156">156</th><td>  fprintf(stderr, <q>"%s\n"</q>, buf);</td></tr>
+<tr><th id="157">157</th><td>}</td></tr>
+<tr><th id="158">158</th><td><u>#<span data-ppcond="144">endif</span>  /* WIN32 */</u></td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td><u>#<span data-ppcond="160">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="161">161</th><td><em>void</em> win32_init(<em>void</em>)</td></tr>
+<tr><th id="162">162</th><td>{</td></tr>
+<tr><th id="163">163</th><td>  WORD wVersionRequested;</td></tr>
+<tr><th id="164">164</th><td>  WSADATA wsaData;</td></tr>
+<tr><th id="165">165</th><td>  <em>int</em> err;</td></tr>
+<tr><th id="166">166</th><td>  wVersionRequested = MAKEWORD(USE_WINSOCK, USE_WINSOCK);</td></tr>
+<tr><th id="167">167</th><td></td></tr>
+<tr><th id="168">168</th><td>  err = WSAStartup(wVersionRequested, &amp;wsaData);</td></tr>
+<tr><th id="169">169</th><td></td></tr>
+<tr><th id="170">170</th><td>  <b>if</b>(err != <var>0</var>) {</td></tr>
+<tr><th id="171">171</th><td>    perror(<q>"Winsock init failed"</q>);</td></tr>
+<tr><th id="172">172</th><td>    logmsg(<q>"Error initialising winsock -- aborting"</q>);</td></tr>
+<tr><th id="173">173</th><td>    exit(<var>1</var>);</td></tr>
+<tr><th id="174">174</th><td>  }</td></tr>
+<tr><th id="175">175</th><td></td></tr>
+<tr><th id="176">176</th><td>  <b>if</b>(LOBYTE(wsaData.wVersion) != USE_WINSOCK ||</td></tr>
+<tr><th id="177">177</th><td>     HIBYTE(wsaData.wVersion) != USE_WINSOCK) {</td></tr>
+<tr><th id="178">178</th><td>    WSACleanup();</td></tr>
+<tr><th id="179">179</th><td>    perror(<q>"Winsock init failed"</q>);</td></tr>
+<tr><th id="180">180</th><td>    logmsg(<q>"No suitable winsock.dll found -- aborting"</q>);</td></tr>
+<tr><th id="181">181</th><td>    exit(<var>1</var>);</td></tr>
+<tr><th id="182">182</th><td>  }</td></tr>
+<tr><th id="183">183</th><td>}</td></tr>
+<tr><th id="184">184</th><td></td></tr>
+<tr><th id="185">185</th><td><em>void</em> win32_cleanup(<em>void</em>)</td></tr>
+<tr><th id="186">186</th><td>{</td></tr>
+<tr><th id="187">187</th><td>  WSACleanup();</td></tr>
+<tr><th id="188">188</th><td>}</td></tr>
+<tr><th id="189">189</th><td><u>#<span data-ppcond="160">endif</span>  /* USE_WINSOCK */</u></td></tr>
+<tr><th id="190">190</th><td></td></tr>
+<tr><th id="191">191</th><td><i>/* set by the main code to point to where the test dir is */</i></td></tr>
+<tr><th id="192">192</th><td><em>const</em> <em>char</em> *<dfn class="decl def" id="path" title='path' data-ref="path">path</dfn> = <q>"."</q>;</td></tr>
+<tr><th id="193">193</th><td></td></tr>
+<tr><th id="194">194</th><td><em>char</em> *<dfn class="decl def" id="test2file" title='test2file' data-ref="test2file">test2file</dfn>(<em>long</em> <dfn class="local col8 decl" id="18testno" title='testno' data-type='long' data-ref="18testno">testno</dfn>)</td></tr>
+<tr><th id="195">195</th><td>{</td></tr>
+<tr><th id="196">196</th><td>  <em>static</em> <em>char</em> <dfn class="local col9 decl" id="19filename" title='filename' data-type='char [256]' data-ref="19filename">filename</dfn>[<var>256</var>];</td></tr>
+<tr><th id="197">197</th><td>  <a class="macro" href="../../lib/curlx.h.html#105" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col9 ref" href="#19filename" title='filename' data-ref="19filename">filename</a>, <b>sizeof</b>(<a class="local col9 ref" href="#19filename" title='filename' data-ref="19filename">filename</a>), <a class="macro" href="util.h.html#29" title="&quot;%s/data/test%ld&quot;" data-ref="_M/TEST_DATA_PATH">TEST_DATA_PATH</a>, <a class="ref" href="util.h.html#path" title='path' data-ref="path">path</a>, <a class="local col8 ref" href="#18testno" title='testno' data-ref="18testno">testno</a>);</td></tr>
+<tr><th id="198">198</th><td>  <b>return</b> <a class="local col9 ref" href="#19filename" title='filename' data-ref="19filename">filename</a>;</td></tr>
+<tr><th id="199">199</th><td>}</td></tr>
+<tr><th id="200">200</th><td></td></tr>
+<tr><th id="201">201</th><td><i>/*</i></td></tr>
+<tr><th id="202">202</th><td><i> * Portable function used for waiting a specific amount of ms.</i></td></tr>
+<tr><th id="203">203</th><td><i> * Waiting indefinitely with this function is not allowed, a</i></td></tr>
+<tr><th id="204">204</th><td><i> * zero or negative timeout value will return immediately.</i></td></tr>
+<tr><th id="205">205</th><td><i> *</i></td></tr>
+<tr><th id="206">206</th><td><i> * Return values:</i></td></tr>
+<tr><th id="207">207</th><td><i> *   -1 = system call error, or invalid timeout value</i></td></tr>
+<tr><th id="208">208</th><td><i> *    0 = specified timeout has elapsed</i></td></tr>
+<tr><th id="209">209</th><td><i> */</i></td></tr>
+<tr><th id="210">210</th><td><em>int</em> <dfn class="decl def" id="wait_ms" title='wait_ms' data-ref="wait_ms">wait_ms</dfn>(<em>int</em> <dfn class="local col0 decl" id="20timeout_ms" title='timeout_ms' data-type='int' data-ref="20timeout_ms">timeout_ms</dfn>)</td></tr>
+<tr><th id="211">211</th><td>{</td></tr>
+<tr><th id="212">212</th><td><u>#<span data-ppcond="212">if</span> !defined(<span class="macro" data-ref="_M/MSDOS">MSDOS</span>) &amp;&amp; !defined(<span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span>)</u></td></tr>
+<tr><th id="213">213</th><td><u>#<span data-ppcond="213">ifndef</span> <a class="macro" href="../../lib/curl_config.h.html#480" data-ref="_M/HAVE_POLL_FINE">HAVE_POLL_FINE</a></u></td></tr>
+<tr><th id="214">214</th><td>  <b>struct</b> timeval pending_tv;</td></tr>
+<tr><th id="215">215</th><td><u>#<span data-ppcond="213">endif</span></u></td></tr>
+<tr><th id="216">216</th><td>  <b>struct</b> <a class="type" href="../../lib/timeval.h.html#curltime" title='curltime' data-ref="curltime">curltime</a> <dfn class="local col1 decl" id="21initial_tv" title='initial_tv' data-type='struct curltime' data-ref="21initial_tv">initial_tv</dfn>;</td></tr>
+<tr><th id="217">217</th><td>  <em>int</em> <dfn class="local col2 decl" id="22pending_ms" title='pending_ms' data-type='int' data-ref="22pending_ms">pending_ms</dfn>;</td></tr>
+<tr><th id="218">218</th><td>  <em>int</em> <dfn class="local col3 decl" id="23error" title='error' data-type='int' data-ref="23error">error</dfn>;</td></tr>
+<tr><th id="219">219</th><td><u>#<span data-ppcond="212">endif</span></u></td></tr>
+<tr><th id="220">220</th><td>  <em>int</em> <dfn class="local col4 decl" id="24r" title='r' data-type='int' data-ref="24r">r</dfn> = <var>0</var>;</td></tr>
+<tr><th id="221">221</th><td></td></tr>
+<tr><th id="222">222</th><td>  <b>if</b>(!<a class="local col0 ref" href="#20timeout_ms" title='timeout_ms' data-ref="20timeout_ms">timeout_ms</a>)</td></tr>
+<tr><th id="223">223</th><td>    <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="224">224</th><td>  <b>if</b>(<a class="local col0 ref" href="#20timeout_ms" title='timeout_ms' data-ref="20timeout_ms">timeout_ms</a> &lt; <var>0</var>) {</td></tr>
+<tr><th id="225">225</th><td>    <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <a class="macro" href="../../../include/asm-generic/errno-base.h.html#25" title="22" data-ref="_M/EINVAL">EINVAL</a>;</td></tr>
+<tr><th id="226">226</th><td>    <b>return</b> -<var>1</var>;</td></tr>
+<tr><th id="227">227</th><td>  }</td></tr>
+<tr><th id="228">228</th><td><u>#<span data-ppcond="228">if</span> defined(<span class="macro" data-ref="_M/MSDOS">MSDOS</span>)</u></td></tr>
+<tr><th id="229">229</th><td>  delay(timeout_ms);</td></tr>
+<tr><th id="230">230</th><td><u>#<span data-ppcond="228">elif</span> defined(<span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span>)</u></td></tr>
+<tr><th id="231">231</th><td>  Sleep(timeout_ms);</td></tr>
+<tr><th id="232">232</th><td><u>#<span data-ppcond="228">else</span></u></td></tr>
+<tr><th id="233">233</th><td>  <a class="local col2 ref" href="#22pending_ms" title='pending_ms' data-ref="22pending_ms">pending_ms</a> = <a class="local col0 ref" href="#20timeout_ms" title='timeout_ms' data-ref="20timeout_ms">timeout_ms</a>;</td></tr>
+<tr><th id="234">234</th><td>  <a class="local col1 ref" href="#21initial_tv" title='initial_tv' data-ref="21initial_tv">initial_tv</a> = <a class="ref" href="../../lib/timeval.h.html#curlx_tvnow" title='curlx_tvnow' data-ref="curlx_tvnow">curlx_tvnow</a>();</td></tr>
+<tr><th id="235">235</th><td>  <b>do</b> {</td></tr>
+<tr><th id="236">236</th><td><u>#<span data-ppcond="236">if</span> defined(<a class="macro" href="../../lib/curl_config.h.html#480" data-ref="_M/HAVE_POLL_FINE">HAVE_POLL_FINE</a>)</u></td></tr>
+<tr><th id="237">237</th><td>    <a class="local col4 ref" href="#24r" title='r' data-ref="24r">r</a> = <a class="ref" href="../../../include/x86_64-linux-gnu/sys/poll.h.html#poll" title='poll' data-ref="poll">poll</a>(<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>0</var>, <a class="local col2 ref" href="#22pending_ms" title='pending_ms' data-ref="22pending_ms">pending_ms</a>);</td></tr>
+<tr><th id="238">238</th><td><u>#<span data-ppcond="236">else</span></u></td></tr>
+<tr><th id="239">239</th><td>    pending_tv.tv_sec = pending_ms / <var>1000</var>;</td></tr>
+<tr><th id="240">240</th><td>    pending_tv.tv_usec = (pending_ms % <var>1000</var>) * <var>1000</var>;</td></tr>
+<tr><th id="241">241</th><td>    r = select(<var>0</var>, NULL, NULL, NULL, &amp;pending_tv);</td></tr>
+<tr><th id="242">242</th><td><u>#<span data-ppcond="236">endif</span> /* HAVE_POLL_FINE */</u></td></tr>
+<tr><th id="243">243</th><td>    <b>if</b>(<a class="local col4 ref" href="#24r" title='r' data-ref="24r">r</a> != -<var>1</var>)</td></tr>
+<tr><th id="244">244</th><td>      <b>break</b>;</td></tr>
+<tr><th id="245">245</th><td>    <a class="local col3 ref" href="#23error" title='error' data-ref="23error">error</a> = <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>;</td></tr>
+<tr><th id="246">246</th><td>    <b>if</b>(<a class="local col3 ref" href="#23error" title='error' data-ref="23error">error</a> &amp;&amp; (<a class="local col3 ref" href="#23error" title='error' data-ref="23error">error</a> != <a class="macro" href="../../../include/asm-generic/errno-base.h.html#7" title="4" data-ref="_M/EINTR">EINTR</a>))</td></tr>
+<tr><th id="247">247</th><td>      <b>break</b>;</td></tr>
+<tr><th id="248">248</th><td>    <a class="local col2 ref" href="#22pending_ms" title='pending_ms' data-ref="22pending_ms">pending_ms</a> = <a class="local col0 ref" href="#20timeout_ms" title='timeout_ms' data-ref="20timeout_ms">timeout_ms</a> - (<em>int</em>)<a class="ref" href="../../lib/timeval.h.html#curlx_tvdiff" title='curlx_tvdiff' data-ref="curlx_tvdiff">curlx_tvdiff</a>(<a class="ref" href="../../lib/timeval.h.html#curlx_tvnow" title='curlx_tvnow' data-ref="curlx_tvnow">curlx_tvnow</a>(), <a class="local col1 ref" href="#21initial_tv" title='initial_tv' data-ref="21initial_tv">initial_tv</a>);</td></tr>
+<tr><th id="249">249</th><td>    <b>if</b>(<a class="local col2 ref" href="#22pending_ms" title='pending_ms' data-ref="22pending_ms">pending_ms</a> &lt;= <var>0</var>)</td></tr>
+<tr><th id="250">250</th><td>      <b>break</b>;</td></tr>
+<tr><th id="251">251</th><td>  } <b>while</b>(<a class="local col4 ref" href="#24r" title='r' data-ref="24r">r</a> == -<var>1</var>);</td></tr>
+<tr><th id="252">252</th><td><u>#<span data-ppcond="228">endif</span> /* USE_WINSOCK */</u></td></tr>
+<tr><th id="253">253</th><td>  <b>if</b>(<a class="local col4 ref" href="#24r" title='r' data-ref="24r">r</a>)</td></tr>
+<tr><th id="254">254</th><td>    <a class="local col4 ref" href="#24r" title='r' data-ref="24r">r</a> = -<var>1</var>;</td></tr>
+<tr><th id="255">255</th><td>  <b>return</b> <a class="local col4 ref" href="#24r" title='r' data-ref="24r">r</a>;</td></tr>
+<tr><th id="256">256</th><td>}</td></tr>
+<tr><th id="257">257</th><td></td></tr>
+<tr><th id="258">258</th><td><em>int</em> <dfn class="decl def" id="write_pidfile" title='write_pidfile' data-ref="write_pidfile">write_pidfile</dfn>(<em>const</em> <em>char</em> *<dfn class="local col5 decl" id="25filename" title='filename' data-type='const char *' data-ref="25filename">filename</dfn>)</td></tr>
+<tr><th id="259">259</th><td>{</td></tr>
+<tr><th id="260">260</th><td>  <a class="typedef" href="../../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col6 decl" id="26pidfile" title='pidfile' data-type='FILE *' data-ref="26pidfile">pidfile</dfn>;</td></tr>
+<tr><th id="261">261</th><td>  <em>long</em> <dfn class="local col7 decl" id="27pid" title='pid' data-type='long' data-ref="27pid">pid</dfn>;</td></tr>
+<tr><th id="262">262</th><td></td></tr>
+<tr><th id="263">263</th><td>  <a class="local col7 ref" href="#27pid" title='pid' data-ref="27pid">pid</a> = (<em>long</em>)<a class="ref" href="../../../include/unistd.h.html#getpid" title='getpid' data-ref="getpid">getpid</a>();</td></tr>
+<tr><th id="264">264</th><td>  <a class="local col6 ref" href="#26pidfile" title='pidfile' data-ref="26pidfile">pidfile</a> = <a class="ref" href="../../../include/stdio.h.html#283" title='fopen' data-ref="fopen64">fopen</a>(<a class="local col5 ref" href="#25filename" title='filename' data-ref="25filename">filename</a>, <q>"wb"</q>);</td></tr>
+<tr><th id="265">265</th><td>  <b>if</b>(!<a class="local col6 ref" href="#26pidfile" title='pidfile' data-ref="26pidfile">pidfile</a>) {</td></tr>
+<tr><th id="266">266</th><td>    <a class="ref" href="#logmsg" title='logmsg' data-ref="logmsg">logmsg</a>(<q>"Couldn't write pid file: %s %s"</q>, <a class="local col5 ref" href="#25filename" title='filename' data-ref="25filename">filename</a>, <a class="ref" href="../../../include/string.h.html#strerror" title='strerror' data-ref="strerror">strerror</a>(<a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>));</td></tr>
+<tr><th id="267">267</th><td>    <b>return</b> <var>0</var>; <i>/* fail */</i></td></tr>
+<tr><th id="268">268</th><td>  }</td></tr>
+<tr><th id="269">269</th><td>  <a class="macro" href="../../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col6 ref" href="#26pidfile" title='pidfile' data-ref="26pidfile">pidfile</a>, <q>"%ld\n"</q>, <a class="local col7 ref" href="#27pid" title='pid' data-ref="27pid">pid</a>);</td></tr>
+<tr><th id="270">270</th><td>  <a class="ref" href="../../../include/stdio.h.html#fclose" title='fclose' data-ref="fclose">fclose</a>(<a class="local col6 ref" href="#26pidfile" title='pidfile' data-ref="26pidfile">pidfile</a>);</td></tr>
+<tr><th id="271">271</th><td>  <a class="ref" href="#logmsg" title='logmsg' data-ref="logmsg">logmsg</a>(<q>"Wrote pid %ld to %s"</q>, <a class="local col7 ref" href="#27pid" title='pid' data-ref="27pid">pid</a>, <a class="local col5 ref" href="#25filename" title='filename' data-ref="25filename">filename</a>);</td></tr>
+<tr><th id="272">272</th><td>  <b>return</b> <var>1</var>; <i>/* success */</i></td></tr>
+<tr><th id="273">273</th><td>}</td></tr>
+<tr><th id="274">274</th><td></td></tr>
+<tr><th id="275">275</th><td><em>void</em> <dfn class="decl def" id="set_advisor_read_lock" title='set_advisor_read_lock' data-ref="set_advisor_read_lock">set_advisor_read_lock</dfn>(<em>const</em> <em>char</em> *<dfn class="local col8 decl" id="28filename" title='filename' data-type='const char *' data-ref="28filename">filename</dfn>)</td></tr>
+<tr><th id="276">276</th><td>{</td></tr>
+<tr><th id="277">277</th><td>  <a class="typedef" href="../../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col9 decl" id="29lockfile" title='lockfile' data-type='FILE *' data-ref="29lockfile">lockfile</dfn>;</td></tr>
+<tr><th id="278">278</th><td>  <em>int</em> <dfn class="local col0 decl" id="30error" title='error' data-type='int' data-ref="30error">error</dfn> = <var>0</var>;</td></tr>
+<tr><th id="279">279</th><td>  <em>int</em> <dfn class="local col1 decl" id="31res" title='res' data-type='int' data-ref="31res">res</dfn>;</td></tr>
+<tr><th id="280">280</th><td></td></tr>
+<tr><th id="281">281</th><td>  <b>do</b> {</td></tr>
+<tr><th id="282">282</th><td>    <a class="local col9 ref" href="#29lockfile" title='lockfile' data-ref="29lockfile">lockfile</a> = <a class="ref" href="../../../include/stdio.h.html#283" title='fopen' data-ref="fopen64">fopen</a>(<a class="local col8 ref" href="#28filename" title='filename' data-ref="28filename">filename</a>, <q>"wb"</q>);</td></tr>
+<tr><th id="283">283</th><td>  } <b>while</b>((<a class="local col9 ref" href="#29lockfile" title='lockfile' data-ref="29lockfile">lockfile</a> == <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) &amp;&amp; ((<a class="local col0 ref" href="#30error" title='error' data-ref="30error">error</a> = <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>) == <a class="macro" href="../../../include/asm-generic/errno-base.h.html#7" title="4" data-ref="_M/EINTR">EINTR</a>));</td></tr>
+<tr><th id="284">284</th><td>  <b>if</b>(<a class="local col9 ref" href="#29lockfile" title='lockfile' data-ref="29lockfile">lockfile</a> == <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) {</td></tr>
+<tr><th id="285">285</th><td>    <a class="ref" href="#logmsg" title='logmsg' data-ref="logmsg">logmsg</a>(<q>"Error creating lock file %s error: %d %s"</q>,</td></tr>
+<tr><th id="286">286</th><td>           <a class="local col8 ref" href="#28filename" title='filename' data-ref="28filename">filename</a>, <a class="local col0 ref" href="#30error" title='error' data-ref="30error">error</a>, <a class="ref" href="../../../include/string.h.html#strerror" title='strerror' data-ref="strerror">strerror</a>(<a class="local col0 ref" href="#30error" title='error' data-ref="30error">error</a>));</td></tr>
+<tr><th id="287">287</th><td>    <b>return</b>;</td></tr>
+<tr><th id="288">288</th><td>  }</td></tr>
+<tr><th id="289">289</th><td></td></tr>
+<tr><th id="290">290</th><td>  <b>do</b> {</td></tr>
+<tr><th id="291">291</th><td>    <a class="local col1 ref" href="#31res" title='res' data-ref="31res">res</a> = <a class="ref" href="../../../include/stdio.h.html#fclose" title='fclose' data-ref="fclose">fclose</a>(<a class="local col9 ref" href="#29lockfile" title='lockfile' data-ref="29lockfile">lockfile</a>);</td></tr>
+<tr><th id="292">292</th><td>  } <b>while</b>(<a class="local col1 ref" href="#31res" title='res' data-ref="31res">res</a> &amp;&amp; ((<a class="local col0 ref" href="#30error" title='error' data-ref="30error">error</a> = <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>) == <a class="macro" href="../../../include/asm-generic/errno-base.h.html#7" title="4" data-ref="_M/EINTR">EINTR</a>));</td></tr>
+<tr><th id="293">293</th><td>  <b>if</b>(<a class="local col1 ref" href="#31res" title='res' data-ref="31res">res</a>)</td></tr>
+<tr><th id="294">294</th><td>    <a class="ref" href="#logmsg" title='logmsg' data-ref="logmsg">logmsg</a>(<q>"Error closing lock file %s error: %d %s"</q>,</td></tr>
+<tr><th id="295">295</th><td>           <a class="local col8 ref" href="#28filename" title='filename' data-ref="28filename">filename</a>, <a class="local col0 ref" href="#30error" title='error' data-ref="30error">error</a>, <a class="ref" href="../../../include/string.h.html#strerror" title='strerror' data-ref="strerror">strerror</a>(<a class="local col0 ref" href="#30error" title='error' data-ref="30error">error</a>));</td></tr>
+<tr><th id="296">296</th><td>}</td></tr>
+<tr><th id="297">297</th><td></td></tr>
+<tr><th id="298">298</th><td><em>void</em> <dfn class="decl def" id="clear_advisor_read_lock" title='clear_advisor_read_lock' data-ref="clear_advisor_read_lock">clear_advisor_read_lock</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="32filename" title='filename' data-type='const char *' data-ref="32filename">filename</dfn>)</td></tr>
+<tr><th id="299">299</th><td>{</td></tr>
+<tr><th id="300">300</th><td>  <em>int</em> <dfn class="local col3 decl" id="33error" title='error' data-type='int' data-ref="33error">error</dfn> = <var>0</var>;</td></tr>
+<tr><th id="301">301</th><td>  <em>int</em> <dfn class="local col4 decl" id="34res" title='res' data-type='int' data-ref="34res">res</dfn>;</td></tr>
+<tr><th id="302">302</th><td></td></tr>
+<tr><th id="303">303</th><td>  <i>/*</i></td></tr>
+<tr><th id="304">304</th><td><i>  ** Log all removal failures. Even those due to file not existing.</i></td></tr>
+<tr><th id="305">305</th><td><i>  ** This allows to detect if unexpectedly the file has already been</i></td></tr>
+<tr><th id="306">306</th><td><i>  ** removed by a process different than the one that should do this.</i></td></tr>
+<tr><th id="307">307</th><td><i>  */</i></td></tr>
+<tr><th id="308">308</th><td></td></tr>
+<tr><th id="309">309</th><td>  <b>do</b> {</td></tr>
+<tr><th id="310">310</th><td>    <a class="local col4 ref" href="#34res" title='res' data-ref="34res">res</a> = <a class="ref" href="../../../include/unistd.h.html#unlink" title='unlink' data-ref="unlink">unlink</a>(<a class="local col2 ref" href="#32filename" title='filename' data-ref="32filename">filename</a>);</td></tr>
+<tr><th id="311">311</th><td>  } <b>while</b>(<a class="local col4 ref" href="#34res" title='res' data-ref="34res">res</a> &amp;&amp; ((<a class="local col3 ref" href="#33error" title='error' data-ref="33error">error</a> = <a class="macro" href="../../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>) == <a class="macro" href="../../../include/asm-generic/errno-base.h.html#7" title="4" data-ref="_M/EINTR">EINTR</a>));</td></tr>
+<tr><th id="312">312</th><td>  <b>if</b>(<a class="local col4 ref" href="#34res" title='res' data-ref="34res">res</a>)</td></tr>
+<tr><th id="313">313</th><td>    <a class="ref" href="#logmsg" title='logmsg' data-ref="logmsg">logmsg</a>(<q>"Error removing lock file %s error: %d %s"</q>,</td></tr>
+<tr><th id="314">314</th><td>           <a class="local col2 ref" href="#32filename" title='filename' data-ref="32filename">filename</a>, <a class="local col3 ref" href="#33error" title='error' data-ref="33error">error</a>, <a class="ref" href="../../../include/string.h.html#strerror" title='strerror' data-ref="strerror">strerror</a>(<a class="local col3 ref" href="#33error" title='error' data-ref="33error">error</a>));</td></tr>
+<tr><th id="315">315</th><td>}</td></tr>
+<tr><th id="316">316</th><td></td></tr>
+<tr><th id="317">317</th><td></td></tr>
+<tr><th id="318">318</th><td><i  data-doc="raw_toupper">/* Portable, consistent toupper (remember EBCDIC). Do not use toupper() because</i></td></tr>
+<tr><th id="319">319</th><td><i  data-doc="raw_toupper">   its behavior is altered by the current locale. */</i></td></tr>
+<tr><th id="320">320</th><td><em>static</em> <em>char</em> <dfn class="tu decl def" id="raw_toupper" title='raw_toupper' data-type='char raw_toupper(char in)' data-ref="raw_toupper">raw_toupper</dfn>(<em>char</em> <dfn class="local col5 decl" id="35in" title='in' data-type='char' data-ref="35in">in</dfn>)</td></tr>
+<tr><th id="321">321</th><td>{</td></tr>
+<tr><th id="322">322</th><td><u>#<span data-ppcond="322">if</span> !defined(<span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span>)</u></td></tr>
+<tr><th id="323">323</th><td>  <b>if</b>(<a class="local col5 ref" href="#35in" title='in' data-ref="35in">in</a> &gt;= <kbd>'a'</kbd> &amp;&amp; <a class="local col5 ref" href="#35in" title='in' data-ref="35in">in</a> &lt;= <kbd>'z'</kbd>)</td></tr>
+<tr><th id="324">324</th><td>    <b>return</b> (<em>char</em>)(<kbd>'A'</kbd> + <a class="local col5 ref" href="#35in" title='in' data-ref="35in">in</a> - <kbd>'a'</kbd>);</td></tr>
+<tr><th id="325">325</th><td><u>#<span data-ppcond="322">else</span></u></td></tr>
+<tr><th id="326">326</th><td>  <b>switch</b>(in) {</td></tr>
+<tr><th id="327">327</th><td>  <b>case</b> <kbd>'a'</kbd>:</td></tr>
+<tr><th id="328">328</th><td>    <b>return</b> <kbd>'A'</kbd>;</td></tr>
+<tr><th id="329">329</th><td>  <b>case</b> <kbd>'b'</kbd>:</td></tr>
+<tr><th id="330">330</th><td>    <b>return</b> <kbd>'B'</kbd>;</td></tr>
+<tr><th id="331">331</th><td>  <b>case</b> <kbd>'c'</kbd>:</td></tr>
+<tr><th id="332">332</th><td>    <b>return</b> <kbd>'C'</kbd>;</td></tr>
+<tr><th id="333">333</th><td>  <b>case</b> <kbd>'d'</kbd>:</td></tr>
+<tr><th id="334">334</th><td>    <b>return</b> <kbd>'D'</kbd>;</td></tr>
+<tr><th id="335">335</th><td>  <b>case</b> <kbd>'e'</kbd>:</td></tr>
+<tr><th id="336">336</th><td>    <b>return</b> <kbd>'E'</kbd>;</td></tr>
+<tr><th id="337">337</th><td>  <b>case</b> <kbd>'f'</kbd>:</td></tr>
+<tr><th id="338">338</th><td>    <b>return</b> <kbd>'F'</kbd>;</td></tr>
+<tr><th id="339">339</th><td>  <b>case</b> <kbd>'g'</kbd>:</td></tr>
+<tr><th id="340">340</th><td>    <b>return</b> <kbd>'G'</kbd>;</td></tr>
+<tr><th id="341">341</th><td>  <b>case</b> <kbd>'h'</kbd>:</td></tr>
+<tr><th id="342">342</th><td>    <b>return</b> <kbd>'H'</kbd>;</td></tr>
+<tr><th id="343">343</th><td>  <b>case</b> <kbd>'i'</kbd>:</td></tr>
+<tr><th id="344">344</th><td>    <b>return</b> <kbd>'I'</kbd>;</td></tr>
+<tr><th id="345">345</th><td>  <b>case</b> <kbd>'j'</kbd>:</td></tr>
+<tr><th id="346">346</th><td>    <b>return</b> <kbd>'J'</kbd>;</td></tr>
+<tr><th id="347">347</th><td>  <b>case</b> <kbd>'k'</kbd>:</td></tr>
+<tr><th id="348">348</th><td>    <b>return</b> <kbd>'K'</kbd>;</td></tr>
+<tr><th id="349">349</th><td>  <b>case</b> <kbd>'l'</kbd>:</td></tr>
+<tr><th id="350">350</th><td>    <b>return</b> <kbd>'L'</kbd>;</td></tr>
+<tr><th id="351">351</th><td>  <b>case</b> <kbd>'m'</kbd>:</td></tr>
+<tr><th id="352">352</th><td>    <b>return</b> <kbd>'M'</kbd>;</td></tr>
+<tr><th id="353">353</th><td>  <b>case</b> <kbd>'n'</kbd>:</td></tr>
+<tr><th id="354">354</th><td>    <b>return</b> <kbd>'N'</kbd>;</td></tr>
+<tr><th id="355">355</th><td>  <b>case</b> <kbd>'o'</kbd>:</td></tr>
+<tr><th id="356">356</th><td>    <b>return</b> <kbd>'O'</kbd>;</td></tr>
+<tr><th id="357">357</th><td>  <b>case</b> <kbd>'p'</kbd>:</td></tr>
+<tr><th id="358">358</th><td>    <b>return</b> <kbd>'P'</kbd>;</td></tr>
+<tr><th id="359">359</th><td>  <b>case</b> <kbd>'q'</kbd>:</td></tr>
+<tr><th id="360">360</th><td>    <b>return</b> <kbd>'Q'</kbd>;</td></tr>
+<tr><th id="361">361</th><td>  <b>case</b> <kbd>'r'</kbd>:</td></tr>
+<tr><th id="362">362</th><td>    <b>return</b> <kbd>'R'</kbd>;</td></tr>
+<tr><th id="363">363</th><td>  <b>case</b> <kbd>'s'</kbd>:</td></tr>
+<tr><th id="364">364</th><td>    <b>return</b> <kbd>'S'</kbd>;</td></tr>
+<tr><th id="365">365</th><td>  <b>case</b> <kbd>'t'</kbd>:</td></tr>
+<tr><th id="366">366</th><td>    <b>return</b> <kbd>'T'</kbd>;</td></tr>
+<tr><th id="367">367</th><td>  <b>case</b> <kbd>'u'</kbd>:</td></tr>
+<tr><th id="368">368</th><td>    <b>return</b> <kbd>'U'</kbd>;</td></tr>
+<tr><th id="369">369</th><td>  <b>case</b> <kbd>'v'</kbd>:</td></tr>
+<tr><th id="370">370</th><td>    <b>return</b> <kbd>'V'</kbd>;</td></tr>
+<tr><th id="371">371</th><td>  <b>case</b> <kbd>'w'</kbd>:</td></tr>
+<tr><th id="372">372</th><td>    <b>return</b> <kbd>'W'</kbd>;</td></tr>
+<tr><th id="373">373</th><td>  <b>case</b> <kbd>'x'</kbd>:</td></tr>
+<tr><th id="374">374</th><td>    <b>return</b> <kbd>'X'</kbd>;</td></tr>
+<tr><th id="375">375</th><td>  <b>case</b> <kbd>'y'</kbd>:</td></tr>
+<tr><th id="376">376</th><td>    <b>return</b> <kbd>'Y'</kbd>;</td></tr>
+<tr><th id="377">377</th><td>  <b>case</b> <kbd>'z'</kbd>:</td></tr>
+<tr><th id="378">378</th><td>    <b>return</b> <kbd>'Z'</kbd>;</td></tr>
+<tr><th id="379">379</th><td>  }</td></tr>
+<tr><th id="380">380</th><td><u>#<span data-ppcond="322">endif</span></u></td></tr>
+<tr><th id="381">381</th><td></td></tr>
+<tr><th id="382">382</th><td>  <b>return</b> <a class="local col5 ref" href="#35in" title='in' data-ref="35in">in</a>;</td></tr>
+<tr><th id="383">383</th><td>}</td></tr>
+<tr><th id="384">384</th><td></td></tr>
+<tr><th id="385">385</th><td><em>int</em> <a class="macro" href="../../lib/strcase.h.html#36" title="Curl_strncasecompare(const char *first,const char *second,size_t max)" data-ref="_M/strncasecompare">strncasecompare</a>(<em>const</em> <em>char</em> *<dfn class="local col6 decl" id="36first" title='first' data-type='const char *' data-ref="36first">first</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="37second" title='second' data-type='const char *' data-ref="37second">second</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="38max" title='max' data-type='size_t' data-ref="38max">max</dfn>)</td></tr>
+<tr><th id="386">386</th><td>{</td></tr>
+<tr><th id="387">387</th><td>  <b>while</b>(*<a class="local col6 ref" href="#385" title='first' data-ref="36first">first</a> &amp;&amp; *<a class="local col7 ref" href="#385" title='second' data-ref="37second">second</a> &amp;&amp; <a class="local col8 ref" href="#385" title='max' data-ref="38max">max</a>) {</td></tr>
+<tr><th id="388">388</th><td>    <b>if</b>(<a class="tu ref" href="#raw_toupper" title='raw_toupper' data-use='c' data-ref="raw_toupper">raw_toupper</a>(*<a class="local col6 ref" href="#385" title='first' data-ref="36first">first</a>) != <a class="tu ref" href="#raw_toupper" title='raw_toupper' data-use='c' data-ref="raw_toupper">raw_toupper</a>(*<a class="local col7 ref" href="#385" title='second' data-ref="37second">second</a>)) {</td></tr>
+<tr><th id="389">389</th><td>      <b>break</b>;</td></tr>
+<tr><th id="390">390</th><td>    }</td></tr>
+<tr><th id="391">391</th><td>    <a class="local col8 ref" href="#385" title='max' data-ref="38max">max</a>--;</td></tr>
+<tr><th id="392">392</th><td>    <a class="local col6 ref" href="#385" title='first' data-ref="36first">first</a>++;</td></tr>
+<tr><th id="393">393</th><td>    <a class="local col7 ref" href="#385" title='second' data-ref="37second">second</a>++;</td></tr>
+<tr><th id="394">394</th><td>  }</td></tr>
+<tr><th id="395">395</th><td>  <b>if</b>(<var>0</var> == <a class="local col8 ref" href="#385" title='max' data-ref="38max">max</a>)</td></tr>
+<tr><th id="396">396</th><td>    <b>return</b> <var>1</var>; <i>/* they are equal this far */</i></td></tr>
+<tr><th id="397">397</th><td></td></tr>
+<tr><th id="398">398</th><td>  <b>return</b> <a class="tu ref" href="#raw_toupper" title='raw_toupper' data-use='c' data-ref="raw_toupper">raw_toupper</a>(*<a class="local col6 ref" href="#385" title='first' data-ref="36first">first</a>) == <a class="tu ref" href="#raw_toupper" title='raw_toupper' data-use='c' data-ref="raw_toupper">raw_toupper</a>(*<a class="local col7 ref" href="#385" title='second' data-ref="37second">second</a>);</td></tr>
+<tr><th id="399">399</th><td>}</td></tr>
+<tr><th id="400">400</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

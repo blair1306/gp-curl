@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_threads.h' l='59' type='int Curl_thread_join(pthread_t ** hnd)'/>
+<use f='codebrowser/lib/asyn-thread.c' l='363' u='c' c='destroy_async_data'/>
+<use f='codebrowser/lib/asyn-thread.c' l='480' u='c' c='Curl_resolver_wait_resolv'/>
+<def f='codebrowser/lib/curl_threads.c' l='91' ll='99' type='int Curl_thread_join(pthread_t ** hnd)'/>

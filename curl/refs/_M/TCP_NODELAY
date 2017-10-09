@@ -1,0 +1,14 @@
+<dec f='include/netinet/tcp.h' l='40'/>
+<use f='codebrowser/lib/connect.c' l='872' u='a'/>
+<use f='codebrowser/lib/connect.c' l='883' u='c'/>
+<doc f='include/netinet/tcp.h' l='37'>/*
+ * User-settable options (used with setsockopt).
+ */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='1376' u='a'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1382' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1352' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='1356' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1561' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='1565' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1888' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='1894' u='c'/>

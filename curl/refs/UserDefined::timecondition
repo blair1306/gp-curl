@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='1580' type='curl_TimeCond'/>
+<offset>7744</offset>
+<doc f='codebrowser/lib/urldata.h' l='1580'>/* kind of time/date comparison */</doc>
+<use f='codebrowser/lib/file.c' l='468' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='1568' u='r' c='ftp_state_mdtm'/>
+<use f='codebrowser/lib/ftp.c' l='2110' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2112' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/http.c' l='1693' u='r' c='Curl_add_timecondition'/>
+<use f='codebrowser/lib/http.c' l='1704' u='r' c='Curl_add_timecondition'/>
+<use f='codebrowser/lib/http.c' l='3483' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3733' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='398' u='r' c='Curl_meets_timecondition'/>
+<use f='codebrowser/lib/transfer.c' l='625' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/url.c' l='939' u='w' c='Curl_setopt'/>

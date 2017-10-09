@@ -1,0 +1,6 @@
+<def f='codebrowser/lib/urldata.h' l='441' ll='446'/>
+<size>32</size>
+<mbr r='hostname::rawalloc' o='0' t='char *'/>
+<mbr r='hostname::encalloc' o='64' t='char *'/>
+<mbr r='hostname::name' o='128' t='char *'/>
+<mbr r='hostname::dispname' o='192' t='const char *'/>

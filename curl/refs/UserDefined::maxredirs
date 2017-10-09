@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1501' type='long'/>
+<offset>832</offset>
+<doc f='codebrowser/lib/urldata.h' l='1501'>/* maximum no. of http(s) redirects to follow, set to -1
+                        for infinity */</doc>
+<use f='codebrowser/lib/transfer.c' l='1748' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1749' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1812' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='533' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1025' u='w' c='Curl_setopt'/>

@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='284'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='138' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='218' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='360' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='636' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='652' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='660' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='674' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='682' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='710' u='c'/>
+<use f='codebrowser/lib/parsedate.c' l='263' u='c'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='322' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='338' u='c'/>

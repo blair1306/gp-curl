@@ -1,0 +1,2 @@
+<dec f='codebrowser/include/curl/curl.h' l='2480' type='4194338'/>
+<use f='codebrowser/lib/getinfo.c' l='351' c='getinfo_slist'/>

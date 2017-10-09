@@ -1,0 +1,8 @@
+<dec f='include/netinet/in.h' l='51'/>
+<use f='codebrowser/lib/connect.c' l='137' u='c'/>
+<use f='codebrowser/lib/connect.c' l='145' u='c'/>
+<use f='codebrowser/lib/connect.c' l='877' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1382' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1356' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1565' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1894' u='c'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/smb.h' l='42' type='size_t'/>
+<offset>448</offset>
+<use f='codebrowser/lib/smb.c' l='382' u='w' c='smb_send'/>
+<use f='codebrowser/lib/smb.c' l='395' u='r' c='smb_flush'/>
+<use f='codebrowser/lib/smb.c' l='398' u='r' c='smb_flush'/>
+<use f='codebrowser/lib/smb.c' l='410' u='w' c='smb_flush'/>
+<use f='codebrowser/lib/smb.c' l='611' u='r' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/smb.c' l='622' u='w' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/smb.c' l='627' u='r' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/smb.c' l='634' u='r' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/smb.c' l='951' u='r' c='smb_getsock'/>

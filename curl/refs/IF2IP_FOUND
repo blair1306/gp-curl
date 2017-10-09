@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/if2ip.h' l='40' type='2'/>
+<use f='codebrowser/lib/connect.c' l='300' c='bindlocal'/>
+<doc f='codebrowser/lib/if2ip.h' l='40'>/* The address has been stored in &quot;buf&quot; */</doc>
+<use f='codebrowser/lib/ftp.c' l='1052' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/if2ip.c' l='249' u='r' c='Curl_if2ip'/>

@@ -1,0 +1,208 @@
+<dec f='codebrowser/tests/libtest/test.h' l='67' type='int test(char * URL)'/>
+<use f='codebrowser/tests/libtest/first.c' l='174' u='c' c='main'/>
+<doc f='codebrowser/tests/libtest/test.h' l='67'>/* the actual test function provided by each
+                               individual libXXX.c file */</doc>
+<def f='codebrowser/tests/libtest/lib1500.c' l='30' ll='90' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1501.c' l='36' ll='111' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1502.c' l='42' ll='146' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1506.c' l='32' ll='137' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1507.c' l='47' ll='149' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1508.c' l='28' ll='49' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1509.c' l='33' ll='81' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1510.c' l='32' ll='99' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1511.c' l='26' ll='75' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1512.c' l='35' ll='90' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1513.c' l='48' ll='74' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1514.c' l='55' ll='80' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1515.c' l='115' ll='154' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1517.c' l='54' ll='116' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1520.c' l='72' ll='113' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1525.c' l='47' ll='98' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1526.c' l='45' ll='103' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1527.c' l='46' ll='100' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1528.c' l='27' ll='73' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1529.c' l='27' ll='60' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1530.c' l='38' ll='68' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1531.c' l='33' ll='148' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1532.c' l='28' ll='80' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib1532.c' l='26'>/* Test CURLINFO_RESPONSE_CODE */</doc>
+<def f='codebrowser/tests/libtest/lib1533.c' l='128' ll='199' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1534.c' l='28' ll='129' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib1534.c' l='26'>/* Test CURLINFO_FILETIME */</doc>
+<def f='codebrowser/tests/libtest/lib1535.c' l='28' ll='128' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib1535.c' l='26'>/* Test CURLINFO_PROTOCOL */</doc>
+<def f='codebrowser/tests/libtest/lib1536.c' l='28' ll='129' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib1536.c' l='26'>/* Test CURLINFO_SCHEME */</doc>
+<def f='codebrowser/tests/libtest/lib1537.c' l='26' ll='94' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1538.c' l='26' ll='52' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1540.c' l='84' ll='121' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1550.c' l='28' ll='46' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1551.c' l='28' ll='47' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1552.c' l='30' ll='93' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1553.c' l='43' ll='109' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib1900.c' l='135' ll='248' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib500.c' l='60' ll='142' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib501.c' l='26' ll='55' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib502.c' l='34' ll='91' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib502.c' l='30'>/*
+ * Get a single URL without select().
+ */</doc>
+<def f='codebrowser/tests/libtest/lib503.c' l='38' ll='101' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib503.c' l='30'>/*
+ * Source code in here hugely as reported in bug report 651460 by
+ * Christopher R. Palmer.
+ *
+ * Use multi interface to get HTTPS document over proxy, and provide
+ * auth info.
+ */</doc>
+<def f='codebrowser/tests/libtest/lib504.c' l='37' ll='113' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib504.c' l='30'>/*
+ * Source code in here hugely as reported in bug report 651464 by
+ * Christopher R. Palmer.
+ *
+ * Use multi interface to get document over proxy with bad port number.
+ * This caused the interface to &quot;hang&quot; in libcurl 7.10.2.
+ */</doc>
+<def f='codebrowser/tests/libtest/lib505.c' l='37' ll='150' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib505.c' l='30'>/*
+ * This example shows an FTP upload, with a rename of the file just after
+ * a successful upload.
+ *
+ * Example based on source code provided by Erick Nuwendam. Thanks!
+ */</doc>
+<def f='codebrowser/tests/libtest/lib506.c' l='172' ll='379' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib506.c' l='171'>/* test function */</doc>
+<def f='codebrowser/tests/libtest/lib507.c' l='30' ll='100' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib508.c' l='50' ll='108' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib509.c' l='103' ll='146' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib510.c' l='62' ll='135' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib511.c' l='26' ll='56' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib512.c' l='29' ll='76' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib512.c' l='26'>/* Test case code based on source in a bug report filed by James Bursa on
+   28 Apr 2004 */</doc>
+<def f='codebrowser/tests/libtest/lib513.c' l='35' ll='83' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib514.c' l='26' ll='79' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib515.c' l='26' ll='60' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib516.c' l='26' ll='59' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib517.c' l='128' ll='139' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib518.c' l='464' ll='512' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib519.c' l='26' ll='62' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib520.c' l='26' ll='55' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib521.c' l='26' ll='56' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib523.c' l='26' ll='57' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib524.c' l='26' ll='55' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib525.c' l='32' ll='162' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib526.c' l='53' ll='184' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib530.c' l='32' ll='122' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib533.c' l='34' ll='112' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib536.c' l='78' ll='142' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib537.c' l='466' ll='514' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib539.c' l='26' ll='91' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib540.c' l='187' ll='248' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib541.c' l='34' ll='115' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib541.c' l='30'>/*
+ * Two FTP uploads, the second with no content sent.
+ */</doc>
+<def f='codebrowser/tests/libtest/lib542.c' l='34' ll='73' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib542.c' l='30'>/*
+ * FTP get with NOBODY but no HEADER
+ */</doc>
+<def f='codebrowser/tests/libtest/lib543.c' l='28' ll='62' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib544.c' l='40' ll='92' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib547.c' l='80' ll='130' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib549.c' l='31' ll='65' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib552.c' l='168' ll='224' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib553.c' l='58' ll='115' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib554.c' l='208' ll='224' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib555.c' l='76' ll='159' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib556.c' l='38' ll='108' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib557.c' l='1663' ll='1700' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib557.c' l='1661'>/* !checksrc! enable LONGLINE */</doc>
+<def f='codebrowser/tests/libtest/lib558.c' l='26' ll='52' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib559.c' l='27' ll='55' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib560.c' l='40' ll='113' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib560.c' l='30'>/*
+ * Simply download a HTTPS file!
+ *
+ * This test was added after the HTTPS-using-multi-interface with OpenSSL
+ * regression of 7.19.1 to hopefully prevent this embarassing mistake from
+ * appearing again... Unfortunately the bug wasn&apos;t triggered by this test,
+ * which presumably is because the connect to a local server is too
+ * fast/different compared to the real/distant servers we saw the bug happen
+ * with.
+ */</doc>
+<def f='codebrowser/tests/libtest/lib562.c' l='38' ll='74' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib562.c' l='30'>/*
+ * From &quot;KNOWN_BUGS&quot; April 2009:
+
+ 59. If the CURLOPT_PORT option is used on an FTP URL like
+ &quot;ftp://example.com/file;type=A&quot; the &quot;;type=A&quot; is stripped off.
+
+ */</doc>
+<def f='codebrowser/tests/libtest/lib564.c' l='32' ll='93' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib566.c' l='26' ll='67' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib567.c' l='29' ll='69' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib567.c' l='26'>/*
+ * Test a simple OPTIONS request with a custom header
+ */</doc>
+<def f='codebrowser/tests/libtest/lib568.c' l='42' ll='177' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib568.c' l='39'>/*
+ * Test the Client-&gt;Server ANNOUNCE functionality (PUT style)
+ */</doc>
+<def f='codebrowser/tests/libtest/lib569.c' l='34' ll='127' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib569.c' l='31'>/*
+ * Test Session ID capture
+ */</doc>
+<def f='codebrowser/tests/libtest/lib570.c' l='31' ll='115' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib571.c' l='101' ll='214' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib572.c' l='42' ll='183' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib572.c' l='39'>/*
+ * Test GET_PARAMETER: PUT, HEARTBEAT, and POST
+ */</doc>
+<def f='codebrowser/tests/libtest/lib573.c' l='35' ll='113' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib573.c' l='31'>/*
+ * Get a single URL without select().
+ */</doc>
+<def f='codebrowser/tests/libtest/lib574.c' l='35' ll='71' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib575.c' l='38' ll='114' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib575.c' l='32'>/* 3x download!
+ * 1. normal
+ * 2. dup handle
+ * 3. with multi interface
+ */</doc>
+<def f='codebrowser/tests/libtest/lib576.c' l='100' ll='125' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib578.c' l='51' ll='105' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib579.c' l='87' ll='162' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib582.c' l='225' ll='356' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib583.c' l='33' ll='84' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib586.c' l='130' ll='246' type='int test(char * URL)'/>
+<doc f='codebrowser/tests/libtest/lib586.c' l='129'>/* test function */</doc>
+<def f='codebrowser/tests/libtest/lib589.c' l='26' ll='59' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib590.c' l='39' ll='71' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib591.c' l='38' ll='147' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib597.c' l='51' ll='148' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib598.c' l='26' ll='72' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib599.c' l='42' ll='97' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib643.c' l='278' ll='297' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/lib650.c' l='54' ll='189' type='int test(char * URL)'/>
+<def f='codebrowser/tests/libtest/libauthretry.c' l='83' ll='147' type='int test(char * url)'/>
+<def f='codebrowser/tests/libtest/libntlmconnect.c' l='90' ll='231' type='int test(char * url)'/>
+<def f='codebrowser/tests/unit/unit1300.c' l='50' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1301.c' l='29' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1302.c' l='48' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1303.c' l='75' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1304.c' l='48' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1305.c' l='121' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1307.c' l='220' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1308.c' l='43' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1309.c' l='68' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1330.c' l='36' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1395.c' l='43' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1396.c' l='41' ll='46'/>
+<def f='codebrowser/tests/unit/unit1396.c' l='48' macro='1' type='int test(char * arg)'/>
+<size>32</size>
+<def f='codebrowser/tests/unit/unit1397.c' l='36' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1398.c' l='29' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1600.c' l='46' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1601.c' l='36' macro='1' type='int test(char * arg)'/>
+<def f='codebrowser/tests/unit/unit1603.c' l='51' macro='1' type='int test(char * arg)'/>

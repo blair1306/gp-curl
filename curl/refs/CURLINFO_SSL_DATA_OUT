@@ -1,0 +1,7 @@
+<dec f='codebrowser/include/curl/curl.h' l='436' type='6'/>
+<doc f='codebrowser/include/curl/curl.h' l='436'>/* 6 */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='1830' u='r' c='ssl_tls_trace'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='140' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='209' c='tool_debug_cb'/>
+<use f='codebrowser/tests/libtest/lib552.c' l='107' c='my_trace'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='128' c='libtest_debug_cb'/>

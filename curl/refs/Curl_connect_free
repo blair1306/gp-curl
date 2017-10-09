@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/http_proxy.h' l='49' type='void Curl_connect_free(struct Curl_easy * data)'/>
+<def f='codebrowser/lib/http_proxy.c' l='645' ll='653' type='void Curl_connect_free(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/multi.c' l='124' u='r' c='mstate'/>
+<use f='codebrowser/lib/multi.c' l='124' u='r' c='mstate'/>

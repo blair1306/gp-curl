@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='107'/>
+<use f='codebrowser/lib/curl_setup.h' l='705' u='a'/>
+<use f='codebrowser/lib/curl_setup.h' l='710' u='a'/>
+<dec f='include/fcntl.h' l='79'/>

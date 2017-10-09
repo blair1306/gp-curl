@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/smtp.h' l='57' type='struct curl_slist *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/smtp.h' l='57'>/* Recipient list */</doc>
+<use f='codebrowser/lib/smtp.c' l='477' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='481' u='r' c='smtp_perform_command'/>
+<use f='codebrowser/lib/smtp.c' l='616' u='r' c='smtp_perform_rcpt_to'/>
+<use f='codebrowser/lib/smtp.c' l='618' u='r' c='smtp_perform_rcpt_to'/>
+<use f='codebrowser/lib/smtp.c' l='621' u='r' c='smtp_perform_rcpt_to'/>
+<use f='codebrowser/lib/smtp.c' l='847' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='848' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='861' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='862' u='w' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='862' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='864' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='916' u='w' c='smtp_state_rcpt_resp'/>
+<use f='codebrowser/lib/smtp.c' l='916' u='r' c='smtp_state_rcpt_resp'/>
+<use f='codebrowser/lib/smtp.c' l='918' u='r' c='smtp_state_rcpt_resp'/>
+<use f='codebrowser/lib/smtp.c' l='1283' u='w' c='smtp_perform'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='39' type='HMAC_hfinal_func'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/curl_hmac.h' l='39'>/* Get final result procedure. */</doc>
+<use f='codebrowser/lib/hmac.c' l='78' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='124' u='r' c='Curl_HMAC_final'/>
+<use f='codebrowser/lib/hmac.c' l='127' u='r' c='Curl_HMAC_final'/>

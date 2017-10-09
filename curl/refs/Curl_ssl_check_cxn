@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='170' type='int Curl_ssl_check_cxn(struct connectdata * conn)'/>
+<use f='codebrowser/lib/connect.c' l='1256' u='c' c='Curl_connalive'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='631' ll='634' type='int Curl_ssl_check_cxn(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='623'>/*
+ * This function tries to determine connection status.
+ *
+ * Return codes:
+ *     1 means the connection is still in place
+ *     0 means the connection has been closed
+ *    -1 means the connection status is unknown
+ */</doc>

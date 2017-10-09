@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='605' type='_Bool'/>
+<offset>3200</offset>
+<use f='codebrowser/lib/http.c' l='3102' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3259' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3628' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/multi.c' l='1233' u='w' c='do_complete'/>
+<use f='codebrowser/lib/transfer.c' l='665' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='754' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1232' u='r' c='Curl_readwrite'/>

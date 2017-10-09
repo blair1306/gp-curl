@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/sendf.h' l='89' type='int Curl_debug(struct Curl_easy * handle, curl_infotype type, char * data, size_t size, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/sendf.h' l='88'>/* the function used to output verbose information */</doc>
+<use f='codebrowser/lib/ftp.c' l='4029' u='c' c='Curl_ftpsend'/>
+<use f='codebrowser/lib/http.c' l='1131' u='c' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1135' u='c' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='3290' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3799' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_proxy.c' l='421' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/pingpong.c' l='225' u='c' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='370' u='c' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/sendf.c' l='234' u='c' c='Curl_infof'/>
+<use f='codebrowser/lib/sendf.c' l='259' u='c' c='Curl_failf'/>
+<use f='codebrowser/lib/sendf.c' l='294' u='c' c='Curl_sendf'/>
+<def f='codebrowser/lib/sendf.c' l='819' ll='855' type='int Curl_debug(struct Curl_easy * data, curl_infotype type, char * ptr, size_t size, struct connectdata * conn)'/>
+<use f='codebrowser/lib/transfer.c' l='653' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='656' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='660' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1044' u='c' c='readwrite_upload'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1827' u='c' c='ssl_tls_trace'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1830' u='c' c='ssl_tls_trace'/>

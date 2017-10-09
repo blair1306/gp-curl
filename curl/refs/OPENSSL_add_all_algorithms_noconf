@@ -1,0 +1,2 @@
+<dec f='include/openssl/evp.h' l='905' type='void OPENSSL_add_all_algorithms_noconf()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='946' macro='1' u='c'/>

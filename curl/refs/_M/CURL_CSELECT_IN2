@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/select.h' l='73'/>
+<doc f='codebrowser/lib/select.h' l='70'>/* there are three CSELECT defines that are defined in the public header that
+   are exposed to users, but this *IN2 bit is only ever used internally and
+   therefore defined here */</doc>
+<use f='codebrowser/lib/ftp.c' l='415' u='c'/>
+<use f='codebrowser/lib/select.c' l='248' u='c'/>

@@ -1,0 +1,23 @@
+<dec f='codebrowser/include/curl/curl.h' l='561' type='81'/>
+<doc f='codebrowser/include/curl/curl.h' l='561'>/* 81 - socket is not ready for send/recv,
+                                    wait till it&apos;s ready and try again (Added
+                                    in 7.18.2) */</doc>
+<use f='codebrowser/lib/easy.c' l='1136' u='r' c='curl_easy_send'/>
+<use f='codebrowser/lib/http_proxy.c' l='343' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/pingpong.c' l='328' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/sendf.c' l='337' c='Curl_write'/>
+<use f='codebrowser/lib/sendf.c' l='391' u='r' c='Curl_send_plain'/>
+<use f='codebrowser/lib/sendf.c' l='456' u='r' c='Curl_recv_plain'/>
+<use f='codebrowser/lib/sendf.c' l='671' u='r' c='Curl_read_plain'/>
+<use f='codebrowser/lib/smb.c' l='616' u='r' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/smb.c' l='635' u='r' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/smb.c' l='653' u='r' c='smb_connection_state'/>
+<use f='codebrowser/lib/smb.c' l='671' u='r' c='smb_connection_state'/>
+<use f='codebrowser/lib/smb.c' l='760' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/socks.c' l='74' u='r' c='Curl_blockread_all'/>
+<use f='codebrowser/lib/strerror.c' l='288' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/telnet.c' l='1616' u='r' c='telnet_do'/>
+<use f='codebrowser/lib/transfer.c' l='476' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3429' u='r' c='ossl_send'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3492' u='r' c='ossl_recv'/>
+<use f='codebrowser/tests/libtest/lib556.c' l='95' u='r' c='test'/>

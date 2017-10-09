@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='58' type='14'/>
+<use f='codebrowser/lib/ftp.c' l='1523' u='r' c='ftp_state_stor_prequote'/>
+<use f='codebrowser/lib/ftp.c' l='1696' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='1771' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='2931' c='ftp_statemach_act'/>

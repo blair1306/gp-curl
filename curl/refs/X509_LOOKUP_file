@@ -1,0 +1,2 @@
+<dec f='include/openssl/x509_vfy.h' l='495' type='X509_LOOKUP_METHOD * X509_LOOKUP_file()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2374' u='c' c='ossl_connect_step1'/>

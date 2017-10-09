@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/sendf.h' l='27' type='CURLcode Curl_sendf(curl_socket_t sockfd, struct connectdata * , const char * fmt)'/>
+<use f='codebrowser/lib/dict.c' l='184' u='c' c='dict_do'/>
+<use f='codebrowser/lib/dict.c' l='235' u='c' c='dict_do'/>
+<use f='codebrowser/lib/dict.c' l='264' u='c' c='dict_do'/>
+<use f='codebrowser/lib/gopher.c' l='154' u='c' c='gopher_do'/>
+<def f='codebrowser/lib/sendf.c' l='266' ll='309' type='CURLcode Curl_sendf(curl_socket_t sockfd, struct connectdata * conn, const char * fmt)'/>
+<doc f='codebrowser/lib/sendf.c' l='265'>/* Curl_sendf() sends formatted data to the server */</doc>

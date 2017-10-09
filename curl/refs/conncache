@@ -1,0 +1,28 @@
+<def f='codebrowser/lib/conncache.h' l='26' ll='31'/>
+<size>80</size>
+<doc f='codebrowser/lib/conncache.h' l='3'>/***************************************************************************
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ &lt;| |___
+ *                             \___|\___/|_| \_\_____|
+ *
+ * Copyright (C) 2015 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.
+ * Copyright (C) 2012 - 2014, Linus Nielsen Feltzing, &lt;linus@haxx.se&gt;
+ *
+ * This software is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution. The terms
+ * are also available at https://curl.haxx.se/docs/copyright.html.
+ *
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the COPYING file.
+ *
+ * This software is distributed on an &quot;AS IS&quot; basis, WITHOUT WARRANTY OF ANY
+ * KIND, either express or implied.
+ *
+ ***************************************************************************/</doc>
+<mbr r='conncache::hash' o='0' t='struct curl_hash'/>
+<mbr r='conncache::num_connections' o='384' t='size_t'/>
+<mbr r='conncache::next_connection_id' o='448' t='long'/>
+<mbr r='conncache::last_cleanup' o='512' t='struct curltime'/>

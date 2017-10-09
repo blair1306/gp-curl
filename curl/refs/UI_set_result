@@ -1,0 +1,3 @@
+<dec f='include/openssl/ui.h' l='372' type='int UI_set_result(UI * ui, UI_STRING * uis, const char * result)'/>
+<doc f='include/openssl/ui.h' l='371'>/* Set the result of a UI_STRING. */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='513' u='c' c='ssl_ui_reader'/>

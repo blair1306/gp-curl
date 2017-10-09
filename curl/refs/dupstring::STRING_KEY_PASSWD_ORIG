@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1409' type='15'/>
+<doc f='codebrowser/lib/urldata.h' l='1409'>/* plain text private key password */</doc>
+<use f='codebrowser/lib/url.c' l='2066' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6713' u='r' c='create_conn'/>

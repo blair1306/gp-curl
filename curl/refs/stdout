@@ -1,0 +1,33 @@
+<dec f='include/stdio.h' l='169' type='struct _IO_FILE *'/>
+<doc f='include/stdio.h' l='169'>/* Standard output stream.  */</doc>
+<use f='codebrowser/lib/cookie.c' l='1372' macro='1' u='r'/>
+<use f='codebrowser/lib/mprintf.c' l='1142' macro='1' u='r'/>
+<use f='codebrowser/lib/mprintf.c' l='1167' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='511' macro='1' u='r'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='78' macro='1' u='r'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='146' macro='1' u='r'/>
+<use f='codebrowser/src/tool_easysrc.c' l='185' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='742' macro='1' u='r'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10034' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='280' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='553' macro='1' u='r'/>
+<use f='codebrowser/src/tool_writeout.c' l='109' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib1540.c' l='62' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib1540.c' l='74' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='180' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='472' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='474' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib567.c' l='48' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib567.c' l='49' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='65' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='66' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib569.c' l='64' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib569.c' l='65' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib570.c' l='50' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib570.c' l='51' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib572.c' l='66' macro='1' u='r'/>
+<use f='codebrowser/tests/libtest/lib572.c' l='67' macro='1' u='r'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='247' macro='1' u='r'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='269' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='467' macro='1' u='r'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='38' macro='1' u='r'/>

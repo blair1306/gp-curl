@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_ntlm_core.h' l='83' type='CURLcode Curl_ntlm_core_mk_ntlmv2_hash(const char * user, size_t userlen, const char * domain, size_t domlen, unsigned char * ntlmhash, unsigned char * ntlmv2hash)'/>
+<def f='codebrowser/lib/curl_ntlm_core.c' l='652' ll='674' type='CURLcode Curl_ntlm_core_mk_ntlmv2_hash(const char * user, size_t userlen, const char * domain, size_t domlen, unsigned char * ntlmhash, unsigned char * ntlmv2hash)'/>
+<doc f='codebrowser/lib/curl_ntlm_core.c' l='649'>/* This creates the NTLMv2 hash by using NTLM hash as the key and Unicode
+ * (uppercase UserName + Domain) as the data
+ */</doc>
+<use f='codebrowser/lib/vauth/ntlm.c' l='573' u='c' c='Curl_auth_create_ntlm_type3_message'/>

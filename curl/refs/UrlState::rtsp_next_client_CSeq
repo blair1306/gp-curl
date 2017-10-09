@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='1341' type='long'/>
+<offset>139904</offset>
+<doc f='codebrowser/lib/urldata.h' l='1340'>/* This RTSP state information survives requests and connections */</doc>
+<doc f='codebrowser/lib/urldata.h' l='1341'>/* the session&apos;s next client CSeq */</doc>
+<use f='codebrowser/lib/getinfo.c' l='215' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/rtsp.c' l='197' u='r' c='rtsp_connect'/>
+<use f='codebrowser/lib/rtsp.c' l='198' u='w' c='rtsp_connect'/>
+<use f='codebrowser/lib/rtsp.c' l='279' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='608' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='2801' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2806' u='w' c='Curl_setopt'/>

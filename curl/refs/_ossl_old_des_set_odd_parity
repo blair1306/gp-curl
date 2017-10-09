@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='432' type='void _ossl_old_des_set_odd_parity(_ossl_old_des_cblock * key)'/>

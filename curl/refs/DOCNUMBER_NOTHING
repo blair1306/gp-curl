@@ -1,0 +1,12 @@
+<dec f='codebrowser/tests/server/rtspd.c' l='156' type='-7'/>
+<use f='codebrowser/tests/server/rtspd.c' l='351' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/rtspd.c' l='803' u='r' c='get_request'/>
+<dec f='codebrowser/tests/server/sws.c' l='180' type='-4'/>
+<use f='codebrowser/tests/server/sws.c' l='476' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='483' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='544' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='548' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='604' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='612' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='651' u='r' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/sws.c' l='929' u='r' c='init_httprequest'/>

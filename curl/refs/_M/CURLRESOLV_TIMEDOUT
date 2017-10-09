@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/hostip.h' l='82'/>
+<doc f='codebrowser/lib/hostip.h' l='81'>/* return codes */</doc>
+<use f='codebrowser/lib/hostip.c' l='592' u='c'/>
+<use f='codebrowser/lib/url.c' l='6240' u='c'/>
+<use f='codebrowser/lib/url.c' l='6262' u='c'/>

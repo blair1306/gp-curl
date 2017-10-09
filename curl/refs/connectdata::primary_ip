@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='855' type='char [46]'/>
+<offset>3344</offset>
+<doc f='codebrowser/lib/urldata.h' l='848'>/* &apos;primary_ip&apos; and &apos;primary_port&apos; get filled with peer&apos;s numerical
+     ip address and port number whenever an outgoing connection is
+     *attempted* from the primary socket to a remote address. When more
+     than one address is tried for a connection these will hold data
+     for the last attempt. When the connection is actually established
+     these are updated with data which comes directly from the socket. */</doc>
+<use f='codebrowser/lib/connect.c' l='602' u='r' c='Curl_persistconninfo'/>
+<use f='codebrowser/lib/connect.c' l='694' u='r' c='Curl_updateconninfo'/>
+<use f='codebrowser/lib/connect.c' l='699' u='r' c='Curl_updateconninfo'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='341'/>
+<use f='codebrowser/lib/mime.c' l='650' u='c'/>
+<use f='codebrowser/lib/mime.c' l='693' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1030' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1037' u='c'/>

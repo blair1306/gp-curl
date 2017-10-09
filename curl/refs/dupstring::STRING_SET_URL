@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1420' type='25'/>
+<doc f='codebrowser/lib/urldata.h' l='1420'>/* what original URL to work on */</doc>
+<use f='codebrowser/lib/transfer.c' l='1337' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='1713' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1715' u='r' c='Curl_setopt'/>

@@ -1,0 +1,15 @@
+<dec f='codebrowser/include/curl/easy.h' l='74' type='void curl_easy_reset(CURL * curl)'/>
+<def f='codebrowser/lib/easy.c' l='970' ll='995' type='void curl_easy_reset(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/easy.c' l='966'>/*
+ * curl_easy_reset() is an external interface that allows an app to re-
+ * initialize a session handle to the default values.
+ */</doc>
+<use f='codebrowser/src/tool_operate.c' l='2071' u='c' c='operate'/>
+<use f='codebrowser/tests/libtest/lib1532.c' l='61' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1534.c' l='109' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1535.c' l='108' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1536.c' l='109' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib526.c' l='112' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib533.c' l='78' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='112' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib598.c' l='56' u='c' c='test'/>

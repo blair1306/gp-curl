@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/hostip.h' l='121' type='void Curl_resolv_unlock(struct Curl_easy * data, struct Curl_dns_entry * dns)'/>
+<doc f='codebrowser/lib/hostip.h' l='120'>/* unlock a previously resolved dns entry */</doc>
+<use f='codebrowser/lib/connect.c' l='364' u='c' c='bindlocal'/>
+<use f='codebrowser/lib/ftp.c' l='1094' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1972' u='c' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1990' u='c' c='ftp_state_pasv_resp'/>
+<def f='codebrowser/lib/hostip.c' l='722' ll='731' type='void Curl_resolv_unlock(struct Curl_easy * data, struct Curl_dns_entry * dns)'/>
+<doc f='codebrowser/lib/hostip.c' l='715'>/*
+ * Curl_resolv_unlock() unlocks the given cached DNS entry. When this has been
+ * made, the struct may be destroyed due to pruning. It is important that only
+ * one unlock is made for each Curl_resolv() call.
+ *
+ * May be called with &apos;data&apos; == NULL for global cache.
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='589' u='c' c='multi_done'/>
+<use f='codebrowser/lib/socks.c' l='196' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='655' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/url.c' l='3120' u='c' c='Curl_disconnect'/>

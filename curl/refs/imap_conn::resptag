@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/imap.h' l='78' type='char [5]'/>
+<offset>1280</offset>
+<doc f='codebrowser/lib/imap.h' l='78'>/* Response tag to wait for */</doc>
+<use f='codebrowser/lib/imap.c' l='248' u='r' c='imap_endofresp'/>
+<use f='codebrowser/lib/imap.c' l='1424' u='r' c='imap_connect'/>
+<use f='codebrowser/lib/imap.c' l='1730' u='r' c='imap_sendf'/>
+<use f='codebrowser/lib/imap.c' l='1730' u='r' c='imap_sendf'/>
+<use f='codebrowser/lib/imap.c' l='1734' c='imap_sendf'/>

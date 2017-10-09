@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/mime.h' l='110' type='struct curl_slist *'/>
+<offset>704</offset>
+<doc f='codebrowser/lib/mime.h' l='110'>/* Part headers. */</doc>
+<use f='codebrowser/lib/mime.c' l='851' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='1120' u='r' c='Curl_mime_cleanpart'/>
+<use f='codebrowser/lib/mime.c' l='1378' u='r' c='curl_mime_headers'/>
+<use f='codebrowser/lib/mime.c' l='1379' u='r' c='curl_mime_headers'/>
+<use f='codebrowser/lib/mime.c' l='1382' u='w' c='curl_mime_headers'/>
+<use f='codebrowser/lib/mime.c' l='1537' u='r' c='Curl_mime_size'/>
+<use f='codebrowser/lib/mime.c' l='1635' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1668' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1715' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/src/tool_setopt.c' l='542' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='545' u='r' c='libcurl_generate_mime'/>

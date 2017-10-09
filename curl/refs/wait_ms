@@ -1,0 +1,26 @@
+<dec f='codebrowser/tests/libtest/test.h' l='65' type='void wait_ms(int ms)'/>
+<def f='codebrowser/tests/libtest/first.c' l='66' ll='73' type='void wait_ms(int ms)'/>
+<doc f='codebrowser/tests/libtest/test.h' l='65'>/* wait this many milliseconds */</doc>
+<use f='codebrowser/tests/libtest/lib1506.c' l='119' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1517.c' l='40' u='c' c='read_callback'/>
+<dec f='codebrowser/tests/server/util.h' l='58' type='int wait_ms(int timeout_ms)'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1151' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1217' u='c' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sws.c' l='1229' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sws.c' l='1247' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sws.c' l='1290' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sws.c' l='1461' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1586' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1740' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='2344' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1264' u='c' c='sendtftp'/>
+<def f='codebrowser/tests/server/util.c' l='210' ll='256' type='int wait_ms(int timeout_ms)'/>
+<doc f='codebrowser/tests/server/util.c' l='201'>/*
+ * Portable function used for waiting a specific amount of ms.
+ * Waiting indefinitely with this function is not allowed, a
+ * zero or negative timeout value will return immediately.
+ *
+ * Return values:
+ *   -1 = system call error, or invalid timeout value
+ *    0 = specified timeout has elapsed
+ */</doc>

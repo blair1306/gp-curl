@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='606' type='_Bool'/>
+<offset>3208</offset>
+<use f='codebrowser/lib/http.c' l='1981' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1994' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2003' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2006' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2448' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2510' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2589' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2643' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2695' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2770' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2774' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/transfer.c' l='130' u='r' c='Curl_fillreadbuffer'/>
+<use f='codebrowser/lib/transfer.c' l='159' u='r' c='Curl_fillreadbuffer'/>
+<use f='codebrowser/lib/transfer.c' l='174' u='r' c='Curl_fillreadbuffer'/>

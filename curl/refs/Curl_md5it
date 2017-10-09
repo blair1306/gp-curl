@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/curl_md5.h' l='52' type='void Curl_md5it(unsigned char * output, const unsigned char * input)'/>
+<def f='codebrowser/lib/md5.c' l='511' ll='518' type='void Curl_md5it(unsigned char * outbuffer, const unsigned char * input)'/>
+<doc f='codebrowser/lib/md5.c' l='508'>/*
+ * @unittest: 1601
+ */</doc>
+<doc f='codebrowser/lib/md5.c' l='511'>/* 16 bytes */</doc>
+<use f='codebrowser/lib/vauth/digest.c' l='712' u='c' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='723' u='c' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='756' u='c' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='780' u='c' c='Curl_auth_create_digest_http_message'/>
+<use f='codebrowser/tests/unit/unit1601.c' l='41' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1601.c' l='47' u='c' c='test'/>

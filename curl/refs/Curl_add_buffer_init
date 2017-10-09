@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/http.h' l='60' type='Curl_send_buffer * Curl_add_buffer_init()'/>
+<def f='codebrowser/lib/http.c' l='1029' ll='1032' type='Curl_send_buffer * Curl_add_buffer_init()'/>
+<use f='codebrowser/lib/http.c' l='2286' u='c' c='Curl_http'/>
+<doc f='codebrowser/lib/http.c' l='1026'>/*
+ * Curl_add_buffer_init() sets up and returns a fine buffer struct
+ */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='219' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/rtsp.c' l='461' u='c' c='rtsp_do'/>

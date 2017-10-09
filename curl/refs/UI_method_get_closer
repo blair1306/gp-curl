@@ -1,0 +1,2 @@
+<dec f='include/openssl/ui.h' l='340' type='int (*)(UI *) UI_method_get_closer(UI_METHOD * method)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='783' u='c' c='cert_stuff'/>

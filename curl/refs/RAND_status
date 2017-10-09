@@ -1,0 +1,2 @@
+<dec f='include/openssl/rand.h' l='108' type='int RAND_status()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='385' u='c' c='rand_enough'/>

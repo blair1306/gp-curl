@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/imap.h' l='59' type='char *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/imap.h' l='59'>/* UIDVALIDITY to check in select */</doc>
+<use f='codebrowser/lib/imap.c' l='1055' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1056' u='r' c='imap_state_select_resp'/>
+<use f='codebrowser/lib/imap.c' l='1481' u='r' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1481' u='w' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1525' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1526' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1995' u='r' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='1999' u='w' c='imap_parse_url_path'/>

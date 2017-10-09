@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1470' type='54'/>
+<doc f='codebrowser/lib/urldata.h' l='1470'>/* path to Unix socket, if used */</doc>
+<use f='codebrowser/lib/url.c' l='2918' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2923' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6538' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6539' u='r' c='create_conn'/>

@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/http.h' l='131' type='curl_mimepart *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/http.c' l='1938' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1947' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1950' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1953' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1957' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1964' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1967' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1968' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1970' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1972' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1975' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2525' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2559' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/transfer.c' l='287' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/transfer.c' l='288' u='r' c='Curl_readrewind'/>

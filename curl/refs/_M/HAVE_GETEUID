@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='185'/>
+<doc f='codebrowser/lib/curl_config.h' l='184'>/* Define to 1 if you have the `geteuid&apos; function. */</doc>
+<use f='codebrowser/lib/netrc.c' l='76' u='a'/>
+<use f='codebrowser/lib/netrc.c' l='88' u='a'/>
+<use f='codebrowser/src/tool_homedir.c' l='75' u='a'/>

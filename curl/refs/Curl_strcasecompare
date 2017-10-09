@@ -1,0 +1,100 @@
+<dec f='codebrowser/lib/strcase.h' l='38' type='int Curl_strcasecompare(const char * first, const char * second)'/>
+<use f='codebrowser/lib/cookie.c' l='128' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='486' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='488' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='496' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='509' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='528' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='556' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='563' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='579' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='744' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='773' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='845' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='849' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='861' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='1162' macro='1' u='c'/>
+<use f='codebrowser/lib/formdata.c' l='197' macro='1' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='2891' macro='1' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='83' macro='1' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='104' macro='1' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='109' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='719' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='2014' macro='1' u='c'/>
+<use f='codebrowser/lib/imap.c' l='1995' macro='1' u='c'/>
+<use f='codebrowser/lib/imap.c' l='2002' macro='1' u='c'/>
+<use f='codebrowser/lib/imap.c' l='2009' macro='1' u='c'/>
+<use f='codebrowser/lib/imap.c' l='2016' macro='1' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1362' macro='1' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1608' macro='1' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1663' macro='1' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1739' macro='1' u='c'/>
+<use f='codebrowser/lib/netrc.c' l='135' macro='1' u='c'/>
+<use f='codebrowser/lib/netrc.c' l='142' macro='1' u='c'/>
+<use f='codebrowser/lib/netrc.c' l='148' macro='1' u='c'/>
+<use f='codebrowser/lib/netrc.c' l='161' macro='1' u='c'/>
+<use f='codebrowser/lib/netrc.c' l='184' macro='1' u='c'/>
+<use f='codebrowser/lib/netrc.c' l='186' macro='1' u='c'/>
+<use f='codebrowser/lib/netrc.c' l='188' macro='1' u='c'/>
+<use f='codebrowser/lib/parsedate.c' l='214' macro='1' u='c'/>
+<use f='codebrowser/lib/parsedate.c' l='231' macro='1' u='c'/>
+<use f='codebrowser/lib/parsedate.c' l='251' macro='1' u='c'/>
+<use f='codebrowser/lib/pipeline.c' l='179' macro='1' u='c'/>
+<def f='codebrowser/lib/strcase.c' l='109' ll='122' type='int Curl_strcasecompare(const char * first, const char * second)'/>
+<use f='codebrowser/lib/strcase.c' l='128' u='c' c='Curl_safe_strcasecompare'/>
+<use f='codebrowser/lib/strcase.c' l='172' u='c' c='curl_strequal'/>
+<doc f='codebrowser/lib/strcase.c' l='96'>/*
+ * Curl_strcasecompare() is for doing &quot;raw&quot; case insensitive strings. This is
+ * meant to be locale independent and only compare strings we know are safe
+ * for this.  See
+ * https://daniel.haxx.se/blog/2008/10/15/strcasecmp-in-turkish/ for some
+ * further explanation to why this function is necessary.
+ *
+ * The function is capable of comparing a-z case insensitively even for
+ * non-ascii.
+ *
+ * @unittest: 1301
+ */</doc>
+<use f='codebrowser/lib/telnet.c' l='851' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='859' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='867' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='879' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='892' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='1301' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='1307' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='1313' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='1317' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='3740' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='3743' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='3747' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='4364' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='4448' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='4465' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='4949' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='5058' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='6603' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='221' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='223' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='225' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='536' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='542' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='543' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='548' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='554' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='560' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='570' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='573' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='595' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='601' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='603' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='743' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='819' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='488' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='490' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='492' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='494' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='338' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='341' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='346' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1283' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1305' macro='1' u='c'/>

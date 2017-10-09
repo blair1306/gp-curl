@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='446' type='int OCSP_single_get0_status(OCSP_SINGLERESP * single, int * reason, ASN1_GENERALIZEDTIME ** revtime, ASN1_GENERALIZEDTIME ** thisupd, ASN1_GENERALIZEDTIME ** nextupd)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1623' u='c' c='verifystatus'/>

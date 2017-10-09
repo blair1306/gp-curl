@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_writeout.c' l='32' type='0'/>
+<use f='codebrowser/src/tool_writeout.c' l='104' u='r'/>
+<use f='codebrowser/src/tool_writeout.c' l='104' u='r'/>
+<use f='codebrowser/src/tool_writeout.c' l='104' u='r'/>
+<use f='codebrowser/src/tool_writeout.c' l='104' u='r'/>
+<doc f='codebrowser/src/tool_writeout.c' l='32'>/* must be the first */</doc>

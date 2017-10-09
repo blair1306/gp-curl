@@ -1,0 +1,17 @@
+<dec f='codebrowser/include/curl/curl.h' l='515' type='48'/>
+<doc f='codebrowser/include/curl/curl.h' l='515'>/* 48 - User specified an unknown option */</doc>
+<use f='codebrowser/lib/ftp.c' l='2669' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/getinfo.c' l='135' u='r' c='getinfo_char'/>
+<use f='codebrowser/lib/getinfo.c' l='244' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/getinfo.c' l='277' u='r' c='getinfo_offt'/>
+<use f='codebrowser/lib/getinfo.c' l='330' u='r' c='getinfo_double'/>
+<use f='codebrowser/lib/getinfo.c' l='385' u='r' c='getinfo_slist'/>
+<use f='codebrowser/lib/getinfo.c' l='399' u='r' c='getinfo_socket'/>
+<use f='codebrowser/lib/getinfo.c' l='415' u='r' c='Curl_getinfo'/>
+<use f='codebrowser/lib/strerror.c' l='188' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/telnet.c' l='902' u='r' c='check_telnet_options'/>
+<use f='codebrowser/lib/url.c' l='869' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1561' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2970' u='r' c='Curl_setopt'/>
+<use f='codebrowser/src/tool_operate.c' l='108' c='is_fatal_error'/>
+<use f='codebrowser/src/tool_operate.c' l='1192' u='r' c='operate_do'/>

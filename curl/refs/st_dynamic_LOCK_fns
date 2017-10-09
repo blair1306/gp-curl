@@ -1,0 +1,7 @@
+<def f='include/openssl/engine.h' l='771' ll='777'/>
+<size>40</size>
+<mbr r='st_dynamic_LOCK_fns::lock_locking_cb' o='0' t='dyn_lock_locking_cb'/>
+<mbr r='st_dynamic_LOCK_fns::lock_add_lock_cb' o='64' t='dyn_lock_add_lock_cb'/>
+<mbr r='st_dynamic_LOCK_fns::dynlock_create_cb' o='128' t='dyn_dynlock_create_cb'/>
+<mbr r='st_dynamic_LOCK_fns::dynlock_lock_cb' o='192' t='dyn_dynlock_lock_cb'/>
+<mbr r='st_dynamic_LOCK_fns::dynlock_destroy_cb' o='256' t='dyn_dynlock_destroy_cb'/>

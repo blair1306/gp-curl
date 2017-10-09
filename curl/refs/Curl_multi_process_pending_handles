@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/multiif.h' l='59' type='void Curl_multi_process_pending_handles(struct Curl_multi * multi)'/>
+<use f='codebrowser/lib/multi.c' l='687' u='c' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='1361' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1808' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1955' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2014' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2082' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/multi.c' l='3093' ll='3113' type='void Curl_multi_process_pending_handles(struct Curl_multi * multi)'/>

@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/ssh.h' l='111' type='const char *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/ssh.h' l='111'>/* List of auth. methods, managed by libssh2 */</doc>

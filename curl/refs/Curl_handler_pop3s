@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/pop3.h' l='76' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/pop3.c' l='140' ll='160' type='const struct Curl_handler'/>
+<use f='codebrowser/lib/pop3.c' l='178' u='a' c='pop3_to_pop3s'/>
+<doc f='codebrowser/lib/pop3.c' l='136'>/*
+ * POP3S protocol handler.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='219' u='a'/>
+<use f='codebrowser/lib/url.c' l='219' u='a'/>

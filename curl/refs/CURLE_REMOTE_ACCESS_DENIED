@@ -1,0 +1,14 @@
+<dec f='codebrowser/include/curl/curl.h' l='465' type='9'/>
+<doc f='codebrowser/include/curl/curl.h' l='465'>/* 9 a service was denied by the server
+                                    due to lack of access - when login fails
+                                    this is not returned. */</doc>
+<use f='codebrowser/lib/ftp.c' l='2958' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2980' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3156' c='ftp_done'/>
+<use f='codebrowser/lib/http.c' l='294' u='r' c='http_output_basic'/>
+<use f='codebrowser/lib/http_ntlm.c' l='97' u='r' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='101' u='r' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/smb.c' l='775' u='r' c='smb_request_state'/>
+<use f='codebrowser/lib/smtp.c' l='709' u='r' c='smtp_state_ehlo_resp'/>
+<use f='codebrowser/lib/smtp.c' l='797' u='r' c='smtp_state_helo_resp'/>
+<use f='codebrowser/lib/strerror.c' l='89' c='curl_easy_strerror'/>

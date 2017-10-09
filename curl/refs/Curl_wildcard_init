@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/wildcard.h' l='56' type='CURLcode Curl_wildcard_init(struct WildcardData * wc)'/>
+<use f='codebrowser/lib/transfer.c' l='1406' u='c' c='Curl_pretransfer'/>
+<def f='codebrowser/lib/wildcard.c' l='33' ll='39' type='CURLcode Curl_wildcard_init(struct WildcardData * wc)'/>

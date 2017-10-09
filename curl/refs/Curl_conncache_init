@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/conncache.h' l='44' type='int Curl_conncache_init(struct conncache * , int size)'/>
+<def f='codebrowser/lib/conncache.c' l='110' ll='114' type='int Curl_conncache_init(struct conncache * connc, int size)'/>
+<use f='codebrowser/lib/multi.c' l='321' u='c' c='Curl_multi_handle'/>

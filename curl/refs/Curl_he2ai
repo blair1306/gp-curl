@@ -1,0 +1,43 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='75' type='Curl_addrinfo * Curl_he2ai(const struct hostent * he, int port)'/>
+<def f='codebrowser/lib/curl_addrinfo.c' l='269' ll='365' type='Curl_addrinfo * Curl_he2ai(const struct hostent * he, int port)'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='453' u='c' c='Curl_ip2addr'/>
+<doc f='codebrowser/lib/curl_addrinfo.c' l='228'>/*
+ * Curl_he2ai()
+ *
+ * This function returns a pointer to the first element of a newly allocated
+ * Curl_addrinfo struct linked list filled with the data of a given hostent.
+ * Curl_addrinfo is meant to work like the addrinfo struct does for a IPv6
+ * stack, but usable also for IPv4, all hosts and environments.
+ *
+ * The memory allocated by this function *MUST* be free&apos;d later on calling
+ * Curl_freeaddrinfo().  For each successful call to this function there
+ * must be an associated call later to Curl_freeaddrinfo().
+ *
+ *   Curl_addrinfo defined in &quot;lib/curl_addrinfo.h&quot;
+ *
+ *     struct Curl_addrinfo {
+ *       int                   ai_flags;
+ *       int                   ai_family;
+ *       int                   ai_socktype;
+ *       int                   ai_protocol;
+ *       curl_socklen_t        ai_addrlen;   * Follow rfc3493 struct addrinfo *
+ *       char                 *ai_canonname;
+ *       struct sockaddr      *ai_addr;
+ *       struct Curl_addrinfo *ai_next;
+ *     };
+ *     typedef struct Curl_addrinfo Curl_addrinfo;
+ *
+ *   hostent defined in &lt;netdb.h&gt;
+ *
+ *     struct hostent {
+ *       char    *h_name;
+ *       char    **h_aliases;
+ *       int     h_addrtype;
+ *       int     h_length;
+ *       char    **h_addr_list;
+ *     };
+ *
+ *   for backward compatibility:
+ *
+ *     #define h_addr  h_addr_list[0]
+ */</doc>

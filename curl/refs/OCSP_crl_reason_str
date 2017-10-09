@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='564' type='const char * OCSP_crl_reason_str(long s)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1643' u='c' c='verifystatus'/>

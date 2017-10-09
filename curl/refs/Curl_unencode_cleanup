@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/content_encoding.h' l='32' type='void Curl_unencode_cleanup(struct connectdata * conn)'/>
+<def f='codebrowser/lib/content_encoding.c' l='422' ll='429' type='void Curl_unencode_cleanup(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/content_encoding.h' l='31'>/* force a cleanup */</doc>
+<use f='codebrowser/lib/http.c' l='1426' u='c' c='Curl_http_done'/>

@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/urldata.h' l='1266' type='struct curl_ssl_session *'/>
+<offset>131904</offset>
+<doc f='codebrowser/lib/urldata.h' l='1266'>/* array of &apos;max_ssl_sessions&apos; size */</doc>
+<use f='codebrowser/lib/url.c' l='2396' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2397' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2428' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='334' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='392' u='r' c='Curl_ssl_delsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='414' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='415' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='459' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='460' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='461' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='462' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='469' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='500' u='r' c='Curl_ssl_close_all'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='503' u='r' c='Curl_ssl_close_all'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='506' u='r' c='Curl_ssl_close_all'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='506' u='w' c='Curl_ssl_close_all'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='597' u='r' c='Curl_ssl_initsessions'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='607' u='w' c='Curl_ssl_initsessions'/>

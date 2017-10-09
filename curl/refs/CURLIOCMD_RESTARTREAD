@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='404' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='404'>/* restart the read stream from start */</doc>
+<use f='codebrowser/lib/transfer.c' l='312' c='Curl_readrewind'/>
+<use f='codebrowser/tests/libtest/lib552.c' l='156' u='r' c='ioctl_callback'/>
+<use f='codebrowser/tests/libtest/lib555.c' l='68' u='r' c='ioctlcallback'/>

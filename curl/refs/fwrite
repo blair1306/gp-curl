@@ -1,0 +1,28 @@
+<dec f='include/stdio.h' l='715' type='size_t fwrite(const void *restrict __ptr, size_t __size, size_t __n, FILE *restrict __s)'/>
+<doc f='include/stdio.h' l='711'>/* Write chunks of generic data to STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='codebrowser/lib/sendf.c' l='800' u='c' c='showit'/>
+<use f='codebrowser/lib/sendf.c' l='801' u='c' c='showit'/>
+<use f='codebrowser/lib/url.c' l='516' u='r' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1946' u='r' c='Curl_setopt'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='117' u='c' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='124' u='c' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='133' u='c' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='77' u='c' c='tool_header_cb'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='158' u='c' c='tool_write_cb'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10034' u='c' c='hugehelp'/>
+<use f='codebrowser/src/tool_msgs.c' l='64' u='c' c='voutf'/>
+<use f='codebrowser/tests/libtest/lib1509.c' l='85' u='c' c='WriteOutput'/>
+<use f='codebrowser/tests/libtest/lib1525.c' l='82' c='test'/>
+<use f='codebrowser/tests/libtest/lib1526.c' l='85' c='test'/>
+<use f='codebrowser/tests/libtest/lib1527.c' l='83' c='test'/>
+<use f='codebrowser/tests/libtest/lib1540.c' l='62' u='c' c='header_callback'/>
+<use f='codebrowser/tests/libtest/lib1540.c' l='74' u='c' c='write_callback'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='94' c='test'/>
+<use f='codebrowser/tests/server/rtspd.c' l='755' u='c' c='storerequest'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1084' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sws.c' l='893' u='c' c='storerequest'/>
+<use f='codebrowser/tests/server/sws.c' l='1237' u='c' c='send_doc'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='38' u='c' c='print_httppost_callback'/>

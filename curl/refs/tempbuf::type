@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1207' type='int'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/urldata.h' l='1207'>/* type of the &apos;tempwrite&apos; buffer as a bitmask that is used with
+                 Curl_client_write() */</doc>
+<use f='codebrowser/lib/easy.c' l='1041' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/sendf.c' l='484' u='r' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='519' u='w' c='pausewrite'/>

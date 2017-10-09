@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='167'/>
+<use f='codebrowser/lib/sendf.c' l='438' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='660' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='833' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='835' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1160' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='989' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='991' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1626' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1644' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1277' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1346' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1391' u='c'/>

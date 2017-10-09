@@ -1,0 +1,8 @@
+<dec f='include/zlib.h' l='91' type='uInt'/>
+<offset>256</offset>
+<doc f='include/zlib.h' l='91'>/* remaining free space at next_out */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='113' u='w' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='118' u='r' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='120' u='r' c='inflate_stream'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10030' u='w' c='hugehelp'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10034' u='r' c='hugehelp'/>

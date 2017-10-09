@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='26' type='struct getout * new_getout(struct OperationConfig * config)'/>
+<use f='codebrowser/src/tool_getparam.c' l='790' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1790' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1931' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='40' ll='57' type='struct getout * new_getout(struct OperationConfig * config)'/>

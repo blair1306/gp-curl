@@ -1,0 +1,4 @@
+<dec f='include/openssl/dh.h' l='142' type='BIGNUM *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2926' u='r' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2926' u='r' c='get_cert_chain'/>

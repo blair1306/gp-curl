@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='492' type='X509_EXTENSION * OCSP_url_svcloc_new(X509_NAME * issuer, char ** urls)'/>

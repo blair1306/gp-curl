@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>strtoofft.c source code [codebrowser/lib/strtoofft.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/strtoofft.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='strtoofft.c.html'>strtoofft.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="../../include/errno.h.html">&lt;errno.h&gt;</a></u></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="strtoofft.h.html">"strtoofft.h"</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><i>/*</i></td></tr>
+<tr><th id="29">29</th><td><i> * NOTE:</i></td></tr>
+<tr><th id="30">30</th><td><i> *</i></td></tr>
+<tr><th id="31">31</th><td><i> * In the ISO C standard (IEEE Std 1003.1), there is a strtoimax() function we</i></td></tr>
+<tr><th id="32">32</th><td><i> * could use in case strtoll() doesn't exist...  See</i></td></tr>
+<tr><th id="33">33</th><td><i> * <a href="https://www.opengroup.org/onlinepubs/009695399/functions/strtoimax.html">https://www.opengroup.org/onlinepubs/009695399/functions/strtoimax.html</a></i></td></tr>
+<tr><th id="34">34</th><td><i> */</i></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">if</span> (<a class="macro" href="curl_config.h.html#892" title="8" data-ref="_M/SIZEOF_CURL_OFF_T">SIZEOF_CURL_OFF_T</a> &gt; <a class="macro" href="curl_config.h.html#886" title="8" data-ref="_M/SIZEOF_LONG">SIZEOF_LONG</a>)</u></td></tr>
+<tr><th id="37">37</th><td><u>#  ifdef HAVE_STRTOLL</u></td></tr>
+<tr><th id="38">38</th><td><u>#    define strtooff strtoll</u></td></tr>
+<tr><th id="39">39</th><td><u>#  else</u></td></tr>
+<tr><th id="40">40</th><td><u>#    if defined(_MSC_VER) &amp;&amp; (_MSC_VER &gt;= 1300) &amp;&amp; (_INTEGRAL_MAX_BITS &gt;= 64)</u></td></tr>
+<tr><th id="41">41</th><td><u>#      if defined(_SAL_VERSION)</u></td></tr>
+<tr><th id="42">42</th><td>         _Check_return_ _CRTIMP __int64 <b>__cdecl</b> _strtoi64(</td></tr>
+<tr><th id="43">43</th><td>             _In_z_ <em>const</em> <em>char</em> *_String,</td></tr>
+<tr><th id="44">44</th><td>             _Out_opt_ _Deref_post_z_ <em>char</em> **_EndPtr, _In_ <em>int</em> _Radix);</td></tr>
+<tr><th id="45">45</th><td><u>#      else</u></td></tr>
+<tr><th id="46">46</th><td>         _CRTIMP __int64 <b>__cdecl</b> _strtoi64(<em>const</em> <em>char</em> *_String,</td></tr>
+<tr><th id="47">47</th><td>                                           <em>char</em> **_EndPtr, <em>int</em> _Radix);</td></tr>
+<tr><th id="48">48</th><td><u>#      endif</u></td></tr>
+<tr><th id="49">49</th><td><u>#      define strtooff _strtoi64</u></td></tr>
+<tr><th id="50">50</th><td><u>#    else</u></td></tr>
+<tr><th id="51">51</th><td><u>#      define PRIVATE_STRTOOFF 1</u></td></tr>
+<tr><th id="52">52</th><td><u>#    endif</u></td></tr>
+<tr><th id="53">53</th><td><u>#  endif</u></td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="36">else</span></u></td></tr>
+<tr><th id="55">55</th><td><u>#  define <dfn class="macro" id="_M/strtooff" data-ref="_M/strtooff">strtooff</dfn> <a class="ref" href="../../include/stdlib.h.html#strtol" title='strtol' data-ref="strtol">strtol</a></u></td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="36">endif</span></u></td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td><u>#<span data-ppcond="58">ifdef</span> <span class="macro" data-ref="_M/PRIVATE_STRTOOFF">PRIVATE_STRTOOFF</span></u></td></tr>
+<tr><th id="59">59</th><td></td></tr>
+<tr><th id="60">60</th><td><i>/* Range tests can be used for alphanum decoding if characters are consecutive,</i></td></tr>
+<tr><th id="61">61</th><td><i>   like in ASCII. Else an array is scanned. Determine this condition now. */</i></td></tr>
+<tr><th id="62">62</th><td></td></tr>
+<tr><th id="63">63</th><td><u>#if('9' - '0') != 9 || ('Z' - 'A') != 25 || ('z' - 'a') != 25</u></td></tr>
+<tr><th id="64">64</th><td></td></tr>
+<tr><th id="65">65</th><td><u>#define NO_RANGE_TEST</u></td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td><em>static</em> <em>const</em> <em>char</em> valchars[] =</td></tr>
+<tr><th id="68">68</th><td>            <q>"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"</q>;</td></tr>
+<tr><th id="69">69</th><td><u>#endif</u></td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td><em>static</em> <em>int</em> get_char(<em>char</em> c, <em>int</em> base);</td></tr>
+<tr><th id="72">72</th><td></td></tr>
+<tr><th id="73">73</th><td><i class="doc">/**</i></td></tr>
+<tr><th id="74">74</th><td><i class="doc"> * Custom version of the strtooff function.  This extracts a curl_off_t</i></td></tr>
+<tr><th id="75">75</th><td><i class="doc"> * value from the given input string and returns it.</i></td></tr>
+<tr><th id="76">76</th><td><i class="doc"> */</i></td></tr>
+<tr><th id="77">77</th><td><em>static</em> curl_off_t strtooff(<em>const</em> <em>char</em> *nptr, <em>char</em> **endptr, <em>int</em> base)</td></tr>
+<tr><th id="78">78</th><td>{</td></tr>
+<tr><th id="79">79</th><td>  <em>char</em> *end;</td></tr>
+<tr><th id="80">80</th><td>  <em>int</em> is_negative = <var>0</var>;</td></tr>
+<tr><th id="81">81</th><td>  <em>int</em> overflow;</td></tr>
+<tr><th id="82">82</th><td>  <em>int</em> i;</td></tr>
+<tr><th id="83">83</th><td>  curl_off_t value = <var>0</var>;</td></tr>
+<tr><th id="84">84</th><td>  curl_off_t newval;</td></tr>
+<tr><th id="85">85</th><td></td></tr>
+<tr><th id="86">86</th><td>  <i>/* Skip leading whitespace. */</i></td></tr>
+<tr><th id="87">87</th><td>  end = (<em>char</em> *)nptr;</td></tr>
+<tr><th id="88">88</th><td>  <b>while</b>(ISSPACE(end[<var>0</var>])) {</td></tr>
+<tr><th id="89">89</th><td>    end++;</td></tr>
+<tr><th id="90">90</th><td>  }</td></tr>
+<tr><th id="91">91</th><td></td></tr>
+<tr><th id="92">92</th><td>  <i>/* Handle the sign, if any. */</i></td></tr>
+<tr><th id="93">93</th><td>  <b>if</b>(end[<var>0</var>] == <kbd>'-'</kbd>) {</td></tr>
+<tr><th id="94">94</th><td>    is_negative = <var>1</var>;</td></tr>
+<tr><th id="95">95</th><td>    end++;</td></tr>
+<tr><th id="96">96</th><td>  }</td></tr>
+<tr><th id="97">97</th><td>  <b>else</b> <b>if</b>(end[<var>0</var>] == <kbd>'+'</kbd>) {</td></tr>
+<tr><th id="98">98</th><td>    end++;</td></tr>
+<tr><th id="99">99</th><td>  }</td></tr>
+<tr><th id="100">100</th><td>  <b>else</b> <b>if</b>(end[<var>0</var>] == <kbd>'\0'</kbd>) {</td></tr>
+<tr><th id="101">101</th><td>    <i>/* We had nothing but perhaps some whitespace -- there was no number. */</i></td></tr>
+<tr><th id="102">102</th><td>    <b>if</b>(endptr) {</td></tr>
+<tr><th id="103">103</th><td>      *endptr = end;</td></tr>
+<tr><th id="104">104</th><td>    }</td></tr>
+<tr><th id="105">105</th><td>    <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="106">106</th><td>  }</td></tr>
+<tr><th id="107">107</th><td></td></tr>
+<tr><th id="108">108</th><td>  <i>/* Handle special beginnings, if present and allowed. */</i></td></tr>
+<tr><th id="109">109</th><td>  <b>if</b>(end[<var>0</var>] == <kbd>'0'</kbd> &amp;&amp; end[<var>1</var>] == <kbd>'x'</kbd>) {</td></tr>
+<tr><th id="110">110</th><td>    <b>if</b>(base == <var>16</var> || base == <var>0</var>) {</td></tr>
+<tr><th id="111">111</th><td>      end += <var>2</var>;</td></tr>
+<tr><th id="112">112</th><td>      base = <var>16</var>;</td></tr>
+<tr><th id="113">113</th><td>    }</td></tr>
+<tr><th id="114">114</th><td>  }</td></tr>
+<tr><th id="115">115</th><td>  <b>else</b> <b>if</b>(end[<var>0</var>] == <kbd>'0'</kbd>) {</td></tr>
+<tr><th id="116">116</th><td>    <b>if</b>(base == <var>8</var> || base == <var>0</var>) {</td></tr>
+<tr><th id="117">117</th><td>      end++;</td></tr>
+<tr><th id="118">118</th><td>      base = <var>8</var>;</td></tr>
+<tr><th id="119">119</th><td>    }</td></tr>
+<tr><th id="120">120</th><td>  }</td></tr>
+<tr><th id="121">121</th><td></td></tr>
+<tr><th id="122">122</th><td>  <i>/* Matching strtol, if the base is 0 and it doesn't look like</i></td></tr>
+<tr><th id="123">123</th><td><i>   * the number is octal or hex, we assume it's base 10.</i></td></tr>
+<tr><th id="124">124</th><td><i>   */</i></td></tr>
+<tr><th id="125">125</th><td>  <b>if</b>(base == <var>0</var>) {</td></tr>
+<tr><th id="126">126</th><td>    base = <var>10</var>;</td></tr>
+<tr><th id="127">127</th><td>  }</td></tr>
+<tr><th id="128">128</th><td></td></tr>
+<tr><th id="129">129</th><td>  <i>/* Loop handling digits. */</i></td></tr>
+<tr><th id="130">130</th><td>  value = <var>0</var>;</td></tr>
+<tr><th id="131">131</th><td>  overflow = <var>0</var>;</td></tr>
+<tr><th id="132">132</th><td>  <b>for</b>(i = get_char(end[<var>0</var>], base);</td></tr>
+<tr><th id="133">133</th><td>      i != -<var>1</var>;</td></tr>
+<tr><th id="134">134</th><td>      end++, i = get_char(end[<var>0</var>], base)) {</td></tr>
+<tr><th id="135">135</th><td>    newval = base * value + i;</td></tr>
+<tr><th id="136">136</th><td>    <b>if</b>(newval &lt; value) {</td></tr>
+<tr><th id="137">137</th><td>      <i>/* We've overflowed. */</i></td></tr>
+<tr><th id="138">138</th><td>      overflow = <var>1</var>;</td></tr>
+<tr><th id="139">139</th><td>      <b>break</b>;</td></tr>
+<tr><th id="140">140</th><td>    }</td></tr>
+<tr><th id="141">141</th><td>    <b>else</b></td></tr>
+<tr><th id="142">142</th><td>      value = newval;</td></tr>
+<tr><th id="143">143</th><td>  }</td></tr>
+<tr><th id="144">144</th><td></td></tr>
+<tr><th id="145">145</th><td>  <b>if</b>(!overflow) {</td></tr>
+<tr><th id="146">146</th><td>    <b>if</b>(is_negative) {</td></tr>
+<tr><th id="147">147</th><td>      <i>/* Fix the sign. */</i></td></tr>
+<tr><th id="148">148</th><td>      value *= -<var>1</var>;</td></tr>
+<tr><th id="149">149</th><td>    }</td></tr>
+<tr><th id="150">150</th><td>  }</td></tr>
+<tr><th id="151">151</th><td>  <b>else</b> {</td></tr>
+<tr><th id="152">152</th><td>    <b>if</b>(is_negative)</td></tr>
+<tr><th id="153">153</th><td>      value = CURL_OFF_T_MIN;</td></tr>
+<tr><th id="154">154</th><td>    <b>else</b></td></tr>
+<tr><th id="155">155</th><td>      value = CURL_OFF_T_MAX;</td></tr>
+<tr><th id="156">156</th><td></td></tr>
+<tr><th id="157">157</th><td>    errno = ERANGE;</td></tr>
+<tr><th id="158">158</th><td>  }</td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td>  <b>if</b>(endptr)</td></tr>
+<tr><th id="161">161</th><td>    *endptr = end;</td></tr>
+<tr><th id="162">162</th><td></td></tr>
+<tr><th id="163">163</th><td>  <b>return</b> value;</td></tr>
+<tr><th id="164">164</th><td>}</td></tr>
+<tr><th id="165">165</th><td></td></tr>
+<tr><th id="166">166</th><td><i class="doc">/**</i></td></tr>
+<tr><th id="167">167</th><td><i class="doc"> * Returns the value of c in the given base, or -1 if c cannot</i></td></tr>
+<tr><th id="168">168</th><td><i class="doc"> * be interpreted properly in that base (i.e., is out of range,</i></td></tr>
+<tr><th id="169">169</th><td><i class="doc"> * is a null, etc.).</i></td></tr>
+<tr><th id="170">170</th><td><i class="doc"> *</i></td></tr>
+<tr><th id="171">171</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">c</span>     the character to interpret according to base</i></td></tr>
+<tr><th id="172">172</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">base</span>  the base in which to interpret c</i></td></tr>
+<tr><th id="173">173</th><td><i class="doc"> *</i></td></tr>
+<tr><th id="174">174</th><td><i class="doc"> * <span class="command">@return</span>  the value of c in base, or -1 if c isn't in range</i></td></tr>
+<tr><th id="175">175</th><td><i class="doc"> */</i></td></tr>
+<tr><th id="176">176</th><td><em>static</em> <em>int</em> get_char(<em>char</em> c, <em>int</em> base)</td></tr>
+<tr><th id="177">177</th><td>{</td></tr>
+<tr><th id="178">178</th><td><u>#ifndef NO_RANGE_TEST</u></td></tr>
+<tr><th id="179">179</th><td>  <em>int</em> value = -<var>1</var>;</td></tr>
+<tr><th id="180">180</th><td>  <b>if</b>(c &lt;= <kbd>'9'</kbd> &amp;&amp; c &gt;= <kbd>'0'</kbd>) {</td></tr>
+<tr><th id="181">181</th><td>    value = c - <kbd>'0'</kbd>;</td></tr>
+<tr><th id="182">182</th><td>  }</td></tr>
+<tr><th id="183">183</th><td>  <b>else</b> <b>if</b>(c &lt;= <kbd>'Z'</kbd> &amp;&amp; c &gt;= <kbd>'A'</kbd>) {</td></tr>
+<tr><th id="184">184</th><td>    value = c - <kbd>'A'</kbd> + <var>10</var>;</td></tr>
+<tr><th id="185">185</th><td>  }</td></tr>
+<tr><th id="186">186</th><td>  <b>else</b> <b>if</b>(c &lt;= <kbd>'z'</kbd> &amp;&amp; c &gt;= <kbd>'a'</kbd>) {</td></tr>
+<tr><th id="187">187</th><td>    value = c - <kbd>'a'</kbd> + <var>10</var>;</td></tr>
+<tr><th id="188">188</th><td>  }</td></tr>
+<tr><th id="189">189</th><td><u>#else</u></td></tr>
+<tr><th id="190">190</th><td>  <em>const</em> <em>char</em> *cp;</td></tr>
+<tr><th id="191">191</th><td>  <em>int</em> value;</td></tr>
+<tr><th id="192">192</th><td></td></tr>
+<tr><th id="193">193</th><td>  cp = memchr(valchars, c, <var>10</var> + <var>26</var> + <var>26</var>);</td></tr>
+<tr><th id="194">194</th><td></td></tr>
+<tr><th id="195">195</th><td>  <b>if</b>(!cp)</td></tr>
+<tr><th id="196">196</th><td>    <b>return</b> -<var>1</var>;</td></tr>
+<tr><th id="197">197</th><td></td></tr>
+<tr><th id="198">198</th><td>  value = cp - valchars;</td></tr>
+<tr><th id="199">199</th><td></td></tr>
+<tr><th id="200">200</th><td>  <b>if</b>(value &gt;= <var>10</var> + <var>26</var>)</td></tr>
+<tr><th id="201">201</th><td>    value -= <var>26</var>;                <i>/* Lowercase. */</i></td></tr>
+<tr><th id="202">202</th><td><u>#endif</u></td></tr>
+<tr><th id="203">203</th><td></td></tr>
+<tr><th id="204">204</th><td>  <b>if</b>(value &gt;= base) {</td></tr>
+<tr><th id="205">205</th><td>    value = -<var>1</var>;</td></tr>
+<tr><th id="206">206</th><td>  }</td></tr>
+<tr><th id="207">207</th><td></td></tr>
+<tr><th id="208">208</th><td>  <b>return</b> value;</td></tr>
+<tr><th id="209">209</th><td>}</td></tr>
+<tr><th id="210">210</th><td><u>#<span data-ppcond="58">endif</span>  /* Only present if we need strtoll, but don't have it. */</u></td></tr>
+<tr><th id="211">211</th><td></td></tr>
+<tr><th id="212">212</th><td><i>/*</i></td></tr>
+<tr><th id="213">213</th><td><i> * Parse a *positive* up to 64 bit number written in ascii.</i></td></tr>
+<tr><th id="214">214</th><td><i> */</i></td></tr>
+<tr><th id="215">215</th><td><a class="typedef" href="strtoofft.h.html#CURLofft" title='CURLofft' data-type='enum CURLofft' data-ref="CURLofft">CURLofft</a> <dfn class="decl def" id="curlx_strtoofft" title='curlx_strtoofft' data-ref="curlx_strtoofft">curlx_strtoofft</dfn>(<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="1str" title='str' data-type='const char *' data-ref="1str">str</dfn>, <em>char</em> **<dfn class="local col2 decl" id="2endp" title='endp' data-type='char **' data-ref="2endp">endp</dfn>, <em>int</em> <dfn class="local col3 decl" id="3base" title='base' data-type='int' data-ref="3base">base</dfn>,</td></tr>
+<tr><th id="216">216</th><td>                         <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> *<dfn class="local col4 decl" id="4num" title='num' data-type='curl_off_t *' data-ref="4num">num</dfn>)</td></tr>
+<tr><th id="217">217</th><td>{</td></tr>
+<tr><th id="218">218</th><td>  <em>char</em> *<dfn class="local col5 decl" id="5end" title='end' data-type='char *' data-ref="5end">end</dfn>;</td></tr>
+<tr><th id="219">219</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col6 decl" id="6number" title='number' data-type='curl_off_t' data-ref="6number">number</dfn>;</td></tr>
+<tr><th id="220">220</th><td>  <a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <var>0</var>;</td></tr>
+<tr><th id="221">221</th><td>  *<a class="local col4 ref" href="#4num" title='num' data-ref="4num">num</a> = <var>0</var>; <i>/* clear by default */</i></td></tr>
+<tr><th id="222">222</th><td></td></tr>
+<tr><th id="223">223</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(str);</td></tr>
+<tr><th id="224">224</th><td></td></tr>
+<tr><th id="225">225</th><td>  <b>while</b>(*<a class="local col1 ref" href="#1str" title='str' data-ref="1str">str</a> &amp;&amp; <a class="macro" href="curl_setup_once.h.html#282" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)*str)))] &amp; (unsigned short int) _ISspace))" data-ref="_M/ISSPACE">ISSPACE</a>(*<a class="local col1 ref" href="#1str" title='str' data-ref="1str">str</a>))</td></tr>
+<tr><th id="226">226</th><td>    <a class="local col1 ref" href="#1str" title='str' data-ref="1str">str</a>++;</td></tr>
+<tr><th id="227">227</th><td>  <b>if</b>(<kbd>'-'</kbd> == *<a class="local col1 ref" href="#1str" title='str' data-ref="1str">str</a>) {</td></tr>
+<tr><th id="228">228</th><td>    <b>if</b>(<a class="local col2 ref" href="#2endp" title='endp' data-ref="2endp">endp</a>)</td></tr>
+<tr><th id="229">229</th><td>      *<a class="local col2 ref" href="#2endp" title='endp' data-ref="2endp">endp</a> = (<em>char</em> *)<a class="local col1 ref" href="#1str" title='str' data-ref="1str">str</a>; <i>/* didn't actually move */</i></td></tr>
+<tr><th id="230">230</th><td>    <b>return</b> <a class="enum" href="strtoofft.h.html#CURL_OFFT_INVAL" title='CURL_OFFT_INVAL' data-ref="CURL_OFFT_INVAL">CURL_OFFT_INVAL</a>; <i>/* nothing parsed */</i></td></tr>
+<tr><th id="231">231</th><td>  }</td></tr>
+<tr><th id="232">232</th><td>  <a class="local col6 ref" href="#6number" title='number' data-ref="6number">number</a> = <a class="macro" href="#55" title="strtol" data-ref="_M/strtooff">strtooff</a>(<a class="local col1 ref" href="#1str" title='str' data-ref="1str">str</a>, &amp;<a class="local col5 ref" href="#5end" title='end' data-ref="5end">end</a>, <a class="local col3 ref" href="#3base" title='base' data-ref="3base">base</a>);</td></tr>
+<tr><th id="233">233</th><td>  <b>if</b>(<a class="local col2 ref" href="#2endp" title='endp' data-ref="2endp">endp</a>)</td></tr>
+<tr><th id="234">234</th><td>    *<a class="local col2 ref" href="#2endp" title='endp' data-ref="2endp">endp</a> = <a class="local col5 ref" href="#5end" title='end' data-ref="5end">end</a>;</td></tr>
+<tr><th id="235">235</th><td>  <b>if</b>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a> == <a class="macro" href="../../include/asm-generic/errno-base.h.html#37" title="34" data-ref="_M/ERANGE">ERANGE</a>)</td></tr>
+<tr><th id="236">236</th><td>    <i>/* overflow/underflow */</i></td></tr>
+<tr><th id="237">237</th><td>    <b>return</b> <a class="enum" href="strtoofft.h.html#CURL_OFFT_FLOW" title='CURL_OFFT_FLOW' data-ref="CURL_OFFT_FLOW">CURL_OFFT_FLOW</a>;</td></tr>
+<tr><th id="238">238</th><td>  <b>else</b> <b>if</b>(<a class="local col1 ref" href="#1str" title='str' data-ref="1str">str</a> == <a class="local col5 ref" href="#5end" title='end' data-ref="5end">end</a>)</td></tr>
+<tr><th id="239">239</th><td>    <i>/* nothing parsed */</i></td></tr>
+<tr><th id="240">240</th><td>    <b>return</b> <a class="enum" href="strtoofft.h.html#CURL_OFFT_INVAL" title='CURL_OFFT_INVAL' data-ref="CURL_OFFT_INVAL">CURL_OFFT_INVAL</a>;</td></tr>
+<tr><th id="241">241</th><td></td></tr>
+<tr><th id="242">242</th><td>  *<a class="local col4 ref" href="#4num" title='num' data-ref="4num">num</a> = <a class="local col6 ref" href="#6number" title='number' data-ref="6number">number</a>;</td></tr>
+<tr><th id="243">243</th><td>  <b>return</b> <a class="enum" href="strtoofft.h.html#CURL_OFFT_OK" title='CURL_OFFT_OK' data-ref="CURL_OFFT_OK">CURL_OFFT_OK</a>;</td></tr>
+<tr><th id="244">244</th><td>}</td></tr>
+<tr><th id="245">245</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

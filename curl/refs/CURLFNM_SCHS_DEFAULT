@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/curl_fnmatch.c' l='55' type='0'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='129' u='r' c='setcharset'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='137' c='setcharset'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='158' u='r' c='setcharset'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='216' u='r' c='setcharset'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='250' u='r' c='setcharset'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='265' u='r' c='setcharset'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='286' u='r' c='setcharset'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='299' u='r' c='setcharset'/>

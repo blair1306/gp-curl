@@ -1,0 +1,21 @@
+<dec f='include/time.h' l='192' type='time_t time(time_t * __timer)'/>
+<use f='codebrowser/lib/cookie.c' l='305' u='c' c='remove_expired'/>
+<use f='codebrowser/lib/cookie.c' l='380' u='c' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1136' u='c' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='732' u='c' c='Curl_ntlm_core_mk_ntlmv2_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2058' u='c' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/hostip.c' l='269' u='c' c='Curl_hostcache_prune'/>
+<use f='codebrowser/lib/hostip.c' l='313' u='c' c='fetch_addr'/>
+<use f='codebrowser/lib/hostip.c' l='401' u='c' c='Curl_cache_addr'/>
+<use f='codebrowser/lib/http.c' l='3734' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/tftp.c' l='206' u='c' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='270' u='c' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='636' u='c' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='656' u='c' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='760' u='c' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='1195' u='c' c='tftp_state_timeout'/>
+<use f='codebrowser/lib/tftp.c' l='1206' u='c' c='tftp_state_timeout'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='64' u='c' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_getparam.c' l='2055' u='c' c='getparameter'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='106' u='c' c='libtest_debug_cb'/>
+<use f='codebrowser/tests/server/util.c' l='117' u='c' c='logmsg'/>

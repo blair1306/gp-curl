@@ -1,0 +1,25 @@
+<def f='codebrowser/lib/urldata.h' l='1051' ll='1089'/>
+<size>232</size>
+<doc f='codebrowser/lib/urldata.h' l='1047'>/*
+ * Struct to keep statistical and informational data.
+ * All variables in this struct must be initialized/reset in Curl_initinfo().
+ */</doc>
+<mbr r='PureInfo::httpcode' o='0' t='int'/>
+<mbr r='PureInfo::httpproxycode' o='32' t='int'/>
+<mbr r='PureInfo::httpversion' o='64' t='int'/>
+<mbr r='PureInfo::filetime' o='128' t='long'/>
+<mbr r='PureInfo::timecond' o='192' t='_Bool'/>
+<mbr r='PureInfo::header_size' o='256' t='long'/>
+<mbr r='PureInfo::request_size' o='320' t='long'/>
+<mbr r='PureInfo::proxyauthavail' o='384' t='unsigned long'/>
+<mbr r='PureInfo::httpauthavail' o='448' t='unsigned long'/>
+<mbr r='PureInfo::numconnects' o='512' t='long'/>
+<mbr r='PureInfo::contenttype' o='576' t='char *'/>
+<mbr r='PureInfo::wouldredirect' o='640' t='char *'/>
+<mbr r='PureInfo::conn_primary_ip' o='704' t='char [46]'/>
+<mbr r='PureInfo::conn_primary_port' o='1088' t='long'/>
+<mbr r='PureInfo::conn_local_ip' o='1152' t='char [46]'/>
+<mbr r='PureInfo::conn_local_port' o='1536' t='long'/>
+<mbr r='PureInfo::conn_scheme' o='1600' t='const char *'/>
+<mbr r='PureInfo::conn_protocol' o='1664' t='unsigned int'/>
+<mbr r='PureInfo::certs' o='1728' t='struct curl_certinfo'/>

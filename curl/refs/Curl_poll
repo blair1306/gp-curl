@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/select.h' l='84' type='int Curl_poll(struct pollfd * ufds, unsigned int nfds, int timeout_ms)'/>
+<use f='codebrowser/lib/multi.c' l='1089' u='c' c='curl_multi_wait'/>
+<def f='codebrowser/lib/select.c' l='391' ll='563' type='int Curl_poll(struct pollfd * ufds, unsigned int nfds, int timeout_ms)'/>
+<doc f='codebrowser/lib/select.c' l='378'>/*
+ * This is a wrapper around poll().  If poll() does not exist, then
+ * select() is used instead.  An error is returned if select() is
+ * being used and a file descriptor is too large for FD_SETSIZE.
+ * A negative timeout value makes this function wait indefinitely,
+ * unless no valid file descriptor is given, when this happens the
+ * negative timeout is ignored and the function times out immediately.
+ *
+ * Return values:
+ *   -1 = system call error or fd &gt;= FD_SETSIZE
+ *    0 = timeout
+ *    N = number of structures with non zero revent fields
+ */</doc>
+<use f='codebrowser/lib/telnet.c' l='1261' u='c' c='send_telnet_data'/>
+<use f='codebrowser/lib/telnet.c' l='1603' u='c' c='telnet_do'/>

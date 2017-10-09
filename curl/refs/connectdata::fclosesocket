@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='800' type='curl_closesocket_callback'/>
+<offset>640</offset>
+<doc f='codebrowser/lib/urldata.h' l='800'>/* function closing the socket(s) */</doc>
+<use f='codebrowser/lib/connect.c' l='1283' u='r' c='Curl_closesocket'/>
+<use f='codebrowser/lib/connect.c' l='1292' u='r' c='Curl_closesocket'/>
+<use f='codebrowser/lib/url.c' l='4338' u='w' c='allocate_conn'/>

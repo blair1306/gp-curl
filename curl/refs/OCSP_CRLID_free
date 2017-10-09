@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='559' macro='1' type='void OCSP_CRLID_free(OCSP_CRLID * a)'/>

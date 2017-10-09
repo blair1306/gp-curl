@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/curl_endian.h' l='29' type='unsigned int Curl_read32_le(const unsigned char * buf)'/>
+<def f='codebrowser/lib/curl_endian.c' l='59' ll='63' type='unsigned int Curl_read32_le(const unsigned char * buf)'/>
+<doc f='codebrowser/lib/curl_endian.c' l='46'>/*
+ * Curl_read32_le()
+ *
+ * This function converts a 32-bit integer from the little endian format, as
+ * used in the incoming package to whatever endian format we&apos;re using
+ * natively.
+ *
+ * Parameters:
+ *
+ * buf      [in]     - A pointer to a 4 byte buffer.
+ *
+ * Returns the integer.
+ */</doc>
+<doc f='codebrowser/lib/curl_endian.h' l='28'>/* Converts a 32-bit integer from little endian */</doc>
+<use f='codebrowser/lib/vauth/ntlm.c' l='183' u='c' c='ntlm_decode_type2_target'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='310' u='c' c='Curl_auth_decode_ntlm_type2_message'/>

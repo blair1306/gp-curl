@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/mime.h' l='125' type='CURLcode Curl_mime_set_subparts(curl_mimepart * part, curl_mime * subparts, int take_ownership)'/>
+<def f='codebrowser/lib/mime.c' l='1412' ll='1456' type='CURLcode Curl_mime_set_subparts(curl_mimepart * part, curl_mime * subparts, int take_ownership)'/>
+<use f='codebrowser/lib/mime.c' l='1460' u='c' c='curl_mime_subparts'/>
+<doc f='codebrowser/lib/mime.c' l='1411'>/* Set mime part content from subparts. */</doc>
+<use f='codebrowser/lib/url.c' l='1161' u='c' c='Curl_setopt'/>

@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/multiif.h' l='79' type='void Curl_multi_connchanged(struct Curl_multi * multi)'/>
+<def f='codebrowser/lib/multi.c' l='1128' ll='1131' type='void Curl_multi_connchanged(struct Curl_multi * multi)'/>
+<doc f='codebrowser/lib/multi.c' l='1121'>/*
+ * Curl_multi_connchanged() is called to tell that there is a connection in
+ * this multi handle that has changed state (pipelining become possible, the
+ * number of allowed streams changed or similar), and a subsequent use of this
+ * multi handle should move CONNECT_PEND handles back to CONNECT to have them
+ * retry.
+ */</doc>

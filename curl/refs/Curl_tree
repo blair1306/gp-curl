@@ -1,0 +1,8 @@
+<def f='codebrowser/lib/splay.h' l='27' ll='34'/>
+<size>56</size>
+<mbr r='Curl_tree::smaller' o='0' t='struct Curl_tree *'/>
+<mbr r='Curl_tree::larger' o='64' t='struct Curl_tree *'/>
+<mbr r='Curl_tree::samen' o='128' t='struct Curl_tree *'/>
+<mbr r='Curl_tree::samep' o='192' t='struct Curl_tree *'/>
+<mbr r='Curl_tree::key' o='256' t='struct curltime'/>
+<mbr r='Curl_tree::payload' o='384' t='void *'/>

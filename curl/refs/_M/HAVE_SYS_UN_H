@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/curl_config.h' l='687'/>
+<doc f='codebrowser/lib/curl_config.h' l='686'>/* Define to 1 if you have the &lt;sys/un.h&gt; header file. */</doc>
+<use f='codebrowser/lib/connect.c' l='28' u='a'/>
+<use f='codebrowser/lib/connect.c' l='620' u='a'/>
+<use f='codebrowser/lib/connect.c' l='645' u='a'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='36' u='a'/>
+<use f='codebrowser/lib/url.c' l='50' u='a'/>
+<use f='codebrowser/tests/server/server_sockaddr.h' l='26' u='a'/>

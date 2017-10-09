@@ -1,0 +1,31 @@
+<dec f='codebrowser/lib/urldata.h' l='1631' type='_Bool'/>
+<offset>11592</offset>
+<use f='codebrowser/lib/file.c' l='478' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='1538' u='r' c='ftp_state_type'/>
+<use f='codebrowser/lib/ftp.c' l='2071' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3706' u='r' c='ftp_perform'/>
+<use f='codebrowser/lib/http.c' l='1834' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3233' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/imap.c' l='1514' u='r' c='imap_perform'/>
+<use f='codebrowser/lib/pop3.c' l='907' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='1151' u='r' c='pop3_perform'/>
+<use f='codebrowser/lib/rtsp.c' l='286' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='296' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='316' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='327' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='577' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/smtp.c' l='854' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='1275' u='r' c='smtp_perform'/>
+<use f='codebrowser/lib/transfer.c' l='574' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1218' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1232' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1909' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1952' u='r' c='Curl_retry_request'/>
+<use f='codebrowser/lib/transfer.c' l='2031' u='r' c='Curl_setup_transfer'/>
+<use f='codebrowser/lib/url.c' l='811' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='834' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1050' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1153' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1165' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1358' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='7071' u='r' c='Curl_init_do'/>

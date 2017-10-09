@@ -1,0 +1,32 @@
+<dec f='codebrowser/lib/splay.h' l='28' type='struct Curl_tree *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/splay.h' l='28'>/* smaller node */</doc>
+<use f='codebrowser/lib/splay.c' l='48' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='54' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='56' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='56' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='56' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='56' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='57' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='58' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='61' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='64' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='66' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='73' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='74' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='87' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='88' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='89' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='90' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='130' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='133' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='133' u='r' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='135' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='140' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='183' u='w' c='Curl_splaygetbest'/>
+<use f='codebrowser/lib/splay.c' l='183' u='r' c='Curl_splaygetbest'/>
+<use f='codebrowser/lib/splay.c' l='260' u='w' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='260' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='266' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='269' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='65' u='r' c='splayprint'/>

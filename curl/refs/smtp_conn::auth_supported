@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/smtp.h' l='74' type='_Bool'/>
+<offset>1296</offset>
+<use f='codebrowser/lib/smtp.c' l='308' u='w' c='smtp_perform_ehlo'/>
+<use f='codebrowser/lib/smtp.c' l='442' u='r' c='smtp_perform_authentication'/>
+<use f='codebrowser/lib/smtp.c' l='726' u='w' c='smtp_state_ehlo_resp'/>

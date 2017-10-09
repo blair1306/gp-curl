@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_parsecfg.h' l='26' type='int parseconfig(const char * filename, struct GlobalConfig * config)'/>
+<use f='codebrowser/src/tool_getparam.c' l='1706' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='2009' u='c' c='operate'/>
+<def f='codebrowser/src/tool_parsecfg.c' l='47' ll='280' type='int parseconfig(const char * filename, struct GlobalConfig * global)'/>
+<doc f='codebrowser/src/tool_parsecfg.c' l='46'>/* return 0 on everything-is-fine, and non-zero otherwise */</doc>

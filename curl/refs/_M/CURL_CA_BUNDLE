@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='7'/>
+<doc f='codebrowser/lib/curl_config.h' l='6'>/* Location of default ca bundle */</doc>
+<use f='codebrowser/lib/url.c' l='593' u='a'/>
+<use f='codebrowser/lib/url.c' l='594' u='c'/>
+<use f='codebrowser/lib/url.c' l='598' u='c'/>

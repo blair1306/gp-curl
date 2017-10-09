@@ -1,0 +1,4 @@
+<dec f='include/openssl/x509.h' l='907' type='X509_NAME * X509_get_subject_name(X509 * a)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1454' u='c' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2776' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3056' u='c' c='servercert'/>

@@ -1,0 +1,5 @@
+<dec f='include/asm-generic/socket.h' l='10'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1300' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1210' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='2134' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='781' u='c'/>

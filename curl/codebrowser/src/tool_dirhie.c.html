@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_dirhie.c source code [codebrowser/src/tool_dirhie.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_dirhie.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_dirhie.c.html'>tool_dirhie.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../../include/x86_64-linux-gnu/sys/stat.h.html">&lt;sys/stat.h&gt;</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#<span data-ppcond="26">ifdef</span> <span class="macro" data-ref="_M/WIN32">WIN32</span></u></td></tr>
+<tr><th id="27">27</th><td><u>#  include &lt;direct.h&gt;</u></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="26">endif</span></u></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/ENABLE_CURLX_PRINTF" data-ref="_M/ENABLE_CURLX_PRINTF">ENABLE_CURLX_PRINTF</dfn></u></td></tr>
+<tr><th id="31">31</th><td><i>/* use our own printf() functions */</i></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="../lib/curlx.h.html">"curlx.h"</a></u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="tool_dirhie.h.html">"tool_dirhie.h"</a></u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="../lib/memdebug.h.html">"memdebug.h"</a> /* keep this as LAST include */</u></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="38">ifdef</span> <span class="macro" data-ref="_M/NETWARE">NETWARE</span></u></td></tr>
+<tr><th id="39">39</th><td><u>#  ifndef __NOVELL_LIBC__</u></td></tr>
+<tr><th id="40">40</th><td><u>#    define mkdir mkdir_510</u></td></tr>
+<tr><th id="41">41</th><td><u>#  endif</u></td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="38">endif</span></u></td></tr>
+<tr><th id="43">43</th><td></td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="44">ifdef</span> <span class="macro" data-ref="_M/WIN32">WIN32</span></u></td></tr>
+<tr><th id="45">45</th><td><u>#  define mkdir(x,y) (mkdir)((x))</u></td></tr>
+<tr><th id="46">46</th><td><u>#  ifndef __POCC__</u></td></tr>
+<tr><th id="47">47</th><td><u>#    define F_OK 0</u></td></tr>
+<tr><th id="48">48</th><td><u>#  endif</u></td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="44">endif</span></u></td></tr>
+<tr><th id="50">50</th><td></td></tr>
+<tr><th id="51">51</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="show_dir_errno" title='show_dir_errno' data-type='void show_dir_errno(FILE * errors, const char * name)' data-ref="show_dir_errno">show_dir_errno</dfn>(<a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col3 decl" id="3errors" title='errors' data-type='FILE *' data-ref="3errors">errors</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="4name" title='name' data-type='const char *' data-ref="4name">name</dfn>)</td></tr>
+<tr><th id="52">52</th><td>{</td></tr>
+<tr><th id="53">53</th><td>  <b>switch</b>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/errno.h.html#54" title="(*__errno_location ())" data-ref="_M/errno">errno</a>) {</td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="54">ifdef</span> <a class="macro" href="../../include/asm-generic/errno-base.h.html#16" data-ref="_M/EACCES">EACCES</a></u></td></tr>
+<tr><th id="55">55</th><td>  <b>case</b> <a class="macro" href="../../include/asm-generic/errno-base.h.html#16" title="13" data-ref="_M/EACCES">EACCES</a>:</td></tr>
+<tr><th id="56">56</th><td>    <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col3 ref" href="#3errors" title='errors' data-ref="3errors">errors</a>, <q>"You don't have permission to create %s.\n"</q>, <a class="local col4 ref" href="#4name" title='name' data-ref="4name">name</a>);</td></tr>
+<tr><th id="57">57</th><td>    <b>break</b>;</td></tr>
+<tr><th id="58">58</th><td><u>#<span data-ppcond="54">endif</span></u></td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="59">ifdef</span> <a class="macro" href="../../include/asm-generic/errno.h.html#7" data-ref="_M/ENAMETOOLONG">ENAMETOOLONG</a></u></td></tr>
+<tr><th id="60">60</th><td>  <b>case</b> <a class="macro" href="../../include/asm-generic/errno.h.html#7" title="36" data-ref="_M/ENAMETOOLONG">ENAMETOOLONG</a>:</td></tr>
+<tr><th id="61">61</th><td>    <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col3 ref" href="#3errors" title='errors' data-ref="3errors">errors</a>, <q>"The directory name %s is too long.\n"</q>, <a class="local col4 ref" href="#4name" title='name' data-ref="4name">name</a>);</td></tr>
+<tr><th id="62">62</th><td>    <b>break</b>;</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="59">endif</span></u></td></tr>
+<tr><th id="64">64</th><td><u>#<span data-ppcond="64">ifdef</span> <a class="macro" href="../../include/asm-generic/errno-base.h.html#33" data-ref="_M/EROFS">EROFS</a></u></td></tr>
+<tr><th id="65">65</th><td>  <b>case</b> <a class="macro" href="../../include/asm-generic/errno-base.h.html#33" title="30" data-ref="_M/EROFS">EROFS</a>:</td></tr>
+<tr><th id="66">66</th><td>    <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col3 ref" href="#3errors" title='errors' data-ref="3errors">errors</a>, <q>"%s resides on a read-only file system.\n"</q>, <a class="local col4 ref" href="#4name" title='name' data-ref="4name">name</a>);</td></tr>
+<tr><th id="67">67</th><td>    <b>break</b>;</td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="64">endif</span></u></td></tr>
+<tr><th id="69">69</th><td><u>#<span data-ppcond="69">ifdef</span> <a class="macro" href="../../include/asm-generic/errno-base.h.html#31" data-ref="_M/ENOSPC">ENOSPC</a></u></td></tr>
+<tr><th id="70">70</th><td>  <b>case</b> <a class="macro" href="../../include/asm-generic/errno-base.h.html#31" title="28" data-ref="_M/ENOSPC">ENOSPC</a>:</td></tr>
+<tr><th id="71">71</th><td>    <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col3 ref" href="#3errors" title='errors' data-ref="3errors">errors</a>, <q>"No space left on the file system that will "</q></td></tr>
+<tr><th id="72">72</th><td>            <q>"contain the directory %s.\n"</q>, <a class="local col4 ref" href="#4name" title='name' data-ref="4name">name</a>);</td></tr>
+<tr><th id="73">73</th><td>    <b>break</b>;</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="69">endif</span></u></td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="75">ifdef</span> <a class="macro" href="../../include/asm-generic/errno.h.html#104" data-ref="_M/EDQUOT">EDQUOT</a></u></td></tr>
+<tr><th id="76">76</th><td>  <b>case</b> <a class="macro" href="../../include/asm-generic/errno.h.html#104" title="122" data-ref="_M/EDQUOT">EDQUOT</a>:</td></tr>
+<tr><th id="77">77</th><td>    <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col3 ref" href="#3errors" title='errors' data-ref="3errors">errors</a>, <q>"Cannot create directory %s because you "</q></td></tr>
+<tr><th id="78">78</th><td>            <q>"exceeded your quota.\n"</q>, <a class="local col4 ref" href="#4name" title='name' data-ref="4name">name</a>);</td></tr>
+<tr><th id="79">79</th><td>    <b>break</b>;</td></tr>
+<tr><th id="80">80</th><td><u>#<span data-ppcond="75">endif</span></u></td></tr>
+<tr><th id="81">81</th><td>  <b>default</b> :</td></tr>
+<tr><th id="82">82</th><td>    <a class="macro" href="../lib/curlx.h.html#103" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="local col3 ref" href="#3errors" title='errors' data-ref="3errors">errors</a>, <q>"Error creating directory %s.\n"</q>, <a class="local col4 ref" href="#4name" title='name' data-ref="4name">name</a>);</td></tr>
+<tr><th id="83">83</th><td>    <b>break</b>;</td></tr>
+<tr><th id="84">84</th><td>  }</td></tr>
+<tr><th id="85">85</th><td>}</td></tr>
+<tr><th id="86">86</th><td></td></tr>
+<tr><th id="87">87</th><td><i>/*</i></td></tr>
+<tr><th id="88">88</th><td><i> * Create the needed directory hierarchy recursively in order to save</i></td></tr>
+<tr><th id="89">89</th><td><i> *  multi-GETs in file output, ie:</i></td></tr>
+<tr><th id="90">90</th><td><i> *  curl "<a href="http://my.site/dir[1-5]/file[1-5].txt">http://my.site/dir[1-5]/file[1-5].txt</a>" -o "dir#1/file#2.txt"</i></td></tr>
+<tr><th id="91">91</th><td><i> *  should create all the dir* automagically</i></td></tr>
+<tr><th id="92">92</th><td><i> */</i></td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td><u>#<span data-ppcond="94">ifdef</span> <span class="macro" data-ref="_M/WIN32">WIN32</span></u></td></tr>
+<tr><th id="95">95</th><td><i>/* systems that may use either or when specifying a path */</i></td></tr>
+<tr><th id="96">96</th><td><u>#define PATH_DELIMITERS "\\/"</u></td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="94">else</span></u></td></tr>
+<tr><th id="98">98</th><td><u>#define <dfn class="macro" id="_M/PATH_DELIMITERS" data-ref="_M/PATH_DELIMITERS">PATH_DELIMITERS</dfn> DIR_CHAR</u></td></tr>
+<tr><th id="99">99</th><td><u>#<span data-ppcond="94">endif</span></u></td></tr>
+<tr><th id="100">100</th><td></td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="create_dir_hierarchy" title='create_dir_hierarchy' data-ref="create_dir_hierarchy">create_dir_hierarchy</dfn>(<em>const</em> <em>char</em> *<dfn class="local col5 decl" id="5outfile" title='outfile' data-type='const char *' data-ref="5outfile">outfile</dfn>, <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col6 decl" id="6errors" title='errors' data-type='FILE *' data-ref="6errors">errors</dfn>)</td></tr>
+<tr><th id="103">103</th><td>{</td></tr>
+<tr><th id="104">104</th><td>  <em>char</em> *<dfn class="local col7 decl" id="7tempdir" title='tempdir' data-type='char *' data-ref="7tempdir">tempdir</dfn>;</td></tr>
+<tr><th id="105">105</th><td>  <em>char</em> *<dfn class="local col8 decl" id="8tempdir2" title='tempdir2' data-type='char *' data-ref="8tempdir2">tempdir2</dfn>;</td></tr>
+<tr><th id="106">106</th><td>  <em>char</em> *<dfn class="local col9 decl" id="9outdup" title='outdup' data-type='char *' data-ref="9outdup">outdup</dfn>;</td></tr>
+<tr><th id="107">107</th><td>  <em>char</em> *<dfn class="local col0 decl" id="10dirbuildup" title='dirbuildup' data-type='char *' data-ref="10dirbuildup">dirbuildup</dfn>;</td></tr>
+<tr><th id="108">108</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col1 decl" id="11result" title='result' data-type='CURLcode' data-ref="11result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="109">109</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="12outlen" title='outlen' data-type='size_t' data-ref="12outlen">outlen</dfn>;</td></tr>
+<tr><th id="110">110</th><td></td></tr>
+<tr><th id="111">111</th><td>  <a class="local col2 ref" href="#12outlen" title='outlen' data-ref="12outlen">outlen</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col5 ref" href="#5outfile" title='outfile' data-ref="5outfile">outfile</a>);</td></tr>
+<tr><th id="112">112</th><td>  <a class="local col9 ref" href="#9outdup" title='outdup' data-ref="9outdup">outdup</a> = <a class="ref" href="../../include/string.h.html#strdup" title='strdup' data-ref="strdup">strdup</a>(<a class="local col5 ref" href="#5outfile" title='outfile' data-ref="5outfile">outfile</a>);</td></tr>
+<tr><th id="113">113</th><td>  <b>if</b>(!<a class="local col9 ref" href="#9outdup" title='outdup' data-ref="9outdup">outdup</a>)</td></tr>
+<tr><th id="114">114</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="115">115</th><td></td></tr>
+<tr><th id="116">116</th><td>  <a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a> = <a class="ref" href="../../include/stdlib.h.html#malloc" title='malloc' data-ref="malloc">malloc</a>(<a class="local col2 ref" href="#12outlen" title='outlen' data-ref="12outlen">outlen</a> + <var>1</var>);</td></tr>
+<tr><th id="117">117</th><td>  <b>if</b>(!<a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>) {</td></tr>
+<tr><th id="118">118</th><td>    <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((outdup)); (outdup) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col9 ref" href="#9outdup" title='outdup' data-ref="9outdup">outdup</a>);</td></tr>
+<tr><th id="119">119</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="120">120</th><td>  }</td></tr>
+<tr><th id="121">121</th><td>  <a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>[<var>0</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="122">122</th><td></td></tr>
+<tr><th id="123">123</th><td>  <i>/* Allow strtok() here since this isn't used threaded */</i></td></tr>
+<tr><th id="124">124</th><td>  <i>/* !checksrc! disable BANNEDFUNC 2 */</i></td></tr>
+<tr><th id="125">125</th><td>  <a class="local col7 ref" href="#7tempdir" title='tempdir' data-ref="7tempdir">tempdir</a> = <a class="ref" href="../../include/string.h.html#strtok" title='strtok' data-ref="strtok">strtok</a>(<a class="local col9 ref" href="#9outdup" title='outdup' data-ref="9outdup">outdup</a>, <a class="macro" href="#98" title="&quot;/&quot;" data-ref="_M/PATH_DELIMITERS">PATH_DELIMITERS</a>);</td></tr>
+<tr><th id="126">126</th><td></td></tr>
+<tr><th id="127">127</th><td>  <b>while</b>(<a class="local col7 ref" href="#7tempdir" title='tempdir' data-ref="7tempdir">tempdir</a> != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) {</td></tr>
+<tr><th id="128">128</th><td>    <a class="local col8 ref" href="#8tempdir2" title='tempdir2' data-ref="8tempdir2">tempdir2</a> = <a class="ref" href="../../include/string.h.html#strtok" title='strtok' data-ref="strtok">strtok</a>(<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <a class="macro" href="#98" title="&quot;/&quot;" data-ref="_M/PATH_DELIMITERS">PATH_DELIMITERS</a>);</td></tr>
+<tr><th id="129">129</th><td>    <i>/* since strtok returns a token for the last word even</i></td></tr>
+<tr><th id="130">130</th><td><i>       if not ending with DIR_CHAR, we need to prune it */</i></td></tr>
+<tr><th id="131">131</th><td>    <b>if</b>(<a class="local col8 ref" href="#8tempdir2" title='tempdir2' data-ref="8tempdir2">tempdir2</a> != <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) {</td></tr>
+<tr><th id="132">132</th><td>      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="13dlen" title='dlen' data-type='size_t' data-ref="13dlen">dlen</dfn> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>);</td></tr>
+<tr><th id="133">133</th><td>      <b>if</b>(<a class="local col3 ref" href="#13dlen" title='dlen' data-ref="13dlen">dlen</a>)</td></tr>
+<tr><th id="134">134</th><td>        <a class="macro" href="../lib/curlx.h.html#105" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(&amp;<a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>[<a class="local col3 ref" href="#13dlen" title='dlen' data-ref="13dlen">dlen</a>], <a class="local col2 ref" href="#12outlen" title='outlen' data-ref="12outlen">outlen</a> - <a class="local col3 ref" href="#13dlen" title='dlen' data-ref="13dlen">dlen</a>, <q>"%s%s"</q>, <a class="macro" href="../lib/curl_setup.h.html#465" title="&quot;/&quot;" data-ref="_M/DIR_CHAR">DIR_CHAR</a>, <a class="local col7 ref" href="#7tempdir" title='tempdir' data-ref="7tempdir">tempdir</a>);</td></tr>
+<tr><th id="135">135</th><td>      <b>else</b> {</td></tr>
+<tr><th id="136">136</th><td>        <b>if</b>(<a class="local col9 ref" href="#9outdup" title='outdup' data-ref="9outdup">outdup</a> == <a class="local col7 ref" href="#7tempdir" title='tempdir' data-ref="7tempdir">tempdir</a>)</td></tr>
+<tr><th id="137">137</th><td>          <i>/* the output string doesn't start with a separator */</i></td></tr>
+<tr><th id="138">138</th><td>          <a class="ref" href="../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>, <a class="local col7 ref" href="#7tempdir" title='tempdir' data-ref="7tempdir">tempdir</a>);</td></tr>
+<tr><th id="139">139</th><td>        <b>else</b></td></tr>
+<tr><th id="140">140</th><td>          <a class="macro" href="../lib/curlx.h.html#105" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>, <a class="local col2 ref" href="#12outlen" title='outlen' data-ref="12outlen">outlen</a>, <q>"%s%s"</q>, <a class="macro" href="../lib/curl_setup.h.html#465" title="&quot;/&quot;" data-ref="_M/DIR_CHAR">DIR_CHAR</a>, <a class="local col7 ref" href="#7tempdir" title='tempdir' data-ref="7tempdir">tempdir</a>);</td></tr>
+<tr><th id="141">141</th><td>      }</td></tr>
+<tr><th id="142">142</th><td>      <b>if</b>(<a class="ref" href="../../include/unistd.h.html#access" title='access' data-ref="access">access</a>(<a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>, <a class="macro" href="../../include/unistd.h.html#287" title="0" data-ref="_M/F_OK">F_OK</a>) == -<var>1</var>) {</td></tr>
+<tr><th id="143">143</th><td>        <b>if</b>(-<var>1</var> == <a class="ref" href="../../include/x86_64-linux-gnu/sys/stat.h.html#mkdir" title='mkdir' data-ref="mkdir">mkdir</a>(<a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>, (<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#mode_t" title='mode_t' data-type='__mode_t' data-ref="mode_t">mode_t</a>)<var>0000750</var>)) {</td></tr>
+<tr><th id="144">144</th><td>          <a class="tu ref" href="#show_dir_errno" title='show_dir_errno' data-use='c' data-ref="show_dir_errno">show_dir_errno</a>(<a class="local col6 ref" href="#6errors" title='errors' data-ref="6errors">errors</a>, <a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>);</td></tr>
+<tr><th id="145">145</th><td>          <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_WRITE_ERROR" title='CURLE_WRITE_ERROR' data-ref="CURLE_WRITE_ERROR">CURLE_WRITE_ERROR</a>;</td></tr>
+<tr><th id="146">146</th><td>          <b>break</b>; <i>/* get out of loop */</i></td></tr>
+<tr><th id="147">147</th><td>        }</td></tr>
+<tr><th id="148">148</th><td>      }</td></tr>
+<tr><th id="149">149</th><td>    }</td></tr>
+<tr><th id="150">150</th><td>    <a class="local col7 ref" href="#7tempdir" title='tempdir' data-ref="7tempdir">tempdir</a> = <a class="local col8 ref" href="#8tempdir2" title='tempdir2' data-ref="8tempdir2">tempdir2</a>;</td></tr>
+<tr><th id="151">151</th><td>  }</td></tr>
+<tr><th id="152">152</th><td></td></tr>
+<tr><th id="153">153</th><td>  <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((dirbuildup)); (dirbuildup) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col0 ref" href="#10dirbuildup" title='dirbuildup' data-ref="10dirbuildup">dirbuildup</a>);</td></tr>
+<tr><th id="154">154</th><td>  <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((outdup)); (outdup) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col9 ref" href="#9outdup" title='outdup' data-ref="9outdup">outdup</a>);</td></tr>
+<tr><th id="155">155</th><td></td></tr>
+<tr><th id="156">156</th><td>  <b>return</b> <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a>;</td></tr>
+<tr><th id="157">157</th><td>}</td></tr>
+<tr><th id="158">158</th><td></td></tr>
+<tr><th id="159">159</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

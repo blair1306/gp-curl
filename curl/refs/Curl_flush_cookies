@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/cookie.h' l='99' type='void Curl_flush_cookies(struct Curl_easy * data, int cleanup)'/>
+<def f='codebrowser/lib/cookie.c' l='1446' ll='1477' type='void Curl_flush_cookies(struct Curl_easy * data, int cleanup)'/>
+<use f='codebrowser/lib/url.c' l='470' u='c' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='1315' u='c' c='Curl_setopt'/>

@@ -1,0 +1,15 @@
+<dec f='include/arpa/tftp.h' l='55' type='unsigned short'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1256' macro='1' u='w'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1288' macro='1' u='w'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1288' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1296' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1301' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1331' macro='1' u='w'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1357' macro='1' u='w'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1357' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1361' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1366' macro='1' u='r'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1384' macro='1' u='w'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1399' macro='1' u='r'/>
+<offset>0</offset>
+<doc f='include/arpa/tftp.h' l='55'>/* block # */</doc>

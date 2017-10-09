@@ -1,0 +1,2 @@
+<dec f='include/openssl/conf.h' l='211' type='void OPENSSL_load_builtin_modules()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='913' u='c' c='Curl_ossl_init'/>

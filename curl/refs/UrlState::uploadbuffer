@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='1254' type='char [16385]'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/urldata.h' l='1254'>/* upload buffer */</doc>
+<use f='codebrowser/lib/http.c' l='1111' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1112' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/smb.c' l='376' u='r' c='smb_send'/>
+<use f='codebrowser/lib/smb.c' l='402' u='r' c='smb_flush'/>
+<use f='codebrowser/lib/smb.c' l='418' u='r' c='smb_send_message'/>
+<use f='codebrowser/lib/smb.c' l='420' u='r' c='smb_send_message'/>
+<use f='codebrowser/lib/smb.c' l='581' u='r' c='smb_send_write'/>
+<use f='codebrowser/lib/smb.c' l='614' u='r' c='smb_send_and_recv'/>
+<use f='codebrowser/lib/transfer.c' l='913' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1067' u='r' c='readwrite_upload'/>

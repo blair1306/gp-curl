@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/multi.h' l='70' type='6'/>
+<doc f='codebrowser/include/curl/multi.h' l='70'>/* curl_multi_setopt() with unsupported option */</doc>
+<use f='codebrowser/lib/multi.c' l='2740' u='r' c='curl_multi_setopt'/>
+<use f='codebrowser/lib/strerror.c' l='377' c='curl_multi_strerror'/>

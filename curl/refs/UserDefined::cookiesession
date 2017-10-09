@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1565' type='_Bool'/>
+<offset>7112</offset>
+<use f='codebrowser/lib/cookie.c' l='271' u='r' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/easy.c' l='908' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/url.c' l='1269' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1292' u='w' c='Curl_setopt'/>

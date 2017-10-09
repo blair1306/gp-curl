@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/splay.h' l='49' type='struct Curl_tree * Curl_splaygetbest(struct curltime key, struct Curl_tree * t, struct Curl_tree ** removed)'/>
+<use f='codebrowser/lib/multi.c' l='2181' u='c' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='2667' u='c' c='multi_socket'/>
+<def f='codebrowser/lib/splay.c' l='154' ll='196' type='struct Curl_tree * Curl_splaygetbest(struct curltime i, struct Curl_tree * t, struct Curl_tree ** removed)'/>
+<doc f='codebrowser/lib/splay.c' l='151'>/* Finds and deletes the best-fit node from the tree. Return a pointer to the
+   resulting tree.  best-fit means the smallest node if it is not larger than
+   the key */</doc>
+<use f='codebrowser/tests/unit/unit1309.c' l='131' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='135' u='c' c='test'/>

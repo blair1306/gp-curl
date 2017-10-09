@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/formdata.h' l='31' type='_Bool'/>
+<offset>256</offset>
+<use f='codebrowser/lib/formdata.c' l='399' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='426' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='445' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='586' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='588' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='680' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='709' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='711' u='w' c='FormAdd'/>

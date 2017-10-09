@@ -1,0 +1,37 @@
+<dec f='codebrowser/tests/libtest/test.h' l='70' type='char * hexdump(const unsigned char * buffer, size_t len)'/>
+<def f='codebrowser/tests/libtest/first.c' l='119' ll='129' type='char * hexdump(const unsigned char * buffer, size_t len)'/>
+<doc f='codebrowser/tests/libtest/first.c' l='118'>/* returns a hexdump in a static memory area */</doc>
+<use f='codebrowser/tests/unit/unit1302.c' l='59' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='59' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='65' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='65' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='71' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='71' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='77' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='77' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='83' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='83' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='89' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='89' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='95' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='95' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='102' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='102' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='108' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='108' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='114' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='114' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='120' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='120' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='126' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='126' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='54' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='54' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='60' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='60' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='67' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1600.c' l='67' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1601.c' l='44' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1601.c' l='44' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1601.c' l='49' macro='1' u='c'/>
+<use f='codebrowser/tests/unit/unit1601.c' l='49' macro='1' u='c'/>

@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/mime.h' l='123' type='void Curl_mime_initpart(curl_mimepart * part, struct Curl_easy * easy)'/>
+<doc f='codebrowser/lib/mime.h' l='122'>/* Prototypes. */</doc>
+<use f='codebrowser/lib/formdata.c' l='768' u='c' c='curl_formget'/>
+<use f='codebrowser/lib/http.c' l='166' u='c' c='Curl_http_setup_conn'/>
+<use f='codebrowser/lib/mime.c' l='1124' u='c' c='Curl_mime_cleanpart'/>
+<def f='codebrowser/lib/mime.c' l='1180' ll='1185' type='void Curl_mime_initpart(curl_mimepart * part, struct Curl_easy * easy)'/>
+<use f='codebrowser/lib/mime.c' l='1198' u='c' c='curl_mime_addpart'/>
+<doc f='codebrowser/lib/mime.c' l='1179'>/* Initialize a mime part. */</doc>
+<use f='codebrowser/lib/url.c' l='674' u='c' c='Curl_open'/>

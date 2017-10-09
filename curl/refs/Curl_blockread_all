@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/socks.h' l='38' type='int Curl_blockread_all(struct connectdata * conn, curl_socket_t sockfd, char * buf, ssize_t buffersize, ssize_t * n)'/>
+<doc f='codebrowser/lib/socks.h' l='31'>/*
+ * Helper read-from-socket functions. Does the same as Curl_read() but it
+ * blocks until all bytes amount of buffersize will be read. No more, no less.
+ *
+ * This is STUPID BLOCKING behaviour which we frown upon, but right now this
+ * is what we have...
+ */</doc>
+<def f='codebrowser/lib/socks.c' l='51' ll='95' type='int Curl_blockread_all(struct connectdata * conn, curl_socket_t sockfd, char * buf, ssize_t buffersize, ssize_t * n)'/>
+<use f='codebrowser/lib/socks.c' l='265' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='486' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='545' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='688' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='735' u='c' c='Curl_SOCKS5'/>
+<doc f='codebrowser/lib/socks.c' l='44'>/*
+ * Helper read-from-socket functions. Does the same as Curl_read() but it
+ * blocks until all bytes amount of buffersize will be read. No more, no less.
+ *
+ * This is STUPID BLOCKING behaviour which we frown upon, but right now this
+ * is what we have...
+ */</doc>
+<doc f='codebrowser/lib/socks.c' l='51'>/* connection data */</doc>

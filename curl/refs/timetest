@@ -1,0 +1,10 @@
+<def f='codebrowser/tests/unit/unit1303.c' l='65' ll='73'/>
+<size>40</size>
+<doc f='codebrowser/tests/unit/unit1303.c' l='56'>/*
+ * To test:
+ *
+ * 00/10/01/11 timeouts set
+ * 0/1         during connect
+ * T           various values on the timeouts
+ * N           various values of now
+ */</doc>

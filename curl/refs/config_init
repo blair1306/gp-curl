@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='279' type='void config_init(struct OperationConfig * config)'/>
+<def f='codebrowser/src/tool_cfgable.c' l='29' ll='45' type='void config_init(struct OperationConfig * config)'/>
+<use f='codebrowser/src/tool_getparam.c' l='2119' u='c' c='parse_args'/>
+<use f='codebrowser/src/tool_main.c' l='165' u='c' c='main_init'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='233' u='c' c='parseconfig'/>

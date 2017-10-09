@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='157' type='void Curl_ssl_close_all(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='155'>/* tell the SSL stuff to close down all open information regarding
+   connections (and thus session ID caching etc) */</doc>
+<use f='codebrowser/lib/url.c' l='446' u='c' c='Curl_close'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='496' ll='510' type='void Curl_ssl_close_all(struct Curl_easy * data)'/>

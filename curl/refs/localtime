@@ -1,0 +1,4 @@
+<dec f='include/time.h' l='243' type='struct tm * localtime(const time_t * __timer)'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='68' u='c' c='tool_debug_cb'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='110' u='c' c='libtest_debug_cb'/>
+<use f='codebrowser/tests/server/util.c' l='121' u='c' c='logmsg'/>

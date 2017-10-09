@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='499' type='2'/>
+<doc f='codebrowser/lib/urldata.h' l='499'>/* still sending the request but will wait for
+                                 the 100 header once done with the request */</doc>
+<use f='codebrowser/lib/transfer.c' l='921' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='2062' u='r' c='Curl_setup_transfer'/>

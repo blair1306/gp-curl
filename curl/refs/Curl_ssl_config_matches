@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='138' type='_Bool Curl_ssl_config_matches(struct ssl_primary_config * data, struct ssl_primary_config * needle)'/>
+<use f='codebrowser/lib/url.c' l='3684' u='c' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3691' u='c' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3755' u='c' c='ConnectionExists'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='85' ll='103' macro='1' type='_Bool Curl_ssl_config_matches(struct ssl_primary_config * data, struct ssl_primary_config * needle)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='347' u='c' c='Curl_ssl_getsessionid'/>

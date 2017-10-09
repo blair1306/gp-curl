@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/mime.h' l='50' type='5'/>
+<doc f='codebrowser/lib/mime.h' l='50'>/* In boundary prefix. */</doc>
+<use f='codebrowser/lib/mime.c' l='945' u='r' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='951' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='987' u='r' c='mime_subparts_read'/>

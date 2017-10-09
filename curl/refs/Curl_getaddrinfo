@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/hostip.h' l='114' type='Curl_addrinfo * Curl_getaddrinfo(struct connectdata * conn, const char * hostname, int port, int * waitp)'/>
+<doc f='codebrowser/lib/hostip.h' l='108'>/*
+ * Curl_getaddrinfo() is the generic low-level name resolve API within this
+ * source file. There are several versions of this function - for different
+ * name resolve layers (selected at build-time). They all take this same set
+ * of arguments
+ */</doc>
+<def f='codebrowser/lib/hostasyn.c' l='145' ll='151' type='Curl_addrinfo * Curl_getaddrinfo(struct connectdata * conn, const char * hostname, int port, int * waitp)'/>
+<doc f='codebrowser/lib/hostasyn.c' l='139'>/*
+ * Curl_getaddrinfo() is the generic low-level name resolve API within this
+ * source file. There are several versions of this function - for different
+ * name resolve layers (selected at build-time). They all take this same set
+ * of arguments
+ */</doc>
+<use f='codebrowser/lib/hostip.c' l='484' u='c' c='Curl_resolv'/>

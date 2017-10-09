@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='270'/>
+<use f='codebrowser/lib/ftp.c' l='3905' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='616' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='950' u='c'/>

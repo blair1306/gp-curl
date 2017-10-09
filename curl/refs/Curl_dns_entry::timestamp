@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/hostip.h' l='69' type='time_t'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/hostip.h' l='68'>/* timestamp == 0 -- CURLOPT_RESOLVE entry, doesn&apos;t timeout */</doc>
+<use f='codebrowser/lib/hostip.c' l='233' u='r' c='hostcache_timestamp_remove'/>
+<use f='codebrowser/lib/hostip.c' l='234' u='r' c='hostcache_timestamp_remove'/>
+<use f='codebrowser/lib/hostip.c' l='401' u='a' c='Curl_cache_addr'/>
+<use f='codebrowser/lib/hostip.c' l='402' u='r' c='Curl_cache_addr'/>
+<use f='codebrowser/lib/hostip.c' l='403' u='w' c='Curl_cache_addr'/>
+<use f='codebrowser/lib/hostip.c' l='860' u='w' c='Curl_loadhostpairs'/>

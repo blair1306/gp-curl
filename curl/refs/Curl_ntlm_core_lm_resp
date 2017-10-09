@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/curl_ntlm_core.h' l='64' type='void Curl_ntlm_core_lm_resp(const unsigned char * keys, const unsigned char * plaintext, unsigned char * results)'/>
+<def f='codebrowser/lib/curl_ntlm_core.c' l='407' ll='456' type='void Curl_ntlm_core_lm_resp(const unsigned char * keys, const unsigned char * plaintext, unsigned char * results)'/>
+<doc f='codebrowser/lib/curl_ntlm_core.c' l='402'>/*
+  * takes a 21 byte array and treats it as 3 56-bit DES keys. The
+  * 8 byte plaintext is encrypted with each key and the resulting 24
+  * bytes are stored in the results array.
+  */</doc>
+<use f='codebrowser/lib/smb.c' l='450' u='c' c='smb_send_setup'/>
+<use f='codebrowser/lib/smb.c' l='453' u='c' c='smb_send_setup'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='626' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='645' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='652' u='c' c='Curl_auth_create_ntlm_type3_message'/>

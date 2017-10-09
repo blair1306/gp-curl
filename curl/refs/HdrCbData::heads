@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cb_hdr.h' l='43' type='struct OutStruct *'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='47' u='r' c='tool_header_cb'/>
+<offset>64</offset>
+<use f='codebrowser/src/tool_operate.c' l='1430' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1981' u='w' c='operate_do'/>

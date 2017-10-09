@@ -1,0 +1,4 @@
+<def f='codebrowser/lib/urldata.h' l='1712' ll='1720'/>
+<size>16</size>
+<mbr r='Names::hostcache' o='0' t='struct curl_hash *'/>
+<mbr r='Names::hostcachetype' o='64' t='enum (anonymous enum at /home/jon/workspace/curl/lib/urldata.h:1714:3)'/>

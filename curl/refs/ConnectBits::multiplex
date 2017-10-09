@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='431' type='_Bool'/>
+<offset>224</offset>
+<use f='codebrowser/lib/pipeline.c' l='328' u='r' c='Curl_pipeline_checkget_write'/>
+<use f='codebrowser/lib/pipeline.c' l='351' u='r' c='Curl_pipeline_checkget_read'/>
+<use f='codebrowser/lib/url.c' l='3582' u='r' c='ConnectionExists'/>

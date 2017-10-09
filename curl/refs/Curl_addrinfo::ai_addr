@@ -1,0 +1,28 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='58' type='struct sockaddr *'/>
+<offset>256</offset>
+<use f='codebrowser/lib/connect.c' l='1341' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='84' u='r' c='Curl_freeaddrinfo'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='165' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='169' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='170' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='175' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='181' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='310' u='w' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='311' u='r' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='338' u='r' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='347' u='r' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='499' u='w' c='Curl_unix2addr'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='500' u='r' c='Curl_unix2addr'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='505' u='r' c='Curl_unix2addr'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='511' u='r' c='Curl_unix2addr'/>
+<use f='codebrowser/lib/ftp.c' l='1044' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1127' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/hostip.c' l='177' u='r' c='Curl_printable_address'/>
+<use f='codebrowser/lib/hostip.c' l='183' u='r' c='Curl_printable_address'/>
+<use f='codebrowser/lib/sendf.c' l='366' u='r' c='Curl_send_plain'/>
+<use f='codebrowser/lib/socks.c' l='182' u='r' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='628' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='640' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/tftp.c' l='540' u='r' c='tftp_send_first'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='90' u='w' c='fake_ai'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='91' u='r' c='fake_ai'/>

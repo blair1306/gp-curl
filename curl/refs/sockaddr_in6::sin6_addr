@@ -1,0 +1,17 @@
+<dec f='include/netinet/in.h' l='259' type='struct in6_addr'/>
+<offset>64</offset>
+<doc f='include/netinet/in.h' l='259'>/* IPv6 address */</doc>
+<use f='codebrowser/lib/connect.c' l='385' u='a' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='637' u='a' c='getaddressinfo'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='349' u='a' c='Curl_he2ai'/>
+<use f='codebrowser/lib/ftp.c' l='1075' u='a' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/hostcheck.c' l='90' u='a' c='hostmatch'/>
+<use f='codebrowser/lib/hostip.c' l='184' u='a' c='Curl_printable_address'/>
+<use f='codebrowser/lib/if2ip.c' l='71' u='m' c='Curl_ipv6_scope'/>
+<use f='codebrowser/lib/socks.c' l='643' u='m' c='Curl_SOCKS5'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1321' u='w' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1259' u='w' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1501' u='a' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='1380' u='a' c='connect_to'/>
+<use f='codebrowser/tests/server/sws.c' l='2160' u='w' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='803' u='w' c='main'/>

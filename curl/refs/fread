@@ -1,0 +1,13 @@
+<dec f='include/stdio.h' l='709' type='size_t fread(void *restrict __ptr, size_t __size, size_t __n, FILE *restrict __stream)'/>
+<doc f='include/stdio.h' l='705'>/* Read chunks of generic data from STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='codebrowser/lib/formdata.c' l='933' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/mime.c' l='682' u='c' c='mime_file_read'/>
+<use f='codebrowser/lib/transfer.c' l='326' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/url.c' l='519' u='r' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1959' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='917' u='c' c='Curl_pin_peer_pubkey'/>
+<use f='codebrowser/src/tool_formparse.c' l='383' u='r' c='file_or_stdin'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='115' u='c' c='file2memory'/>

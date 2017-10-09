@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/url.h' l='51' type='int Curl_doing_getsock(struct connectdata * conn, curl_socket_t * socks, int numsocks)'/>
+<use f='codebrowser/lib/multi.c' l='899' u='c' c='multi_getsock'/>
+<def f='codebrowser/lib/url.c' l='3981' ll='3988' type='int Curl_doing_getsock(struct connectdata * conn, curl_socket_t * socks, int numsocks)'/>

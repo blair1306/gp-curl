@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1398' type='4'/>
+<doc f='codebrowser/lib/urldata.h' l='1398'>/* HTTP cookie string to send */</doc>
+<use f='codebrowser/lib/http.c' l='1895' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1896' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='1232' u='a' c='Curl_setopt'/>

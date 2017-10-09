@@ -1,0 +1,16 @@
+<dec f='codebrowser/src/slist_wc.h' l='51' type='void slist_wc_free_all(struct slist_wc * )'/>
+<def f='codebrowser/src/slist_wc.c' l='63' ll='70' type='void slist_wc_free_all(struct slist_wc * list)'/>
+<doc f='codebrowser/src/slist_wc.c' l='62'>/* be nice and clean up resources */</doc>
+<doc f='codebrowser/src/slist_wc.h' l='44'>/*
+ * NAME curl_slist_free_all()
+ *
+ * DESCRIPTION
+ *
+ * free a previously built curl_slist_wc.
+ */</doc>
+<use f='codebrowser/src/tool_easysrc.c' l='82' u='c' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='84' u='c' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='86' u='c' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='88' u='c' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='90' u='c' c='easysrc_free'/>
+<use f='codebrowser/src/tool_easysrc.c' l='154' u='c' c='easysrc_perform'/>

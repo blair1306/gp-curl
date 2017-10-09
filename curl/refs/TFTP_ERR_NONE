@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/tftp.c' l='113' type='-100'/>
+<use f='codebrowser/lib/tftp.c' l='860' u='r' c='tftp_translate_code'/>
+<use f='codebrowser/lib/tftp.c' l='1008' u='r' c='tftp_connect'/>
+<doc f='codebrowser/lib/tftp.c' l='112'>/* The remaining error codes are internal to curl */</doc>

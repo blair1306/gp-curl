@@ -1,0 +1,54 @@
+<def f='codebrowser/lib/urldata.h' l='518' ll='616'/>
+<size>416</size>
+<doc f='codebrowser/lib/urldata.h' l='511'>/*
+ * Request specific data in the easy handle (Curl_easy).  Previously,
+ * these members were on the connectdata struct but since a conn struct may
+ * now be shared between different Curl_easys, we store connection-specific
+ * data here. This struct only keeps stuff that&apos;s interesting for *this*
+ * request, as it will be cleared between multiple ones
+ */</doc>
+<mbr r='SingleRequest::size' o='0' t='curl_off_t'/>
+<mbr r='SingleRequest::bytecountp' o='64' t='curl_off_t *'/>
+<mbr r='SingleRequest::maxdownload' o='128' t='curl_off_t'/>
+<mbr r='SingleRequest::writebytecountp' o='192' t='curl_off_t *'/>
+<mbr r='SingleRequest::bytecount' o='256' t='curl_off_t'/>
+<mbr r='SingleRequest::writebytecount' o='320' t='curl_off_t'/>
+<mbr r='SingleRequest::headerbytecount' o='384' t='long'/>
+<mbr r='SingleRequest::deductheadercount' o='448' t='long'/>
+<mbr r='SingleRequest::start' o='512' t='struct curltime'/>
+<mbr r='SingleRequest::now' o='640' t='struct curltime'/>
+<mbr r='SingleRequest::header' o='768' t='_Bool'/>
+<mbr r='SingleRequest::badheader' o='800' t='enum (anonymous enum at /home/jon/workspace/curl/lib/urldata.h:539:3)'/>
+<mbr r='SingleRequest::headerline' o='832' t='int'/>
+<mbr r='SingleRequest::hbufp' o='896' t='char *'/>
+<mbr r='SingleRequest::hbuflen' o='960' t='size_t'/>
+<mbr r='SingleRequest::str' o='1024' t='char *'/>
+<mbr r='SingleRequest::str_start' o='1088' t='char *'/>
+<mbr r='SingleRequest::end_ptr' o='1152' t='char *'/>
+<mbr r='SingleRequest::p' o='1216' t='char *'/>
+<mbr r='SingleRequest::content_range' o='1280' t='_Bool'/>
+<mbr r='SingleRequest::offset' o='1344' t='curl_off_t'/>
+<mbr r='SingleRequest::httpcode' o='1408' t='int'/>
+<mbr r='SingleRequest::start100' o='1472' t='struct curltime'/>
+<mbr r='SingleRequest::exp100' o='1600' t='enum expect100'/>
+<mbr r='SingleRequest::upgr101' o='1632' t='enum upgrade101'/>
+<mbr r='SingleRequest::auto_decoding' o='1664' t='int'/>
+<mbr r='SingleRequest::zlib_init' o='1696' t='zlibInitState'/>
+<mbr r='SingleRequest::z' o='1728' t='z_stream'/>
+<mbr r='SingleRequest::timeofdoc' o='2624' t='time_t'/>
+<mbr r='SingleRequest::bodywrites' o='2688' t='long'/>
+<mbr r='SingleRequest::buf' o='2752' t='char *'/>
+<mbr r='SingleRequest::maxfd' o='2816' t='curl_socket_t'/>
+<mbr r='SingleRequest::keepon' o='2848' t='int'/>
+<mbr r='SingleRequest::upload_done' o='2880' t='_Bool'/>
+<mbr r='SingleRequest::ignorebody' o='2888' t='_Bool'/>
+<mbr r='SingleRequest::ignorecl' o='2896' t='_Bool'/>
+<mbr r='SingleRequest::location' o='2944' t='char *'/>
+<mbr r='SingleRequest::newurl' o='3008' t='char *'/>
+<mbr r='SingleRequest::upload_present' o='3072' t='ssize_t'/>
+<mbr r='SingleRequest::upload_fromhere' o='3136' t='char *'/>
+<mbr r='SingleRequest::chunk' o='3200' t='_Bool'/>
+<mbr r='SingleRequest::upload_chunky' o='3208' t='_Bool'/>
+<mbr r='SingleRequest::getheader' o='3216' t='_Bool'/>
+<mbr r='SingleRequest::forbidchunk' o='3224' t='_Bool'/>
+<mbr r='SingleRequest::protop' o='3264' t='void *'/>

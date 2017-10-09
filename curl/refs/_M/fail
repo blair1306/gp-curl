@@ -1,0 +1,7 @@
+<dec f='codebrowser/tests/unit/curlcheck.h' l='51'/>
+<doc f='codebrowser/tests/unit/curlcheck.h' l='49'>/* fail() is for when the test case figured out by itself that a check
+   proved a failure */</doc>
+<use f='codebrowser/tests/unit/unit1303.c' l='146' u='c'/>
+<use f='codebrowser/tests/unit/unit1307.c' l='230' u='c'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='106' u='c'/>
+<use f='codebrowser/tests/unit/unit1395.c' l='84' u='c'/>

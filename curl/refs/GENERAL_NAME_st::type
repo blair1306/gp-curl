@@ -1,0 +1,5 @@
+<dec f='include/openssl/x509v3.h' l='187' type='int'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1382' u='r' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1384' u='r' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1388' u='r' c='verifyhost'/>
+<offset>0</offset>

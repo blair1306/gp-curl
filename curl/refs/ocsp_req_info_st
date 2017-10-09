@@ -1,0 +1,12 @@
+<def f='include/openssl/ocsp.h' l='129' ll='134'/>
+<size>32</size>
+<doc f='include/openssl/ocsp.h' l='123'>/*-  TBSRequest      ::=     SEQUENCE {
+ *       version             [0] EXPLICIT Version DEFAULT v1,
+ *       requestorName       [1] EXPLICIT GeneralName OPTIONAL,
+ *       requestList             SEQUENCE OF Request,
+ *       requestExtensions   [2] EXPLICIT Extensions OPTIONAL }
+ */</doc>
+<mbr r='ocsp_req_info_st::version' o='0' t='ASN1_INTEGER *'/>
+<mbr r='ocsp_req_info_st::requestorName' o='64' t='GENERAL_NAME *'/>
+<mbr r='ocsp_req_info_st::requestList' o='128' t='struct stack_st_OCSP_ONEREQ *'/>
+<mbr r='ocsp_req_info_st::requestExtensions' o='192' t='struct stack_st_X509_EXTENSION *'/>

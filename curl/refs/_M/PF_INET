@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/bits/socket.h' l='45'/>
+<use f='codebrowser/lib/asyn-thread.c' l='610' u='c'/>
+<use f='codebrowser/lib/asyn-thread.c' l='639' u='c'/>
+<use f='codebrowser/lib/asyn-thread.c' l='649' u='c'/>
+<use f='codebrowser/lib/asyn-thread.c' l='651' u='c'/>
+<use f='codebrowser/tests/server/resolve.c' l='128' u='c'/>

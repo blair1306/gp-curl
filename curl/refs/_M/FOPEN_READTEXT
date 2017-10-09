@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/curl_setup.h' l='732'/>
+<use f='codebrowser/lib/cookie.c' l='1008' u='c'/>
+<use f='codebrowser/lib/netrc.c' l='111' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3096' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='272' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1642' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1990' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='118' u='c'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='87' u='c'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='88' u='c'/>

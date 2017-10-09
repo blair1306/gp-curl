@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1715' type='0'/>
+<doc f='codebrowser/lib/urldata.h' l='1715'>/* not pointing to anything */</doc>
+<use f='codebrowser/lib/multi.c' l='403' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='730' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2239' u='r' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/url.c' l='2388' u='r' c='Curl_setopt'/>

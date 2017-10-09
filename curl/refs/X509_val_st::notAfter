@@ -1,0 +1,4 @@
+<dec f='include/openssl/x509.h' l='154' type='ASN1_TIME *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2828' macro='1' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3065' macro='1' u='r'/>

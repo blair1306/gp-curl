@@ -1,0 +1,5 @@
+<dec f='include/openssl/engine.h' l='187'/>
+<doc f='include/openssl/engine.h' l='183'>/*
+ * Indicates that the control command takes *no* input. Ie. the control
+ * command is unparameterised.
+ */</doc>

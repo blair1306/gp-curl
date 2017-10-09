@@ -1,0 +1,4 @@
+<def f='include/openssl/pkcs12.h' l='130' ll='139'/>
+<size>16</size>
+<mbr r='pkcs12_bag_st::type' o='0' t='ASN1_OBJECT *'/>
+<mbr r='pkcs12_bag_st::value' o='64' t='union (anonymous union at /usr/include/openssl/pkcs12.h:132:5)'/>

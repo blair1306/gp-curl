@@ -1,0 +1,2 @@
+<dec f='include/asm-generic/errno-base.h' l='20'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='51' u='c'/>

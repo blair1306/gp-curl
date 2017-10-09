@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='216' type='char *'/>
+<offset>320</offset>
+<use f='codebrowser/lib/url.c' l='6715' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6716' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='96' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='96' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='118' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='118' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='118' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='118' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='118' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='130' u='r' c='Curl_free_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='130' u='w' c='Curl_free_primary_ssl_config'/>

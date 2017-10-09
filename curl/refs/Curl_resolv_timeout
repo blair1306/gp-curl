@@ -1,0 +1,25 @@
+<dec f='codebrowser/lib/hostip.h' l='88' type='int Curl_resolv_timeout(struct connectdata * conn, const char * hostname, int port, struct Curl_dns_entry ** dnsentry, time_t timeoutms)'/>
+<def f='codebrowser/lib/hostip.c' l='566' ll='713' type='int Curl_resolv_timeout(struct connectdata * conn, const char * hostname, int port, struct Curl_dns_entry ** entry, time_t timeoutms)'/>
+<doc f='codebrowser/lib/hostip.c' l='544'>/*
+ * Curl_resolv_timeout() is the same as Curl_resolv() but specifies a
+ * timeout.  This function might return immediately if we&apos;re using asynch
+ * resolves. See the return codes.
+ *
+ * The cache entry we return will get its &apos;inuse&apos; counter increased when this
+ * function is used. You MUST call Curl_resolv_unlock() later (when you&apos;re
+ * done using this struct) to decrease the counter again.
+ *
+ * If built with a synchronous resolver and use of signals is not
+ * disabled by the application, then a nonzero timeout will cause a
+ * timeout after the specified number of milliseconds. Otherwise, timeout
+ * is ignored.
+ *
+ * Return codes:
+ *
+ * CURLRESOLV_TIMEDOUT(-2) = warning, time too short or previous alarm expired
+ * CURLRESOLV_ERROR   (-1) = error, no pointer
+ * CURLRESOLV_RESOLVED (0) = OK, pointer provided
+ * CURLRESOLV_PENDING  (1) = waiting for response, no pointer
+ */</doc>
+<use f='codebrowser/lib/url.c' l='6235' u='c' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6256' u='c' c='resolve_server'/>

@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='483' type='void *'/>
+<use f='codebrowser/lib/asyn-thread.c' l='178' u='r' c='conn_thread_sync_data'/>
+<use f='codebrowser/lib/asyn-thread.c' l='345' u='r' c='destroy_async_data'/>
+<use f='codebrowser/lib/asyn-thread.c' l='346' u='r' c='destroy_async_data'/>
+<use f='codebrowser/lib/asyn-thread.c' l='367' u='r' c='destroy_async_data'/>
+<use f='codebrowser/lib/asyn-thread.c' l='370' u='w' c='destroy_async_data'/>
+<use f='codebrowser/lib/asyn-thread.c' l='389' u='w' c='init_resolve_thread'/>
+<use f='codebrowser/lib/asyn-thread.c' l='400' u='w' c='init_resolve_thread'/>
+<use f='codebrowser/lib/asyn-thread.c' l='474' u='r' c='Curl_resolver_wait_resolv'/>
+<use f='codebrowser/lib/asyn-thread.c' l='511' u='r' c='Curl_resolver_is_resolved'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/urldata.h' l='483'>/* &apos;struct thread_data&apos; for Windows */</doc>

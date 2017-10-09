@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1457' type='50'/>
+<doc f='codebrowser/lib/urldata.h' l='1457'>/* Service name */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='423' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='424' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/url.c' l='1596' u='a' c='Curl_setopt'/>

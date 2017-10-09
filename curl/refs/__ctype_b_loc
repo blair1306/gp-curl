@@ -1,0 +1,146 @@
+<dec f='include/ctype.h' l='79' type='const unsigned short ** __ctype_b_loc()'/>
+<doc f='include/ctype.h' l='63'>/* These are defined in ctype-info.c.
+   The declarations here must match those in localeinfo.h.
+
+   In the thread-specific locale model (see `uselocale&apos; in &lt;locale.h&gt;)
+   we cannot use global variables for these as was done in the past.
+   Instead, the following accessor functions return the address of
+   each variable, which is local to the current thread if multithreaded.
+
+   These point into arrays of 384, so they can be indexed by any `unsigned
+   char&apos; value [0,255]; by EOF (-1); or by any `signed char&apos; value
+   [-128,-1).  ISO C requires that the ctype functions work for `unsigned
+   char&apos; values and for EOF; we also support negative `signed char&apos; values
+   for broken old programs.  The case conversion arrays are of `int&apos;s
+   rather than `unsigned char&apos;s because tolower (EOF) must be EOF, which
+   doesn&apos;t fit into an `unsigned char&apos;.  But today more important is that
+   the arrays are also used for multi-byte character sets.  */</doc>
+<use f='codebrowser/lib/curl_fnmatch.c' l='84' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='84' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='138' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='189' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='218' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='224' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='240' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='248' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='257' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='257' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='258' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='258' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='259' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='259' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='283' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='335' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='360' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='362' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='364' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='366' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='368' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='370' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='372' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='374' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='378' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='400' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='132' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='132' macro='1' u='c'/>
+<use f='codebrowser/lib/escape.c' l='164' macro='1' u='c'/>
+<use f='codebrowser/lib/escape.c' l='164' macro='1' u='c'/>
+<use f='codebrowser/lib/file.c' l='147' macro='1' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='552' macro='1' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='552' macro='1' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='552' macro='1' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='2430' macro='1' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='3484' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='427' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='429' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='625' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='636' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='652' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='660' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='674' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='682' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='710' macro='1' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='899' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='227' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='241' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='892' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='1307' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='1607' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='1653' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='3624' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='3676' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='3703' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='3707' macro='1' u='c'/>
+<use f='codebrowser/lib/http_digest.c' l='64' macro='1' u='c'/>
+<use f='codebrowser/lib/http_ntlm.c' l='78' macro='1' u='c'/>
+<use f='codebrowser/lib/imap.c' l='214' macro='1' u='c'/>
+<use f='codebrowser/lib/imap.c' l='218' macro='1' u='c'/>
+<use f='codebrowser/lib/mprintf.c' l='181' macro='1' u='c'/>
+<use f='codebrowser/lib/parsedate.c' l='263' macro='1' u='c'/>
+<use f='codebrowser/lib/parsedate.c' l='352' macro='1' u='c'/>
+<use f='codebrowser/lib/parsedate.c' l='385' macro='1' u='c'/>
+<use f='codebrowser/lib/rtsp.c' l='812' macro='1' u='c'/>
+<use f='codebrowser/lib/rtsp.c' l='836' macro='1' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='202' macro='1' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='202' macro='1' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='202' macro='1' u='c'/>
+<use f='codebrowser/lib/strtoofft.c' l='225' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='5157' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='5165' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='5165' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='5989' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='5997' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='5997' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='531' macro='1' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='616' macro='1' u='c'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='103' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='123' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='125' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='197' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='203' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='208' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='212' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='226' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='238' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='244' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='262' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='267' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='289' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='295' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='311' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='317' macro='1' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='341' macro='1' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1851' macro='1' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1872' macro='1' u='c'/>
+<use f='codebrowser/src/tool_msgs.c' l='56' macro='1' u='c'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='322' macro='1' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='137' macro='1' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='157' macro='1' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='169' macro='1' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='188' macro='1' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='197' macro='1' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='253' macro='1' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='191' macro='1' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='239' macro='1' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='252' macro='1' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='270' macro='1' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='338' macro='1' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='622' macro='1' u='c'/>
+<use f='codebrowser/tests/server/getpart.c' l='319' macro='1' u='c'/>
+<use f='codebrowser/tests/server/getpart.c' l='340' macro='1' u='c'/>
+<use f='codebrowser/tests/server/getpart.c' l='402' macro='1' u='c'/>
+<use f='codebrowser/tests/server/getpart.c' l='419' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='406' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='557' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='607' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='612' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='499' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='522' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='571' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='574' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='591' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='675' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='722' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='727' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1026' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1169' macro='1' u='c'/>

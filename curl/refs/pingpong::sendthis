@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/pingpong.h' l='57' type='char *'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/pingpong.h' l='57'>/* allocated pointer to a buffer that is to be sent to the
+                     server */</doc>
+<use f='codebrowser/lib/pingpong.c' l='230' u='w' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='236' u='w' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='489' u='r' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pingpong.c' l='499' u='r' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/pingpong.c' l='500' u='w' c='Curl_pp_flushsend'/>
+<use f='codebrowser/lib/smtp.c' l='1227' u='w' c='smtp_done'/>

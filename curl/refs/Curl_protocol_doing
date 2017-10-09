@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/url.h' l='43' type='CURLcode Curl_protocol_doing(struct connectdata * conn, _Bool * done)'/>
+<use f='codebrowser/lib/multi.c' l='1756' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/url.c' l='4016' ll='4028' type='CURLcode Curl_protocol_doing(struct connectdata * conn, _Bool * done)'/>
+<doc f='codebrowser/lib/url.c' l='4011'>/*
+ * We are DOING this is being called over and over from the multi interface
+ * until the DOING phase is done on protocol layer.
+ */</doc>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/transfer.h' l='55' type='_Bool Curl_meets_timecondition(struct Curl_easy * data, time_t timeofdoc)'/>
+<use f='codebrowser/lib/file.c' l='469' u='c' c='file_do'/>
+<def f='codebrowser/lib/transfer.c' l='393' ll='419' macro='1' type='_Bool Curl_meets_timecondition(struct Curl_easy * data, time_t timeofdoc)'/>
+<use f='codebrowser/lib/transfer.c' l='631' u='c' c='readwrite_data'/>

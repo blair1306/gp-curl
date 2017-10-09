@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='149' type='int Curl_ssl_init()'/>
+<use f='codebrowser/lib/easy.c' l='218' u='c' c='global_init'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='161' ll='169' type='int Curl_ssl_init()'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='155'>/**
+ * Global SSL init
+ *
+ * @retval 0 error initializing SSL
+ * @retval 1 SSL initialized successfully
+ */</doc>

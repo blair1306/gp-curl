@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='202' type='_Bool Curl_ssl_getsessionid(struct connectdata * conn, void ** ssl_sessionid, size_t * idsize, int sockindex)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2460' u='c' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3205' u='c' c='ossl_connect_step3'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='301' ll='360' macro='1' type='_Bool Curl_ssl_getsessionid(struct connectdata * conn, void ** ssl_sessionid, size_t * idsize, int sockindex)'/>

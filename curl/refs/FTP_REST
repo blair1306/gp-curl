@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='70' type='26'/>
+<doc f='codebrowser/lib/ftp.h' l='70'>/* when used to check if the server supports it in head-like */</doc>
+<use f='codebrowser/lib/ftp.c' l='1412' u='r' c='ftp_state_rest'/>
+<use f='codebrowser/lib/ftp.c' l='2305' c='ftp_state_rest_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3004' c='ftp_statemach_act'/>

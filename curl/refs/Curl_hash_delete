@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/hash.h' l='79' type='int Curl_hash_delete(struct curl_hash * h, void * key, size_t key_len)'/>
+<use f='codebrowser/lib/conncache.c' l='183' u='c' c='conncache_remove_bundle'/>
+<def f='codebrowser/lib/hash.c' l='140' ll='155' type='int Curl_hash_delete(struct curl_hash * h, void * key, size_t key_len)'/>
+<doc f='codebrowser/lib/hash.c' l='135'>/* Remove the identified hash entry.
+ * Returns non-zero on failure.
+ *
+ * @unittest: 1603
+ */</doc>
+<use f='codebrowser/lib/hostip.c' l='319' u='c' c='fetch_addr'/>
+<use f='codebrowser/lib/hostip.c' l='810' u='c' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/multi.c' l='228' u='c' c='sh_delentry'/>
+<use f='codebrowser/tests/unit/unit1603.c' l='102' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1603.c' l='116' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1603.c' l='124' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1603.c' l='132' u='c' c='test'/>

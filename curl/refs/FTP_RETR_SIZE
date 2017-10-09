@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='68' type='24'/>
+<doc f='codebrowser/lib/ftp.h' l='68'>/* get the remote file&apos;s size for RETR */</doc>
+<use f='codebrowser/lib/ftp.c' l='1766' u='r' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='2285' u='r' c='ftp_state_size_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2999' c='ftp_statemach_act'/>

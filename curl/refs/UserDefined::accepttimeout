@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1549' type='long'/>
+<offset>2688</offset>
+<doc f='codebrowser/lib/urldata.h' l='1549'>/* in milliseconds, 0 means no timeout */</doc>
+<use f='codebrowser/lib/ftp.c' l='341' u='r' c='ftp_timeleft_accept'/>
+<use f='codebrowser/lib/ftp.c' l='342' u='r' c='ftp_timeleft_accept'/>
+<use f='codebrowser/lib/ftp.c' l='531' u='r' c='AllowServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='532' u='r' c='AllowServerConnect'/>
+<use f='codebrowser/lib/url.c' l='1750' u='w' c='Curl_setopt'/>

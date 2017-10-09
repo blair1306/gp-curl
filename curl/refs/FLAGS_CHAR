@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/mprintf.c' l='143' type='131072'/>
+<use f='codebrowser/lib/mprintf.c' l='428' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='690' u='r' c='dprintf_formatf'/>
+<doc f='codebrowser/lib/mprintf.c' l='143'>/* %c story */</doc>

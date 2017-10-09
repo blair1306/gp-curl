@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/ftp.h' l='123' type='int'/>
+<offset>1056</offset>
+<doc f='codebrowser/lib/ftp.h' l='123'>/* number of entries allocated for the &apos;dirs&apos; array */</doc>
+<use f='codebrowser/lib/ftp.c' l='4211' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4212' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4259' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4262' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4263' u='r' c='ftp_parse_url_path'/>

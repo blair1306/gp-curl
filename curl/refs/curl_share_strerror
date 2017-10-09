@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='2692' type='const char * curl_share_strerror(CURLSHcode )'/>
+<def f='codebrowser/lib/strerror.c' l='396' ll='430' type='const char * curl_share_strerror(CURLSHcode error)'/>
+<use f='codebrowser/tests/libtest/lib1538.c' l='36' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1538.c' l='39' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1538.c' l='48' u='c' c='test'/>

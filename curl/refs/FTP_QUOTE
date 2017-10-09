@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/ftp.h' l='56' type='12'/>
+<doc f='codebrowser/lib/ftp.h' l='56'>/* waiting for a response to a command sent in a quote list */</doc>
+<use f='codebrowser/lib/ftp.c' l='1691' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='1741' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='2928' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3715' u='r' c='ftp_perform'/>

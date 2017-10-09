@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_easysrc.h source code [codebrowser/src/tool_easysrc.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_easysrc.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_easysrc.h.html'>tool_easysrc.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_TOOL_EASYSRC_H">HEADER_CURL_TOOL_EASYSRC_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_TOOL_EASYSRC_H" data-ref="_M/HEADER_CURL_TOOL_EASYSRC_H">HEADER_CURL_TOOL_EASYSRC_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_LIBCURL_OPTION">CURL_DISABLE_LIBCURL_OPTION</span></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><i>/* global variable declarations, for easy-interface source code generation */</i></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><b>extern</b> <b>struct</b> <a class="type" href="slist_wc.h.html#slist_wc" title='slist_wc' data-ref="slist_wc">slist_wc</a> *<dfn class="decl" id="easysrc_decl" title='easysrc_decl' data-ref="easysrc_decl">easysrc_decl</dfn>; <i>/* Variable declarations */</i></td></tr>
+<tr><th id="30">30</th><td><b>extern</b> <b>struct</b> <a class="type" href="slist_wc.h.html#slist_wc" title='slist_wc' data-ref="slist_wc">slist_wc</a> *<dfn class="decl" id="easysrc_data" title='easysrc_data' data-ref="easysrc_data">easysrc_data</dfn>; <i>/* Build slists, forms etc. */</i></td></tr>
+<tr><th id="31">31</th><td><b>extern</b> <b>struct</b> <a class="type" href="slist_wc.h.html#slist_wc" title='slist_wc' data-ref="slist_wc">slist_wc</a> *<dfn class="decl" id="easysrc_code" title='easysrc_code' data-ref="easysrc_code">easysrc_code</dfn>; <i>/* Setopt calls etc. */</i></td></tr>
+<tr><th id="32">32</th><td><b>extern</b> <b>struct</b> <a class="type" href="slist_wc.h.html#slist_wc" title='slist_wc' data-ref="slist_wc">slist_wc</a> *<dfn class="decl" id="easysrc_toohard" title='easysrc_toohard' data-ref="easysrc_toohard">easysrc_toohard</dfn>; <i>/* Unconvertible setopt */</i></td></tr>
+<tr><th id="33">33</th><td><b>extern</b> <b>struct</b> <a class="type" href="slist_wc.h.html#slist_wc" title='slist_wc' data-ref="slist_wc">slist_wc</a> *<dfn class="decl" id="easysrc_clean" title='easysrc_clean' data-ref="easysrc_clean">easysrc_clean</dfn>;  <i>/* Clean up (reverse order) */</i></td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="easysrc_mime_count" title='easysrc_mime_count' data-ref="easysrc_mime_count">easysrc_mime_count</dfn>;  <i>/* Number of curl_mime variables */</i></td></tr>
+<tr><th id="36">36</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="easysrc_slist_count" title='easysrc_slist_count' data-ref="easysrc_slist_count">easysrc_slist_count</dfn>; <i>/* Number of curl_slist variables */</i></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><b>extern</b> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <a class="decl" href="tool_easysrc.c.html#easysrc_init" title='easysrc_init' data-ref="easysrc_init" id="easysrc_init">easysrc_init</a>(<em>void</em>);</td></tr>
+<tr><th id="39">39</th><td><b>extern</b> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <a class="decl" href="tool_easysrc.c.html#easysrc_add" title='easysrc_add' data-ref="easysrc_add" id="easysrc_add">easysrc_add</a>(<b>struct</b> <a class="type" href="slist_wc.h.html#slist_wc" title='slist_wc' data-ref="slist_wc">slist_wc</a> **<dfn class="local col1 decl" id="1plist" title='plist' data-type='struct slist_wc **' data-ref="1plist">plist</dfn>, <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="2bupf" title='bupf' data-type='const char *' data-ref="2bupf">bupf</dfn>);</td></tr>
+<tr><th id="40">40</th><td><b>extern</b> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <a class="decl" href="tool_easysrc.c.html#easysrc_addf" title='easysrc_addf' data-ref="easysrc_addf" id="easysrc_addf">easysrc_addf</a>(<b>struct</b> <a class="type" href="slist_wc.h.html#slist_wc" title='slist_wc' data-ref="slist_wc">slist_wc</a> **<dfn class="local col3 decl" id="3plist" title='plist' data-type='struct slist_wc **' data-ref="3plist">plist</dfn>,</td></tr>
+<tr><th id="41">41</th><td>                             <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="4fmt" title='fmt' data-type='const char *' data-ref="4fmt">fmt</dfn>, ...);</td></tr>
+<tr><th id="42">42</th><td><b>extern</b> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <a class="decl" href="tool_easysrc.c.html#easysrc_perform" title='easysrc_perform' data-ref="easysrc_perform" id="easysrc_perform">easysrc_perform</a>(<em>void</em>);</td></tr>
+<tr><th id="43">43</th><td><b>extern</b> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <a class="decl" href="tool_easysrc.c.html#easysrc_cleanup" title='easysrc_cleanup' data-ref="easysrc_cleanup" id="easysrc_cleanup">easysrc_cleanup</a>(<em>void</em>);</td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><em>void</em> <a class="decl" href="tool_easysrc.c.html#dumpeasysrc" title='dumpeasysrc' data-ref="dumpeasysrc" id="dumpeasysrc">dumpeasysrc</a>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col5 decl" id="5config" title='config' data-type='struct GlobalConfig *' data-ref="5config">config</dfn>);</td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="25">endif</span> /* CURL_DISABLE_LIBCURL_OPTION */</u></td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_TOOL_EASYSRC_H */</u></td></tr>
+<tr><th id="50">50</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='tool_easysrc.c.html'>codebrowser/src/tool_easysrc.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

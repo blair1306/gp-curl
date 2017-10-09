@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/socks.h' l='58' type='CURLcode Curl_SOCKS5(const char * proxy_name, const char * proxy_password, const char * hostname, int remote_port, int sockindex, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/socks.h' l='54'>/*
+ * This function logs in to a SOCKS5 proxy and sends the specifics to the
+ * final destination server.
+ */</doc>
+<def f='codebrowser/lib/socks.c' l='353' ll='789' type='CURLcode Curl_SOCKS5(const char * proxy_user, const char * proxy_password, const char * hostname, int remote_port, int sockindex, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/socks.c' l='349'>/*
+ * This function logs in to a SOCKS5 proxy and sends the specifics to the final
+ * destination server.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='3933' u='c' c='Curl_connected_proxy'/>

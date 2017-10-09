@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/easy.h' l='84' type='CURLcode curl_easy_recv(CURL * curl, void * buffer, size_t buflen, size_t * n)'/>
+<def f='codebrowser/lib/easy.c' l='1089' ll='1110' type='CURLcode curl_easy_recv(struct Curl_easy * data, void * buffer, size_t buflen, size_t * n)'/>
+<doc f='codebrowser/lib/easy.c' l='1084'>/*
+ * Receives data from the connected socket. Use after successful
+ * curl_easy_perform() with CURLOPT_CONNECT_ONLY option.
+ * Returns CURLE_OK on success, error code on error.
+ */</doc>
+<use f='codebrowser/tests/libtest/lib556.c' l='83' u='c' c='test'/>

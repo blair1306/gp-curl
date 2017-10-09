@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='526' type='void * OCSP_BASICRESP_get1_ext_d2i(OCSP_BASICRESP * x, int nid, int * crit, int * idx)'/>

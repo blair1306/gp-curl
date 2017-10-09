@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='360'/>
+<doc f='codebrowser/lib/curl_config.h' l='359'>/* Define to 1 if you have the &lt;libgen.h&gt; header file. */</doc>
+<use f='codebrowser/lib/formdata.c' l='29' u='a'/>
+<use f='codebrowser/lib/mime.c' l='35' u='a'/>

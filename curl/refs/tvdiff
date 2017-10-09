@@ -1,0 +1,16 @@
+<dec f='codebrowser/src/tool_util.h' l='34' type='long tvdiff(struct timeval t1, struct timeval t2)'/>
+<doc f='codebrowser/src/tool_util.h' l='28'>/*
+ * Make sure that the first argument (t1) is the more recent time and t2 is
+ * the older time, as otherwise you get a weird negative time-diff back...
+ *
+ * Returns: the time difference in number of milliseconds.
+ */</doc>
+<use f='codebrowser/src/tool_cb_prg.c' l='64' u='c' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='1584' u='c' c='operate_do'/>
+<def f='codebrowser/src/tool_util.c' l='122' ll='126' type='long tvdiff(struct timeval newer, struct timeval older)'/>
+<doc f='codebrowser/src/tool_util.c' l='116'>/*
+ * Make sure that the first argument is the more recent time, as otherwise
+ * we&apos;ll get a weird negative time-diff back...
+ *
+ * Returns: the time difference in number of milliseconds.
+ */</doc>

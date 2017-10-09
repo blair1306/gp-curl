@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>sigpipe.h source code [codebrowser/lib/sigpipe.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="sigpipe_ignore "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/sigpipe.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='sigpipe.h.html'>sigpipe.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_SIGPIPE_H">HEADER_CURL_SIGPIPE_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_SIGPIPE_H" data-ref="_M/HEADER_CURL_SIGPIPE_H">HEADER_CURL_SIGPIPE_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2013, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#<span data-ppcond="26">if</span> defined(<a class="macro" href="curl_config.h.html#558" data-ref="_M/HAVE_SIGNAL_H">HAVE_SIGNAL_H</a>) &amp;&amp; defined(<a class="macro" href="curl_config.h.html#549" data-ref="_M/HAVE_SIGACTION">HAVE_SIGACTION</a>) &amp;&amp; defined(<a class="macro" href="curl_config.h.html#949" data-ref="_M/USE_OPENSSL">USE_OPENSSL</a>)</u></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="../../include/signal.h.html">&lt;signal.h&gt;</a></u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><b>struct</b> <dfn class="type def" id="sigpipe_ignore" title='sigpipe_ignore' data-ref="sigpipe_ignore">sigpipe_ignore</dfn> {</td></tr>
+<tr><th id="30">30</th><td>  <b>struct</b> <a class="type" href="../../include/x86_64-linux-gnu/bits/sigaction.h.html#sigaction" title='sigaction' data-ref="sigaction">sigaction</a> <dfn class="decl" id="sigpipe_ignore::old_pipe_act" title='sigpipe_ignore::old_pipe_act' data-ref="sigpipe_ignore::old_pipe_act">old_pipe_act</dfn>;</td></tr>
+<tr><th id="31">31</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="sigpipe_ignore::no_signal" title='sigpipe_ignore::no_signal' data-ref="sigpipe_ignore::no_signal">no_signal</dfn>;</td></tr>
+<tr><th id="32">32</th><td>};</td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#define <dfn class="macro" id="_M/SIGPIPE_VARIABLE" data-ref="_M/SIGPIPE_VARIABLE">SIGPIPE_VARIABLE</dfn>(x) struct sigpipe_ignore x</u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><i>/*</i></td></tr>
+<tr><th id="37">37</th><td><i> * sigpipe_ignore() makes sure we ignore SIGPIPE while running libcurl</i></td></tr>
+<tr><th id="38">38</th><td><i> * internals, and then sigpipe_restore() will restore the situation when we</i></td></tr>
+<tr><th id="39">39</th><td><i> * return from libcurl again.</i></td></tr>
+<tr><th id="40">40</th><td><i> */</i></td></tr>
+<tr><th id="41">41</th><td><em>static</em> <em>void</em> <dfn class="decl def" id="sigpipe_ignore" title='sigpipe_ignore' data-ref="sigpipe_ignore">sigpipe_ignore</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col4 decl" id="4data" title='data' data-type='struct Curl_easy *' data-ref="4data">data</dfn>,</td></tr>
+<tr><th id="42">42</th><td>                           <b>struct</b> <a class="type" href="#sigpipe_ignore" title='sigpipe_ignore' data-ref="sigpipe_ignore">sigpipe_ignore</a> *<dfn class="local col5 decl" id="5ig" title='ig' data-type='struct sigpipe_ignore *' data-ref="5ig">ig</dfn>)</td></tr>
+<tr><th id="43">43</th><td>{</td></tr>
+<tr><th id="44">44</th><td>  <i>/* get a local copy of no_signal because the Curl_easy might not be</i></td></tr>
+<tr><th id="45">45</th><td><i>     around when we restore */</i></td></tr>
+<tr><th id="46">46</th><td>  <a class="local col5 ref" href="#5ig" title='ig' data-ref="5ig">ig</a>-&gt;<a class="ref" href="#sigpipe_ignore::no_signal" title='sigpipe_ignore::no_signal' data-ref="sigpipe_ignore::no_signal">no_signal</a> = <a class="local col4 ref" href="#4data" title='data' data-ref="4data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::no_signal" title='UserDefined::no_signal' data-ref="UserDefined::no_signal">no_signal</a>;</td></tr>
+<tr><th id="47">47</th><td>  <b>if</b>(!<a class="local col4 ref" href="#4data" title='data' data-ref="4data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::no_signal" title='UserDefined::no_signal' data-ref="UserDefined::no_signal">no_signal</a>) {</td></tr>
+<tr><th id="48">48</th><td>    <b>struct</b> <a class="type" href="../../include/x86_64-linux-gnu/bits/sigaction.h.html#sigaction" title='sigaction' data-ref="sigaction">sigaction</a> <dfn class="local col6 decl" id="6action" title='action' data-type='struct sigaction' data-ref="6action">action</dfn>;</td></tr>
+<tr><th id="49">49</th><td>    <i>/* first, extract the existing situation */</i></td></tr>
+<tr><th id="50">50</th><td>    <a class="ref" href="../../include/string.h.html#memset" title='memset' data-ref="memset">memset</a>(&amp;<a class="local col5 ref" href="#5ig" title='ig' data-ref="5ig">ig</a>-&gt;<a class="ref" href="#sigpipe_ignore::old_pipe_act" title='sigpipe_ignore::old_pipe_act' data-ref="sigpipe_ignore::old_pipe_act">old_pipe_act</a>, <var>0</var>, <b>sizeof</b>(<b>struct</b> <a class="type" href="../../include/x86_64-linux-gnu/bits/sigaction.h.html#sigaction" title='sigaction' data-ref="sigaction">sigaction</a>));</td></tr>
+<tr><th id="51">51</th><td>    <a class="ref" href="../../include/signal.h.html#sigaction" title='sigaction' data-ref="sigaction">sigaction</a>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/signum.h.html#45" title="13" data-ref="_M/SIGPIPE">SIGPIPE</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, &amp;<a class="local col5 ref" href="#5ig" title='ig' data-ref="5ig">ig</a>-&gt;<a class="ref" href="#sigpipe_ignore::old_pipe_act" title='sigpipe_ignore::old_pipe_act' data-ref="sigpipe_ignore::old_pipe_act">old_pipe_act</a>);</td></tr>
+<tr><th id="52">52</th><td>    <a class="local col6 ref" href="#6action" title='action' data-ref="6action">action</a> = <a class="local col5 ref" href="#5ig" title='ig' data-ref="5ig">ig</a>-&gt;<a class="ref" href="#sigpipe_ignore::old_pipe_act" title='sigpipe_ignore::old_pipe_act' data-ref="sigpipe_ignore::old_pipe_act">old_pipe_act</a>;</td></tr>
+<tr><th id="53">53</th><td>    <i>/* ignore this signal */</i></td></tr>
+<tr><th id="54">54</th><td>    <a class="local col6 ref" href="#6action" title='action' data-ref="6action">action</a>.<a class="macro" href="../../include/x86_64-linux-gnu/bits/sigaction.h.html#36" title="__sigaction_handler.sa_handler" data-ref="_M/sa_handler">sa_handler</a> = <a class="macro" href="../../include/x86_64-linux-gnu/bits/signum.h.html#24" title="((__sighandler_t) 1)" data-ref="_M/SIG_IGN">SIG_IGN</a>;</td></tr>
+<tr><th id="55">55</th><td>    <a class="ref" href="../../include/signal.h.html#sigaction" title='sigaction' data-ref="sigaction">sigaction</a>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/signum.h.html#45" title="13" data-ref="_M/SIGPIPE">SIGPIPE</a>, &amp;<a class="local col6 ref" href="#6action" title='action' data-ref="6action">action</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="56">56</th><td>  }</td></tr>
+<tr><th id="57">57</th><td>}</td></tr>
+<tr><th id="58">58</th><td></td></tr>
+<tr><th id="59">59</th><td><i>/*</i></td></tr>
+<tr><th id="60">60</th><td><i> * sigpipe_restore() puts back the outside world's opinion of signal handler</i></td></tr>
+<tr><th id="61">61</th><td><i> * and SIGPIPE handling. It MUST only be called after a corresponding</i></td></tr>
+<tr><th id="62">62</th><td><i> * sigpipe_ignore() was used.</i></td></tr>
+<tr><th id="63">63</th><td><i> */</i></td></tr>
+<tr><th id="64">64</th><td><em>static</em> <em>void</em> <dfn class="decl def" id="sigpipe_restore" title='sigpipe_restore' data-ref="sigpipe_restore">sigpipe_restore</dfn>(<b>struct</b> <a class="type" href="#sigpipe_ignore" title='sigpipe_ignore' data-ref="sigpipe_ignore">sigpipe_ignore</a> *<dfn class="local col7 decl" id="7ig" title='ig' data-type='struct sigpipe_ignore *' data-ref="7ig">ig</dfn>)</td></tr>
+<tr><th id="65">65</th><td>{</td></tr>
+<tr><th id="66">66</th><td>  <b>if</b>(!<a class="local col7 ref" href="#7ig" title='ig' data-ref="7ig">ig</a>-&gt;<a class="ref" href="#sigpipe_ignore::no_signal" title='sigpipe_ignore::no_signal' data-ref="sigpipe_ignore::no_signal">no_signal</a>)</td></tr>
+<tr><th id="67">67</th><td>    <i>/* restore the outside state */</i></td></tr>
+<tr><th id="68">68</th><td>    <a class="ref" href="../../include/signal.h.html#sigaction" title='sigaction' data-ref="sigaction">sigaction</a>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/signum.h.html#45" title="13" data-ref="_M/SIGPIPE">SIGPIPE</a>, &amp;<a class="local col7 ref" href="#7ig" title='ig' data-ref="7ig">ig</a>-&gt;<a class="ref" href="#sigpipe_ignore::old_pipe_act" title='sigpipe_ignore::old_pipe_act' data-ref="sigpipe_ignore::old_pipe_act">old_pipe_act</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="69">69</th><td>}</td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td><u>#<span data-ppcond="26">else</span></u></td></tr>
+<tr><th id="72">72</th><td><i>/* for systems without sigaction */</i></td></tr>
+<tr><th id="73">73</th><td><u>#define sigpipe_ignore(x,y) Curl_nop_stmt</u></td></tr>
+<tr><th id="74">74</th><td><u>#define sigpipe_restore(x)  Curl_nop_stmt</u></td></tr>
+<tr><th id="75">75</th><td><u>#define SIGPIPE_VARIABLE(x)</u></td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="26">endif</span></u></td></tr>
+<tr><th id="77">77</th><td></td></tr>
+<tr><th id="78">78</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_SIGPIPE_H */</u></td></tr>
+<tr><th id="79">79</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='easy.c.html'>codebrowser/lib/easy.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

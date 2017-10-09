@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='2432'/>
+<use f='codebrowser/include/curl/curl.h' l='2473' u='c'/>
+<use f='codebrowser/include/curl/curl.h' l='2474' u='c'/>
+<use f='codebrowser/lib/getinfo.c' l='444' u='c'/>

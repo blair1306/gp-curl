@@ -1,0 +1,36 @@
+<dec f='codebrowser/lib/cookie.h' l='34' type='char *'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/cookie.h' l='34'>/* domain = &lt;this&gt; */</doc>
+<use f='codebrowser/lib/cookie.c' l='110' u='r' c='freecookie'/>
+<use f='codebrowser/lib/cookie.c' l='538' u='a' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='539' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='641' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='644' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='645' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='729' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='730' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='848' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='848' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='849' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='849' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='854' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='854' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='891' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='921' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1070' u='r' c='cookie_sort'/>
+<use f='codebrowser/lib/cookie.c' l='1070' u='r' c='cookie_sort'/>
+<use f='codebrowser/lib/cookie.c' l='1071' u='r' c='cookie_sort'/>
+<use f='codebrowser/lib/cookie.c' l='1071' u='r' c='cookie_sort'/>
+<use f='codebrowser/lib/cookie.c' l='1098' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1098' u='w' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1098' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1098' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1160' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1161' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1162' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1337' u='r' c='get_netscape_format'/>
+<use f='codebrowser/lib/cookie.c' l='1337' u='r' c='get_netscape_format'/>
+<use f='codebrowser/lib/cookie.c' l='1338' u='r' c='get_netscape_format'/>
+<use f='codebrowser/lib/cookie.c' l='1338' u='r' c='get_netscape_format'/>
+<use f='codebrowser/lib/cookie.c' l='1387' u='r' c='cookie_output'/>
+<use f='codebrowser/lib/cookie.c' l='1418' u='r' c='cookie_list'/>

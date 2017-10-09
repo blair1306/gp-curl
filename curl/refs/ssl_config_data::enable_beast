@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='224' type='_Bool'/>
+<offset>576</offset>
+<use f='codebrowser/lib/url.c' l='2462' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2468' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2195' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2195' u='r' c='ossl_connect_step1'/>

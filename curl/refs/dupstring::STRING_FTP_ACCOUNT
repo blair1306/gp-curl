@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1404' type='10'/>
+<doc f='codebrowser/lib/urldata.h' l='1404'>/* ftp account data */</doc>
+<use f='codebrowser/lib/ftp.c' l='2550' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2551' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/url.c' l='2500' u='a' c='Curl_setopt'/>

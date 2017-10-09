@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/tftp.h' l='25' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/tftp.c' l='169' ll='188' type='const struct Curl_handler'/>
+<doc f='codebrowser/lib/tftp.c' l='165'>/*
+ * TFTP protocol handler.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='201' u='a'/>
+<use f='codebrowser/lib/url.c' l='201' u='a'/>

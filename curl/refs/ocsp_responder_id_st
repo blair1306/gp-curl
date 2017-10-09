@@ -1,0 +1,4 @@
+<def f='include/openssl/ocsp.h' l='197' ll='203'/>
+<size>16</size>
+<mbr r='ocsp_responder_id_st::type' o='0' t='int'/>
+<mbr r='ocsp_responder_id_st::value' o='64' t='union (anonymous union at /usr/include/openssl/ocsp.h:199:5)'/>

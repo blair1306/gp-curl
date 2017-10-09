@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1438' type='43'/>
+<doc f='codebrowser/lib/urldata.h' l='1438'>/* &lt;options&gt;, if used */</doc>
+<use f='codebrowser/lib/url.c' l='1782' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='5871' u='r' c='override_login'/>
+<use f='codebrowser/lib/url.c' l='5873' u='r' c='override_login'/>

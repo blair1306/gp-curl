@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='564' type='82'/>
+<doc f='codebrowser/include/curl/curl.h' l='564'>/* 82 - could not load CRL file, missing or
+                                    wrong format (Added in 7.19.0) */</doc>
+<use f='codebrowser/lib/strerror.c' l='243' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2378' u='r' c='ossl_connect_step1'/>

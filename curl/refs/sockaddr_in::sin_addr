@@ -1,0 +1,21 @@
+<dec f='include/netinet/in.h' l='243' type='struct in_addr'/>
+<offset>32</offset>
+<doc f='include/netinet/in.h' l='243'>/* Internet address.  */</doc>
+<use f='codebrowser/lib/connect.c' l='403' u='a' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='627' u='a' c='getaddressinfo'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='340' u='a' c='Curl_he2ai'/>
+<use f='codebrowser/lib/ftp.c' l='1079' u='a' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/hostip.c' l='178' u='a' c='Curl_printable_address'/>
+<use f='codebrowser/lib/if2ip.c' l='245' u='a' c='Curl_if2ip'/>
+<use f='codebrowser/lib/socks.c' l='183' u='m' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='184' u='m' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='185' u='m' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='186' u='m' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='630' u='m' c='Curl_SOCKS5'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1313' u='m' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1251' u='m' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1487' u='m' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1490' u='a' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='1367' u='a' c='connect_to'/>
+<use f='codebrowser/tests/server/sws.c' l='2152' u='m' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='795' u='m' c='main'/>

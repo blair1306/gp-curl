@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='160' type='CURLcode Curl_ssl_set_engine(struct Curl_easy * data, const char * engine)'/>
+<use f='codebrowser/lib/url.c' l='2082' u='c' c='Curl_setopt'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='571' ll='574' type='CURLcode Curl_ssl_set_engine(struct Curl_easy * data, const char * engine)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='569'>/* Selects an SSL crypto engine
+ */</doc>

@@ -1,0 +1,6 @@
+<dec f='include/netinet/in.h' l='229' type='const struct in6_addr'/>
+<doc f='include/netinet/in.h' l='229'>/* :: */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='1321' u='r' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1259' u='r' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sws.c' l='2160' u='r' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='803' u='r' c='main'/>

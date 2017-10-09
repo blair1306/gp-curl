@@ -1,0 +1,7 @@
+<def f='codebrowser/lib/ssh.h' l='104' ll='106'/>
+<size>8</size>
+<doc f='codebrowser/lib/ssh.h' l='100'>/* this struct is used in the HandleData struct which is part of the
+   Curl_easy, which means this is used on a per-easy handle basis.
+   Everything that is strictly related to a connection is banned from this
+   struct. */</doc>
+<mbr r='SSHPROTO::path' o='0' t='char *'/>

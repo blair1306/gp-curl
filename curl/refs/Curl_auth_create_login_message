@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='68' type='CURLcode Curl_auth_create_login_message(struct Curl_easy * data, const char * valuep, char ** outptr, size_t * outlen)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='371' u='c' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='460' u='c' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='464' u='c' c='Curl_sasl_continue'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='67'>/* This is used to generate a base64 encoded LOGIN cleartext message */</doc>
+<def f='codebrowser/lib/vauth/cleartext.c' l='121' ll='141' type='CURLcode Curl_auth_create_login_message(struct Curl_easy * data, const char * valuep, char ** outptr, size_t * outlen)'/>
+<use f='codebrowser/lib/vauth/cleartext.c' l='164' u='c' c='Curl_auth_create_external_message'/>
+<doc f='codebrowser/lib/vauth/cleartext.c' l='105'>/*
+ * Curl_auth_create_login_message()
+ *
+ * This is used to generate an already encoded LOGIN message containing the
+ * user name or password ready for sending to the recipient.
+ *
+ * Parameters:
+ *
+ * data    [in]     - The session handle.
+ * valuep  [in]     - The user name or user&apos;s password.
+ * outptr  [in/out] - The address where a pointer to newly allocated memory
+ *                    holding the result will be stored upon completion.
+ * outlen  [out]    - The length of the output message.
+ *
+ * Returns CURLE_OK on success.
+ */</doc>

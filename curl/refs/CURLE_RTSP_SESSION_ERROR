@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='570' type='86'/>
+<doc f='codebrowser/include/curl/curl.h' l='570'>/* 86 - mismatch of RTSP Session Ids */</doc>
+<use f='codebrowser/lib/rtsp.c' l='824' u='r' c='Curl_rtsp_parseheader'/>
+<use f='codebrowser/lib/strerror.c' l='294' c='curl_easy_strerror'/>
+<use f='codebrowser/tests/libtest/lib570.c' l='104' u='r' c='test'/>

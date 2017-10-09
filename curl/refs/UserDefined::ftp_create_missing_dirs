@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='1603' type='int'/>
+<offset>11296</offset>
+<doc f='codebrowser/lib/urldata.h' l='1603'>/* 1 - create directories that don&apos;t exist
+                                  2 - the same but also allow MKD to fail once
+                               */</doc>
+<use f='codebrowser/lib/ftp.c' l='888' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='2946' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/url.c' l='859' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='862' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='865' u='w' c='Curl_setopt'/>

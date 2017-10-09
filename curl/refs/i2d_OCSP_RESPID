@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='206' macro='1' type='int i2d_OCSP_RESPID(OCSP_RESPID * a, unsigned char ** out)'/>
+<dec f='include/openssl/ocsp.h' l='551' macro='1' type='int i2d_OCSP_RESPID(OCSP_RESPID * a, unsigned char ** out)'/>

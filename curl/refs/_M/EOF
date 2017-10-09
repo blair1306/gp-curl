@@ -1,0 +1,4 @@
+<dec f='include/libio.h' l='62'/>
+<use f='include/stdio.h' l='133' u='a'/>
+<use f='codebrowser/src/tool_formparse.c' l='123' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='139' u='c'/>

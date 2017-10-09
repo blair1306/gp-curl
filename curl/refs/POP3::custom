@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/pop3.h' l='55' type='char *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/pop3.h' l='55'>/* Custom Request */</doc>
+<use f='codebrowser/lib/pop3.c' l='567' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='567' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='568' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='571' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='571' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='572' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='1127' u='r' c='pop3_done'/>
+<use f='codebrowser/lib/pop3.c' l='1127' u='w' c='pop3_done'/>
+<use f='codebrowser/lib/pop3.c' l='1404' u='a' c='pop3_parse_custom_request'/>

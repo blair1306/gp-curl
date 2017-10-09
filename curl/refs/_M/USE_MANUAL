@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='940'/>
+<doc f='codebrowser/lib/curl_config.h' l='939'>/* If you want to build curl with the built-in manual */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1731' u='a'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='5236' u='a'/>
+<use f='codebrowser/src/tool_msgs.c' l='116' u='a'/>

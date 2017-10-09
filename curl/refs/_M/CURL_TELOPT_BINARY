@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/arpa_telnet.h' l='28'/>
+<use f='codebrowser/lib/telnet.c' l='267' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='268' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='895' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='896' u='c'/>
+<doc f='codebrowser/lib/arpa_telnet.h' l='25'>/*
+ * Telnet option defines. Add more here if in need.
+ */</doc>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='528' type='59'/>
+<doc f='codebrowser/include/curl/curl.h' l='528'>/* 59 - couldn&apos;t use specified cipher */</doc>
+<use f='codebrowser/lib/strerror.c' l='218' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2305' u='r' c='ossl_connect_step1'/>

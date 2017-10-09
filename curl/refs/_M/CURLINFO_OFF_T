@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/curl.h' l='2435'/>
+<use f='codebrowser/include/curl/curl.h' l='2448' u='c'/>
+<use f='codebrowser/include/curl/curl.h' l='2450' u='c'/>
+<use f='codebrowser/include/curl/curl.h' l='2452' u='c'/>
+<use f='codebrowser/include/curl/curl.h' l='2454' u='c'/>
+<use f='codebrowser/include/curl/curl.h' l='2460' u='c'/>
+<use f='codebrowser/include/curl/curl.h' l='2462' u='c'/>
+<use f='codebrowser/lib/getinfo.c' l='439' u='c'/>

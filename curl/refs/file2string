@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_paramhlp.h' l='28' type='ParameterError file2string(char ** bufp, FILE * file)'/>
+<use f='codebrowser/src/tool_getparam.c' l='1308' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1992' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_paramhlp.c' l='59' ll='88' type='ParameterError file2string(char ** bufp, FILE * file)'/>

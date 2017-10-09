@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1716' type='1'/>
+<doc f='codebrowser/lib/urldata.h' l='1716'>/* points to the (shrug) global one */</doc>
+<use f='codebrowser/lib/multi.c' l='391' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='397' u='r' c='curl_multi_add_handle'/>

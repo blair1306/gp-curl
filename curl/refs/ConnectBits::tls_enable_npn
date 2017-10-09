@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='434' type='_Bool'/>
+<offset>240</offset>
+<use f='codebrowser/lib/url.c' l='6804' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2257' u='r' c='ossl_connect_step1'/>

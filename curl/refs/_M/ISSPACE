@@ -1,0 +1,51 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='282'/>
+<doc f='codebrowser/lib/curl_setup_once.h' l='277'>/*
+ * Uppercase macro versions of ANSI/ISO is*() functions/macros which
+ * avoid negative number inputs with argument byte codes &gt; 127.
+ */</doc>
+<use f='codebrowser/lib/curl_fnmatch.c' l='370' u='c'/>
+<use f='codebrowser/lib/file.c' l='147' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='3484' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='427' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='899' u='c'/>
+<use f='codebrowser/lib/http.c' l='227' u='c'/>
+<use f='codebrowser/lib/http.c' l='241' u='c'/>
+<use f='codebrowser/lib/http.c' l='892' u='c'/>
+<use f='codebrowser/lib/http.c' l='1307' u='c'/>
+<use f='codebrowser/lib/http.c' l='1607' u='c'/>
+<use f='codebrowser/lib/http.c' l='1653' u='c'/>
+<use f='codebrowser/lib/http.c' l='3624' u='c'/>
+<use f='codebrowser/lib/http.c' l='3676' u='c'/>
+<use f='codebrowser/lib/http_digest.c' l='64' u='c'/>
+<use f='codebrowser/lib/http_ntlm.c' l='78' u='c'/>
+<use f='codebrowser/lib/rtsp.c' l='812' u='c'/>
+<use f='codebrowser/lib/rtsp.c' l='836' u='c'/>
+<use f='codebrowser/lib/strtoofft.c' l='225' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='531' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='616' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='123' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='125' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='197' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='203' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='208' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='212' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='226' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='238' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='244' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='262' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='267' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='289' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='295' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='311' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='317' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='341' u='c'/>
+<use f='codebrowser/src/tool_msgs.c' l='56' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='137' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='157' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='169' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='188' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='197' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='607' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='612' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='722' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='727' u='c'/>

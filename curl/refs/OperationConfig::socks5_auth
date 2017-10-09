@@ -1,0 +1,9 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='192' type='unsigned long'/>
+<offset>7040</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='192'>/* auth bitmask for socks5 proxies */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1577' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1579' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1585' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1587' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1346' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1348' u='r' c='operate_do'/>

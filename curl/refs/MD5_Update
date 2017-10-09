@@ -1,0 +1,11 @@
+<dec f='include/openssl/md5.h' l='111' type='int MD5_Update(MD5_CTX * c, const void * data, size_t len)'/>
+<use f='codebrowser/lib/md5.c' l='490' u='r'/>
+<use f='codebrowser/lib/md5.c' l='490' u='r'/>
+<use f='codebrowser/lib/md5.c' l='490' u='r'/>
+<use f='codebrowser/lib/md5.c' l='490' u='r'/>
+<use f='codebrowser/lib/md5.c' l='501'/>
+<use f='codebrowser/lib/md5.c' l='501'/>
+<use f='codebrowser/lib/md5.c' l='501'/>
+<use f='codebrowser/lib/md5.c' l='501'/>
+<use f='codebrowser/lib/md5.c' l='516' u='c' c='Curl_md5it'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3580' u='c' c='Curl_ossl_md5sum'/>

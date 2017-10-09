@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1400' type='6'/>
+<doc f='codebrowser/lib/urldata.h' l='1400'>/* HTTP/FTP/RTSP request/method to use */</doc>
+<use f='codebrowser/lib/ftp.c' l='1380' u='r' c='ftp_state_prepare_transfer'/>
+<use f='codebrowser/lib/ftp.c' l='1381' u='r' c='ftp_state_prepare_transfer'/>
+<use f='codebrowser/lib/ftp.c' l='1482' u='r' c='ftp_state_list'/>
+<use f='codebrowser/lib/ftp.c' l='1483' u='r' c='ftp_state_list'/>
+<use f='codebrowser/lib/http.c' l='1831' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1832' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='2067' u='r' c='imap_parse_custom_request'/>
+<use f='codebrowser/lib/pop3.c' l='1400' u='r' c='pop3_parse_custom_request'/>
+<use f='codebrowser/lib/smtp.c' l='1524' u='r' c='smtp_parse_custom_request'/>
+<use f='codebrowser/lib/url.c' l='1440' u='a' c='Curl_setopt'/>

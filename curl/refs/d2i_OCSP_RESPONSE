@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='552' macro='1' type='OCSP_RESPONSE * d2i_OCSP_RESPONSE(OCSP_RESPONSE ** a, const unsigned char ** in, long len)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1554' u='c' c='verifystatus'/>

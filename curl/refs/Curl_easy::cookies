@@ -1,0 +1,37 @@
+<dec f='codebrowser/lib/urldata.h' l='1764' type='struct CookieInfo *'/>
+<offset>22720</offset>
+<doc f='codebrowser/lib/urldata.h' l='1764'>/* the cookies, read from files and servers.
+                                  NOTE that the &apos;cookie&apos; field in the
+                                  UserDefined struct defines if the &quot;engine&quot;
+                                  is to be used or not. */</doc>
+<use f='codebrowser/lib/cookie.c' l='270' u='r' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/cookie.c' l='278' u='w' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/cookie.c' l='1413' u='r' c='cookie_list'/>
+<use f='codebrowser/lib/cookie.c' l='1414' u='r' c='cookie_list'/>
+<use f='codebrowser/lib/cookie.c' l='1417' u='r' c='cookie_list'/>
+<use f='codebrowser/lib/cookie.c' l='1459' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1473' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1474' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/easy.c' l='902' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='905' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='906' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='907' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='909' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/http.c' l='2372' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2376' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2378' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3718' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3723' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/url.c' l='1268' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1272' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1304' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1310' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1323' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1325' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1328' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1337' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1341' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2392' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2393' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2421' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2423' u='w' c='Curl_setopt'/>

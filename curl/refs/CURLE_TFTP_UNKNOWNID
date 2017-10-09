@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='543' type='72'/>
+<doc f='codebrowser/include/curl/curl.h' l='543'>/* 72 - Unknown transfer ID */</doc>
+<use f='codebrowser/lib/strerror.c' l='267' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/tftp.c' l='876' u='r' c='tftp_translate_code'/>

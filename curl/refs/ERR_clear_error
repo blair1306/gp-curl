@@ -1,0 +1,5 @@
+<dec f='include/openssl/err.h' l='333' type='void ERR_clear_error()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1205' u='c' c='Curl_ossl_shutdown'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2507' u='c' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3415' u='c' c='ossl_send'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3477' u='c' c='ossl_recv'/>

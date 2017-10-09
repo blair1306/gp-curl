@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/system.h' l='362'/>
+<use f='codebrowser/lib/imap.c' l='1115' u='c'/>
+<use f='codebrowser/lib/imap.c' l='1135' u='c'/>
+<use f='codebrowser/lib/imap.c' l='1136' u='c'/>
+<use f='codebrowser/lib/url.c' l='4851' u='c'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='460' u='c'/>

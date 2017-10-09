@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1444' type='48'/>
+<doc f='codebrowser/lib/urldata.h' l='1444'>/* Stream URI for this request */</doc>
+<use f='codebrowser/lib/rtsp.c' l='352' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='353' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='2783' u='a' c='Curl_setopt'/>

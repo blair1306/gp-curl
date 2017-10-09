@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/url.h' l='36' type='void Curl_freeset(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/easy.c' l='959' u='c' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='979' u='c' c='curl_easy_reset'/>
+<def f='codebrowser/lib/url.c' l='284' ll='302' type='void Curl_freeset(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/url.c' l='498' u='c' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='705' u='c' c='Curl_open'/>

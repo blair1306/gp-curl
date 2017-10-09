@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/transfer.h' l='44' type='CURLcode Curl_follow(struct Curl_easy * data, char * newurl, followtype type)'/>
+<use f='codebrowser/lib/multi.c' l='1722' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1972' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1988' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/transfer.c' l='1731' ll='1932' type='CURLcode Curl_follow(struct Curl_easy * data, char * newurl, followtype type)'/>
+<doc f='codebrowser/lib/transfer.c' l='1727'>/*
+ * Curl_follow() handles the URL redirect magic. Pass in the &apos;newurl&apos; string
+ * as given by the remote server and set up the new URL to request.
+ */</doc>

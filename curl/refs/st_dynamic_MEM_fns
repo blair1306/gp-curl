@@ -1,0 +1,5 @@
+<def f='include/openssl/engine.h' l='754' ll='758'/>
+<size>24</size>
+<mbr r='st_dynamic_MEM_fns::malloc_cb' o='0' t='dyn_MEM_malloc_cb'/>
+<mbr r='st_dynamic_MEM_fns::realloc_cb' o='64' t='dyn_MEM_realloc_cb'/>
+<mbr r='st_dynamic_MEM_fns::free_cb' o='128' t='dyn_MEM_free_cb'/>

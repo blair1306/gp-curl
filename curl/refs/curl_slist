@@ -1,0 +1,5 @@
+<def f='codebrowser/include/curl/curl.h' l='2335' ll='2338'/>
+<size>16</size>
+<doc f='codebrowser/include/curl/curl.h' l='2334'>/* linked-list structure for the CURLOPT_QUOTE option (and other) */</doc>
+<mbr r='curl_slist::data' o='0' t='char *'/>
+<mbr r='curl_slist::next' o='64' t='struct curl_slist *'/>

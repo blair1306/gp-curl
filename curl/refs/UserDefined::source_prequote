@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1571' type='struct curl_slist *'/>
+<offset>7424</offset>
+<doc f='codebrowser/lib/urldata.h' l='1571'>/* in 3rd party transfer mode - before
+                                          the transfer on source host */</doc>

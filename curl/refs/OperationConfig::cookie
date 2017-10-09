@@ -1,0 +1,12 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='44' type='char *'/>
+<offset>320</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='44'>/* single line with specified cookies */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='54' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='54' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='1167' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1167' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1167' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1167' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1167' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1214' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1215' u='r' c='operate_do'/>

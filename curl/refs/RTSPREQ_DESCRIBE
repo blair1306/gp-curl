@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1155' type='2'/>
+<use f='codebrowser/lib/http.c' l='3237' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/rtsp.c' l='294' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='343' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='382' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='516' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='2722' u='r' c='Curl_setopt'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='401' type='int OCSP_sendreq_nbio(OCSP_RESPONSE ** presp, OCSP_REQ_CTX * rctx)'/>

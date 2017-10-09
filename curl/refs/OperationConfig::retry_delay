@@ -1,0 +1,7 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='202' type='long'/>
+<offset>7424</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='202'>/* delay between retries (in seconds) */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='847' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1522' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1523' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1669' u='r' c='operate_do'/>

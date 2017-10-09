@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/multihandle.h' l='30' type='struct CURLMsg'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/multihandle.h' l='29'>/* the &apos;CURLMsg&apos; is the part that is visible to the external user */</doc>
+<use f='codebrowser/lib/multi.c' l='763' u='m' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2128' u='m' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2129' u='m' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2130' u='m' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2313' u='a' c='curl_multi_info_read'/>

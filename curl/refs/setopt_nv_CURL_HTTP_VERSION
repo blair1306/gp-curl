@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_setopt.h' l='51' type='const NameValue []'/>
+<use f='codebrowser/src/tool_operate.c' l='1035' macro='1' u='r'/>
+<use f='codebrowser/src/tool_operate.c' l='1037' macro='1' u='r'/>
+<def f='codebrowser/src/tool_setopt.c' l='80' ll='87' type='const NameValue [6]'/>

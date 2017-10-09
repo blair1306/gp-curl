@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/curl_config.h' l='444'/>
+<doc f='codebrowser/lib/curl_config.h' l='443'>/* Define to 1 if you have the &lt;openssl/crypto.h&gt; header file. */</doc>

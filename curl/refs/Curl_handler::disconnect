@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='680' type='CURLcode (*)(struct connectdata *, _Bool)'/>
+<offset>768</offset>
+<doc f='codebrowser/lib/urldata.h' l='675'>/* This function *MAY* be set to a protocol-dependent function that is run
+   * by the curl_disconnect(), as a step in the disconnection.  If the handler
+   * is called because the connection has been considered dead, dead_connection
+   * is set to TRUE.
+   */</doc>
+<use f='codebrowser/lib/url.c' l='3131' u='r' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3133' u='r' c='Curl_disconnect'/>

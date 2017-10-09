@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='123' type='0'/>
+<doc f='codebrowser/src/tool_sdecls.h' l='123'>/* no trace/verbose output at all */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1969' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1291' u='r' c='operate_do'/>

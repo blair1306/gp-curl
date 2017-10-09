@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/ftp.h' l='61' type='17'/>
+<doc f='codebrowser/lib/ftp.h' l='61'>/* if the dir didn&apos;t exist */</doc>
+<use f='codebrowser/lib/ftp.c' l='2951' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2976' c='ftp_statemach_act'/>

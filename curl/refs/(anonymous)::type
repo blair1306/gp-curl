@@ -1,0 +1,15 @@
+<dec f='include/openssl/pkcs12.h' l='115' type='ASN1_OBJECT *'/>
+<offset>0</offset>
+<dec f='codebrowser/src/tool_urlglob.h' l='33' type='URLPatternType'/>
+<offset>0</offset>
+<use f='codebrowser/src/tool_urlglob.c' l='42' u='w' c='glob_fixed'/>
+<use f='codebrowser/src/tool_urlglob.c' l='95' u='w' c='glob_set'/>
+<use f='codebrowser/src/tool_urlglob.c' l='198' u='w' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='246' u='w' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='491' u='r' c='glob_cleanup'/>
+<use f='codebrowser/src/tool_urlglob.c' l='525' u='r' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='550' u='r' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='562' u='r' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='588' u='r' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='640' u='r' c='glob_match_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='663' u='r' c='glob_match_url'/>

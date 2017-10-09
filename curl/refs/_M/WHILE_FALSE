@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='356'/>
+<doc f='codebrowser/lib/curl_setup_once.h' l='351'>/*
+ * Macro WHILE_FALSE may be used to build single-iteration do-while loops,
+ * avoiding compiler warnings. Mostly intended for other macro definitions.
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='1079' u='c'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/ftp.h' l='125' type='_Bool'/>
+<offset>1152</offset>
+<use f='codebrowser/lib/ftp.c' l='3233' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3281' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3289' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3329' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3339' u='w' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3514' u='w' c='ftp_range'/>

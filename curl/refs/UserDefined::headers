@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1560' type='struct curl_slist *'/>
+<offset>3328</offset>
+<doc f='codebrowser/lib/urldata.h' l='1560'>/* linked list of extra headers */</doc>
+<use f='codebrowser/lib/http.c' l='193' u='r' c='Curl_checkProxyheaders'/>
+<use f='codebrowser/lib/http.c' l='1580' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1583' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1593' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1967' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='728' u='r' c='imap_perform_append'/>
+<use f='codebrowser/lib/smtp.c' l='540' u='r' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/transfer.c' l='99' u='r' c='Curl_checkheaders'/>
+<use f='codebrowser/lib/url.c' l='1194' u='w' c='Curl_setopt'/>

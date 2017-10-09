@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/mime.h' l='108' type='FILE *'/>
+<offset>576</offset>
+<doc f='codebrowser/lib/mime.h' l='108'>/* File pointer. */</doc>
+<use f='codebrowser/lib/mime.c' l='668' u='r' c='mime_open_file'/>
+<use f='codebrowser/lib/mime.c' l='670' u='w' c='mime_open_file'/>
+<use f='codebrowser/lib/mime.c' l='671' u='r' c='mime_open_file'/>
+<use f='codebrowser/lib/mime.c' l='682' u='r' c='mime_file_read'/>
+<use f='codebrowser/lib/mime.c' l='689' u='r' c='mime_file_seek'/>
+<use f='codebrowser/lib/mime.c' l='695' u='r' c='mime_file_seek'/>
+<use f='codebrowser/lib/mime.c' l='703' u='r' c='mime_file_free'/>
+<use f='codebrowser/lib/mime.c' l='704' u='r' c='mime_file_free'/>
+<use f='codebrowser/lib/mime.c' l='705' u='w' c='mime_file_free'/>
+<use f='codebrowser/lib/mime.c' l='886' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='887' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='888' u='w' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='1085' u='w' c='cleanup_part_content'/>

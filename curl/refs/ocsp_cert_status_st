@@ -1,0 +1,4 @@
+<def f='include/openssl/ocsp.h' l='229' ll='236'/>
+<size>16</size>
+<mbr r='ocsp_cert_status_st::type' o='0' t='int'/>
+<mbr r='ocsp_cert_status_st::value' o='64' t='union (anonymous union at /usr/include/openssl/ocsp.h:231:5)'/>

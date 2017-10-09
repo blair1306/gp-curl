@@ -1,0 +1,6 @@
+<dec f='codebrowser/tests/server/util.h' l='60' type='int write_pidfile(const char * filename)'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1349' u='c' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1535' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2245' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='816' u='c' c='main'/>
+<def f='codebrowser/tests/server/util.c' l='258' ll='273' type='int write_pidfile(const char * filename)'/>

@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/socket.h' l='217'/>
+<use f='codebrowser/lib/connect.c' l='1081' u='a'/>
+<use f='codebrowser/lib/sendf.c' l='363' u='a'/>
+<use f='codebrowser/lib/sendf.c' l='365' u='c'/>
+<use f='codebrowser/lib/url.c' l='2902' u='a'/>

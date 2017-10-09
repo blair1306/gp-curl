@@ -1,0 +1,10 @@
+<def f='codebrowser/lib/wildcard.h' l='46' ll='54'/>
+<size>80</size>
+<doc f='codebrowser/lib/wildcard.h' l='45'>/* struct keeping information about wildcard download process */</doc>
+<mbr r='WildcardData::state' o='0' t='curl_wildcard_states'/>
+<mbr r='WildcardData::path' o='64' t='char *'/>
+<mbr r='WildcardData::pattern' o='128' t='char *'/>
+<mbr r='WildcardData::filelist' o='192' t='struct curl_llist'/>
+<mbr r='WildcardData::tmp' o='448' t='void *'/>
+<mbr r='WildcardData::tmp_dtor' o='512' t='curl_wildcard_tmp_dtor'/>
+<mbr r='WildcardData::customptr' o='576' t='void *'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='874' type='struct curltime'/>
+<offset>4544</offset>
+<doc f='codebrowser/lib/urldata.h' l='874'>/* &quot;current&quot; time */</doc>
+<use f='codebrowser/lib/pingpong.c' l='69' u='r' c='Curl_pp_state_timeout'/>
+<use f='codebrowser/lib/url.c' l='3327' u='r' c='Curl_oldest_idle_connection'/>
+<use f='codebrowser/lib/url.c' l='3384' u='r' c='find_oldest_idle_connection_in_bundle'/>
+<use f='codebrowser/lib/url.c' l='6974' u='w' c='Curl_setup_conn'/>
+<use f='codebrowser/lib/url.c' l='6991' u='w' c='Curl_setup_conn'/>

@@ -1,0 +1,4 @@
+<dec f='include/zlib.h' l='216' type='const char * zlibVersion()'/>
+<use f='codebrowser/lib/content_encoding.c' l='289' u='c' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/version.c' l='104' u='c' c='curl_version'/>
+<use f='codebrowser/lib/version.c' l='365' u='c' c='curl_version_info'/>

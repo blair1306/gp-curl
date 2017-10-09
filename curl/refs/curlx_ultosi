@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/warnless.h' l='33' type='int curlx_ultosi(unsigned long ulnum)'/>
+<def f='codebrowser/lib/warnless.c' l='162' ll='175' type='int curlx_ultosi(unsigned long ulnum)'/>
+<doc f='codebrowser/lib/warnless.c' l='158'>/*
+** unsigned long to signed int
+*/</doc>

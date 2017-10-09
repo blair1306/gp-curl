@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='176' type='CURLcode Curl_ssl_push_certinfo_len(struct Curl_easy * data, int certnum, const char * label, const char * value, size_t valuelen)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='pubkey_show'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2652' u='c' c='get_cert_chain'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='682' ll='717' type='CURLcode Curl_ssl_push_certinfo_len(struct Curl_easy * data, int certnum, const char * label, const char * value, size_t valuelen)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='730' u='c' c='Curl_ssl_push_certinfo'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='679'>/*
+ * &apos;value&apos; is NOT a zero terminated string
+ */</doc>

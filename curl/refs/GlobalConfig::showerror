@@ -1,0 +1,12 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='258' type='int'/>
+<offset>64</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='258'>/* -1 == unset, default =&gt; show errors
+                                      0 =&gt; -s is used to NOT show errors
+                                      1 =&gt; -S has been used to show errors */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1895' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1899' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1903' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_main.c' l='148' u='w' c='main_init'/>
+<use f='codebrowser/src/tool_operate.c' l='467' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='518' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1786' u='r' c='operate_do'/>

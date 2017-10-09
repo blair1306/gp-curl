@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1664' type='unsigned int'/>
+<offset>15936</offset>
+<doc f='codebrowser/lib/urldata.h' l='1664'>/* Scope id for IPv6 */</doc>
+<use f='codebrowser/lib/url.c' l='2661' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4810' u='r' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4812' u='r' c='parseurlandfillconn'/>

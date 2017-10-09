@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/ftp.c' l='921' type='1'/>
+<use f='codebrowser/lib/ftp.c' l='1217' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1251' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1258' u='r' c='ftp_state_use_port'/>

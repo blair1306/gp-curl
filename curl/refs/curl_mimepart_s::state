@@ -1,0 +1,27 @@
+<dec f='codebrowser/lib/mime.h' l='116' type='mime_state'/>
+<offset>1088</offset>
+<doc f='codebrowser/lib/mime.h' l='116'>/* Current readback state. */</doc>
+<use f='codebrowser/lib/mime.c' l='622' u='m' c='mime_mem_read'/>
+<use f='codebrowser/lib/mime.c' l='632' u='m' c='mime_mem_read'/>
+<use f='codebrowser/lib/mime.c' l='642' u='m' c='mime_mem_seek'/>
+<use f='codebrowser/lib/mime.c' l='652' u='m' c='mime_mem_seek'/>
+<use f='codebrowser/lib/mime.c' l='833' u='m' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='834' u='m' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='836' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='841' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='845' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='851' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='853' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='856' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='856' u='m' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='860' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='862' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='875' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='884' u='a' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='1024' u='m' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1044' u='a' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1184' u='a' c='Curl_mime_initpart'/>
+<use f='codebrowser/lib/mime.c' l='1631' u='m' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1632' u='a' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1731' u='m' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1732' u='a' c='Curl_mime_prepare_headers'/>

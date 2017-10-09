@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='233' type='metalinkfile *'/>
+<offset>8192</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='233'>/* point to the first node */</doc>
+<use f='codebrowser/src/tool_operate.c' l='430' u='r' c='operate_do'/>

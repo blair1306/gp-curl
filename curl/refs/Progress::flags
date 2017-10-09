@@ -1,0 +1,26 @@
+<dec f='codebrowser/lib/urldata.h' l='1104' type='int'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/urldata.h' l='1104'>/* see progress.h */</doc>
+<use f='codebrowser/lib/easy.c' l='899' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='899' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='989' u='w' c='curl_easy_reset'/>
+<use f='codebrowser/lib/getinfo.c' l='269' u='r' c='getinfo_offt'/>
+<use f='codebrowser/lib/getinfo.c' l='273' u='r' c='getinfo_offt'/>
+<use f='codebrowser/lib/getinfo.c' l='318' u='r' c='getinfo_double'/>
+<use f='codebrowser/lib/getinfo.c' l='322' u='r' c='getinfo_double'/>
+<use f='codebrowser/lib/progress.c' l='142' u='r' c='Curl_pgrsDone'/>
+<use f='codebrowser/lib/progress.c' l='236' u='w' c='Curl_pgrsStartNow'/>
+<use f='codebrowser/lib/progress.c' l='326' u='w' c='Curl_pgrsSetDownloadSize'/>
+<use f='codebrowser/lib/progress.c' l='330' u='w' c='Curl_pgrsSetDownloadSize'/>
+<use f='codebrowser/lib/progress.c' l='338' u='w' c='Curl_pgrsSetUploadSize'/>
+<use f='codebrowser/lib/progress.c' l='342' u='w' c='Curl_pgrsSetUploadSize'/>
+<use f='codebrowser/lib/progress.c' l='453' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='486' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='497' u='w' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='501' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='514' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='537' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='539' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/url.c' l='693' u='w' c='Curl_open'/>
+<use f='codebrowser/lib/url.c' l='803' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='805' u='w' c='Curl_setopt'/>

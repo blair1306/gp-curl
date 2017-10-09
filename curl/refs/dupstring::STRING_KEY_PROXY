@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1408' type='14'/>
+<doc f='codebrowser/lib/urldata.h' l='1408'>/* private key file name */</doc>
+<use f='codebrowser/lib/url.c' l='2045' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6710' u='r' c='create_conn'/>

@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2121' type='BIO_METHOD * BIO_f_ssl()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2476' u='c' c='ossl_connect_step1'/>

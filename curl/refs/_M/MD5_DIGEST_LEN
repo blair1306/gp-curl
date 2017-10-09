@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/curl_md5.h' l='28'/>
+<use f='codebrowser/lib/pop3.c' l='412' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='413' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='438' u='c'/>
+<use f='codebrowser/lib/vauth/cram.c' l='100' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='353' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='354' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='355' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='356' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='413' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='423' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='446' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='457' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='473' u='c'/>
+<use f='codebrowser/lib/vauth/digest.c' l='476' u='c'/>

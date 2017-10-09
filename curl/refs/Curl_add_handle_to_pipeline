@@ -1,0 +1,25 @@
+<dec f='codebrowser/lib/pipeline.h' l='26' type='CURLcode Curl_add_handle_to_pipeline(struct Curl_easy * handle, struct connectdata * conn)'/>
+<doc f='codebrowser/lib/pipeline.h' l='3'>/***************************************************************************
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ &lt;| |___
+ *                             \___|\___/|_| \_\_____|
+ *
+ * Copyright (C) 2015 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.
+ * Copyright (C) 2013 - 2014, Linus Nielsen Feltzing, &lt;linus@haxx.se&gt;
+ *
+ * This software is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution. The terms
+ * are also available at https://curl.haxx.se/docs/copyright.html.
+ *
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the COPYING file.
+ *
+ * This software is distributed on an &quot;AS IS&quot; basis, WITHOUT WARRANTY OF ANY
+ * KIND, either express or implied.
+ *
+ ***************************************************************************/</doc>
+<use f='codebrowser/lib/multi.c' l='1453' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/pipeline.c' l='102' ll='124' type='CURLcode Curl_add_handle_to_pipeline(struct Curl_easy * handle, struct connectdata * conn)'/>

@@ -1,0 +1,22 @@
+<dec f='include/x86_64-linux-gnu/bits/signum.h' l='32'/>
+<doc f='include/x86_64-linux-gnu/bits/signum.h' l='31'>/* Signals.  */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='211' u='a'/>
+<use f='codebrowser/tests/server/rtspd.c' l='261' u='a'/>
+<use f='codebrowser/tests/server/rtspd.c' l='263' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='307' u='a'/>
+<use f='codebrowser/tests/server/rtspd.c' l='309' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='157' u='a'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='207' u='a'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='209' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='253' u='a'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='255' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='216' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='266' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='268' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='312' u='a'/>
+<use f='codebrowser/tests/server/sws.c' l='314' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='233' u='a'/>
+<use f='codebrowser/tests/server/tftpd.c' l='368' u='a'/>
+<use f='codebrowser/tests/server/tftpd.c' l='370' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='408' u='a'/>
+<use f='codebrowser/tests/server/tftpd.c' l='410' u='c'/>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/mime.h' l='113' type='char *'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/mime.h' l='113'>/* Data name. */</doc>
+<use f='codebrowser/lib/mime.c' l='1122' u='r' c='Curl_mime_cleanpart'/>
+<use f='codebrowser/lib/mime.c' l='1122' u='w' c='Curl_mime_cleanpart'/>
+<use f='codebrowser/lib/mime.c' l='1218' u='r' c='curl_mime_name'/>
+<use f='codebrowser/lib/mime.c' l='1218' u='w' c='curl_mime_name'/>
+<use f='codebrowser/lib/mime.c' l='1219' u='w' c='curl_mime_name'/>
+<use f='codebrowser/lib/mime.c' l='1222' u='w' c='curl_mime_name'/>
+<use f='codebrowser/lib/mime.c' l='1223' u='r' c='curl_mime_name'/>
+<use f='codebrowser/lib/mime.c' l='1670' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1674' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1680' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1681' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/src/tool_setopt.c' l='526' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='528' u='r' c='libcurl_generate_mime'/>

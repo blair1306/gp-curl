@@ -1,0 +1,4 @@
+<def f='codebrowser/lib/urldata.h' l='1193' ll='1196'/>
+<size>16</size>
+<mbr r='Curl_http2_dep::next' o='0' t='struct Curl_http2_dep *'/>
+<mbr r='Curl_http2_dep::data' o='64' t='struct Curl_easy *'/>

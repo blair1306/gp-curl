@@ -1,0 +1,10 @@
+<dec f='include/openssl/engine.h' l='599' type='const char * ENGINE_get_id(const ENGINE * e)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1113' u='c' c='Curl_ossl_set_engine_default'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1117' u='c' c='Curl_ossl_set_engine_default'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1137' u='c' c='Curl_ossl_engines_list'/>
+<doc f='include/openssl/engine.h' l='593'>/*
+ * These return values from within the ENGINE structure. These can be useful
+ * with functional references as well as structural references - it depends
+ * which you obtained. Using the result for functional purposes if you only
+ * obtained a structural reference may be problematic!
+ */</doc>

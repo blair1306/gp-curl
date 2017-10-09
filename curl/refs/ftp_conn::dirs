@@ -1,0 +1,26 @@
+<dec f='codebrowser/lib/ftp.h' l='121' type='char **'/>
+<offset>960</offset>
+<doc f='codebrowser/lib/ftp.h' l='121'>/* realloc()ed array for path components */</doc>
+<use f='codebrowser/lib/ftp.c' l='241' u='r' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='243' u='r' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='244' u='r' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='246' u='r' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='247' u='w' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='907' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='2950' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2966' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2984' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='4186' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4186' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4187' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4195' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4212' u='w' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4212' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4213' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4219' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4237' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4248' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4249' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4263' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4263' u='r' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4268' u='w' c='ftp_parse_url_path'/>

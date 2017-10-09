@@ -1,0 +1,8 @@
+<def f='include/openssl/engine.h' l='779' ll='785'/>
+<size>88</size>
+<doc f='include/openssl/engine.h' l='778'>/* The top-level structure */</doc>
+<mbr r='st_dynamic_fns::static_state' o='0' t='void *'/>
+<mbr r='st_dynamic_fns::err_fns' o='64' t='const ERR_FNS *'/>
+<mbr r='st_dynamic_fns::ex_data_fns' o='128' t='const CRYPTO_EX_DATA_IMPL *'/>
+<mbr r='st_dynamic_fns::mem_fns' o='192' t='dynamic_MEM_fns'/>
+<mbr r='st_dynamic_fns::lock_fns' o='384' t='dynamic_LOCK_fns'/>

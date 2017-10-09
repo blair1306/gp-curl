@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1418' type='23'/>
+<doc f='codebrowser/lib/urldata.h' l='1418'>/* range, if used */</doc>
+<use f='codebrowser/lib/url.c' l='1892' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4846' u='r' c='setup_range'/>
+<use f='codebrowser/lib/url.c' l='4853' u='r' c='setup_range'/>

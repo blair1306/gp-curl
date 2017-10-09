@@ -1,0 +1,5 @@
+<dec f='include/netdb.h' l='575' type='char *'/>
+<offset>256</offset>
+<doc f='include/netdb.h' l='575'>/* Canonical name for service location.  */</doc>
+<use f='codebrowser/lib/curl_addrinfo.c' l='177' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='178' u='r' c='Curl_getaddrinfo_ex'/>

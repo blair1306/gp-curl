@@ -1,0 +1,2 @@
+<dec f='include/openssl/bn.h' l='435' type='int BN_num_bits(const BIGNUM * a)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2863' u='c' c='get_cert_chain'/>

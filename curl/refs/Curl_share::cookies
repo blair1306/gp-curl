@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/share.h' l='49' type='struct CookieInfo *'/>
+<offset>640</offset>
+<use f='codebrowser/lib/cookie.c' l='1473' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/share.c' l='79' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='80' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='81' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='122' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='123' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='124' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='192' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/url.c' l='2392' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2419' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2423' u='r' c='Curl_setopt'/>

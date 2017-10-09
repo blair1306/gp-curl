@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='208' type='int PKCS12_add_friendlyname_uni(PKCS12_SAFEBAG * bag, const unsigned char * name, int namelen)'/>

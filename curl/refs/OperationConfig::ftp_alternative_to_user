@@ -1,0 +1,11 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='206' type='char *'/>
+<offset>7616</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='206'>/* send command if USER/PASS fails */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='158' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='158' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='899' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='899' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='899' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='899' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='899' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1380' u='r' c='operate_do'/>

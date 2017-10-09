@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1545' type='void *'/>
+<offset>2432</offset>
+<doc f='codebrowser/lib/urldata.h' l='1545'>/* pointer to pass to the progress callback */</doc>
+<use f='codebrowser/lib/progress.c' l='458' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='469' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/url.c' l='1853' u='w' c='Curl_setopt'/>

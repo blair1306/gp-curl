@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='51' type='void *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/curl_hmac.h' l='51'>/* Hash function context 2. */</doc>
+<use f='codebrowser/lib/hmac.c' l='70' u='w' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='77' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='85' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='91' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='96' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='121' u='r' c='Curl_HMAC_final'/>
+<use f='codebrowser/lib/hmac.c' l='125' u='r' c='Curl_HMAC_final'/>
+<use f='codebrowser/lib/hmac.c' l='127' u='r' c='Curl_HMAC_final'/>

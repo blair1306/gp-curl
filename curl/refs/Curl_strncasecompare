@@ -1,0 +1,36 @@
+<dec f='codebrowser/lib/strcase.h' l='40' type='int Curl_strncasecompare(const char * first, const char * second, size_t max)'/>
+<use f='codebrowser/lib/dict.c' l='148' macro='1' u='c'/>
+<use f='codebrowser/lib/dict.c' l='149' macro='1' u='c'/>
+<use f='codebrowser/lib/dict.c' l='150' macro='1' u='c'/>
+<use f='codebrowser/lib/dict.c' l='206' macro='1' u='c'/>
+<use f='codebrowser/lib/dict.c' l='207' macro='1' u='c'/>
+<use f='codebrowser/lib/dict.c' l='208' macro='1' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='100' macro='1' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='120' macro='1' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='121' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='195' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='1300' macro='1' u='c'/>
+<use f='codebrowser/lib/http.c' l='1326' macro='1' u='c'/>
+<use f='codebrowser/lib/imap.c' l='229' macro='1' u='c'/>
+<use f='codebrowser/lib/imap.c' l='1899' macro='1' u='c'/>
+<use f='codebrowser/lib/mime.c' l='310' macro='1' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1671' macro='1' u='c'/>
+<use f='codebrowser/lib/pipeline.c' l='248' macro='1' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1339' macro='1' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1343' macro='1' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='1474' macro='1' u='c'/>
+<def f='codebrowser/lib/strcase.c' l='137' ll='151' type='int Curl_strncasecompare(const char * first, const char * second, size_t max)'/>
+<use f='codebrowser/lib/strcase.c' l='176' u='c' c='curl_strnequal'/>
+<doc f='codebrowser/lib/strcase.c' l='134'>/*
+ * @unittest: 1301
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='100' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='4463' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='4987' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='6080' macro='1' u='c'/>
+<dec f='codebrowser/tests/server/util.h' l='66' macro='1' type='int Curl_strncasecompare(const char * first, const char * second, size_t max)'/>
+<use f='codebrowser/tests/server/rtspd.c' l='599' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='625' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='714' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='740' macro='1' u='c'/>
+<def f='codebrowser/tests/server/util.c' l='385' macro='1' type='int Curl_strncasecompare(const char * first, const char * second, size_t max)'/>

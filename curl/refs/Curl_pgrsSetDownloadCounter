@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/progress.h' l='47' type='void Curl_pgrsSetDownloadCounter(struct Curl_easy * data, curl_off_t size)'/>
+<use f='codebrowser/lib/file.c' l='587' u='c' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='4390' u='c' c='ftp_regular_transfer'/>
+<use f='codebrowser/lib/imap.c' l='1679' u='c' c='imap_regular_transfer'/>
+<use f='codebrowser/lib/pop3.c' l='1283' u='c' c='pop3_regular_transfer'/>
+<def f='codebrowser/lib/progress.c' l='286' ll='302' type='void Curl_pgrsSetDownloadCounter(struct Curl_easy * data, curl_off_t size)'/>
+<use f='codebrowser/lib/smb.c' l='833' u='c' c='smb_request_state'/>
+<use f='codebrowser/lib/smtp.c' l='1416' u='c' c='smtp_regular_transfer'/>
+<use f='codebrowser/lib/telnet.c' l='1631' u='c' c='telnet_do'/>
+<use f='codebrowser/lib/tftp.c' l='1145' u='c' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/transfer.c' l='752' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/url.c' l='7095' u='c' c='Curl_init_do'/>

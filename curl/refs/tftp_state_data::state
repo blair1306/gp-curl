@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/tftp.c' l='123' type='tftp_state_t'/>
+<use f='codebrowser/lib/tftp.c' l='204' u='r' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='266' u='r' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='425' u='w' c='tftp_connect_for_tx'/>
+<use f='codebrowser/lib/tftp.c' l='441' u='w' c='tftp_connect_for_rx'/>
+<use f='codebrowser/lib/tftp.c' l='470' u='w' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='566' u='w' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='631' u='w' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='634' u='w' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='655' u='w' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='667' u='w' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='691' u='w' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='770' u='w' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='811' u='w' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='830' u='w' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='838' u='w' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='914' u='r' c='tftp_state_machine'/>
+<use f='codebrowser/lib/tftp.c' l='1007' u='w' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1200' u='w' c='tftp_state_timeout'/>
+<use f='codebrowser/lib/tftp.c' l='1241' u='r' c='tftp_multi_statemach'/>
+<use f='codebrowser/lib/tftp.c' l='1263' u='r' c='tftp_multi_statemach'/>
+<use f='codebrowser/lib/tftp.c' l='1317' u='r' c='tftp_perform'/>
+<offset>0</offset>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftplistparser.c' l='153' type='enum (anonymous enum at /home/jon/workspace/curl/lib/ftplistparser.c:149:3)'/>
+<use f='codebrowser/lib/ftplistparser.c' l='352' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='354' u='w' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='398' u='r' c='Curl_ftp_parselist'/>
+<offset>0</offset>

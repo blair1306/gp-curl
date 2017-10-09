@@ -1,0 +1,2 @@
+<dec f='include/openssl/ui.h' l='241'/>
+<doc f='include/openssl/ui.h' l='240'>/* Some methods may use extra data */</doc>

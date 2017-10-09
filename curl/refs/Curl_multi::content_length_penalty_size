@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/multihandle.h' l='133' type='long'/>
+<offset>2944</offset>
+<doc f='codebrowser/lib/multihandle.h' l='133'>/* a connection with a
+                                       content-length bigger than
+                                       this is not considered
+                                       for pipelining */</doc>
+<use f='codebrowser/lib/multi.c' l='2723' u='w' c='curl_multi_setopt'/>
+<use f='codebrowser/lib/multi.c' l='3075' u='r' c='Curl_multi_content_length_penalty_size'/>

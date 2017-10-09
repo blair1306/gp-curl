@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1086' type='struct curl_certinfo'/>
+<offset>1728</offset>
+<doc f='codebrowser/lib/urldata.h' l='1086'>/* info about the certs, only populated in
+                                 OpenSSL builds. Asked for with
+                                 CURLOPT_CERTINFO / CURLINFO_CERTINFO */</doc>
+<use f='codebrowser/lib/getinfo.c' l='354' u='a' c='getinfo_slist'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='645' u='a' c='Curl_ssl_free_certinfo'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='662' u='a' c='Curl_ssl_init_certinfo'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='688' u='a' c='Curl_ssl_push_certinfo_len'/>

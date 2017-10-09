@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='284' type='_Bool'/>
+<offset>224</offset>
+<use f='codebrowser/lib/vauth/digest.c' l='544' u='w' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='627' u='r' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='889' u='w' c='Curl_auth_digest_cleanup'/>

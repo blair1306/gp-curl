@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/pingpong.h' l='52' type='char *'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/pingpong.h' l='52'>/* line start pointer for the server response
+                           reader function */</doc>
+<use f='codebrowser/lib/pingpong.c' l='144' u='w' c='Curl_pp_init'/>
+<use f='codebrowser/lib/pingpong.c' l='294' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='371' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='379' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='383' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='386' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='387' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='390' u='w' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='398' u='w' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='442' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/pingpong.c' l='450' u='w' c='Curl_pp_readresp'/>

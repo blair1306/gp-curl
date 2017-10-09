@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_util.h' l='26' type='struct timeval tvnow()'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='62' u='c' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='53' u='c' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='1527' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1584' u='c' c='operate_do'/>
+<def f='codebrowser/src/tool_util.c' l='89' ll='99' type='struct timeval tvnow()'/>

@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='191' type='void Curl_ssl_sessionid_lock(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='184'>/* Lock session cache mutex.
+ * Call this before calling other Curl_ssl_*session* functions
+ * Caller should unlock this mutex as soon as possible, as it may block
+ * other SSL connection from making progress.
+ * The purpose of explicitly locking SSL session cache data is to allow
+ * individual SSL engines to manage session lifetime in their specific way.
+ */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='2459' u='c' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3204' u='c' c='ossl_connect_step3'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='281' ll='286' type='void Curl_ssl_sessionid_lock(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='278'>/*
+ * Lock shared SSL session data
+ */</doc>

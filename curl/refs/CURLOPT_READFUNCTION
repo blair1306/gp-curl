@@ -1,0 +1,19 @@
+<dec f='codebrowser/include/curl/curl.h' l='947' macro='1' type='20012'/>
+<use f='codebrowser/lib/url.c' l='1951' c='Curl_setopt'/>
+<use f='codebrowser/src/tool_operate.c' l='890' u='r' c='operate_do'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='73' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1514.c' l='69' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1517.c' l='91' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1520.c' l='98' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1525.c' l='83' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1526.c' l='86' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1527.c' l='84' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1533.c' l='153' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib508.c' l='87' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib510.c' l='102' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib513.c' l='62' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib552.c' l='200' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib553.c' l='102' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib554.c' l='183' u='r' c='once'/>
+<use f='codebrowser/tests/libtest/lib555.c' l='97' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib579.c' l='127' u='r' c='test'/>

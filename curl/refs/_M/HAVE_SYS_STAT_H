@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/curl_config.h' l='675'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='52' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='674'>/* Define to 1 if you have the &lt;sys/stat.h&gt; header file. */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='44' u='a'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='24' u='a'/>
+<use f='codebrowser/tests/libtest/lib571.c' l='33' u='a'/>
+<use f='codebrowser/tests/libtest/lib572.c' l='24' u='a'/>

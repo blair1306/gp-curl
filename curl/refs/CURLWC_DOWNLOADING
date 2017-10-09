@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/wildcard.h' l='35' type='3'/>
+<use f='codebrowser/lib/ftp.c' l='3855' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3870' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3928' u='r' c='wc_statemach'/>

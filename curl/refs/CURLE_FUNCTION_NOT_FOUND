@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='508' type='41'/>
+<doc f='codebrowser/include/curl/curl.h' l='508'>/* 41 - NOT USED starting with 7.53.0 */</doc>
+<use f='codebrowser/lib/strerror.c' l='173' c='curl_easy_strerror'/>
+<use f='codebrowser/src/tool_operate.c' l='109' c='is_fatal_error'/>

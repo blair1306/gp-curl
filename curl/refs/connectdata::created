@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='875' type='struct curltime'/>
+<offset>4672</offset>
+<doc f='codebrowser/lib/urldata.h' l='875'>/* creation time */</doc>
+<use f='codebrowser/lib/telnet.c' l='1682' u='r' c='telnet_do'/>
+<use f='codebrowser/lib/url.c' l='4231' u='w' c='allocate_conn'/>

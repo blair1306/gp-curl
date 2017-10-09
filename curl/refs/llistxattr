@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/xattr.h' l='82' type='ssize_t llistxattr(const char * __path, char * __list, size_t __size)'/>
+<doc f='include/x86_64-linux-gnu/sys/xattr.h' l='79'>/* List attributes of the file pointed to by PATH into the user-supplied
+   buffer LIST (which is SIZE bytes big), not following symlinks for the
+   last pathname component.  Return 0 on success, -1 for errors.  */</doc>

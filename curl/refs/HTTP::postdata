@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/http.h' l='133' type='const char *'/>
+<offset>128</offset>
+<use f='codebrowser/lib/http.c' l='996' u='r' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1001' u='w' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1016' u='r' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1017' u='w' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1162' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1168' u='w' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='2432' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2675' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2713' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2713' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2726' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2727' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2744' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2745' u='r' c='Curl_http'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/hash.h' l='54' type='curl_hash_dtor'/>
+<offset>192</offset>
+<use f='codebrowser/lib/hash.c' l='41' u='r' c='hash_element_dtor'/>
+<use f='codebrowser/lib/hash.c' l='71' u='w' c='Curl_hash_init'/>

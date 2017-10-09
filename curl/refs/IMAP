@@ -1,0 +1,15 @@
+<def f='codebrowser/lib/imap.h' l='56' ll='66'/>
+<size>72</size>
+<doc f='codebrowser/lib/imap.h' l='52'>/* This IMAP struct is used in the Curl_easy. All IMAP data that is
+   connection-oriented must be in imap_conn to properly deal with the fact that
+   perhaps the Curl_easy is changed between the times the connection is
+   used. */</doc>
+<mbr r='IMAP::transfer' o='0' t='curl_pp_transfer'/>
+<mbr r='IMAP::mailbox' o='64' t='char *'/>
+<mbr r='IMAP::uidvalidity' o='128' t='char *'/>
+<mbr r='IMAP::uid' o='192' t='char *'/>
+<mbr r='IMAP::section' o='256' t='char *'/>
+<mbr r='IMAP::partial' o='320' t='char *'/>
+<mbr r='IMAP::query' o='384' t='char *'/>
+<mbr r='IMAP::custom' o='448' t='char *'/>
+<mbr r='IMAP::custom_params' o='512' t='char *'/>

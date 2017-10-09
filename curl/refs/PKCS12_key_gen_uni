@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='228' type='int PKCS12_key_gen_uni(unsigned char * pass, int passlen, unsigned char * salt, int saltlen, int id, int iter, int n, unsigned char * out, const EVP_MD * md_type)'/>

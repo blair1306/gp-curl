@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/hostip.h' l='67' type='Curl_addrinfo *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/connect.c' l='361' u='r' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='363' u='r' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='1159' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/connect.c' l='1160' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/ftp.c' l='1091' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1988' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/hostip.c' l='400' u='w' c='Curl_cache_addr'/>
+<use f='codebrowser/lib/hostip.c' l='743' u='r' c='freednsentry'/>
+<use f='codebrowser/lib/socks.c' l='174' u='r' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='618' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/url.c' l='6201' u='w' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6203' u='r' c='resolve_server'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='66' u='r' c='unit_stop'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='113' u='w' c='create_node'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='114' u='r' c='create_node'/>

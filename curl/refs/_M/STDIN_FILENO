@@ -1,0 +1,12 @@
+<dec f='include/unistd.h' l='213'/>
+<doc f='include/unistd.h' l='212'>/* Standard file descriptors.  */</doc>
+<use f='codebrowser/src/tool_main.h' l='31' u='a'/>
+<use f='codebrowser/src/tool_getpass.c' l='230' u='c'/>
+<use f='codebrowser/src/tool_getpass.c' l='247' u='c'/>
+<use f='codebrowser/src/tool_main.c' l='86' u='c'/>
+<use f='codebrowser/src/tool_main.c' l='86' u='c'/>
+<use f='codebrowser/src/tool_main.c' l='87' u='c'/>
+<use f='codebrowser/src/tool_main.c' l='90' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='548' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='737' u='c'/>
+<use f='codebrowser/tests/libtest/lib556.c' l='28' u='a'/>

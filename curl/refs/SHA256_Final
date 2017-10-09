@@ -1,0 +1,2 @@
+<dec f='include/openssl/sha.h' l='152' type='int SHA256_Final(unsigned char * md, SHA256_CTX * c)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3595' u='c' c='Curl_ossl_sha256sum'/>

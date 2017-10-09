@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='503' type='int OCSP_REQUEST_add1_ext_i2d(OCSP_REQUEST * x, int nid, void * value, int crit, unsigned long flags)'/>

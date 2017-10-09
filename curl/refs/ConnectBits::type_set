@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='430' type='_Bool'/>
+<offset>216</offset>
+<use f='codebrowser/lib/ftp.c' l='4441' u='w' c='ftp_setup_connection'/>
+<use f='codebrowser/lib/url.c' l='5783' u='r' c='parse_remote_port'/>

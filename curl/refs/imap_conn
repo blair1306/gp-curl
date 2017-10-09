@@ -1,0 +1,17 @@
+<def f='codebrowser/lib/imap.h' l='70' ll='84'/>
+<size>184</size>
+<doc f='codebrowser/lib/imap.h' l='68'>/* imap_conn is used for struct connection-oriented data in the connectdata
+   struct */</doc>
+<mbr r='imap_conn::pp' o='0' t='struct pingpong'/>
+<mbr r='imap_conn::state' o='896' t='imapstate'/>
+<mbr r='imap_conn::ssldone' o='928' t='_Bool'/>
+<mbr r='imap_conn::preauth' o='936' t='_Bool'/>
+<mbr r='imap_conn::sasl' o='960' t='struct SASL'/>
+<mbr r='imap_conn::preftype' o='1216' t='unsigned int'/>
+<mbr r='imap_conn::cmdid' o='1248' t='int'/>
+<mbr r='imap_conn::resptag' o='1280' t='char [5]'/>
+<mbr r='imap_conn::tls_supported' o='1320' t='_Bool'/>
+<mbr r='imap_conn::login_disabled' o='1328' t='_Bool'/>
+<mbr r='imap_conn::ir_supported' o='1336' t='_Bool'/>
+<mbr r='imap_conn::mailbox' o='1344' t='char *'/>
+<mbr r='imap_conn::mailbox_uidvalidity' o='1408' t='char *'/>

@@ -1,0 +1,11 @@
+<dec f='include/ctype.h' l='52' type='4096'/>
+<doc f='include/ctype.h' l='52'>/* Hexadecimal numeric.  */</doc>
+<use f='codebrowser/lib/curl_fnmatch.c' l='366' macro='1' u='r'/>
+<use f='codebrowser/lib/escape.c' l='164' macro='1' u='r'/>
+<use f='codebrowser/lib/escape.c' l='164' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='5157' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='5165' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='5989' macro='1' u='r'/>
+<use f='codebrowser/lib/url.c' l='5997' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='571' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='574' macro='1' u='r'/>

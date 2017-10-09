@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='835' type='3'/>
+<doc f='codebrowser/include/curl/curl.h' l='835'>/* one CWD to full dir, then work on file */</doc>
+<use f='codebrowser/src/tool_paramhlp.c' l='500' u='r' c='ftpfilemethod'/>
+<use f='codebrowser/tests/libtest/lib539.c' l='50' c='test'/>

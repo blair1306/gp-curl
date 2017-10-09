@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='1026' type='struct connectbundle *'/>
+<offset>14720</offset>
+<doc f='codebrowser/lib/urldata.h' l='1026'>/* The bundle we are member of */</doc>
+<use f='codebrowser/lib/conncache.c' l='44' u='w' c='conn_llist_dtor'/>
+<use f='codebrowser/lib/conncache.c' l='79' u='w' c='bundle_add_conn'/>
+<use f='codebrowser/lib/conncache.c' l='95' u='w' c='bundle_remove_conn'/>
+<use f='codebrowser/lib/conncache.c' l='238' u='r' c='Curl_conncache_remove_conn'/>
+<use f='codebrowser/lib/http.c' l='3454' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3464' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3466' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3554' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3554' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3556' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/sendf.c' l='700' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/url.c' l='6761' u='r' c='create_conn'/>

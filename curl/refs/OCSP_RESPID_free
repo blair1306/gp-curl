@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='206' macro='1' type='void OCSP_RESPID_free(OCSP_RESPID * a)'/>
+<dec f='include/openssl/ocsp.h' l='551' macro='1' type='void OCSP_RESPID_free(OCSP_RESPID * a)'/>

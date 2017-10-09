@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/curl_md5.h' l='59' type='int Curl_MD5_final(MD5_context * context, unsigned char * result)'/>
+<def f='codebrowser/lib/md5.c' l='553' ll='561' type='int Curl_MD5_final(MD5_context * context, unsigned char * result)'/>
+<use f='codebrowser/lib/pop3.c' l='435' u='c' c='pop3_perform_apop'/>
+<use f='codebrowser/lib/vauth/digest.c' l='407' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='420' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='444' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='474' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1074' u='c' c='Curl_none_md5sum'/>

@@ -1,0 +1,6 @@
+<def f='codebrowser/tests/libtest/lib506.c' l='30' ll='33'/>
+<size>16</size>
+<doc f='codebrowser/tests/libtest/lib506.c' l='29'>/* struct containing data of a thread */</doc>
+<def f='codebrowser/tests/libtest/lib586.c' l='28' ll='31'/>
+<size>16</size>
+<doc f='codebrowser/tests/libtest/lib586.c' l='27'>/* struct containing data of a thread */</doc>

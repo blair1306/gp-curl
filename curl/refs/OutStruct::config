@@ -1,0 +1,9 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='72' type='struct OperationConfig *'/>
+<offset>192</offset>
+<use f='codebrowser/src/tool_cb_hdr.c' l='61' u='r' c='tool_header_cb'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='76' u='r' c='tool_header_cb'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='93' u='r' c='tool_header_cb'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='37' u='r' c='tool_create_output_file'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='79' u='r' c='tool_write_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='281' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='554' u='w' c='operate_do'/>

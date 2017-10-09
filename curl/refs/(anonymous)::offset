@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/mime.h' l='84' type='size_t'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/mime.h' l='84'>/* State-dependent offset. */</doc>
+<use f='codebrowser/lib/mime.c' l='275' u='w' c='mimesetstate'/>
+<use f='codebrowser/lib/mime.c' l='622' u='r' c='mime_mem_read'/>
+<use f='codebrowser/lib/mime.c' l='632' u='w' c='mime_mem_read'/>
+<use f='codebrowser/lib/mime.c' l='642' u='r' c='mime_mem_seek'/>
+<use f='codebrowser/lib/mime.c' l='652' u='w' c='mime_mem_seek'/>
+<use f='codebrowser/lib/mime.c' l='723' u='r' c='readback_bytes'/>
+<use f='codebrowser/lib/mime.c' l='725' u='r' c='readback_bytes'/>
+<use f='codebrowser/lib/mime.c' l='726' u='r' c='readback_bytes'/>
+<use f='codebrowser/lib/mime.c' l='727' u='r' c='readback_bytes'/>
+<use f='codebrowser/lib/mime.c' l='732' u='r' c='readback_bytes'/>
+<use f='codebrowser/lib/mime.c' l='743' u='w' c='readback_bytes'/>
+<use f='codebrowser/lib/mime.c' l='949' u='w' c='mime_subparts_read'/>

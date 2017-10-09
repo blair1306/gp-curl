@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='514' type='47'/>
+<doc f='codebrowser/include/curl/curl.h' l='514'>/* 47 - catch endless re-direct loops */</doc>
+<use f='codebrowser/lib/strerror.c' l='185' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/transfer.c' l='1813' u='r' c='Curl_follow'/>

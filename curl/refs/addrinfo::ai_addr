@@ -1,0 +1,5 @@
+<dec f='include/netdb.h' l='574' type='struct sockaddr *'/>
+<offset>192</offset>
+<doc f='include/netdb.h' l='574'>/* Socket address for socket.  */</doc>
+<use f='codebrowser/lib/curl_addrinfo.c' l='144' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='175' u='r' c='Curl_getaddrinfo_ex'/>

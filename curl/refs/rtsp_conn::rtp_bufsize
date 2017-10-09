@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/rtsp.h' l='43' type='ssize_t'/>
+<offset>64</offset>
+<use f='codebrowser/lib/rtsp.c' l='637' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='640' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='644' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='645' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='647' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='682' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='713' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='719' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='741' u='w' c='rtsp_rtp_readwrite'/>

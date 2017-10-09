@@ -1,0 +1,2 @@
+<dec f='include/stropts.h' l='88' type='int fdetach(const char * __path)'/>
+<doc f='include/stropts.h' l='87'>/* Detach a name PATH from a STREAMS-based file descriptor.  */</doc>

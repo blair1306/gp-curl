@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='54' type='int'/>
+<offset>64</offset>
+<use f='codebrowser/lib/curl_addrinfo.c' l='162' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='330' u='w' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='518' u='w' c='Curl_unix2addr'/>

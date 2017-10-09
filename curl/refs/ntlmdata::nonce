@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='337' type='unsigned char [8]'/>
+<offset>64</offset>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='757' u='a' c='Curl_ntlm_core_mk_ntlmv2_resp'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='311' u='r' c='Curl_auth_decode_ntlm_type2_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='580' u='a' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='615' u='a' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='645' u='a' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='652' u='a' c='Curl_auth_create_ntlm_type3_message'/>

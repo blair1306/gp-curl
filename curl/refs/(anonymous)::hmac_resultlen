@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='42' type='unsigned int'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/curl_hmac.h' l='42'>/* Result length (bytes). */</doc>
+<use f='codebrowser/lib/hmac.c' l='62' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='80' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='126' u='r' c='Curl_HMAC_final'/>

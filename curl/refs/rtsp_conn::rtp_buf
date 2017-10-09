@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/rtsp.h' l='42' type='char *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/rtsp.c' l='210' u='r' c='rtsp_disconnect'/>
+<use f='codebrowser/lib/rtsp.c' l='210' u='w' c='rtsp_disconnect'/>
+<use f='codebrowser/lib/rtsp.c' l='634' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='636' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='639' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='643' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='644' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='646' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='680' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='680' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='681' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='711' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='711' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='712' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='717' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='717' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='718' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='739' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='739' u='w' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/rtsp.c' l='740' u='w' c='rtsp_rtp_readwrite'/>

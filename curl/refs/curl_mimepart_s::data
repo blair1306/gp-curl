@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/mime.h' l='103' type='char *'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/mime.h' l='103'>/* Memory data or file name. */</doc>
+<use f='codebrowser/lib/mime.c' l='630' u='r' c='mime_mem_read'/>
+<use f='codebrowser/lib/mime.c' l='658' u='r' c='mime_mem_free'/>
+<use f='codebrowser/lib/mime.c' l='658' u='w' c='mime_mem_free'/>
+<use f='codebrowser/lib/mime.c' l='670' u='r' c='mime_open_file'/>
+<use f='codebrowser/lib/mime.c' l='707' u='r' c='mime_file_free'/>
+<use f='codebrowser/lib/mime.c' l='707' u='w' c='mime_file_free'/>
+<use f='codebrowser/lib/mime.c' l='708' u='w' c='mime_file_free'/>
+<use f='codebrowser/lib/mime.c' l='1084' u='w' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1261' u='w' c='curl_mime_data'/>
+<use f='codebrowser/lib/mime.c' l='1262' u='r' c='curl_mime_data'/>
+<use f='codebrowser/lib/mime.c' l='1268' u='r' c='curl_mime_data'/>
+<use f='codebrowser/lib/mime.c' l='1269' u='r' c='curl_mime_data'/>
+<use f='codebrowser/lib/mime.c' l='1297' u='w' c='curl_mime_filedata'/>
+<use f='codebrowser/lib/mime.c' l='1298' u='r' c='curl_mime_filedata'/>
+<use f='codebrowser/lib/mime.c' l='1648' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/src/tool_setopt.c' l='437' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='445' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='477' u='r' c='libcurl_generate_mime'/>

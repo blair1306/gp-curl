@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/arpa_telnet.h' l='60'/>
+<use f='codebrowser/lib/telnet.c' l='329' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='727' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='733' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='754' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='757' u='c'/>

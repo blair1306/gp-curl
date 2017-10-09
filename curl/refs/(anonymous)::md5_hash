@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_md5.h' l='45' type='const MD5_params *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/curl_md5.h' l='45'>/* Hash function definition */</doc>
+<use f='codebrowser/lib/md5.c' l='537' u='w' c='Curl_MD5_init'/>
+<use f='codebrowser/lib/md5.c' l='548' u='r' c='Curl_MD5_update'/>
+<use f='codebrowser/lib/md5.c' l='555' u='r' c='Curl_MD5_final'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/multihandle.h' l='112' type='_Bool'/>
+<offset>1920</offset>
+<use f='codebrowser/lib/multi.c' l='1130' u='w' c='Curl_multi_connchanged'/>
+<use f='codebrowser/lib/multi.c' l='1143' u='r' c='multi_ischanged'/>
+<use f='codebrowser/lib/multi.c' l='1145' u='w' c='multi_ischanged'/>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/warnless.h' l='53' type='int curlx_sztosi(ssize_t sznum)'/>
+<def f='codebrowser/lib/warnless.c' l='366' ll='382' type='int curlx_sztosi(ssize_t sznum)'/>
+<doc f='codebrowser/lib/warnless.c' l='362'>/*
+** signed ssize_t to signed int
+*/</doc>
+<use f='codebrowser/tests/libtest/lib582.c' l='182' u='c' c='getMicroSecondTimeout'/>
+<use f='codebrowser/tests/libtest/libntlmconnect.c' l='76' u='c' c='callback'/>

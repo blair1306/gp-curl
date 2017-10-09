@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/mime.h' l='100' type='curl_mime *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/mime.h' l='100'>/* Parent mime structure. */</doc>
+<use f='codebrowser/lib/mime.c' l='1199' u='w' c='curl_mime_addpart'/>
+<use f='codebrowser/lib/mime.c' l='1436' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1438' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1439' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/src/tool_formparse.c' l='530' u='r' c='formparse'/>

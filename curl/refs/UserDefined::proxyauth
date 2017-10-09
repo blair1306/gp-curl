@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1498' type='unsigned long'/>
+<offset>640</offset>
+<doc f='codebrowser/lib/urldata.h' l='1498'>/* kind of proxy authentication to use (bitmask) */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='355' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/transfer.c' l='1353' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='550' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1475' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1511' u='w' c='Curl_setopt'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/mprintf.c' l='135' type='512'/>
+<use f='codebrowser/lib/mprintf.c' l='412' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='420' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='424' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='510' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='519' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='525' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='713' u='r' c='dprintf_formatf'/>

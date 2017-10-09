@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='82' type='2'/>
+<use f='codebrowser/lib/curl_sasl.c' l='438' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='445' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='452' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='575' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='588' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='619' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/imap.c' l='967' c='imap_state_auth_resp'/>
+<use f='codebrowser/lib/pop3.c' l='780' c='pop3_state_auth_resp'/>
+<use f='codebrowser/lib/smtp.c' l='821' c='smtp_state_auth_resp'/>

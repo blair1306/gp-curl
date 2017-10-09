@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='1001' type='struct tftp_state_data *'/>
+<offset>0</offset>
+<use f='codebrowser/lib/tftp.c' l='949' u='r' c='tftp_disconnect'/>
+<use f='codebrowser/lib/tftp.c' l='976' u='w' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1059' u='r' c='tftp_done'/>
+<use f='codebrowser/lib/tftp.c' l='1105' u='r' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1190' u='r' c='tftp_state_timeout'/>
+<use f='codebrowser/lib/tftp.c' l='1228' u='r' c='tftp_multi_statemach'/>
+<use f='codebrowser/lib/tftp.c' l='1311' u='r' c='tftp_perform'/>
+<use f='codebrowser/lib/tftp.c' l='1346' u='r' c='tftp_do'/>
+<use f='codebrowser/lib/tftp.c' l='1352' u='r' c='tftp_do'/>

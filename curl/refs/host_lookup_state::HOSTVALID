@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/netrc.c' l='44' type='2'/>
+<use f='codebrowser/lib/netrc.c' l='143' u='r' c='Curl_parsenetrc'/>
+<use f='codebrowser/lib/netrc.c' l='150' u='r' c='Curl_parsenetrc'/>
+<use f='codebrowser/lib/netrc.c' l='157' c='Curl_parsenetrc'/>
+<doc f='codebrowser/lib/netrc.c' l='44'>/* this is &quot;our&quot; machine! */</doc>

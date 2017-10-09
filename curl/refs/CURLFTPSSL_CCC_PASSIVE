@@ -1,0 +1,9 @@
+<dec f='codebrowser/include/curl/curl.h' l='806' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='806'>/* Let the server initiate the shutdown */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='917' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='515' u='r' c='ftpcccmethod'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='522' u='r' c='ftpcccmethod'/>
+<use f='codebrowser/src/tool_setopt.c' l='111'/>
+<use f='codebrowser/src/tool_setopt.c' l='111'/>
+<use f='codebrowser/src/tool_setopt.c' l='111'/>
+<use f='codebrowser/src/tool_setopt.c' l='111'/>

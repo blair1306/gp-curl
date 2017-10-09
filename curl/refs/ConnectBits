@@ -1,0 +1,38 @@
+<def f='codebrowser/lib/urldata.h' l='374' ll='439'/>
+<size>35</size>
+<doc f='codebrowser/lib/urldata.h' l='371'>/*
+ * Boolean values that concerns this connection.
+ */</doc>
+<mbr r='ConnectBits::close' o='0' t='_Bool'/>
+<mbr r='ConnectBits::reuse' o='8' t='_Bool'/>
+<mbr r='ConnectBits::conn_to_host' o='16' t='_Bool'/>
+<mbr r='ConnectBits::conn_to_port' o='24' t='_Bool'/>
+<mbr r='ConnectBits::proxy' o='32' t='_Bool'/>
+<mbr r='ConnectBits::httpproxy' o='40' t='_Bool'/>
+<mbr r='ConnectBits::socksproxy' o='48' t='_Bool'/>
+<mbr r='ConnectBits::user_passwd' o='56' t='_Bool'/>
+<mbr r='ConnectBits::proxy_user_passwd' o='64' t='_Bool'/>
+<mbr r='ConnectBits::ipv6_ip' o='72' t='_Bool'/>
+<mbr r='ConnectBits::ipv6' o='80' t='_Bool'/>
+<mbr r='ConnectBits::do_more' o='88' t='_Bool'/>
+<mbr r='ConnectBits::tcpconnect' o='96' t='_Bool [2]'/>
+<mbr r='ConnectBits::protoconnstart' o='112' t='_Bool'/>
+<mbr r='ConnectBits::retry' o='120' t='_Bool'/>
+<mbr r='ConnectBits::tunnel_proxy' o='128' t='_Bool'/>
+<mbr r='ConnectBits::authneg' o='136' t='_Bool'/>
+<mbr r='ConnectBits::rewindaftersend' o='144' t='_Bool'/>
+<mbr r='ConnectBits::ftp_use_epsv' o='152' t='_Bool'/>
+<mbr r='ConnectBits::ftp_use_eprt' o='160' t='_Bool'/>
+<mbr r='ConnectBits::ftp_use_data_ssl' o='168' t='_Bool'/>
+<mbr r='ConnectBits::netrc' o='176' t='_Bool'/>
+<mbr r='ConnectBits::userpwd_in_url' o='184' t='_Bool'/>
+<mbr r='ConnectBits::stream_was_rewound' o='192' t='_Bool'/>
+<mbr r='ConnectBits::proxy_connect_closed' o='200' t='_Bool'/>
+<mbr r='ConnectBits::bound' o='208' t='_Bool'/>
+<mbr r='ConnectBits::type_set' o='216' t='_Bool'/>
+<mbr r='ConnectBits::multiplex' o='224' t='_Bool'/>
+<mbr r='ConnectBits::tcp_fastopen' o='232' t='_Bool'/>
+<mbr r='ConnectBits::tls_enable_npn' o='240' t='_Bool'/>
+<mbr r='ConnectBits::tls_enable_alpn' o='248' t='_Bool'/>
+<mbr r='ConnectBits::proxy_ssl_connected' o='256' t='_Bool [2]'/>
+<mbr r='ConnectBits::socksproxy_connecting' o='272' t='_Bool'/>

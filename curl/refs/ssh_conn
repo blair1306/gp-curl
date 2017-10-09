@@ -1,0 +1,5 @@
+<def f='codebrowser/lib/ssh.h' l='110' ll='160'/>
+<size>8</size>
+<doc f='codebrowser/lib/ssh.h' l='108'>/* ssh_conn is used for struct connection-oriented data in the connectdata
+   struct */</doc>
+<mbr r='ssh_conn::authlist' o='0' t='const char *'/>

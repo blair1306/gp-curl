@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/multiif.h' l='31' type='void Curl_expire_done(struct Curl_easy * data, expire_id id)'/>
+<use f='codebrowser/lib/http.c' l='2766' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3065' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3193' u='c' c='Curl_http_readwrite_headers'/>
+<def f='codebrowser/lib/multi.c' l='2999' ll='3003' type='void Curl_expire_done(struct Curl_easy * data, expire_id id)'/>
+<doc f='codebrowser/lib/multi.c' l='2993'>/*
+ * Curl_expire_done()
+ *
+ * Removes the expire timer. Marks it as done.
+ *
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='1182' u='c' c='Curl_readwrite'/>

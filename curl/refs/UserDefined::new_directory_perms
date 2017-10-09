@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1660' type='long'/>
+<offset>12096</offset>
+<doc f='codebrowser/lib/urldata.h' l='1660'>/* Permissions to use when creating remote dirs */</doc>
+<use f='codebrowser/lib/url.c' l='574' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2649' u='w' c='Curl_setopt'/>

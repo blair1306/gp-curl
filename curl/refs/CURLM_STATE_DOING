@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/multihandle.h' l='50' type='10'/>
+<doc f='codebrowser/lib/multihandle.h' l='50'>/* 10 - sending off the request (part 1) */</doc>
+<use f='codebrowser/lib/multi.c' l='898' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1676' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1754' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1789' u='r' c='multi_runsingle'/>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>hostip6.c source code [codebrowser/lib/hostip6.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/hostip6.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='hostip6.c.html'>hostip6.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <a class="macro" href="curl_config.h.html#429" data-ref="_M/HAVE_NETINET_IN_H">HAVE_NETINET_IN_H</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../include/netinet/in.h.html">&lt;netinet/in.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="28">ifdef</span> <a class="macro" href="curl_config.h.html#426" data-ref="_M/HAVE_NETDB_H">HAVE_NETDB_H</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../../include/netdb.h.html">&lt;netdb.h&gt;</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="28">endif</span></u></td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="31">ifdef</span> <a class="macro" href="curl_config.h.html#116" data-ref="_M/HAVE_ARPA_INET_H">HAVE_ARPA_INET_H</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="../../include/arpa/inet.h.html">&lt;arpa/inet.h&gt;</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="31">endif</span></u></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifdef</span> <span class="macro" data-ref="_M/__VMS">__VMS</span></u></td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;in.h&gt;</u></td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;inet.h&gt;</u></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="34">endif</span></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">ifdef</span> <span class="macro" data-ref="_M/HAVE_PROCESS_H">HAVE_PROCESS_H</span></u></td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;process.h&gt;</u></td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="39">endif</span></u></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="45">45</th><td><u>#include <a href="hostip.h.html">"hostip.h"</a></u></td></tr>
+<tr><th id="46">46</th><td><u>#include <a href="hash.h.html">"hash.h"</a></u></td></tr>
+<tr><th id="47">47</th><td><u>#include <a href="share.h.html">"share.h"</a></u></td></tr>
+<tr><th id="48">48</th><td><u>#include <a href="strerror.h.html">"strerror.h"</a></u></td></tr>
+<tr><th id="49">49</th><td><u>#include <a href="url.h.html">"url.h"</a></u></td></tr>
+<tr><th id="50">50</th><td><u>#include <a href="inet_pton.h.html">"inet_pton.h"</a></u></td></tr>
+<tr><th id="51">51</th><td><u>#include <a href="connect.h.html">"connect.h"</a></u></td></tr>
+<tr><th id="52">52</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="53">53</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="54">54</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="55">55</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="56">56</th><td></td></tr>
+<tr><th id="57">57</th><td><i>/***********************************************************************</i></td></tr>
+<tr><th id="58">58</th><td><i> * Only for IPv6-enabled builds</i></td></tr>
+<tr><th id="59">59</th><td><i> **********************************************************************/</i></td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="60">ifdef</span> <a class="macro" href="curl_setup.h.html#541" data-ref="_M/CURLRES_IPV6">CURLRES_IPV6</a></u></td></tr>
+<tr><th id="61">61</th><td></td></tr>
+<tr><th id="62">62</th><td><u>#<span data-ppcond="62">if</span> defined(<span class="macro" data-ref="_M/CURLDEBUG">CURLDEBUG</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/HAVE_GETNAMEINFO">HAVE_GETNAMEINFO</span>)</u></td></tr>
+<tr><th id="63">63</th><td><i>/* These are strictly for memory tracing and are using the same style as the</i></td></tr>
+<tr><th id="64">64</th><td><i> * family otherwise present in memdebug.c. I put these ones here since they</i></td></tr>
+<tr><th id="65">65</th><td><i> * require a bunch of structs I didn't want to include in memdebug.c</i></td></tr>
+<tr><th id="66">66</th><td><i> */</i></td></tr>
+<tr><th id="67">67</th><td></td></tr>
+<tr><th id="68">68</th><td><i>/*</i></td></tr>
+<tr><th id="69">69</th><td><i> * For CURLRES_ARS, this should be written using ares_gethostbyaddr()</i></td></tr>
+<tr><th id="70">70</th><td><i> * (ignoring the fact c-ares doesn't return 'serv').</i></td></tr>
+<tr><th id="71">71</th><td><i> */</i></td></tr>
+<tr><th id="72">72</th><td></td></tr>
+<tr><th id="73">73</th><td><em>int</em> curl_dogetnameinfo(GETNAMEINFO_QUAL_ARG1 GETNAMEINFO_TYPE_ARG1 sa,</td></tr>
+<tr><th id="74">74</th><td>                       GETNAMEINFO_TYPE_ARG2 salen,</td></tr>
+<tr><th id="75">75</th><td>                       <em>char</em> *host, GETNAMEINFO_TYPE_ARG46 hostlen,</td></tr>
+<tr><th id="76">76</th><td>                       <em>char</em> *serv, GETNAMEINFO_TYPE_ARG46 servlen,</td></tr>
+<tr><th id="77">77</th><td>                       GETNAMEINFO_TYPE_ARG7 flags,</td></tr>
+<tr><th id="78">78</th><td>                       <em>int</em> line, <em>const</em> <em>char</em> *source)</td></tr>
+<tr><th id="79">79</th><td>{</td></tr>
+<tr><th id="80">80</th><td>  <em>int</em> res = (getnameinfo)(sa, salen,</td></tr>
+<tr><th id="81">81</th><td>                          host, hostlen,</td></tr>
+<tr><th id="82">82</th><td>                          serv, servlen,</td></tr>
+<tr><th id="83">83</th><td>                          flags);</td></tr>
+<tr><th id="84">84</th><td>  <b>if</b>(<var>0</var> == res)</td></tr>
+<tr><th id="85">85</th><td>    <i>/* success */</i></td></tr>
+<tr><th id="86">86</th><td>    curl_memlog(<q>"GETNAME %s:%d getnameinfo()\n"</q>,</td></tr>
+<tr><th id="87">87</th><td>                source, line);</td></tr>
+<tr><th id="88">88</th><td>  <b>else</b></td></tr>
+<tr><th id="89">89</th><td>    curl_memlog(<q>"GETNAME %s:%d getnameinfo() failed = %d\n"</q>,</td></tr>
+<tr><th id="90">90</th><td>                source, line, res);</td></tr>
+<tr><th id="91">91</th><td>  <b>return</b> res;</td></tr>
+<tr><th id="92">92</th><td>}</td></tr>
+<tr><th id="93">93</th><td><u>#<span data-ppcond="62">endif</span> /* defined(CURLDEBUG) &amp;&amp; defined(HAVE_GETNAMEINFO) */</u></td></tr>
+<tr><th id="94">94</th><td></td></tr>
+<tr><th id="95">95</th><td><i>/*</i></td></tr>
+<tr><th id="96">96</th><td><i> * Curl_ipv6works() returns TRUE if IPv6 seems to work.</i></td></tr>
+<tr><th id="97">97</th><td><i> */</i></td></tr>
+<tr><th id="98">98</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_ipv6works" title='Curl_ipv6works' data-ref="Curl_ipv6works">Curl_ipv6works</dfn>(<em>void</em>)</td></tr>
+<tr><th id="99">99</th><td>{</td></tr>
+<tr><th id="100">100</th><td>  <i>/* the nature of most system is that IPv6 status doesn't come and go</i></td></tr>
+<tr><th id="101">101</th><td><i>     during a program's lifetime so we only probe the first time and then we</i></td></tr>
+<tr><th id="102">102</th><td><i>     have the info kept for fast re-use */</i></td></tr>
+<tr><th id="103">103</th><td>  <em>static</em> <em>int</em> <dfn class="local col1 decl" id="1ipv6_works" title='ipv6_works' data-type='int' data-ref="1ipv6_works">ipv6_works</dfn> = -<var>1</var>;</td></tr>
+<tr><th id="104">104</th><td>  <b>if</b>(-<var>1</var> == <a class="local col1 ref" href="#1ipv6_works" title='ipv6_works' data-ref="1ipv6_works">ipv6_works</a>) {</td></tr>
+<tr><th id="105">105</th><td>    <i>/* probe to see if we have a working IPv6 stack */</i></td></tr>
+<tr><th id="106">106</th><td>    <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col2 decl" id="2s" title='s' data-type='curl_socket_t' data-ref="2s">s</dfn> = <a class="ref" href="../../include/x86_64-linux-gnu/sys/socket.h.html#socket" title='socket' data-ref="socket">socket</a>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/socket.h.html#53" title="10" data-ref="_M/PF_INET6">PF_INET6</a>, <a class="macro" href="../../include/x86_64-linux-gnu/bits/socket_type.h.html#31" title="SOCK_DGRAM" data-ref="_M/SOCK_DGRAM">SOCK_DGRAM</a>, <var>0</var>);</td></tr>
+<tr><th id="107">107</th><td>    <b>if</b>(<a class="local col2 ref" href="#2s" title='s' data-ref="2s">s</a> == <a class="macro" href="../include/curl/curl.h.html#131" title="-1" data-ref="_M/CURL_SOCKET_BAD">CURL_SOCKET_BAD</a>)</td></tr>
+<tr><th id="108">108</th><td>      <i>/* an IPv6 address was requested but we can't get/use one */</i></td></tr>
+<tr><th id="109">109</th><td>      <a class="local col1 ref" href="#1ipv6_works" title='ipv6_works' data-ref="1ipv6_works">ipv6_works</a> = <var>0</var>;</td></tr>
+<tr><th id="110">110</th><td>    <b>else</b> {</td></tr>
+<tr><th id="111">111</th><td>      <a class="local col1 ref" href="#1ipv6_works" title='ipv6_works' data-ref="1ipv6_works">ipv6_works</a> = <var>1</var>;</td></tr>
+<tr><th id="112">112</th><td>      <a class="ref" href="connect.h.html#Curl_closesocket" title='Curl_closesocket' data-ref="Curl_closesocket">Curl_closesocket</a>(<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <a class="local col2 ref" href="#2s" title='s' data-ref="2s">s</a>);</td></tr>
+<tr><th id="113">113</th><td>    }</td></tr>
+<tr><th id="114">114</th><td>  }</td></tr>
+<tr><th id="115">115</th><td>  <b>return</b> (<a class="local col1 ref" href="#1ipv6_works" title='ipv6_works' data-ref="1ipv6_works">ipv6_works</a>&gt;<var>0</var>)?<a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>:<a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="116">116</th><td>}</td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td><i>/*</i></td></tr>
+<tr><th id="119">119</th><td><i> * Curl_ipvalid() checks what CURL_IPRESOLVE_* requirements that might've</i></td></tr>
+<tr><th id="120">120</th><td><i> * been set and returns TRUE if they are OK.</i></td></tr>
+<tr><th id="121">121</th><td><i> */</i></td></tr>
+<tr><th id="122">122</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_ipvalid" title='Curl_ipvalid' data-ref="Curl_ipvalid">Curl_ipvalid</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col3 decl" id="3conn" title='conn' data-type='struct connectdata *' data-ref="3conn">conn</dfn>)</td></tr>
+<tr><th id="123">123</th><td>{</td></tr>
+<tr><th id="124">124</th><td>  <b>if</b>(<a class="local col3 ref" href="#3conn" title='conn' data-ref="3conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::ip_version" title='connectdata::ip_version' data-ref="connectdata::ip_version">ip_version</a> == <a class="macro" href="../include/curl/curl.h.html#1856" title="2" data-ref="_M/CURL_IPRESOLVE_V6">CURL_IPRESOLVE_V6</a>)</td></tr>
+<tr><th id="125">125</th><td>    <b>return</b> <a class="ref" href="#Curl_ipv6works" title='Curl_ipv6works' data-ref="Curl_ipv6works">Curl_ipv6works</a>();</td></tr>
+<tr><th id="126">126</th><td></td></tr>
+<tr><th id="127">127</th><td>  <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="128">128</th><td>}</td></tr>
+<tr><th id="129">129</th><td></td></tr>
+<tr><th id="130">130</th><td><u>#<span data-ppcond="130">if</span> defined(<span class="macro" data-ref="_M/CURLRES_SYNCH">CURLRES_SYNCH</span>)</u></td></tr>
+<tr><th id="131">131</th><td></td></tr>
+<tr><th id="132">132</th><td><u>#ifdef DEBUG_ADDRINFO</u></td></tr>
+<tr><th id="133">133</th><td><em>static</em> <em>void</em> dump_addrinfo(<b>struct</b> connectdata *conn, <em>const</em> Curl_addrinfo *ai)</td></tr>
+<tr><th id="134">134</th><td>{</td></tr>
+<tr><th id="135">135</th><td>  printf(<q>"dump_addrinfo:\n"</q>);</td></tr>
+<tr><th id="136">136</th><td>  <b>for</b>(; ai; ai = ai-&gt;ai_next) {</td></tr>
+<tr><th id="137">137</th><td>    <em>char</em>  buf[INET6_ADDRSTRLEN];</td></tr>
+<tr><th id="138">138</th><td></td></tr>
+<tr><th id="139">139</th><td>    printf(<q>"    fam %2d, CNAME %s, "</q>,</td></tr>
+<tr><th id="140">140</th><td>           ai-&gt;ai_family, ai-&gt;ai_canonname ? ai-&gt;ai_canonname : <q>"&lt;none&gt;"</q>);</td></tr>
+<tr><th id="141">141</th><td>    <b>if</b>(Curl_printable_address(ai, buf, <b>sizeof</b>(buf)))</td></tr>
+<tr><th id="142">142</th><td>      printf(<q>"%s\n"</q>, buf);</td></tr>
+<tr><th id="143">143</th><td>    <b>else</b></td></tr>
+<tr><th id="144">144</th><td>      printf(<q>"failed; %s\n"</q>, Curl_strerror(conn, SOCKERRNO));</td></tr>
+<tr><th id="145">145</th><td>  }</td></tr>
+<tr><th id="146">146</th><td>}</td></tr>
+<tr><th id="147">147</th><td><u>#else</u></td></tr>
+<tr><th id="148">148</th><td><u>#define dump_addrinfo(x,y) Curl_nop_stmt</u></td></tr>
+<tr><th id="149">149</th><td><u>#endif</u></td></tr>
+<tr><th id="150">150</th><td></td></tr>
+<tr><th id="151">151</th><td><i>/*</i></td></tr>
+<tr><th id="152">152</th><td><i> * Curl_getaddrinfo() when built IPv6-enabled (non-threading and</i></td></tr>
+<tr><th id="153">153</th><td><i> * non-ares version).</i></td></tr>
+<tr><th id="154">154</th><td><i> *</i></td></tr>
+<tr><th id="155">155</th><td><i> * Returns name information about the given hostname and port number. If</i></td></tr>
+<tr><th id="156">156</th><td><i> * successful, the 'addrinfo' is returned and the forth argument will point to</i></td></tr>
+<tr><th id="157">157</th><td><i> * memory we need to free after use. That memory *MUST* be freed with</i></td></tr>
+<tr><th id="158">158</th><td><i> * Curl_freeaddrinfo(), nothing else.</i></td></tr>
+<tr><th id="159">159</th><td><i> */</i></td></tr>
+<tr><th id="160">160</th><td>Curl_addrinfo *Curl_getaddrinfo(<b>struct</b> connectdata *conn,</td></tr>
+<tr><th id="161">161</th><td>                                <em>const</em> <em>char</em> *hostname,</td></tr>
+<tr><th id="162">162</th><td>                                <em>int</em> port,</td></tr>
+<tr><th id="163">163</th><td>                                <em>int</em> *waitp)</td></tr>
+<tr><th id="164">164</th><td>{</td></tr>
+<tr><th id="165">165</th><td>  <b>struct</b> addrinfo hints;</td></tr>
+<tr><th id="166">166</th><td>  Curl_addrinfo *res;</td></tr>
+<tr><th id="167">167</th><td>  <em>int</em> error;</td></tr>
+<tr><th id="168">168</th><td>  <em>char</em> sbuf[<var>12</var>];</td></tr>
+<tr><th id="169">169</th><td>  <em>char</em> *sbufptr = NULL;</td></tr>
+<tr><th id="170">170</th><td><u>#ifndef USE_RESOLVE_ON_IPS</u></td></tr>
+<tr><th id="171">171</th><td>  <em>char</em> addrbuf[<var>128</var>];</td></tr>
+<tr><th id="172">172</th><td><u>#endif</u></td></tr>
+<tr><th id="173">173</th><td>  <em>int</em> pf;</td></tr>
+<tr><th id="174">174</th><td><u>#if !defined(CURL_DISABLE_VERBOSE_STRINGS)</u></td></tr>
+<tr><th id="175">175</th><td>  <b>struct</b> Curl_easy *data = conn-&gt;data;</td></tr>
+<tr><th id="176">176</th><td><u>#endif</u></td></tr>
+<tr><th id="177">177</th><td></td></tr>
+<tr><th id="178">178</th><td>  *waitp = <var>0</var>; <i>/* synchronous response only */</i></td></tr>
+<tr><th id="179">179</th><td></td></tr>
+<tr><th id="180">180</th><td>  <i>/* Check if a limited name resolve has been requested */</i></td></tr>
+<tr><th id="181">181</th><td>  <b>switch</b>(conn-&gt;ip_version) {</td></tr>
+<tr><th id="182">182</th><td>  <b>case</b> CURL_IPRESOLVE_V4:</td></tr>
+<tr><th id="183">183</th><td>    pf = PF_INET;</td></tr>
+<tr><th id="184">184</th><td>    <b>break</b>;</td></tr>
+<tr><th id="185">185</th><td>  <b>case</b> CURL_IPRESOLVE_V6:</td></tr>
+<tr><th id="186">186</th><td>    pf = PF_INET6;</td></tr>
+<tr><th id="187">187</th><td>    <b>break</b>;</td></tr>
+<tr><th id="188">188</th><td>  <b>default</b>:</td></tr>
+<tr><th id="189">189</th><td>    pf = PF_UNSPEC;</td></tr>
+<tr><th id="190">190</th><td>    <b>break</b>;</td></tr>
+<tr><th id="191">191</th><td>  }</td></tr>
+<tr><th id="192">192</th><td></td></tr>
+<tr><th id="193">193</th><td>  <b>if</b>((pf != PF_INET) &amp;&amp; !Curl_ipv6works())</td></tr>
+<tr><th id="194">194</th><td>    <i>/* The stack seems to be a non-IPv6 one */</i></td></tr>
+<tr><th id="195">195</th><td>    pf = PF_INET;</td></tr>
+<tr><th id="196">196</th><td></td></tr>
+<tr><th id="197">197</th><td>  memset(&amp;hints, <var>0</var>, <b>sizeof</b>(hints));</td></tr>
+<tr><th id="198">198</th><td>  hints.ai_family = pf;</td></tr>
+<tr><th id="199">199</th><td>  hints.ai_socktype = conn-&gt;socktype;</td></tr>
+<tr><th id="200">200</th><td></td></tr>
+<tr><th id="201">201</th><td><u>#ifndef USE_RESOLVE_ON_IPS</u></td></tr>
+<tr><th id="202">202</th><td>  <i>/*</i></td></tr>
+<tr><th id="203">203</th><td><i>   * The AI_NUMERICHOST must not be set to get synthesized IPv6 address from</i></td></tr>
+<tr><th id="204">204</th><td><i>   * an IPv4 address on iOS and Mac OS X.</i></td></tr>
+<tr><th id="205">205</th><td><i>   */</i></td></tr>
+<tr><th id="206">206</th><td>  <b>if</b>((<var>1</var> == Curl_inet_pton(AF_INET, hostname, addrbuf)) ||</td></tr>
+<tr><th id="207">207</th><td>     (<var>1</var> == Curl_inet_pton(AF_INET6, hostname, addrbuf))) {</td></tr>
+<tr><th id="208">208</th><td>    <i>/* the given address is numerical only, prevent a reverse lookup */</i></td></tr>
+<tr><th id="209">209</th><td>    hints.ai_flags = AI_NUMERICHOST;</td></tr>
+<tr><th id="210">210</th><td>  }</td></tr>
+<tr><th id="211">211</th><td><u>#endif</u></td></tr>
+<tr><th id="212">212</th><td></td></tr>
+<tr><th id="213">213</th><td>  <b>if</b>(port) {</td></tr>
+<tr><th id="214">214</th><td>    snprintf(sbuf, <b>sizeof</b>(sbuf), <q>"%d"</q>, port);</td></tr>
+<tr><th id="215">215</th><td>    sbufptr = sbuf;</td></tr>
+<tr><th id="216">216</th><td>  }</td></tr>
+<tr><th id="217">217</th><td></td></tr>
+<tr><th id="218">218</th><td>  error = Curl_getaddrinfo_ex(hostname, sbufptr, &amp;hints, &amp;res);</td></tr>
+<tr><th id="219">219</th><td>  <b>if</b>(error) {</td></tr>
+<tr><th id="220">220</th><td>    infof(data, <q>"getaddrinfo(3) failed for %s:%d\n"</q>, hostname, port);</td></tr>
+<tr><th id="221">221</th><td>    <b>return</b> NULL;</td></tr>
+<tr><th id="222">222</th><td>  }</td></tr>
+<tr><th id="223">223</th><td></td></tr>
+<tr><th id="224">224</th><td>  <b>if</b>(port) {</td></tr>
+<tr><th id="225">225</th><td>    Curl_addrinfo_set_port(res, port);</td></tr>
+<tr><th id="226">226</th><td>  }</td></tr>
+<tr><th id="227">227</th><td></td></tr>
+<tr><th id="228">228</th><td>  dump_addrinfo(conn, res);</td></tr>
+<tr><th id="229">229</th><td></td></tr>
+<tr><th id="230">230</th><td>  <b>return</b> res;</td></tr>
+<tr><th id="231">231</th><td>}</td></tr>
+<tr><th id="232">232</th><td><u>#<span data-ppcond="130">endif</span> /* CURLRES_SYNCH */</u></td></tr>
+<tr><th id="233">233</th><td></td></tr>
+<tr><th id="234">234</th><td><u>#<span data-ppcond="60">endif</span> /* CURLRES_IPV6 */</u></td></tr>
+<tr><th id="235">235</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

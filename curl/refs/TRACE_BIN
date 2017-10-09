@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='124' type='1'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='238' u='r' c='dump'/>
+<doc f='codebrowser/src/tool_sdecls.h' l='124'>/* tcpdump inspired look */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='573' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='575' u='r' c='getparameter'/>

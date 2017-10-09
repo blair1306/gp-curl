@@ -1,0 +1,2 @@
+<dec f='include/openssl/ui.h' l='85' type='UI * UI_new()'/>
+<doc f='include/openssl/ui.h' l='84'>/* Creators and destructor.   */</doc>

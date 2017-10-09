@@ -1,0 +1,33 @@
+<dec f='codebrowser/lib/http.h' l='254' type='CURLcode Curl_http_output_auth(struct connectdata * conn, const char * request, const char * path, _Bool proxytunnel)'/>
+<doc f='codebrowser/lib/http.h' l='239'>/**
+ * Curl_http_output_auth() setups the authentication headers for the
+ * host/proxy and the correct authentication
+ * method. conn-&gt;data-&gt;state.authdone is set to TRUE when authentication is
+ * done.
+ *
+ * @param conn all information about the current connection
+ * @param request pointer to the request keyword
+ * @param path pointer to the requested path
+ * @param proxytunnel boolean if this is the request setting up a &quot;proxy
+ * tunnel&quot;
+ *
+ * @returns CURLcode
+ */</doc>
+<def f='codebrowser/lib/http.c' l='659' ll='726' type='CURLcode Curl_http_output_auth(struct connectdata * conn, const char * request, const char * path, _Bool proxytunnel)'/>
+<use f='codebrowser/lib/http.c' l='1871' u='c' c='Curl_http'/>
+<doc f='codebrowser/lib/http.c' l='645'>/**
+ * Curl_http_output_auth() setups the authentication headers for the
+ * host/proxy and the correct authentication
+ * method. conn-&gt;data-&gt;state.authdone is set to TRUE when authentication is
+ * done.
+ *
+ * @param conn all information about the current connection
+ * @param request pointer to the request keyword
+ * @param path pointer to the requested path
+ * @param proxytunnel boolean if this is the request setting up a &quot;proxy
+ * tunnel&quot;
+ *
+ * @returns CURLcode
+ */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='231' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/rtsp.c' l='415' u='c' c='rtsp_do'/>

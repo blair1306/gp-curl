@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='208' type='long'/>
+<offset>7744</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='208'>/* TFTP BLKSIZE option */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='965' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1405' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1406' u='r' c='operate_do'/>

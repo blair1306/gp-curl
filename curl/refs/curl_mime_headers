@@ -1,0 +1,12 @@
+<dec f='codebrowser/include/curl/curl.h' l='2094' type='CURLcode curl_mime_headers(curl_mimepart * part, struct curl_slist * headers, int take_ownership)'/>
+<use f='codebrowser/lib/formdata.c' l='907' u='c' c='Curl_getformdata'/>
+<use f='codebrowser/lib/http.c' l='1967' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1970' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='728' u='c' c='imap_perform_append'/>
+<def f='codebrowser/lib/mime.c' l='1371' ll='1386' type='CURLcode curl_mime_headers(curl_mimepart * part, struct curl_slist * headers, int take_ownership)'/>
+<doc f='codebrowser/lib/mime.c' l='1370'>/* Set mime part headers. */</doc>
+<use f='codebrowser/lib/smtp.c' l='540' u='c' c='smtp_perform_mail'/>
+<use f='codebrowser/src/tool_formparse.c' l='511' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='579' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='660' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='690' u='c' c='formparse'/>

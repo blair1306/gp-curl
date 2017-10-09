@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1692' type='size_t'/>
+<offset>16960</offset>
+<doc f='codebrowser/lib/urldata.h' l='1692'>/* Max idle connections in the connection cache */</doc>
+<use f='codebrowser/lib/easy.c' l='777' u='r' c='easy_perform'/>
+<use f='codebrowser/lib/url.c' l='696' u='w' c='Curl_open'/>
+<use f='codebrowser/lib/url.c' l='768' u='w' c='Curl_setopt'/>

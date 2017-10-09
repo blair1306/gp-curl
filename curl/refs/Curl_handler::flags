@@ -1,0 +1,35 @@
+<dec f='codebrowser/lib/urldata.h' l='696' type='unsigned int'/>
+<offset>1056</offset>
+<doc f='codebrowser/lib/urldata.h' l='696'>/* Extra particular characteristics, see PROTOPT_* */</doc>
+<use f='codebrowser/lib/connect.c' l='1082' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1387' u='r' c='Curl_conncontrol'/>
+<use f='codebrowser/lib/connect.c' l='1389' u='r' c='Curl_conncontrol'/>
+<use f='codebrowser/lib/ftp.c' l='3103' u='r' c='ftp_connect'/>
+<use f='codebrowser/lib/http.c' l='1094' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1404' u='r' c='https_getsock'/>
+<use f='codebrowser/lib/http.c' l='2361' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='1336' u='r' c='imap_multi_statemach'/>
+<use f='codebrowser/lib/multi.c' l='1934' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2608' u='r' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2617' u='r' c='multi_socket'/>
+<use f='codebrowser/lib/pop3.c' l='1007' u='r' c='pop3_multi_statemach'/>
+<use f='codebrowser/lib/sendf.c' l='577' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/smb.c' l='650' u='r' c='smb_connection_state'/>
+<use f='codebrowser/lib/smtp.c' l='1070' u='r' c='smtp_multi_statemach'/>
+<use f='codebrowser/lib/transfer.c' l='149' u='r' c='Curl_fillreadbuffer'/>
+<use f='codebrowser/lib/url.c' l='3647' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3648' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3682' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3724' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3734' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3752' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='5381' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5387' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5423' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5538' u='r' c='parse_url_login'/>
+<use f='codebrowser/lib/url.c' l='5914' u='r' c='set_login'/>
+<use f='codebrowser/lib/url.c' l='6515' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6560' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6642' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6798' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6940' u='r' c='Curl_setup_conn'/>

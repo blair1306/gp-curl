@@ -1,0 +1,13 @@
+<dec f='codebrowser/include/curl/curl.h' l='2223' type='void curl_formfree(struct curl_httppost * form)'/>
+<def f='codebrowser/lib/formdata.c' l='800' ll='825' type='void curl_formfree(struct curl_httppost * form)'/>
+<use f='codebrowser/lib/formdata.c' l='812' u='c' c='curl_formfree'/>
+<doc f='codebrowser/lib/formdata.c' l='796'>/*
+ * curl_formfree() is an external function to free up a whole form post
+ * chain
+ */</doc>
+<use f='codebrowser/tests/libtest/lib554.c' l='168' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib554.c' l='203' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='157' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='183' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='76' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='93' u='c' c='test'/>

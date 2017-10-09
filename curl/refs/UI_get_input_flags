@@ -1,0 +1,4 @@
+<dec f='include/openssl/ui.h' l='353' type='int UI_get_input_flags(UI_STRING * uis)'/>
+<doc f='include/openssl/ui.h' l='352'>/* Return input flags of the UI_STRING */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='512' u='c' c='ssl_ui_reader'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='531' u='c' c='ssl_ui_writer'/>

@@ -1,0 +1,4 @@
+<dec f='include/openssl/x509.h' l='243' type='ASN1_INTEGER *'/>
+<offset>0</offset>
+<doc f='include/openssl/x509.h' l='243'>/* [ 0 ] default of v1 */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='2782' macro='1' u='r'/>

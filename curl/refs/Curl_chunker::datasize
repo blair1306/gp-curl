@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/http_chunks.h' l='86' type='curl_off_t'/>
+<offset>256</offset>
+<use f='codebrowser/lib/http_chunks.c' l='161' u='a' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='171' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='187' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='187' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='233' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='237' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/pipeline.c' l='81' u='r' c='Curl_pipeline_penalized'/>
+<use f='codebrowser/lib/pipeline.c' l='87' u='r' c='Curl_pipeline_penalized'/>

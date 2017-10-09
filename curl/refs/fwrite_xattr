@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_xattr.h' l='26' type='int fwrite_xattr(CURL * curl, int fd)'/>
+<use f='codebrowser/src/tool_operate.c' l='1810' u='c' c='operate_do'/>
+<def f='codebrowser/src/tool_xattr.c' l='55' ll='81' type='int fwrite_xattr(CURL * curl, int fd)'/>
+<doc f='codebrowser/src/tool_xattr.c' l='52'>/* store metadata from the curl request alongside the downloaded
+ * file using extended attributes
+ */</doc>

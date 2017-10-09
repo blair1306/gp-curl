@@ -1,0 +1,31 @@
+<dec f='codebrowser/lib/asyn.h' l='128' type='CURLcode Curl_resolver_wait_resolv(struct connectdata * conn, struct Curl_dns_entry ** dnsentry)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='471' ll='500' type='CURLcode Curl_resolver_wait_resolv(struct connectdata * conn, struct Curl_dns_entry ** entry)'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='461'>/*
+ * Curl_resolver_wait_resolv()
+ *
+ * waits for a resolve to finish. This function should be avoided since using
+ * this risk getting the multi interface to &quot;hang&quot;.
+ *
+ * If &apos;entry&apos; is non-NULL, make it point to the resolved dns entry
+ *
+ * This is the version for resolves-in-a-thread.
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='116'>/*
+ * Curl_resolver_wait_resolv()
+ *
+ * waits for a resolve to finish. This function should be avoided since using
+ * this risk getting the multi interface to &quot;hang&quot;.
+ *
+ * If &apos;entry&apos; is non-NULL, make it point to the resolved dns entry
+ *
+ * Returns CURLE_COULDNT_RESOLVE_HOST if the host was not resolved, and
+ * CURLE_OPERATION_TIMEDOUT if a time-out occurred.
+
+ */</doc>
+<use f='codebrowser/lib/connect.c' l='356' u='c' c='bindlocal'/>
+<use f='codebrowser/lib/ftp.c' l='1089' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1943' u='c' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1958' u='c' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/multi.c' l='1210' u='c' c='multi_reconnect_request'/>
+<use f='codebrowser/lib/socks.c' l='167' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='608' u='c' c='Curl_SOCKS5'/>

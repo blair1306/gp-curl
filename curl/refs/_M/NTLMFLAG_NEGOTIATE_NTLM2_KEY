@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vauth/ntlm.h' l='106'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='597' u='c'/>
+<doc f='codebrowser/lib/vauth/ntlm.h' l='102'>/* Sent by the server in the Type 2 message to indicate that the target
+   authentication realm is a share. Presumably, this is for share-level
+   authentication. Usage is unclear. */</doc>

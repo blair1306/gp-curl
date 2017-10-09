@@ -1,0 +1,16 @@
+<dec f='codebrowser/src/tool_easysrc.h' l='39' type='CURLcode easysrc_add(struct slist_wc ** plist, const char * bupf)'/>
+<def f='codebrowser/src/tool_easysrc.c' l='95' ll='106' type='CURLcode easysrc_add(struct slist_wc ** plist, const char * line)'/>
+<use f='codebrowser/src/tool_easysrc.c' l='120' u='c' c='easysrc_addf'/>
+<use f='codebrowser/src/tool_easysrc.c' l='130' u='c' c='easysrc_init'/>
+<use f='codebrowser/src/tool_easysrc.c' l='142' u='c' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='145' u='c' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='149' u='c' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='151' u='c' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='152' u='c' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='158' u='c' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='159' u='c' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='160' u='c' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='167' u='c' c='easysrc_cleanup'/>
+<use f='codebrowser/src/tool_easysrc.c' l='168' u='c' c='easysrc_cleanup'/>
+<doc f='codebrowser/src/tool_easysrc.c' l='94'>/* Add a source line to the main code or remarks */</doc>
+<use f='codebrowser/src/tool_setopt.c' l='181' u='c' c='libcurl_generate_mime'/>

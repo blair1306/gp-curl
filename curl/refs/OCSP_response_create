@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='474' type='OCSP_RESPONSE * OCSP_response_create(int status, OCSP_BASICRESP * bs)'/>

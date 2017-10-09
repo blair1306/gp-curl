@@ -1,0 +1,12 @@
+<dec f='include/openssl/ocsp.h' l='166'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1562' u='c'/>
+<doc f='include/openssl/ocsp.h' l='156'>/*-  OCSPResponseStatus ::= ENUMERATED {
+ *       successful            (0),      --Response has valid confirmations
+ *       malformedRequest      (1),      --Illegal confirmation request
+ *       internalError         (2),      --Internal error in issuer
+ *       tryLater              (3),      --Try again later
+ *                                       --(4) is not used
+ *       sigRequired           (5),      --Must sign the request
+ *       unauthorized          (6)       --Request unauthorized
+ *   }
+ */</doc>

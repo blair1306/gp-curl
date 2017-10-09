@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='69' type='25'/>
+<doc f='codebrowser/lib/ftp.h' l='69'>/* get the size for STOR */</doc>
+<use f='codebrowser/lib/ftp.c' l='1611' u='r' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/ftp.c' l='2289' u='r' c='ftp_state_size_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3000' c='ftp_statemach_act'/>

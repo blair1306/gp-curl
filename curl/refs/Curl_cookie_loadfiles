@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/cookie.h' l='104' type='void Curl_cookie_loadfiles(struct Curl_easy * data)'/>
+<def f='codebrowser/lib/cookie.c' l='262' ll='285' type='void Curl_cookie_loadfiles(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/cookie.c' l='1453' u='c' c='Curl_flush_cookies'/>
+<doc f='codebrowser/lib/cookie.c' l='257'>/*
+ * Load cookies from all given cookie files (CURLOPT_COOKIEFILE).
+ *
+ * NOTE: OOM or cookie parsing failures are ignored.
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='1367' u='c' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='1319' u='c' c='Curl_setopt'/>

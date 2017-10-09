@@ -1,0 +1,17 @@
+<dec f='codebrowser/include/curl/curl.h' l='2004' type='curl_mimepart * curl_mime_addpart(curl_mime * mime)'/>
+<use f='codebrowser/lib/formdata.c' l='884' u='c' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='901' u='c' c='Curl_getformdata'/>
+<def f='codebrowser/lib/mime.c' l='1188' ll='1210' type='curl_mimepart * curl_mime_addpart(curl_mime * mime)'/>
+<doc f='codebrowser/lib/mime.c' l='1187'>/* Create a mime part and append it to a mime handle&apos;s part list. */</doc>
+<use f='codebrowser/src/tool_formparse.c' l='495' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='568' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='626' u='c' c='formparse'/>
+<use f='codebrowser/src/tool_formparse.c' l='643' u='c' c='formparse'/>
+<use f='codebrowser/tests/libtest/lib1553.c' l='63' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='105' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='145' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='162' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='188' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='211' u='c' c='once'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='258' u='c' c='cyclic_add'/>
+<use f='codebrowser/tests/libtest/lib643.c' l='263' u='c' c='cyclic_add'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='2061' type='CURLcode curl_mime_filedata(curl_mimepart * part, const char * filename)'/>
+<use f='codebrowser/lib/formdata.c' l='938' u='c' c='Curl_getformdata'/>
+<def f='codebrowser/lib/mime.c' l='1281' ll='1327' type='CURLcode curl_mime_filedata(curl_mimepart * part, const char * filename)'/>
+<doc f='codebrowser/lib/mime.c' l='1280'>/* Set mime part content from named local file. */</doc>
+<use f='codebrowser/src/tool_formparse.c' l='381' u='c' c='file_or_stdin'/>

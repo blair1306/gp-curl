@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/ftp.h' l='28' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/ftp.c' l='166' ll='186' type='const struct Curl_handler'/>
+<doc f='codebrowser/lib/ftp.c' l='162'>/*
+ * FTP protocol handler.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='172' u='a'/>
+<use f='codebrowser/lib/url.c' l='172' u='a'/>

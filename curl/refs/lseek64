@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='340' type='__off64_t lseek(int __fd, __off64_t __offset, int __whence)'/>
+<use f='codebrowser/lib/file.c' l='554' u='c' c='file_do'/>
+<use f='codebrowser/src/tool_cb_see.c' l='82' u='c' c='tool_seek_cb'/>
+<use f='codebrowser/tests/server/tftpd.c' l='602' u='c' c='write_behind'/>

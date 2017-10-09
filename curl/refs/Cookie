@@ -1,0 +1,16 @@
+<def f='codebrowser/lib/cookie.h' l='28' ll='46'/>
+<size>96</size>
+<mbr r='Cookie::next' o='0' t='struct Cookie *'/>
+<mbr r='Cookie::name' o='64' t='char *'/>
+<mbr r='Cookie::value' o='128' t='char *'/>
+<mbr r='Cookie::path' o='192' t='char *'/>
+<mbr r='Cookie::spath' o='256' t='char *'/>
+<mbr r='Cookie::domain' o='320' t='char *'/>
+<mbr r='Cookie::expires' o='384' t='curl_off_t'/>
+<mbr r='Cookie::expirestr' o='448' t='char *'/>
+<mbr r='Cookie::tailmatch' o='512' t='_Bool'/>
+<mbr r='Cookie::version' o='576' t='char *'/>
+<mbr r='Cookie::maxage' o='640' t='char *'/>
+<mbr r='Cookie::secure' o='704' t='_Bool'/>
+<mbr r='Cookie::livecookie' o='712' t='_Bool'/>
+<mbr r='Cookie::httponly' o='720' t='_Bool'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cb_prg.h' l='35' type='curl_off_t'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='59' u='r' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='62' u='r' c='tool_progress_cb'/>
+<use f='codebrowser/src/tool_cb_prg.c' l='118' u='w' c='progressbarinit'/>
+<offset>384</offset>

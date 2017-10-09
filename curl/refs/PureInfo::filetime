@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/urldata.h' l='1055' type='long'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/urldata.h' l='1055'>/* If requested, this is might get set. Set to -1 if the time
+                    was unretrievable. We cannot have this of type time_t,
+                    since time_t is unsigned on several platforms such as
+                    OpenVMS. */</doc>
+<use f='codebrowser/lib/file.c' l='464' u='w' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='469' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='2064' u='w' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2074' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2076' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2111' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2115' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2124' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/getinfo.c' l='62' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='159' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/http.c' l='3738' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/smb.c' l='801' u='a' c='smb_request_state'/>

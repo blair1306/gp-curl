@@ -1,0 +1,9 @@
+<dec f='codebrowser/src/tool_cb_hdr.h' l='51' type='size_t tool_header_cb(char * ptr, size_t size, size_t nmemb, void * userdata)'/>
+<def f='codebrowser/src/tool_cb_hdr.c' l='43' ll='136' type='size_t tool_header_cb(char * ptr, size_t size, size_t nmemb, void * userdata)'/>
+<doc f='codebrowser/src/tool_cb_hdr.c' l='39'>/*
+** callback for CURLOPT_HEADERFUNCTION
+*/</doc>
+<doc f='codebrowser/src/tool_cb_hdr.h' l='47'>/*
+** callback for CURLOPT_HEADERFUNCTION
+*/</doc>
+<use f='codebrowser/src/tool_operate.c' l='1432' c='operate_do'/>

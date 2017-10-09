@@ -1,0 +1,5 @@
+<dec f='include/zlib.h' l='90' type='Bytef *'/>
+<offset>192</offset>
+<doc f='include/zlib.h' l='90'>/* next output byte should be put there */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='112' u='w' c='inflate_stream'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10031' u='w' c='hugehelp'/>

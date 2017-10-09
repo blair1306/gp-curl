@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/mime.h' l='30'/>
+<doc f='codebrowser/lib/mime.h' l='29'>/* Part flags. */</doc>
+<use f='codebrowser/lib/mime.c' l='1119' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1377' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1380' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1384' u='c'/>
+<use f='codebrowser/src/tool_setopt.c' l='543' u='c'/>

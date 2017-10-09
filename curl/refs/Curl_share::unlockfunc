@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/share.h' l='44' type='curl_unlock_function'/>
+<offset>128</offset>
+<use f='codebrowser/lib/share.c' l='155' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='184' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='185' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='204' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='205' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='239' u='r' c='Curl_share_unlock'/>
+<use f='codebrowser/lib/share.c' l='240' u='r' c='Curl_share_unlock'/>

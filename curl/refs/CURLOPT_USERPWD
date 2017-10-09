@@ -1,0 +1,15 @@
+<dec f='codebrowser/include/curl/curl.h' l='924' macro='1' type='10005'/>
+<use f='codebrowser/lib/url.c' l='1753' c='Curl_setopt'/>
+<use f='codebrowser/src/tool_operate.c' l='984' u='r' c='operate_do'/>
+<use f='codebrowser/tests/libtest/lib1552.c' l='51' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1553.c' l='71' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib503.c' l='53' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib519.c' l='44' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib519.c' l='51' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib521.c' l='45' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib523.c' l='46' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib579.c' l='142' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='284' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib583.c' l='46' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='48' u='r' c='send_request'/>
+<use f='codebrowser/tests/libtest/libntlmconnect.c' l='151' u='r' c='test'/>

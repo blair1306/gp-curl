@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/tftp.c' l='110' type='7'/>
+<use f='codebrowser/lib/tftp.c' l='881' c='tftp_translate_code'/>
+<doc f='codebrowser/lib/tftp.c' l='110'>/* This will never be triggered by this code */</doc>

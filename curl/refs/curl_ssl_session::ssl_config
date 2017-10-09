@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='262' type='struct ssl_primary_config'/>
+<offset>448</offset>
+<doc f='codebrowser/lib/urldata.h' l='262'>/* setup for this session */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='347' u='a' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='376' u='a' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='485' u='a' c='Curl_ssl_addsessionid'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='534' type='int OCSP_SINGLERESP_get_ext_by_OBJ(OCSP_SINGLERESP * x, ASN1_OBJECT * obj, int lastpos)'/>

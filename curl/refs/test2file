@@ -1,0 +1,10 @@
+<dec f='codebrowser/tests/server/util.h' l='56' type='char * test2file(long testno)'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='189' u='c' c='main'/>
+<doc f='codebrowser/tests/server/util.h' l='55'>/* returns the path name to the test case file */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='422' u='c' c='ProcessRequest'/>
+<use f='codebrowser/tests/server/rtspd.c' l='986' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/sws.c' l='360' u='c' c='parse_servercmd'/>
+<use f='codebrowser/tests/server/sws.c' l='1130' u='c' c='send_doc'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1075' u='c' c='parse_servercmd'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1189' u='c' c='validate_access'/>
+<def f='codebrowser/tests/server/util.c' l='194' ll='199' type='char * test2file(long testno)'/>

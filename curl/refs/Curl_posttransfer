@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/transfer.h' l='32' type='CURLcode Curl_posttransfer(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/multi.c' l='1615' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1632' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1714' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1746' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1769' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1798' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1938' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1945' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2105' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/transfer.c' l='1419' ll='1430' type='CURLcode Curl_posttransfer(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/transfer.c' l='1416'>/*
+ * Curl_posttransfer() is called immediately after a transfer ends
+ */</doc>

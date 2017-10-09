@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/urldata.h' l='1635' type='_Bool'/>
+<offset>11648</offset>
+<use f='codebrowser/lib/ftp.c' l='1986' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='4028' u='r' c='Curl_ftpsend'/>
+<use f='codebrowser/lib/http.c' l='1129' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='3289' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3798' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_proxy.c' l='420' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/pingpong.c' l='224' u='r' c='Curl_pp_vsendf'/>
+<use f='codebrowser/lib/pingpong.c' l='369' u='r' c='Curl_pp_readresp'/>
+<use f='codebrowser/lib/sendf.c' l='226' u='r' c='Curl_infof'/>
+<use f='codebrowser/lib/sendf.c' l='244' u='r' c='Curl_failf'/>
+<use f='codebrowser/lib/sendf.c' l='256' u='r' c='Curl_failf'/>
+<use f='codebrowser/lib/sendf.c' l='293' u='r' c='Curl_sendf'/>
+<use f='codebrowser/lib/telnet.c' l='317' u='r' c='printoption'/>
+<use f='codebrowser/lib/telnet.c' l='715' u='r' c='printsub'/>
+<use f='codebrowser/lib/transfer.c' l='651' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1042' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/url.c' l='789' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='3962' u='r' c='Curl_verboseconnect'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1253' u='r' c='Curl_ossl_shutdown'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2134' u='r' c='ossl_connect_step1'/>

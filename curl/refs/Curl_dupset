@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/url.h' l='35' type='CURLcode Curl_dupset(struct Curl_easy * dst, struct Curl_easy * src)'/>
+<use f='codebrowser/lib/easy.c' l='891' u='c' c='curl_easy_duphandle'/>
+<def f='codebrowser/lib/url.c' l='362' ll='394' type='CURLcode Curl_dupset(struct Curl_easy * dst, struct Curl_easy * src)'/>

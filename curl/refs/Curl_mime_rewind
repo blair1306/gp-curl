@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/mime.h' l='134' type='CURLcode Curl_mime_rewind(curl_mimepart * part)'/>
+<use f='codebrowser/lib/http.c' l='1972' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='739' u='c' c='imap_perform_append'/>
+<def f='codebrowser/lib/mime.c' l='1475' ll='1479' type='CURLcode Curl_mime_rewind(curl_mimepart * part)'/>
+<doc f='codebrowser/lib/mime.c' l='1474'>/* Rewind mime stream. */</doc>
+<use f='codebrowser/lib/smtp.c' l='551' u='c' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/transfer.c' l='294' u='c' c='Curl_readrewind'/>

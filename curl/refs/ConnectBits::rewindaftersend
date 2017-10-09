@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='408' type='_Bool'/>
+<offset>144</offset>
+<use f='codebrowser/lib/http.c' l='420' u='w' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='437' u='w' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='516' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='3170' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3218' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_proxy.c' l='640' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/transfer.c' l='273' u='w' c='Curl_readrewind'/>
+<use f='codebrowser/lib/transfer.c' l='879' u='r' c='done_sending'/>

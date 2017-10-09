@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/curl_setup.h' l='534'/>
+<use f='codebrowser/lib/asyn.h' l='147' u='a'/>
+<use f='codebrowser/lib/asyn.h' l='160' u='a'/>
+<use f='codebrowser/lib/hostip.h' l='151' u='a'/>
+<use f='codebrowser/lib/urldata.h' l='476' u='a'/>
+<use f='codebrowser/lib/urldata.h' l='987' u='a'/>
+<use f='codebrowser/lib/hostasyn.c' l='57' u='a'/>
+<use f='codebrowser/lib/hostip.c' l='654' u='a'/>
+<use f='codebrowser/lib/multi.c' l='1500' u='a'/>
+<use f='codebrowser/lib/version.c' l='305' u='a'/>

@@ -1,0 +1,903 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>hostip.c source code [codebrowser/lib/hostip.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="hostcache_prune_data "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/hostip.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='hostip.c.html'>hostip.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <a class="macro" href="curl_config.h.html#429" data-ref="_M/HAVE_NETINET_IN_H">HAVE_NETINET_IN_H</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="../../include/netinet/in.h.html">&lt;netinet/in.h&gt;</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="28">ifdef</span> <a class="macro" href="curl_config.h.html#426" data-ref="_M/HAVE_NETDB_H">HAVE_NETDB_H</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="../../include/netdb.h.html">&lt;netdb.h&gt;</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="28">endif</span></u></td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="31">ifdef</span> <a class="macro" href="curl_config.h.html#116" data-ref="_M/HAVE_ARPA_INET_H">HAVE_ARPA_INET_H</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="../../include/arpa/inet.h.html">&lt;arpa/inet.h&gt;</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="31">endif</span></u></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifdef</span> <span class="macro" data-ref="_M/__VMS">__VMS</span></u></td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;in.h&gt;</u></td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;inet.h&gt;</u></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="34">endif</span></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">ifdef</span> <a class="macro" href="curl_config.h.html#528" data-ref="_M/HAVE_SETJMP_H">HAVE_SETJMP_H</a></u></td></tr>
+<tr><th id="40">40</th><td><u>#include <a href="../../include/setjmp.h.html">&lt;setjmp.h&gt;</a></u></td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="39">endif</span></u></td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="42">ifdef</span> <a class="macro" href="curl_config.h.html#558" data-ref="_M/HAVE_SIGNAL_H">HAVE_SIGNAL_H</a></u></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="../../include/signal.h.html">&lt;signal.h&gt;</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="42">endif</span></u></td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td><u>#<span data-ppcond="46">ifdef</span> <span class="macro" data-ref="_M/HAVE_PROCESS_H">HAVE_PROCESS_H</span></u></td></tr>
+<tr><th id="47">47</th><td><u>#include &lt;process.h&gt;</u></td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="46">endif</span></u></td></tr>
+<tr><th id="49">49</th><td></td></tr>
+<tr><th id="50">50</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="51">51</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="52">52</th><td><u>#include <a href="hostip.h.html">"hostip.h"</a></u></td></tr>
+<tr><th id="53">53</th><td><u>#include <a href="hash.h.html">"hash.h"</a></u></td></tr>
+<tr><th id="54">54</th><td><u>#include <a href="share.h.html">"share.h"</a></u></td></tr>
+<tr><th id="55">55</th><td><u>#include <a href="strerror.h.html">"strerror.h"</a></u></td></tr>
+<tr><th id="56">56</th><td><u>#include <a href="url.h.html">"url.h"</a></u></td></tr>
+<tr><th id="57">57</th><td><u>#include <a href="inet_ntop.h.html">"inet_ntop.h"</a></u></td></tr>
+<tr><th id="58">58</th><td><u>#include <a href="warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="59">59</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="60">60</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="61">61</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="62">62</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td><u>#<span data-ppcond="64">if</span> defined(<span class="macro" data-ref="_M/CURLRES_SYNCH">CURLRES_SYNCH</span>) &amp;&amp; \</u></td></tr>
+<tr><th id="65">65</th><td><u>    defined(<a class="macro" href="curl_config.h.html#110" data-ref="_M/HAVE_ALARM">HAVE_ALARM</a>) &amp;&amp; defined(<a class="macro" href="../../include/x86_64-linux-gnu/bits/signum.h.html#46" data-ref="_M/SIGALRM">SIGALRM</a>) &amp;&amp; defined(<a class="macro" href="curl_config.h.html#561" data-ref="_M/HAVE_SIGSETJMP">HAVE_SIGSETJMP</a>)</u></td></tr>
+<tr><th id="66">66</th><td><i>/* alarm-based timeouts can only be used with all the dependencies satisfied */</i></td></tr>
+<tr><th id="67">67</th><td><u>#define USE_ALARM_TIMEOUT</u></td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="64">endif</span></u></td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td><i>/*</i></td></tr>
+<tr><th id="71">71</th><td><i> * hostip.c explained</i></td></tr>
+<tr><th id="72">72</th><td><i> * ==================</i></td></tr>
+<tr><th id="73">73</th><td><i> *</i></td></tr>
+<tr><th id="74">74</th><td><i> * The main COMPILE-TIME DEFINES to keep in mind when reading the host*.c</i></td></tr>
+<tr><th id="75">75</th><td><i> * source file are these:</i></td></tr>
+<tr><th id="76">76</th><td><i> *</i></td></tr>
+<tr><th id="77">77</th><td><i> * CURLRES_IPV6 - this host has getaddrinfo() and family, and thus we use</i></td></tr>
+<tr><th id="78">78</th><td><i> * that. The host may not be able to resolve IPv6, but we don't really have to</i></td></tr>
+<tr><th id="79">79</th><td><i> * take that into account. Hosts that aren't IPv6-enabled have CURLRES_IPV4</i></td></tr>
+<tr><th id="80">80</th><td><i> * defined.</i></td></tr>
+<tr><th id="81">81</th><td><i> *</i></td></tr>
+<tr><th id="82">82</th><td><i> * CURLRES_ARES - is defined if libcurl is built to use c-ares for</i></td></tr>
+<tr><th id="83">83</th><td><i> * asynchronous name resolves. This can be Windows or *nix.</i></td></tr>
+<tr><th id="84">84</th><td><i> *</i></td></tr>
+<tr><th id="85">85</th><td><i> * CURLRES_THREADED - is defined if libcurl is built to run under (native)</i></td></tr>
+<tr><th id="86">86</th><td><i> * Windows, and then the name resolve will be done in a new thread, and the</i></td></tr>
+<tr><th id="87">87</th><td><i> * supported API will be the same as for ares-builds.</i></td></tr>
+<tr><th id="88">88</th><td><i> *</i></td></tr>
+<tr><th id="89">89</th><td><i> * If any of the two previous are defined, CURLRES_ASYNCH is defined too. If</i></td></tr>
+<tr><th id="90">90</th><td><i> * libcurl is not built to use an asynchronous resolver, CURLRES_SYNCH is</i></td></tr>
+<tr><th id="91">91</th><td><i> * defined.</i></td></tr>
+<tr><th id="92">92</th><td><i> *</i></td></tr>
+<tr><th id="93">93</th><td><i> * The host*.c sources files are split up like this:</i></td></tr>
+<tr><th id="94">94</th><td><i> *</i></td></tr>
+<tr><th id="95">95</th><td><i> * hostip.c   - method-independent resolver functions and utility functions</i></td></tr>
+<tr><th id="96">96</th><td><i> * hostasyn.c - functions for asynchronous name resolves</i></td></tr>
+<tr><th id="97">97</th><td><i> * hostsyn.c  - functions for synchronous name resolves</i></td></tr>
+<tr><th id="98">98</th><td><i> * hostip4.c  - IPv4 specific functions</i></td></tr>
+<tr><th id="99">99</th><td><i> * hostip6.c  - IPv6 specific functions</i></td></tr>
+<tr><th id="100">100</th><td><i> *</i></td></tr>
+<tr><th id="101">101</th><td><i> * The two asynchronous name resolver backends are implemented in:</i></td></tr>
+<tr><th id="102">102</th><td><i> * asyn-ares.c   - functions for ares-using name resolves</i></td></tr>
+<tr><th id="103">103</th><td><i> * asyn-thread.c - functions for threaded name resolves</i></td></tr>
+<tr><th id="104">104</th><td><i></i></td></tr>
+<tr><th id="105">105</th><td><i> * The hostip.h is the united header file for all this. It defines the</i></td></tr>
+<tr><th id="106">106</th><td><i> * CURLRES_* defines based on the config*.h and curl_setup.h defines.</i></td></tr>
+<tr><th id="107">107</th><td><i> */</i></td></tr>
+<tr><th id="108">108</th><td></td></tr>
+<tr><th id="109">109</th><td><i  data-doc="hostname_cache">/* These two symbols are for the global DNS cache */</i></td></tr>
+<tr><th id="110">110</th><td><em>static</em> <b>struct</b> <a class="type" href="hash.h.html#curl_hash" title='curl_hash' data-ref="curl_hash">curl_hash</a> <dfn class="tu decl def" id="hostname_cache" title='hostname_cache' data-type='struct curl_hash' data-ref="hostname_cache">hostname_cache</dfn>;</td></tr>
+<tr><th id="111">111</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="host_cache_initialized" title='host_cache_initialized' data-type='int' data-ref="host_cache_initialized">host_cache_initialized</dfn>;</td></tr>
+<tr><th id="112">112</th><td></td></tr>
+<tr><th id="113">113</th><td><em>static</em> <em>void</em> <a class="tu decl" href="#freednsentry" title='freednsentry' data-type='void freednsentry(void * freethis)' data-ref="freednsentry">freednsentry</a>(<em>void</em> *<dfn class="local col1 decl" id="1freethis" title='freethis' data-type='void *' data-ref="1freethis">freethis</dfn>);</td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td><i>/*</i></td></tr>
+<tr><th id="116">116</th><td><i> * Curl_global_host_cache_init() initializes and sets up a global DNS cache.</i></td></tr>
+<tr><th id="117">117</th><td><i> * Global DNS cache is general badness. Do not use. This will be removed in</i></td></tr>
+<tr><th id="118">118</th><td><i> * a future version. Use the share interface instead!</i></td></tr>
+<tr><th id="119">119</th><td><i> *</i></td></tr>
+<tr><th id="120">120</th><td><i> * Returns a struct curl_hash pointer on success, NULL on failure.</i></td></tr>
+<tr><th id="121">121</th><td><i> */</i></td></tr>
+<tr><th id="122">122</th><td><b>struct</b> <a class="type" href="hash.h.html#curl_hash" title='curl_hash' data-ref="curl_hash">curl_hash</a> *<dfn class="decl def" id="Curl_global_host_cache_init" title='Curl_global_host_cache_init' data-ref="Curl_global_host_cache_init">Curl_global_host_cache_init</dfn>(<em>void</em>)</td></tr>
+<tr><th id="123">123</th><td>{</td></tr>
+<tr><th id="124">124</th><td>  <em>int</em> <dfn class="local col2 decl" id="2rc" title='rc' data-type='int' data-ref="2rc">rc</dfn> = <var>0</var>;</td></tr>
+<tr><th id="125">125</th><td>  <b>if</b>(!<a class="tu ref" href="#host_cache_initialized" title='host_cache_initialized' data-use='r' data-ref="host_cache_initialized">host_cache_initialized</a>) {</td></tr>
+<tr><th id="126">126</th><td>    <a class="local col2 ref" href="#2rc" title='rc' data-ref="2rc">rc</a> = <a class="ref" href="hash.h.html#Curl_hash_init" title='Curl_hash_init' data-ref="Curl_hash_init">Curl_hash_init</a>(&amp;<a class="tu ref" href="#hostname_cache" title='hostname_cache' data-use='a' data-ref="hostname_cache">hostname_cache</a>, <var>7</var>, <a class="ref" href="hash.h.html#Curl_hash_str" title='Curl_hash_str' data-ref="Curl_hash_str">Curl_hash_str</a>,</td></tr>
+<tr><th id="127">127</th><td>                        <a class="ref" href="hash.h.html#Curl_str_key_compare" title='Curl_str_key_compare' data-ref="Curl_str_key_compare">Curl_str_key_compare</a>, <a class="tu ref" href="#freednsentry" title='freednsentry' data-use='r' data-ref="freednsentry">freednsentry</a>);</td></tr>
+<tr><th id="128">128</th><td>    <b>if</b>(!<a class="local col2 ref" href="#2rc" title='rc' data-ref="2rc">rc</a>)</td></tr>
+<tr><th id="129">129</th><td>      <a class="tu ref" href="#host_cache_initialized" title='host_cache_initialized' data-use='w' data-ref="host_cache_initialized">host_cache_initialized</a> = <var>1</var>;</td></tr>
+<tr><th id="130">130</th><td>  }</td></tr>
+<tr><th id="131">131</th><td>  <b>return</b> <a class="local col2 ref" href="#2rc" title='rc' data-ref="2rc">rc</a>?<span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>:&amp;<a class="tu ref" href="#hostname_cache" title='hostname_cache' data-use='a' data-ref="hostname_cache">hostname_cache</a>;</td></tr>
+<tr><th id="132">132</th><td>}</td></tr>
+<tr><th id="133">133</th><td></td></tr>
+<tr><th id="134">134</th><td><i>/*</i></td></tr>
+<tr><th id="135">135</th><td><i> * Destroy and cleanup the global DNS cache</i></td></tr>
+<tr><th id="136">136</th><td><i> */</i></td></tr>
+<tr><th id="137">137</th><td><em>void</em> <dfn class="decl def" id="Curl_global_host_cache_dtor" title='Curl_global_host_cache_dtor' data-ref="Curl_global_host_cache_dtor">Curl_global_host_cache_dtor</dfn>(<em>void</em>)</td></tr>
+<tr><th id="138">138</th><td>{</td></tr>
+<tr><th id="139">139</th><td>  <b>if</b>(<a class="tu ref" href="#host_cache_initialized" title='host_cache_initialized' data-use='r' data-ref="host_cache_initialized">host_cache_initialized</a>) {</td></tr>
+<tr><th id="140">140</th><td>    <a class="ref" href="hash.h.html#Curl_hash_destroy" title='Curl_hash_destroy' data-ref="Curl_hash_destroy">Curl_hash_destroy</a>(&amp;<a class="tu ref" href="#hostname_cache" title='hostname_cache' data-use='a' data-ref="hostname_cache">hostname_cache</a>);</td></tr>
+<tr><th id="141">141</th><td>    <a class="tu ref" href="#host_cache_initialized" title='host_cache_initialized' data-use='w' data-ref="host_cache_initialized">host_cache_initialized</a> = <var>0</var>;</td></tr>
+<tr><th id="142">142</th><td>  }</td></tr>
+<tr><th id="143">143</th><td>}</td></tr>
+<tr><th id="144">144</th><td></td></tr>
+<tr><th id="145">145</th><td><i>/*</i></td></tr>
+<tr><th id="146">146</th><td><i> * Return # of addresses in a Curl_addrinfo struct</i></td></tr>
+<tr><th id="147">147</th><td><i> */</i></td></tr>
+<tr><th id="148">148</th><td><em>int</em> <dfn class="decl def" id="Curl_num_addresses" title='Curl_num_addresses' data-ref="Curl_num_addresses">Curl_num_addresses</dfn>(<em>const</em> <a class="typedef" href="curl_addrinfo.h.html#Curl_addrinfo" title='Curl_addrinfo' data-type='struct Curl_addrinfo' data-ref="Curl_addrinfo">Curl_addrinfo</a> *<dfn class="local col3 decl" id="3addr" title='addr' data-type='const Curl_addrinfo *' data-ref="3addr">addr</dfn>)</td></tr>
+<tr><th id="149">149</th><td>{</td></tr>
+<tr><th id="150">150</th><td>  <em>int</em> <dfn class="local col4 decl" id="4i" title='i' data-type='int' data-ref="4i">i</dfn> = <var>0</var>;</td></tr>
+<tr><th id="151">151</th><td>  <b>while</b>(<a class="local col3 ref" href="#3addr" title='addr' data-ref="3addr">addr</a>) {</td></tr>
+<tr><th id="152">152</th><td>    <a class="local col3 ref" href="#3addr" title='addr' data-ref="3addr">addr</a> = <a class="local col3 ref" href="#3addr" title='addr' data-ref="3addr">addr</a>-&gt;<a class="ref" href="curl_addrinfo.h.html#Curl_addrinfo::ai_next" title='Curl_addrinfo::ai_next' data-ref="Curl_addrinfo::ai_next">ai_next</a>;</td></tr>
+<tr><th id="153">153</th><td>    <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>++;</td></tr>
+<tr><th id="154">154</th><td>  }</td></tr>
+<tr><th id="155">155</th><td>  <b>return</b> <a class="local col4 ref" href="#4i" title='i' data-ref="4i">i</a>;</td></tr>
+<tr><th id="156">156</th><td>}</td></tr>
+<tr><th id="157">157</th><td></td></tr>
+<tr><th id="158">158</th><td><i>/*</i></td></tr>
+<tr><th id="159">159</th><td><i> * Curl_printable_address() returns a printable version of the 1st address</i></td></tr>
+<tr><th id="160">160</th><td><i> * given in the 'ai' argument. The result will be stored in the buf that is</i></td></tr>
+<tr><th id="161">161</th><td><i> * bufsize bytes big.</i></td></tr>
+<tr><th id="162">162</th><td><i> *</i></td></tr>
+<tr><th id="163">163</th><td><i> * If the conversion fails, it returns NULL.</i></td></tr>
+<tr><th id="164">164</th><td><i> */</i></td></tr>
+<tr><th id="165">165</th><td><em>const</em> <em>char</em> *</td></tr>
+<tr><th id="166">166</th><td><dfn class="decl def" id="Curl_printable_address" title='Curl_printable_address' data-ref="Curl_printable_address">Curl_printable_address</dfn>(<em>const</em> <a class="typedef" href="curl_addrinfo.h.html#Curl_addrinfo" title='Curl_addrinfo' data-type='struct Curl_addrinfo' data-ref="Curl_addrinfo">Curl_addrinfo</a> *<dfn class="local col5 decl" id="5ai" title='ai' data-type='const Curl_addrinfo *' data-ref="5ai">ai</dfn>, <em>char</em> *<dfn class="local col6 decl" id="6buf" title='buf' data-type='char *' data-ref="6buf">buf</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="7bufsize" title='bufsize' data-type='size_t' data-ref="7bufsize">bufsize</dfn>)</td></tr>
+<tr><th id="167">167</th><td>{</td></tr>
+<tr><th id="168">168</th><td>  <em>const</em> <b>struct</b> <a class="type" href="../../include/netinet/in.h.html#sockaddr_in" title='sockaddr_in' data-ref="sockaddr_in">sockaddr_in</a> *<dfn class="local col8 decl" id="8sa4" title='sa4' data-type='const struct sockaddr_in *' data-ref="8sa4">sa4</dfn>;</td></tr>
+<tr><th id="169">169</th><td>  <em>const</em> <b>struct</b> <a class="type" href="../../include/netinet/in.h.html#in_addr" title='in_addr' data-ref="in_addr">in_addr</a> *<dfn class="local col9 decl" id="9ipaddr4" title='ipaddr4' data-type='const struct in_addr *' data-ref="9ipaddr4">ipaddr4</dfn>;</td></tr>
+<tr><th id="170">170</th><td><u>#<span data-ppcond="170">ifdef</span> <a class="macro" href="curl_config.h.html#86" data-ref="_M/ENABLE_IPV6">ENABLE_IPV6</a></u></td></tr>
+<tr><th id="171">171</th><td>  <em>const</em> <b>struct</b> <a class="type" href="../../include/netinet/in.h.html#sockaddr_in6" title='sockaddr_in6' data-ref="sockaddr_in6">sockaddr_in6</a> *<dfn class="local col0 decl" id="10sa6" title='sa6' data-type='const struct sockaddr_in6 *' data-ref="10sa6">sa6</dfn>;</td></tr>
+<tr><th id="172">172</th><td>  <em>const</em> <b>struct</b> <a class="type" href="../../include/netinet/in.h.html#in6_addr" title='in6_addr' data-ref="in6_addr">in6_addr</a> *<dfn class="local col1 decl" id="11ipaddr6" title='ipaddr6' data-type='const struct in6_addr *' data-ref="11ipaddr6">ipaddr6</dfn>;</td></tr>
+<tr><th id="173">173</th><td><u>#<span data-ppcond="170">endif</span></u></td></tr>
+<tr><th id="174">174</th><td></td></tr>
+<tr><th id="175">175</th><td>  <b>switch</b>(<a class="local col5 ref" href="#5ai" title='ai' data-ref="5ai">ai</a>-&gt;<a class="ref" href="curl_addrinfo.h.html#Curl_addrinfo::ai_family" title='Curl_addrinfo::ai_family' data-ref="Curl_addrinfo::ai_family">ai_family</a>) {</td></tr>
+<tr><th id="176">176</th><td>    <b>case</b> <a class="macro" href="../../include/x86_64-linux-gnu/bits/socket.h.html#92" title="2" data-ref="_M/AF_INET">AF_INET</a>:</td></tr>
+<tr><th id="177">177</th><td>      <a class="local col8 ref" href="#8sa4" title='sa4' data-ref="8sa4">sa4</a> = (<em>const</em> <em>void</em> *)<a class="local col5 ref" href="#5ai" title='ai' data-ref="5ai">ai</a>-&gt;<a class="ref" href="curl_addrinfo.h.html#Curl_addrinfo::ai_addr" title='Curl_addrinfo::ai_addr' data-ref="Curl_addrinfo::ai_addr">ai_addr</a>;</td></tr>
+<tr><th id="178">178</th><td>      <a class="local col9 ref" href="#9ipaddr4" title='ipaddr4' data-ref="9ipaddr4">ipaddr4</a> = &amp;<a class="local col8 ref" href="#8sa4" title='sa4' data-ref="8sa4">sa4</a>-&gt;<a class="ref" href="../../include/netinet/in.h.html#sockaddr_in::sin_addr" title='sockaddr_in::sin_addr' data-ref="sockaddr_in::sin_addr">sin_addr</a>;</td></tr>
+<tr><th id="179">179</th><td>      <b>return</b> <a class="ref" href="inet_ntop.h.html#Curl_inet_ntop" title='Curl_inet_ntop' data-ref="Curl_inet_ntop">Curl_inet_ntop</a>(<a class="local col5 ref" href="#5ai" title='ai' data-ref="5ai">ai</a>-&gt;<a class="ref" href="curl_addrinfo.h.html#Curl_addrinfo::ai_family" title='Curl_addrinfo::ai_family' data-ref="Curl_addrinfo::ai_family">ai_family</a>, (<em>const</em> <em>void</em> *)<a class="local col9 ref" href="#9ipaddr4" title='ipaddr4' data-ref="9ipaddr4">ipaddr4</a>, <a class="local col6 ref" href="#6buf" title='buf' data-ref="6buf">buf</a>,</td></tr>
+<tr><th id="180">180</th><td>                            <a class="local col7 ref" href="#7bufsize" title='bufsize' data-ref="7bufsize">bufsize</a>);</td></tr>
+<tr><th id="181">181</th><td><u>#<span data-ppcond="181">ifdef</span> <a class="macro" href="curl_config.h.html#86" data-ref="_M/ENABLE_IPV6">ENABLE_IPV6</a></u></td></tr>
+<tr><th id="182">182</th><td>    <b>case</b> <a class="macro" href="../../include/x86_64-linux-gnu/bits/socket.h.html#100" title="10" data-ref="_M/AF_INET6">AF_INET6</a>:</td></tr>
+<tr><th id="183">183</th><td>      <a class="local col0 ref" href="#10sa6" title='sa6' data-ref="10sa6">sa6</a> = (<em>const</em> <em>void</em> *)<a class="local col5 ref" href="#5ai" title='ai' data-ref="5ai">ai</a>-&gt;<a class="ref" href="curl_addrinfo.h.html#Curl_addrinfo::ai_addr" title='Curl_addrinfo::ai_addr' data-ref="Curl_addrinfo::ai_addr">ai_addr</a>;</td></tr>
+<tr><th id="184">184</th><td>      <a class="local col1 ref" href="#11ipaddr6" title='ipaddr6' data-ref="11ipaddr6">ipaddr6</a> = &amp;<a class="local col0 ref" href="#10sa6" title='sa6' data-ref="10sa6">sa6</a>-&gt;<a class="ref" href="../../include/netinet/in.h.html#sockaddr_in6::sin6_addr" title='sockaddr_in6::sin6_addr' data-ref="sockaddr_in6::sin6_addr">sin6_addr</a>;</td></tr>
+<tr><th id="185">185</th><td>      <b>return</b> <a class="ref" href="inet_ntop.h.html#Curl_inet_ntop" title='Curl_inet_ntop' data-ref="Curl_inet_ntop">Curl_inet_ntop</a>(<a class="local col5 ref" href="#5ai" title='ai' data-ref="5ai">ai</a>-&gt;<a class="ref" href="curl_addrinfo.h.html#Curl_addrinfo::ai_family" title='Curl_addrinfo::ai_family' data-ref="Curl_addrinfo::ai_family">ai_family</a>, (<em>const</em> <em>void</em> *)<a class="local col1 ref" href="#11ipaddr6" title='ipaddr6' data-ref="11ipaddr6">ipaddr6</a>, <a class="local col6 ref" href="#6buf" title='buf' data-ref="6buf">buf</a>,</td></tr>
+<tr><th id="186">186</th><td>                            <a class="local col7 ref" href="#7bufsize" title='bufsize' data-ref="7bufsize">bufsize</a>);</td></tr>
+<tr><th id="187">187</th><td><u>#<span data-ppcond="181">endif</span></u></td></tr>
+<tr><th id="188">188</th><td>    <b>default</b>:</td></tr>
+<tr><th id="189">189</th><td>      <b>break</b>;</td></tr>
+<tr><th id="190">190</th><td>  }</td></tr>
+<tr><th id="191">191</th><td>  <b>return</b> <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="192">192</th><td>}</td></tr>
+<tr><th id="193">193</th><td></td></tr>
+<tr><th id="194">194</th><td><i  data-doc="create_hostcache_id">/*</i></td></tr>
+<tr><th id="195">195</th><td><i  data-doc="create_hostcache_id"> * Return a hostcache id string for the provided host + port, to be used by</i></td></tr>
+<tr><th id="196">196</th><td><i  data-doc="create_hostcache_id"> * the DNS caching.</i></td></tr>
+<tr><th id="197">197</th><td><i  data-doc="create_hostcache_id"> */</i></td></tr>
+<tr><th id="198">198</th><td><em>static</em> <em>char</em> *</td></tr>
+<tr><th id="199">199</th><td><dfn class="tu decl def" id="create_hostcache_id" title='create_hostcache_id' data-type='char * create_hostcache_id(const char * name, int port)' data-ref="create_hostcache_id">create_hostcache_id</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="12name" title='name' data-type='const char *' data-ref="12name">name</dfn>, <em>int</em> <dfn class="local col3 decl" id="13port" title='port' data-type='int' data-ref="13port">port</dfn>)</td></tr>
+<tr><th id="200">200</th><td>{</td></tr>
+<tr><th id="201">201</th><td>  <i>/* create and return the new allocated entry */</i></td></tr>
+<tr><th id="202">202</th><td>  <em>char</em> *<dfn class="local col4 decl" id="14id" title='id' data-type='char *' data-ref="14id">id</dfn> = <a class="macro" href="curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s:%d"</q>, <a class="local col2 ref" href="#12name" title='name' data-ref="12name">name</a>, <a class="local col3 ref" href="#13port" title='port' data-ref="13port">port</a>);</td></tr>
+<tr><th id="203">203</th><td>  <em>char</em> *<dfn class="local col5 decl" id="15ptr" title='ptr' data-type='char *' data-ref="15ptr">ptr</dfn> = <a class="local col4 ref" href="#14id" title='id' data-ref="14id">id</a>;</td></tr>
+<tr><th id="204">204</th><td>  <b>if</b>(<a class="local col5 ref" href="#15ptr" title='ptr' data-ref="15ptr">ptr</a>) {</td></tr>
+<tr><th id="205">205</th><td>    <i>/* lower case the name part */</i></td></tr>
+<tr><th id="206">206</th><td>    <b>while</b>(*<a class="local col5 ref" href="#15ptr" title='ptr' data-ref="15ptr">ptr</a> &amp;&amp; (*<a class="local col5 ref" href="#15ptr" title='ptr' data-ref="15ptr">ptr</a> != <kbd>':'</kbd>)) {</td></tr>
+<tr><th id="207">207</th><td>      *<a class="local col5 ref" href="#15ptr" title='ptr' data-ref="15ptr">ptr</a> = (<em>char</em>)<a class="macro" href="curl_setup_once.h.html#296" title="(tolower((int) ((unsigned char)*ptr)))" data-ref="_M/TOLOWER">TOLOWER</a>(*<a class="local col5 ref" href="#15ptr" title='ptr' data-ref="15ptr">ptr</a>);</td></tr>
+<tr><th id="208">208</th><td>      <a class="local col5 ref" href="#15ptr" title='ptr' data-ref="15ptr">ptr</a>++;</td></tr>
+<tr><th id="209">209</th><td>    }</td></tr>
+<tr><th id="210">210</th><td>  }</td></tr>
+<tr><th id="211">211</th><td>  <b>return</b> <a class="local col4 ref" href="#14id" title='id' data-ref="14id">id</a>;</td></tr>
+<tr><th id="212">212</th><td>}</td></tr>
+<tr><th id="213">213</th><td></td></tr>
+<tr><th id="214">214</th><td><b>struct</b> <dfn class="type def" id="hostcache_prune_data" title='hostcache_prune_data' data-ref="hostcache_prune_data">hostcache_prune_data</dfn> {</td></tr>
+<tr><th id="215">215</th><td>  <em>long</em> <dfn class="tu decl" id="hostcache_prune_data::cache_timeout" title='hostcache_prune_data::cache_timeout' data-type='long' data-ref="hostcache_prune_data::cache_timeout">cache_timeout</dfn>;</td></tr>
+<tr><th id="216">216</th><td>  <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="tu decl" id="hostcache_prune_data::now" title='hostcache_prune_data::now' data-type='time_t' data-ref="hostcache_prune_data::now">now</dfn>;</td></tr>
+<tr><th id="217">217</th><td>};</td></tr>
+<tr><th id="218">218</th><td></td></tr>
+<tr><th id="219">219</th><td><i  data-doc="hostcache_timestamp_remove">/*</i></td></tr>
+<tr><th id="220">220</th><td><i  data-doc="hostcache_timestamp_remove"> * This function is set as a callback to be called for every entry in the DNS</i></td></tr>
+<tr><th id="221">221</th><td><i  data-doc="hostcache_timestamp_remove"> * cache when we want to prune old unused entries.</i></td></tr>
+<tr><th id="222">222</th><td><i  data-doc="hostcache_timestamp_remove"> *</i></td></tr>
+<tr><th id="223">223</th><td><i  data-doc="hostcache_timestamp_remove"> * Returning non-zero means remove the entry, return 0 to keep it in the</i></td></tr>
+<tr><th id="224">224</th><td><i  data-doc="hostcache_timestamp_remove"> * cache.</i></td></tr>
+<tr><th id="225">225</th><td><i  data-doc="hostcache_timestamp_remove"> */</i></td></tr>
+<tr><th id="226">226</th><td><em>static</em> <em>int</em></td></tr>
+<tr><th id="227">227</th><td><dfn class="tu decl def" id="hostcache_timestamp_remove" title='hostcache_timestamp_remove' data-type='int hostcache_timestamp_remove(void * datap, void * hc)' data-ref="hostcache_timestamp_remove">hostcache_timestamp_remove</dfn>(<em>void</em> *<dfn class="local col6 decl" id="16datap" title='datap' data-type='void *' data-ref="16datap">datap</dfn>, <em>void</em> *<dfn class="local col7 decl" id="17hc" title='hc' data-type='void *' data-ref="17hc">hc</dfn>)</td></tr>
+<tr><th id="228">228</th><td>{</td></tr>
+<tr><th id="229">229</th><td>  <b>struct</b> <a class="type" href="#hostcache_prune_data" title='hostcache_prune_data' data-ref="hostcache_prune_data">hostcache_prune_data</a> *<dfn class="local col8 decl" id="18data" title='data' data-type='struct hostcache_prune_data *' data-ref="18data">data</dfn> =</td></tr>
+<tr><th id="230">230</th><td>    (<b>struct</b> <a class="type" href="#hostcache_prune_data" title='hostcache_prune_data' data-ref="hostcache_prune_data">hostcache_prune_data</a> *) <a class="local col6 ref" href="#16datap" title='datap' data-ref="16datap">datap</a>;</td></tr>
+<tr><th id="231">231</th><td>  <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col9 decl" id="19c" title='c' data-type='struct Curl_dns_entry *' data-ref="19c">c</dfn> = (<b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *) <a class="local col7 ref" href="#17hc" title='hc' data-ref="17hc">hc</a>;</td></tr>
+<tr><th id="232">232</th><td></td></tr>
+<tr><th id="233">233</th><td>  <b>return</b> (<var>0</var> != <a class="local col9 ref" href="#19c" title='c' data-ref="19c">c</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::timestamp" title='Curl_dns_entry::timestamp' data-ref="Curl_dns_entry::timestamp">timestamp</a>)</td></tr>
+<tr><th id="234">234</th><td>    &amp;&amp; (<a class="local col8 ref" href="#18data" title='data' data-ref="18data">data</a>-&gt;<a class="tu ref" href="#hostcache_prune_data::now" title='hostcache_prune_data::now' data-use='r' data-ref="hostcache_prune_data::now">now</a> - <a class="local col9 ref" href="#19c" title='c' data-ref="19c">c</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::timestamp" title='Curl_dns_entry::timestamp' data-ref="Curl_dns_entry::timestamp">timestamp</a> &gt;= <a class="local col8 ref" href="#18data" title='data' data-ref="18data">data</a>-&gt;<a class="tu ref" href="#hostcache_prune_data::cache_timeout" title='hostcache_prune_data::cache_timeout' data-use='r' data-ref="hostcache_prune_data::cache_timeout">cache_timeout</a>);</td></tr>
+<tr><th id="235">235</th><td>}</td></tr>
+<tr><th id="236">236</th><td></td></tr>
+<tr><th id="237">237</th><td><i  data-doc="hostcache_prune">/*</i></td></tr>
+<tr><th id="238">238</th><td><i  data-doc="hostcache_prune"> * Prune the DNS cache. This assumes that a lock has already been taken.</i></td></tr>
+<tr><th id="239">239</th><td><i  data-doc="hostcache_prune"> */</i></td></tr>
+<tr><th id="240">240</th><td><em>static</em> <em>void</em></td></tr>
+<tr><th id="241">241</th><td><dfn class="tu decl def" id="hostcache_prune" title='hostcache_prune' data-type='void hostcache_prune(struct curl_hash * hostcache, long cache_timeout, time_t now)' data-ref="hostcache_prune">hostcache_prune</dfn>(<b>struct</b> <a class="type" href="hash.h.html#curl_hash" title='curl_hash' data-ref="curl_hash">curl_hash</a> *<dfn class="local col0 decl" id="20hostcache" title='hostcache' data-type='struct curl_hash *' data-ref="20hostcache">hostcache</dfn>, <em>long</em> <dfn class="local col1 decl" id="21cache_timeout" title='cache_timeout' data-type='long' data-ref="21cache_timeout">cache_timeout</dfn>, <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col2 decl" id="22now" title='now' data-type='time_t' data-ref="22now">now</dfn>)</td></tr>
+<tr><th id="242">242</th><td>{</td></tr>
+<tr><th id="243">243</th><td>  <b>struct</b> <a class="type" href="#hostcache_prune_data" title='hostcache_prune_data' data-ref="hostcache_prune_data">hostcache_prune_data</a> <dfn class="local col3 decl" id="23user" title='user' data-type='struct hostcache_prune_data' data-ref="23user">user</dfn>;</td></tr>
+<tr><th id="244">244</th><td></td></tr>
+<tr><th id="245">245</th><td>  <a class="local col3 ref" href="#23user" title='user' data-ref="23user">user</a>.<a class="tu ref" href="#hostcache_prune_data::cache_timeout" title='hostcache_prune_data::cache_timeout' data-use='w' data-ref="hostcache_prune_data::cache_timeout">cache_timeout</a> = <a class="local col1 ref" href="#21cache_timeout" title='cache_timeout' data-ref="21cache_timeout">cache_timeout</a>;</td></tr>
+<tr><th id="246">246</th><td>  <a class="local col3 ref" href="#23user" title='user' data-ref="23user">user</a>.<a class="tu ref" href="#hostcache_prune_data::now" title='hostcache_prune_data::now' data-use='w' data-ref="hostcache_prune_data::now">now</a> = <a class="local col2 ref" href="#22now" title='now' data-ref="22now">now</a>;</td></tr>
+<tr><th id="247">247</th><td></td></tr>
+<tr><th id="248">248</th><td>  <a class="ref" href="hash.h.html#Curl_hash_clean_with_criterium" title='Curl_hash_clean_with_criterium' data-ref="Curl_hash_clean_with_criterium">Curl_hash_clean_with_criterium</a>(<a class="local col0 ref" href="#20hostcache" title='hostcache' data-ref="20hostcache">hostcache</a>,</td></tr>
+<tr><th id="249">249</th><td>                                 (<em>void</em> *) &amp;<a class="local col3 ref" href="#23user" title='user' data-ref="23user">user</a>,</td></tr>
+<tr><th id="250">250</th><td>                                 <a class="tu ref" href="#hostcache_timestamp_remove" title='hostcache_timestamp_remove' data-use='r' data-ref="hostcache_timestamp_remove">hostcache_timestamp_remove</a>);</td></tr>
+<tr><th id="251">251</th><td>}</td></tr>
+<tr><th id="252">252</th><td></td></tr>
+<tr><th id="253">253</th><td><i>/*</i></td></tr>
+<tr><th id="254">254</th><td><i> * Library-wide function for pruning the DNS cache. This function takes and</i></td></tr>
+<tr><th id="255">255</th><td><i> * returns the appropriate locks.</i></td></tr>
+<tr><th id="256">256</th><td><i> */</i></td></tr>
+<tr><th id="257">257</th><td><em>void</em> <dfn class="decl def" id="Curl_hostcache_prune" title='Curl_hostcache_prune' data-ref="Curl_hostcache_prune">Curl_hostcache_prune</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col4 decl" id="24data" title='data' data-type='struct Curl_easy *' data-ref="24data">data</dfn>)</td></tr>
+<tr><th id="258">258</th><td>{</td></tr>
+<tr><th id="259">259</th><td>  <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col5 decl" id="25now" title='now' data-type='time_t' data-ref="25now">now</dfn>;</td></tr>
+<tr><th id="260">260</th><td></td></tr>
+<tr><th id="261">261</th><td>  <b>if</b>((<a class="local col4 ref" href="#24data" title='data' data-ref="24data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::dns_cache_timeout" title='UserDefined::dns_cache_timeout' data-ref="UserDefined::dns_cache_timeout">dns_cache_timeout</a> == -<var>1</var>) || !<a class="local col4 ref" href="#24data" title='data' data-ref="24data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::dns" title='Curl_easy::dns' data-ref="Curl_easy::dns">dns</a>.<a class="ref" href="urldata.h.html#Names::hostcache" title='Names::hostcache' data-ref="Names::hostcache">hostcache</a>)</td></tr>
+<tr><th id="262">262</th><td>    <i>/* cache forever means never prune, and NULL hostcache means</i></td></tr>
+<tr><th id="263">263</th><td><i>       we can't do it */</i></td></tr>
+<tr><th id="264">264</th><td>    <b>return</b>;</td></tr>
+<tr><th id="265">265</th><td></td></tr>
+<tr><th id="266">266</th><td>  <b>if</b>(<a class="local col4 ref" href="#24data" title='data' data-ref="24data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="267">267</th><td>    <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col4 ref" href="#24data" title='data' data-ref="24data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="268">268</th><td></td></tr>
+<tr><th id="269">269</th><td>  <a class="ref" href="../../include/time.h.html#time" title='time' data-ref="time">time</a>(&amp;<a class="local col5 ref" href="#25now" title='now' data-ref="25now">now</a>);</td></tr>
+<tr><th id="270">270</th><td></td></tr>
+<tr><th id="271">271</th><td>  <i>/* Remove outdated and unused entries from the hostcache */</i></td></tr>
+<tr><th id="272">272</th><td>  <a class="tu ref" href="#hostcache_prune" title='hostcache_prune' data-use='c' data-ref="hostcache_prune">hostcache_prune</a>(<a class="local col4 ref" href="#24data" title='data' data-ref="24data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::dns" title='Curl_easy::dns' data-ref="Curl_easy::dns">dns</a>.<a class="ref" href="urldata.h.html#Names::hostcache" title='Names::hostcache' data-ref="Names::hostcache">hostcache</a>,</td></tr>
+<tr><th id="273">273</th><td>                  <a class="local col4 ref" href="#24data" title='data' data-ref="24data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::dns_cache_timeout" title='UserDefined::dns_cache_timeout' data-ref="UserDefined::dns_cache_timeout">dns_cache_timeout</a>,</td></tr>
+<tr><th id="274">274</th><td>                  <a class="local col5 ref" href="#25now" title='now' data-ref="25now">now</a>);</td></tr>
+<tr><th id="275">275</th><td></td></tr>
+<tr><th id="276">276</th><td>  <b>if</b>(<a class="local col4 ref" href="#24data" title='data' data-ref="24data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="277">277</th><td>    <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col4 ref" href="#24data" title='data' data-ref="24data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="278">278</th><td>}</td></tr>
+<tr><th id="279">279</th><td></td></tr>
+<tr><th id="280">280</th><td><u>#<span data-ppcond="280">ifdef</span> <a class="macro" href="curl_config.h.html#561" data-ref="_M/HAVE_SIGSETJMP">HAVE_SIGSETJMP</a></u></td></tr>
+<tr><th id="281">281</th><td><i>/* Beware this is a global and unique instance. This is used to store the</i></td></tr>
+<tr><th id="282">282</th><td><i>   return address that we can jump back to from inside a signal handler. This</i></td></tr>
+<tr><th id="283">283</th><td><i>   is not thread-safe stuff. */</i></td></tr>
+<tr><th id="284">284</th><td><a class="typedef" href="../../include/setjmp.h.html#sigjmp_buf" title='sigjmp_buf' data-type='struct __jmp_buf_tag [1]' data-ref="sigjmp_buf">sigjmp_buf</a> <dfn class="decl def" id="curl_jmpenv" title='curl_jmpenv' data-ref="curl_jmpenv">curl_jmpenv</dfn>;</td></tr>
+<tr><th id="285">285</th><td><u>#<span data-ppcond="280">endif</span></u></td></tr>
+<tr><th id="286">286</th><td></td></tr>
+<tr><th id="287">287</th><td><i  data-doc="fetch_addr">/* lookup address, returns entry if found and not stale */</i></td></tr>
+<tr><th id="288">288</th><td><em>static</em> <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *</td></tr>
+<tr><th id="289">289</th><td><dfn class="tu decl def" id="fetch_addr" title='fetch_addr' data-type='struct Curl_dns_entry * fetch_addr(struct connectdata * conn, const char * hostname, int port)' data-ref="fetch_addr">fetch_addr</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="26conn" title='conn' data-type='struct connectdata *' data-ref="26conn">conn</dfn>,</td></tr>
+<tr><th id="290">290</th><td>                <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="27hostname" title='hostname' data-type='const char *' data-ref="27hostname">hostname</dfn>,</td></tr>
+<tr><th id="291">291</th><td>                <em>int</em> <dfn class="local col8 decl" id="28port" title='port' data-type='int' data-ref="28port">port</dfn>)</td></tr>
+<tr><th id="292">292</th><td>{</td></tr>
+<tr><th id="293">293</th><td>  <em>char</em> *<dfn class="local col9 decl" id="29entry_id" title='entry_id' data-type='char *' data-ref="29entry_id">entry_id</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="294">294</th><td>  <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col0 decl" id="30dns" title='dns' data-type='struct Curl_dns_entry *' data-ref="30dns">dns</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="295">295</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="31entry_len" title='entry_len' data-type='size_t' data-ref="31entry_len">entry_len</dfn>;</td></tr>
+<tr><th id="296">296</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col2 decl" id="32data" title='data' data-type='struct Curl_easy *' data-ref="32data">data</dfn> = <a class="local col6 ref" href="#26conn" title='conn' data-ref="26conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="297">297</th><td></td></tr>
+<tr><th id="298">298</th><td>  <i>/* Create an entry id, based upon the hostname and port */</i></td></tr>
+<tr><th id="299">299</th><td>  <a class="local col9 ref" href="#29entry_id" title='entry_id' data-ref="29entry_id">entry_id</a> = <a class="tu ref" href="#create_hostcache_id" title='create_hostcache_id' data-use='c' data-ref="create_hostcache_id">create_hostcache_id</a>(<a class="local col7 ref" href="#27hostname" title='hostname' data-ref="27hostname">hostname</a>, <a class="local col8 ref" href="#28port" title='port' data-ref="28port">port</a>);</td></tr>
+<tr><th id="300">300</th><td>  <i>/* If we can't create the entry id, fail */</i></td></tr>
+<tr><th id="301">301</th><td>  <b>if</b>(!<a class="local col9 ref" href="#29entry_id" title='entry_id' data-ref="29entry_id">entry_id</a>)</td></tr>
+<tr><th id="302">302</th><td>    <b>return</b> <a class="local col0 ref" href="#30dns" title='dns' data-ref="30dns">dns</a>;</td></tr>
+<tr><th id="303">303</th><td></td></tr>
+<tr><th id="304">304</th><td>  <a class="local col1 ref" href="#31entry_len" title='entry_len' data-ref="31entry_len">entry_len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col9 ref" href="#29entry_id" title='entry_id' data-ref="29entry_id">entry_id</a>);</td></tr>
+<tr><th id="305">305</th><td></td></tr>
+<tr><th id="306">306</th><td>  <i>/* See if its already in our dns cache */</i></td></tr>
+<tr><th id="307">307</th><td>  <a class="local col0 ref" href="#30dns" title='dns' data-ref="30dns">dns</a> = <a class="ref" href="hash.h.html#Curl_hash_pick" title='Curl_hash_pick' data-ref="Curl_hash_pick">Curl_hash_pick</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::dns" title='Curl_easy::dns' data-ref="Curl_easy::dns">dns</a>.<a class="ref" href="urldata.h.html#Names::hostcache" title='Names::hostcache' data-ref="Names::hostcache">hostcache</a>, <a class="local col9 ref" href="#29entry_id" title='entry_id' data-ref="29entry_id">entry_id</a>, <a class="local col1 ref" href="#31entry_len" title='entry_len' data-ref="31entry_len">entry_len</a> + <var>1</var>);</td></tr>
+<tr><th id="308">308</th><td></td></tr>
+<tr><th id="309">309</th><td>  <b>if</b>(<a class="local col0 ref" href="#30dns" title='dns' data-ref="30dns">dns</a> &amp;&amp; (<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::dns_cache_timeout" title='UserDefined::dns_cache_timeout' data-ref="UserDefined::dns_cache_timeout">dns_cache_timeout</a> != -<var>1</var>)) {</td></tr>
+<tr><th id="310">310</th><td>    <i>/* See whether the returned entry is stale. Done before we release lock */</i></td></tr>
+<tr><th id="311">311</th><td>    <b>struct</b> <a class="type" href="#hostcache_prune_data" title='hostcache_prune_data' data-ref="hostcache_prune_data">hostcache_prune_data</a> <dfn class="local col3 decl" id="33user" title='user' data-type='struct hostcache_prune_data' data-ref="33user">user</dfn>;</td></tr>
+<tr><th id="312">312</th><td></td></tr>
+<tr><th id="313">313</th><td>    <a class="ref" href="../../include/time.h.html#time" title='time' data-ref="time">time</a>(&amp;<a class="local col3 ref" href="#33user" title='user' data-ref="33user">user</a>.<a class="tu ref" href="#hostcache_prune_data::now" title='hostcache_prune_data::now' data-use='a' data-ref="hostcache_prune_data::now">now</a>);</td></tr>
+<tr><th id="314">314</th><td>    <a class="local col3 ref" href="#33user" title='user' data-ref="33user">user</a>.<a class="tu ref" href="#hostcache_prune_data::cache_timeout" title='hostcache_prune_data::cache_timeout' data-use='w' data-ref="hostcache_prune_data::cache_timeout">cache_timeout</a> = <a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::dns_cache_timeout" title='UserDefined::dns_cache_timeout' data-ref="UserDefined::dns_cache_timeout">dns_cache_timeout</a>;</td></tr>
+<tr><th id="315">315</th><td></td></tr>
+<tr><th id="316">316</th><td>    <b>if</b>(<a class="tu ref" href="#hostcache_timestamp_remove" title='hostcache_timestamp_remove' data-use='c' data-ref="hostcache_timestamp_remove">hostcache_timestamp_remove</a>(&amp;<a class="local col3 ref" href="#33user" title='user' data-ref="33user">user</a>, <a class="local col0 ref" href="#30dns" title='dns' data-ref="30dns">dns</a>)) {</td></tr>
+<tr><th id="317">317</th><td>      <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <q>"Hostname in DNS cache was stale, zapped\n"</q>);</td></tr>
+<tr><th id="318">318</th><td>      <a class="local col0 ref" href="#30dns" title='dns' data-ref="30dns">dns</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>; <i>/* the memory deallocation is being handled by the hash */</i></td></tr>
+<tr><th id="319">319</th><td>      <a class="ref" href="hash.h.html#Curl_hash_delete" title='Curl_hash_delete' data-ref="Curl_hash_delete">Curl_hash_delete</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::dns" title='Curl_easy::dns' data-ref="Curl_easy::dns">dns</a>.<a class="ref" href="urldata.h.html#Names::hostcache" title='Names::hostcache' data-ref="Names::hostcache">hostcache</a>, <a class="local col9 ref" href="#29entry_id" title='entry_id' data-ref="29entry_id">entry_id</a>, <a class="local col1 ref" href="#31entry_len" title='entry_len' data-ref="31entry_len">entry_len</a> + <var>1</var>);</td></tr>
+<tr><th id="320">320</th><td>    }</td></tr>
+<tr><th id="321">321</th><td>  }</td></tr>
+<tr><th id="322">322</th><td></td></tr>
+<tr><th id="323">323</th><td>  <i>/* free the allocated entry_id again */</i></td></tr>
+<tr><th id="324">324</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(entry_id)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#29entry_id" title='entry_id' data-ref="29entry_id">entry_id</a>);</td></tr>
+<tr><th id="325">325</th><td></td></tr>
+<tr><th id="326">326</th><td>  <b>return</b> <a class="local col0 ref" href="#30dns" title='dns' data-ref="30dns">dns</a>;</td></tr>
+<tr><th id="327">327</th><td>}</td></tr>
+<tr><th id="328">328</th><td></td></tr>
+<tr><th id="329">329</th><td><i>/*</i></td></tr>
+<tr><th id="330">330</th><td><i> * Curl_fetch_addr() fetches a 'Curl_dns_entry' already in the DNS cache.</i></td></tr>
+<tr><th id="331">331</th><td><i> *</i></td></tr>
+<tr><th id="332">332</th><td><i> * Curl_resolv() checks initially and multi_runsingle() checks each time</i></td></tr>
+<tr><th id="333">333</th><td><i> * it discovers the handle in the state WAITRESOLVE whether the hostname</i></td></tr>
+<tr><th id="334">334</th><td><i> * has already been resolved and the address has already been stored in</i></td></tr>
+<tr><th id="335">335</th><td><i> * the DNS cache. This short circuits waiting for a lot of pending</i></td></tr>
+<tr><th id="336">336</th><td><i> * lookups for the same hostname requested by different handles.</i></td></tr>
+<tr><th id="337">337</th><td><i> *</i></td></tr>
+<tr><th id="338">338</th><td><i> * Returns the Curl_dns_entry entry pointer or NULL if not in the cache.</i></td></tr>
+<tr><th id="339">339</th><td><i> *</i></td></tr>
+<tr><th id="340">340</th><td><i> * The returned data *MUST* be "unlocked" with Curl_resolv_unlock() after</i></td></tr>
+<tr><th id="341">341</th><td><i> * use, or we'll leak memory!</i></td></tr>
+<tr><th id="342">342</th><td><i> */</i></td></tr>
+<tr><th id="343">343</th><td><b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *</td></tr>
+<tr><th id="344">344</th><td><dfn class="decl def" id="Curl_fetch_addr" title='Curl_fetch_addr' data-ref="Curl_fetch_addr">Curl_fetch_addr</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col4 decl" id="34conn" title='conn' data-type='struct connectdata *' data-ref="34conn">conn</dfn>,</td></tr>
+<tr><th id="345">345</th><td>                <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="35hostname" title='hostname' data-type='const char *' data-ref="35hostname">hostname</dfn>,</td></tr>
+<tr><th id="346">346</th><td>                <em>int</em> <dfn class="local col6 decl" id="36port" title='port' data-type='int' data-ref="36port">port</dfn>)</td></tr>
+<tr><th id="347">347</th><td>{</td></tr>
+<tr><th id="348">348</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col7 decl" id="37data" title='data' data-type='struct Curl_easy *' data-ref="37data">data</dfn> = <a class="local col4 ref" href="#34conn" title='conn' data-ref="34conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="349">349</th><td>  <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col8 decl" id="38dns" title='dns' data-type='struct Curl_dns_entry *' data-ref="38dns">dns</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="350">350</th><td></td></tr>
+<tr><th id="351">351</th><td>  <b>if</b>(<a class="local col7 ref" href="#37data" title='data' data-ref="37data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="352">352</th><td>    <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col7 ref" href="#37data" title='data' data-ref="37data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="353">353</th><td></td></tr>
+<tr><th id="354">354</th><td>  <a class="local col8 ref" href="#38dns" title='dns' data-ref="38dns">dns</a> = <a class="tu ref" href="#fetch_addr" title='fetch_addr' data-use='c' data-ref="fetch_addr">fetch_addr</a>(<a class="local col4 ref" href="#34conn" title='conn' data-ref="34conn">conn</a>, <a class="local col5 ref" href="#35hostname" title='hostname' data-ref="35hostname">hostname</a>, <a class="local col6 ref" href="#36port" title='port' data-ref="36port">port</a>);</td></tr>
+<tr><th id="355">355</th><td></td></tr>
+<tr><th id="356">356</th><td>  <b>if</b>(<a class="local col8 ref" href="#38dns" title='dns' data-ref="38dns">dns</a>)</td></tr>
+<tr><th id="357">357</th><td>    <a class="local col8 ref" href="#38dns" title='dns' data-ref="38dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::inuse" title='Curl_dns_entry::inuse' data-ref="Curl_dns_entry::inuse">inuse</a>++; <i>/* we use it! */</i></td></tr>
+<tr><th id="358">358</th><td></td></tr>
+<tr><th id="359">359</th><td>  <b>if</b>(<a class="local col7 ref" href="#37data" title='data' data-ref="37data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="360">360</th><td>    <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col7 ref" href="#37data" title='data' data-ref="37data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="361">361</th><td></td></tr>
+<tr><th id="362">362</th><td>  <b>return</b> <a class="local col8 ref" href="#38dns" title='dns' data-ref="38dns">dns</a>;</td></tr>
+<tr><th id="363">363</th><td>}</td></tr>
+<tr><th id="364">364</th><td></td></tr>
+<tr><th id="365">365</th><td><i>/*</i></td></tr>
+<tr><th id="366">366</th><td><i> * Curl_cache_addr() stores a 'Curl_addrinfo' struct in the DNS cache.</i></td></tr>
+<tr><th id="367">367</th><td><i> *</i></td></tr>
+<tr><th id="368">368</th><td><i> * When calling Curl_resolv() has resulted in a response with a returned</i></td></tr>
+<tr><th id="369">369</th><td><i> * address, we call this function to store the information in the dns</i></td></tr>
+<tr><th id="370">370</th><td><i> * cache etc</i></td></tr>
+<tr><th id="371">371</th><td><i> *</i></td></tr>
+<tr><th id="372">372</th><td><i> * Returns the Curl_dns_entry entry pointer or NULL if the storage failed.</i></td></tr>
+<tr><th id="373">373</th><td><i> */</i></td></tr>
+<tr><th id="374">374</th><td><b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *</td></tr>
+<tr><th id="375">375</th><td><dfn class="decl def" id="Curl_cache_addr" title='Curl_cache_addr' data-ref="Curl_cache_addr">Curl_cache_addr</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col9 decl" id="39data" title='data' data-type='struct Curl_easy *' data-ref="39data">data</dfn>,</td></tr>
+<tr><th id="376">376</th><td>                <a class="typedef" href="curl_addrinfo.h.html#Curl_addrinfo" title='Curl_addrinfo' data-type='struct Curl_addrinfo' data-ref="Curl_addrinfo">Curl_addrinfo</a> *<dfn class="local col0 decl" id="40addr" title='addr' data-type='Curl_addrinfo *' data-ref="40addr">addr</dfn>,</td></tr>
+<tr><th id="377">377</th><td>                <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="41hostname" title='hostname' data-type='const char *' data-ref="41hostname">hostname</dfn>,</td></tr>
+<tr><th id="378">378</th><td>                <em>int</em> <dfn class="local col2 decl" id="42port" title='port' data-type='int' data-ref="42port">port</dfn>)</td></tr>
+<tr><th id="379">379</th><td>{</td></tr>
+<tr><th id="380">380</th><td>  <em>char</em> *<dfn class="local col3 decl" id="43entry_id" title='entry_id' data-type='char *' data-ref="43entry_id">entry_id</dfn>;</td></tr>
+<tr><th id="381">381</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="44entry_len" title='entry_len' data-type='size_t' data-ref="44entry_len">entry_len</dfn>;</td></tr>
+<tr><th id="382">382</th><td>  <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col5 decl" id="45dns" title='dns' data-type='struct Curl_dns_entry *' data-ref="45dns">dns</dfn>;</td></tr>
+<tr><th id="383">383</th><td>  <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col6 decl" id="46dns2" title='dns2' data-type='struct Curl_dns_entry *' data-ref="46dns2">dns2</dfn>;</td></tr>
+<tr><th id="384">384</th><td></td></tr>
+<tr><th id="385">385</th><td>  <i>/* Create an entry id, based upon the hostname and port */</i></td></tr>
+<tr><th id="386">386</th><td>  <a class="local col3 ref" href="#43entry_id" title='entry_id' data-ref="43entry_id">entry_id</a> = <a class="tu ref" href="#create_hostcache_id" title='create_hostcache_id' data-use='c' data-ref="create_hostcache_id">create_hostcache_id</a>(<a class="local col1 ref" href="#41hostname" title='hostname' data-ref="41hostname">hostname</a>, <a class="local col2 ref" href="#42port" title='port' data-ref="42port">port</a>);</td></tr>
+<tr><th id="387">387</th><td>  <i>/* If we can't create the entry id, fail */</i></td></tr>
+<tr><th id="388">388</th><td>  <b>if</b>(!<a class="local col3 ref" href="#43entry_id" title='entry_id' data-ref="43entry_id">entry_id</a>)</td></tr>
+<tr><th id="389">389</th><td>    <b>return</b> <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="390">390</th><td>  <a class="local col4 ref" href="#44entry_len" title='entry_len' data-ref="44entry_len">entry_len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col3 ref" href="#43entry_id" title='entry_id' data-ref="43entry_id">entry_id</a>);</td></tr>
+<tr><th id="391">391</th><td></td></tr>
+<tr><th id="392">392</th><td>  <i>/* Create a new cache entry */</i></td></tr>
+<tr><th id="393">393</th><td>  <a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a> = <a class="macro" href="curl_memory.h.html#126" title="Curl_ccalloc(1, sizeof(struct Curl_dns_entry))" data-ref="_M/calloc">calloc</a>(<var>1</var>, <b>sizeof</b>(<b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a>));</td></tr>
+<tr><th id="394">394</th><td>  <b>if</b>(!<a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>) {</td></tr>
+<tr><th id="395">395</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(entry_id)" data-ref="_M/free">free</a>(<a class="local col3 ref" href="#43entry_id" title='entry_id' data-ref="43entry_id">entry_id</a>);</td></tr>
+<tr><th id="396">396</th><td>    <b>return</b> <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="397">397</th><td>  }</td></tr>
+<tr><th id="398">398</th><td></td></tr>
+<tr><th id="399">399</th><td>  <a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::inuse" title='Curl_dns_entry::inuse' data-ref="Curl_dns_entry::inuse">inuse</a> = <var>1</var>;   <i>/* the cache has the first reference */</i></td></tr>
+<tr><th id="400">400</th><td>  <a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::addr" title='Curl_dns_entry::addr' data-ref="Curl_dns_entry::addr">addr</a> = <a class="local col0 ref" href="#40addr" title='addr' data-ref="40addr">addr</a>; <i>/* this is the address(es) */</i></td></tr>
+<tr><th id="401">401</th><td>  <a class="ref" href="../../include/time.h.html#time" title='time' data-ref="time">time</a>(&amp;<a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::timestamp" title='Curl_dns_entry::timestamp' data-ref="Curl_dns_entry::timestamp">timestamp</a>);</td></tr>
+<tr><th id="402">402</th><td>  <b>if</b>(<a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::timestamp" title='Curl_dns_entry::timestamp' data-ref="Curl_dns_entry::timestamp">timestamp</a> == <var>0</var>)</td></tr>
+<tr><th id="403">403</th><td>    <a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::timestamp" title='Curl_dns_entry::timestamp' data-ref="Curl_dns_entry::timestamp">timestamp</a> = <var>1</var>;   <i>/* zero indicates CURLOPT_RESOLVE entry */</i></td></tr>
+<tr><th id="404">404</th><td></td></tr>
+<tr><th id="405">405</th><td>  <i>/* Store the resolved data in our DNS cache. */</i></td></tr>
+<tr><th id="406">406</th><td>  <a class="local col6 ref" href="#46dns2" title='dns2' data-ref="46dns2">dns2</a> = <a class="ref" href="hash.h.html#Curl_hash_add" title='Curl_hash_add' data-ref="Curl_hash_add">Curl_hash_add</a>(<a class="local col9 ref" href="#39data" title='data' data-ref="39data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::dns" title='Curl_easy::dns' data-ref="Curl_easy::dns">dns</a>.<a class="ref" href="urldata.h.html#Names::hostcache" title='Names::hostcache' data-ref="Names::hostcache">hostcache</a>, <a class="local col3 ref" href="#43entry_id" title='entry_id' data-ref="43entry_id">entry_id</a>, <a class="local col4 ref" href="#44entry_len" title='entry_len' data-ref="44entry_len">entry_len</a> + <var>1</var>,</td></tr>
+<tr><th id="407">407</th><td>                       (<em>void</em> *)<a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>);</td></tr>
+<tr><th id="408">408</th><td>  <b>if</b>(!<a class="local col6 ref" href="#46dns2" title='dns2' data-ref="46dns2">dns2</a>) {</td></tr>
+<tr><th id="409">409</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(dns)" data-ref="_M/free">free</a>(<a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>);</td></tr>
+<tr><th id="410">410</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(entry_id)" data-ref="_M/free">free</a>(<a class="local col3 ref" href="#43entry_id" title='entry_id' data-ref="43entry_id">entry_id</a>);</td></tr>
+<tr><th id="411">411</th><td>    <b>return</b> <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="412">412</th><td>  }</td></tr>
+<tr><th id="413">413</th><td></td></tr>
+<tr><th id="414">414</th><td>  <a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a> = <a class="local col6 ref" href="#46dns2" title='dns2' data-ref="46dns2">dns2</a>;</td></tr>
+<tr><th id="415">415</th><td>  <a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::inuse" title='Curl_dns_entry::inuse' data-ref="Curl_dns_entry::inuse">inuse</a>++;         <i>/* mark entry as in-use */</i></td></tr>
+<tr><th id="416">416</th><td></td></tr>
+<tr><th id="417">417</th><td>  <i>/* free the allocated entry_id */</i></td></tr>
+<tr><th id="418">418</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(entry_id)" data-ref="_M/free">free</a>(<a class="local col3 ref" href="#43entry_id" title='entry_id' data-ref="43entry_id">entry_id</a>);</td></tr>
+<tr><th id="419">419</th><td></td></tr>
+<tr><th id="420">420</th><td>  <b>return</b> <a class="local col5 ref" href="#45dns" title='dns' data-ref="45dns">dns</a>;</td></tr>
+<tr><th id="421">421</th><td>}</td></tr>
+<tr><th id="422">422</th><td></td></tr>
+<tr><th id="423">423</th><td><i>/*</i></td></tr>
+<tr><th id="424">424</th><td><i> * Curl_resolv() is the main name resolve function within libcurl. It resolves</i></td></tr>
+<tr><th id="425">425</th><td><i> * a name and returns a pointer to the entry in the 'entry' argument (if one</i></td></tr>
+<tr><th id="426">426</th><td><i> * is provided). This function might return immediately if we're using asynch</i></td></tr>
+<tr><th id="427">427</th><td><i> * resolves. See the return codes.</i></td></tr>
+<tr><th id="428">428</th><td><i> *</i></td></tr>
+<tr><th id="429">429</th><td><i> * The cache entry we return will get its 'inuse' counter increased when this</i></td></tr>
+<tr><th id="430">430</th><td><i> * function is used. You MUST call Curl_resolv_unlock() later (when you're</i></td></tr>
+<tr><th id="431">431</th><td><i> * done using this struct) to decrease the counter again.</i></td></tr>
+<tr><th id="432">432</th><td><i> *</i></td></tr>
+<tr><th id="433">433</th><td><i> * In debug mode, we specifically test for an interface name "LocalHost"</i></td></tr>
+<tr><th id="434">434</th><td><i> * and resolve "localhost" instead as a means to permit test cases</i></td></tr>
+<tr><th id="435">435</th><td><i> * to connect to a local test server with any host name.</i></td></tr>
+<tr><th id="436">436</th><td><i> *</i></td></tr>
+<tr><th id="437">437</th><td><i> * Return codes:</i></td></tr>
+<tr><th id="438">438</th><td><i> *</i></td></tr>
+<tr><th id="439">439</th><td><i> * CURLRESOLV_ERROR   (-1) = error, no pointer</i></td></tr>
+<tr><th id="440">440</th><td><i> * CURLRESOLV_RESOLVED (0) = OK, pointer provided</i></td></tr>
+<tr><th id="441">441</th><td><i> * CURLRESOLV_PENDING  (1) = waiting for response, no pointer</i></td></tr>
+<tr><th id="442">442</th><td><i> */</i></td></tr>
+<tr><th id="443">443</th><td></td></tr>
+<tr><th id="444">444</th><td><em>int</em> <dfn class="decl def" id="Curl_resolv" title='Curl_resolv' data-ref="Curl_resolv">Curl_resolv</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="47conn" title='conn' data-type='struct connectdata *' data-ref="47conn">conn</dfn>,</td></tr>
+<tr><th id="445">445</th><td>                <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="48hostname" title='hostname' data-type='const char *' data-ref="48hostname">hostname</dfn>,</td></tr>
+<tr><th id="446">446</th><td>                <em>int</em> <dfn class="local col9 decl" id="49port" title='port' data-type='int' data-ref="49port">port</dfn>,</td></tr>
+<tr><th id="447">447</th><td>                <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> **<dfn class="local col0 decl" id="50entry" title='entry' data-type='struct Curl_dns_entry **' data-ref="50entry">entry</dfn>)</td></tr>
+<tr><th id="448">448</th><td>{</td></tr>
+<tr><th id="449">449</th><td>  <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col1 decl" id="51dns" title='dns' data-type='struct Curl_dns_entry *' data-ref="51dns">dns</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="450">450</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col2 decl" id="52data" title='data' data-type='struct Curl_easy *' data-ref="52data">data</dfn> = <a class="local col7 ref" href="#47conn" title='conn' data-ref="47conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="451">451</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col3 decl" id="53result" title='result' data-type='CURLcode' data-ref="53result">result</dfn>;</td></tr>
+<tr><th id="452">452</th><td>  <em>int</em> <dfn class="local col4 decl" id="54rc" title='rc' data-type='int' data-ref="54rc">rc</dfn> = <a class="macro" href="hostip.h.html#83" title="-1" data-ref="_M/CURLRESOLV_ERROR">CURLRESOLV_ERROR</a>; <i>/* default to failure */</i></td></tr>
+<tr><th id="453">453</th><td></td></tr>
+<tr><th id="454">454</th><td>  *<a class="local col0 ref" href="#50entry" title='entry' data-ref="50entry">entry</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="455">455</th><td></td></tr>
+<tr><th id="456">456</th><td>  <b>if</b>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="457">457</th><td>    <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="458">458</th><td></td></tr>
+<tr><th id="459">459</th><td>  <a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a> = <a class="tu ref" href="#fetch_addr" title='fetch_addr' data-use='c' data-ref="fetch_addr">fetch_addr</a>(<a class="local col7 ref" href="#47conn" title='conn' data-ref="47conn">conn</a>, <a class="local col8 ref" href="#48hostname" title='hostname' data-ref="48hostname">hostname</a>, <a class="local col9 ref" href="#49port" title='port' data-ref="49port">port</a>);</td></tr>
+<tr><th id="460">460</th><td></td></tr>
+<tr><th id="461">461</th><td>  <b>if</b>(<a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a>) {</td></tr>
+<tr><th id="462">462</th><td>    <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>, <q>"Hostname %s was found in DNS cache\n"</q>, <a class="local col8 ref" href="#48hostname" title='hostname' data-ref="48hostname">hostname</a>);</td></tr>
+<tr><th id="463">463</th><td>    <a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::inuse" title='Curl_dns_entry::inuse' data-ref="Curl_dns_entry::inuse">inuse</a>++; <i>/* we use it! */</i></td></tr>
+<tr><th id="464">464</th><td>    <a class="local col4 ref" href="#54rc" title='rc' data-ref="54rc">rc</a> = <a class="macro" href="hostip.h.html#84" title="0" data-ref="_M/CURLRESOLV_RESOLVED">CURLRESOLV_RESOLVED</a>;</td></tr>
+<tr><th id="465">465</th><td>  }</td></tr>
+<tr><th id="466">466</th><td></td></tr>
+<tr><th id="467">467</th><td>  <b>if</b>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="468">468</th><td>    <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="469">469</th><td></td></tr>
+<tr><th id="470">470</th><td>  <b>if</b>(!<a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a>) {</td></tr>
+<tr><th id="471">471</th><td>    <i>/* The entry was not in the cache. Resolve it to IP address */</i></td></tr>
+<tr><th id="472">472</th><td></td></tr>
+<tr><th id="473">473</th><td>    <a class="typedef" href="curl_addrinfo.h.html#Curl_addrinfo" title='Curl_addrinfo' data-type='struct Curl_addrinfo' data-ref="Curl_addrinfo">Curl_addrinfo</a> *<dfn class="local col5 decl" id="55addr" title='addr' data-type='Curl_addrinfo *' data-ref="55addr">addr</dfn>;</td></tr>
+<tr><th id="474">474</th><td>    <em>int</em> <dfn class="local col6 decl" id="56respwait" title='respwait' data-type='int' data-ref="56respwait">respwait</dfn>;</td></tr>
+<tr><th id="475">475</th><td></td></tr>
+<tr><th id="476">476</th><td>    <i>/* Check what IP specifics the app has requested and if we can provide it.</i></td></tr>
+<tr><th id="477">477</th><td><i>     * If not, bail out. */</i></td></tr>
+<tr><th id="478">478</th><td>    <b>if</b>(!<a class="ref" href="hostip.h.html#Curl_ipvalid" title='Curl_ipvalid' data-ref="Curl_ipvalid">Curl_ipvalid</a>(<a class="local col7 ref" href="#47conn" title='conn' data-ref="47conn">conn</a>))</td></tr>
+<tr><th id="479">479</th><td>      <b>return</b> <a class="macro" href="hostip.h.html#83" title="-1" data-ref="_M/CURLRESOLV_ERROR">CURLRESOLV_ERROR</a>;</td></tr>
+<tr><th id="480">480</th><td></td></tr>
+<tr><th id="481">481</th><td>    <i>/* If Curl_getaddrinfo() returns NULL, 'respwait' might be set to a</i></td></tr>
+<tr><th id="482">482</th><td><i>       non-zero value indicating that we need to wait for the response to the</i></td></tr>
+<tr><th id="483">483</th><td><i>       resolve call */</i></td></tr>
+<tr><th id="484">484</th><td>    <a class="local col5 ref" href="#55addr" title='addr' data-ref="55addr">addr</a> = <a class="ref" href="hostip.h.html#Curl_getaddrinfo" title='Curl_getaddrinfo' data-ref="Curl_getaddrinfo">Curl_getaddrinfo</a>(<a class="local col7 ref" href="#47conn" title='conn' data-ref="47conn">conn</a>,</td></tr>
+<tr><th id="485">485</th><td><u>#<span data-ppcond="485">ifdef</span> <span class="macro" data-ref="_M/DEBUGBUILD">DEBUGBUILD</span></u></td></tr>
+<tr><th id="486">486</th><td>                            (data-&gt;set.str[STRING_DEVICE]</td></tr>
+<tr><th id="487">487</th><td>                             &amp;&amp; !strcmp(data-&gt;set.str[STRING_DEVICE],</td></tr>
+<tr><th id="488">488</th><td>                                        <q>"LocalHost"</q>))?<q>"localhost"</q>:</td></tr>
+<tr><th id="489">489</th><td><u>#<span data-ppcond="485">endif</span></u></td></tr>
+<tr><th id="490">490</th><td>                            <a class="local col8 ref" href="#48hostname" title='hostname' data-ref="48hostname">hostname</a>, <a class="local col9 ref" href="#49port" title='port' data-ref="49port">port</a>, &amp;<a class="local col6 ref" href="#56respwait" title='respwait' data-ref="56respwait">respwait</a>);</td></tr>
+<tr><th id="491">491</th><td></td></tr>
+<tr><th id="492">492</th><td>    <b>if</b>(!<a class="local col5 ref" href="#55addr" title='addr' data-ref="55addr">addr</a>) {</td></tr>
+<tr><th id="493">493</th><td>      <b>if</b>(<a class="local col6 ref" href="#56respwait" title='respwait' data-ref="56respwait">respwait</a>) {</td></tr>
+<tr><th id="494">494</th><td>        <i>/* the response to our resolve call will come asynchronously at</i></td></tr>
+<tr><th id="495">495</th><td><i>           a later time, good or bad */</i></td></tr>
+<tr><th id="496">496</th><td>        <i>/* First, check that we haven't received the info by now */</i></td></tr>
+<tr><th id="497">497</th><td>        <a class="local col3 ref" href="#53result" title='result' data-ref="53result">result</a> = <a class="ref" href="asyn.h.html#Curl_resolver_is_resolved" title='Curl_resolver_is_resolved' data-ref="Curl_resolver_is_resolved">Curl_resolver_is_resolved</a>(<a class="local col7 ref" href="#47conn" title='conn' data-ref="47conn">conn</a>, &amp;<a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a>);</td></tr>
+<tr><th id="498">498</th><td>        <b>if</b>(<a class="local col3 ref" href="#53result" title='result' data-ref="53result">result</a>) <i>/* error detected */</i></td></tr>
+<tr><th id="499">499</th><td>          <b>return</b> <a class="macro" href="hostip.h.html#83" title="-1" data-ref="_M/CURLRESOLV_ERROR">CURLRESOLV_ERROR</a>;</td></tr>
+<tr><th id="500">500</th><td>        <b>if</b>(<a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a>)</td></tr>
+<tr><th id="501">501</th><td>          <a class="local col4 ref" href="#54rc" title='rc' data-ref="54rc">rc</a> = <a class="macro" href="hostip.h.html#84" title="0" data-ref="_M/CURLRESOLV_RESOLVED">CURLRESOLV_RESOLVED</a>; <i>/* pointer provided */</i></td></tr>
+<tr><th id="502">502</th><td>        <b>else</b></td></tr>
+<tr><th id="503">503</th><td>          <a class="local col4 ref" href="#54rc" title='rc' data-ref="54rc">rc</a> = <a class="macro" href="hostip.h.html#85" title="1" data-ref="_M/CURLRESOLV_PENDING">CURLRESOLV_PENDING</a>; <i>/* no info yet */</i></td></tr>
+<tr><th id="504">504</th><td>      }</td></tr>
+<tr><th id="505">505</th><td>    }</td></tr>
+<tr><th id="506">506</th><td>    <b>else</b> {</td></tr>
+<tr><th id="507">507</th><td>      <b>if</b>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="508">508</th><td>        <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="509">509</th><td></td></tr>
+<tr><th id="510">510</th><td>      <i>/* we got a response, store it in the cache */</i></td></tr>
+<tr><th id="511">511</th><td>      <a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a> = <a class="ref" href="#Curl_cache_addr" title='Curl_cache_addr' data-ref="Curl_cache_addr">Curl_cache_addr</a>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>, <a class="local col5 ref" href="#55addr" title='addr' data-ref="55addr">addr</a>, <a class="local col8 ref" href="#48hostname" title='hostname' data-ref="48hostname">hostname</a>, <a class="local col9 ref" href="#49port" title='port' data-ref="49port">port</a>);</td></tr>
+<tr><th id="512">512</th><td></td></tr>
+<tr><th id="513">513</th><td>      <b>if</b>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="514">514</th><td>        <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col2 ref" href="#52data" title='data' data-ref="52data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="515">515</th><td></td></tr>
+<tr><th id="516">516</th><td>      <b>if</b>(!<a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a>)</td></tr>
+<tr><th id="517">517</th><td>        <i>/* returned failure, bail out nicely */</i></td></tr>
+<tr><th id="518">518</th><td>        <a class="ref" href="curl_addrinfo.h.html#Curl_freeaddrinfo" title='Curl_freeaddrinfo' data-ref="Curl_freeaddrinfo">Curl_freeaddrinfo</a>(<a class="local col5 ref" href="#55addr" title='addr' data-ref="55addr">addr</a>);</td></tr>
+<tr><th id="519">519</th><td>      <b>else</b></td></tr>
+<tr><th id="520">520</th><td>        <a class="local col4 ref" href="#54rc" title='rc' data-ref="54rc">rc</a> = <a class="macro" href="hostip.h.html#84" title="0" data-ref="_M/CURLRESOLV_RESOLVED">CURLRESOLV_RESOLVED</a>;</td></tr>
+<tr><th id="521">521</th><td>    }</td></tr>
+<tr><th id="522">522</th><td>  }</td></tr>
+<tr><th id="523">523</th><td></td></tr>
+<tr><th id="524">524</th><td>  *<a class="local col0 ref" href="#50entry" title='entry' data-ref="50entry">entry</a> = <a class="local col1 ref" href="#51dns" title='dns' data-ref="51dns">dns</a>;</td></tr>
+<tr><th id="525">525</th><td></td></tr>
+<tr><th id="526">526</th><td>  <b>return</b> <a class="local col4 ref" href="#54rc" title='rc' data-ref="54rc">rc</a>;</td></tr>
+<tr><th id="527">527</th><td>}</td></tr>
+<tr><th id="528">528</th><td></td></tr>
+<tr><th id="529">529</th><td><u>#<span data-ppcond="529">ifdef</span> <span class="macro" data-ref="_M/USE_ALARM_TIMEOUT">USE_ALARM_TIMEOUT</span></u></td></tr>
+<tr><th id="530">530</th><td><i>/*</i></td></tr>
+<tr><th id="531">531</th><td><i> * This signal handler jumps back into the main libcurl code and continues</i></td></tr>
+<tr><th id="532">532</th><td><i> * execution.  This effectively causes the remainder of the application to run</i></td></tr>
+<tr><th id="533">533</th><td><i> * within a signal handler which is nonportable and could lead to problems.</i></td></tr>
+<tr><th id="534">534</th><td><i> */</i></td></tr>
+<tr><th id="535">535</th><td><em>static</em></td></tr>
+<tr><th id="536">536</th><td>RETSIGTYPE alarmfunc(<em>int</em> sig)</td></tr>
+<tr><th id="537">537</th><td>{</td></tr>
+<tr><th id="538">538</th><td>  <i>/* this is for "-ansi -Wall -pedantic" to stop complaining!   (rabe) */</i></td></tr>
+<tr><th id="539">539</th><td>  (<em>void</em>)sig;</td></tr>
+<tr><th id="540">540</th><td>  siglongjmp(curl_jmpenv, <var>1</var>);</td></tr>
+<tr><th id="541">541</th><td>}</td></tr>
+<tr><th id="542">542</th><td><u>#<span data-ppcond="529">endif</span> /* USE_ALARM_TIMEOUT */</u></td></tr>
+<tr><th id="543">543</th><td></td></tr>
+<tr><th id="544">544</th><td><i>/*</i></td></tr>
+<tr><th id="545">545</th><td><i> * Curl_resolv_timeout() is the same as Curl_resolv() but specifies a</i></td></tr>
+<tr><th id="546">546</th><td><i> * timeout.  This function might return immediately if we're using asynch</i></td></tr>
+<tr><th id="547">547</th><td><i> * resolves. See the return codes.</i></td></tr>
+<tr><th id="548">548</th><td><i> *</i></td></tr>
+<tr><th id="549">549</th><td><i> * The cache entry we return will get its 'inuse' counter increased when this</i></td></tr>
+<tr><th id="550">550</th><td><i> * function is used. You MUST call Curl_resolv_unlock() later (when you're</i></td></tr>
+<tr><th id="551">551</th><td><i> * done using this struct) to decrease the counter again.</i></td></tr>
+<tr><th id="552">552</th><td><i> *</i></td></tr>
+<tr><th id="553">553</th><td><i> * If built with a synchronous resolver and use of signals is not</i></td></tr>
+<tr><th id="554">554</th><td><i> * disabled by the application, then a nonzero timeout will cause a</i></td></tr>
+<tr><th id="555">555</th><td><i> * timeout after the specified number of milliseconds. Otherwise, timeout</i></td></tr>
+<tr><th id="556">556</th><td><i> * is ignored.</i></td></tr>
+<tr><th id="557">557</th><td><i> *</i></td></tr>
+<tr><th id="558">558</th><td><i> * Return codes:</i></td></tr>
+<tr><th id="559">559</th><td><i> *</i></td></tr>
+<tr><th id="560">560</th><td><i> * CURLRESOLV_TIMEDOUT(-2) = warning, time too short or previous alarm expired</i></td></tr>
+<tr><th id="561">561</th><td><i> * CURLRESOLV_ERROR   (-1) = error, no pointer</i></td></tr>
+<tr><th id="562">562</th><td><i> * CURLRESOLV_RESOLVED (0) = OK, pointer provided</i></td></tr>
+<tr><th id="563">563</th><td><i> * CURLRESOLV_PENDING  (1) = waiting for response, no pointer</i></td></tr>
+<tr><th id="564">564</th><td><i> */</i></td></tr>
+<tr><th id="565">565</th><td></td></tr>
+<tr><th id="566">566</th><td><em>int</em> <dfn class="decl def" id="Curl_resolv_timeout" title='Curl_resolv_timeout' data-ref="Curl_resolv_timeout">Curl_resolv_timeout</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="57conn" title='conn' data-type='struct connectdata *' data-ref="57conn">conn</dfn>,</td></tr>
+<tr><th id="567">567</th><td>                        <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="58hostname" title='hostname' data-type='const char *' data-ref="58hostname">hostname</dfn>,</td></tr>
+<tr><th id="568">568</th><td>                        <em>int</em> <dfn class="local col9 decl" id="59port" title='port' data-type='int' data-ref="59port">port</dfn>,</td></tr>
+<tr><th id="569">569</th><td>                        <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> **<dfn class="local col0 decl" id="60entry" title='entry' data-type='struct Curl_dns_entry **' data-ref="60entry">entry</dfn>,</td></tr>
+<tr><th id="570">570</th><td>                        <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col1 decl" id="61timeoutms" title='timeoutms' data-type='time_t' data-ref="61timeoutms">timeoutms</dfn>)</td></tr>
+<tr><th id="571">571</th><td>{</td></tr>
+<tr><th id="572">572</th><td><u>#<span data-ppcond="572">ifdef</span> <span class="macro" data-ref="_M/USE_ALARM_TIMEOUT">USE_ALARM_TIMEOUT</span></u></td></tr>
+<tr><th id="573">573</th><td><u>#ifdef HAVE_SIGACTION</u></td></tr>
+<tr><th id="574">574</th><td>  <b>struct</b> sigaction keep_sigact;   <i>/* store the old struct here */</i></td></tr>
+<tr><th id="575">575</th><td>  <em>volatile</em> bool keep_copysig = FALSE; <i>/* whether old sigact has been saved */</i></td></tr>
+<tr><th id="576">576</th><td>  <b>struct</b> sigaction sigact;</td></tr>
+<tr><th id="577">577</th><td><u>#else</u></td></tr>
+<tr><th id="578">578</th><td><u>#ifdef HAVE_SIGNAL</u></td></tr>
+<tr><th id="579">579</th><td>  <em>void</em> (*keep_sigact)(<em>int</em>);       <i>/* store the old handler here */</i></td></tr>
+<tr><th id="580">580</th><td><u>#endif /* HAVE_SIGNAL */</u></td></tr>
+<tr><th id="581">581</th><td><u>#endif /* HAVE_SIGACTION */</u></td></tr>
+<tr><th id="582">582</th><td>  <em>volatile</em> <em>long</em> timeout;</td></tr>
+<tr><th id="583">583</th><td>  <em>volatile</em> <em>unsigned</em> <em>int</em> prev_alarm = <var>0</var>;</td></tr>
+<tr><th id="584">584</th><td>  <b>struct</b> Curl_easy *data = conn-&gt;data;</td></tr>
+<tr><th id="585">585</th><td><u>#<span data-ppcond="572">endif</span> /* USE_ALARM_TIMEOUT */</u></td></tr>
+<tr><th id="586">586</th><td>  <em>int</em> <dfn class="local col2 decl" id="62rc" title='rc' data-type='int' data-ref="62rc">rc</dfn>;</td></tr>
+<tr><th id="587">587</th><td></td></tr>
+<tr><th id="588">588</th><td>  *<a class="local col0 ref" href="#60entry" title='entry' data-ref="60entry">entry</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="589">589</th><td></td></tr>
+<tr><th id="590">590</th><td>  <b>if</b>(<a class="local col1 ref" href="#61timeoutms" title='timeoutms' data-ref="61timeoutms">timeoutms</a> &lt; <var>0</var>)</td></tr>
+<tr><th id="591">591</th><td>    <i>/* got an already expired timeout */</i></td></tr>
+<tr><th id="592">592</th><td>    <b>return</b> <a class="macro" href="hostip.h.html#82" title="-2" data-ref="_M/CURLRESOLV_TIMEDOUT">CURLRESOLV_TIMEDOUT</a>;</td></tr>
+<tr><th id="593">593</th><td></td></tr>
+<tr><th id="594">594</th><td><u>#<span data-ppcond="594">ifdef</span> <span class="macro" data-ref="_M/USE_ALARM_TIMEOUT">USE_ALARM_TIMEOUT</span></u></td></tr>
+<tr><th id="595">595</th><td>  <b>if</b>(data-&gt;set.no_signal)</td></tr>
+<tr><th id="596">596</th><td>    <i>/* Ignore the timeout when signals are disabled */</i></td></tr>
+<tr><th id="597">597</th><td>    timeout = <var>0</var>;</td></tr>
+<tr><th id="598">598</th><td>  <b>else</b></td></tr>
+<tr><th id="599">599</th><td>    timeout = (timeoutms &gt; LONG_MAX) ? LONG_MAX : (<em>long</em>)timeoutms;</td></tr>
+<tr><th id="600">600</th><td></td></tr>
+<tr><th id="601">601</th><td>  <b>if</b>(!timeout)</td></tr>
+<tr><th id="602">602</th><td>    <i>/* USE_ALARM_TIMEOUT defined, but no timeout actually requested */</i></td></tr>
+<tr><th id="603">603</th><td>    <b>return</b> Curl_resolv(conn, hostname, port, entry);</td></tr>
+<tr><th id="604">604</th><td></td></tr>
+<tr><th id="605">605</th><td>  <b>if</b>(timeout &lt; <var>1000</var>) {</td></tr>
+<tr><th id="606">606</th><td>    <i>/* The alarm() function only provides integer second resolution, so if</i></td></tr>
+<tr><th id="607">607</th><td><i>       we want to wait less than one second we must bail out already now. */</i></td></tr>
+<tr><th id="608">608</th><td>    failf(data,</td></tr>
+<tr><th id="609">609</th><td>        <q>"remaining timeout of %ld too small to resolve via SIGALRM method"</q>,</td></tr>
+<tr><th id="610">610</th><td>        timeout);</td></tr>
+<tr><th id="611">611</th><td>    <b>return</b> CURLRESOLV_TIMEDOUT;</td></tr>
+<tr><th id="612">612</th><td>  }</td></tr>
+<tr><th id="613">613</th><td>  <i>/* This allows us to time-out from the name resolver, as the timeout</i></td></tr>
+<tr><th id="614">614</th><td><i>     will generate a signal and we will siglongjmp() from that here.</i></td></tr>
+<tr><th id="615">615</th><td><i>     This technique has problems (see alarmfunc).</i></td></tr>
+<tr><th id="616">616</th><td><i>     This should be the last thing we do before calling Curl_resolv(),</i></td></tr>
+<tr><th id="617">617</th><td><i>     as otherwise we'd have to worry about variables that get modified</i></td></tr>
+<tr><th id="618">618</th><td><i>     before we invoke Curl_resolv() (and thus use "volatile"). */</i></td></tr>
+<tr><th id="619">619</th><td>  <b>if</b>(sigsetjmp(curl_jmpenv, <var>1</var>)) {</td></tr>
+<tr><th id="620">620</th><td>    <i>/* this is coming from a siglongjmp() after an alarm signal */</i></td></tr>
+<tr><th id="621">621</th><td>    failf(data, <q>"name lookup timed out"</q>);</td></tr>
+<tr><th id="622">622</th><td>    rc = CURLRESOLV_ERROR;</td></tr>
+<tr><th id="623">623</th><td>    <b>goto</b> clean_up;</td></tr>
+<tr><th id="624">624</th><td>  }</td></tr>
+<tr><th id="625">625</th><td>  <b>else</b> {</td></tr>
+<tr><th id="626">626</th><td>    <i>/*************************************************************</i></td></tr>
+<tr><th id="627">627</th><td><i>     * Set signal handler to catch SIGALRM</i></td></tr>
+<tr><th id="628">628</th><td><i>     * Store the old value to be able to set it back later!</i></td></tr>
+<tr><th id="629">629</th><td><i>     *************************************************************/</i></td></tr>
+<tr><th id="630">630</th><td><u>#ifdef HAVE_SIGACTION</u></td></tr>
+<tr><th id="631">631</th><td>    sigaction(SIGALRM, NULL, &amp;sigact);</td></tr>
+<tr><th id="632">632</th><td>    keep_sigact = sigact;</td></tr>
+<tr><th id="633">633</th><td>    keep_copysig = TRUE; <i>/* yes, we have a copy */</i></td></tr>
+<tr><th id="634">634</th><td>    sigact.sa_handler = alarmfunc;</td></tr>
+<tr><th id="635">635</th><td><u>#ifdef SA_RESTART</u></td></tr>
+<tr><th id="636">636</th><td>    <i>/* HPUX doesn't have SA_RESTART but defaults to that behaviour! */</i></td></tr>
+<tr><th id="637">637</th><td>    sigact.sa_flags &amp;= ~SA_RESTART;</td></tr>
+<tr><th id="638">638</th><td><u>#endif</u></td></tr>
+<tr><th id="639">639</th><td>    <i>/* now set the new struct */</i></td></tr>
+<tr><th id="640">640</th><td>    sigaction(SIGALRM, &amp;sigact, NULL);</td></tr>
+<tr><th id="641">641</th><td><u>#else /* HAVE_SIGACTION */</u></td></tr>
+<tr><th id="642">642</th><td>    <i>/* no sigaction(), revert to the much lamer signal() */</i></td></tr>
+<tr><th id="643">643</th><td><u>#ifdef HAVE_SIGNAL</u></td></tr>
+<tr><th id="644">644</th><td>    keep_sigact = signal(SIGALRM, alarmfunc);</td></tr>
+<tr><th id="645">645</th><td><u>#endif</u></td></tr>
+<tr><th id="646">646</th><td><u>#endif /* HAVE_SIGACTION */</u></td></tr>
+<tr><th id="647">647</th><td></td></tr>
+<tr><th id="648">648</th><td>    <i>/* alarm() makes a signal get sent when the timeout fires off, and that</i></td></tr>
+<tr><th id="649">649</th><td><i>       will abort system calls */</i></td></tr>
+<tr><th id="650">650</th><td>    prev_alarm = alarm(curlx_sltoui(timeout/<var>1000L</var>));</td></tr>
+<tr><th id="651">651</th><td>  }</td></tr>
+<tr><th id="652">652</th><td></td></tr>
+<tr><th id="653">653</th><td><u>#<span data-ppcond="594">else</span></u></td></tr>
+<tr><th id="654">654</th><td><u>#<span data-ppcond="654">ifndef</span> <a class="macro" href="curl_setup.h.html#534" data-ref="_M/CURLRES_ASYNCH">CURLRES_ASYNCH</a></u></td></tr>
+<tr><th id="655">655</th><td>  <b>if</b>(timeoutms)</td></tr>
+<tr><th id="656">656</th><td>    infof(conn-&gt;data, <q>"timeout on name lookup is not supported\n"</q>);</td></tr>
+<tr><th id="657">657</th><td><u>#<span data-ppcond="654">else</span></u></td></tr>
+<tr><th id="658">658</th><td>  (<em>void</em>)<a class="local col1 ref" href="#61timeoutms" title='timeoutms' data-ref="61timeoutms">timeoutms</a>; <i>/* timeoutms not used with an async resolver */</i></td></tr>
+<tr><th id="659">659</th><td><u>#<span data-ppcond="654">endif</span></u></td></tr>
+<tr><th id="660">660</th><td><u>#<span data-ppcond="594">endif</span> /* USE_ALARM_TIMEOUT */</u></td></tr>
+<tr><th id="661">661</th><td></td></tr>
+<tr><th id="662">662</th><td>  <i>/* Perform the actual name resolution. This might be interrupted by an</i></td></tr>
+<tr><th id="663">663</th><td><i>   * alarm if it takes too long.</i></td></tr>
+<tr><th id="664">664</th><td><i>   */</i></td></tr>
+<tr><th id="665">665</th><td>  <a class="local col2 ref" href="#62rc" title='rc' data-ref="62rc">rc</a> = <a class="ref" href="#Curl_resolv" title='Curl_resolv' data-ref="Curl_resolv">Curl_resolv</a>(<a class="local col7 ref" href="#57conn" title='conn' data-ref="57conn">conn</a>, <a class="local col8 ref" href="#58hostname" title='hostname' data-ref="58hostname">hostname</a>, <a class="local col9 ref" href="#59port" title='port' data-ref="59port">port</a>, <a class="local col0 ref" href="#60entry" title='entry' data-ref="60entry">entry</a>);</td></tr>
+<tr><th id="666">666</th><td></td></tr>
+<tr><th id="667">667</th><td><u>#<span data-ppcond="667">ifdef</span> <span class="macro" data-ref="_M/USE_ALARM_TIMEOUT">USE_ALARM_TIMEOUT</span></u></td></tr>
+<tr><th id="668">668</th><td>clean_up:</td></tr>
+<tr><th id="669">669</th><td></td></tr>
+<tr><th id="670">670</th><td>  <b>if</b>(!prev_alarm)</td></tr>
+<tr><th id="671">671</th><td>    <i>/* deactivate a possibly active alarm before uninstalling the handler */</i></td></tr>
+<tr><th id="672">672</th><td>    alarm(<var>0</var>);</td></tr>
+<tr><th id="673">673</th><td></td></tr>
+<tr><th id="674">674</th><td><u>#ifdef HAVE_SIGACTION</u></td></tr>
+<tr><th id="675">675</th><td>  <b>if</b>(keep_copysig) {</td></tr>
+<tr><th id="676">676</th><td>    <i>/* we got a struct as it looked before, now put that one back nice</i></td></tr>
+<tr><th id="677">677</th><td><i>       and clean */</i></td></tr>
+<tr><th id="678">678</th><td>    sigaction(SIGALRM, &amp;keep_sigact, NULL); <i>/* put it back */</i></td></tr>
+<tr><th id="679">679</th><td>  }</td></tr>
+<tr><th id="680">680</th><td><u>#else</u></td></tr>
+<tr><th id="681">681</th><td><u>#ifdef HAVE_SIGNAL</u></td></tr>
+<tr><th id="682">682</th><td>  <i>/* restore the previous SIGALRM handler */</i></td></tr>
+<tr><th id="683">683</th><td>  signal(SIGALRM, keep_sigact);</td></tr>
+<tr><th id="684">684</th><td><u>#endif</u></td></tr>
+<tr><th id="685">685</th><td><u>#endif /* HAVE_SIGACTION */</u></td></tr>
+<tr><th id="686">686</th><td></td></tr>
+<tr><th id="687">687</th><td>  <i>/* switch back the alarm() to either zero or to what it was before minus</i></td></tr>
+<tr><th id="688">688</th><td><i>     the time we spent until now! */</i></td></tr>
+<tr><th id="689">689</th><td>  <b>if</b>(prev_alarm) {</td></tr>
+<tr><th id="690">690</th><td>    <i>/* there was an alarm() set before us, now put it back */</i></td></tr>
+<tr><th id="691">691</th><td>    <em>unsigned</em> <em>long</em> elapsed_secs = (<em>unsigned</em> <em>long</em>) (Curl_tvdiff(Curl_tvnow(),</td></tr>
+<tr><th id="692">692</th><td>                                   conn-&gt;created) / <var>1000</var>);</td></tr>
+<tr><th id="693">693</th><td></td></tr>
+<tr><th id="694">694</th><td>    <i>/* the alarm period is counted in even number of seconds */</i></td></tr>
+<tr><th id="695">695</th><td>    <em>unsigned</em> <em>long</em> alarm_set = prev_alarm - elapsed_secs;</td></tr>
+<tr><th id="696">696</th><td></td></tr>
+<tr><th id="697">697</th><td>    <b>if</b>(!alarm_set ||</td></tr>
+<tr><th id="698">698</th><td>       ((alarm_set &gt;= <var>0x80000000</var>) &amp;&amp; (prev_alarm &lt; <var>0x80000000</var>)) ) {</td></tr>
+<tr><th id="699">699</th><td>      <i>/* if the alarm time-left reached zero or turned "negative" (counted</i></td></tr>
+<tr><th id="700">700</th><td><i>         with unsigned values), we should fire off a SIGALRM here, but we</i></td></tr>
+<tr><th id="701">701</th><td><i>         won't, and zero would be to switch it off so we never set it to</i></td></tr>
+<tr><th id="702">702</th><td><i>         less than 1! */</i></td></tr>
+<tr><th id="703">703</th><td>      alarm(<var>1</var>);</td></tr>
+<tr><th id="704">704</th><td>      rc = CURLRESOLV_TIMEDOUT;</td></tr>
+<tr><th id="705">705</th><td>      failf(data, <q>"Previous alarm fired off!"</q>);</td></tr>
+<tr><th id="706">706</th><td>    }</td></tr>
+<tr><th id="707">707</th><td>    <b>else</b></td></tr>
+<tr><th id="708">708</th><td>      alarm((<em>unsigned</em> <em>int</em>)alarm_set);</td></tr>
+<tr><th id="709">709</th><td>  }</td></tr>
+<tr><th id="710">710</th><td><u>#<span data-ppcond="667">endif</span> /* USE_ALARM_TIMEOUT */</u></td></tr>
+<tr><th id="711">711</th><td></td></tr>
+<tr><th id="712">712</th><td>  <b>return</b> <a class="local col2 ref" href="#62rc" title='rc' data-ref="62rc">rc</a>;</td></tr>
+<tr><th id="713">713</th><td>}</td></tr>
+<tr><th id="714">714</th><td></td></tr>
+<tr><th id="715">715</th><td><i>/*</i></td></tr>
+<tr><th id="716">716</th><td><i> * Curl_resolv_unlock() unlocks the given cached DNS entry. When this has been</i></td></tr>
+<tr><th id="717">717</th><td><i> * made, the struct may be destroyed due to pruning. It is important that only</i></td></tr>
+<tr><th id="718">718</th><td><i> * one unlock is made for each Curl_resolv() call.</i></td></tr>
+<tr><th id="719">719</th><td><i> *</i></td></tr>
+<tr><th id="720">720</th><td><i> * May be called with 'data' == NULL for global cache.</i></td></tr>
+<tr><th id="721">721</th><td><i> */</i></td></tr>
+<tr><th id="722">722</th><td><em>void</em> <dfn class="decl def" id="Curl_resolv_unlock" title='Curl_resolv_unlock' data-ref="Curl_resolv_unlock">Curl_resolv_unlock</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="63data" title='data' data-type='struct Curl_easy *' data-ref="63data">data</dfn>, <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col4 decl" id="64dns" title='dns' data-type='struct Curl_dns_entry *' data-ref="64dns">dns</dfn>)</td></tr>
+<tr><th id="723">723</th><td>{</td></tr>
+<tr><th id="724">724</th><td>  <b>if</b>(<a class="local col3 ref" href="#63data" title='data' data-ref="63data">data</a> &amp;&amp; <a class="local col3 ref" href="#63data" title='data' data-ref="63data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="725">725</th><td>    <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col3 ref" href="#63data" title='data' data-ref="63data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="726">726</th><td></td></tr>
+<tr><th id="727">727</th><td>  <a class="tu ref" href="#freednsentry" title='freednsentry' data-use='c' data-ref="freednsentry">freednsentry</a>(<a class="local col4 ref" href="#64dns" title='dns' data-ref="64dns">dns</a>);</td></tr>
+<tr><th id="728">728</th><td></td></tr>
+<tr><th id="729">729</th><td>  <b>if</b>(<a class="local col3 ref" href="#63data" title='data' data-ref="63data">data</a> &amp;&amp; <a class="local col3 ref" href="#63data" title='data' data-ref="63data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="730">730</th><td>    <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col3 ref" href="#63data" title='data' data-ref="63data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="731">731</th><td>}</td></tr>
+<tr><th id="732">732</th><td></td></tr>
+<tr><th id="733">733</th><td><i  data-doc="freednsentry">/*</i></td></tr>
+<tr><th id="734">734</th><td><i  data-doc="freednsentry"> * File-internal: release cache dns entry reference, free if inuse drops to 0</i></td></tr>
+<tr><th id="735">735</th><td><i  data-doc="freednsentry"> */</i></td></tr>
+<tr><th id="736">736</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="freednsentry" title='freednsentry' data-type='void freednsentry(void * freethis)' data-ref="freednsentry">freednsentry</dfn>(<em>void</em> *<dfn class="local col5 decl" id="65freethis" title='freethis' data-type='void *' data-ref="65freethis">freethis</dfn>)</td></tr>
+<tr><th id="737">737</th><td>{</td></tr>
+<tr><th id="738">738</th><td>  <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col6 decl" id="66dns" title='dns' data-type='struct Curl_dns_entry *' data-ref="66dns">dns</dfn> = (<b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *) <a class="local col5 ref" href="#65freethis" title='freethis' data-ref="65freethis">freethis</a>;</td></tr>
+<tr><th id="739">739</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(dns &amp;&amp; (dns-&gt;inuse&gt;<var>0</var>));</td></tr>
+<tr><th id="740">740</th><td></td></tr>
+<tr><th id="741">741</th><td>  <a class="local col6 ref" href="#66dns" title='dns' data-ref="66dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::inuse" title='Curl_dns_entry::inuse' data-ref="Curl_dns_entry::inuse">inuse</a>--;</td></tr>
+<tr><th id="742">742</th><td>  <b>if</b>(<a class="local col6 ref" href="#66dns" title='dns' data-ref="66dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::inuse" title='Curl_dns_entry::inuse' data-ref="Curl_dns_entry::inuse">inuse</a> == <var>0</var>) {</td></tr>
+<tr><th id="743">743</th><td>    <a class="ref" href="curl_addrinfo.h.html#Curl_freeaddrinfo" title='Curl_freeaddrinfo' data-ref="Curl_freeaddrinfo">Curl_freeaddrinfo</a>(<a class="local col6 ref" href="#66dns" title='dns' data-ref="66dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::addr" title='Curl_dns_entry::addr' data-ref="Curl_dns_entry::addr">addr</a>);</td></tr>
+<tr><th id="744">744</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(dns)" data-ref="_M/free">free</a>(<a class="local col6 ref" href="#66dns" title='dns' data-ref="66dns">dns</a>);</td></tr>
+<tr><th id="745">745</th><td>  }</td></tr>
+<tr><th id="746">746</th><td>}</td></tr>
+<tr><th id="747">747</th><td></td></tr>
+<tr><th id="748">748</th><td><i>/*</i></td></tr>
+<tr><th id="749">749</th><td><i> * Curl_mk_dnscache() inits a new DNS cache and returns success/failure.</i></td></tr>
+<tr><th id="750">750</th><td><i> */</i></td></tr>
+<tr><th id="751">751</th><td><em>int</em> <dfn class="decl def" id="Curl_mk_dnscache" title='Curl_mk_dnscache' data-ref="Curl_mk_dnscache">Curl_mk_dnscache</dfn>(<b>struct</b> <a class="type" href="hash.h.html#curl_hash" title='curl_hash' data-ref="curl_hash">curl_hash</a> *<dfn class="local col7 decl" id="67hash" title='hash' data-type='struct curl_hash *' data-ref="67hash">hash</dfn>)</td></tr>
+<tr><th id="752">752</th><td>{</td></tr>
+<tr><th id="753">753</th><td>  <b>return</b> <a class="ref" href="hash.h.html#Curl_hash_init" title='Curl_hash_init' data-ref="Curl_hash_init">Curl_hash_init</a>(<a class="local col7 ref" href="#67hash" title='hash' data-ref="67hash">hash</a>, <var>7</var>, <a class="ref" href="hash.h.html#Curl_hash_str" title='Curl_hash_str' data-ref="Curl_hash_str">Curl_hash_str</a>, <a class="ref" href="hash.h.html#Curl_str_key_compare" title='Curl_str_key_compare' data-ref="Curl_str_key_compare">Curl_str_key_compare</a>,</td></tr>
+<tr><th id="754">754</th><td>                        <a class="tu ref" href="#freednsentry" title='freednsentry' data-use='r' data-ref="freednsentry">freednsentry</a>);</td></tr>
+<tr><th id="755">755</th><td>}</td></tr>
+<tr><th id="756">756</th><td></td></tr>
+<tr><th id="757">757</th><td><i>/*</i></td></tr>
+<tr><th id="758">758</th><td><i> * Curl_hostcache_clean()</i></td></tr>
+<tr><th id="759">759</th><td><i> *</i></td></tr>
+<tr><th id="760">760</th><td><i> * This _can_ be called with 'data' == NULL but then of course no locking</i></td></tr>
+<tr><th id="761">761</th><td><i> * can be done!</i></td></tr>
+<tr><th id="762">762</th><td><i> */</i></td></tr>
+<tr><th id="763">763</th><td></td></tr>
+<tr><th id="764">764</th><td><em>void</em> <dfn class="decl def" id="Curl_hostcache_clean" title='Curl_hostcache_clean' data-ref="Curl_hostcache_clean">Curl_hostcache_clean</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col8 decl" id="68data" title='data' data-type='struct Curl_easy *' data-ref="68data">data</dfn>,</td></tr>
+<tr><th id="765">765</th><td>                          <b>struct</b> <a class="type" href="hash.h.html#curl_hash" title='curl_hash' data-ref="curl_hash">curl_hash</a> *<dfn class="local col9 decl" id="69hash" title='hash' data-type='struct curl_hash *' data-ref="69hash">hash</dfn>)</td></tr>
+<tr><th id="766">766</th><td>{</td></tr>
+<tr><th id="767">767</th><td>  <b>if</b>(<a class="local col8 ref" href="#68data" title='data' data-ref="68data">data</a> &amp;&amp; <a class="local col8 ref" href="#68data" title='data' data-ref="68data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="768">768</th><td>    <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col8 ref" href="#68data" title='data' data-ref="68data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="769">769</th><td></td></tr>
+<tr><th id="770">770</th><td>  <a class="ref" href="hash.h.html#Curl_hash_clean" title='Curl_hash_clean' data-ref="Curl_hash_clean">Curl_hash_clean</a>(<a class="local col9 ref" href="#69hash" title='hash' data-ref="69hash">hash</a>);</td></tr>
+<tr><th id="771">771</th><td></td></tr>
+<tr><th id="772">772</th><td>  <b>if</b>(<a class="local col8 ref" href="#68data" title='data' data-ref="68data">data</a> &amp;&amp; <a class="local col8 ref" href="#68data" title='data' data-ref="68data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="773">773</th><td>    <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col8 ref" href="#68data" title='data' data-ref="68data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="774">774</th><td>}</td></tr>
+<tr><th id="775">775</th><td></td></tr>
+<tr><th id="776">776</th><td></td></tr>
+<tr><th id="777">777</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_loadhostpairs" title='Curl_loadhostpairs' data-ref="Curl_loadhostpairs">Curl_loadhostpairs</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col0 decl" id="70data" title='data' data-type='struct Curl_easy *' data-ref="70data">data</dfn>)</td></tr>
+<tr><th id="778">778</th><td>{</td></tr>
+<tr><th id="779">779</th><td>  <b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="local col1 decl" id="71hostp" title='hostp' data-type='struct curl_slist *' data-ref="71hostp">hostp</dfn>;</td></tr>
+<tr><th id="780">780</th><td>  <em>char</em> <dfn class="local col2 decl" id="72hostname" title='hostname' data-type='char [256]' data-ref="72hostname">hostname</dfn>[<var>256</var>];</td></tr>
+<tr><th id="781">781</th><td>  <em>char</em> <dfn class="local col3 decl" id="73address" title='address' data-type='char [256]' data-ref="73address">address</dfn>[<var>256</var>];</td></tr>
+<tr><th id="782">782</th><td>  <em>int</em> <dfn class="local col4 decl" id="74port" title='port' data-type='int' data-ref="74port">port</dfn>;</td></tr>
+<tr><th id="783">783</th><td></td></tr>
+<tr><th id="784">784</th><td>  <b>for</b>(<a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a> = <a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::change" title='Curl_easy::change' data-ref="Curl_easy::change">change</a>.<a class="ref" href="urldata.h.html#DynamicStatic::resolve" title='DynamicStatic::resolve' data-ref="DynamicStatic::resolve">resolve</a>; <a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>; <a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a> = <a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#curl_slist::next" title='curl_slist::next' data-ref="curl_slist::next">next</a>) {</td></tr>
+<tr><th id="785">785</th><td>    <b>if</b>(!<a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#curl_slist::data" title='curl_slist::data' data-ref="curl_slist::data">data</a>)</td></tr>
+<tr><th id="786">786</th><td>      <b>continue</b>;</td></tr>
+<tr><th id="787">787</th><td>    <b>if</b>(<a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#curl_slist::data" title='curl_slist::data' data-ref="curl_slist::data">data</a>[<var>0</var>] == <kbd>'-'</kbd>) {</td></tr>
+<tr><th id="788">788</th><td>      <em>char</em> *<dfn class="local col5 decl" id="75entry_id" title='entry_id' data-type='char *' data-ref="75entry_id">entry_id</dfn>;</td></tr>
+<tr><th id="789">789</th><td>      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="76entry_len" title='entry_len' data-type='size_t' data-ref="76entry_len">entry_len</dfn>;</td></tr>
+<tr><th id="790">790</th><td></td></tr>
+<tr><th id="791">791</th><td>      <b>if</b>(<var>2</var> != <a class="ref" href="../../include/stdio.h.html#__isoc99_sscanf" title='sscanf' data-ref="__isoc99_sscanf">sscanf</a>(<a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#curl_slist::data" title='curl_slist::data' data-ref="curl_slist::data">data</a> + <var>1</var>, <q>"%255[^:]:%d"</q>, <a class="local col2 ref" href="#72hostname" title='hostname' data-ref="72hostname">hostname</a>, &amp;<a class="local col4 ref" href="#74port" title='port' data-ref="74port">port</a>)) {</td></tr>
+<tr><th id="792">792</th><td>        <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <q>"Couldn't parse CURLOPT_RESOLVE removal entry '%s'!\n"</q>,</td></tr>
+<tr><th id="793">793</th><td>              <a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#curl_slist::data" title='curl_slist::data' data-ref="curl_slist::data">data</a>);</td></tr>
+<tr><th id="794">794</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="795">795</th><td>      }</td></tr>
+<tr><th id="796">796</th><td></td></tr>
+<tr><th id="797">797</th><td>      <i>/* Create an entry id, based upon the hostname and port */</i></td></tr>
+<tr><th id="798">798</th><td>      <a class="local col5 ref" href="#75entry_id" title='entry_id' data-ref="75entry_id">entry_id</a> = <a class="tu ref" href="#create_hostcache_id" title='create_hostcache_id' data-use='c' data-ref="create_hostcache_id">create_hostcache_id</a>(<a class="local col2 ref" href="#72hostname" title='hostname' data-ref="72hostname">hostname</a>, <a class="local col4 ref" href="#74port" title='port' data-ref="74port">port</a>);</td></tr>
+<tr><th id="799">799</th><td>      <i>/* If we can't create the entry id, fail */</i></td></tr>
+<tr><th id="800">800</th><td>      <b>if</b>(!<a class="local col5 ref" href="#75entry_id" title='entry_id' data-ref="75entry_id">entry_id</a>) {</td></tr>
+<tr><th id="801">801</th><td>        <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="802">802</th><td>      }</td></tr>
+<tr><th id="803">803</th><td></td></tr>
+<tr><th id="804">804</th><td>      <a class="local col6 ref" href="#76entry_len" title='entry_len' data-ref="76entry_len">entry_len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col5 ref" href="#75entry_id" title='entry_id' data-ref="75entry_id">entry_id</a>);</td></tr>
+<tr><th id="805">805</th><td></td></tr>
+<tr><th id="806">806</th><td>      <b>if</b>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="807">807</th><td>        <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="808">808</th><td></td></tr>
+<tr><th id="809">809</th><td>      <i>/* delete entry, ignore if it didn't exist */</i></td></tr>
+<tr><th id="810">810</th><td>      <a class="ref" href="hash.h.html#Curl_hash_delete" title='Curl_hash_delete' data-ref="Curl_hash_delete">Curl_hash_delete</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::dns" title='Curl_easy::dns' data-ref="Curl_easy::dns">dns</a>.<a class="ref" href="urldata.h.html#Names::hostcache" title='Names::hostcache' data-ref="Names::hostcache">hostcache</a>, <a class="local col5 ref" href="#75entry_id" title='entry_id' data-ref="75entry_id">entry_id</a>, <a class="local col6 ref" href="#76entry_len" title='entry_len' data-ref="76entry_len">entry_len</a> + <var>1</var>);</td></tr>
+<tr><th id="811">811</th><td></td></tr>
+<tr><th id="812">812</th><td>      <b>if</b>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="813">813</th><td>        <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="814">814</th><td></td></tr>
+<tr><th id="815">815</th><td>      <i>/* free the allocated entry_id again */</i></td></tr>
+<tr><th id="816">816</th><td>      <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(entry_id)" data-ref="_M/free">free</a>(<a class="local col5 ref" href="#75entry_id" title='entry_id' data-ref="75entry_id">entry_id</a>);</td></tr>
+<tr><th id="817">817</th><td>    }</td></tr>
+<tr><th id="818">818</th><td>    <b>else</b> {</td></tr>
+<tr><th id="819">819</th><td>      <b>struct</b> <a class="type" href="hostip.h.html#Curl_dns_entry" title='Curl_dns_entry' data-ref="Curl_dns_entry">Curl_dns_entry</a> *<dfn class="local col7 decl" id="77dns" title='dns' data-type='struct Curl_dns_entry *' data-ref="77dns">dns</dfn>;</td></tr>
+<tr><th id="820">820</th><td>      <a class="typedef" href="curl_addrinfo.h.html#Curl_addrinfo" title='Curl_addrinfo' data-type='struct Curl_addrinfo' data-ref="Curl_addrinfo">Curl_addrinfo</a> *<dfn class="local col8 decl" id="78addr" title='addr' data-type='Curl_addrinfo *' data-ref="78addr">addr</dfn>;</td></tr>
+<tr><th id="821">821</th><td>      <em>char</em> *<dfn class="local col9 decl" id="79entry_id" title='entry_id' data-type='char *' data-ref="79entry_id">entry_id</dfn>;</td></tr>
+<tr><th id="822">822</th><td>      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="80entry_len" title='entry_len' data-type='size_t' data-ref="80entry_len">entry_len</dfn>;</td></tr>
+<tr><th id="823">823</th><td></td></tr>
+<tr><th id="824">824</th><td>      <b>if</b>(<var>3</var> != <a class="ref" href="../../include/stdio.h.html#__isoc99_sscanf" title='sscanf' data-ref="__isoc99_sscanf">sscanf</a>(<a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#curl_slist::data" title='curl_slist::data' data-ref="curl_slist::data">data</a>, <q>"%255[^:]:%d:%255s"</q>, <a class="local col2 ref" href="#72hostname" title='hostname' data-ref="72hostname">hostname</a>, &amp;<a class="local col4 ref" href="#74port" title='port' data-ref="74port">port</a>,</td></tr>
+<tr><th id="825">825</th><td>                     <a class="local col3 ref" href="#73address" title='address' data-ref="73address">address</a>)) {</td></tr>
+<tr><th id="826">826</th><td>        <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <q>"Couldn't parse CURLOPT_RESOLVE entry '%s'!\n"</q>,</td></tr>
+<tr><th id="827">827</th><td>              <a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#curl_slist::data" title='curl_slist::data' data-ref="curl_slist::data">data</a>);</td></tr>
+<tr><th id="828">828</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="829">829</th><td>      }</td></tr>
+<tr><th id="830">830</th><td></td></tr>
+<tr><th id="831">831</th><td>      <a class="local col8 ref" href="#78addr" title='addr' data-ref="78addr">addr</a> = <a class="ref" href="curl_addrinfo.h.html#Curl_str2addr" title='Curl_str2addr' data-ref="Curl_str2addr">Curl_str2addr</a>(<a class="local col3 ref" href="#73address" title='address' data-ref="73address">address</a>, <a class="local col4 ref" href="#74port" title='port' data-ref="74port">port</a>);</td></tr>
+<tr><th id="832">832</th><td>      <b>if</b>(!<a class="local col8 ref" href="#78addr" title='addr' data-ref="78addr">addr</a>) {</td></tr>
+<tr><th id="833">833</th><td>        <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <q>"Address in '%s' found illegal!\n"</q>, <a class="local col1 ref" href="#71hostp" title='hostp' data-ref="71hostp">hostp</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#curl_slist::data" title='curl_slist::data' data-ref="curl_slist::data">data</a>);</td></tr>
+<tr><th id="834">834</th><td>        <b>continue</b>;</td></tr>
+<tr><th id="835">835</th><td>      }</td></tr>
+<tr><th id="836">836</th><td></td></tr>
+<tr><th id="837">837</th><td>      <i>/* Create an entry id, based upon the hostname and port */</i></td></tr>
+<tr><th id="838">838</th><td>      <a class="local col9 ref" href="#79entry_id" title='entry_id' data-ref="79entry_id">entry_id</a> = <a class="tu ref" href="#create_hostcache_id" title='create_hostcache_id' data-use='c' data-ref="create_hostcache_id">create_hostcache_id</a>(<a class="local col2 ref" href="#72hostname" title='hostname' data-ref="72hostname">hostname</a>, <a class="local col4 ref" href="#74port" title='port' data-ref="74port">port</a>);</td></tr>
+<tr><th id="839">839</th><td>      <i>/* If we can't create the entry id, fail */</i></td></tr>
+<tr><th id="840">840</th><td>      <b>if</b>(!<a class="local col9 ref" href="#79entry_id" title='entry_id' data-ref="79entry_id">entry_id</a>) {</td></tr>
+<tr><th id="841">841</th><td>        <a class="ref" href="curl_addrinfo.h.html#Curl_freeaddrinfo" title='Curl_freeaddrinfo' data-ref="Curl_freeaddrinfo">Curl_freeaddrinfo</a>(<a class="local col8 ref" href="#78addr" title='addr' data-ref="78addr">addr</a>);</td></tr>
+<tr><th id="842">842</th><td>        <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="843">843</th><td>      }</td></tr>
+<tr><th id="844">844</th><td></td></tr>
+<tr><th id="845">845</th><td>      <a class="local col0 ref" href="#80entry_len" title='entry_len' data-ref="80entry_len">entry_len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col9 ref" href="#79entry_id" title='entry_id' data-ref="79entry_id">entry_id</a>);</td></tr>
+<tr><th id="846">846</th><td></td></tr>
+<tr><th id="847">847</th><td>      <b>if</b>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="848">848</th><td>        <a class="ref" href="share.h.html#Curl_share_lock" title='Curl_share_lock' data-ref="Curl_share_lock">Curl_share_lock</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_ACCESS_SINGLE" title='CURL_LOCK_ACCESS_SINGLE' data-ref="CURL_LOCK_ACCESS_SINGLE">CURL_LOCK_ACCESS_SINGLE</a>);</td></tr>
+<tr><th id="849">849</th><td></td></tr>
+<tr><th id="850">850</th><td>      <i>/* See if its already in our dns cache */</i></td></tr>
+<tr><th id="851">851</th><td>      <a class="local col7 ref" href="#77dns" title='dns' data-ref="77dns">dns</a> = <a class="ref" href="hash.h.html#Curl_hash_pick" title='Curl_hash_pick' data-ref="Curl_hash_pick">Curl_hash_pick</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::dns" title='Curl_easy::dns' data-ref="Curl_easy::dns">dns</a>.<a class="ref" href="urldata.h.html#Names::hostcache" title='Names::hostcache' data-ref="Names::hostcache">hostcache</a>, <a class="local col9 ref" href="#79entry_id" title='entry_id' data-ref="79entry_id">entry_id</a>, <a class="local col0 ref" href="#80entry_len" title='entry_len' data-ref="80entry_len">entry_len</a> + <var>1</var>);</td></tr>
+<tr><th id="852">852</th><td></td></tr>
+<tr><th id="853">853</th><td>      <i>/* free the allocated entry_id again */</i></td></tr>
+<tr><th id="854">854</th><td>      <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(entry_id)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#79entry_id" title='entry_id' data-ref="79entry_id">entry_id</a>);</td></tr>
+<tr><th id="855">855</th><td></td></tr>
+<tr><th id="856">856</th><td>      <b>if</b>(!<a class="local col7 ref" href="#77dns" title='dns' data-ref="77dns">dns</a>) {</td></tr>
+<tr><th id="857">857</th><td>        <i>/* if not in the cache already, put this host in the cache */</i></td></tr>
+<tr><th id="858">858</th><td>        <a class="local col7 ref" href="#77dns" title='dns' data-ref="77dns">dns</a> = <a class="ref" href="#Curl_cache_addr" title='Curl_cache_addr' data-ref="Curl_cache_addr">Curl_cache_addr</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <a class="local col8 ref" href="#78addr" title='addr' data-ref="78addr">addr</a>, <a class="local col2 ref" href="#72hostname" title='hostname' data-ref="72hostname">hostname</a>, <a class="local col4 ref" href="#74port" title='port' data-ref="74port">port</a>);</td></tr>
+<tr><th id="859">859</th><td>        <b>if</b>(<a class="local col7 ref" href="#77dns" title='dns' data-ref="77dns">dns</a>) {</td></tr>
+<tr><th id="860">860</th><td>          <a class="local col7 ref" href="#77dns" title='dns' data-ref="77dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::timestamp" title='Curl_dns_entry::timestamp' data-ref="Curl_dns_entry::timestamp">timestamp</a> = <var>0</var>; <i>/* mark as added by CURLOPT_RESOLVE */</i></td></tr>
+<tr><th id="861">861</th><td>          <i>/* release the returned reference; the cache itself will keep the</i></td></tr>
+<tr><th id="862">862</th><td><i>           * entry alive: */</i></td></tr>
+<tr><th id="863">863</th><td>          <a class="local col7 ref" href="#77dns" title='dns' data-ref="77dns">dns</a>-&gt;<a class="ref" href="hostip.h.html#Curl_dns_entry::inuse" title='Curl_dns_entry::inuse' data-ref="Curl_dns_entry::inuse">inuse</a>--;</td></tr>
+<tr><th id="864">864</th><td>        }</td></tr>
+<tr><th id="865">865</th><td>      }</td></tr>
+<tr><th id="866">866</th><td>      <b>else</b></td></tr>
+<tr><th id="867">867</th><td>        <i>/* this is a duplicate, free it again */</i></td></tr>
+<tr><th id="868">868</th><td>        <a class="ref" href="curl_addrinfo.h.html#Curl_freeaddrinfo" title='Curl_freeaddrinfo' data-ref="Curl_freeaddrinfo">Curl_freeaddrinfo</a>(<a class="local col8 ref" href="#78addr" title='addr' data-ref="78addr">addr</a>);</td></tr>
+<tr><th id="869">869</th><td></td></tr>
+<tr><th id="870">870</th><td>      <b>if</b>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::share" title='Curl_easy::share' data-ref="Curl_easy::share">share</a>)</td></tr>
+<tr><th id="871">871</th><td>        <a class="ref" href="share.h.html#Curl_share_unlock" title='Curl_share_unlock' data-ref="Curl_share_unlock">Curl_share_unlock</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURL_LOCK_DATA_DNS" title='CURL_LOCK_DATA_DNS' data-ref="CURL_LOCK_DATA_DNS">CURL_LOCK_DATA_DNS</a>);</td></tr>
+<tr><th id="872">872</th><td></td></tr>
+<tr><th id="873">873</th><td>      <b>if</b>(!<a class="local col7 ref" href="#77dns" title='dns' data-ref="77dns">dns</a>) {</td></tr>
+<tr><th id="874">874</th><td>        <a class="ref" href="curl_addrinfo.h.html#Curl_freeaddrinfo" title='Curl_freeaddrinfo' data-ref="Curl_freeaddrinfo">Curl_freeaddrinfo</a>(<a class="local col8 ref" href="#78addr" title='addr' data-ref="78addr">addr</a>);</td></tr>
+<tr><th id="875">875</th><td>        <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="876">876</th><td>      }</td></tr>
+<tr><th id="877">877</th><td>      <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>, <q>"Added %s:%d:%s to DNS cache\n"</q>,</td></tr>
+<tr><th id="878">878</th><td>            <a class="local col2 ref" href="#72hostname" title='hostname' data-ref="72hostname">hostname</a>, <a class="local col4 ref" href="#74port" title='port' data-ref="74port">port</a>, <a class="local col3 ref" href="#73address" title='address' data-ref="73address">address</a>);</td></tr>
+<tr><th id="879">879</th><td>    }</td></tr>
+<tr><th id="880">880</th><td>  }</td></tr>
+<tr><th id="881">881</th><td>  <a class="local col0 ref" href="#70data" title='data' data-ref="70data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::change" title='Curl_easy::change' data-ref="Curl_easy::change">change</a>.<a class="ref" href="urldata.h.html#DynamicStatic::resolve" title='DynamicStatic::resolve' data-ref="DynamicStatic::resolve">resolve</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>; <i>/* dealt with now */</i></td></tr>
+<tr><th id="882">882</th><td></td></tr>
+<tr><th id="883">883</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="884">884</th><td>}</td></tr>
+<tr><th id="885">885</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

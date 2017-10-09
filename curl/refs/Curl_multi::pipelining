@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/multihandle.h' l='110' type='long'/>
+<offset>1856</offset>
+<doc f='codebrowser/lib/multihandle.h' l='109'>/* pipelining wanted bits (CURLPIPE*) */</doc>
+<use f='codebrowser/lib/multi.c' l='793' u='r' c='Curl_pipeline_wanted'/>
+<use f='codebrowser/lib/multi.c' l='2705' u='w' c='curl_multi_setopt'/>

@@ -1,0 +1,20 @@
+<dec f='include/stdio.h' l='172'/>
+<doc f='include/stdio.h' l='171'>/* C89/C99 say they&apos;re macros.  Make them happy.  */</doc>
+<use f='codebrowser/lib/cookie.c' l='1000' u='c'/>
+<use f='codebrowser/lib/formdata.c' l='935' u='c'/>
+<use f='codebrowser/lib/url.c' l='512' u='c'/>
+<use f='codebrowser/src/tool_formparse.c' l='384' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1228' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1241' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1293' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1313' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1642' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1986' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1993' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='120' u='c'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='273' u='c'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='226' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='450' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='955' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1037' u='c'/>
+<use f='codebrowser/tests/server/testpart.c' l='41' u='c'/>

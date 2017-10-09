@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/telnet.c' l='142' type='1'/>
+<use f='codebrowser/lib/telnet.c' l='1103' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1112' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1200' u='r' c='telrcv'/>

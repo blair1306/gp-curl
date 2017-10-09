@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='1066' type='char *'/>
+<offset>576</offset>
+<doc f='codebrowser/lib/urldata.h' l='1066'>/* the content type of the object */</doc>
+<use f='codebrowser/lib/getinfo.c' l='71' u='r' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='72' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='100' u='r' c='getinfo_char'/>
+<use f='codebrowser/lib/http.c' l='3544' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3544' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3545' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/url.c' l='474' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='474' u='w' c='Curl_close'/>

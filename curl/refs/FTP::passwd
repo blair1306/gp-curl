@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/ftp.h' l='107' type='char *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/ftp.h' l='107'>/* password string */</doc>
+<use f='codebrowser/lib/ftp.c' l='2541' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2541' u='r' c='ftp_state_user_resp'/>
+<use f='codebrowser/lib/ftp.c' l='4470' u='w' c='ftp_setup_connection'/>
+<use f='codebrowser/lib/ftp.c' l='4473' u='r' c='ftp_setup_connection'/>

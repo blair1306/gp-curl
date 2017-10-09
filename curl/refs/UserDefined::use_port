@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1496' type='long'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/urldata.h' l='1496'>/* which port to use (when not using default) */</doc>
+<use f='codebrowser/lib/url.c' l='1721' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='5772' u='r' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5774' u='r' c='parse_remote_port'/>

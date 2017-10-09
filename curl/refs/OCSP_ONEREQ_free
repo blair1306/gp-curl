@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='554' macro='1' type='void OCSP_ONEREQ_free(OCSP_ONEREQ * a)'/>

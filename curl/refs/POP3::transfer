@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/pop3.h' l='53' type='curl_pp_transfer'/>
+<offset>0</offset>
+<use f='codebrowser/lib/pop3.c' l='559' u='w' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='898' u='r' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='1130' u='w' c='pop3_done'/>
+<use f='codebrowser/lib/pop3.c' l='1153' u='w' c='pop3_perform'/>

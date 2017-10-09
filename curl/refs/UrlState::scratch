@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='1270' type='char *'/>
+<offset>132672</offset>
+<doc f='codebrowser/lib/urldata.h' l='1270'>/* huge buffer[set.buffer_size*2] for upload CRLF replacing */</doc>
+<use f='codebrowser/lib/smtp.c' l='1545' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1619' u='w' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/transfer.c' l='976' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='977' u='w' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='978' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='993' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='994' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1003' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1012' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/url.c' l='448' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='448' u='w' c='Curl_close'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/url.h' l='38' type='CURLcode Curl_connect(struct Curl_easy * , struct connectdata ** , _Bool * async, _Bool * protocol_connect)'/>
+<use f='codebrowser/lib/multi.c' l='1202' u='c' c='multi_reconnect_request'/>
+<use f='codebrowser/lib/multi.c' l='1437' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/url.c' l='7010' ll='7048' type='CURLcode Curl_connect(struct Curl_easy * data, struct connectdata ** in_connect, _Bool * asyncp, _Bool * protocol_done)'/>

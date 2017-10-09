@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='1480' type='57'/>
+<doc f='codebrowser/lib/urldata.h' l='1477'>/* -- below this are pointers to binary data that cannot be strdup&apos;ed.
+     Each such pointer must be added manually to Curl_dupset() --- */</doc>
+<doc f='codebrowser/lib/urldata.h' l='1480'>/* if POST, set the fields&apos; values here */</doc>
+<use f='codebrowser/lib/url.c' l='382' u='r' c='Curl_dupset'/>
+<use f='codebrowser/lib/url.c' l='1065' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1078' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1094' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1099' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1109' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1121' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1123' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1138' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1140' u='a' c='Curl_setopt'/>

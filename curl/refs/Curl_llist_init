@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/llist.h' l='43' type='void Curl_llist_init(struct curl_llist * , curl_llist_dtor )'/>
+<use f='codebrowser/lib/conncache.c' l='59' u='c' c='bundle_create'/>
+<use f='codebrowser/lib/hash.c' l='78' u='c' c='Curl_hash_init'/>
+<def f='codebrowser/lib/llist.c' l='36' ll='43' type='void Curl_llist_init(struct curl_llist * l, curl_llist_dtor dtor)'/>
+<doc f='codebrowser/lib/llist.c' l='33'>/*
+ * @unittest: 1300
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='324' u='c' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='325' u='c' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='378' u='c' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/pipeline.c' l='200' u='c' c='Curl_pipeline_set_site_blacklist'/>
+<use f='codebrowser/lib/pipeline.c' l='269' u='c' c='Curl_pipeline_set_server_blacklist'/>
+<use f='codebrowser/lib/url.c' l='4320' u='c' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4321' u='c' c='allocate_conn'/>
+<use f='codebrowser/lib/wildcard.c' l='35' u='c' c='Curl_wildcard_init'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='39' u='c' c='unit_setup'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='40' u='c' c='unit_setup'/>

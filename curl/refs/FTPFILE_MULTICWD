@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='94' type='1'/>
+<doc f='codebrowser/lib/ftp.h' l='94'>/* as defined by RFC1738 */</doc>
+<use f='codebrowser/lib/ftp.c' l='3798' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='4209' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/url.c' l='540' u='r' c='Curl_init_userdefined'/>

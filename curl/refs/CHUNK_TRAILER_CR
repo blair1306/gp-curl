@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/http_chunks.h' l='59' type='6'/>
+<doc f='codebrowser/lib/http_chunks.h' l='57'>/* A trailer CR has been found - next state is CHUNK_TRAILER_POSTCR.
+     Next char must be a LF */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='279' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='315' c='Curl_httpchunk_read'/>

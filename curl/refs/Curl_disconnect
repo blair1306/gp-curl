@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/url.h' l='40' type='CURLcode Curl_disconnect(struct connectdata * , _Bool dead_connection)'/>
+<use f='codebrowser/lib/hostasyn.c' l='134' u='c' c='Curl_async_resolved'/>
+<use f='codebrowser/lib/multi.c' l='512' u='c' c='ConnectionDone'/>
+<use f='codebrowser/lib/multi.c' l='621' u='c' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='2095' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2210' u='c' c='close_all_connections'/>
+<def f='codebrowser/lib/url.c' l='3096' ll='3155' type='CURLcode Curl_disconnect(struct connectdata * conn, _Bool dead_connection)'/>
+<use f='codebrowser/lib/url.c' l='3431' u='c' c='disconnect_if_dead'/>
+<use f='codebrowser/lib/url.c' l='6824' u='c' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6844' u='c' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='7043' u='c' c='Curl_connect'/>
+<doc f='codebrowser/lib/url.c' l='3086'>/*
+ * Disconnects the given connection. Note the connection may not be the
+ * primary connection, like when freeing room in the connection cache or
+ * killing of a dead old connection.
+ *
+ * This function MUST NOT reset state in the Curl_easy struct if that
+ * isn&apos;t strictly bound to the life-time of *this* particular connection.
+ *
+ */</doc>

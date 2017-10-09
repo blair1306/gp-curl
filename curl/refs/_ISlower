@@ -1,0 +1,6 @@
+<dec f='include/ctype.h' l='49' type='512'/>
+<doc f='include/ctype.h' l='49'>/* lowercase.  */</doc>
+<use f='codebrowser/lib/curl_fnmatch.c' l='84' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='257' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='257' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='374' macro='1' u='r'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/content_encoding.h' l='38' type='CURLcode Curl_unencode_deflate_write(struct connectdata * conn, struct SingleRequest * req, ssize_t nread)'/>
+<def f='codebrowser/lib/content_encoding.c' l='166' ll='190' type='CURLcode Curl_unencode_deflate_write(struct connectdata * conn, struct SingleRequest * k, ssize_t nread)'/>
+<use f='codebrowser/lib/http_chunks.c' l='208' u='c' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/transfer.c' l='805' u='c' c='readwrite_data'/>

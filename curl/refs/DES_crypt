@@ -1,0 +1,1 @@
+<dec f='include/openssl/des.h' l='212' type='char * DES_crypt(const char * buf, const char * salt)'/>

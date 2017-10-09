@@ -1,0 +1,14 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='83' type='char *'/>
+<offset>2368</offset>
+<use f='codebrowser/src/tool_getparam.c' l='1466' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1466' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1466' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1466' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1466' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1552' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1552' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1552' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1552' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1552' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='982' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='983' u='r' c='operate_do'/>

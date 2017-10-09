@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/imap.h' l='75' type='struct SASL'/>
+<offset>960</offset>
+<doc f='codebrowser/lib/imap.h' l='75'>/* SASL-related parameters */</doc>
+<use f='codebrowser/lib/imap.c' l='418' u='m' c='imap_perform_capability'/>
+<use f='codebrowser/lib/imap.c' l='419' u='m' c='imap_perform_capability'/>
+<use f='codebrowser/lib/imap.c' l='570' u='a' c='imap_perform_authentication'/>
+<use f='codebrowser/lib/imap.c' l='576' u='a' c='imap_perform_authentication'/>
+<use f='codebrowser/lib/imap.c' l='899' u='m' c='imap_state_capability_resp'/>
+<use f='codebrowser/lib/imap.c' l='964' u='a' c='imap_state_auth_resp'/>
+<use f='codebrowser/lib/imap.c' l='1410' u='a' c='imap_connect'/>
+<use f='codebrowser/lib/imap.c' l='1619' u='m' c='imap_disconnect'/>
+<use f='codebrowser/lib/imap.c' l='1885' u='m' c='imap_parse_url_options'/>
+<use f='codebrowser/lib/imap.c' l='1900' u='a' c='imap_parse_url_options'/>
+<use f='codebrowser/lib/imap.c' l='1909' u='m' c='imap_parse_url_options'/>

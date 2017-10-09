@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/http.h' l='63' type='CURLcode Curl_add_buffer(Curl_send_buffer * in, const void * inptr, size_t size)'/>
+<use f='codebrowser/lib/http.c' l='1210' u='c' c='Curl_add_bufferf'/>
+<def f='codebrowser/lib/http.c' l='1223' ll='1271' type='CURLcode Curl_add_buffer(Curl_send_buffer * in, const void * inptr, size_t size)'/>
+<use f='codebrowser/lib/http.c' l='1738' u='c' c='Curl_add_timecondition'/>
+<use f='codebrowser/lib/http.c' l='2306' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2417' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2464' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2550' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2639' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2646' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2655' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2658' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2663' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2685' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2691' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2698' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2731' u='c' c='Curl_http'/>
+<doc f='codebrowser/lib/http.c' l='1220'>/*
+ * add_buffer() appends a memory chunk to the existing buffer
+ */</doc>
+<use f='codebrowser/lib/rtsp.c' l='584' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='589' u='c' c='rtsp_do'/>

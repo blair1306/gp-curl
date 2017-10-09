@@ -1,0 +1,4 @@
+<dec f='codebrowser/tests/libtest/testtrace.h' l='32' type='int libtest_debug_cb(CURL * handle, curl_infotype type, unsigned char * data, size_t size, void * userp)'/>
+<use f='codebrowser/tests/libtest/lib500.c' l='84' c='test'/>
+<use f='codebrowser/tests/libtest/lib573.c' l='61' c='test'/>
+<def f='codebrowser/tests/libtest/testtrace.c' l='85' ll='144' type='int libtest_debug_cb(CURL * handle, curl_infotype type, unsigned char * data, size_t size, void * userp)'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/warnless.h' l='47' type='unsigned short curlx_sltous(long slnum)'/>
+<use f='codebrowser/lib/url.c' l='2113' u='c' c='Curl_setopt'/>
+<def f='codebrowser/lib/warnless.c' l='308' ll='322' type='unsigned short curlx_sltous(long slnum)'/>
+<doc f='codebrowser/lib/warnless.c' l='304'>/*
+** signed long to unsigned short
+*/</doc>

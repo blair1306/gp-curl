@@ -1,0 +1,39 @@
+<dec f='codebrowser/lib/escape.h' l='27' type='CURLcode Curl_urldecode(struct Curl_easy * data, const char * string, size_t length, char ** ostring, size_t * olen, _Bool reject_crlf)'/>
+<use f='codebrowser/lib/dict.c' l='103' u='c' c='unescape_word'/>
+<doc f='codebrowser/lib/escape.h' l='24'>/* Escape and unescape URL encoding in strings. The functions return a new
+ * allocated string or NULL if an error occurred.  */</doc>
+<def f='codebrowser/lib/escape.c' l='146' ll='205' type='CURLcode Curl_urldecode(struct Curl_easy * data, const char * string, size_t length, char ** ostring, size_t * olen, _Bool reject_ctrl)'/>
+<use f='codebrowser/lib/escape.c' l='220' u='c' c='curl_easy_unescape'/>
+<doc f='codebrowser/lib/escape.c' l='136'>/*
+ * Curl_urldecode() URL decodes the given string.
+ *
+ * Optionally detects control characters (byte codes lower than 32) in the
+ * data and rejects such data.
+ *
+ * Returns a pointer to a malloced string in *ostring with length given in
+ * *olen. If length == 0, the length is assumed to be strlen(string).
+ *
+ */</doc>
+<use f='codebrowser/lib/file.c' l='204' u='c' c='file_connect'/>
+<use f='codebrowser/lib/ftp.c' l='3191' u='c' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='4193' u='c' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4236' u='c' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4278' u='c' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/ftp.c' l='4303' u='c' c='ftp_parse_url_path'/>
+<use f='codebrowser/lib/gopher.c' l='109' u='c' c='gopher_do'/>
+<use f='codebrowser/lib/imap.c' l='1950' u='c' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='1973' u='c' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='1983' u='c' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='2043' u='c' c='imap_parse_url_path'/>
+<use f='codebrowser/lib/imap.c' l='2071' u='c' c='imap_parse_custom_request'/>
+<use f='codebrowser/lib/pop3.c' l='1386' u='c' c='pop3_parse_url_path'/>
+<use f='codebrowser/lib/pop3.c' l='1404' u='c' c='pop3_parse_custom_request'/>
+<use f='codebrowser/lib/smb.c' l='966' u='c' c='smb_parse_url_path'/>
+<use f='codebrowser/lib/smtp.c' l='1510' u='c' c='smtp_parse_url_path'/>
+<use f='codebrowser/lib/smtp.c' l='1528' u='c' c='smtp_parse_custom_request'/>
+<use f='codebrowser/lib/tftp.c' l='489' u='c' c='tftp_send_first'/>
+<use f='codebrowser/lib/url.c' l='5304' u='c' c='parse_proxy_auth'/>
+<use f='codebrowser/lib/url.c' l='5307' u='c' c='parse_proxy_auth'/>
+<use f='codebrowser/lib/url.c' l='5551' u='c' c='parse_url_login'/>
+<use f='codebrowser/lib/url.c' l='5563' u='c' c='parse_url_login'/>
+<use f='codebrowser/lib/url.c' l='5575' u='c' c='parse_url_login'/>

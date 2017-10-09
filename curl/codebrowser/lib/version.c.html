@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>version.c source code [codebrowser/lib/version.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/version.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='version.c.html'>version.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="vtls/vtls.h.html">"vtls/vtls.h"</a></u></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="http2.h.html">"http2.h"</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="31">ifdef</span> <span class="macro" data-ref="_M/USE_ARES">USE_ARES</span></u></td></tr>
+<tr><th id="32">32</th><td><u>#  if defined(CURL_STATICLIB) &amp;&amp; !defined(CARES_STATICLIB) &amp;&amp; \</u></td></tr>
+<tr><th id="33">33</th><td><u>     (defined(WIN32) || defined(_WIN32) || defined(__SYMBIAN32__))</u></td></tr>
+<tr><th id="34">34</th><td><u>#    define CARES_STATICLIB</u></td></tr>
+<tr><th id="35">35</th><td><u>#  endif</u></td></tr>
+<tr><th id="36">36</th><td><u>#  include &lt;ares.h&gt;</u></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="31">endif</span></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">ifdef</span> <span class="macro" data-ref="_M/USE_LIBIDN2">USE_LIBIDN2</span></u></td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;idn2.h&gt;</u></td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="39">endif</span></u></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="43">ifdef</span> <span class="macro" data-ref="_M/USE_LIBPSL">USE_LIBPSL</span></u></td></tr>
+<tr><th id="44">44</th><td><u>#include &lt;libpsl.h&gt;</u></td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="43">endif</span></u></td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="47">if</span> defined(<span class="macro" data-ref="_M/HAVE_ICONV">HAVE_ICONV</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span>)</u></td></tr>
+<tr><th id="48">48</th><td><u>#include &lt;iconv.h&gt;</u></td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="47">endif</span></u></td></tr>
+<tr><th id="50">50</th><td></td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="51">ifdef</span> <span class="macro" data-ref="_M/USE_LIBRTMP">USE_LIBRTMP</span></u></td></tr>
+<tr><th id="52">52</th><td><u>#include &lt;librtmp/rtmp.h&gt;</u></td></tr>
+<tr><th id="53">53</th><td><u>#<span data-ppcond="51">endif</span></u></td></tr>
+<tr><th id="54">54</th><td></td></tr>
+<tr><th id="55">55</th><td><u>#<span data-ppcond="55">ifdef</span> <span class="macro" data-ref="_M/USE_LIBSSH2">USE_LIBSSH2</span></u></td></tr>
+<tr><th id="56">56</th><td><u>#include &lt;libssh2.h&gt;</u></td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="55">endif</span></u></td></tr>
+<tr><th id="58">58</th><td></td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="59">ifdef</span> <span class="macro" data-ref="_M/HAVE_LIBSSH2_VERSION">HAVE_LIBSSH2_VERSION</span></u></td></tr>
+<tr><th id="60">60</th><td><i>/* get it run-time if possible */</i></td></tr>
+<tr><th id="61">61</th><td><u>#define CURL_LIBSSH2_VERSION libssh2_version(0)</u></td></tr>
+<tr><th id="62">62</th><td><u>#<span data-ppcond="59">else</span></u></td></tr>
+<tr><th id="63">63</th><td><i>/* use build-time if run-time not possible */</i></td></tr>
+<tr><th id="64">64</th><td><u>#define <dfn class="macro" id="_M/CURL_LIBSSH2_VERSION" data-ref="_M/CURL_LIBSSH2_VERSION">CURL_LIBSSH2_VERSION</dfn> LIBSSH2_VERSION</u></td></tr>
+<tr><th id="65">65</th><td><u>#<span data-ppcond="59">endif</span></u></td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td><em>void</em> <a class="decl" href="#Curl_version_init" title='Curl_version_init' data-ref="Curl_version_init">Curl_version_init</a>(<em>void</em>);</td></tr>
+<tr><th id="68">68</th><td></td></tr>
+<tr><th id="69">69</th><td><i>/* For thread safety purposes this function is called by global_init so that</i></td></tr>
+<tr><th id="70">70</th><td><i>   the static data in both version functions is initialized. */</i></td></tr>
+<tr><th id="71">71</th><td><em>void</em> <dfn class="decl def" id="Curl_version_init" title='Curl_version_init' data-ref="Curl_version_init">Curl_version_init</dfn>(<em>void</em>)</td></tr>
+<tr><th id="72">72</th><td>{</td></tr>
+<tr><th id="73">73</th><td>  <a class="ref" href="#curl_version" title='curl_version' data-ref="curl_version">curl_version</a>();</td></tr>
+<tr><th id="74">74</th><td>  <a class="ref" href="#curl_version_info" title='curl_version_info' data-ref="curl_version_info">curl_version_info</a>(<a class="macro" href="../include/curl/curl.h.html#2603" title="CURLVERSION_FOURTH" data-ref="_M/CURLVERSION_NOW">CURLVERSION_NOW</a>);</td></tr>
+<tr><th id="75">75</th><td>}</td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td><em>char</em> *<dfn class="decl def" id="curl_version" title='curl_version' data-ref="curl_version">curl_version</dfn>(<em>void</em>)</td></tr>
+<tr><th id="78">78</th><td>{</td></tr>
+<tr><th id="79">79</th><td>  <em>static</em> <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col1 decl" id="1initialized" title='initialized' data-type='_Bool' data-ref="1initialized">initialized</dfn>;</td></tr>
+<tr><th id="80">80</th><td>  <em>static</em> <em>char</em> <dfn class="local col2 decl" id="2version" title='version' data-type='char [200]' data-ref="2version">version</dfn>[<var>200</var>];</td></tr>
+<tr><th id="81">81</th><td>  <em>char</em> *<dfn class="local col3 decl" id="3ptr" title='ptr' data-type='char *' data-ref="3ptr">ptr</dfn> = <a class="local col2 ref" href="#2version" title='version' data-ref="2version">version</a>;</td></tr>
+<tr><th id="82">82</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="4len" title='len' data-type='size_t' data-ref="4len">len</dfn>;</td></tr>
+<tr><th id="83">83</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="5left" title='left' data-type='size_t' data-ref="5left">left</dfn> = <b>sizeof</b>(<a class="local col2 ref" href="#2version" title='version' data-ref="2version">version</a>);</td></tr>
+<tr><th id="84">84</th><td></td></tr>
+<tr><th id="85">85</th><td>  <b>if</b>(<a class="local col1 ref" href="#1initialized" title='initialized' data-ref="1initialized">initialized</a>)</td></tr>
+<tr><th id="86">86</th><td>    <b>return</b> <a class="local col2 ref" href="#2version" title='version' data-ref="2version">version</a>;</td></tr>
+<tr><th id="87">87</th><td></td></tr>
+<tr><th id="88">88</th><td>  <a class="ref" href="../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>, <a class="macro" href="urldata.h.html#1783" title="&quot;libcurl&quot;" data-ref="_M/LIBCURL_NAME">LIBCURL_NAME</a> <q>"/"</q> <a class="macro" href="../include/curl/curlver.h.html#33" title="&quot;7.57.0-DEV&quot;" data-ref="_M/LIBCURL_VERSION">LIBCURL_VERSION</a>);</td></tr>
+<tr><th id="89">89</th><td>  <a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>);</td></tr>
+<tr><th id="90">90</th><td>  <a class="local col5 ref" href="#5left" title='left' data-ref="5left">left</a> -= <a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a>;</td></tr>
+<tr><th id="91">91</th><td>  <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a> += <a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a>;</td></tr>
+<tr><th id="92">92</th><td></td></tr>
+<tr><th id="93">93</th><td>  <b>if</b>(<a class="local col5 ref" href="#5left" title='left' data-ref="5left">left</a> &gt; <var>1</var>) {</td></tr>
+<tr><th id="94">94</th><td>    <a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a> = <a class="ref" href="vtls/vtls.h.html#Curl_ssl_version" title='Curl_ssl_version' data-ref="Curl_ssl_version">Curl_ssl_version</a>(<a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a> + <var>1</var>, <a class="local col5 ref" href="#5left" title='left' data-ref="5left">left</a> - <var>1</var>);</td></tr>
+<tr><th id="95">95</th><td></td></tr>
+<tr><th id="96">96</th><td>    <b>if</b>(<a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a> &gt; <var>0</var>) {</td></tr>
+<tr><th id="97">97</th><td>      *<a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a> = <kbd>' '</kbd>;</td></tr>
+<tr><th id="98">98</th><td>      <a class="local col5 ref" href="#5left" title='left' data-ref="5left">left</a> -= ++<a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a>;</td></tr>
+<tr><th id="99">99</th><td>      <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a> += <a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a>;</td></tr>
+<tr><th id="100">100</th><td>    }</td></tr>
+<tr><th id="101">101</th><td>  }</td></tr>
+<tr><th id="102">102</th><td></td></tr>
+<tr><th id="103">103</th><td><u>#<span data-ppcond="103">ifdef</span> <a class="macro" href="curl_config.h.html#399" data-ref="_M/HAVE_LIBZ">HAVE_LIBZ</a></u></td></tr>
+<tr><th id="104">104</th><td>  <a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a> = <a class="macro" href="curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a>, <a class="local col5 ref" href="#5left" title='left' data-ref="5left">left</a>, <q>" zlib/%s"</q>, <a class="ref" href="../../include/zlib.h.html#zlibVersion" title='zlibVersion' data-ref="zlibVersion">zlibVersion</a>());</td></tr>
+<tr><th id="105">105</th><td>  <a class="local col5 ref" href="#5left" title='left' data-ref="5left">left</a> -= <a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a>;</td></tr>
+<tr><th id="106">106</th><td>  <a class="local col3 ref" href="#3ptr" title='ptr' data-ref="3ptr">ptr</a> += <a class="local col4 ref" href="#4len" title='len' data-ref="4len">len</a>;</td></tr>
+<tr><th id="107">107</th><td><u>#<span data-ppcond="103">endif</span></u></td></tr>
+<tr><th id="108">108</th><td><u>#<span data-ppcond="108">ifdef</span> <span class="macro" data-ref="_M/USE_ARES">USE_ARES</span></u></td></tr>
+<tr><th id="109">109</th><td>  <i>/* this function is only present in c-ares, not in the original ares */</i></td></tr>
+<tr><th id="110">110</th><td>  len = snprintf(ptr, left, <q>" c-ares/%s"</q>, ares_version(NULL));</td></tr>
+<tr><th id="111">111</th><td>  left -= len;</td></tr>
+<tr><th id="112">112</th><td>  ptr += len;</td></tr>
+<tr><th id="113">113</th><td><u>#<span data-ppcond="108">endif</span></u></td></tr>
+<tr><th id="114">114</th><td><u>#<span data-ppcond="114">ifdef</span> <span class="macro" data-ref="_M/USE_LIBIDN2">USE_LIBIDN2</span></u></td></tr>
+<tr><th id="115">115</th><td>  <b>if</b>(idn2_check_version(IDN2_VERSION)) {</td></tr>
+<tr><th id="116">116</th><td>    len = snprintf(ptr, left, <q>" libidn2/%s"</q>, idn2_check_version(NULL));</td></tr>
+<tr><th id="117">117</th><td>    left -= len;</td></tr>
+<tr><th id="118">118</th><td>    ptr += len;</td></tr>
+<tr><th id="119">119</th><td>  }</td></tr>
+<tr><th id="120">120</th><td><u>#<span data-ppcond="114">endif</span></u></td></tr>
+<tr><th id="121">121</th><td><u>#<span data-ppcond="121">ifdef</span> <span class="macro" data-ref="_M/USE_LIBPSL">USE_LIBPSL</span></u></td></tr>
+<tr><th id="122">122</th><td>  len = snprintf(ptr, left, <q>" libpsl/%s"</q>, psl_get_version());</td></tr>
+<tr><th id="123">123</th><td>  left -= len;</td></tr>
+<tr><th id="124">124</th><td>  ptr += len;</td></tr>
+<tr><th id="125">125</th><td><u>#<span data-ppcond="121">endif</span></u></td></tr>
+<tr><th id="126">126</th><td><u>#<span data-ppcond="126">ifdef</span> <span class="macro" data-ref="_M/USE_WIN32_IDN">USE_WIN32_IDN</span></u></td></tr>
+<tr><th id="127">127</th><td>  len = snprintf(ptr, left, <q>" WinIDN"</q>);</td></tr>
+<tr><th id="128">128</th><td>  left -= len;</td></tr>
+<tr><th id="129">129</th><td>  ptr += len;</td></tr>
+<tr><th id="130">130</th><td><u>#<span data-ppcond="126">endif</span></u></td></tr>
+<tr><th id="131">131</th><td><u>#<span data-ppcond="131">if</span> defined(<span class="macro" data-ref="_M/HAVE_ICONV">HAVE_ICONV</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span>)</u></td></tr>
+<tr><th id="132">132</th><td><u>#ifdef _LIBICONV_VERSION</u></td></tr>
+<tr><th id="133">133</th><td>  len = snprintf(ptr, left, <q>" iconv/%d.%d"</q>,</td></tr>
+<tr><th id="134">134</th><td>                 _LIBICONV_VERSION &gt;&gt; <var>8</var>, _LIBICONV_VERSION &amp; <var>255</var>);</td></tr>
+<tr><th id="135">135</th><td><u>#else</u></td></tr>
+<tr><th id="136">136</th><td>  <i>/* version unknown */</i></td></tr>
+<tr><th id="137">137</th><td>  len = snprintf(ptr, left, <q>" iconv"</q>);</td></tr>
+<tr><th id="138">138</th><td><u>#endif /* _LIBICONV_VERSION */</u></td></tr>
+<tr><th id="139">139</th><td>  left -= len;</td></tr>
+<tr><th id="140">140</th><td>  ptr += len;</td></tr>
+<tr><th id="141">141</th><td><u>#<span data-ppcond="131">endif</span></u></td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="142">ifdef</span> <span class="macro" data-ref="_M/USE_LIBSSH2">USE_LIBSSH2</span></u></td></tr>
+<tr><th id="143">143</th><td>  len = snprintf(ptr, left, <q>" libssh2/%s"</q>, CURL_LIBSSH2_VERSION);</td></tr>
+<tr><th id="144">144</th><td>  left -= len;</td></tr>
+<tr><th id="145">145</th><td>  ptr += len;</td></tr>
+<tr><th id="146">146</th><td><u>#<span data-ppcond="142">endif</span></u></td></tr>
+<tr><th id="147">147</th><td><u>#<span data-ppcond="147">ifdef</span> <span class="macro" data-ref="_M/USE_NGHTTP2">USE_NGHTTP2</span></u></td></tr>
+<tr><th id="148">148</th><td>  len = Curl_http2_ver(ptr, left);</td></tr>
+<tr><th id="149">149</th><td>  left -= len;</td></tr>
+<tr><th id="150">150</th><td>  ptr += len;</td></tr>
+<tr><th id="151">151</th><td><u>#<span data-ppcond="147">endif</span></u></td></tr>
+<tr><th id="152">152</th><td><u>#<span data-ppcond="152">ifdef</span> <span class="macro" data-ref="_M/USE_LIBRTMP">USE_LIBRTMP</span></u></td></tr>
+<tr><th id="153">153</th><td>  {</td></tr>
+<tr><th id="154">154</th><td>    <em>char</em> suff[<var>2</var>];</td></tr>
+<tr><th id="155">155</th><td>    <b>if</b>(RTMP_LIB_VERSION &amp; <var>0xff</var>) {</td></tr>
+<tr><th id="156">156</th><td>      suff[<var>0</var>] = (RTMP_LIB_VERSION &amp; <var>0xff</var>) + <kbd>'a'</kbd> - <var>1</var>;</td></tr>
+<tr><th id="157">157</th><td>      suff[<var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="158">158</th><td>    }</td></tr>
+<tr><th id="159">159</th><td>    <b>else</b></td></tr>
+<tr><th id="160">160</th><td>      suff[<var>0</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="161">161</th><td></td></tr>
+<tr><th id="162">162</th><td>    snprintf(ptr, left, <q>" librtmp/%d.%d%s"</q>,</td></tr>
+<tr><th id="163">163</th><td>             RTMP_LIB_VERSION &gt;&gt; <var>16</var>, (RTMP_LIB_VERSION &gt;&gt; <var>8</var>) &amp; <var>0xff</var>,</td></tr>
+<tr><th id="164">164</th><td>             suff);</td></tr>
+<tr><th id="165">165</th><td><i>/*</i></td></tr>
+<tr><th id="166">166</th><td><i>  If another lib version is added below this one, this code would</i></td></tr>
+<tr><th id="167">167</th><td><i>  also have to do:</i></td></tr>
+<tr><th id="168">168</th><td><i></i></td></tr>
+<tr><th id="169">169</th><td><i>    len = what snprintf() returned</i></td></tr>
+<tr><th id="170">170</th><td><i></i></td></tr>
+<tr><th id="171">171</th><td><i>    left -= len;</i></td></tr>
+<tr><th id="172">172</th><td><i>    ptr += len;</i></td></tr>
+<tr><th id="173">173</th><td><i>*/</i></td></tr>
+<tr><th id="174">174</th><td>  }</td></tr>
+<tr><th id="175">175</th><td><u>#<span data-ppcond="152">endif</span></u></td></tr>
+<tr><th id="176">176</th><td></td></tr>
+<tr><th id="177">177</th><td>  <a class="local col1 ref" href="#1initialized" title='initialized' data-ref="1initialized">initialized</a> = <span class="macro" title="1" data-ref="_M/true">true</span>;</td></tr>
+<tr><th id="178">178</th><td>  <b>return</b> <a class="local col2 ref" href="#2version" title='version' data-ref="2version">version</a>;</td></tr>
+<tr><th id="179">179</th><td>}</td></tr>
+<tr><th id="180">180</th><td></td></tr>
+<tr><th id="181">181</th><td><i  data-doc="protocols">/* data for curl_version_info</i></td></tr>
+<tr><th id="182">182</th><td><i  data-doc="protocols"></i></td></tr>
+<tr><th id="183">183</th><td><i  data-doc="protocols">   Keep the list sorted alphabetically. It is also written so that each</i></td></tr>
+<tr><th id="184">184</th><td><i  data-doc="protocols">   protocol line has its own #if line to make things easier on the eye.</i></td></tr>
+<tr><th id="185">185</th><td><i  data-doc="protocols"> */</i></td></tr>
+<tr><th id="186">186</th><td></td></tr>
+<tr><th id="187">187</th><td><em>static</em> <em>const</em> <em>char</em> * <em>const</em> <dfn class="tu decl def" id="protocols" title='protocols' data-type='const char *const [19]' data-ref="protocols">protocols</dfn>[] = {</td></tr>
+<tr><th id="188">188</th><td><u>#<span data-ppcond="188">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_DICT">CURL_DISABLE_DICT</span></u></td></tr>
+<tr><th id="189">189</th><td>  <q>"dict"</q>,</td></tr>
+<tr><th id="190">190</th><td><u>#<span data-ppcond="188">endif</span></u></td></tr>
+<tr><th id="191">191</th><td><u>#<span data-ppcond="191">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_FILE">CURL_DISABLE_FILE</span></u></td></tr>
+<tr><th id="192">192</th><td>  <q>"file"</q>,</td></tr>
+<tr><th id="193">193</th><td><u>#<span data-ppcond="191">endif</span></u></td></tr>
+<tr><th id="194">194</th><td><u>#<span data-ppcond="194">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_FTP">CURL_DISABLE_FTP</span></u></td></tr>
+<tr><th id="195">195</th><td>  <q>"ftp"</q>,</td></tr>
+<tr><th id="196">196</th><td><u>#<span data-ppcond="194">endif</span></u></td></tr>
+<tr><th id="197">197</th><td><u>#<span data-ppcond="197">if</span> defined(<a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a>) &amp;&amp; !defined(<span class="macro" data-ref="_M/CURL_DISABLE_FTP">CURL_DISABLE_FTP</span>)</u></td></tr>
+<tr><th id="198">198</th><td>  <q>"ftps"</q>,</td></tr>
+<tr><th id="199">199</th><td><u>#<span data-ppcond="197">endif</span></u></td></tr>
+<tr><th id="200">200</th><td><u>#<span data-ppcond="200">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_GOPHER">CURL_DISABLE_GOPHER</span></u></td></tr>
+<tr><th id="201">201</th><td>  <q>"gopher"</q>,</td></tr>
+<tr><th id="202">202</th><td><u>#<span data-ppcond="200">endif</span></u></td></tr>
+<tr><th id="203">203</th><td><u>#<span data-ppcond="203">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_HTTP">CURL_DISABLE_HTTP</span></u></td></tr>
+<tr><th id="204">204</th><td>  <q>"http"</q>,</td></tr>
+<tr><th id="205">205</th><td><u>#<span data-ppcond="203">endif</span></u></td></tr>
+<tr><th id="206">206</th><td><u>#<span data-ppcond="206">if</span> defined(<a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a>) &amp;&amp; !defined(<span class="macro" data-ref="_M/CURL_DISABLE_HTTP">CURL_DISABLE_HTTP</span>)</u></td></tr>
+<tr><th id="207">207</th><td>  <q>"https"</q>,</td></tr>
+<tr><th id="208">208</th><td><u>#<span data-ppcond="206">endif</span></u></td></tr>
+<tr><th id="209">209</th><td><u>#<span data-ppcond="209">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_IMAP">CURL_DISABLE_IMAP</span></u></td></tr>
+<tr><th id="210">210</th><td>  <q>"imap"</q>,</td></tr>
+<tr><th id="211">211</th><td><u>#<span data-ppcond="209">endif</span></u></td></tr>
+<tr><th id="212">212</th><td><u>#<span data-ppcond="212">if</span> defined(<a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a>) &amp;&amp; !defined(<span class="macro" data-ref="_M/CURL_DISABLE_IMAP">CURL_DISABLE_IMAP</span>)</u></td></tr>
+<tr><th id="213">213</th><td>  <q>"imaps"</q>,</td></tr>
+<tr><th id="214">214</th><td><u>#<span data-ppcond="212">endif</span></u></td></tr>
+<tr><th id="215">215</th><td><u>#<span data-ppcond="215">ifndef</span> <a class="macro" href="curl_config.h.html#40" data-ref="_M/CURL_DISABLE_LDAP">CURL_DISABLE_LDAP</a></u></td></tr>
+<tr><th id="216">216</th><td>  <q>"ldap"</q>,</td></tr>
+<tr><th id="217">217</th><td><u>#if !defined(CURL_DISABLE_LDAPS) &amp;&amp; \</u></td></tr>
+<tr><th id="218">218</th><td><u>    ((defined(USE_OPENLDAP) &amp;&amp; defined(USE_SSL)) || \</u></td></tr>
+<tr><th id="219">219</th><td><u>     (!defined(USE_OPENLDAP) &amp;&amp; defined(HAVE_LDAP_SSL)))</u></td></tr>
+<tr><th id="220">220</th><td>  <q>"ldaps"</q>,</td></tr>
+<tr><th id="221">221</th><td><u>#endif</u></td></tr>
+<tr><th id="222">222</th><td><u>#<span data-ppcond="215">endif</span></u></td></tr>
+<tr><th id="223">223</th><td><u>#<span data-ppcond="223">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_POP3">CURL_DISABLE_POP3</span></u></td></tr>
+<tr><th id="224">224</th><td>  <q>"pop3"</q>,</td></tr>
+<tr><th id="225">225</th><td><u>#<span data-ppcond="223">endif</span></u></td></tr>
+<tr><th id="226">226</th><td><u>#<span data-ppcond="226">if</span> defined(<a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a>) &amp;&amp; !defined(<span class="macro" data-ref="_M/CURL_DISABLE_POP3">CURL_DISABLE_POP3</span>)</u></td></tr>
+<tr><th id="227">227</th><td>  <q>"pop3s"</q>,</td></tr>
+<tr><th id="228">228</th><td><u>#<span data-ppcond="226">endif</span></u></td></tr>
+<tr><th id="229">229</th><td><u>#<span data-ppcond="229">ifdef</span> <span class="macro" data-ref="_M/USE_LIBRTMP">USE_LIBRTMP</span></u></td></tr>
+<tr><th id="230">230</th><td>  <q>"rtmp"</q>,</td></tr>
+<tr><th id="231">231</th><td><u>#<span data-ppcond="229">endif</span></u></td></tr>
+<tr><th id="232">232</th><td><u>#<span data-ppcond="232">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_RTSP">CURL_DISABLE_RTSP</span></u></td></tr>
+<tr><th id="233">233</th><td>  <q>"rtsp"</q>,</td></tr>
+<tr><th id="234">234</th><td><u>#<span data-ppcond="232">endif</span></u></td></tr>
+<tr><th id="235">235</th><td><u>#<span data-ppcond="235">ifdef</span> <span class="macro" data-ref="_M/USE_LIBSSH2">USE_LIBSSH2</span></u></td></tr>
+<tr><th id="236">236</th><td>  <q>"scp"</q>,</td></tr>
+<tr><th id="237">237</th><td><u>#<span data-ppcond="235">endif</span></u></td></tr>
+<tr><th id="238">238</th><td><u>#<span data-ppcond="238">ifdef</span> <span class="macro" data-ref="_M/USE_LIBSSH2">USE_LIBSSH2</span></u></td></tr>
+<tr><th id="239">239</th><td>  <q>"sftp"</q>,</td></tr>
+<tr><th id="240">240</th><td><u>#<span data-ppcond="238">endif</span></u></td></tr>
+<tr><th id="241">241</th><td><u>#<span data-ppcond="241">if</span> !defined(<span class="macro" data-ref="_M/CURL_DISABLE_SMB">CURL_DISABLE_SMB</span>) &amp;&amp; defined(<a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a>) &amp;&amp; \</u></td></tr>
+<tr><th id="242">242</th><td><u>   (<a class="macro" href="curl_setup.h.html#144" title="8" data-ref="_M/CURL_SIZEOF_CURL_OFF_T">CURL_SIZEOF_CURL_OFF_T</a> &gt; 4) &amp;&amp; \</u></td></tr>
+<tr><th id="243">243</th><td><u>   (!defined(<span class="macro" data-ref="_M/USE_WINDOWS_SSPI">USE_WINDOWS_SSPI</span>) || defined(<span class="macro" data-ref="_M/USE_WIN32_CRYPTO">USE_WIN32_CRYPTO</span>))</u></td></tr>
+<tr><th id="244">244</th><td>  <q>"smb"</q>,</td></tr>
+<tr><th id="245">245</th><td><u>#  <span data-ppcond="245">ifdef</span> <a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a></u></td></tr>
+<tr><th id="246">246</th><td>  <q>"smbs"</q>,</td></tr>
+<tr><th id="247">247</th><td><u>#  <span data-ppcond="245">endif</span></u></td></tr>
+<tr><th id="248">248</th><td><u>#<span data-ppcond="241">endif</span></u></td></tr>
+<tr><th id="249">249</th><td><u>#<span data-ppcond="249">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_SMTP">CURL_DISABLE_SMTP</span></u></td></tr>
+<tr><th id="250">250</th><td>  <q>"smtp"</q>,</td></tr>
+<tr><th id="251">251</th><td><u>#<span data-ppcond="249">endif</span></u></td></tr>
+<tr><th id="252">252</th><td><u>#<span data-ppcond="252">if</span> defined(<a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a>) &amp;&amp; !defined(<span class="macro" data-ref="_M/CURL_DISABLE_SMTP">CURL_DISABLE_SMTP</span>)</u></td></tr>
+<tr><th id="253">253</th><td>  <q>"smtps"</q>,</td></tr>
+<tr><th id="254">254</th><td><u>#<span data-ppcond="252">endif</span></u></td></tr>
+<tr><th id="255">255</th><td><u>#<span data-ppcond="255">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_TELNET">CURL_DISABLE_TELNET</span></u></td></tr>
+<tr><th id="256">256</th><td>  <q>"telnet"</q>,</td></tr>
+<tr><th id="257">257</th><td><u>#<span data-ppcond="255">endif</span></u></td></tr>
+<tr><th id="258">258</th><td><u>#<span data-ppcond="258">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_TFTP">CURL_DISABLE_TFTP</span></u></td></tr>
+<tr><th id="259">259</th><td>  <q>"tftp"</q>,</td></tr>
+<tr><th id="260">260</th><td><u>#<span data-ppcond="258">endif</span></u></td></tr>
+<tr><th id="261">261</th><td></td></tr>
+<tr><th id="262">262</th><td>  <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span></td></tr>
+<tr><th id="263">263</th><td>};</td></tr>
+<tr><th id="264">264</th><td></td></tr>
+<tr><th id="265">265</th><td><em>static</em> <a class="typedef" href="../include/curl/curl.h.html#curl_version_info_data" title='curl_version_info_data' data-type='struct curl_version_info_data' data-ref="curl_version_info_data">curl_version_info_data</a> <dfn class="tu decl def" id="version_info" title='version_info' data-type='curl_version_info_data' data-ref="version_info">version_info</dfn> = {</td></tr>
+<tr><th id="266">266</th><td>  <a class="macro" href="../include/curl/curl.h.html#2603" title="CURLVERSION_FOURTH" data-ref="_M/CURLVERSION_NOW">CURLVERSION_NOW</a>,</td></tr>
+<tr><th id="267">267</th><td>  <a class="macro" href="../include/curl/curlver.h.html#33" title="&quot;7.57.0-DEV&quot;" data-ref="_M/LIBCURL_VERSION">LIBCURL_VERSION</a>,</td></tr>
+<tr><th id="268">268</th><td>  <a class="macro" href="../include/curl/curlver.h.html#60" title="0x073900" data-ref="_M/LIBCURL_VERSION_NUM">LIBCURL_VERSION_NUM</a>,</td></tr>
+<tr><th id="269">269</th><td>  <a class="macro" href="curl_config.h.html#775" title="&quot;Linux&quot;" data-ref="_M/OS">OS</a>, <i>/* as found by configure or set by hand at build-time */</i></td></tr>
+<tr><th id="270">270</th><td>  <var>0</var> <i>/* features is 0 by default */</i></td></tr>
+<tr><th id="271">271</th><td><u>#<span data-ppcond="271">ifdef</span> <a class="macro" href="curl_config.h.html#86" data-ref="_M/ENABLE_IPV6">ENABLE_IPV6</a></u></td></tr>
+<tr><th id="272">272</th><td>  | <a class="macro" href="../include/curl/curl.h.html#2633" title="(1&lt;&lt;0)" data-ref="_M/CURL_VERSION_IPV6">CURL_VERSION_IPV6</a></td></tr>
+<tr><th id="273">273</th><td><u>#<span data-ppcond="271">endif</span></u></td></tr>
+<tr><th id="274">274</th><td><u>#<span data-ppcond="274">ifdef</span> <a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a></u></td></tr>
+<tr><th id="275">275</th><td>  | <a class="macro" href="../include/curl/curl.h.html#2636" title="(1&lt;&lt;2)" data-ref="_M/CURL_VERSION_SSL">CURL_VERSION_SSL</a></td></tr>
+<tr><th id="276">276</th><td><u>#<span data-ppcond="274">endif</span></u></td></tr>
+<tr><th id="277">277</th><td><u>#<span data-ppcond="277">ifdef</span> <a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a></u></td></tr>
+<tr><th id="278">278</th><td>  | <a class="macro" href="../include/curl/curl.h.html#2638" title="(1&lt;&lt;4)" data-ref="_M/CURL_VERSION_NTLM">CURL_VERSION_NTLM</a></td></tr>
+<tr><th id="279">279</th><td><u>#<span data-ppcond="277">endif</span></u></td></tr>
+<tr><th id="280">280</th><td><u>#<span data-ppcond="280">if</span> !defined(<span class="macro" data-ref="_M/CURL_DISABLE_HTTP">CURL_DISABLE_HTTP</span>) &amp;&amp; defined(<a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a>) &amp;&amp; \</u></td></tr>
+<tr><th id="281">281</th><td><u>  defined(<span class="macro" data-ref="_M/NTLM_WB_ENABLED">NTLM_WB_ENABLED</span>)</u></td></tr>
+<tr><th id="282">282</th><td>  | CURL_VERSION_NTLM_WB</td></tr>
+<tr><th id="283">283</th><td><u>#<span data-ppcond="280">endif</span></u></td></tr>
+<tr><th id="284">284</th><td><u>#<span data-ppcond="284">ifdef</span> <span class="macro" data-ref="_M/USE_SPNEGO">USE_SPNEGO</span></u></td></tr>
+<tr><th id="285">285</th><td>  | CURL_VERSION_SPNEGO</td></tr>
+<tr><th id="286">286</th><td><u>#<span data-ppcond="284">endif</span></u></td></tr>
+<tr><th id="287">287</th><td><u>#<span data-ppcond="287">ifdef</span> <span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span></u></td></tr>
+<tr><th id="288">288</th><td>  | CURL_VERSION_KERBEROS5</td></tr>
+<tr><th id="289">289</th><td><u>#<span data-ppcond="287">endif</span></u></td></tr>
+<tr><th id="290">290</th><td><u>#<span data-ppcond="290">ifdef</span> <span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span></u></td></tr>
+<tr><th id="291">291</th><td>  | CURL_VERSION_GSSAPI</td></tr>
+<tr><th id="292">292</th><td><u>#<span data-ppcond="290">endif</span></u></td></tr>
+<tr><th id="293">293</th><td><u>#<span data-ppcond="293">ifdef</span> <span class="macro" data-ref="_M/USE_WINDOWS_SSPI">USE_WINDOWS_SSPI</span></u></td></tr>
+<tr><th id="294">294</th><td>  | CURL_VERSION_SSPI</td></tr>
+<tr><th id="295">295</th><td><u>#<span data-ppcond="293">endif</span></u></td></tr>
+<tr><th id="296">296</th><td><u>#<span data-ppcond="296">ifdef</span> <a class="macro" href="curl_config.h.html#399" data-ref="_M/HAVE_LIBZ">HAVE_LIBZ</a></u></td></tr>
+<tr><th id="297">297</th><td>  | <a class="macro" href="../include/curl/curl.h.html#2637" title="(1&lt;&lt;3)" data-ref="_M/CURL_VERSION_LIBZ">CURL_VERSION_LIBZ</a></td></tr>
+<tr><th id="298">298</th><td><u>#<span data-ppcond="296">endif</span></u></td></tr>
+<tr><th id="299">299</th><td><u>#<span data-ppcond="299">ifdef</span> <span class="macro" data-ref="_M/DEBUGBUILD">DEBUGBUILD</span></u></td></tr>
+<tr><th id="300">300</th><td>  | CURL_VERSION_DEBUG</td></tr>
+<tr><th id="301">301</th><td><u>#<span data-ppcond="299">endif</span></u></td></tr>
+<tr><th id="302">302</th><td><u>#<span data-ppcond="302">ifdef</span> <span class="macro" data-ref="_M/CURLDEBUG">CURLDEBUG</span></u></td></tr>
+<tr><th id="303">303</th><td>  | CURL_VERSION_CURLDEBUG</td></tr>
+<tr><th id="304">304</th><td><u>#<span data-ppcond="302">endif</span></u></td></tr>
+<tr><th id="305">305</th><td><u>#<span data-ppcond="305">ifdef</span> <a class="macro" href="curl_setup.h.html#534" data-ref="_M/CURLRES_ASYNCH">CURLRES_ASYNCH</a></u></td></tr>
+<tr><th id="306">306</th><td>  | <a class="macro" href="../include/curl/curl.h.html#2642" title="(1&lt;&lt;7)" data-ref="_M/CURL_VERSION_ASYNCHDNS">CURL_VERSION_ASYNCHDNS</a></td></tr>
+<tr><th id="307">307</th><td><u>#<span data-ppcond="305">endif</span></u></td></tr>
+<tr><th id="308">308</th><td><u>#<span data-ppcond="308">if</span> (<a class="macro" href="curl_setup.h.html#144" title="8" data-ref="_M/CURL_SIZEOF_CURL_OFF_T">CURL_SIZEOF_CURL_OFF_T</a> &gt; 4) &amp;&amp; \</u></td></tr>
+<tr><th id="309">309</th><td><u>    ( (<a class="macro" href="curl_config.h.html#889" title="8" data-ref="_M/SIZEOF_OFF_T">SIZEOF_OFF_T</a> &gt; 4) || defined(<span class="macro" data-ref="_M/USE_WIN32_LARGE_FILES">USE_WIN32_LARGE_FILES</span>) )</u></td></tr>
+<tr><th id="310">310</th><td>  | <a class="macro" href="../include/curl/curl.h.html#2644" title="(1&lt;&lt;9)" data-ref="_M/CURL_VERSION_LARGEFILE">CURL_VERSION_LARGEFILE</a></td></tr>
+<tr><th id="311">311</th><td><u>#<span data-ppcond="308">endif</span></u></td></tr>
+<tr><th id="312">312</th><td><u>#<span data-ppcond="312">if</span> defined(<span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span>)</u></td></tr>
+<tr><th id="313">313</th><td>  | CURL_VERSION_CONV</td></tr>
+<tr><th id="314">314</th><td><u>#<span data-ppcond="312">endif</span></u></td></tr>
+<tr><th id="315">315</th><td><u>#<span data-ppcond="315">if</span> defined(<span class="macro" data-ref="_M/USE_TLS_SRP">USE_TLS_SRP</span>)</u></td></tr>
+<tr><th id="316">316</th><td>  | CURL_VERSION_TLSAUTH_SRP</td></tr>
+<tr><th id="317">317</th><td><u>#<span data-ppcond="315">endif</span></u></td></tr>
+<tr><th id="318">318</th><td><u>#<span data-ppcond="318">if</span> defined(<span class="macro" data-ref="_M/USE_NGHTTP2">USE_NGHTTP2</span>)</u></td></tr>
+<tr><th id="319">319</th><td>  | CURL_VERSION_HTTP2</td></tr>
+<tr><th id="320">320</th><td><u>#<span data-ppcond="318">endif</span></u></td></tr>
+<tr><th id="321">321</th><td><u>#<span data-ppcond="321">if</span> defined(<a class="macro" href="curl_config.h.html#955" data-ref="_M/USE_UNIX_SOCKETS">USE_UNIX_SOCKETS</a>)</u></td></tr>
+<tr><th id="322">322</th><td>  | <a class="macro" href="../include/curl/curl.h.html#2656" title="(1&lt;&lt;19)" data-ref="_M/CURL_VERSION_UNIX_SOCKETS">CURL_VERSION_UNIX_SOCKETS</a></td></tr>
+<tr><th id="323">323</th><td><u>#<span data-ppcond="321">endif</span></u></td></tr>
+<tr><th id="324">324</th><td><u>#<span data-ppcond="324">if</span> defined(<span class="macro" data-ref="_M/USE_LIBPSL">USE_LIBPSL</span>)</u></td></tr>
+<tr><th id="325">325</th><td>  | CURL_VERSION_PSL</td></tr>
+<tr><th id="326">326</th><td><u>#<span data-ppcond="324">endif</span></u></td></tr>
+<tr><th id="327">327</th><td><u>#<span data-ppcond="327">if</span> defined(<span class="macro" data-ref="_M/CURL_WITH_MULTI_SSL">CURL_WITH_MULTI_SSL</span>)</u></td></tr>
+<tr><th id="328">328</th><td>  | CURL_VERSION_MULTI_SSL</td></tr>
+<tr><th id="329">329</th><td><u>#<span data-ppcond="327">endif</span></u></td></tr>
+<tr><th id="330">330</th><td>  ,</td></tr>
+<tr><th id="331">331</th><td>  <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <i>/* ssl_version */</i></td></tr>
+<tr><th id="332">332</th><td>  <var>0</var>,    <i>/* ssl_version_num, this is kept at zero */</i></td></tr>
+<tr><th id="333">333</th><td>  <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <i>/* zlib_version */</i></td></tr>
+<tr><th id="334">334</th><td>  <a class="tu ref" href="#protocols" title='protocols' data-ref="protocols">protocols</a>,</td></tr>
+<tr><th id="335">335</th><td>  <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <i>/* c-ares version */</i></td></tr>
+<tr><th id="336">336</th><td>  <var>0</var>,    <i>/* c-ares version numerical */</i></td></tr>
+<tr><th id="337">337</th><td>  <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <i>/* libidn version */</i></td></tr>
+<tr><th id="338">338</th><td>  <var>0</var>,    <i>/* iconv version */</i></td></tr>
+<tr><th id="339">339</th><td>  <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <i>/* ssh lib version */</i></td></tr>
+<tr><th id="340">340</th><td>};</td></tr>
+<tr><th id="341">341</th><td></td></tr>
+<tr><th id="342">342</th><td><a class="typedef" href="../include/curl/curl.h.html#curl_version_info_data" title='curl_version_info_data' data-type='struct curl_version_info_data' data-ref="curl_version_info_data">curl_version_info_data</a> *<dfn class="decl def" id="curl_version_info" title='curl_version_info' data-ref="curl_version_info">curl_version_info</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURLversion" title='CURLversion' data-type='enum CURLversion' data-ref="CURLversion">CURLversion</a> <dfn class="local col6 decl" id="6stamp" title='stamp' data-type='CURLversion' data-ref="6stamp">stamp</dfn>)</td></tr>
+<tr><th id="343">343</th><td>{</td></tr>
+<tr><th id="344">344</th><td>  <em>static</em> <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col7 decl" id="7initialized" title='initialized' data-type='_Bool' data-ref="7initialized">initialized</dfn>;</td></tr>
+<tr><th id="345">345</th><td><u>#<span data-ppcond="345">ifdef</span> <span class="macro" data-ref="_M/USE_LIBSSH2">USE_LIBSSH2</span></u></td></tr>
+<tr><th id="346">346</th><td>  <em>static</em> <em>char</em> ssh_buffer[<var>80</var>];</td></tr>
+<tr><th id="347">347</th><td><u>#<span data-ppcond="345">endif</span></u></td></tr>
+<tr><th id="348">348</th><td><u>#<span data-ppcond="348">ifdef</span> <a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a></u></td></tr>
+<tr><th id="349">349</th><td>  <em>static</em> <em>char</em> <dfn class="local col8 decl" id="8ssl_buffer" title='ssl_buffer' data-type='char [80]' data-ref="8ssl_buffer">ssl_buffer</dfn>[<var>80</var>];</td></tr>
+<tr><th id="350">350</th><td><u>#<span data-ppcond="348">endif</span></u></td></tr>
+<tr><th id="351">351</th><td></td></tr>
+<tr><th id="352">352</th><td>  <b>if</b>(<a class="local col7 ref" href="#7initialized" title='initialized' data-ref="7initialized">initialized</a>)</td></tr>
+<tr><th id="353">353</th><td>    <b>return</b> &amp;<a class="tu ref" href="#version_info" title='version_info' data-use='a' data-ref="version_info">version_info</a>;</td></tr>
+<tr><th id="354">354</th><td></td></tr>
+<tr><th id="355">355</th><td><u>#<span data-ppcond="355">ifdef</span> <a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a></u></td></tr>
+<tr><th id="356">356</th><td>  <a class="ref" href="vtls/vtls.h.html#Curl_ssl_version" title='Curl_ssl_version' data-ref="Curl_ssl_version">Curl_ssl_version</a>(<a class="local col8 ref" href="#8ssl_buffer" title='ssl_buffer' data-ref="8ssl_buffer">ssl_buffer</a>, <b>sizeof</b>(<a class="local col8 ref" href="#8ssl_buffer" title='ssl_buffer' data-ref="8ssl_buffer">ssl_buffer</a>));</td></tr>
+<tr><th id="357">357</th><td>  <a class="tu ref" href="#version_info" title='version_info' data-use='m' data-ref="version_info">version_info</a>.<a class="ref" href="../include/curl/curl.h.html#(anonymous)::ssl_version" title='(anonymous struct)::ssl_version' data-ref="(anonymous)::ssl_version">ssl_version</a> = <a class="local col8 ref" href="#8ssl_buffer" title='ssl_buffer' data-ref="8ssl_buffer">ssl_buffer</a>;</td></tr>
+<tr><th id="358">358</th><td>  <b>if</b>(<a class="ref" href="vtls/vtls.h.html#Curl_ssl" title='Curl_ssl' data-ref="Curl_ssl">Curl_ssl</a>-&gt;<a class="ref" href="vtls/vtls.h.html#Curl_ssl::support_https_proxy" title='Curl_ssl::support_https_proxy' data-ref="Curl_ssl::support_https_proxy">support_https_proxy</a>)</td></tr>
+<tr><th id="359">359</th><td>    <a class="tu ref" href="#version_info" title='version_info' data-use='m' data-ref="version_info">version_info</a>.<a class="ref" href="../include/curl/curl.h.html#(anonymous)::features" title='(anonymous struct)::features' data-ref="(anonymous)::features">features</a> |= <a class="macro" href="../include/curl/curl.h.html#2659" title="(1&lt;&lt;21)" data-ref="_M/CURL_VERSION_HTTPS_PROXY">CURL_VERSION_HTTPS_PROXY</a>;</td></tr>
+<tr><th id="360">360</th><td>  <b>else</b></td></tr>
+<tr><th id="361">361</th><td>    <a class="tu ref" href="#version_info" title='version_info' data-use='m' data-ref="version_info">version_info</a>.<a class="ref" href="../include/curl/curl.h.html#(anonymous)::features" title='(anonymous struct)::features' data-ref="(anonymous)::features">features</a> &amp;= ~<a class="macro" href="../include/curl/curl.h.html#2659" title="(1&lt;&lt;21)" data-ref="_M/CURL_VERSION_HTTPS_PROXY">CURL_VERSION_HTTPS_PROXY</a>;</td></tr>
+<tr><th id="362">362</th><td><u>#<span data-ppcond="355">endif</span></u></td></tr>
+<tr><th id="363">363</th><td></td></tr>
+<tr><th id="364">364</th><td><u>#<span data-ppcond="364">ifdef</span> <a class="macro" href="curl_config.h.html#399" data-ref="_M/HAVE_LIBZ">HAVE_LIBZ</a></u></td></tr>
+<tr><th id="365">365</th><td>  <a class="tu ref" href="#version_info" title='version_info' data-use='m' data-ref="version_info">version_info</a>.<a class="ref" href="../include/curl/curl.h.html#(anonymous)::libz_version" title='(anonymous struct)::libz_version' data-ref="(anonymous)::libz_version">libz_version</a> = <a class="ref" href="../../include/zlib.h.html#zlibVersion" title='zlibVersion' data-ref="zlibVersion">zlibVersion</a>();</td></tr>
+<tr><th id="366">366</th><td>  <i>/* libz left NULL if non-existing */</i></td></tr>
+<tr><th id="367">367</th><td><u>#<span data-ppcond="364">endif</span></u></td></tr>
+<tr><th id="368">368</th><td><u>#<span data-ppcond="368">ifdef</span> <span class="macro" data-ref="_M/USE_ARES">USE_ARES</span></u></td></tr>
+<tr><th id="369">369</th><td>  {</td></tr>
+<tr><th id="370">370</th><td>    <em>int</em> aresnum;</td></tr>
+<tr><th id="371">371</th><td>    version_info.ares = ares_version(&amp;aresnum);</td></tr>
+<tr><th id="372">372</th><td>    version_info.ares_num = aresnum;</td></tr>
+<tr><th id="373">373</th><td>  }</td></tr>
+<tr><th id="374">374</th><td><u>#<span data-ppcond="368">endif</span></u></td></tr>
+<tr><th id="375">375</th><td><u>#<span data-ppcond="375">ifdef</span> <span class="macro" data-ref="_M/USE_LIBIDN2">USE_LIBIDN2</span></u></td></tr>
+<tr><th id="376">376</th><td>  <i>/* This returns a version string if we use the given version or later,</i></td></tr>
+<tr><th id="377">377</th><td><i>     otherwise it returns NULL */</i></td></tr>
+<tr><th id="378">378</th><td>  version_info.libidn = idn2_check_version(IDN2_VERSION);</td></tr>
+<tr><th id="379">379</th><td>  <b>if</b>(version_info.libidn)</td></tr>
+<tr><th id="380">380</th><td>    version_info.features |= CURL_VERSION_IDN;</td></tr>
+<tr><th id="381">381</th><td><u>#<span data-ppcond="375">elif</span> defined(<span class="macro" data-ref="_M/USE_WIN32_IDN">USE_WIN32_IDN</span>)</u></td></tr>
+<tr><th id="382">382</th><td>  version_info.features |= CURL_VERSION_IDN;</td></tr>
+<tr><th id="383">383</th><td><u>#<span data-ppcond="375">endif</span></u></td></tr>
+<tr><th id="384">384</th><td></td></tr>
+<tr><th id="385">385</th><td><u>#<span data-ppcond="385">if</span> defined(<span class="macro" data-ref="_M/HAVE_ICONV">HAVE_ICONV</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span>)</u></td></tr>
+<tr><th id="386">386</th><td><u>#ifdef _LIBICONV_VERSION</u></td></tr>
+<tr><th id="387">387</th><td>  version_info.iconv_ver_num = _LIBICONV_VERSION;</td></tr>
+<tr><th id="388">388</th><td><u>#else</u></td></tr>
+<tr><th id="389">389</th><td>  <i>/* version unknown */</i></td></tr>
+<tr><th id="390">390</th><td>  version_info.iconv_ver_num = -<var>1</var>;</td></tr>
+<tr><th id="391">391</th><td><u>#endif /* _LIBICONV_VERSION */</u></td></tr>
+<tr><th id="392">392</th><td><u>#<span data-ppcond="385">endif</span></u></td></tr>
+<tr><th id="393">393</th><td></td></tr>
+<tr><th id="394">394</th><td><u>#<span data-ppcond="394">ifdef</span> <span class="macro" data-ref="_M/USE_LIBSSH2">USE_LIBSSH2</span></u></td></tr>
+<tr><th id="395">395</th><td>  snprintf(ssh_buffer, <b>sizeof</b>(ssh_buffer), <q>"libssh2/%s"</q>, LIBSSH2_VERSION);</td></tr>
+<tr><th id="396">396</th><td>  version_info.libssh_version = ssh_buffer;</td></tr>
+<tr><th id="397">397</th><td><u>#<span data-ppcond="394">endif</span></u></td></tr>
+<tr><th id="398">398</th><td></td></tr>
+<tr><th id="399">399</th><td>  (<em>void</em>)<a class="local col6 ref" href="#6stamp" title='stamp' data-ref="6stamp">stamp</a>; <i>/* avoid compiler warnings, we don't use this */</i></td></tr>
+<tr><th id="400">400</th><td></td></tr>
+<tr><th id="401">401</th><td>  <a class="local col7 ref" href="#7initialized" title='initialized' data-ref="7initialized">initialized</a> = <span class="macro" title="1" data-ref="_M/true">true</span>;</td></tr>
+<tr><th id="402">402</th><td>  <b>return</b> &amp;<a class="tu ref" href="#version_info" title='version_info' data-use='a' data-ref="version_info">version_info</a>;</td></tr>
+<tr><th id="403">403</th><td>}</td></tr>
+<tr><th id="404">404</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/mime.h' l='49' type='4'/>
+<doc f='codebrowser/lib/mime.h' l='49'>/* Placeholder. */</doc>
+<use f='codebrowser/lib/mime.c' l='836' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='862' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='864' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='941' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='1022' u='r' c='mime_part_rewind'/>

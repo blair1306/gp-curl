@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/pipeline.h' l='53' type='_Bool Curl_sendpipe_head(struct Curl_easy * data, struct connectdata * conn)'/>
+<use f='codebrowser/lib/multi.c' l='2432' u='c' c='singlesocket'/>
+<def f='codebrowser/lib/pipeline.c' l='311' ll='315' macro='1' type='_Bool Curl_sendpipe_head(struct Curl_easy * data, struct connectdata * conn)'/>
+<use f='codebrowser/lib/pipeline.c' l='332' u='c' c='Curl_pipeline_checkget_write'/>
+<use f='codebrowser/lib/url.c' l='3256' u='c' c='Curl_getoff_all_pipelines'/>

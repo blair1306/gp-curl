@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/multihandle.h' l='37' type='0'/>
+<doc f='codebrowser/lib/multihandle.h' l='37'>/* 0 - start in this state */</doc>
+<use f='codebrowser/lib/multi.c' l='388' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='1417' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2037' u='r' c='multi_runsingle'/>

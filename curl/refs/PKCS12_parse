@@ -1,0 +1,2 @@
+<dec f='include/openssl/pkcs12.h' l='255' type='int PKCS12_parse(PKCS12 * p12, const char * pass, EVP_PKEY ** pkey, X509 ** cert, struct stack_st_X509 ** ca)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='677' u='c' c='cert_stuff'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/progress.h' l='50' type='void Curl_pgrsResetTransferSizes(struct Curl_easy * data)'/>
+<def f='codebrowser/lib/progress.c' l='153' ll='157' type='void Curl_pgrsResetTransferSizes(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/progress.c' l='152'>/* reset the known transfer sizes */</doc>
+<use f='codebrowser/lib/transfer.c' l='1388' u='c' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1928' u='c' c='Curl_follow'/>

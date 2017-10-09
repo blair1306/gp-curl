@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/smtp.h' l='33' type='1'/>
+<doc f='codebrowser/lib/smtp.h' l='33'>/* waiting for the initial greeting immediately after
+                       a connect */</doc>
+<use f='codebrowser/lib/smtp.c' l='1012' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1159' u='r' c='smtp_connect'/>

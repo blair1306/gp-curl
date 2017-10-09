@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/curl_config.h' l='125'/>
+<doc f='codebrowser/lib/curl_config.h' l='124'>/* Define to 1 if you have the `basename&apos; function. */</doc>
+<use f='codebrowser/lib/formdata.c' l='29' u='a'/>
+<use f='codebrowser/lib/mime.c' l='35' u='a'/>
+<use f='codebrowser/lib/mime.c' l='220' u='a'/>
+<use f='codebrowser/src/tool_bname.h' l='26' u='a'/>
+<use f='codebrowser/src/tool_bname.c' l='28' u='a'/>

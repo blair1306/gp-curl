@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/url.h' l='31' type='CURLcode Curl_open(struct Curl_easy ** curl)'/>
+<use f='codebrowser/lib/easy.c' l='359' u='c' c='curl_easy_init'/>
+<def f='codebrowser/lib/url.c' l='644' ll='713' type='CURLcode Curl_open(struct Curl_easy ** curl)'/>
+<doc f='codebrowser/lib/url.c' l='636'>/**
+ * Curl_open()
+ *
+ * @param curl is a pointer to a sessionhandle pointer that gets set by this
+ * function.
+ * @return CURLcode
+ */</doc>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='775' type='_Bool'/>
+<offset>131328</offset>
+<use f='codebrowser/lib/http_proxy.c' l='457' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='544' u='w' c='CONNECT'/>

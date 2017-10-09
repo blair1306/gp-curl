@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='41' type='unsigned int'/>
+<offset>224</offset>
+<doc f='codebrowser/lib/curl_hmac.h' l='41'>/* Maximum key length (bytes). */</doc>
+<use f='codebrowser/lib/hmac.c' l='74' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='94' u='r' c='Curl_HMAC_init'/>

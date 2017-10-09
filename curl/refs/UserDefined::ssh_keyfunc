@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/urldata.h' l='1607' type='curl_sshkeycallback'/>
+<offset>11328</offset>
+<doc f='codebrowser/lib/urldata.h' l='1607'>/* key matching callback */</doc>

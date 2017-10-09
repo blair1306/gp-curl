@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='233' type='CURLcode Curl_ssl_md5sum(unsigned char * tmp, size_t tmplen, unsigned char * md5sum, size_t md5len)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='233'>/* input */</doc>
+<use f='codebrowser/lib/vauth/ntlm.c' l='618' u='c' c='Curl_auth_create_ntlm_type3_message'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='953' ll='959' type='CURLcode Curl_ssl_md5sum(unsigned char * tmp, size_t tmplen, unsigned char * md5sum, size_t md5len)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='953'>/* input */</doc>

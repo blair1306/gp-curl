@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='546' type='75'/>
+<doc f='codebrowser/include/curl/curl.h' l='546'>/* 75 - conversion failed */</doc>
+<use f='codebrowser/lib/strerror.c' l='276' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='831' u='r' c='Curl_auth_create_ntlm_type3_message'/>

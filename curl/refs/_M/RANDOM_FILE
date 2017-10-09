@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_config.h' l='796'/>
+<doc f='codebrowser/lib/curl_config.h' l='795'>/* a suitable file to read random data from */</doc>
+<use f='codebrowser/lib/rand.c' l='74' u='a'/>
+<use f='codebrowser/lib/rand.c' l='77' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='404' u='a'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='414' u='c'/>

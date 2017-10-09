@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/conncache.h' l='52' type='CURLcode Curl_conncache_add_conn(struct conncache * connc, struct connectdata * conn)'/>
+<def f='codebrowser/lib/conncache.c' l='191' ll='233' type='CURLcode Curl_conncache_add_conn(struct conncache * connc, struct connectdata * conn)'/>
+<use f='codebrowser/lib/url.c' l='6654' u='c' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6866' u='c' c='create_conn'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/ftp.h' l='75' type='31'/>
+<doc f='codebrowser/lib/ftp.h' l='75'>/* generic state for LIST, NLST or a custom list command */</doc>
+<use f='codebrowser/lib/ftp.c' l='1501' u='r' c='ftp_state_list'/>
+<use f='codebrowser/lib/ftp.c' l='2409' u='r' c='ftp_state_get_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2449' u='r' c='ftp_state_get_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2455' u='r' c='ftp_state_get_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2481' u='r' c='ftp_state_get_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3026' c='ftp_statemach_act'/>

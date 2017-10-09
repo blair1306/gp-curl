@@ -1,0 +1,10 @@
+<dec f='codebrowser/tests/server/util.h' l='26' type='char * data_to_hex(char * data, size_t len)'/>
+<use f='codebrowser/tests/server/sws.c' l='1635' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1653' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1671' u='c' c='http_connect'/>
+<use f='codebrowser/tests/server/sws.c' l='1691' u='c' c='http_connect'/>
+<def f='codebrowser/tests/server/util.c' l='74' ll='95' type='char * data_to_hex(char * data, size_t len)'/>
+<doc f='codebrowser/tests/server/util.c' l='70'>/* This function returns a pointer to STATIC memory. It converts the given
+ * binary lump to a hex formatted string usable for output in logs or
+ * whatever.
+ */</doc>

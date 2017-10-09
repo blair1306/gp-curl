@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>dotdot.c source code [codebrowser/lib/dotdot.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/dotdot.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='dotdot.c.html'>dotdot.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="dotdot.h.html">"dotdot.h"</a></u></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><i>/* The last #include file should be: */</i></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><i>/*</i></td></tr>
+<tr><th id="34">34</th><td><i> * "Remove Dot Segments"</i></td></tr>
+<tr><th id="35">35</th><td><i> * <a href="https://tools.ietf.org/html/rfc3986#section-5.2.4">https://tools.ietf.org/html/rfc3986#section-5.2.4</a></i></td></tr>
+<tr><th id="36">36</th><td><i> */</i></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><i>/*</i></td></tr>
+<tr><th id="39">39</th><td><i> * Curl_dedotdotify()</i></td></tr>
+<tr><th id="40">40</th><td><i> * @unittest: 1395</i></td></tr>
+<tr><th id="41">41</th><td><i> *</i></td></tr>
+<tr><th id="42">42</th><td><i> * This function gets a zero-terminated path with dot and dotdot sequences</i></td></tr>
+<tr><th id="43">43</th><td><i> * passed in and strips them off according to the rules in RFC 3986 section</i></td></tr>
+<tr><th id="44">44</th><td><i> * 5.2.4.</i></td></tr>
+<tr><th id="45">45</th><td><i> *</i></td></tr>
+<tr><th id="46">46</th><td><i> * The function handles a query part ('?' + stuff) appended but it expects</i></td></tr>
+<tr><th id="47">47</th><td><i> * that fragments ('#' + stuff) have already been cut off.</i></td></tr>
+<tr><th id="48">48</th><td><i> *</i></td></tr>
+<tr><th id="49">49</th><td><i> * RETURNS</i></td></tr>
+<tr><th id="50">50</th><td><i> *</i></td></tr>
+<tr><th id="51">51</th><td><i> * an allocated dedotdotified output string</i></td></tr>
+<tr><th id="52">52</th><td><i> */</i></td></tr>
+<tr><th id="53">53</th><td><em>char</em> *<dfn class="decl def" id="Curl_dedotdotify" title='Curl_dedotdotify' data-ref="Curl_dedotdotify">Curl_dedotdotify</dfn>(<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="2input" title='input' data-type='const char *' data-ref="2input">input</dfn>)</td></tr>
+<tr><th id="54">54</th><td>{</td></tr>
+<tr><th id="55">55</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="3inlen" title='inlen' data-type='size_t' data-ref="3inlen">inlen</dfn> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col2 ref" href="#2input" title='input' data-ref="2input">input</a>);</td></tr>
+<tr><th id="56">56</th><td>  <em>char</em> *<dfn class="local col4 decl" id="4clone" title='clone' data-type='char *' data-ref="4clone">clone</dfn>;</td></tr>
+<tr><th id="57">57</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="5clen" title='clen' data-type='size_t' data-ref="5clen">clen</dfn> = <a class="local col3 ref" href="#3inlen" title='inlen' data-ref="3inlen">inlen</a>; <i>/* the length of the cloned input */</i></td></tr>
+<tr><th id="58">58</th><td>  <em>char</em> *<dfn class="local col6 decl" id="6out" title='out' data-type='char *' data-ref="6out">out</dfn> = <a class="macro" href="curl_memory.h.html#124" title="Curl_cmalloc(inlen + 1)" data-ref="_M/malloc">malloc</a>(<a class="local col3 ref" href="#3inlen" title='inlen' data-ref="3inlen">inlen</a> + <var>1</var>);</td></tr>
+<tr><th id="59">59</th><td>  <em>char</em> *<dfn class="local col7 decl" id="7outptr" title='outptr' data-type='char *' data-ref="7outptr">outptr</dfn>;</td></tr>
+<tr><th id="60">60</th><td>  <em>char</em> *<dfn class="local col8 decl" id="8orgclone" title='orgclone' data-type='char *' data-ref="8orgclone">orgclone</dfn>;</td></tr>
+<tr><th id="61">61</th><td>  <em>char</em> *<dfn class="local col9 decl" id="9queryp" title='queryp' data-type='char *' data-ref="9queryp">queryp</dfn>;</td></tr>
+<tr><th id="62">62</th><td>  <b>if</b>(!<a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>)</td></tr>
+<tr><th id="63">63</th><td>    <b>return</b> <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>; <i>/* out of memory */</i></td></tr>
+<tr><th id="64">64</th><td></td></tr>
+<tr><th id="65">65</th><td>  <i>/* get a cloned copy of the input */</i></td></tr>
+<tr><th id="66">66</th><td>  <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> = <a class="macro" href="curl_memory.h.html#122" title="Curl_cstrdup(input)" data-ref="_M/strdup">strdup</a>(<a class="local col2 ref" href="#2input" title='input' data-ref="2input">input</a>);</td></tr>
+<tr><th id="67">67</th><td>  <b>if</b>(!<a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>) {</td></tr>
+<tr><th id="68">68</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(out)" data-ref="_M/free">free</a>(<a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>);</td></tr>
+<tr><th id="69">69</th><td>    <b>return</b> <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="70">70</th><td>  }</td></tr>
+<tr><th id="71">71</th><td>  <a class="local col8 ref" href="#8orgclone" title='orgclone' data-ref="8orgclone">orgclone</a> = <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>;</td></tr>
+<tr><th id="72">72</th><td>  <a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a> = <a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>;</td></tr>
+<tr><th id="73">73</th><td></td></tr>
+<tr><th id="74">74</th><td>  <b>if</b>(!*<a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>) {</td></tr>
+<tr><th id="75">75</th><td>    <i>/* zero length string, return that */</i></td></tr>
+<tr><th id="76">76</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(out)" data-ref="_M/free">free</a>(<a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>);</td></tr>
+<tr><th id="77">77</th><td>    <b>return</b> <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>;</td></tr>
+<tr><th id="78">78</th><td>  }</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td>  <i>/*</i></td></tr>
+<tr><th id="81">81</th><td><i>   * To handle query-parts properly, we must find it and remove it during the</i></td></tr>
+<tr><th id="82">82</th><td><i>   * dotdot-operation and then append it again at the end to the output</i></td></tr>
+<tr><th id="83">83</th><td><i>   * string.</i></td></tr>
+<tr><th id="84">84</th><td><i>   */</i></td></tr>
+<tr><th id="85">85</th><td>  <a class="local col9 ref" href="#9queryp" title='queryp' data-ref="9queryp">queryp</a> = <a class="ref" href="../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(<a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>, <kbd>'?'</kbd>);</td></tr>
+<tr><th id="86">86</th><td>  <b>if</b>(<a class="local col9 ref" href="#9queryp" title='queryp' data-ref="9queryp">queryp</a>)</td></tr>
+<tr><th id="87">87</th><td>    *<a class="local col9 ref" href="#9queryp" title='queryp' data-ref="9queryp">queryp</a> = <var>0</var>;</td></tr>
+<tr><th id="88">88</th><td></td></tr>
+<tr><th id="89">89</th><td>  <b>do</b> {</td></tr>
+<tr><th id="90">90</th><td></td></tr>
+<tr><th id="91">91</th><td>    <i>/*  A.  If the input buffer begins with a prefix of "../" or "./", then</i></td></tr>
+<tr><th id="92">92</th><td><i>        remove that prefix from the input buffer; otherwise, */</i></td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td>    <b>if</b>(!<a class="ref" href="../../include/string.h.html#strncmp" title='strncmp' data-ref="strncmp">strncmp</a>(<q>"./"</q>, <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>, <var>2</var>)) {</td></tr>
+<tr><th id="95">95</th><td>      <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> += <var>2</var>;</td></tr>
+<tr><th id="96">96</th><td>      <a class="local col5 ref" href="#5clen" title='clen' data-ref="5clen">clen</a> -= <var>2</var>;</td></tr>
+<tr><th id="97">97</th><td>    }</td></tr>
+<tr><th id="98">98</th><td>    <b>else</b> <b>if</b>(!<a class="ref" href="../../include/string.h.html#strncmp" title='strncmp' data-ref="strncmp">strncmp</a>(<q>"../"</q>, <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>, <var>3</var>)) {</td></tr>
+<tr><th id="99">99</th><td>      <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> += <var>3</var>;</td></tr>
+<tr><th id="100">100</th><td>      <a class="local col5 ref" href="#5clen" title='clen' data-ref="5clen">clen</a> -= <var>3</var>;</td></tr>
+<tr><th id="101">101</th><td>    }</td></tr>
+<tr><th id="102">102</th><td></td></tr>
+<tr><th id="103">103</th><td>    <i>/*  B.  if the input buffer begins with a prefix of "/./" or "/.", where</i></td></tr>
+<tr><th id="104">104</th><td><i>        "."  is a complete path segment, then replace that prefix with "/" in</i></td></tr>
+<tr><th id="105">105</th><td><i>        the input buffer; otherwise, */</i></td></tr>
+<tr><th id="106">106</th><td>    <b>else</b> <b>if</b>(!<a class="ref" href="../../include/string.h.html#strncmp" title='strncmp' data-ref="strncmp">strncmp</a>(<q>"/./"</q>, <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>, <var>3</var>)) {</td></tr>
+<tr><th id="107">107</th><td>      <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> += <var>2</var>;</td></tr>
+<tr><th id="108">108</th><td>      <a class="local col5 ref" href="#5clen" title='clen' data-ref="5clen">clen</a> -= <var>2</var>;</td></tr>
+<tr><th id="109">109</th><td>    }</td></tr>
+<tr><th id="110">110</th><td>    <b>else</b> <b>if</b>(!<a class="ref" href="../../include/string.h.html#strcmp" title='strcmp' data-ref="strcmp">strcmp</a>(<q>"/."</q>, <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>)) {</td></tr>
+<tr><th id="111">111</th><td>      <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>[<var>1</var>]=<kbd>'/'</kbd>;</td></tr>
+<tr><th id="112">112</th><td>      <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>++;</td></tr>
+<tr><th id="113">113</th><td>      <a class="local col5 ref" href="#5clen" title='clen' data-ref="5clen">clen</a> -= <var>1</var>;</td></tr>
+<tr><th id="114">114</th><td>    }</td></tr>
+<tr><th id="115">115</th><td></td></tr>
+<tr><th id="116">116</th><td>    <i>/*  C.  if the input buffer begins with a prefix of "/../" or "/..", where</i></td></tr>
+<tr><th id="117">117</th><td><i>        ".." is a complete path segment, then replace that prefix with "/" in</i></td></tr>
+<tr><th id="118">118</th><td><i>        the input buffer and remove the last segment and its preceding "/" (if</i></td></tr>
+<tr><th id="119">119</th><td><i>        any) from the output buffer; otherwise, */</i></td></tr>
+<tr><th id="120">120</th><td></td></tr>
+<tr><th id="121">121</th><td>    <b>else</b> <b>if</b>(!<a class="ref" href="../../include/string.h.html#strncmp" title='strncmp' data-ref="strncmp">strncmp</a>(<q>"/../"</q>, <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>, <var>4</var>)) {</td></tr>
+<tr><th id="122">122</th><td>      <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> += <var>3</var>;</td></tr>
+<tr><th id="123">123</th><td>      <a class="local col5 ref" href="#5clen" title='clen' data-ref="5clen">clen</a> -= <var>3</var>;</td></tr>
+<tr><th id="124">124</th><td>      <i>/* remove the last segment from the output buffer */</i></td></tr>
+<tr><th id="125">125</th><td>      <b>while</b>(<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a> &gt; <a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>) {</td></tr>
+<tr><th id="126">126</th><td>        <a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a>--;</td></tr>
+<tr><th id="127">127</th><td>        <b>if</b>(*<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a> == <kbd>'/'</kbd>)</td></tr>
+<tr><th id="128">128</th><td>          <b>break</b>;</td></tr>
+<tr><th id="129">129</th><td>      }</td></tr>
+<tr><th id="130">130</th><td>      *<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a> = <var>0</var>; <i>/* zero-terminate where it stops */</i></td></tr>
+<tr><th id="131">131</th><td>    }</td></tr>
+<tr><th id="132">132</th><td>    <b>else</b> <b>if</b>(!<a class="ref" href="../../include/string.h.html#strcmp" title='strcmp' data-ref="strcmp">strcmp</a>(<q>"/.."</q>, <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>)) {</td></tr>
+<tr><th id="133">133</th><td>      <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>[<var>2</var>]=<kbd>'/'</kbd>;</td></tr>
+<tr><th id="134">134</th><td>      <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> += <var>2</var>;</td></tr>
+<tr><th id="135">135</th><td>      <a class="local col5 ref" href="#5clen" title='clen' data-ref="5clen">clen</a> -= <var>2</var>;</td></tr>
+<tr><th id="136">136</th><td>      <i>/* remove the last segment from the output buffer */</i></td></tr>
+<tr><th id="137">137</th><td>      <b>while</b>(<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a> &gt; <a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>) {</td></tr>
+<tr><th id="138">138</th><td>        <a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a>--;</td></tr>
+<tr><th id="139">139</th><td>        <b>if</b>(*<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a> == <kbd>'/'</kbd>)</td></tr>
+<tr><th id="140">140</th><td>          <b>break</b>;</td></tr>
+<tr><th id="141">141</th><td>      }</td></tr>
+<tr><th id="142">142</th><td>      *<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a> = <var>0</var>; <i>/* zero-terminate where it stops */</i></td></tr>
+<tr><th id="143">143</th><td>    }</td></tr>
+<tr><th id="144">144</th><td></td></tr>
+<tr><th id="145">145</th><td>    <i>/*  D.  if the input buffer consists only of "." or "..", then remove</i></td></tr>
+<tr><th id="146">146</th><td><i>        that from the input buffer; otherwise, */</i></td></tr>
+<tr><th id="147">147</th><td></td></tr>
+<tr><th id="148">148</th><td>    <b>else</b> <b>if</b>(!<a class="ref" href="../../include/string.h.html#strcmp" title='strcmp' data-ref="strcmp">strcmp</a>(<q>"."</q>, <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>) || !<a class="ref" href="../../include/string.h.html#strcmp" title='strcmp' data-ref="strcmp">strcmp</a>(<q>".."</q>, <a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>)) {</td></tr>
+<tr><th id="149">149</th><td>      *<a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> = <var>0</var>;</td></tr>
+<tr><th id="150">150</th><td>      *<a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a> = <var>0</var>;</td></tr>
+<tr><th id="151">151</th><td>    }</td></tr>
+<tr><th id="152">152</th><td></td></tr>
+<tr><th id="153">153</th><td>    <b>else</b> {</td></tr>
+<tr><th id="154">154</th><td>      <i>/*  E.  move the first path segment in the input buffer to the end of</i></td></tr>
+<tr><th id="155">155</th><td><i>          the output buffer, including the initial "/" character (if any) and</i></td></tr>
+<tr><th id="156">156</th><td><i>          any subsequent characters up to, but not including, the next "/"</i></td></tr>
+<tr><th id="157">157</th><td><i>          character or the end of the input buffer. */</i></td></tr>
+<tr><th id="158">158</th><td></td></tr>
+<tr><th id="159">159</th><td>      <b>do</b> {</td></tr>
+<tr><th id="160">160</th><td>        *<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a>++ = *<a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>++;</td></tr>
+<tr><th id="161">161</th><td>        <a class="local col5 ref" href="#5clen" title='clen' data-ref="5clen">clen</a>--;</td></tr>
+<tr><th id="162">162</th><td>      } <b>while</b>(*<a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> &amp;&amp; (*<a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a> != <kbd>'/'</kbd>));</td></tr>
+<tr><th id="163">163</th><td>      *<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a> = <var>0</var>;</td></tr>
+<tr><th id="164">164</th><td>    }</td></tr>
+<tr><th id="165">165</th><td></td></tr>
+<tr><th id="166">166</th><td>  } <b>while</b>(*<a class="local col4 ref" href="#4clone" title='clone' data-ref="4clone">clone</a>);</td></tr>
+<tr><th id="167">167</th><td></td></tr>
+<tr><th id="168">168</th><td>  <b>if</b>(<a class="local col9 ref" href="#9queryp" title='queryp' data-ref="9queryp">queryp</a>) {</td></tr>
+<tr><th id="169">169</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="10qlen" title='qlen' data-type='size_t' data-ref="10qlen">qlen</dfn>;</td></tr>
+<tr><th id="170">170</th><td>    <i>/* There was a query part, append that to the output. The 'clone' string</i></td></tr>
+<tr><th id="171">171</th><td><i>       may now have been altered so we copy from the original input string</i></td></tr>
+<tr><th id="172">172</th><td><i>       from the correct index. */</i></td></tr>
+<tr><th id="173">173</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="11oindex" title='oindex' data-type='size_t' data-ref="11oindex">oindex</dfn> = <a class="local col9 ref" href="#9queryp" title='queryp' data-ref="9queryp">queryp</a> - <a class="local col8 ref" href="#8orgclone" title='orgclone' data-ref="8orgclone">orgclone</a>;</td></tr>
+<tr><th id="174">174</th><td>    <a class="local col0 ref" href="#10qlen" title='qlen' data-ref="10qlen">qlen</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(&amp;<a class="local col2 ref" href="#2input" title='input' data-ref="2input">input</a>[<a class="local col1 ref" href="#11oindex" title='oindex' data-ref="11oindex">oindex</a>]);</td></tr>
+<tr><th id="175">175</th><td>    <a class="ref" href="../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col7 ref" href="#7outptr" title='outptr' data-ref="7outptr">outptr</a>, &amp;<a class="local col2 ref" href="#2input" title='input' data-ref="2input">input</a>[<a class="local col1 ref" href="#11oindex" title='oindex' data-ref="11oindex">oindex</a>], <a class="local col0 ref" href="#10qlen" title='qlen' data-ref="10qlen">qlen</a> + <var>1</var>); <i>/* include the end zero byte */</i></td></tr>
+<tr><th id="176">176</th><td>  }</td></tr>
+<tr><th id="177">177</th><td></td></tr>
+<tr><th id="178">178</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(orgclone)" data-ref="_M/free">free</a>(<a class="local col8 ref" href="#8orgclone" title='orgclone' data-ref="8orgclone">orgclone</a>);</td></tr>
+<tr><th id="179">179</th><td>  <b>return</b> <a class="local col6 ref" href="#6out" title='out' data-ref="6out">out</a>;</td></tr>
+<tr><th id="180">180</th><td>}</td></tr>
+<tr><th id="181">181</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

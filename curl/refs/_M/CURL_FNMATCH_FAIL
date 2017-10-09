@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_fnmatch.h' l='27'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='342' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='392' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='407' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='421' u='c'/>

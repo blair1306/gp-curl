@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/http.h' l='146' type='const char *'/>
+<offset>128</offset>
+<use f='codebrowser/lib/http.c' l='1001' u='r' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1162' u='w' c='Curl_add_buffer_send'/>

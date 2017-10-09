@@ -1,0 +1,10 @@
+<dec f='include/unistd.h' l='369' type='ssize_t write(int __fd, const void * __buf, size_t __n)'/>
+<doc f='include/unistd.h' l='365'>/* Write N bytes of BUF to FD.  Return the number written, or -1.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>
+<use f='codebrowser/lib/file.c' l='394' u='c' c='file_upload'/>
+<use f='codebrowser/tests/libtest/lib556.c' l='91' u='c' c='test'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='408' u='c' c='fullwrite'/>
+<use f='codebrowser/tests/server/tftpd.c' l='594' u='c' c='write_behind'/>
+<use f='codebrowser/tests/server/tftpd.c' l='610' u='c' c='write_behind'/>

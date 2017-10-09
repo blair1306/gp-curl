@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/rand.h' l='44' type='CURLcode Curl_rand_hex(struct Curl_easy * data, unsigned char * rnd, size_t num)'/>
+<doc f='codebrowser/lib/rand.h' l='42'>/* Same as above but outputs only random lowercase hex characters.
+   Does NOT terminate.*/</doc>
+<use f='codebrowser/lib/mime.c' l='1171' u='c' c='curl_mime_init'/>
+<def f='codebrowser/lib/rand.c' l='151' ll='179' type='CURLcode Curl_rand_hex(struct Curl_easy * data, unsigned char * rnd, size_t num)'/>
+<doc f='codebrowser/lib/rand.c' l='145'>/*
+ * Curl_rand_hex() fills the &apos;rnd&apos; buffer with a given &apos;num&apos; size with random
+ * hexadecimal digits PLUS a zero terminating byte. It must be an odd number
+ * size.
+ */</doc>
+<use f='codebrowser/lib/vauth/digest.c' l='390' u='c' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='682' u='c' c='Curl_auth_create_digest_http_message'/>

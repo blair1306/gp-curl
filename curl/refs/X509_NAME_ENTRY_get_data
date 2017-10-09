@@ -1,0 +1,2 @@
+<dec f='include/openssl/x509.h' l='1050' type='ASN1_STRING * X509_NAME_ENTRY_get_data(X509_NAME_ENTRY * ne)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1465' u='c' c='verifyhost'/>

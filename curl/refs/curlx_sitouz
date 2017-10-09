@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/warnless.h' l='61' type='size_t curlx_sitouz(int sinum)'/>
+<def f='codebrowser/lib/warnless.c' l='445' ll='458' type='size_t curlx_sitouz(int sinum)'/>
+<doc f='codebrowser/lib/warnless.c' l='441'>/*
+** signed int to unsigned size_t
+*/</doc>

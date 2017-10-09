@@ -1,0 +1,4 @@
+<dec f='include/arpa/tftp.h' l='77'/>
+<use f='codebrowser/tests/server/tftpd.c' l='172' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1017' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1036' u='c'/>

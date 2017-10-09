@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='213' type='unsigned char * PKCS12_pbe_crypt(X509_ALGOR * algor, const char * pass, int passlen, unsigned char * in, int inlen, unsigned char ** data, int * datalen, int en_de)'/>

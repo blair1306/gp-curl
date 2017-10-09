@@ -1,0 +1,17 @@
+<dec f='include/netinet/in.h' l='257' type='in_port_t'/>
+<offset>16</offset>
+<doc f='include/netinet/in.h' l='257'>/* Transport layer port # */</doc>
+<use f='codebrowser/lib/connect.c' l='387' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='420' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='457' u='w' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='639' u='r' c='getaddressinfo'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='351' u='w' c='Curl_he2ai'/>
+<use f='codebrowser/lib/ftp.c' l='1135' u='w' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1227' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1322' u='w' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1260' u='w' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1299' u='r' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1498' u='w' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='1379' u='w' c='connect_to'/>
+<use f='codebrowser/tests/server/sws.c' l='2161' u='w' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='804' u='w' c='main'/>

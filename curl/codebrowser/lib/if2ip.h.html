@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>if2ip.h source code [codebrowser/lib/if2ip.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/if2ip.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='if2ip.h.html'>if2ip.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_IF2IP_H">HEADER_CURL_IF2IP_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_IF2IP_H" data-ref="_M/HEADER_CURL_IF2IP_H">HEADER_CURL_IF2IP_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><i>/* IPv6 address scopes. */</i></td></tr>
+<tr><th id="27">27</th><td><u>#define <dfn class="macro" id="_M/IPV6_SCOPE_GLOBAL" data-ref="_M/IPV6_SCOPE_GLOBAL">IPV6_SCOPE_GLOBAL</dfn>       0       /* Global scope. */</u></td></tr>
+<tr><th id="28">28</th><td><u>#define <dfn class="macro" id="_M/IPV6_SCOPE_LINKLOCAL" data-ref="_M/IPV6_SCOPE_LINKLOCAL">IPV6_SCOPE_LINKLOCAL</dfn>    1       /* Link-local scope. */</u></td></tr>
+<tr><th id="29">29</th><td><u>#define <dfn class="macro" id="_M/IPV6_SCOPE_SITELOCAL" data-ref="_M/IPV6_SCOPE_SITELOCAL">IPV6_SCOPE_SITELOCAL</dfn>    2       /* Site-local scope (deprecated). */</u></td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/IPV6_SCOPE_UNIQUELOCAL" data-ref="_M/IPV6_SCOPE_UNIQUELOCAL">IPV6_SCOPE_UNIQUELOCAL</dfn>  3       /* Unique local */</u></td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/IPV6_SCOPE_NODELOCAL" data-ref="_M/IPV6_SCOPE_NODELOCAL">IPV6_SCOPE_NODELOCAL</dfn>    4       /* Loopback. */</u></td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><em>unsigned</em> <em>int</em> <dfn class="decl" id="Curl_ipv6_scope" title='Curl_ipv6_scope' data-ref="Curl_ipv6_scope">Curl_ipv6_scope</dfn>(<em>const</em> <b>struct</b> <a class="type" href="../../include/x86_64-linux-gnu/bits/socket.h.html#sockaddr" title='sockaddr' data-ref="sockaddr">sockaddr</a> *<dfn class="local col9 decl" id="19sa" title='sa' data-type='const struct sockaddr *' data-ref="19sa">sa</dfn>);</td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_if_is_interface_name" title='Curl_if_is_interface_name' data-ref="Curl_if_is_interface_name">Curl_if_is_interface_name</dfn>(<em>const</em> <em>char</em> *<dfn class="local col0 decl" id="20interf" title='interf' data-type='const char *' data-ref="20interf">interf</dfn>);</td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td><b>typedef</b> <b>enum</b> {</td></tr>
+<tr><th id="38">38</th><td>  <dfn class="enum" id="IF2IP_NOT_FOUND" title='IF2IP_NOT_FOUND' data-ref="IF2IP_NOT_FOUND">IF2IP_NOT_FOUND</dfn> = <var>0</var>, <i>/* Interface not found */</i></td></tr>
+<tr><th id="39">39</th><td>  <dfn class="enum" id="IF2IP_AF_NOT_SUPPORTED" title='IF2IP_AF_NOT_SUPPORTED' data-ref="IF2IP_AF_NOT_SUPPORTED">IF2IP_AF_NOT_SUPPORTED</dfn> = <var>1</var>, <i>/* Int. exists but has no address for this af */</i></td></tr>
+<tr><th id="40">40</th><td>  <dfn class="enum" id="IF2IP_FOUND" title='IF2IP_FOUND' data-ref="IF2IP_FOUND">IF2IP_FOUND</dfn> = <var>2</var> <i>/* The address has been stored in "buf" */</i></td></tr>
+<tr><th id="41">41</th><td>} <dfn class="typedef" id="if2ip_result_t" title='if2ip_result_t' data-type='enum if2ip_result_t' data-ref="if2ip_result_t">if2ip_result_t</dfn>;</td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><a class="typedef" href="#if2ip_result_t" title='if2ip_result_t' data-type='enum if2ip_result_t' data-ref="if2ip_result_t">if2ip_result_t</a> <dfn class="decl" id="Curl_if2ip" title='Curl_if2ip' data-ref="Curl_if2ip">Curl_if2ip</dfn>(<em>int</em> <dfn class="local col1 decl" id="21af" title='af' data-type='int' data-ref="21af">af</dfn>, <em>unsigned</em> <em>int</em> <dfn class="local col2 decl" id="22remote_scope" title='remote_scope' data-type='unsigned int' data-ref="22remote_scope">remote_scope</dfn>,</td></tr>
+<tr><th id="44">44</th><td>                          <em>unsigned</em> <em>int</em> <dfn class="local col3 decl" id="23remote_scope_id" title='remote_scope_id' data-type='unsigned int' data-ref="23remote_scope_id">remote_scope_id</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="24interf" title='interf' data-type='const char *' data-ref="24interf">interf</dfn>,</td></tr>
+<tr><th id="45">45</th><td>                          <em>char</em> *<dfn class="local col5 decl" id="25buf" title='buf' data-type='char *' data-ref="25buf">buf</dfn>, <em>int</em> <dfn class="local col6 decl" id="26buf_size" title='buf_size' data-type='int' data-ref="26buf_size">buf_size</dfn>);</td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="47">ifdef</span> <span class="macro" data-ref="_M/__INTERIX">__INTERIX</span></u></td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td><i>/* Nedelcho Stanev's work-around for SFU 3.0 */</i></td></tr>
+<tr><th id="50">50</th><td><b>struct</b> ifreq {</td></tr>
+<tr><th id="51">51</th><td><u>#define IFNAMSIZ 16</u></td></tr>
+<tr><th id="52">52</th><td><u>#define IFHWADDRLEN 6</u></td></tr>
+<tr><th id="53">53</th><td>  <b>union</b> {</td></tr>
+<tr><th id="54">54</th><td>    <em>char</em> ifrn_name[IFNAMSIZ]; <i>/* if name, e.g. "en0" */</i></td></tr>
+<tr><th id="55">55</th><td>  } ifr_ifrn;</td></tr>
+<tr><th id="56">56</th><td></td></tr>
+<tr><th id="57">57</th><td> <b>union</b> {</td></tr>
+<tr><th id="58">58</th><td>   <b>struct</b> sockaddr ifru_addr;</td></tr>
+<tr><th id="59">59</th><td>   <b>struct</b> sockaddr ifru_broadaddr;</td></tr>
+<tr><th id="60">60</th><td>   <b>struct</b> sockaddr ifru_netmask;</td></tr>
+<tr><th id="61">61</th><td>   <b>struct</b> sockaddr ifru_hwaddr;</td></tr>
+<tr><th id="62">62</th><td>   <em>short</em> ifru_flags;</td></tr>
+<tr><th id="63">63</th><td>   <em>int</em> ifru_metric;</td></tr>
+<tr><th id="64">64</th><td>   <em>int</em> ifru_mtu;</td></tr>
+<tr><th id="65">65</th><td> } ifr_ifru;</td></tr>
+<tr><th id="66">66</th><td>};</td></tr>
+<tr><th id="67">67</th><td></td></tr>
+<tr><th id="68">68</th><td><i>/* This define was added by Daniel to avoid an extra #ifdef INTERIX in the</i></td></tr>
+<tr><th id="69">69</th><td><i>   C code. */</i></td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td><u>#define ifr_name ifr_ifrn.ifrn_name /* interface name */</u></td></tr>
+<tr><th id="72">72</th><td><u>#define ifr_addr ifr_ifru.ifru_addr /* address */</u></td></tr>
+<tr><th id="73">73</th><td><u>#define ifr_broadaddr ifr_ifru.ifru_broadaddr /* broadcast address */</u></td></tr>
+<tr><th id="74">74</th><td><u>#define ifr_netmask ifr_ifru.ifru_netmask /* interface net mask */</u></td></tr>
+<tr><th id="75">75</th><td><u>#define ifr_flags ifr_ifru.ifru_flags /* flags */</u></td></tr>
+<tr><th id="76">76</th><td><u>#define ifr_hwaddr ifr_ifru.ifru_hwaddr /* MAC address */</u></td></tr>
+<tr><th id="77">77</th><td><u>#define ifr_metric ifr_ifru.ifru_metric /* metric */</u></td></tr>
+<tr><th id="78">78</th><td><u>#define ifr_mtu ifr_ifru.ifru_mtu /* mtu */</u></td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td><u>#define SIOCGIFADDR _IOW('s', 102, struct ifreq) /* Get if addr */</u></td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td><u>#<span data-ppcond="47">endif</span> /* __INTERIX */</u></td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_IF2IP_H */</u></td></tr>
+<tr><th id="85">85</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='connect.c.html'>codebrowser/lib/connect.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

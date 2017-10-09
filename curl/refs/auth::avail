@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='1183' type='unsigned long'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/urldata.h' l='1183'>/* Bitmask for what the server reports to support for
+                          this resource */</doc>
+<use f='codebrowser/lib/http.c' l='322' u='r' c='pickoneauth'/>
+<use f='codebrowser/lib/http.c' l='341' u='w' c='pickoneauth'/>
+<use f='codebrowser/lib/http.c' l='806' u='r' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='807' u='r' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='810' u='w' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='853' u='r' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='859' u='w' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='876' u='w' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='881' u='w' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http_proxy.c' l='355' u='r' c='CONNECT'/>

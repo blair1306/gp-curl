@@ -1,0 +1,8 @@
+<def f='include/openssl/ocsp.h' l='177' ll='180'/>
+<size>16</size>
+<doc f='include/openssl/ocsp.h' l='173'>/*-  ResponseBytes ::=       SEQUENCE {
+ *       responseType   OBJECT IDENTIFIER,
+ *       response       OCTET STRING }
+ */</doc>
+<mbr r='ocsp_resp_bytes_st::responseType' o='0' t='ASN1_OBJECT *'/>
+<mbr r='ocsp_resp_bytes_st::response' o='64' t='ASN1_OCTET_STRING *'/>

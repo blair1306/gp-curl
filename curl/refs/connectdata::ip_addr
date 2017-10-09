@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='821' type='Curl_addrinfo *'/>
+<offset>960</offset>
+<doc f='codebrowser/lib/urldata.h' l='818'>/* &apos;ip_addr&apos; is the particular IP we connected to. It points to a struct
+     within the DNS cache, so this pointer is only valid as long as the DNS
+     cache entry remains locked. It gets unlocked in Curl_done() */</doc>
+<use f='codebrowser/lib/connect.c' l='786' u='w' c='Curl_is_connected'/>
+<use f='codebrowser/lib/ftp.c' l='1043' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1044' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/sendf.c' l='366' u='r' c='Curl_send_plain'/>
+<use f='codebrowser/lib/sendf.c' l='366' u='r' c='Curl_send_plain'/>
+<use f='codebrowser/lib/tftp.c' l='540' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='541' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='1013' u='r' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1032' u='r' c='tftp_connect'/>

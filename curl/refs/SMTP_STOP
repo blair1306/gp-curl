@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/smtp.h' l='32' type='0'/>
+<doc f='codebrowser/lib/smtp.h' l='32'>/* do nothing state, stops the state machine */</doc>
+<use f='codebrowser/lib/smtp.c' l='444' u='r' c='smtp_perform_authentication'/>
+<use f='codebrowser/lib/smtp.c' l='801' u='r' c='smtp_state_helo_resp'/>
+<use f='codebrowser/lib/smtp.c' l='822' u='r' c='smtp_state_auth_resp'/>
+<use f='codebrowser/lib/smtp.c' l='870' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='874' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='954' u='r' c='smtp_state_data_resp'/>
+<use f='codebrowser/lib/smtp.c' l='974' u='r' c='smtp_state_postdata_resp'/>
+<use f='codebrowser/lib/smtp.c' l='1056' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1059' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1077' u='r' c='smtp_multi_statemach'/>
+<use f='codebrowser/lib/smtp.c' l='1087' u='r' c='smtp_block_statemach'/>

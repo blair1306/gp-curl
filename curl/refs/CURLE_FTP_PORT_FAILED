@@ -1,0 +1,15 @@
+<dec f='codebrowser/include/curl/curl.h' l='497' type='30'/>
+<doc f='codebrowser/include/curl/curl.h' l='497'>/* 30 - FTP PORT operation failed */</doc>
+<use f='codebrowser/lib/ftp.c' l='297' u='r' c='AcceptServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='1051' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1070' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1102' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1122' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1154' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1164' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1177' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1187' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1195' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='2025' u='r' c='ftp_state_port_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3149' c='ftp_done'/>
+<use f='codebrowser/lib/strerror.c' l='146' c='curl_easy_strerror'/>

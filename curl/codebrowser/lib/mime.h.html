@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>mime.h source code [codebrowser/lib/mime.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="curl_mime_s,curl_mimepart_s,mimekind,mimestate,mimestrategy "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/mime.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='mime.h.html'>mime.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_MIME_H">HEADER_CURL_MIME_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_MIME_H" data-ref="_M/HEADER_CURL_MIME_H">HEADER_CURL_MIME_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#define <dfn class="macro" id="_M/MIME_RAND_BOUNDARY_CHARS" data-ref="_M/MIME_RAND_BOUNDARY_CHARS">MIME_RAND_BOUNDARY_CHARS</dfn>        16  /* Nb. of random boundary chars. */</u></td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/MAX_ENCODED_LINE_LENGTH" data-ref="_M/MAX_ENCODED_LINE_LENGTH">MAX_ENCODED_LINE_LENGTH</dfn>         76  /* Maximum encoded line length. */</u></td></tr>
+<tr><th id="27">27</th><td><u>#define <dfn class="macro" id="_M/ENCODING_BUFFER_SIZE" data-ref="_M/ENCODING_BUFFER_SIZE">ENCODING_BUFFER_SIZE</dfn>            256 /* Encoding temp buffers size. */</u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><i>/* Part flags. */</i></td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/MIME_USERHEADERS_OWNER" data-ref="_M/MIME_USERHEADERS_OWNER">MIME_USERHEADERS_OWNER</dfn>  (1 &lt;&lt; 0)</u></td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/MIME_BODY_ONLY" data-ref="_M/MIME_BODY_ONLY">MIME_BODY_ONLY</dfn>          (1 &lt;&lt; 1)</u></td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><i>/* Part source kinds. */</i></td></tr>
+<tr><th id="34">34</th><td><b>enum</b> <dfn class="type def" id="mimekind" title='mimekind' data-ref="mimekind">mimekind</dfn> {</td></tr>
+<tr><th id="35">35</th><td>  <dfn class="enum" id="mimekind::MIMEKIND_NONE" title='mimekind::MIMEKIND_NONE' data-ref="mimekind::MIMEKIND_NONE">MIMEKIND_NONE</dfn> = <var>0</var>,            <i>/* Part not set. */</i></td></tr>
+<tr><th id="36">36</th><td>  <dfn class="enum" id="mimekind::MIMEKIND_DATA" title='mimekind::MIMEKIND_DATA' data-ref="mimekind::MIMEKIND_DATA">MIMEKIND_DATA</dfn>,                <i>/* Allocated mime data. */</i></td></tr>
+<tr><th id="37">37</th><td>  <dfn class="enum" id="mimekind::MIMEKIND_FILE" title='mimekind::MIMEKIND_FILE' data-ref="mimekind::MIMEKIND_FILE">MIMEKIND_FILE</dfn>,                <i>/* Data from file. */</i></td></tr>
+<tr><th id="38">38</th><td>  <dfn class="enum" id="mimekind::MIMEKIND_CALLBACK" title='mimekind::MIMEKIND_CALLBACK' data-ref="mimekind::MIMEKIND_CALLBACK">MIMEKIND_CALLBACK</dfn>,            <i>/* Data from `read' callback. */</i></td></tr>
+<tr><th id="39">39</th><td>  <dfn class="enum" id="mimekind::MIMEKIND_MULTIPART" title='mimekind::MIMEKIND_MULTIPART' data-ref="mimekind::MIMEKIND_MULTIPART">MIMEKIND_MULTIPART</dfn>,           <i>/* Data is a mime subpart. */</i></td></tr>
+<tr><th id="40">40</th><td>  <dfn class="enum" id="mimekind::MIMEKIND_LAST" title='mimekind::MIMEKIND_LAST' data-ref="mimekind::MIMEKIND_LAST">MIMEKIND_LAST</dfn></td></tr>
+<tr><th id="41">41</th><td>};</td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><i>/* Readback state tokens. */</i></td></tr>
+<tr><th id="44">44</th><td><b>enum</b> <dfn class="type def" id="mimestate" title='mimestate' data-ref="mimestate">mimestate</dfn> {</td></tr>
+<tr><th id="45">45</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_BEGIN" title='mimestate::MIMESTATE_BEGIN' data-ref="mimestate::MIMESTATE_BEGIN">MIMESTATE_BEGIN</dfn>,              <i>/* Readback has not yet started. */</i></td></tr>
+<tr><th id="46">46</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_CURLHEADERS" title='mimestate::MIMESTATE_CURLHEADERS' data-ref="mimestate::MIMESTATE_CURLHEADERS">MIMESTATE_CURLHEADERS</dfn>,        <i>/* In curl-generated headers. */</i></td></tr>
+<tr><th id="47">47</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_USERHEADERS" title='mimestate::MIMESTATE_USERHEADERS' data-ref="mimestate::MIMESTATE_USERHEADERS">MIMESTATE_USERHEADERS</dfn>,        <i>/* In caller's supplied headers. */</i></td></tr>
+<tr><th id="48">48</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_EOH" title='mimestate::MIMESTATE_EOH' data-ref="mimestate::MIMESTATE_EOH">MIMESTATE_EOH</dfn>,                <i>/* End of headers. */</i></td></tr>
+<tr><th id="49">49</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_BODY" title='mimestate::MIMESTATE_BODY' data-ref="mimestate::MIMESTATE_BODY">MIMESTATE_BODY</dfn>,               <i>/* Placeholder. */</i></td></tr>
+<tr><th id="50">50</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_BOUNDARY1" title='mimestate::MIMESTATE_BOUNDARY1' data-ref="mimestate::MIMESTATE_BOUNDARY1">MIMESTATE_BOUNDARY1</dfn>,          <i>/* In boundary prefix. */</i></td></tr>
+<tr><th id="51">51</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_BOUNDARY2" title='mimestate::MIMESTATE_BOUNDARY2' data-ref="mimestate::MIMESTATE_BOUNDARY2">MIMESTATE_BOUNDARY2</dfn>,          <i>/* In boundary. */</i></td></tr>
+<tr><th id="52">52</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_CONTENT" title='mimestate::MIMESTATE_CONTENT' data-ref="mimestate::MIMESTATE_CONTENT">MIMESTATE_CONTENT</dfn>,            <i>/* In content. */</i></td></tr>
+<tr><th id="53">53</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_END" title='mimestate::MIMESTATE_END' data-ref="mimestate::MIMESTATE_END">MIMESTATE_END</dfn>,                <i>/* End of part reached. */</i></td></tr>
+<tr><th id="54">54</th><td>  <dfn class="enum" id="mimestate::MIMESTATE_LAST" title='mimestate::MIMESTATE_LAST' data-ref="mimestate::MIMESTATE_LAST">MIMESTATE_LAST</dfn></td></tr>
+<tr><th id="55">55</th><td>};</td></tr>
+<tr><th id="56">56</th><td></td></tr>
+<tr><th id="57">57</th><td><i>/* Mime headers strategies. */</i></td></tr>
+<tr><th id="58">58</th><td><b>enum</b> <dfn class="type def" id="mimestrategy" title='mimestrategy' data-ref="mimestrategy">mimestrategy</dfn> {</td></tr>
+<tr><th id="59">59</th><td>  <dfn class="enum" id="mimestrategy::MIMESTRATEGY_MAIL" title='mimestrategy::MIMESTRATEGY_MAIL' data-ref="mimestrategy::MIMESTRATEGY_MAIL">MIMESTRATEGY_MAIL</dfn>,            <i>/* Mime mail. */</i></td></tr>
+<tr><th id="60">60</th><td>  <dfn class="enum" id="mimestrategy::MIMESTRATEGY_FORM" title='mimestrategy::MIMESTRATEGY_FORM' data-ref="mimestrategy::MIMESTRATEGY_FORM">MIMESTRATEGY_FORM</dfn>,            <i>/* HTTP post form. */</i></td></tr>
+<tr><th id="61">61</th><td>  <dfn class="enum" id="mimestrategy::MIMESTRATEGY_LAST" title='mimestrategy::MIMESTRATEGY_LAST' data-ref="mimestrategy::MIMESTRATEGY_LAST">MIMESTRATEGY_LAST</dfn></td></tr>
+<tr><th id="62">62</th><td>};</td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td><i>/* Content transfer encoder. */</i></td></tr>
+<tr><th id="65">65</th><td><b>typedef</b> <b>struct</b> {</td></tr>
+<tr><th id="66">66</th><td>  <em>const</em> <em>char</em> *   <dfn class="decl" id="(anonymous)::name" title='(anonymous struct)::name' data-ref="(anonymous)::name">name</dfn>;          <i>/* Encoding name. */</i></td></tr>
+<tr><th id="67">67</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>         (*<dfn class="decl" id="(anonymous)::encodefunc" title='(anonymous struct)::encodefunc' data-ref="(anonymous)::encodefunc">encodefunc</dfn>)(<em>char</em> *<dfn class="local col5 decl" id="505buffer" title='buffer' data-type='char *' data-ref="505buffer">buffer</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="506size" title='size' data-type='size_t' data-ref="506size">size</dfn>, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col7 decl" id="507ateof" title='ateof' data-type='_Bool' data-ref="507ateof">ateof</dfn>,</td></tr>
+<tr><th id="68">68</th><td>                             <a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="local col8 decl" id="508part" title='part' data-type='curl_mimepart *' data-ref="508part">part</dfn>);  <i>/* Encoded read. */</i></td></tr>
+<tr><th id="69">69</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a>     (*<dfn class="decl" id="(anonymous)::sizefunc" title='(anonymous struct)::sizefunc' data-ref="(anonymous)::sizefunc">sizefunc</dfn>)(<a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="local col9 decl" id="509part" title='part' data-type='curl_mimepart *' data-ref="509part">part</dfn>);  <i>/* Encoded size. */</i></td></tr>
+<tr><th id="70">70</th><td>}  <dfn class="typedef" id="mime_encoder" title='mime_encoder' data-type='struct mime_encoder' data-ref="mime_encoder">mime_encoder</dfn>;</td></tr>
+<tr><th id="71">71</th><td></td></tr>
+<tr><th id="72">72</th><td><i>/* Content transfer encoder state. */</i></td></tr>
+<tr><th id="73">73</th><td><b>typedef</b> <b>struct</b> {</td></tr>
+<tr><th id="74">74</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>         <dfn class="decl" id="(anonymous)::pos" title='(anonymous struct)::pos' data-ref="(anonymous)::pos">pos</dfn>;           <i>/* Position on output line. */</i></td></tr>
+<tr><th id="75">75</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>         <dfn class="decl" id="(anonymous)::bufbeg" title='(anonymous struct)::bufbeg' data-ref="(anonymous)::bufbeg">bufbeg</dfn>;        <i>/* Next data index in input buffer. */</i></td></tr>
+<tr><th id="76">76</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>         <dfn class="decl" id="(anonymous)::bufend" title='(anonymous struct)::bufend' data-ref="(anonymous)::bufend">bufend</dfn>;        <i>/* First unused byte index in input buffer. */</i></td></tr>
+<tr><th id="77">77</th><td>  <em>char</em>           <dfn class="decl" id="(anonymous)::buf" title='(anonymous struct)::buf' data-ref="(anonymous)::buf">buf</dfn>[<a class="macro" href="#27" title="256" data-ref="_M/ENCODING_BUFFER_SIZE">ENCODING_BUFFER_SIZE</a>]; <i>/* Input buffer. */</i></td></tr>
+<tr><th id="78">78</th><td>}  <dfn class="typedef" id="mime_encoder_state" title='mime_encoder_state' data-type='struct mime_encoder_state' data-ref="mime_encoder_state">mime_encoder_state</dfn>;</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td><i>/* Mime readback state. */</i></td></tr>
+<tr><th id="81">81</th><td><b>typedef</b> <b>struct</b> {</td></tr>
+<tr><th id="82">82</th><td>  <b>enum</b> <a class="type" href="#mimestate" title='mimestate' data-ref="mimestate">mimestate</a> <dfn class="decl" id="(anonymous)::state" title='(anonymous struct)::state' data-ref="(anonymous)::state">state</dfn>;       <i>/* Current state token. */</i></td></tr>
+<tr><th id="83">83</th><td>  <em>void</em> *<dfn class="decl" id="(anonymous)::ptr" title='(anonymous struct)::ptr' data-ref="(anonymous)::ptr">ptr</dfn>;                  <i>/* State-dependent pointer. */</i></td></tr>
+<tr><th id="84">84</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="(anonymous)::offset" title='(anonymous struct)::offset' data-ref="(anonymous)::offset">offset</dfn>;              <i>/* State-dependent offset. */</i></td></tr>
+<tr><th id="85">85</th><td>}  <dfn class="typedef" id="mime_state" title='mime_state' data-type='struct mime_state' data-ref="mime_state">mime_state</dfn>;</td></tr>
+<tr><th id="86">86</th><td></td></tr>
+<tr><th id="87">87</th><td><i>/* A mime multipart. */</i></td></tr>
+<tr><th id="88">88</th><td><b>struct</b> <dfn class="type def" id="curl_mime_s" title='curl_mime_s' data-ref="curl_mime_s">curl_mime_s</dfn> {</td></tr>
+<tr><th id="89">89</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="decl" id="curl_mime_s::easy" title='curl_mime_s::easy' data-ref="curl_mime_s::easy">easy</dfn>;          <i>/* The associated easy handle. */</i></td></tr>
+<tr><th id="90">90</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="decl" id="curl_mime_s::parent" title='curl_mime_s::parent' data-ref="curl_mime_s::parent">parent</dfn>;           <i>/* Parent part. */</i></td></tr>
+<tr><th id="91">91</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="decl" id="curl_mime_s::firstpart" title='curl_mime_s::firstpart' data-ref="curl_mime_s::firstpart">firstpart</dfn>;        <i>/* First part. */</i></td></tr>
+<tr><th id="92">92</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="decl" id="curl_mime_s::lastpart" title='curl_mime_s::lastpart' data-ref="curl_mime_s::lastpart">lastpart</dfn>;         <i>/* Last part. */</i></td></tr>
+<tr><th id="93">93</th><td>  <em>char</em> *<dfn class="decl" id="curl_mime_s::boundary" title='curl_mime_s::boundary' data-ref="curl_mime_s::boundary">boundary</dfn>;                  <i>/* The part boundary. */</i></td></tr>
+<tr><th id="94">94</th><td>  <a class="typedef" href="#mime_state" title='mime_state' data-type='struct mime_state' data-ref="mime_state">mime_state</a> <dfn class="decl" id="curl_mime_s::state" title='curl_mime_s::state' data-ref="curl_mime_s::state">state</dfn>;                <i>/* Current readback state. */</i></td></tr>
+<tr><th id="95">95</th><td>};</td></tr>
+<tr><th id="96">96</th><td></td></tr>
+<tr><th id="97">97</th><td><i>/* A mime part. */</i></td></tr>
+<tr><th id="98">98</th><td><b>struct</b> <dfn class="type def" id="curl_mimepart_s" title='curl_mimepart_s' data-ref="curl_mimepart_s">curl_mimepart_s</dfn> {</td></tr>
+<tr><th id="99">99</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="decl" id="curl_mimepart_s::easy" title='curl_mimepart_s::easy' data-ref="curl_mimepart_s::easy">easy</dfn>;          <i>/* The associated easy handle. */</i></td></tr>
+<tr><th id="100">100</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_mime" title='curl_mime' data-type='struct curl_mime_s' data-ref="curl_mime">curl_mime</a> *<dfn class="decl" id="curl_mimepart_s::parent" title='curl_mimepart_s::parent' data-ref="curl_mimepart_s::parent">parent</dfn>;               <i>/* Parent mime structure. */</i></td></tr>
+<tr><th id="101">101</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="decl" id="curl_mimepart_s::nextpart" title='curl_mimepart_s::nextpart' data-ref="curl_mimepart_s::nextpart">nextpart</dfn>;         <i>/* Forward linked list. */</i></td></tr>
+<tr><th id="102">102</th><td>  <b>enum</b> <a class="type" href="#mimekind" title='mimekind' data-ref="mimekind">mimekind</a> <dfn class="decl" id="curl_mimepart_s::kind" title='curl_mimepart_s::kind' data-ref="curl_mimepart_s::kind">kind</dfn>;              <i>/* The part kind. */</i></td></tr>
+<tr><th id="103">103</th><td>  <em>char</em> *<dfn class="decl" id="curl_mimepart_s::data" title='curl_mimepart_s::data' data-ref="curl_mimepart_s::data">data</dfn>;                      <i>/* Memory data or file name. */</i></td></tr>
+<tr><th id="104">104</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_read_callback" title='curl_read_callback' data-type='size_t (*)(char *, size_t, size_t, void *)' data-ref="curl_read_callback">curl_read_callback</a> <dfn class="decl" id="curl_mimepart_s::readfunc" title='curl_mimepart_s::readfunc' data-ref="curl_mimepart_s::readfunc">readfunc</dfn>;     <i>/* Read function. */</i></td></tr>
+<tr><th id="105">105</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_seek_callback" title='curl_seek_callback' data-type='int (*)(void *, curl_off_t, int)' data-ref="curl_seek_callback">curl_seek_callback</a> <dfn class="decl" id="curl_mimepart_s::seekfunc" title='curl_mimepart_s::seekfunc' data-ref="curl_mimepart_s::seekfunc">seekfunc</dfn>;     <i>/* Seek function. */</i></td></tr>
+<tr><th id="106">106</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_free_callback" title='curl_free_callback' data-type='void (*)(void *)' data-ref="curl_free_callback">curl_free_callback</a> <dfn class="decl" id="curl_mimepart_s::freefunc" title='curl_mimepart_s::freefunc' data-ref="curl_mimepart_s::freefunc">freefunc</dfn>;     <i>/* Argument free function. */</i></td></tr>
+<tr><th id="107">107</th><td>  <em>void</em> *<dfn class="decl" id="curl_mimepart_s::arg" title='curl_mimepart_s::arg' data-ref="curl_mimepart_s::arg">arg</dfn>;                       <i>/* Argument to callback functions. */</i></td></tr>
+<tr><th id="108">108</th><td>  <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl" id="curl_mimepart_s::fp" title='curl_mimepart_s::fp' data-ref="curl_mimepart_s::fp">fp</dfn>;                        <i>/* File pointer. */</i></td></tr>
+<tr><th id="109">109</th><td>  <b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="decl" id="curl_mimepart_s::curlheaders" title='curl_mimepart_s::curlheaders' data-ref="curl_mimepart_s::curlheaders">curlheaders</dfn>;  <i>/* Part headers. */</i></td></tr>
+<tr><th id="110">110</th><td>  <b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="decl" id="curl_mimepart_s::userheaders" title='curl_mimepart_s::userheaders' data-ref="curl_mimepart_s::userheaders">userheaders</dfn>;  <i>/* Part headers. */</i></td></tr>
+<tr><th id="111">111</th><td>  <em>char</em> *<dfn class="decl" id="curl_mimepart_s::mimetype" title='curl_mimepart_s::mimetype' data-ref="curl_mimepart_s::mimetype">mimetype</dfn>;                  <i>/* Part mime type. */</i></td></tr>
+<tr><th id="112">112</th><td>  <em>char</em> *<dfn class="decl" id="curl_mimepart_s::filename" title='curl_mimepart_s::filename' data-ref="curl_mimepart_s::filename">filename</dfn>;                  <i>/* Remote file name. */</i></td></tr>
+<tr><th id="113">113</th><td>  <em>char</em> *<dfn class="decl" id="curl_mimepart_s::name" title='curl_mimepart_s::name' data-ref="curl_mimepart_s::name">name</dfn>;                      <i>/* Data name. */</i></td></tr>
+<tr><th id="114">114</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="curl_mimepart_s::datasize" title='curl_mimepart_s::datasize' data-ref="curl_mimepart_s::datasize">datasize</dfn>;             <i>/* Expected data size. */</i></td></tr>
+<tr><th id="115">115</th><td>  <em>unsigned</em> <em>int</em> <dfn class="decl" id="curl_mimepart_s::flags" title='curl_mimepart_s::flags' data-ref="curl_mimepart_s::flags">flags</dfn>;              <i>/* Flags. */</i></td></tr>
+<tr><th id="116">116</th><td>  <a class="typedef" href="#mime_state" title='mime_state' data-type='struct mime_state' data-ref="mime_state">mime_state</a> <dfn class="decl" id="curl_mimepart_s::state" title='curl_mimepart_s::state' data-ref="curl_mimepart_s::state">state</dfn>;                <i>/* Current readback state. */</i></td></tr>
+<tr><th id="117">117</th><td>  <em>const</em> <a class="typedef" href="#mime_encoder" title='mime_encoder' data-type='struct mime_encoder' data-ref="mime_encoder">mime_encoder</a> *<dfn class="decl" id="curl_mimepart_s::encoder" title='curl_mimepart_s::encoder' data-ref="curl_mimepart_s::encoder">encoder</dfn>;     <i>/* Content data encoder. */</i></td></tr>
+<tr><th id="118">118</th><td>  <a class="typedef" href="#mime_encoder_state" title='mime_encoder_state' data-type='struct mime_encoder_state' data-ref="mime_encoder_state">mime_encoder_state</a> <dfn class="decl" id="curl_mimepart_s::encstate" title='curl_mimepart_s::encstate' data-ref="curl_mimepart_s::encstate">encstate</dfn>;     <i>/* Data encoder state. */</i></td></tr>
+<tr><th id="119">119</th><td>};</td></tr>
+<tr><th id="120">120</th><td></td></tr>
+<tr><th id="121">121</th><td></td></tr>
+<tr><th id="122">122</th><td><i>/* Prototypes. */</i></td></tr>
+<tr><th id="123">123</th><td><em>void</em> <dfn class="decl" id="Curl_mime_initpart" title='Curl_mime_initpart' data-ref="Curl_mime_initpart">Curl_mime_initpart</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="local col0 decl" id="510part" title='part' data-type='curl_mimepart *' data-ref="510part">part</dfn>, <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="511easy" title='easy' data-type='struct Curl_easy *' data-ref="511easy">easy</dfn>);</td></tr>
+<tr><th id="124">124</th><td><em>void</em> <dfn class="decl" id="Curl_mime_cleanpart" title='Curl_mime_cleanpart' data-ref="Curl_mime_cleanpart">Curl_mime_cleanpart</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="local col2 decl" id="512part" title='part' data-type='curl_mimepart *' data-ref="512part">part</dfn>);</td></tr>
+<tr><th id="125">125</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_mime_set_subparts" title='Curl_mime_set_subparts' data-ref="Curl_mime_set_subparts">Curl_mime_set_subparts</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="local col3 decl" id="513part" title='part' data-type='curl_mimepart *' data-ref="513part">part</dfn>,</td></tr>
+<tr><th id="126">126</th><td>                                <a class="typedef" href="../include/curl/curl.h.html#curl_mime" title='curl_mime' data-type='struct curl_mime_s' data-ref="curl_mime">curl_mime</a> *<dfn class="local col4 decl" id="514subparts" title='subparts' data-type='curl_mime *' data-ref="514subparts">subparts</dfn>, <em>int</em> <dfn class="local col5 decl" id="515take_ownership" title='take_ownership' data-type='int' data-ref="515take_ownership">take_ownership</dfn>);</td></tr>
+<tr><th id="127">127</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_mime_prepare_headers" title='Curl_mime_prepare_headers' data-ref="Curl_mime_prepare_headers">Curl_mime_prepare_headers</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="local col6 decl" id="516part" title='part' data-type='curl_mimepart *' data-ref="516part">part</dfn>,</td></tr>
+<tr><th id="128">128</th><td>                                   <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="517contenttype" title='contenttype' data-type='const char *' data-ref="517contenttype">contenttype</dfn>,</td></tr>
+<tr><th id="129">129</th><td>                                   <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="518disposition" title='disposition' data-type='const char *' data-ref="518disposition">disposition</dfn>,</td></tr>
+<tr><th id="130">130</th><td>                                   <b>enum</b> <a class="type" href="#mimestrategy" title='mimestrategy' data-ref="mimestrategy">mimestrategy</a> <dfn class="local col9 decl" id="519strategy" title='strategy' data-type='enum mimestrategy' data-ref="519strategy">strategy</dfn>);</td></tr>
+<tr><th id="131">131</th><td><a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="Curl_mime_size" title='Curl_mime_size' data-ref="Curl_mime_size">Curl_mime_size</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="local col0 decl" id="520part" title='part' data-type='curl_mimepart *' data-ref="520part">part</dfn>);</td></tr>
+<tr><th id="132">132</th><td><span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="Curl_mime_read" title='Curl_mime_read' data-ref="Curl_mime_read">Curl_mime_read</dfn>(<em>char</em> *<dfn class="local col1 decl" id="521buffer" title='buffer' data-type='char *' data-ref="521buffer">buffer</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="522size" title='size' data-type='size_t' data-ref="522size">size</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="523nitems" title='nitems' data-type='size_t' data-ref="523nitems">nitems</dfn>,</td></tr>
+<tr><th id="133">133</th><td>                      <em>void</em> *<dfn class="local col4 decl" id="524instream" title='instream' data-type='void *' data-ref="524instream">instream</dfn>);</td></tr>
+<tr><th id="134">134</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_mime_rewind" title='Curl_mime_rewind' data-ref="Curl_mime_rewind">Curl_mime_rewind</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="local col5 decl" id="525part" title='part' data-type='curl_mimepart *' data-ref="525part">part</dfn>);</td></tr>
+<tr><th id="135">135</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_mime_add_header" title='Curl_mime_add_header' data-ref="Curl_mime_add_header">Curl_mime_add_header</dfn>(<b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> **<dfn class="local col6 decl" id="526slp" title='slp' data-type='struct curl_slist **' data-ref="526slp">slp</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="527fmt" title='fmt' data-type='const char *' data-ref="527fmt">fmt</dfn>, ...);</td></tr>
+<tr><th id="136">136</th><td></td></tr>
+<tr><th id="137">137</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_MIME_H */</u></td></tr>
+<tr><th id="138">138</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='asyn-thread.c.html'>codebrowser/lib/asyn-thread.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

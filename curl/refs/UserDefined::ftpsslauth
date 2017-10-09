@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1645' type='curl_ftpauth'/>
+<offset>11744</offset>
+<doc f='codebrowser/lib/urldata.h' l='1645'>/* what AUTH XXX to be attempted */</doc>
+<use f='codebrowser/lib/ftp.c' l='2656' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2668' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/url.c' l='2477' u='w' c='Curl_setopt'/>

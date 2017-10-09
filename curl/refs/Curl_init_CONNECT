@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/transfer.h' l='28' type='void Curl_init_CONNECT(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/multi.c' l='117' u='r' c='mstate'/>
+<use f='codebrowser/lib/multi.c' l='117' u='r' c='mstate'/>
+<def f='codebrowser/lib/transfer.c' l='1312' ll='1316' type='void Curl_init_CONNECT(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/transfer.c' l='1310'>/* Curl_init_CONNECT() gets called each time the handle switches to CONNECT
+   which means this gets called once for each subsequent redirect etc */</doc>

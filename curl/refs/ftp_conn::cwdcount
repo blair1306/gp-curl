@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/ftp.h' l='133' type='int'/>
+<offset>1184</offset>
+<doc f='codebrowser/lib/ftp.h' l='133'>/* number of CWD commands issued */</doc>
+<use f='codebrowser/lib/ftp.c' l='890' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='897' u='w' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='904' u='w' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='907' u='r' c='ftp_state_cwd'/>
+<use f='codebrowser/lib/ftp.c' l='2947' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2950' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2964' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2966' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2984' u='r' c='ftp_statemach_act'/>

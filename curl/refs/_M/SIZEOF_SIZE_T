@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/curl_config.h' l='895'/>
+<doc f='codebrowser/lib/curl_config.h' l='894'>/* The size of `size_t&apos;, as computed by sizeof. */</doc>
+<use f='codebrowser/lib/base64.c' l='193' u='c'/>
+<use f='codebrowser/lib/mprintf.c' l='347' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='104' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='107' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='110' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='229' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='250' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='374' u='c'/>

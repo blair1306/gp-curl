@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/xattr.h' l='65' type='ssize_t lgetxattr(const char * __path, const char * __name, void * __value, size_t __size)'/>
+<doc f='include/x86_64-linux-gnu/sys/xattr.h' l='62'>/* Get the attribute NAME of the file pointed to by PATH to VALUE (which is
+   SIZE bytes long), not following symlinks for the last pathname component.
+   Return 0 on success, -1 for errors.  */</doc>

@@ -1,0 +1,11 @@
+<dec f='include/openssl/des.h' l='165' type='void DES_encrypt1(unsigned int * data, DES_key_schedule * ks, int enc)'/>
+<doc f='include/openssl/des.h' l='155'>/*
+ * This is the DES encryption function that gets called by just about every
+ * other DES routine in the library.  You should not use this function except
+ * to implement &apos;modes&apos; of DES.  I say this because the functions that call
+ * this routine do the conversion from &apos;char *&apos; to long, and this needs to be
+ * done to make sure &apos;non-aligned&apos; memory access do not occur.  The
+ * characters are loaded &apos;little endian&apos;. Data is a pointer to 2 unsigned
+ * long&apos;s and ks is the DES_key_schedule to use.  enc, is non zero specifies
+ * encryption, zero if decryption.
+ */</doc>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/tests/server/sockfilt.c' l='144' type='3'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1003' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1127' u='r' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1186' u='r' c='juggle'/>
+<doc f='codebrowser/tests/server/sockfilt.c' l='144'>/* as a client, disconnected from server */</doc>

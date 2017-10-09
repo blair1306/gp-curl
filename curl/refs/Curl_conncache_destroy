@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/conncache.h' l='46' type='void Curl_conncache_destroy(struct conncache * connc)'/>
+<def f='codebrowser/lib/conncache.c' l='116' ll='120' type='void Curl_conncache_destroy(struct conncache * connc)'/>
+<use f='codebrowser/lib/multi.c' l='345' u='c' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='2264' u='c' c='curl_multi_cleanup'/>

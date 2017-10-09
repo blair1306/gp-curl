@@ -1,0 +1,12 @@
+<dec f='codebrowser/tests/libtest/testutil.h' l='41' type='double tutil_tvdiff_secs(struct timeval t1, struct timeval t2)'/>
+<doc f='codebrowser/tests/libtest/testutil.h' l='36'>/*
+ * Same as tutil_tvdiff but with full usec resolution.
+ *
+ * Returns: the time difference in seconds with subsecond resolution.
+ */</doc>
+<def f='codebrowser/tests/libtest/testutil.c' l='124' ll='130' type='double tutil_tvdiff_secs(struct timeval newer, struct timeval older)'/>
+<doc f='codebrowser/tests/libtest/testutil.c' l='119'>/*
+ * Same as tutil_tvdiff but with full usec resolution.
+ *
+ * Returns: the time difference in seconds with subsecond resolution.
+ */</doc>

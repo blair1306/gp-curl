@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/urldata.h' l='1376' type='struct curl_slist *'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/urldata.h' l='1376'>/* list of cookie files set by
+                                    curl_easy_setopt(COOKIEFILE) calls */</doc>
+<use f='codebrowser/lib/cookie.c' l='264' u='r' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/cookie.c' l='281' u='r' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/cookie.c' l='282' u='w' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/cookie.c' l='1449' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1464' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1467' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1468' u='w' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/easy.c' l='914' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='915' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='916' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='917' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='953' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='954' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/transfer.c' l='1366' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='1245' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1247' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1248' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1251' u='w' c='Curl_setopt'/>

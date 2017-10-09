@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='55' type='CURLcode (*)(struct Curl_easy *, unsigned char *, size_t)'/>
+<offset>640</offset>
+<doc f='codebrowser/lib/vtls/vtls.h' l='54'>/* return 0 if a find random is filled in */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='737' u='r' c='Curl_ssl_random'/>

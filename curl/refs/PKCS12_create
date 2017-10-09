@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='257' type='PKCS12 * PKCS12_create(char * pass, char * name, EVP_PKEY * pkey, X509 * cert, struct stack_st_X509 * ca, int nid_key, int nid_cert, int iter, int mac_iter, int keytype)'/>

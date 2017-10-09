@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/non-ascii.h' l='57'/>
+<use f='codebrowser/lib/escape.c' l='176' u='c'/>
+<use f='codebrowser/lib/http.c' l='3500' u='c'/>
+<use f='codebrowser/lib/http_chunks.c' l='153' u='c'/>
+<use f='codebrowser/lib/http_chunks.c' l='265' u='c'/>
+<use f='codebrowser/lib/http_proxy.c' l='413' u='c'/>
+<use f='codebrowser/lib/pingpong.c' l='333' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='641' u='c'/>

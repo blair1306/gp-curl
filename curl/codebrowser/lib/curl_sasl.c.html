@@ -1,0 +1,646 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>curl_sasl.c source code [codebrowser/lib/curl_sasl.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/curl_sasl.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='curl_sasl.c.html'>curl_sasl.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 2012 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> * RFC2195 CRAM-MD5 authentication</i></td></tr>
+<tr><th id="22">22</th><td><i> * RFC2617 Basic and Digest Access Authentication</i></td></tr>
+<tr><th id="23">23</th><td><i> * RFC2831 DIGEST-MD5 authentication</i></td></tr>
+<tr><th id="24">24</th><td><i> * RFC4422 Simple Authentication and Security Layer (SASL)</i></td></tr>
+<tr><th id="25">25</th><td><i> * RFC4616 PLAIN authentication</i></td></tr>
+<tr><th id="26">26</th><td><i> * RFC6749 OAuth 2.0 Authorization Framework</i></td></tr>
+<tr><th id="27">27</th><td><i> * RFC7628 A Set of SASL Mechanisms for OAuth</i></td></tr>
+<tr><th id="28">28</th><td><i> * Draft   LOGIN SASL Mechanism &lt;draft-murchison-sasl-login-00.txt&gt;</i></td></tr>
+<tr><th id="29">29</th><td><i> *</i></td></tr>
+<tr><th id="30">30</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td><u>#include <a href="curl_base64.h.html">"curl_base64.h"</a></u></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="curl_md5.h.html">"curl_md5.h"</a></u></td></tr>
+<tr><th id="39">39</th><td><u>#include <a href="vauth/vauth.h.html">"vauth/vauth.h"</a></u></td></tr>
+<tr><th id="40">40</th><td><u>#include <a href="vtls/vtls.h.html">"vtls/vtls.h"</a></u></td></tr>
+<tr><th id="41">41</th><td><u>#include <a href="curl_hmac.h.html">"curl_hmac.h"</a></u></td></tr>
+<tr><th id="42">42</th><td><u>#include <a href="curl_sasl.h.html">"curl_sasl.h"</a></u></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#include <a href="strtok.h.html">"strtok.h"</a></u></td></tr>
+<tr><th id="45">45</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="46">46</th><td><u>#include <a href="non-ascii.h.html">"non-ascii.h"</a> /* included for Curl_convert_... prototypes */</u></td></tr>
+<tr><th id="47">47</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="48">48</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="49">49</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="50">50</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td><i  data-doc="mechtable">/* Supported mechanisms */</i></td></tr>
+<tr><th id="53">53</th><td><em>static</em> <em>const</em> <b>struct</b> {</td></tr>
+<tr><th id="54">54</th><td>  <em>const</em> <em>char</em>   *<dfn class="local col8 decl" id="68name" title='name' data-type='const char *' data-ref="68name">name</dfn>;  <i>/* Name */</i></td></tr>
+<tr><th id="55">55</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>        <dfn class="local col9 decl" id="69len" title='len' data-type='size_t' data-ref="69len">len</dfn>;   <i>/* Name length */</i></td></tr>
+<tr><th id="56">56</th><td>  <em>unsigned</em> <em>int</em>  <dfn class="local col0 decl" id="70bit" title='bit' data-type='unsigned int' data-ref="70bit">bit</dfn>;   <i>/* Flag bit */</i></td></tr>
+<tr><th id="57">57</th><td>} <dfn class="tu decl def" id="mechtable" title='mechtable' data-type='const struct (anonymous struct at /home/jon/workspace/curl/lib/curl_sasl.c:53:14) [10]' data-ref="mechtable">mechtable</dfn>[] = {</td></tr>
+<tr><th id="58">58</th><td>  { <q>"LOGIN"</q>,        <var>5</var>,  <a class="macro" href="curl_sasl.h.html#31" title="(1 &lt;&lt; 0)" data-ref="_M/SASL_MECH_LOGIN">SASL_MECH_LOGIN</a> },</td></tr>
+<tr><th id="59">59</th><td>  { <q>"PLAIN"</q>,        <var>5</var>,  <a class="macro" href="curl_sasl.h.html#32" title="(1 &lt;&lt; 1)" data-ref="_M/SASL_MECH_PLAIN">SASL_MECH_PLAIN</a> },</td></tr>
+<tr><th id="60">60</th><td>  { <q>"CRAM-MD5"</q>,     <var>8</var>,  <a class="macro" href="curl_sasl.h.html#33" title="(1 &lt;&lt; 2)" data-ref="_M/SASL_MECH_CRAM_MD5">SASL_MECH_CRAM_MD5</a> },</td></tr>
+<tr><th id="61">61</th><td>  { <q>"DIGEST-MD5"</q>,   <var>10</var>, <a class="macro" href="curl_sasl.h.html#34" title="(1 &lt;&lt; 3)" data-ref="_M/SASL_MECH_DIGEST_MD5">SASL_MECH_DIGEST_MD5</a> },</td></tr>
+<tr><th id="62">62</th><td>  { <q>"GSSAPI"</q>,       <var>6</var>,  <a class="macro" href="curl_sasl.h.html#35" title="(1 &lt;&lt; 4)" data-ref="_M/SASL_MECH_GSSAPI">SASL_MECH_GSSAPI</a> },</td></tr>
+<tr><th id="63">63</th><td>  { <q>"EXTERNAL"</q>,     <var>8</var>,  <a class="macro" href="curl_sasl.h.html#36" title="(1 &lt;&lt; 5)" data-ref="_M/SASL_MECH_EXTERNAL">SASL_MECH_EXTERNAL</a> },</td></tr>
+<tr><th id="64">64</th><td>  { <q>"NTLM"</q>,         <var>4</var>,  <a class="macro" href="curl_sasl.h.html#37" title="(1 &lt;&lt; 6)" data-ref="_M/SASL_MECH_NTLM">SASL_MECH_NTLM</a> },</td></tr>
+<tr><th id="65">65</th><td>  { <q>"XOAUTH2"</q>,      <var>7</var>,  <a class="macro" href="curl_sasl.h.html#38" title="(1 &lt;&lt; 7)" data-ref="_M/SASL_MECH_XOAUTH2">SASL_MECH_XOAUTH2</a> },</td></tr>
+<tr><th id="66">66</th><td>  { <q>"OAUTHBEARER"</q>,  <var>11</var>, <a class="macro" href="curl_sasl.h.html#39" title="(1 &lt;&lt; 8)" data-ref="_M/SASL_MECH_OAUTHBEARER">SASL_MECH_OAUTHBEARER</a> },</td></tr>
+<tr><th id="67">67</th><td>  { <a class="macro" href="curl_setup_once.h.html#533" title="0" data-ref="_M/ZERO_NULL">ZERO_NULL</a>,      <var>0</var>,  <var>0</var> }</td></tr>
+<tr><th id="68">68</th><td>};</td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td><i>/*</i></td></tr>
+<tr><th id="71">71</th><td><i> * Curl_sasl_cleanup()</i></td></tr>
+<tr><th id="72">72</th><td><i> *</i></td></tr>
+<tr><th id="73">73</th><td><i> * This is used to cleanup any libraries or curl modules used by the sasl</i></td></tr>
+<tr><th id="74">74</th><td><i> * functions.</i></td></tr>
+<tr><th id="75">75</th><td><i> *</i></td></tr>
+<tr><th id="76">76</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="77">77</th><td><i> *</i></td></tr>
+<tr><th id="78">78</th><td><i> * conn     [in]     - The connection data.</i></td></tr>
+<tr><th id="79">79</th><td><i> * authused [in]     - The authentication mechanism used.</i></td></tr>
+<tr><th id="80">80</th><td><i> */</i></td></tr>
+<tr><th id="81">81</th><td><em>void</em> <dfn class="decl def" id="Curl_sasl_cleanup" title='Curl_sasl_cleanup' data-ref="Curl_sasl_cleanup">Curl_sasl_cleanup</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col1 decl" id="71conn" title='conn' data-type='struct connectdata *' data-ref="71conn">conn</dfn>, <em>unsigned</em> <em>int</em> <dfn class="local col2 decl" id="72authused" title='authused' data-type='unsigned int' data-ref="72authused">authused</dfn>)</td></tr>
+<tr><th id="82">82</th><td>{</td></tr>
+<tr><th id="83">83</th><td><u>#<span data-ppcond="83">if</span> defined(<span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span>)</u></td></tr>
+<tr><th id="84">84</th><td>  <i>/* Cleanup the gssapi structure */</i></td></tr>
+<tr><th id="85">85</th><td>  <b>if</b>(authused == SASL_MECH_GSSAPI) {</td></tr>
+<tr><th id="86">86</th><td>    Curl_auth_gssapi_cleanup(&amp;conn-&gt;krb5);</td></tr>
+<tr><th id="87">87</th><td>  }</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="83">endif</span></u></td></tr>
+<tr><th id="89">89</th><td></td></tr>
+<tr><th id="90">90</th><td><u>#<span data-ppcond="90">if</span> defined(<a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a>)</u></td></tr>
+<tr><th id="91">91</th><td>  <i>/* Cleanup the NTLM structure */</i></td></tr>
+<tr><th id="92">92</th><td>  <b>if</b>(<a class="local col2 ref" href="#72authused" title='authused' data-ref="72authused">authused</a> == <a class="macro" href="curl_sasl.h.html#37" title="(1 &lt;&lt; 6)" data-ref="_M/SASL_MECH_NTLM">SASL_MECH_NTLM</a>) {</td></tr>
+<tr><th id="93">93</th><td>    <a class="ref" href="vauth/vauth.h.html#Curl_auth_ntlm_cleanup" title='Curl_auth_ntlm_cleanup' data-ref="Curl_auth_ntlm_cleanup">Curl_auth_ntlm_cleanup</a>(&amp;<a class="local col1 ref" href="#71conn" title='conn' data-ref="71conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::ntlm" title='connectdata::ntlm' data-ref="connectdata::ntlm">ntlm</a>);</td></tr>
+<tr><th id="94">94</th><td>  }</td></tr>
+<tr><th id="95">95</th><td><u>#<span data-ppcond="90">endif</span></u></td></tr>
+<tr><th id="96">96</th><td></td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="97">if</span> !defined(<span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span>) &amp;&amp; !defined(<a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a>)</u></td></tr>
+<tr><th id="98">98</th><td>  <i>/* Reserved for future use */</i></td></tr>
+<tr><th id="99">99</th><td>  (<em>void</em>)conn;</td></tr>
+<tr><th id="100">100</th><td>  (<em>void</em>)authused;</td></tr>
+<tr><th id="101">101</th><td><u>#<span data-ppcond="97">endif</span></u></td></tr>
+<tr><th id="102">102</th><td>}</td></tr>
+<tr><th id="103">103</th><td></td></tr>
+<tr><th id="104">104</th><td><i>/*</i></td></tr>
+<tr><th id="105">105</th><td><i> * Curl_sasl_decode_mech()</i></td></tr>
+<tr><th id="106">106</th><td><i> *</i></td></tr>
+<tr><th id="107">107</th><td><i> * Convert a SASL mechanism name into a token.</i></td></tr>
+<tr><th id="108">108</th><td><i> *</i></td></tr>
+<tr><th id="109">109</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="110">110</th><td><i> *</i></td></tr>
+<tr><th id="111">111</th><td><i> * ptr    [in]     - The mechanism string.</i></td></tr>
+<tr><th id="112">112</th><td><i> * maxlen [in]     - Maximum mechanism string length.</i></td></tr>
+<tr><th id="113">113</th><td><i> * len    [out]    - If not NULL, effective name length.</i></td></tr>
+<tr><th id="114">114</th><td><i> *</i></td></tr>
+<tr><th id="115">115</th><td><i> * Returns the SASL mechanism token or 0 if no match.</i></td></tr>
+<tr><th id="116">116</th><td><i> */</i></td></tr>
+<tr><th id="117">117</th><td><em>unsigned</em> <em>int</em> <dfn class="decl def" id="Curl_sasl_decode_mech" title='Curl_sasl_decode_mech' data-ref="Curl_sasl_decode_mech">Curl_sasl_decode_mech</dfn>(<em>const</em> <em>char</em> *<dfn class="local col3 decl" id="73ptr" title='ptr' data-type='const char *' data-ref="73ptr">ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="74maxlen" title='maxlen' data-type='size_t' data-ref="74maxlen">maxlen</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col5 decl" id="75len" title='len' data-type='size_t *' data-ref="75len">len</dfn>)</td></tr>
+<tr><th id="118">118</th><td>{</td></tr>
+<tr><th id="119">119</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col6 decl" id="76i" title='i' data-type='unsigned int' data-ref="76i">i</dfn>;</td></tr>
+<tr><th id="120">120</th><td>  <em>char</em> <dfn class="local col7 decl" id="77c" title='c' data-type='char' data-ref="77c">c</dfn>;</td></tr>
+<tr><th id="121">121</th><td></td></tr>
+<tr><th id="122">122</th><td>  <b>for</b>(<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a> = <var>0</var>; <a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col8 ref" href="#68name" title='name' data-ref="68name">name</a>; <a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>++) {</td></tr>
+<tr><th id="123">123</th><td>    <b>if</b>(<a class="local col4 ref" href="#74maxlen" title='maxlen' data-ref="74maxlen">maxlen</a> &gt;= <a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col9 ref" href="#69len" title='len' data-ref="69len">len</a> &amp;&amp;</td></tr>
+<tr><th id="124">124</th><td>       !<a class="ref" href="../../include/string.h.html#memcmp" title='memcmp' data-ref="memcmp">memcmp</a>(<a class="local col3 ref" href="#73ptr" title='ptr' data-ref="73ptr">ptr</a>, <a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col8 ref" href="#68name" title='name' data-ref="68name">name</a>, <a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col9 ref" href="#69len" title='len' data-ref="69len">len</a>)) {</td></tr>
+<tr><th id="125">125</th><td>      <b>if</b>(<a class="local col5 ref" href="#75len" title='len' data-ref="75len">len</a>)</td></tr>
+<tr><th id="126">126</th><td>        *<a class="local col5 ref" href="#75len" title='len' data-ref="75len">len</a> = <a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col9 ref" href="#69len" title='len' data-ref="69len">len</a>;</td></tr>
+<tr><th id="127">127</th><td></td></tr>
+<tr><th id="128">128</th><td>      <b>if</b>(<a class="local col4 ref" href="#74maxlen" title='maxlen' data-ref="74maxlen">maxlen</a> == <a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col9 ref" href="#69len" title='len' data-ref="69len">len</a>)</td></tr>
+<tr><th id="129">129</th><td>        <b>return</b> <a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col0 ref" href="#70bit" title='bit' data-ref="70bit">bit</a>;</td></tr>
+<tr><th id="130">130</th><td></td></tr>
+<tr><th id="131">131</th><td>      <a class="local col7 ref" href="#77c" title='c' data-ref="77c">c</a> = <a class="local col3 ref" href="#73ptr" title='ptr' data-ref="73ptr">ptr</a>[<a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col9 ref" href="#69len" title='len' data-ref="69len">len</a>];</td></tr>
+<tr><th id="132">132</th><td>      <b>if</b>(!<a class="macro" href="curl_setup_once.h.html#289" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)c)))] &amp; (unsigned short int) _ISupper))" data-ref="_M/ISUPPER">ISUPPER</a>(<a class="local col7 ref" href="#77c" title='c' data-ref="77c">c</a>) &amp;&amp; !<a class="macro" href="curl_setup_once.h.html#283" title="(((*__ctype_b_loc ())[(int) (((int) ((unsigned char)c)))] &amp; (unsigned short int) _ISdigit))" data-ref="_M/ISDIGIT">ISDIGIT</a>(<a class="local col7 ref" href="#77c" title='c' data-ref="77c">c</a>) &amp;&amp; <a class="local col7 ref" href="#77c" title='c' data-ref="77c">c</a> != <kbd>'-'</kbd> &amp;&amp; <a class="local col7 ref" href="#77c" title='c' data-ref="77c">c</a> != <kbd>'_'</kbd>)</td></tr>
+<tr><th id="133">133</th><td>        <b>return</b> <a class="tu ref" href="#mechtable" title='mechtable' data-use='m' data-ref="mechtable">mechtable</a>[<a class="local col6 ref" href="#76i" title='i' data-ref="76i">i</a>].<a class="local col0 ref" href="#70bit" title='bit' data-ref="70bit">bit</a>;</td></tr>
+<tr><th id="134">134</th><td>    }</td></tr>
+<tr><th id="135">135</th><td>  }</td></tr>
+<tr><th id="136">136</th><td></td></tr>
+<tr><th id="137">137</th><td>  <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="138">138</th><td>}</td></tr>
+<tr><th id="139">139</th><td></td></tr>
+<tr><th id="140">140</th><td><i>/*</i></td></tr>
+<tr><th id="141">141</th><td><i> * Curl_sasl_parse_url_auth_option()</i></td></tr>
+<tr><th id="142">142</th><td><i> *</i></td></tr>
+<tr><th id="143">143</th><td><i> * Parse the URL login options.</i></td></tr>
+<tr><th id="144">144</th><td><i> */</i></td></tr>
+<tr><th id="145">145</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_sasl_parse_url_auth_option" title='Curl_sasl_parse_url_auth_option' data-ref="Curl_sasl_parse_url_auth_option">Curl_sasl_parse_url_auth_option</dfn>(<b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> *<dfn class="local col8 decl" id="78sasl" title='sasl' data-type='struct SASL *' data-ref="78sasl">sasl</dfn>,</td></tr>
+<tr><th id="146">146</th><td>                                         <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="79value" title='value' data-type='const char *' data-ref="79value">value</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="80len" title='len' data-type='size_t' data-ref="80len">len</dfn>)</td></tr>
+<tr><th id="147">147</th><td>{</td></tr>
+<tr><th id="148">148</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col1 decl" id="81result" title='result' data-type='CURLcode' data-ref="81result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="149">149</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col2 decl" id="82mechbit" title='mechbit' data-type='unsigned int' data-ref="82mechbit">mechbit</dfn>;</td></tr>
+<tr><th id="150">150</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="83mechlen" title='mechlen' data-type='size_t' data-ref="83mechlen">mechlen</dfn>;</td></tr>
+<tr><th id="151">151</th><td></td></tr>
+<tr><th id="152">152</th><td>  <b>if</b>(!<a class="local col0 ref" href="#80len" title='len' data-ref="80len">len</a>)</td></tr>
+<tr><th id="153">153</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_URL_MALFORMAT" title='CURLE_URL_MALFORMAT' data-ref="CURLE_URL_MALFORMAT">CURLE_URL_MALFORMAT</a>;</td></tr>
+<tr><th id="154">154</th><td></td></tr>
+<tr><th id="155">155</th><td>  <b>if</b>(<a class="local col8 ref" href="#78sasl" title='sasl' data-ref="78sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::resetprefs" title='SASL::resetprefs' data-ref="SASL::resetprefs">resetprefs</a>) {</td></tr>
+<tr><th id="156">156</th><td>    <a class="local col8 ref" href="#78sasl" title='sasl' data-ref="78sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::resetprefs" title='SASL::resetprefs' data-ref="SASL::resetprefs">resetprefs</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="157">157</th><td>    <a class="local col8 ref" href="#78sasl" title='sasl' data-ref="78sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::prefmech" title='SASL::prefmech' data-ref="SASL::prefmech">prefmech</a> = <a class="macro" href="curl_sasl.h.html#42" title="0" data-ref="_M/SASL_AUTH_NONE">SASL_AUTH_NONE</a>;</td></tr>
+<tr><th id="158">158</th><td>  }</td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td>  <b>if</b>(!<a class="ref" href="../../include/string.h.html#strncmp" title='strncmp' data-ref="strncmp">strncmp</a>(<a class="local col9 ref" href="#79value" title='value' data-ref="79value">value</a>, <q>"*"</q>, <a class="local col0 ref" href="#80len" title='len' data-ref="80len">len</a>))</td></tr>
+<tr><th id="161">161</th><td>    <a class="local col8 ref" href="#78sasl" title='sasl' data-ref="78sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::prefmech" title='SASL::prefmech' data-ref="SASL::prefmech">prefmech</a> = <a class="macro" href="curl_sasl.h.html#44" title="(~0U &amp; ~(1 &lt;&lt; 5))" data-ref="_M/SASL_AUTH_DEFAULT">SASL_AUTH_DEFAULT</a>;</td></tr>
+<tr><th id="162">162</th><td>  <b>else</b> {</td></tr>
+<tr><th id="163">163</th><td>    <a class="local col2 ref" href="#82mechbit" title='mechbit' data-ref="82mechbit">mechbit</a> = <a class="ref" href="#Curl_sasl_decode_mech" title='Curl_sasl_decode_mech' data-ref="Curl_sasl_decode_mech">Curl_sasl_decode_mech</a>(<a class="local col9 ref" href="#79value" title='value' data-ref="79value">value</a>, <a class="local col0 ref" href="#80len" title='len' data-ref="80len">len</a>, &amp;<a class="local col3 ref" href="#83mechlen" title='mechlen' data-ref="83mechlen">mechlen</a>);</td></tr>
+<tr><th id="164">164</th><td>    <b>if</b>(<a class="local col2 ref" href="#82mechbit" title='mechbit' data-ref="82mechbit">mechbit</a> &amp;&amp; <a class="local col3 ref" href="#83mechlen" title='mechlen' data-ref="83mechlen">mechlen</a> == <a class="local col0 ref" href="#80len" title='len' data-ref="80len">len</a>)</td></tr>
+<tr><th id="165">165</th><td>      <a class="local col8 ref" href="#78sasl" title='sasl' data-ref="78sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::prefmech" title='SASL::prefmech' data-ref="SASL::prefmech">prefmech</a> |= <a class="local col2 ref" href="#82mechbit" title='mechbit' data-ref="82mechbit">mechbit</a>;</td></tr>
+<tr><th id="166">166</th><td>    <b>else</b></td></tr>
+<tr><th id="167">167</th><td>      <a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_URL_MALFORMAT" title='CURLE_URL_MALFORMAT' data-ref="CURLE_URL_MALFORMAT">CURLE_URL_MALFORMAT</a>;</td></tr>
+<tr><th id="168">168</th><td>  }</td></tr>
+<tr><th id="169">169</th><td></td></tr>
+<tr><th id="170">170</th><td>  <b>return</b> <a class="local col1 ref" href="#81result" title='result' data-ref="81result">result</a>;</td></tr>
+<tr><th id="171">171</th><td>}</td></tr>
+<tr><th id="172">172</th><td></td></tr>
+<tr><th id="173">173</th><td><i>/*</i></td></tr>
+<tr><th id="174">174</th><td><i> * Curl_sasl_init()</i></td></tr>
+<tr><th id="175">175</th><td><i> *</i></td></tr>
+<tr><th id="176">176</th><td><i> * Initializes the SASL structure.</i></td></tr>
+<tr><th id="177">177</th><td><i> */</i></td></tr>
+<tr><th id="178">178</th><td><em>void</em> <dfn class="decl def" id="Curl_sasl_init" title='Curl_sasl_init' data-ref="Curl_sasl_init">Curl_sasl_init</dfn>(<b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> *<dfn class="local col4 decl" id="84sasl" title='sasl' data-type='struct SASL *' data-ref="84sasl">sasl</dfn>, <em>const</em> <b>struct</b> <a class="type" href="curl_sasl.h.html#SASLproto" title='SASLproto' data-ref="SASLproto">SASLproto</a> *<dfn class="local col5 decl" id="85params" title='params' data-type='const struct SASLproto *' data-ref="85params">params</dfn>)</td></tr>
+<tr><th id="179">179</th><td>{</td></tr>
+<tr><th id="180">180</th><td>  <a class="local col4 ref" href="#84sasl" title='sasl' data-ref="84sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a> = <a class="local col5 ref" href="#85params" title='params' data-ref="85params">params</a>;           <i>/* Set protocol dependent parameters */</i></td></tr>
+<tr><th id="181">181</th><td>  <a class="local col4 ref" href="#84sasl" title='sasl' data-ref="84sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::state" title='SASL::state' data-ref="SASL::state">state</a> = <a class="enum" href="curl_sasl.h.html#SASL_STOP" title='SASL_STOP' data-ref="SASL_STOP">SASL_STOP</a>;         <i>/* Not yet running */</i></td></tr>
+<tr><th id="182">182</th><td>  <a class="local col4 ref" href="#84sasl" title='sasl' data-ref="84sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authmechs" title='SASL::authmechs' data-ref="SASL::authmechs">authmechs</a> = <a class="macro" href="curl_sasl.h.html#42" title="0" data-ref="_M/SASL_AUTH_NONE">SASL_AUTH_NONE</a>; <i>/* No known authentication mechanism yet */</i></td></tr>
+<tr><th id="183">183</th><td>  <a class="local col4 ref" href="#84sasl" title='sasl' data-ref="84sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::prefmech" title='SASL::prefmech' data-ref="SASL::prefmech">prefmech</a> = <a class="macro" href="curl_sasl.h.html#44" title="(~0U &amp; ~(1 &lt;&lt; 5))" data-ref="_M/SASL_AUTH_DEFAULT">SASL_AUTH_DEFAULT</a>; <i>/* Prefer all mechanisms */</i></td></tr>
+<tr><th id="184">184</th><td>  <a class="local col4 ref" href="#84sasl" title='sasl' data-ref="84sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#42" title="0" data-ref="_M/SASL_AUTH_NONE">SASL_AUTH_NONE</a>; <i>/* No the authentication mechanism used */</i></td></tr>
+<tr><th id="185">185</th><td>  <a class="local col4 ref" href="#84sasl" title='sasl' data-ref="84sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::resetprefs" title='SASL::resetprefs' data-ref="SASL::resetprefs">resetprefs</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;         <i>/* Reset prefmech upon AUTH parsing. */</i></td></tr>
+<tr><th id="186">186</th><td>  <a class="local col4 ref" href="#84sasl" title='sasl' data-ref="84sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::mutual_auth" title='SASL::mutual_auth' data-ref="SASL::mutual_auth">mutual_auth</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;       <i>/* No mutual authentication (GSSAPI only) */</i></td></tr>
+<tr><th id="187">187</th><td>  <a class="local col4 ref" href="#84sasl" title='sasl' data-ref="84sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::force_ir" title='SASL::force_ir' data-ref="SASL::force_ir">force_ir</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;          <i>/* Respect external option */</i></td></tr>
+<tr><th id="188">188</th><td>}</td></tr>
+<tr><th id="189">189</th><td></td></tr>
+<tr><th id="190">190</th><td><i  data-doc="state">/*</i></td></tr>
+<tr><th id="191">191</th><td><i  data-doc="state"> * state()</i></td></tr>
+<tr><th id="192">192</th><td><i  data-doc="state"> *</i></td></tr>
+<tr><th id="193">193</th><td><i  data-doc="state"> * This is the ONLY way to change SASL state!</i></td></tr>
+<tr><th id="194">194</th><td><i  data-doc="state"> */</i></td></tr>
+<tr><th id="195">195</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="state" title='state' data-type='void state(struct SASL * sasl, struct connectdata * conn, saslstate newstate)' data-ref="state">state</dfn>(<b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> *<dfn class="local col6 decl" id="86sasl" title='sasl' data-type='struct SASL *' data-ref="86sasl">sasl</dfn>, <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="87conn" title='conn' data-type='struct connectdata *' data-ref="87conn">conn</dfn>,</td></tr>
+<tr><th id="196">196</th><td>                  <a class="typedef" href="curl_sasl.h.html#saslstate" title='saslstate' data-type='enum saslstate' data-ref="saslstate">saslstate</a> <dfn class="local col8 decl" id="88newstate" title='newstate' data-type='saslstate' data-ref="88newstate">newstate</dfn>)</td></tr>
+<tr><th id="197">197</th><td>{</td></tr>
+<tr><th id="198">198</th><td><u>#<span data-ppcond="198">if</span> defined(<span class="macro" data-ref="_M/DEBUGBUILD">DEBUGBUILD</span>) &amp;&amp; !defined(<span class="macro" data-ref="_M/CURL_DISABLE_VERBOSE_STRINGS">CURL_DISABLE_VERBOSE_STRINGS</span>)</u></td></tr>
+<tr><th id="199">199</th><td>  <i>/* for debug purposes */</i></td></tr>
+<tr><th id="200">200</th><td>  <em>static</em> <em>const</em> <em>char</em> * <em>const</em> names[]={</td></tr>
+<tr><th id="201">201</th><td>    <q>"STOP"</q>,</td></tr>
+<tr><th id="202">202</th><td>    <q>"PLAIN"</q>,</td></tr>
+<tr><th id="203">203</th><td>    <q>"LOGIN"</q>,</td></tr>
+<tr><th id="204">204</th><td>    <q>"LOGIN_PASSWD"</q>,</td></tr>
+<tr><th id="205">205</th><td>    <q>"EXTERNAL"</q>,</td></tr>
+<tr><th id="206">206</th><td>    <q>"CRAMMD5"</q>,</td></tr>
+<tr><th id="207">207</th><td>    <q>"DIGESTMD5"</q>,</td></tr>
+<tr><th id="208">208</th><td>    <q>"DIGESTMD5_RESP"</q>,</td></tr>
+<tr><th id="209">209</th><td>    <q>"NTLM"</q>,</td></tr>
+<tr><th id="210">210</th><td>    <q>"NTLM_TYPE2MSG"</q>,</td></tr>
+<tr><th id="211">211</th><td>    <q>"GSSAPI"</q>,</td></tr>
+<tr><th id="212">212</th><td>    <q>"GSSAPI_TOKEN"</q>,</td></tr>
+<tr><th id="213">213</th><td>    <q>"GSSAPI_NO_DATA"</q>,</td></tr>
+<tr><th id="214">214</th><td>    <q>"OAUTH2"</q>,</td></tr>
+<tr><th id="215">215</th><td>    <q>"OAUTH2_RESP"</q>,</td></tr>
+<tr><th id="216">216</th><td>    <q>"CANCEL"</q>,</td></tr>
+<tr><th id="217">217</th><td>    <q>"FINAL"</q>,</td></tr>
+<tr><th id="218">218</th><td>    <i>/* LAST */</i></td></tr>
+<tr><th id="219">219</th><td>  };</td></tr>
+<tr><th id="220">220</th><td></td></tr>
+<tr><th id="221">221</th><td>  <b>if</b>(sasl-&gt;state != newstate)</td></tr>
+<tr><th id="222">222</th><td>    infof(conn-&gt;data, <q>"SASL %p state change from %s to %s\n"</q>,</td></tr>
+<tr><th id="223">223</th><td>          (<em>void</em> *)sasl, names[sasl-&gt;state], names[newstate]);</td></tr>
+<tr><th id="224">224</th><td><u>#<span data-ppcond="198">else</span></u></td></tr>
+<tr><th id="225">225</th><td>  (<em>void</em>) <a class="local col7 ref" href="#87conn" title='conn' data-ref="87conn">conn</a>;</td></tr>
+<tr><th id="226">226</th><td><u>#<span data-ppcond="198">endif</span></u></td></tr>
+<tr><th id="227">227</th><td></td></tr>
+<tr><th id="228">228</th><td>  <a class="local col6 ref" href="#86sasl" title='sasl' data-ref="86sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::state" title='SASL::state' data-ref="SASL::state">state</a> = <a class="local col8 ref" href="#88newstate" title='newstate' data-ref="88newstate">newstate</a>;</td></tr>
+<tr><th id="229">229</th><td>}</td></tr>
+<tr><th id="230">230</th><td></td></tr>
+<tr><th id="231">231</th><td><i>/*</i></td></tr>
+<tr><th id="232">232</th><td><i> * Curl_sasl_can_authenticate()</i></td></tr>
+<tr><th id="233">233</th><td><i> *</i></td></tr>
+<tr><th id="234">234</th><td><i> * Check if we have enough auth data and capabilities to authenticate.</i></td></tr>
+<tr><th id="235">235</th><td><i> */</i></td></tr>
+<tr><th id="236">236</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_sasl_can_authenticate" title='Curl_sasl_can_authenticate' data-ref="Curl_sasl_can_authenticate">Curl_sasl_can_authenticate</dfn>(<b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> *<dfn class="local col9 decl" id="89sasl" title='sasl' data-type='struct SASL *' data-ref="89sasl">sasl</dfn>, <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col0 decl" id="90conn" title='conn' data-type='struct connectdata *' data-ref="90conn">conn</dfn>)</td></tr>
+<tr><th id="237">237</th><td>{</td></tr>
+<tr><th id="238">238</th><td>  <i>/* Have credentials been provided? */</i></td></tr>
+<tr><th id="239">239</th><td>  <b>if</b>(<a class="local col0 ref" href="#90conn" title='conn' data-ref="90conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::bits" title='connectdata::bits' data-ref="connectdata::bits">bits</a>.<a class="ref" href="urldata.h.html#ConnectBits::user_passwd" title='ConnectBits::user_passwd' data-ref="ConnectBits::user_passwd">user_passwd</a>)</td></tr>
+<tr><th id="240">240</th><td>    <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="241">241</th><td></td></tr>
+<tr><th id="242">242</th><td>  <i>/* EXTERNAL can authenticate without a user name and/or password */</i></td></tr>
+<tr><th id="243">243</th><td>  <b>if</b>(<a class="local col9 ref" href="#89sasl" title='sasl' data-ref="89sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authmechs" title='SASL::authmechs' data-ref="SASL::authmechs">authmechs</a> &amp; <a class="local col9 ref" href="#89sasl" title='sasl' data-ref="89sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::prefmech" title='SASL::prefmech' data-ref="SASL::prefmech">prefmech</a> &amp; <a class="macro" href="curl_sasl.h.html#36" title="(1 &lt;&lt; 5)" data-ref="_M/SASL_MECH_EXTERNAL">SASL_MECH_EXTERNAL</a>)</td></tr>
+<tr><th id="244">244</th><td>    <b>return</b> <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="245">245</th><td></td></tr>
+<tr><th id="246">246</th><td>  <b>return</b> <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="247">247</th><td>}</td></tr>
+<tr><th id="248">248</th><td></td></tr>
+<tr><th id="249">249</th><td><i>/*</i></td></tr>
+<tr><th id="250">250</th><td><i> * Curl_sasl_start()</i></td></tr>
+<tr><th id="251">251</th><td><i> *</i></td></tr>
+<tr><th id="252">252</th><td><i> * Calculate the required login details for SASL authentication.</i></td></tr>
+<tr><th id="253">253</th><td><i> */</i></td></tr>
+<tr><th id="254">254</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_sasl_start" title='Curl_sasl_start' data-ref="Curl_sasl_start">Curl_sasl_start</dfn>(<b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> *<dfn class="local col1 decl" id="91sasl" title='sasl' data-type='struct SASL *' data-ref="91sasl">sasl</dfn>, <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="92conn" title='conn' data-type='struct connectdata *' data-ref="92conn">conn</dfn>,</td></tr>
+<tr><th id="255">255</th><td>                         <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col3 decl" id="93force_ir" title='force_ir' data-type='_Bool' data-ref="93force_ir">force_ir</dfn>, <a class="typedef" href="curl_sasl.h.html#saslprogress" title='saslprogress' data-type='enum saslprogress' data-ref="saslprogress">saslprogress</a> *<dfn class="local col4 decl" id="94progress" title='progress' data-type='saslprogress *' data-ref="94progress">progress</dfn>)</td></tr>
+<tr><th id="256">256</th><td>{</td></tr>
+<tr><th id="257">257</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col5 decl" id="95result" title='result' data-type='CURLcode' data-ref="95result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="258">258</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col6 decl" id="96data" title='data' data-type='struct Curl_easy *' data-ref="96data">data</dfn> = <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="259">259</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col7 decl" id="97enabledmechs" title='enabledmechs' data-type='unsigned int' data-ref="97enabledmechs">enabledmechs</dfn>;</td></tr>
+<tr><th id="260">260</th><td>  <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="98mech" title='mech' data-type='const char *' data-ref="98mech">mech</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="261">261</th><td>  <em>char</em> *<dfn class="local col9 decl" id="99resp" title='resp' data-type='char *' data-ref="99resp">resp</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="262">262</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="100len" title='len' data-type='size_t' data-ref="100len">len</dfn> = <var>0</var>;</td></tr>
+<tr><th id="263">263</th><td>  <a class="typedef" href="curl_sasl.h.html#saslstate" title='saslstate' data-type='enum saslstate' data-ref="saslstate">saslstate</a> <dfn class="local col1 decl" id="101state1" title='state1' data-type='saslstate' data-ref="101state1">state1</dfn> = <a class="enum" href="curl_sasl.h.html#SASL_STOP" title='SASL_STOP' data-ref="SASL_STOP">SASL_STOP</a>;</td></tr>
+<tr><th id="264">264</th><td>  <a class="typedef" href="curl_sasl.h.html#saslstate" title='saslstate' data-type='enum saslstate' data-ref="saslstate">saslstate</a> <dfn class="local col2 decl" id="102state2" title='state2' data-type='saslstate' data-ref="102state2">state2</dfn> = <a class="enum" href="curl_sasl.h.html#SASL_FINAL" title='SASL_FINAL' data-ref="SASL_FINAL">SASL_FINAL</a>;</td></tr>
+<tr><th id="265">265</th><td>  <em>const</em> <em>char</em> * <em>const</em> <dfn class="local col3 decl" id="103hostname" title='hostname' data-type='const char *const' data-ref="103hostname">hostname</dfn> = <a class="macro" href="vtls/vtls.h.html#130" title="(CURLPROXY_HTTPS == conn-&gt;http_proxy.proxytype &amp;&amp; ssl_connection_complete != conn-&gt;proxy_ssl[conn-&gt;sock[1] == -1 ? 0 : 1].state)" data-ref="_M/SSL_IS_PROXY">SSL_IS_PROXY</a>() ? <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::http_proxy" title='connectdata::http_proxy' data-ref="connectdata::http_proxy">http_proxy</a>.<a class="ref" href="urldata.h.html#proxy_info::host" title='proxy_info::host' data-ref="proxy_info::host">host</a>.<a class="ref" href="urldata.h.html#hostname::name" title='hostname::name' data-ref="hostname::name">name</a> :</td></tr>
+<tr><th id="266">266</th><td>    <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::host" title='connectdata::host' data-ref="connectdata::host">host</a>.<a class="ref" href="urldata.h.html#hostname::name" title='hostname::name' data-ref="hostname::name">name</a>;</td></tr>
+<tr><th id="267">267</th><td>  <em>const</em> <em>long</em> <em>int</em> <dfn class="local col4 decl" id="104port" title='port' data-type='const long' data-ref="104port">port</dfn> = <a class="macro" href="vtls/vtls.h.html#130" title="(CURLPROXY_HTTPS == conn-&gt;http_proxy.proxytype &amp;&amp; ssl_connection_complete != conn-&gt;proxy_ssl[conn-&gt;sock[1] == -1 ? 0 : 1].state)" data-ref="_M/SSL_IS_PROXY">SSL_IS_PROXY</a>() ? <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::port" title='connectdata::port' data-ref="connectdata::port">port</a> : <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::remote_port" title='connectdata::remote_port' data-ref="connectdata::remote_port">remote_port</a>;</td></tr>
+<tr><th id="268">268</th><td><u>#<span data-ppcond="268">if</span> defined(<span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span>)</u></td></tr>
+<tr><th id="269">269</th><td>  <em>const</em> <em>char</em> *service = data-&gt;set.str[STRING_SERVICE_NAME] ?</td></tr>
+<tr><th id="270">270</th><td>    data-&gt;set.str[STRING_SERVICE_NAME] :</td></tr>
+<tr><th id="271">271</th><td>    sasl-&gt;params-&gt;service;</td></tr>
+<tr><th id="272">272</th><td><u>#<span data-ppcond="268">endif</span></u></td></tr>
+<tr><th id="273">273</th><td></td></tr>
+<tr><th id="274">274</th><td>  <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::force_ir" title='SASL::force_ir' data-ref="SASL::force_ir">force_ir</a> = <a class="local col3 ref" href="#93force_ir" title='force_ir' data-ref="93force_ir">force_ir</a>;    <i>/* Latch for future use */</i></td></tr>
+<tr><th id="275">275</th><td>  <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <var>0</var>;           <i>/* No mechanism used yet */</i></td></tr>
+<tr><th id="276">276</th><td>  <a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> = <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authmechs" title='SASL::authmechs' data-ref="SASL::authmechs">authmechs</a> &amp; <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::prefmech" title='SASL::prefmech' data-ref="SASL::prefmech">prefmech</a>;</td></tr>
+<tr><th id="277">277</th><td>  *<a class="local col4 ref" href="#94progress" title='progress' data-ref="94progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_IDLE" title='SASL_IDLE' data-ref="SASL_IDLE">SASL_IDLE</a>;</td></tr>
+<tr><th id="278">278</th><td></td></tr>
+<tr><th id="279">279</th><td>  <i>/* Calculate the supported authentication mechanism, by decreasing order of</i></td></tr>
+<tr><th id="280">280</th><td><i>     security, as well as the initial response where appropriate */</i></td></tr>
+<tr><th id="281">281</th><td>  <b>if</b>((<a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> &amp; <a class="macro" href="curl_sasl.h.html#36" title="(1 &lt;&lt; 5)" data-ref="_M/SASL_MECH_EXTERNAL">SASL_MECH_EXTERNAL</a>) &amp;&amp; !<a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>[<var>0</var>]) {</td></tr>
+<tr><th id="282">282</th><td>    <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a> = <a class="macro" href="curl_sasl.h.html#52" title="&quot;EXTERNAL&quot;" data-ref="_M/SASL_MECH_STRING_EXTERNAL">SASL_MECH_STRING_EXTERNAL</a>;</td></tr>
+<tr><th id="283">283</th><td>    <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a> = <a class="enum" href="curl_sasl.h.html#SASL_EXTERNAL" title='SASL_EXTERNAL' data-ref="SASL_EXTERNAL">SASL_EXTERNAL</a>;</td></tr>
+<tr><th id="284">284</th><td>    <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#36" title="(1 &lt;&lt; 5)" data-ref="_M/SASL_MECH_EXTERNAL">SASL_MECH_EXTERNAL</a>;</td></tr>
+<tr><th id="285">285</th><td></td></tr>
+<tr><th id="286">286</th><td>    <b>if</b>(<a class="local col3 ref" href="#93force_ir" title='force_ir' data-ref="93force_ir">force_ir</a> || <a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::sasl_ir" title='UserDefined::sasl_ir' data-ref="UserDefined::sasl_ir">sasl_ir</a>)</td></tr>
+<tr><th id="287">287</th><td>      <a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_external_message" title='Curl_auth_create_external_message' data-ref="Curl_auth_create_external_message">Curl_auth_create_external_message</a>(<a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>, <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, &amp;<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>,</td></tr>
+<tr><th id="288">288</th><td>                                                 &amp;<a class="local col0 ref" href="#100len" title='len' data-ref="100len">len</a>);</td></tr>
+<tr><th id="289">289</th><td>  }</td></tr>
+<tr><th id="290">290</th><td>  <b>else</b> <b>if</b>(<a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::bits" title='connectdata::bits' data-ref="connectdata::bits">bits</a>.<a class="ref" href="urldata.h.html#ConnectBits::user_passwd" title='ConnectBits::user_passwd' data-ref="ConnectBits::user_passwd">user_passwd</a>) {</td></tr>
+<tr><th id="291">291</th><td><u>#<span data-ppcond="291">if</span> defined(<span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span>)</u></td></tr>
+<tr><th id="292">292</th><td>    <b>if</b>((enabledmechs &amp; SASL_MECH_GSSAPI) &amp;&amp; Curl_auth_is_gssapi_supported() &amp;&amp;</td></tr>
+<tr><th id="293">293</th><td>       Curl_auth_user_contains_domain(conn-&gt;user)) {</td></tr>
+<tr><th id="294">294</th><td>      sasl-&gt;mutual_auth = FALSE; <i>/* TODO: Calculate mutual authentication */</i></td></tr>
+<tr><th id="295">295</th><td>      mech = SASL_MECH_STRING_GSSAPI;</td></tr>
+<tr><th id="296">296</th><td>      state1 = SASL_GSSAPI;</td></tr>
+<tr><th id="297">297</th><td>      state2 = SASL_GSSAPI_TOKEN;</td></tr>
+<tr><th id="298">298</th><td>      sasl-&gt;authused = SASL_MECH_GSSAPI;</td></tr>
+<tr><th id="299">299</th><td></td></tr>
+<tr><th id="300">300</th><td>      <b>if</b>(force_ir || data-&gt;set.sasl_ir)</td></tr>
+<tr><th id="301">301</th><td>        result = Curl_auth_create_gssapi_user_message(data, conn-&gt;user,</td></tr>
+<tr><th id="302">302</th><td>                                                      conn-&gt;passwd,</td></tr>
+<tr><th id="303">303</th><td>                                                      service,</td></tr>
+<tr><th id="304">304</th><td>                                                      data-&gt;easy_conn-&gt;</td></tr>
+<tr><th id="305">305</th><td>                                                            host.name,</td></tr>
+<tr><th id="306">306</th><td>                                                      sasl-&gt;mutual_auth,</td></tr>
+<tr><th id="307">307</th><td>                                                      NULL, &amp;conn-&gt;krb5,</td></tr>
+<tr><th id="308">308</th><td>                                                      &amp;resp, &amp;len);</td></tr>
+<tr><th id="309">309</th><td>    }</td></tr>
+<tr><th id="310">310</th><td>    <b>else</b></td></tr>
+<tr><th id="311">311</th><td><u>#<span data-ppcond="291">endif</span></u></td></tr>
+<tr><th id="312">312</th><td><u>#<span data-ppcond="312">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_CRYPTO_AUTH">CURL_DISABLE_CRYPTO_AUTH</span></u></td></tr>
+<tr><th id="313">313</th><td>    <b>if</b>((<a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> &amp; <a class="macro" href="curl_sasl.h.html#34" title="(1 &lt;&lt; 3)" data-ref="_M/SASL_MECH_DIGEST_MD5">SASL_MECH_DIGEST_MD5</a>) &amp;&amp;</td></tr>
+<tr><th id="314">314</th><td>       <a class="ref" href="vauth/vauth.h.html#Curl_auth_is_digest_supported" title='Curl_auth_is_digest_supported' data-ref="Curl_auth_is_digest_supported">Curl_auth_is_digest_supported</a>()) {</td></tr>
+<tr><th id="315">315</th><td>      <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a> = <a class="macro" href="curl_sasl.h.html#50" title="&quot;DIGEST-MD5&quot;" data-ref="_M/SASL_MECH_STRING_DIGEST_MD5">SASL_MECH_STRING_DIGEST_MD5</a>;</td></tr>
+<tr><th id="316">316</th><td>      <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a> = <a class="enum" href="curl_sasl.h.html#SASL_DIGESTMD5" title='SASL_DIGESTMD5' data-ref="SASL_DIGESTMD5">SASL_DIGESTMD5</a>;</td></tr>
+<tr><th id="317">317</th><td>      <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#34" title="(1 &lt;&lt; 3)" data-ref="_M/SASL_MECH_DIGEST_MD5">SASL_MECH_DIGEST_MD5</a>;</td></tr>
+<tr><th id="318">318</th><td>    }</td></tr>
+<tr><th id="319">319</th><td>    <b>else</b> <b>if</b>(<a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> &amp; <a class="macro" href="curl_sasl.h.html#33" title="(1 &lt;&lt; 2)" data-ref="_M/SASL_MECH_CRAM_MD5">SASL_MECH_CRAM_MD5</a>) {</td></tr>
+<tr><th id="320">320</th><td>      <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a> = <a class="macro" href="curl_sasl.h.html#49" title="&quot;CRAM-MD5&quot;" data-ref="_M/SASL_MECH_STRING_CRAM_MD5">SASL_MECH_STRING_CRAM_MD5</a>;</td></tr>
+<tr><th id="321">321</th><td>      <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a> = <a class="enum" href="curl_sasl.h.html#SASL_CRAMMD5" title='SASL_CRAMMD5' data-ref="SASL_CRAMMD5">SASL_CRAMMD5</a>;</td></tr>
+<tr><th id="322">322</th><td>      <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#33" title="(1 &lt;&lt; 2)" data-ref="_M/SASL_MECH_CRAM_MD5">SASL_MECH_CRAM_MD5</a>;</td></tr>
+<tr><th id="323">323</th><td>    }</td></tr>
+<tr><th id="324">324</th><td>    <b>else</b></td></tr>
+<tr><th id="325">325</th><td><u>#<span data-ppcond="312">endif</span></u></td></tr>
+<tr><th id="326">326</th><td><u>#<span data-ppcond="326">ifdef</span> <a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a></u></td></tr>
+<tr><th id="327">327</th><td>    <b>if</b>((<a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> &amp; <a class="macro" href="curl_sasl.h.html#37" title="(1 &lt;&lt; 6)" data-ref="_M/SASL_MECH_NTLM">SASL_MECH_NTLM</a>) &amp;&amp; <a class="ref" href="vauth/vauth.h.html#Curl_auth_is_ntlm_supported" title='Curl_auth_is_ntlm_supported' data-ref="Curl_auth_is_ntlm_supported">Curl_auth_is_ntlm_supported</a>()) {</td></tr>
+<tr><th id="328">328</th><td>      <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a> = <a class="macro" href="curl_sasl.h.html#53" title="&quot;NTLM&quot;" data-ref="_M/SASL_MECH_STRING_NTLM">SASL_MECH_STRING_NTLM</a>;</td></tr>
+<tr><th id="329">329</th><td>      <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a> = <a class="enum" href="curl_sasl.h.html#SASL_NTLM" title='SASL_NTLM' data-ref="SASL_NTLM">SASL_NTLM</a>;</td></tr>
+<tr><th id="330">330</th><td>      <a class="local col2 ref" href="#102state2" title='state2' data-ref="102state2">state2</a> = <a class="enum" href="curl_sasl.h.html#SASL_NTLM_TYPE2MSG" title='SASL_NTLM_TYPE2MSG' data-ref="SASL_NTLM_TYPE2MSG">SASL_NTLM_TYPE2MSG</a>;</td></tr>
+<tr><th id="331">331</th><td>      <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#37" title="(1 &lt;&lt; 6)" data-ref="_M/SASL_MECH_NTLM">SASL_MECH_NTLM</a>;</td></tr>
+<tr><th id="332">332</th><td></td></tr>
+<tr><th id="333">333</th><td>      <b>if</b>(<a class="local col3 ref" href="#93force_ir" title='force_ir' data-ref="93force_ir">force_ir</a> || <a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::sasl_ir" title='UserDefined::sasl_ir' data-ref="UserDefined::sasl_ir">sasl_ir</a>)</td></tr>
+<tr><th id="334">334</th><td>        <a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_ntlm_type1_message" title='Curl_auth_create_ntlm_type1_message' data-ref="Curl_auth_create_ntlm_type1_message">Curl_auth_create_ntlm_type1_message</a>(<a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>,</td></tr>
+<tr><th id="335">335</th><td>                                                     <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>,</td></tr>
+<tr><th id="336">336</th><td>                                                     &amp;<a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::ntlm" title='connectdata::ntlm' data-ref="connectdata::ntlm">ntlm</a>, &amp;<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>, &amp;<a class="local col0 ref" href="#100len" title='len' data-ref="100len">len</a>);</td></tr>
+<tr><th id="337">337</th><td>      }</td></tr>
+<tr><th id="338">338</th><td>    <b>else</b></td></tr>
+<tr><th id="339">339</th><td><u>#<span data-ppcond="326">endif</span></u></td></tr>
+<tr><th id="340">340</th><td>    <b>if</b>((<a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> &amp; <a class="macro" href="curl_sasl.h.html#39" title="(1 &lt;&lt; 8)" data-ref="_M/SASL_MECH_OAUTHBEARER">SASL_MECH_OAUTHBEARER</a>) &amp;&amp; <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::oauth_bearer" title='connectdata::oauth_bearer' data-ref="connectdata::oauth_bearer">oauth_bearer</a>) {</td></tr>
+<tr><th id="341">341</th><td>      <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a> = <a class="macro" href="curl_sasl.h.html#55" title="&quot;OAUTHBEARER&quot;" data-ref="_M/SASL_MECH_STRING_OAUTHBEARER">SASL_MECH_STRING_OAUTHBEARER</a>;</td></tr>
+<tr><th id="342">342</th><td>      <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a> = <a class="enum" href="curl_sasl.h.html#SASL_OAUTH2" title='SASL_OAUTH2' data-ref="SASL_OAUTH2">SASL_OAUTH2</a>;</td></tr>
+<tr><th id="343">343</th><td>      <a class="local col2 ref" href="#102state2" title='state2' data-ref="102state2">state2</a> = <a class="enum" href="curl_sasl.h.html#SASL_OAUTH2_RESP" title='SASL_OAUTH2_RESP' data-ref="SASL_OAUTH2_RESP">SASL_OAUTH2_RESP</a>;</td></tr>
+<tr><th id="344">344</th><td>      <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#39" title="(1 &lt;&lt; 8)" data-ref="_M/SASL_MECH_OAUTHBEARER">SASL_MECH_OAUTHBEARER</a>;</td></tr>
+<tr><th id="345">345</th><td></td></tr>
+<tr><th id="346">346</th><td>      <b>if</b>(<a class="local col3 ref" href="#93force_ir" title='force_ir' data-ref="93force_ir">force_ir</a> || <a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::sasl_ir" title='UserDefined::sasl_ir' data-ref="UserDefined::sasl_ir">sasl_ir</a>)</td></tr>
+<tr><th id="347">347</th><td>        <a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_oauth_bearer_message" title='Curl_auth_create_oauth_bearer_message' data-ref="Curl_auth_create_oauth_bearer_message">Curl_auth_create_oauth_bearer_message</a>(<a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>, <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>,</td></tr>
+<tr><th id="348">348</th><td>                                                       <a class="local col3 ref" href="#103hostname" title='hostname' data-ref="103hostname">hostname</a>,</td></tr>
+<tr><th id="349">349</th><td>                                                       <a class="local col4 ref" href="#104port" title='port' data-ref="104port">port</a>,</td></tr>
+<tr><th id="350">350</th><td>                                                       <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::oauth_bearer" title='connectdata::oauth_bearer' data-ref="connectdata::oauth_bearer">oauth_bearer</a>,</td></tr>
+<tr><th id="351">351</th><td>                                                       &amp;<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>, &amp;<a class="local col0 ref" href="#100len" title='len' data-ref="100len">len</a>);</td></tr>
+<tr><th id="352">352</th><td>    }</td></tr>
+<tr><th id="353">353</th><td>    <b>else</b> <b>if</b>((<a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> &amp; <a class="macro" href="curl_sasl.h.html#38" title="(1 &lt;&lt; 7)" data-ref="_M/SASL_MECH_XOAUTH2">SASL_MECH_XOAUTH2</a>) &amp;&amp; <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::oauth_bearer" title='connectdata::oauth_bearer' data-ref="connectdata::oauth_bearer">oauth_bearer</a>) {</td></tr>
+<tr><th id="354">354</th><td>      <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a> = <a class="macro" href="curl_sasl.h.html#54" title="&quot;XOAUTH2&quot;" data-ref="_M/SASL_MECH_STRING_XOAUTH2">SASL_MECH_STRING_XOAUTH2</a>;</td></tr>
+<tr><th id="355">355</th><td>      <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a> = <a class="enum" href="curl_sasl.h.html#SASL_OAUTH2" title='SASL_OAUTH2' data-ref="SASL_OAUTH2">SASL_OAUTH2</a>;</td></tr>
+<tr><th id="356">356</th><td>      <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#38" title="(1 &lt;&lt; 7)" data-ref="_M/SASL_MECH_XOAUTH2">SASL_MECH_XOAUTH2</a>;</td></tr>
+<tr><th id="357">357</th><td></td></tr>
+<tr><th id="358">358</th><td>      <b>if</b>(<a class="local col3 ref" href="#93force_ir" title='force_ir' data-ref="93force_ir">force_ir</a> || <a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::sasl_ir" title='UserDefined::sasl_ir' data-ref="UserDefined::sasl_ir">sasl_ir</a>)</td></tr>
+<tr><th id="359">359</th><td>        <a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_oauth_bearer_message" title='Curl_auth_create_oauth_bearer_message' data-ref="Curl_auth_create_oauth_bearer_message">Curl_auth_create_oauth_bearer_message</a>(<a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>, <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>,</td></tr>
+<tr><th id="360">360</th><td>                                                       <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>0</var>,</td></tr>
+<tr><th id="361">361</th><td>                                                       <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::oauth_bearer" title='connectdata::oauth_bearer' data-ref="connectdata::oauth_bearer">oauth_bearer</a>,</td></tr>
+<tr><th id="362">362</th><td>                                                       &amp;<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>, &amp;<a class="local col0 ref" href="#100len" title='len' data-ref="100len">len</a>);</td></tr>
+<tr><th id="363">363</th><td>    }</td></tr>
+<tr><th id="364">364</th><td>    <b>else</b> <b>if</b>(<a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> &amp; <a class="macro" href="curl_sasl.h.html#31" title="(1 &lt;&lt; 0)" data-ref="_M/SASL_MECH_LOGIN">SASL_MECH_LOGIN</a>) {</td></tr>
+<tr><th id="365">365</th><td>      <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a> = <a class="macro" href="curl_sasl.h.html#47" title="&quot;LOGIN&quot;" data-ref="_M/SASL_MECH_STRING_LOGIN">SASL_MECH_STRING_LOGIN</a>;</td></tr>
+<tr><th id="366">366</th><td>      <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a> = <a class="enum" href="curl_sasl.h.html#SASL_LOGIN" title='SASL_LOGIN' data-ref="SASL_LOGIN">SASL_LOGIN</a>;</td></tr>
+<tr><th id="367">367</th><td>      <a class="local col2 ref" href="#102state2" title='state2' data-ref="102state2">state2</a> = <a class="enum" href="curl_sasl.h.html#SASL_LOGIN_PASSWD" title='SASL_LOGIN_PASSWD' data-ref="SASL_LOGIN_PASSWD">SASL_LOGIN_PASSWD</a>;</td></tr>
+<tr><th id="368">368</th><td>      <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#31" title="(1 &lt;&lt; 0)" data-ref="_M/SASL_MECH_LOGIN">SASL_MECH_LOGIN</a>;</td></tr>
+<tr><th id="369">369</th><td></td></tr>
+<tr><th id="370">370</th><td>      <b>if</b>(<a class="local col3 ref" href="#93force_ir" title='force_ir' data-ref="93force_ir">force_ir</a> || <a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::sasl_ir" title='UserDefined::sasl_ir' data-ref="UserDefined::sasl_ir">sasl_ir</a>)</td></tr>
+<tr><th id="371">371</th><td>        <a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_login_message" title='Curl_auth_create_login_message' data-ref="Curl_auth_create_login_message">Curl_auth_create_login_message</a>(<a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>, <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, &amp;<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>, &amp;<a class="local col0 ref" href="#100len" title='len' data-ref="100len">len</a>);</td></tr>
+<tr><th id="372">372</th><td>    }</td></tr>
+<tr><th id="373">373</th><td>    <b>else</b> <b>if</b>(<a class="local col7 ref" href="#97enabledmechs" title='enabledmechs' data-ref="97enabledmechs">enabledmechs</a> &amp; <a class="macro" href="curl_sasl.h.html#32" title="(1 &lt;&lt; 1)" data-ref="_M/SASL_MECH_PLAIN">SASL_MECH_PLAIN</a>) {</td></tr>
+<tr><th id="374">374</th><td>      <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a> = <a class="macro" href="curl_sasl.h.html#48" title="&quot;PLAIN&quot;" data-ref="_M/SASL_MECH_STRING_PLAIN">SASL_MECH_STRING_PLAIN</a>;</td></tr>
+<tr><th id="375">375</th><td>      <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a> = <a class="enum" href="curl_sasl.h.html#SASL_PLAIN" title='SASL_PLAIN' data-ref="SASL_PLAIN">SASL_PLAIN</a>;</td></tr>
+<tr><th id="376">376</th><td>      <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> = <a class="macro" href="curl_sasl.h.html#32" title="(1 &lt;&lt; 1)" data-ref="_M/SASL_MECH_PLAIN">SASL_MECH_PLAIN</a>;</td></tr>
+<tr><th id="377">377</th><td></td></tr>
+<tr><th id="378">378</th><td>      <b>if</b>(<a class="local col3 ref" href="#93force_ir" title='force_ir' data-ref="93force_ir">force_ir</a> || <a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::sasl_ir" title='UserDefined::sasl_ir' data-ref="UserDefined::sasl_ir">sasl_ir</a>)</td></tr>
+<tr><th id="379">379</th><td>        <a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_plain_message" title='Curl_auth_create_plain_message' data-ref="Curl_auth_create_plain_message">Curl_auth_create_plain_message</a>(<a class="local col6 ref" href="#96data" title='data' data-ref="96data">data</a>, <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>,</td></tr>
+<tr><th id="380">380</th><td>                                                &amp;<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>, &amp;<a class="local col0 ref" href="#100len" title='len' data-ref="100len">len</a>);</td></tr>
+<tr><th id="381">381</th><td>    }</td></tr>
+<tr><th id="382">382</th><td>  }</td></tr>
+<tr><th id="383">383</th><td></td></tr>
+<tr><th id="384">384</th><td>  <b>if</b>(!<a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a> &amp;&amp; <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a>) {</td></tr>
+<tr><th id="385">385</th><td>    <b>if</b>(<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a> &amp;&amp; <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::maxirlen" title='SASLproto::maxirlen' data-ref="SASLproto::maxirlen">maxirlen</a> &amp;&amp;</td></tr>
+<tr><th id="386">386</th><td>       <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a>) + <a class="local col0 ref" href="#100len" title='len' data-ref="100len">len</a> &gt; <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::maxirlen" title='SASLproto::maxirlen' data-ref="SASLproto::maxirlen">maxirlen</a>) {</td></tr>
+<tr><th id="387">387</th><td>      <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(resp)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>);</td></tr>
+<tr><th id="388">388</th><td>      <a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="389">389</th><td>    }</td></tr>
+<tr><th id="390">390</th><td></td></tr>
+<tr><th id="391">391</th><td>    <a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a> = <a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::sendauth" title='SASLproto::sendauth' data-ref="SASLproto::sendauth">sendauth</a>(<a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>, <a class="local col8 ref" href="#98mech" title='mech' data-ref="98mech">mech</a>, <a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>);</td></tr>
+<tr><th id="392">392</th><td>    <b>if</b>(!<a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a>) {</td></tr>
+<tr><th id="393">393</th><td>      *<a class="local col4 ref" href="#94progress" title='progress' data-ref="94progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_INPROGRESS" title='SASL_INPROGRESS' data-ref="SASL_INPROGRESS">SASL_INPROGRESS</a>;</td></tr>
+<tr><th id="394">394</th><td>      <a class="tu ref" href="#state" title='state' data-use='c' data-ref="state">state</a>(<a class="local col1 ref" href="#91sasl" title='sasl' data-ref="91sasl">sasl</a>, <a class="local col2 ref" href="#92conn" title='conn' data-ref="92conn">conn</a>, <a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a> ? <a class="local col2 ref" href="#102state2" title='state2' data-ref="102state2">state2</a> : <a class="local col1 ref" href="#101state1" title='state1' data-ref="101state1">state1</a>);</td></tr>
+<tr><th id="395">395</th><td>    }</td></tr>
+<tr><th id="396">396</th><td>  }</td></tr>
+<tr><th id="397">397</th><td></td></tr>
+<tr><th id="398">398</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(resp)" data-ref="_M/free">free</a>(<a class="local col9 ref" href="#99resp" title='resp' data-ref="99resp">resp</a>);</td></tr>
+<tr><th id="399">399</th><td></td></tr>
+<tr><th id="400">400</th><td>  <b>return</b> <a class="local col5 ref" href="#95result" title='result' data-ref="95result">result</a>;</td></tr>
+<tr><th id="401">401</th><td>}</td></tr>
+<tr><th id="402">402</th><td></td></tr>
+<tr><th id="403">403</th><td><i>/*</i></td></tr>
+<tr><th id="404">404</th><td><i> * Curl_sasl_continue()</i></td></tr>
+<tr><th id="405">405</th><td><i> *</i></td></tr>
+<tr><th id="406">406</th><td><i> * Continue the authentication.</i></td></tr>
+<tr><th id="407">407</th><td><i> */</i></td></tr>
+<tr><th id="408">408</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_sasl_continue" title='Curl_sasl_continue' data-ref="Curl_sasl_continue">Curl_sasl_continue</dfn>(<b>struct</b> <a class="type" href="curl_sasl.h.html#SASL" title='SASL' data-ref="SASL">SASL</a> *<dfn class="local col5 decl" id="105sasl" title='sasl' data-type='struct SASL *' data-ref="105sasl">sasl</dfn>, <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="106conn" title='conn' data-type='struct connectdata *' data-ref="106conn">conn</dfn>,</td></tr>
+<tr><th id="409">409</th><td>                            <em>int</em> <dfn class="local col7 decl" id="107code" title='code' data-type='int' data-ref="107code">code</dfn>, <a class="typedef" href="curl_sasl.h.html#saslprogress" title='saslprogress' data-type='enum saslprogress' data-ref="saslprogress">saslprogress</a> *<dfn class="local col8 decl" id="108progress" title='progress' data-type='saslprogress *' data-ref="108progress">progress</dfn>)</td></tr>
+<tr><th id="410">410</th><td>{</td></tr>
+<tr><th id="411">411</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col9 decl" id="109result" title='result' data-type='CURLcode' data-ref="109result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="412">412</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col0 decl" id="110data" title='data' data-type='struct Curl_easy *' data-ref="110data">data</dfn> = <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="413">413</th><td>  <a class="typedef" href="curl_sasl.h.html#saslstate" title='saslstate' data-type='enum saslstate' data-ref="saslstate">saslstate</a> <dfn class="local col1 decl" id="111newstate" title='newstate' data-type='saslstate' data-ref="111newstate">newstate</dfn> = <a class="enum" href="curl_sasl.h.html#SASL_FINAL" title='SASL_FINAL' data-ref="SASL_FINAL">SASL_FINAL</a>;</td></tr>
+<tr><th id="414">414</th><td>  <em>char</em> *<dfn class="local col2 decl" id="112resp" title='resp' data-type='char *' data-ref="112resp">resp</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="415">415</th><td>  <em>const</em> <em>char</em> * <em>const</em> <dfn class="local col3 decl" id="113hostname" title='hostname' data-type='const char *const' data-ref="113hostname">hostname</dfn> = <a class="macro" href="vtls/vtls.h.html#130" title="(CURLPROXY_HTTPS == conn-&gt;http_proxy.proxytype &amp;&amp; ssl_connection_complete != conn-&gt;proxy_ssl[conn-&gt;sock[1] == -1 ? 0 : 1].state)" data-ref="_M/SSL_IS_PROXY">SSL_IS_PROXY</a>() ? <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::http_proxy" title='connectdata::http_proxy' data-ref="connectdata::http_proxy">http_proxy</a>.<a class="ref" href="urldata.h.html#proxy_info::host" title='proxy_info::host' data-ref="proxy_info::host">host</a>.<a class="ref" href="urldata.h.html#hostname::name" title='hostname::name' data-ref="hostname::name">name</a> :</td></tr>
+<tr><th id="416">416</th><td>    <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::host" title='connectdata::host' data-ref="connectdata::host">host</a>.<a class="ref" href="urldata.h.html#hostname::name" title='hostname::name' data-ref="hostname::name">name</a>;</td></tr>
+<tr><th id="417">417</th><td>  <em>const</em> <em>long</em> <em>int</em> <dfn class="local col4 decl" id="114port" title='port' data-type='const long' data-ref="114port">port</dfn> = <a class="macro" href="vtls/vtls.h.html#130" title="(CURLPROXY_HTTPS == conn-&gt;http_proxy.proxytype &amp;&amp; ssl_connection_complete != conn-&gt;proxy_ssl[conn-&gt;sock[1] == -1 ? 0 : 1].state)" data-ref="_M/SSL_IS_PROXY">SSL_IS_PROXY</a>() ? <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::port" title='connectdata::port' data-ref="connectdata::port">port</a> : <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::remote_port" title='connectdata::remote_port' data-ref="connectdata::remote_port">remote_port</a>;</td></tr>
+<tr><th id="418">418</th><td><u>#<span data-ppcond="418">if</span> !defined(<span class="macro" data-ref="_M/CURL_DISABLE_CRYPTO_AUTH">CURL_DISABLE_CRYPTO_AUTH</span>)</u></td></tr>
+<tr><th id="419">419</th><td>  <em>char</em> *<dfn class="local col5 decl" id="115chlg" title='chlg' data-type='char *' data-ref="115chlg">chlg</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="420">420</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="116chlglen" title='chlglen' data-type='size_t' data-ref="116chlglen">chlglen</dfn> = <var>0</var>;</td></tr>
+<tr><th id="421">421</th><td><u>#<span data-ppcond="418">endif</span></u></td></tr>
+<tr><th id="422">422</th><td><u>#<span data-ppcond="422">if</span> !defined(<span class="macro" data-ref="_M/CURL_DISABLE_CRYPTO_AUTH">CURL_DISABLE_CRYPTO_AUTH</span>) || defined(<span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span>)</u></td></tr>
+<tr><th id="423">423</th><td>  <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="117service" title='service' data-type='const char *' data-ref="117service">service</dfn> = <a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::str" title='UserDefined::str' data-ref="UserDefined::str">str</a>[<a class="enum" href="urldata.h.html#dupstring::STRING_SERVICE_NAME" title='dupstring::STRING_SERVICE_NAME' data-ref="dupstring::STRING_SERVICE_NAME">STRING_SERVICE_NAME</a>] ?</td></tr>
+<tr><th id="424">424</th><td>                        <a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::str" title='UserDefined::str' data-ref="UserDefined::str">str</a>[<a class="enum" href="urldata.h.html#dupstring::STRING_SERVICE_NAME" title='dupstring::STRING_SERVICE_NAME' data-ref="dupstring::STRING_SERVICE_NAME">STRING_SERVICE_NAME</a>] :</td></tr>
+<tr><th id="425">425</th><td>                        <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::service" title='SASLproto::service' data-ref="SASLproto::service">service</a>;</td></tr>
+<tr><th id="426">426</th><td><u>#<span data-ppcond="422">endif</span></u></td></tr>
+<tr><th id="427">427</th><td><u>#<span data-ppcond="427">if</span> !defined(<span class="macro" data-ref="_M/CURL_DISABLE_CRYPTO_AUTH">CURL_DISABLE_CRYPTO_AUTH</span>) || defined(<span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span>) || \</u></td></tr>
+<tr><th id="428">428</th><td><u>    defined(<a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a>)</u></td></tr>
+<tr><th id="429">429</th><td>  <em>char</em> *<dfn class="local col8 decl" id="118serverdata" title='serverdata' data-type='char *' data-ref="118serverdata">serverdata</dfn>;</td></tr>
+<tr><th id="430">430</th><td><u>#<span data-ppcond="427">endif</span></u></td></tr>
+<tr><th id="431">431</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="119len" title='len' data-type='size_t' data-ref="119len">len</dfn> = <var>0</var>;</td></tr>
+<tr><th id="432">432</th><td></td></tr>
+<tr><th id="433">433</th><td>  *<a class="local col8 ref" href="#108progress" title='progress' data-ref="108progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_INPROGRESS" title='SASL_INPROGRESS' data-ref="SASL_INPROGRESS">SASL_INPROGRESS</a>;</td></tr>
+<tr><th id="434">434</th><td></td></tr>
+<tr><th id="435">435</th><td>  <b>if</b>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::state" title='SASL::state' data-ref="SASL::state">state</a> == <a class="enum" href="curl_sasl.h.html#SASL_FINAL" title='SASL_FINAL' data-ref="SASL_FINAL">SASL_FINAL</a>) {</td></tr>
+<tr><th id="436">436</th><td>    <b>if</b>(<a class="local col7 ref" href="#107code" title='code' data-ref="107code">code</a> != <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::finalcode" title='SASLproto::finalcode' data-ref="SASLproto::finalcode">finalcode</a>)</td></tr>
+<tr><th id="437">437</th><td>      <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_LOGIN_DENIED" title='CURLE_LOGIN_DENIED' data-ref="CURLE_LOGIN_DENIED">CURLE_LOGIN_DENIED</a>;</td></tr>
+<tr><th id="438">438</th><td>    *<a class="local col8 ref" href="#108progress" title='progress' data-ref="108progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_DONE" title='SASL_DONE' data-ref="SASL_DONE">SASL_DONE</a>;</td></tr>
+<tr><th id="439">439</th><td>    <a class="tu ref" href="#state" title='state' data-use='c' data-ref="state">state</a>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>, <a class="enum" href="curl_sasl.h.html#SASL_STOP" title='SASL_STOP' data-ref="SASL_STOP">SASL_STOP</a>);</td></tr>
+<tr><th id="440">440</th><td>    <b>return</b> <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a>;</td></tr>
+<tr><th id="441">441</th><td>  }</td></tr>
+<tr><th id="442">442</th><td></td></tr>
+<tr><th id="443">443</th><td>  <b>if</b>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::state" title='SASL::state' data-ref="SASL::state">state</a> != <a class="enum" href="curl_sasl.h.html#SASL_CANCEL" title='SASL_CANCEL' data-ref="SASL_CANCEL">SASL_CANCEL</a> &amp;&amp; <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::state" title='SASL::state' data-ref="SASL::state">state</a> != <a class="enum" href="curl_sasl.h.html#SASL_OAUTH2_RESP" title='SASL_OAUTH2_RESP' data-ref="SASL_OAUTH2_RESP">SASL_OAUTH2_RESP</a> &amp;&amp;</td></tr>
+<tr><th id="444">444</th><td>     <a class="local col7 ref" href="#107code" title='code' data-ref="107code">code</a> != <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::contcode" title='SASLproto::contcode' data-ref="SASLproto::contcode">contcode</a>) {</td></tr>
+<tr><th id="445">445</th><td>    *<a class="local col8 ref" href="#108progress" title='progress' data-ref="108progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_DONE" title='SASL_DONE' data-ref="SASL_DONE">SASL_DONE</a>;</td></tr>
+<tr><th id="446">446</th><td>    <a class="tu ref" href="#state" title='state' data-use='c' data-ref="state">state</a>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>, <a class="enum" href="curl_sasl.h.html#SASL_STOP" title='SASL_STOP' data-ref="SASL_STOP">SASL_STOP</a>);</td></tr>
+<tr><th id="447">447</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_LOGIN_DENIED" title='CURLE_LOGIN_DENIED' data-ref="CURLE_LOGIN_DENIED">CURLE_LOGIN_DENIED</a>;</td></tr>
+<tr><th id="448">448</th><td>  }</td></tr>
+<tr><th id="449">449</th><td></td></tr>
+<tr><th id="450">450</th><td>  <b>switch</b>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::state" title='SASL::state' data-ref="SASL::state">state</a>) {</td></tr>
+<tr><th id="451">451</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_STOP" title='SASL_STOP' data-ref="SASL_STOP">SASL_STOP</a>:</td></tr>
+<tr><th id="452">452</th><td>    *<a class="local col8 ref" href="#108progress" title='progress' data-ref="108progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_DONE" title='SASL_DONE' data-ref="SASL_DONE">SASL_DONE</a>;</td></tr>
+<tr><th id="453">453</th><td>    <b>return</b> <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a>;</td></tr>
+<tr><th id="454">454</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_PLAIN" title='SASL_PLAIN' data-ref="SASL_PLAIN">SASL_PLAIN</a>:</td></tr>
+<tr><th id="455">455</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_plain_message" title='Curl_auth_create_plain_message' data-ref="Curl_auth_create_plain_message">Curl_auth_create_plain_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>,</td></tr>
+<tr><th id="456">456</th><td>                                            &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>,</td></tr>
+<tr><th id="457">457</th><td>                                            &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="458">458</th><td>    <b>break</b>;</td></tr>
+<tr><th id="459">459</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_LOGIN" title='SASL_LOGIN' data-ref="SASL_LOGIN">SASL_LOGIN</a>:</td></tr>
+<tr><th id="460">460</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_login_message" title='Curl_auth_create_login_message' data-ref="Curl_auth_create_login_message">Curl_auth_create_login_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="461">461</th><td>    <a class="local col1 ref" href="#111newstate" title='newstate' data-ref="111newstate">newstate</a> = <a class="enum" href="curl_sasl.h.html#SASL_LOGIN_PASSWD" title='SASL_LOGIN_PASSWD' data-ref="SASL_LOGIN_PASSWD">SASL_LOGIN_PASSWD</a>;</td></tr>
+<tr><th id="462">462</th><td>    <b>break</b>;</td></tr>
+<tr><th id="463">463</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_LOGIN_PASSWD" title='SASL_LOGIN_PASSWD' data-ref="SASL_LOGIN_PASSWD">SASL_LOGIN_PASSWD</a>:</td></tr>
+<tr><th id="464">464</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_login_message" title='Curl_auth_create_login_message' data-ref="Curl_auth_create_login_message">Curl_auth_create_login_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>, &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="465">465</th><td>    <b>break</b>;</td></tr>
+<tr><th id="466">466</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_EXTERNAL" title='SASL_EXTERNAL' data-ref="SASL_EXTERNAL">SASL_EXTERNAL</a>:</td></tr>
+<tr><th id="467">467</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_external_message" title='Curl_auth_create_external_message' data-ref="Curl_auth_create_external_message">Curl_auth_create_external_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="468">468</th><td>    <b>break</b>;</td></tr>
+<tr><th id="469">469</th><td></td></tr>
+<tr><th id="470">470</th><td><u>#<span data-ppcond="470">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_CRYPTO_AUTH">CURL_DISABLE_CRYPTO_AUTH</span></u></td></tr>
+<tr><th id="471">471</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_CRAMMD5" title='SASL_CRAMMD5' data-ref="SASL_CRAMMD5">SASL_CRAMMD5</a>:</td></tr>
+<tr><th id="472">472</th><td>    <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::getmessage" title='SASLproto::getmessage' data-ref="SASLproto::getmessage">getmessage</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::buffer" title='UrlState::buffer' data-ref="UrlState::buffer">buffer</a>, &amp;<a class="local col8 ref" href="#118serverdata" title='serverdata' data-ref="118serverdata">serverdata</a>);</td></tr>
+<tr><th id="473">473</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_decode_cram_md5_message" title='Curl_auth_decode_cram_md5_message' data-ref="Curl_auth_decode_cram_md5_message">Curl_auth_decode_cram_md5_message</a>(<a class="local col8 ref" href="#118serverdata" title='serverdata' data-ref="118serverdata">serverdata</a>, &amp;<a class="local col5 ref" href="#115chlg" title='chlg' data-ref="115chlg">chlg</a>, &amp;<a class="local col6 ref" href="#116chlglen" title='chlglen' data-ref="116chlglen">chlglen</a>);</td></tr>
+<tr><th id="474">474</th><td>    <b>if</b>(!<a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a>)</td></tr>
+<tr><th id="475">475</th><td>      <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_cram_md5_message" title='Curl_auth_create_cram_md5_message' data-ref="Curl_auth_create_cram_md5_message">Curl_auth_create_cram_md5_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col5 ref" href="#115chlg" title='chlg' data-ref="115chlg">chlg</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>,</td></tr>
+<tr><th id="476">476</th><td>                                                 <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>, &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="477">477</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(chlg)" data-ref="_M/free">free</a>(<a class="local col5 ref" href="#115chlg" title='chlg' data-ref="115chlg">chlg</a>);</td></tr>
+<tr><th id="478">478</th><td>    <b>break</b>;</td></tr>
+<tr><th id="479">479</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_DIGESTMD5" title='SASL_DIGESTMD5' data-ref="SASL_DIGESTMD5">SASL_DIGESTMD5</a>:</td></tr>
+<tr><th id="480">480</th><td>    <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::getmessage" title='SASLproto::getmessage' data-ref="SASLproto::getmessage">getmessage</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::buffer" title='UrlState::buffer' data-ref="UrlState::buffer">buffer</a>, &amp;<a class="local col8 ref" href="#118serverdata" title='serverdata' data-ref="118serverdata">serverdata</a>);</td></tr>
+<tr><th id="481">481</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_digest_md5_message" title='Curl_auth_create_digest_md5_message' data-ref="Curl_auth_create_digest_md5_message">Curl_auth_create_digest_md5_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col8 ref" href="#118serverdata" title='serverdata' data-ref="118serverdata">serverdata</a>,</td></tr>
+<tr><th id="482">482</th><td>                                                 <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>,</td></tr>
+<tr><th id="483">483</th><td>                                                 <a class="local col7 ref" href="#117service" title='service' data-ref="117service">service</a>,</td></tr>
+<tr><th id="484">484</th><td>                                                 &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="485">485</th><td>    <a class="local col1 ref" href="#111newstate" title='newstate' data-ref="111newstate">newstate</a> = <a class="enum" href="curl_sasl.h.html#SASL_DIGESTMD5_RESP" title='SASL_DIGESTMD5_RESP' data-ref="SASL_DIGESTMD5_RESP">SASL_DIGESTMD5_RESP</a>;</td></tr>
+<tr><th id="486">486</th><td>    <b>break</b>;</td></tr>
+<tr><th id="487">487</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_DIGESTMD5_RESP" title='SASL_DIGESTMD5_RESP' data-ref="SASL_DIGESTMD5_RESP">SASL_DIGESTMD5_RESP</a>:</td></tr>
+<tr><th id="488">488</th><td>    <a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a> = <a class="macro" href="curl_memory.h.html#122" title="Curl_cstrdup(&quot;&quot;)" data-ref="_M/strdup">strdup</a>(<q>""</q>);</td></tr>
+<tr><th id="489">489</th><td>    <b>if</b>(!<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>)</td></tr>
+<tr><th id="490">490</th><td>      <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="491">491</th><td>    <b>break</b>;</td></tr>
+<tr><th id="492">492</th><td><u>#<span data-ppcond="470">endif</span></u></td></tr>
+<tr><th id="493">493</th><td></td></tr>
+<tr><th id="494">494</th><td><u>#<span data-ppcond="494">ifdef</span> <a class="macro" href="curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a></u></td></tr>
+<tr><th id="495">495</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_NTLM" title='SASL_NTLM' data-ref="SASL_NTLM">SASL_NTLM</a>:</td></tr>
+<tr><th id="496">496</th><td>    <i>/* Create the type-1 message */</i></td></tr>
+<tr><th id="497">497</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_ntlm_type1_message" title='Curl_auth_create_ntlm_type1_message' data-ref="Curl_auth_create_ntlm_type1_message">Curl_auth_create_ntlm_type1_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>,</td></tr>
+<tr><th id="498">498</th><td>                                                 <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>,</td></tr>
+<tr><th id="499">499</th><td>                                                 &amp;<a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::ntlm" title='connectdata::ntlm' data-ref="connectdata::ntlm">ntlm</a>, &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="500">500</th><td>    <a class="local col1 ref" href="#111newstate" title='newstate' data-ref="111newstate">newstate</a> = <a class="enum" href="curl_sasl.h.html#SASL_NTLM_TYPE2MSG" title='SASL_NTLM_TYPE2MSG' data-ref="SASL_NTLM_TYPE2MSG">SASL_NTLM_TYPE2MSG</a>;</td></tr>
+<tr><th id="501">501</th><td>    <b>break</b>;</td></tr>
+<tr><th id="502">502</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_NTLM_TYPE2MSG" title='SASL_NTLM_TYPE2MSG' data-ref="SASL_NTLM_TYPE2MSG">SASL_NTLM_TYPE2MSG</a>:</td></tr>
+<tr><th id="503">503</th><td>    <i>/* Decode the type-2 message */</i></td></tr>
+<tr><th id="504">504</th><td>    <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::getmessage" title='SASLproto::getmessage' data-ref="SASLproto::getmessage">getmessage</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::buffer" title='UrlState::buffer' data-ref="UrlState::buffer">buffer</a>, &amp;<a class="local col8 ref" href="#118serverdata" title='serverdata' data-ref="118serverdata">serverdata</a>);</td></tr>
+<tr><th id="505">505</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_decode_ntlm_type2_message" title='Curl_auth_decode_ntlm_type2_message' data-ref="Curl_auth_decode_ntlm_type2_message">Curl_auth_decode_ntlm_type2_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col8 ref" href="#118serverdata" title='serverdata' data-ref="118serverdata">serverdata</a>,</td></tr>
+<tr><th id="506">506</th><td>                                                 &amp;<a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::ntlm" title='connectdata::ntlm' data-ref="connectdata::ntlm">ntlm</a>);</td></tr>
+<tr><th id="507">507</th><td>    <b>if</b>(!<a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a>)</td></tr>
+<tr><th id="508">508</th><td>      <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_ntlm_type3_message" title='Curl_auth_create_ntlm_type3_message' data-ref="Curl_auth_create_ntlm_type3_message">Curl_auth_create_ntlm_type3_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>,</td></tr>
+<tr><th id="509">509</th><td>                                                   <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::passwd" title='connectdata::passwd' data-ref="connectdata::passwd">passwd</a>, &amp;<a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::ntlm" title='connectdata::ntlm' data-ref="connectdata::ntlm">ntlm</a>,</td></tr>
+<tr><th id="510">510</th><td>                                                   &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="511">511</th><td>    <b>break</b>;</td></tr>
+<tr><th id="512">512</th><td><u>#<span data-ppcond="494">endif</span></u></td></tr>
+<tr><th id="513">513</th><td></td></tr>
+<tr><th id="514">514</th><td><u>#<span data-ppcond="514">if</span> defined(<span class="macro" data-ref="_M/USE_KERBEROS5">USE_KERBEROS5</span>)</u></td></tr>
+<tr><th id="515">515</th><td>  <b>case</b> SASL_GSSAPI:</td></tr>
+<tr><th id="516">516</th><td>    result = Curl_auth_create_gssapi_user_message(data, conn-&gt;user,</td></tr>
+<tr><th id="517">517</th><td>                                                  conn-&gt;passwd,</td></tr>
+<tr><th id="518">518</th><td>                                                  service,</td></tr>
+<tr><th id="519">519</th><td>                                                  data-&gt;easy_conn-&gt;host.name,</td></tr>
+<tr><th id="520">520</th><td>                                                  sasl-&gt;mutual_auth, NULL,</td></tr>
+<tr><th id="521">521</th><td>                                                  &amp;conn-&gt;krb5,</td></tr>
+<tr><th id="522">522</th><td>                                                  &amp;resp, &amp;len);</td></tr>
+<tr><th id="523">523</th><td>    newstate = SASL_GSSAPI_TOKEN;</td></tr>
+<tr><th id="524">524</th><td>    <b>break</b>;</td></tr>
+<tr><th id="525">525</th><td>  <b>case</b> SASL_GSSAPI_TOKEN:</td></tr>
+<tr><th id="526">526</th><td>    sasl-&gt;params-&gt;getmessage(data-&gt;state.buffer, &amp;serverdata);</td></tr>
+<tr><th id="527">527</th><td>    <b>if</b>(sasl-&gt;mutual_auth) {</td></tr>
+<tr><th id="528">528</th><td>      <i>/* Decode the user token challenge and create the optional response</i></td></tr>
+<tr><th id="529">529</th><td><i>         message */</i></td></tr>
+<tr><th id="530">530</th><td>      result = Curl_auth_create_gssapi_user_message(data, NULL, NULL,</td></tr>
+<tr><th id="531">531</th><td>                                                    NULL, NULL,</td></tr>
+<tr><th id="532">532</th><td>                                                    sasl-&gt;mutual_auth,</td></tr>
+<tr><th id="533">533</th><td>                                                    serverdata, &amp;conn-&gt;krb5,</td></tr>
+<tr><th id="534">534</th><td>                                                    &amp;resp, &amp;len);</td></tr>
+<tr><th id="535">535</th><td>      newstate = SASL_GSSAPI_NO_DATA;</td></tr>
+<tr><th id="536">536</th><td>    }</td></tr>
+<tr><th id="537">537</th><td>    <b>else</b></td></tr>
+<tr><th id="538">538</th><td>      <i>/* Decode the security challenge and create the response message */</i></td></tr>
+<tr><th id="539">539</th><td>      result = Curl_auth_create_gssapi_security_message(data, serverdata,</td></tr>
+<tr><th id="540">540</th><td>                                                        &amp;conn-&gt;krb5,</td></tr>
+<tr><th id="541">541</th><td>                                                        &amp;resp, &amp;len);</td></tr>
+<tr><th id="542">542</th><td>    <b>break</b>;</td></tr>
+<tr><th id="543">543</th><td>  <b>case</b> SASL_GSSAPI_NO_DATA:</td></tr>
+<tr><th id="544">544</th><td>    sasl-&gt;params-&gt;getmessage(data-&gt;state.buffer, &amp;serverdata);</td></tr>
+<tr><th id="545">545</th><td>    <i>/* Decode the security challenge and create the response message */</i></td></tr>
+<tr><th id="546">546</th><td>    result = Curl_auth_create_gssapi_security_message(data, serverdata,</td></tr>
+<tr><th id="547">547</th><td>                                                      &amp;conn-&gt;krb5,</td></tr>
+<tr><th id="548">548</th><td>                                                      &amp;resp, &amp;len);</td></tr>
+<tr><th id="549">549</th><td>    <b>break</b>;</td></tr>
+<tr><th id="550">550</th><td><u>#<span data-ppcond="514">endif</span></u></td></tr>
+<tr><th id="551">551</th><td></td></tr>
+<tr><th id="552">552</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_OAUTH2" title='SASL_OAUTH2' data-ref="SASL_OAUTH2">SASL_OAUTH2</a>:</td></tr>
+<tr><th id="553">553</th><td>    <i>/* Create the authorisation message */</i></td></tr>
+<tr><th id="554">554</th><td>    <b>if</b>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a> == <a class="macro" href="curl_sasl.h.html#39" title="(1 &lt;&lt; 8)" data-ref="_M/SASL_MECH_OAUTHBEARER">SASL_MECH_OAUTHBEARER</a>) {</td></tr>
+<tr><th id="555">555</th><td>      <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_oauth_bearer_message" title='Curl_auth_create_oauth_bearer_message' data-ref="Curl_auth_create_oauth_bearer_message">Curl_auth_create_oauth_bearer_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>,</td></tr>
+<tr><th id="556">556</th><td>                                                     <a class="local col3 ref" href="#113hostname" title='hostname' data-ref="113hostname">hostname</a>,</td></tr>
+<tr><th id="557">557</th><td>                                                     <a class="local col4 ref" href="#114port" title='port' data-ref="114port">port</a>,</td></tr>
+<tr><th id="558">558</th><td>                                                     <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::oauth_bearer" title='connectdata::oauth_bearer' data-ref="connectdata::oauth_bearer">oauth_bearer</a>,</td></tr>
+<tr><th id="559">559</th><td>                                                     &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="560">560</th><td></td></tr>
+<tr><th id="561">561</th><td>      <i>/* Failures maybe sent by the server as continuations for OAUTHBEARER */</i></td></tr>
+<tr><th id="562">562</th><td>      <a class="local col1 ref" href="#111newstate" title='newstate' data-ref="111newstate">newstate</a> = <a class="enum" href="curl_sasl.h.html#SASL_OAUTH2_RESP" title='SASL_OAUTH2_RESP' data-ref="SASL_OAUTH2_RESP">SASL_OAUTH2_RESP</a>;</td></tr>
+<tr><th id="563">563</th><td>    }</td></tr>
+<tr><th id="564">564</th><td>    <b>else</b></td></tr>
+<tr><th id="565">565</th><td>      <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="vauth/vauth.h.html#Curl_auth_create_oauth_bearer_message" title='Curl_auth_create_oauth_bearer_message' data-ref="Curl_auth_create_oauth_bearer_message">Curl_auth_create_oauth_bearer_message</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::user" title='connectdata::user' data-ref="connectdata::user">user</a>,</td></tr>
+<tr><th id="566">566</th><td>                                                     <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <var>0</var>,</td></tr>
+<tr><th id="567">567</th><td>                                                     <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::oauth_bearer" title='connectdata::oauth_bearer' data-ref="connectdata::oauth_bearer">oauth_bearer</a>,</td></tr>
+<tr><th id="568">568</th><td>                                                     &amp;<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>, &amp;<a class="local col9 ref" href="#119len" title='len' data-ref="119len">len</a>);</td></tr>
+<tr><th id="569">569</th><td>    <b>break</b>;</td></tr>
+<tr><th id="570">570</th><td></td></tr>
+<tr><th id="571">571</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_OAUTH2_RESP" title='SASL_OAUTH2_RESP' data-ref="SASL_OAUTH2_RESP">SASL_OAUTH2_RESP</a>:</td></tr>
+<tr><th id="572">572</th><td>    <i>/* The continuation is optional so check the response code */</i></td></tr>
+<tr><th id="573">573</th><td>    <b>if</b>(<a class="local col7 ref" href="#107code" title='code' data-ref="107code">code</a> == <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::finalcode" title='SASLproto::finalcode' data-ref="SASLproto::finalcode">finalcode</a>) {</td></tr>
+<tr><th id="574">574</th><td>      <i>/* Final response was received so we are done */</i></td></tr>
+<tr><th id="575">575</th><td>      *<a class="local col8 ref" href="#108progress" title='progress' data-ref="108progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_DONE" title='SASL_DONE' data-ref="SASL_DONE">SASL_DONE</a>;</td></tr>
+<tr><th id="576">576</th><td>      <a class="tu ref" href="#state" title='state' data-use='c' data-ref="state">state</a>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>, <a class="enum" href="curl_sasl.h.html#SASL_STOP" title='SASL_STOP' data-ref="SASL_STOP">SASL_STOP</a>);</td></tr>
+<tr><th id="577">577</th><td>      <b>return</b> <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a>;</td></tr>
+<tr><th id="578">578</th><td>    }</td></tr>
+<tr><th id="579">579</th><td>    <b>else</b> <b>if</b>(<a class="local col7 ref" href="#107code" title='code' data-ref="107code">code</a> == <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::contcode" title='SASLproto::contcode' data-ref="SASLproto::contcode">contcode</a>) {</td></tr>
+<tr><th id="580">580</th><td>      <i>/* Acknowledge the continuation by sending a 0x01 response base64</i></td></tr>
+<tr><th id="581">581</th><td><i>         encoded */</i></td></tr>
+<tr><th id="582">582</th><td>      <a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a> = <a class="macro" href="curl_memory.h.html#122" title="Curl_cstrdup(&quot;AQ==&quot;)" data-ref="_M/strdup">strdup</a>(<q>"AQ=="</q>);</td></tr>
+<tr><th id="583">583</th><td>      <b>if</b>(!<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>)</td></tr>
+<tr><th id="584">584</th><td>        <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="585">585</th><td>      <b>break</b>;</td></tr>
+<tr><th id="586">586</th><td>    }</td></tr>
+<tr><th id="587">587</th><td>    <b>else</b> {</td></tr>
+<tr><th id="588">588</th><td>      *<a class="local col8 ref" href="#108progress" title='progress' data-ref="108progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_DONE" title='SASL_DONE' data-ref="SASL_DONE">SASL_DONE</a>;</td></tr>
+<tr><th id="589">589</th><td>      <a class="tu ref" href="#state" title='state' data-use='c' data-ref="state">state</a>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>, <a class="enum" href="curl_sasl.h.html#SASL_STOP" title='SASL_STOP' data-ref="SASL_STOP">SASL_STOP</a>);</td></tr>
+<tr><th id="590">590</th><td>      <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_LOGIN_DENIED" title='CURLE_LOGIN_DENIED' data-ref="CURLE_LOGIN_DENIED">CURLE_LOGIN_DENIED</a>;</td></tr>
+<tr><th id="591">591</th><td>    }</td></tr>
+<tr><th id="592">592</th><td></td></tr>
+<tr><th id="593">593</th><td>  <b>case</b> <a class="enum" href="curl_sasl.h.html#SASL_CANCEL" title='SASL_CANCEL' data-ref="SASL_CANCEL">SASL_CANCEL</a>:</td></tr>
+<tr><th id="594">594</th><td>    <i>/* Remove the offending mechanism from the supported list */</i></td></tr>
+<tr><th id="595">595</th><td>    <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authmechs" title='SASL::authmechs' data-ref="SASL::authmechs">authmechs</a> ^= <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::authused" title='SASL::authused' data-ref="SASL::authused">authused</a>;</td></tr>
+<tr><th id="596">596</th><td></td></tr>
+<tr><th id="597">597</th><td>    <i>/* Start an alternative SASL authentication */</i></td></tr>
+<tr><th id="598">598</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="ref" href="#Curl_sasl_start" title='Curl_sasl_start' data-ref="Curl_sasl_start">Curl_sasl_start</a>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>, <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::force_ir" title='SASL::force_ir' data-ref="SASL::force_ir">force_ir</a>, <a class="local col8 ref" href="#108progress" title='progress' data-ref="108progress">progress</a>);</td></tr>
+<tr><th id="599">599</th><td>    <a class="local col1 ref" href="#111newstate" title='newstate' data-ref="111newstate">newstate</a> = <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::state" title='SASL::state' data-ref="SASL::state">state</a>;   <i>/* Use state from Curl_sasl_start() */</i></td></tr>
+<tr><th id="600">600</th><td>    <b>break</b>;</td></tr>
+<tr><th id="601">601</th><td>  <b>default</b>:</td></tr>
+<tr><th id="602">602</th><td>    <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col0 ref" href="#110data" title='data' data-ref="110data">data</a>, <q>"Unsupported SASL authentication mechanism"</q>);</td></tr>
+<tr><th id="603">603</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_UNSUPPORTED_PROTOCOL" title='CURLE_UNSUPPORTED_PROTOCOL' data-ref="CURLE_UNSUPPORTED_PROTOCOL">CURLE_UNSUPPORTED_PROTOCOL</a>;  <i>/* Should not happen */</i></td></tr>
+<tr><th id="604">604</th><td>    <b>break</b>;</td></tr>
+<tr><th id="605">605</th><td>  }</td></tr>
+<tr><th id="606">606</th><td></td></tr>
+<tr><th id="607">607</th><td>  <b>switch</b>(<a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a>) {</td></tr>
+<tr><th id="608">608</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>:</td></tr>
+<tr><th id="609">609</th><td>    <i>/* Cancel dialog */</i></td></tr>
+<tr><th id="610">610</th><td>    <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::sendcont" title='SASLproto::sendcont' data-ref="SASLproto::sendcont">sendcont</a>(<a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>, <q>"*"</q>);</td></tr>
+<tr><th id="611">611</th><td>    <a class="local col1 ref" href="#111newstate" title='newstate' data-ref="111newstate">newstate</a> = <a class="enum" href="curl_sasl.h.html#SASL_CANCEL" title='SASL_CANCEL' data-ref="SASL_CANCEL">SASL_CANCEL</a>;</td></tr>
+<tr><th id="612">612</th><td>    <b>break</b>;</td></tr>
+<tr><th id="613">613</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>:</td></tr>
+<tr><th id="614">614</th><td>    <b>if</b>(<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>)</td></tr>
+<tr><th id="615">615</th><td>      <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a> = <a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASL::params" title='SASL::params' data-ref="SASL::params">params</a>-&gt;<a class="ref" href="curl_sasl.h.html#SASLproto::sendcont" title='SASLproto::sendcont' data-ref="SASLproto::sendcont">sendcont</a>(<a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>, <a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>);</td></tr>
+<tr><th id="616">616</th><td>    <b>break</b>;</td></tr>
+<tr><th id="617">617</th><td>  <b>default</b>:</td></tr>
+<tr><th id="618">618</th><td>    <a class="local col1 ref" href="#111newstate" title='newstate' data-ref="111newstate">newstate</a> = <a class="enum" href="curl_sasl.h.html#SASL_STOP" title='SASL_STOP' data-ref="SASL_STOP">SASL_STOP</a>;    <i>/* Stop on error */</i></td></tr>
+<tr><th id="619">619</th><td>    *<a class="local col8 ref" href="#108progress" title='progress' data-ref="108progress">progress</a> = <a class="enum" href="curl_sasl.h.html#SASL_DONE" title='SASL_DONE' data-ref="SASL_DONE">SASL_DONE</a>;</td></tr>
+<tr><th id="620">620</th><td>    <b>break</b>;</td></tr>
+<tr><th id="621">621</th><td>  }</td></tr>
+<tr><th id="622">622</th><td></td></tr>
+<tr><th id="623">623</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(resp)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#112resp" title='resp' data-ref="112resp">resp</a>);</td></tr>
+<tr><th id="624">624</th><td></td></tr>
+<tr><th id="625">625</th><td>  <a class="tu ref" href="#state" title='state' data-use='c' data-ref="state">state</a>(<a class="local col5 ref" href="#105sasl" title='sasl' data-ref="105sasl">sasl</a>, <a class="local col6 ref" href="#106conn" title='conn' data-ref="106conn">conn</a>, <a class="local col1 ref" href="#111newstate" title='newstate' data-ref="111newstate">newstate</a>);</td></tr>
+<tr><th id="626">626</th><td></td></tr>
+<tr><th id="627">627</th><td>  <b>return</b> <a class="local col9 ref" href="#109result" title='result' data-ref="109result">result</a>;</td></tr>
+<tr><th id="628">628</th><td>}</td></tr>
+<tr><th id="629">629</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

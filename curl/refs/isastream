@@ -1,0 +1,2 @@
+<dec f='include/stropts.h' l='45' type='int isastream(int __fildes)'/>
+<doc f='include/stropts.h' l='44'>/* Test whether FILDES is associated with a STREAM-based file.  */</doc>

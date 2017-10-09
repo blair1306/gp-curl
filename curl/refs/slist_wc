@@ -1,0 +1,5 @@
+<def f='codebrowser/src/slist_wc.h' l='29' ll='32'/>
+<size>16</size>
+<doc f='codebrowser/src/slist_wc.h' l='28'>/* linked-list structure with last node cache for easysrc */</doc>
+<mbr r='slist_wc::first' o='0' t='struct curl_slist *'/>
+<mbr r='slist_wc::last' o='64' t='struct curl_slist *'/>

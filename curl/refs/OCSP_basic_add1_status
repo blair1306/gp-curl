@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='475' type='OCSP_SINGLERESP * OCSP_basic_add1_status(OCSP_BASICRESP * rsp, OCSP_CERTID * cid, int status, int reason, ASN1_TIME * revtime, ASN1_TIME * thisupd, ASN1_TIME * nextupd)'/>

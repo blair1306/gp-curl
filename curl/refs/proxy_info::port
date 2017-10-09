@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='759' type='long'/>
+<offset>256</offset>
+<use f='codebrowser/lib/url.c' l='3348' u='r' c='proxy_info_matches'/>
+<use f='codebrowser/lib/url.c' l='3348' u='r' c='proxy_info_matches'/>
+<use f='codebrowser/lib/url.c' l='3925' u='r' c='Curl_connected_proxy'/>
+<use f='codebrowser/lib/url.c' l='5263' u='w' c='parse_proxy'/>

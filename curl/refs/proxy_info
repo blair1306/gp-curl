@@ -1,0 +1,7 @@
+<def f='codebrowser/lib/urldata.h' l='757' ll='763'/>
+<size>64</size>
+<mbr r='proxy_info::host' o='0' t='struct hostname'/>
+<mbr r='proxy_info::port' o='256' t='long'/>
+<mbr r='proxy_info::proxytype' o='320' t='curl_proxytype'/>
+<mbr r='proxy_info::user' o='384' t='char *'/>
+<mbr r='proxy_info::passwd' o='448' t='char *'/>

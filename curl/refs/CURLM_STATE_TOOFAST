@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/multihandle.h' l='55' type='15'/>
+<doc f='codebrowser/lib/multihandle.h' l='55'>/* 15 - wait because limit-rate exceeded */</doc>
+<use f='codebrowser/lib/multi.c' l='1829' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1887' u='r' c='multi_runsingle'/>

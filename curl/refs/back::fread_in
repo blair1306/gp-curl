@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/http.h' l='145' type='void *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/http.h' l='145'>/* backup storage for fread_in pointer */</doc>
+<use f='codebrowser/lib/http.c' l='1004' u='r' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1161' u='w' c='Curl_add_buffer_send'/>

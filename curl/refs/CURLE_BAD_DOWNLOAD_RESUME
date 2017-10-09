@@ -1,0 +1,8 @@
+<dec f='codebrowser/include/curl/curl.h' l='503' type='36'/>
+<doc f='codebrowser/include/curl/curl.h' l='503'>/* 36 - couldn&apos;t resume download */</doc>
+<use f='codebrowser/lib/file.c' l='533' u='r' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='555' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='2208' u='r' c='ftp_state_retr'/>
+<use f='codebrowser/lib/ftp.c' l='2220' u='r' c='ftp_state_retr'/>
+<use f='codebrowser/lib/ftp.c' l='3147' c='ftp_done'/>
+<use f='codebrowser/lib/strerror.c' l='161' c='curl_easy_strerror'/>

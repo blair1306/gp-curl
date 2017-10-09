@@ -1,0 +1,2 @@
+<def f='codebrowser/include/curl/curl.h' l='1901' ll='1910'/>
+<doc f='codebrowser/include/curl/curl.h' l='1900'>/* These enums are for use with the CURLOPT_NETRC option. */</doc>

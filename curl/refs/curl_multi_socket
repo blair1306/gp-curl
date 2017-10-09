@@ -1,0 +1,2 @@
+<dec f='codebrowser/include/curl/multi.h' l='290' type='CURLMcode curl_multi_socket(CURLM * multi_handle, curl_socket_t s, int * running_handles)'/>
+<def f='codebrowser/lib/multi.c' l='2750' ll='2757' type='CURLMcode curl_multi_socket(struct Curl_multi * multi, curl_socket_t s, int * running_handles)'/>

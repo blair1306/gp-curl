@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1525' type='curl_ioctl_callback'/>
+<offset>1728</offset>
+<doc f='codebrowser/lib/urldata.h' l='1525'>/* function for I/O control */</doc>
+<use f='codebrowser/lib/transfer.c' l='309' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/transfer.c' l='312' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/url.c' l='1998' u='w' c='Curl_setopt'/>

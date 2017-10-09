@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/url.h' l='41' type='CURLcode Curl_protocol_connect(struct connectdata * conn, _Bool * done)'/>
+<use f='codebrowser/lib/multi.c' l='1603' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/url.c' l='4035' ll='4087' type='CURLcode Curl_protocol_connect(struct connectdata * conn, _Bool * protocol_done)'/>
+<doc f='codebrowser/lib/url.c' l='4030'>/*
+ * We have discovered that the TCP connection has been successful, we can now
+ * proceed with some action.
+ *
+ */</doc>

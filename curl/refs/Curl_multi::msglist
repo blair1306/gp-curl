@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/multihandle.h' l='84' type='struct curl_llist'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/multihandle.h' l='84'>/* a list of messages from completed transfers */</doc>
+<use f='codebrowser/lib/multi.c' l='289' u='a' c='multi_addmsg'/>
+<use f='codebrowser/lib/multi.c' l='289' u='m' c='multi_addmsg'/>
+<use f='codebrowser/lib/multi.c' l='324' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='348' u='a' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='760' u='m' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='764' u='a' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2265' u='a' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2299' u='a' c='curl_multi_info_read'/>
+<use f='codebrowser/lib/multi.c' l='2304' u='m' c='curl_multi_info_read'/>
+<use f='codebrowser/lib/multi.c' l='2309' u='a' c='curl_multi_info_read'/>
+<use f='codebrowser/lib/multi.c' l='2311' u='a' c='curl_multi_info_read'/>

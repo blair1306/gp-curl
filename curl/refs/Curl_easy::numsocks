@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1751' type='int'/>
+<offset>1184</offset>
+<use f='codebrowser/lib/multi.c' l='2389' u='r' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2458' u='w' c='singlesocket'/>

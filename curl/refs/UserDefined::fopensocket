@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1528' type='curl_opensocket_callback'/>
+<offset>1920</offset>
+<doc f='codebrowser/lib/urldata.h' l='1528'>/* function for checking/translating
+                                           the address and opening the
+                                           socket */</doc>
+<use f='codebrowser/lib/connect.c' l='1343' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/connect.c' l='1353' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/url.c' l='2539' u='w' c='Curl_setopt'/>

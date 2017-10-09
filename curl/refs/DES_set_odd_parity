@@ -1,0 +1,2 @@
+<dec f='include/openssl/des.h' l='222' type='void DES_set_odd_parity(DES_cblock * key)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='175' u='c' c='setup_des_key'/>

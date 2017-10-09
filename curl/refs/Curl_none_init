@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='83' type='int Curl_none_init()'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='982' ll='985' type='int Curl_none_init()'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='978'>/*
+ * Default implementations for unsupported functions.
+ */</doc>

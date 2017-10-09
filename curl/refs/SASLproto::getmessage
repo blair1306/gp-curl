@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='96' type='void (*)(char *, char **)'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/curl_sasl.h' l='95'>/* Send authentication continuation */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='472' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='480' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='504' u='r' c='Curl_sasl_continue'/>

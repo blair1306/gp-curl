@@ -1,0 +1,7 @@
+<dec f='codebrowser/include/curl/mprintf.h' l='44' type='char * curl_mvaprintf(const char * format, struct __va_list_tag * args)'/>
+<use f='codebrowser/lib/http.c' l='1206' macro='1' u='c'/>
+<use f='codebrowser/lib/mime.c' l='1552' u='c' c='Curl_mime_add_header'/>
+<def f='codebrowser/lib/mprintf.c' l='1092' ll='1114' type='char * curl_mvaprintf(const char * format, struct __va_list_tag * ap_save)'/>
+<use f='codebrowser/lib/pingpong.c' l='191' macro='1' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='277' macro='1' u='c'/>
+<use f='codebrowser/src/tool_easysrc.c' l='114' macro='1' u='c'/>

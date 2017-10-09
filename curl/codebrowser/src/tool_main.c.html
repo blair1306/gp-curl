@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_main.c source code [codebrowser/src/tool_main.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="main "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_main.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_main.c.html'>tool_main.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../../include/x86_64-linux-gnu/sys/stat.h.html">&lt;sys/stat.h&gt;</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#<span data-ppcond="26">ifdef</span> <a class="macro" href="../lib/curl_config.h.html#558" data-ref="_M/HAVE_SIGNAL_H">HAVE_SIGNAL_H</a></u></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="../../include/signal.h.html">&lt;signal.h&gt;</a></u></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="26">endif</span></u></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifdef</span> <span class="macro" data-ref="_M/USE_NSS">USE_NSS</span></u></td></tr>
+<tr><th id="31">31</th><td><u>#include &lt;nspr.h&gt;</u></td></tr>
+<tr><th id="32">32</th><td><u>#include &lt;plarenas.h&gt;</u></td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="30">endif</span></u></td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td><u>#define <dfn class="macro" id="_M/ENABLE_CURLX_PRINTF" data-ref="_M/ENABLE_CURLX_PRINTF">ENABLE_CURLX_PRINTF</dfn></u></td></tr>
+<tr><th id="36">36</th><td><i>/* use our own printf() functions */</i></td></tr>
+<tr><th id="37">37</th><td><u>#include <a href="../lib/curlx.h.html">"curlx.h"</a></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><u>#include <a href="tool_cfgable.h.html">"tool_cfgable.h"</a></u></td></tr>
+<tr><th id="40">40</th><td><u>#include <a href="tool_convert.h.html">"tool_convert.h"</a></u></td></tr>
+<tr><th id="41">41</th><td><u>#include <a href="tool_msgs.h.html">"tool_msgs.h"</a></u></td></tr>
+<tr><th id="42">42</th><td><u>#include <a href="tool_operate.h.html">"tool_operate.h"</a></u></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="tool_panykey.h.html">"tool_panykey.h"</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#include <a href="tool_vms.h.html">"tool_vms.h"</a></u></td></tr>
+<tr><th id="45">45</th><td><u>#include <a href="tool_main.h.html">"tool_main.h"</a></u></td></tr>
+<tr><th id="46">46</th><td><u>#include <a href="tool_libinfo.h.html">"tool_libinfo.h"</a></u></td></tr>
+<tr><th id="47">47</th><td></td></tr>
+<tr><th id="48">48</th><td><i>/*</i></td></tr>
+<tr><th id="49">49</th><td><i> * This is low-level hard-hacking memory leak tracking and similar. Using</i></td></tr>
+<tr><th id="50">50</th><td><i> * the library level code from this client-side is ugly, but we do this</i></td></tr>
+<tr><th id="51">51</th><td><i> * anyway for convenience.</i></td></tr>
+<tr><th id="52">52</th><td><i> */</i></td></tr>
+<tr><th id="53">53</th><td><u>#include <a href="../lib/memdebug.h.html">"memdebug.h"</a> /* keep this as LAST include */</u></td></tr>
+<tr><th id="54">54</th><td></td></tr>
+<tr><th id="55">55</th><td><u>#<span data-ppcond="55">ifdef</span> <span class="macro" data-ref="_M/__VMS">__VMS</span></u></td></tr>
+<tr><th id="56">56</th><td><i>/*</i></td></tr>
+<tr><th id="57">57</th><td><i> * vms_show is a global variable, used in main() as parameter for</i></td></tr>
+<tr><th id="58">58</th><td><i> * function vms_special_exit() to allow proper curl tool exiting.</i></td></tr>
+<tr><th id="59">59</th><td><i> * Its value may be set in other tool_*.c source files thanks to</i></td></tr>
+<tr><th id="60">60</th><td><i> * forward declaration present in tool_vms.h</i></td></tr>
+<tr><th id="61">61</th><td><i> */</i></td></tr>
+<tr><th id="62">62</th><td><em>int</em> vms_show = <var>0</var>;</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="55">endif</span></u></td></tr>
+<tr><th id="64">64</th><td></td></tr>
+<tr><th id="65">65</th><td><u>#<span data-ppcond="65">ifdef</span> <span class="macro" data-ref="_M/__MINGW32__">__MINGW32__</span></u></td></tr>
+<tr><th id="66">66</th><td><i>/*</i></td></tr>
+<tr><th id="67">67</th><td><i> * There seems to be no way to escape "*" in command-line arguments with MinGW</i></td></tr>
+<tr><th id="68">68</th><td><i> * when command-line argument globbing is enabled under the MSYS shell, so turn</i></td></tr>
+<tr><th id="69">69</th><td><i> * it off.</i></td></tr>
+<tr><th id="70">70</th><td><i> */</i></td></tr>
+<tr><th id="71">71</th><td><em>int</em> _CRT_glob = <var>0</var>;</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="65">endif</span> /* __MINGW32__ */</u></td></tr>
+<tr><th id="73">73</th><td></td></tr>
+<tr><th id="74">74</th><td><i>/* if we build a static library for unit tests, there is no main() function */</i></td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="75">ifndef</span> <span class="macro" data-ref="_M/UNITTESTS">UNITTESTS</span></u></td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td><i  data-doc="main_checkfds">/*</i></td></tr>
+<tr><th id="78">78</th><td><i  data-doc="main_checkfds"> * Ensure that file descriptors 0, 1 and 2 (stdin, stdout, stderr) are</i></td></tr>
+<tr><th id="79">79</th><td><i  data-doc="main_checkfds"> * open before starting to run.  Otherwise, the first three network</i></td></tr>
+<tr><th id="80">80</th><td><i  data-doc="main_checkfds"> * sockets opened by curl could be used for input sources, downloaded data</i></td></tr>
+<tr><th id="81">81</th><td><i  data-doc="main_checkfds"> * or error logs as they will effectively be stdin, stdout and/or stderr.</i></td></tr>
+<tr><th id="82">82</th><td><i  data-doc="main_checkfds"> */</i></td></tr>
+<tr><th id="83">83</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="main_checkfds" title='main_checkfds' data-type='void main_checkfds()' data-ref="main_checkfds">main_checkfds</dfn>(<em>void</em>)</td></tr>
+<tr><th id="84">84</th><td>{</td></tr>
+<tr><th id="85">85</th><td><u>#<span data-ppcond="85">ifdef</span> <a class="macro" href="../lib/curl_config.h.html#474" data-ref="_M/HAVE_PIPE">HAVE_PIPE</a></u></td></tr>
+<tr><th id="86">86</th><td>  <em>int</em> <dfn class="local col4 decl" id="4fd" title='fd' data-type='int [2]' data-ref="4fd">fd</dfn>[<var>2</var>] = { <a class="macro" href="../../include/unistd.h.html#213" title="0" data-ref="_M/STDIN_FILENO">STDIN_FILENO</a>, <a class="macro" href="../../include/unistd.h.html#213" title="0" data-ref="_M/STDIN_FILENO">STDIN_FILENO</a> };</td></tr>
+<tr><th id="87">87</th><td>  <b>while</b>(<a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>[<var>0</var>] == <a class="macro" href="../../include/unistd.h.html#213" title="0" data-ref="_M/STDIN_FILENO">STDIN_FILENO</a> ||</td></tr>
+<tr><th id="88">88</th><td>        <a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>[<var>0</var>] == <a class="macro" href="../../include/unistd.h.html#214" title="1" data-ref="_M/STDOUT_FILENO">STDOUT_FILENO</a> ||</td></tr>
+<tr><th id="89">89</th><td>        <a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>[<var>0</var>] == <a class="macro" href="../../include/unistd.h.html#215" title="2" data-ref="_M/STDERR_FILENO">STDERR_FILENO</a> ||</td></tr>
+<tr><th id="90">90</th><td>        <a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>[<var>1</var>] == <a class="macro" href="../../include/unistd.h.html#213" title="0" data-ref="_M/STDIN_FILENO">STDIN_FILENO</a> ||</td></tr>
+<tr><th id="91">91</th><td>        <a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>[<var>1</var>] == <a class="macro" href="../../include/unistd.h.html#214" title="1" data-ref="_M/STDOUT_FILENO">STDOUT_FILENO</a> ||</td></tr>
+<tr><th id="92">92</th><td>        <a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>[<var>1</var>] == <a class="macro" href="../../include/unistd.h.html#215" title="2" data-ref="_M/STDERR_FILENO">STDERR_FILENO</a>)</td></tr>
+<tr><th id="93">93</th><td>    <b>if</b>(<a class="ref" href="../../include/unistd.h.html#pipe" title='pipe' data-ref="pipe">pipe</a>(<a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>) &lt; <var>0</var>)</td></tr>
+<tr><th id="94">94</th><td>      <b>return</b>;   <i>/* Out of handles. This isn't really a big problem now, but</i></td></tr>
+<tr><th id="95">95</th><td><i>                   will be when we try to create a socket later. */</i></td></tr>
+<tr><th id="96">96</th><td>  <a class="ref" href="../../include/unistd.h.html#close" title='close' data-ref="close">close</a>(<a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>[<var>0</var>]);</td></tr>
+<tr><th id="97">97</th><td>  <a class="ref" href="../../include/unistd.h.html#close" title='close' data-ref="close">close</a>(<a class="local col4 ref" href="#4fd" title='fd' data-ref="4fd">fd</a>[<var>1</var>]);</td></tr>
+<tr><th id="98">98</th><td><u>#<span data-ppcond="85">endif</span></u></td></tr>
+<tr><th id="99">99</th><td>}</td></tr>
+<tr><th id="100">100</th><td></td></tr>
+<tr><th id="101">101</th><td><u>#<span data-ppcond="101">ifdef</span> <span class="macro" data-ref="_M/CURLDEBUG">CURLDEBUG</span></u></td></tr>
+<tr><th id="102">102</th><td><em>static</em> <em>void</em> memory_tracking_init(<em>void</em>)</td></tr>
+<tr><th id="103">103</th><td>{</td></tr>
+<tr><th id="104">104</th><td>  <em>char</em> *env;</td></tr>
+<tr><th id="105">105</th><td>  <i>/* if CURL_MEMDEBUG is set, this starts memory tracking message logging */</i></td></tr>
+<tr><th id="106">106</th><td>  env = curlx_getenv(<q>"CURL_MEMDEBUG"</q>);</td></tr>
+<tr><th id="107">107</th><td>  <b>if</b>(env) {</td></tr>
+<tr><th id="108">108</th><td>    <i>/* use the value as file name */</i></td></tr>
+<tr><th id="109">109</th><td>    <em>char</em> fname[CURL_MT_LOGFNAME_BUFSIZE];</td></tr>
+<tr><th id="110">110</th><td>    <b>if</b>(strlen(env) &gt;= CURL_MT_LOGFNAME_BUFSIZE)</td></tr>
+<tr><th id="111">111</th><td>      env[CURL_MT_LOGFNAME_BUFSIZE-<var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="112">112</th><td>    strcpy(fname, env);</td></tr>
+<tr><th id="113">113</th><td>    curl_free(env);</td></tr>
+<tr><th id="114">114</th><td>    curl_memdebug(fname);</td></tr>
+<tr><th id="115">115</th><td>    <i>/* this weird stuff here is to make curl_free() get called</i></td></tr>
+<tr><th id="116">116</th><td><i>       before curl_memdebug() as otherwise memory tracking will</i></td></tr>
+<tr><th id="117">117</th><td><i>       log a free() without an alloc! */</i></td></tr>
+<tr><th id="118">118</th><td>  }</td></tr>
+<tr><th id="119">119</th><td>  <i>/* if CURL_MEMLIMIT is set, this enables fail-on-alloc-number-N feature */</i></td></tr>
+<tr><th id="120">120</th><td>  env = curlx_getenv(<q>"CURL_MEMLIMIT"</q>);</td></tr>
+<tr><th id="121">121</th><td>  <b>if</b>(env) {</td></tr>
+<tr><th id="122">122</th><td>    <em>char</em> *endptr;</td></tr>
+<tr><th id="123">123</th><td>    <em>long</em> num = strtol(env, &amp;endptr, <var>10</var>);</td></tr>
+<tr><th id="124">124</th><td>    <b>if</b>((endptr != env) &amp;&amp; (endptr == env + strlen(env)) &amp;&amp; (num &gt; <var>0</var>))</td></tr>
+<tr><th id="125">125</th><td>      curl_memlimit(num);</td></tr>
+<tr><th id="126">126</th><td>    curl_free(env);</td></tr>
+<tr><th id="127">127</th><td>  }</td></tr>
+<tr><th id="128">128</th><td>}</td></tr>
+<tr><th id="129">129</th><td><u>#<span data-ppcond="101">else</span></u></td></tr>
+<tr><th id="130">130</th><td><u>#  define <dfn class="macro" id="_M/memory_tracking_init" data-ref="_M/memory_tracking_init">memory_tracking_init</dfn>() Curl_nop_stmt</u></td></tr>
+<tr><th id="131">131</th><td><u>#<span data-ppcond="101">endif</span></u></td></tr>
+<tr><th id="132">132</th><td></td></tr>
+<tr><th id="133">133</th><td><i  data-doc="main_init">/*</i></td></tr>
+<tr><th id="134">134</th><td><i  data-doc="main_init"> * This is the main global constructor for the app. Call this before</i></td></tr>
+<tr><th id="135">135</th><td><i  data-doc="main_init"> * _any_ libcurl usage. If this fails, *NO* libcurl functions may be</i></td></tr>
+<tr><th id="136">136</th><td><i  data-doc="main_init"> * used, or havoc may be the result.</i></td></tr>
+<tr><th id="137">137</th><td><i  data-doc="main_init"> */</i></td></tr>
+<tr><th id="138">138</th><td><em>static</em> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="main_init" title='main_init' data-type='CURLcode main_init(struct GlobalConfig * config)' data-ref="main_init">main_init</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col5 decl" id="5config" title='config' data-type='struct GlobalConfig *' data-ref="5config">config</dfn>)</td></tr>
+<tr><th id="139">139</th><td>{</td></tr>
+<tr><th id="140">140</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col6 decl" id="6result" title='result' data-type='CURLcode' data-ref="6result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="141">141</th><td></td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="142">if</span> defined(<span class="macro" data-ref="_M/__DJGPP__">__DJGPP__</span>) || defined(<span class="macro" data-ref="_M/__GO32__">__GO32__</span>)</u></td></tr>
+<tr><th id="143">143</th><td>  <i>/* stop stat() wasting time */</i></td></tr>
+<tr><th id="144">144</th><td>  _djstat_flags |= _STAT_INODE | _STAT_EXEC_MAGIC | _STAT_DIRSIZE;</td></tr>
+<tr><th id="145">145</th><td><u>#<span data-ppcond="142">endif</span></u></td></tr>
+<tr><th id="146">146</th><td></td></tr>
+<tr><th id="147">147</th><td>  <i>/* Initialise the global config */</i></td></tr>
+<tr><th id="148">148</th><td>  <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::showerror" title='GlobalConfig::showerror' data-ref="GlobalConfig::showerror">showerror</a> = -<var>1</var>;             <i>/* Will show errors */</i></td></tr>
+<tr><th id="149">149</th><td>  <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::errors" title='GlobalConfig::errors' data-ref="GlobalConfig::errors">errors</a> = <a class="macro" href="../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>;            <i>/* Default errors to stderr */</i></td></tr>
+<tr><th id="150">150</th><td></td></tr>
+<tr><th id="151">151</th><td>  <i>/* Allocate the initial operate config */</i></td></tr>
+<tr><th id="152">152</th><td>  <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a> = <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::last" title='GlobalConfig::last' data-ref="GlobalConfig::last">last</a> = <a class="ref" href="../../include/stdlib.h.html#malloc" title='malloc' data-ref="malloc">malloc</a>(<b>sizeof</b>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a>));</td></tr>
+<tr><th id="153">153</th><td>  <b>if</b>(<a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a>) {</td></tr>
+<tr><th id="154">154</th><td>    <i>/* Perform the libcurl initialization */</i></td></tr>
+<tr><th id="155">155</th><td>    <a class="local col6 ref" href="#6result" title='result' data-ref="6result">result</a> = <a class="ref" href="../include/curl/curl.h.html#curl_global_init" title='curl_global_init' data-ref="curl_global_init">curl_global_init</a>(<a class="macro" href="../include/curl/curl.h.html#2521" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_DEFAULT">CURL_GLOBAL_DEFAULT</a>);</td></tr>
+<tr><th id="156">156</th><td>    <b>if</b>(!<a class="local col6 ref" href="#6result" title='result' data-ref="6result">result</a>) {</td></tr>
+<tr><th id="157">157</th><td>      <i>/* Get information about libcurl */</i></td></tr>
+<tr><th id="158">158</th><td>      <a class="local col6 ref" href="#6result" title='result' data-ref="6result">result</a> = <a class="ref" href="tool_libinfo.h.html#get_libcurl_info" title='get_libcurl_info' data-ref="get_libcurl_info">get_libcurl_info</a>();</td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td>      <b>if</b>(!<a class="local col6 ref" href="#6result" title='result' data-ref="6result">result</a>) {</td></tr>
+<tr><th id="161">161</th><td>        <i>/* Get a curl handle to use for all forthcoming curl transfers */</i></td></tr>
+<tr><th id="162">162</th><td>        <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::easy" title='GlobalConfig::easy' data-ref="GlobalConfig::easy">easy</a> = <a class="ref" href="../include/curl/easy.h.html#curl_easy_init" title='curl_easy_init' data-ref="curl_easy_init">curl_easy_init</a>();</td></tr>
+<tr><th id="163">163</th><td>        <b>if</b>(<a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::easy" title='GlobalConfig::easy' data-ref="GlobalConfig::easy">easy</a>) {</td></tr>
+<tr><th id="164">164</th><td>          <i>/* Initialise the config */</i></td></tr>
+<tr><th id="165">165</th><td>          <a class="ref" href="tool_cfgable.h.html#config_init" title='config_init' data-ref="config_init">config_init</a>(<a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a>);</td></tr>
+<tr><th id="166">166</th><td>          <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::easy" title='OperationConfig::easy' data-ref="OperationConfig::easy">easy</a> = <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::easy" title='GlobalConfig::easy' data-ref="GlobalConfig::easy">easy</a>;</td></tr>
+<tr><th id="167">167</th><td>          <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a>-&gt;<a class="ref" href="tool_cfgable.h.html#OperationConfig::global" title='OperationConfig::global' data-ref="OperationConfig::global">global</a> = <a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>;</td></tr>
+<tr><th id="168">168</th><td>        }</td></tr>
+<tr><th id="169">169</th><td>        <b>else</b> {</td></tr>
+<tr><th id="170">170</th><td>          <a class="ref" href="tool_msgs.h.html#helpf" title='helpf' data-ref="helpf">helpf</a>(<a class="macro" href="../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"error initializing curl easy handle\n"</q>);</td></tr>
+<tr><th id="171">171</th><td>          <a class="local col6 ref" href="#6result" title='result' data-ref="6result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_FAILED_INIT" title='CURLE_FAILED_INIT' data-ref="CURLE_FAILED_INIT">CURLE_FAILED_INIT</a>;</td></tr>
+<tr><th id="172">172</th><td>          <a class="ref" href="../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a>);</td></tr>
+<tr><th id="173">173</th><td>        }</td></tr>
+<tr><th id="174">174</th><td>      }</td></tr>
+<tr><th id="175">175</th><td>      <b>else</b> {</td></tr>
+<tr><th id="176">176</th><td>        <a class="ref" href="tool_msgs.h.html#helpf" title='helpf' data-ref="helpf">helpf</a>(<a class="macro" href="../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"error retrieving curl library information\n"</q>);</td></tr>
+<tr><th id="177">177</th><td>        <a class="ref" href="../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a>);</td></tr>
+<tr><th id="178">178</th><td>      }</td></tr>
+<tr><th id="179">179</th><td>    }</td></tr>
+<tr><th id="180">180</th><td>    <b>else</b> {</td></tr>
+<tr><th id="181">181</th><td>      <a class="ref" href="tool_msgs.h.html#helpf" title='helpf' data-ref="helpf">helpf</a>(<a class="macro" href="../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"error initializing curl library\n"</q>);</td></tr>
+<tr><th id="182">182</th><td>      <a class="ref" href="../../include/stdlib.h.html#free" title='free' data-ref="free">free</a>(<a class="local col5 ref" href="#5config" title='config' data-ref="5config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a>);</td></tr>
+<tr><th id="183">183</th><td>    }</td></tr>
+<tr><th id="184">184</th><td>  }</td></tr>
+<tr><th id="185">185</th><td>  <b>else</b> {</td></tr>
+<tr><th id="186">186</th><td>    <a class="ref" href="tool_msgs.h.html#helpf" title='helpf' data-ref="helpf">helpf</a>(<a class="macro" href="../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"error initializing curl\n"</q>);</td></tr>
+<tr><th id="187">187</th><td>    <a class="local col6 ref" href="#6result" title='result' data-ref="6result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_FAILED_INIT" title='CURLE_FAILED_INIT' data-ref="CURLE_FAILED_INIT">CURLE_FAILED_INIT</a>;</td></tr>
+<tr><th id="188">188</th><td>  }</td></tr>
+<tr><th id="189">189</th><td></td></tr>
+<tr><th id="190">190</th><td>  <b>return</b> <a class="local col6 ref" href="#6result" title='result' data-ref="6result">result</a>;</td></tr>
+<tr><th id="191">191</th><td>}</td></tr>
+<tr><th id="192">192</th><td></td></tr>
+<tr><th id="193">193</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="free_config_fields" title='free_config_fields' data-type='void free_config_fields(struct GlobalConfig * config)' data-ref="free_config_fields">free_config_fields</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col7 decl" id="7config" title='config' data-type='struct GlobalConfig *' data-ref="7config">config</dfn>)</td></tr>
+<tr><th id="194">194</th><td>{</td></tr>
+<tr><th id="195">195</th><td>  <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((config-&gt;trace_dump)); (config-&gt;trace_dump) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::trace_dump" title='GlobalConfig::trace_dump' data-ref="GlobalConfig::trace_dump">trace_dump</a>);</td></tr>
+<tr><th id="196">196</th><td></td></tr>
+<tr><th id="197">197</th><td>  <b>if</b>(<a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::errors_fopened" title='GlobalConfig::errors_fopened' data-ref="GlobalConfig::errors_fopened">errors_fopened</a> &amp;&amp; <a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::errors" title='GlobalConfig::errors' data-ref="GlobalConfig::errors">errors</a>)</td></tr>
+<tr><th id="198">198</th><td>    <a class="ref" href="../../include/stdio.h.html#fclose" title='fclose' data-ref="fclose">fclose</a>(<a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::errors" title='GlobalConfig::errors' data-ref="GlobalConfig::errors">errors</a>);</td></tr>
+<tr><th id="199">199</th><td>  <a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::errors" title='GlobalConfig::errors' data-ref="GlobalConfig::errors">errors</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="200">200</th><td></td></tr>
+<tr><th id="201">201</th><td>  <b>if</b>(<a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::trace_fopened" title='GlobalConfig::trace_fopened' data-ref="GlobalConfig::trace_fopened">trace_fopened</a> &amp;&amp; <a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::trace_stream" title='GlobalConfig::trace_stream' data-ref="GlobalConfig::trace_stream">trace_stream</a>)</td></tr>
+<tr><th id="202">202</th><td>    <a class="ref" href="../../include/stdio.h.html#fclose" title='fclose' data-ref="fclose">fclose</a>(<a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::trace_stream" title='GlobalConfig::trace_stream' data-ref="GlobalConfig::trace_stream">trace_stream</a>);</td></tr>
+<tr><th id="203">203</th><td>  <a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::trace_stream" title='GlobalConfig::trace_stream' data-ref="GlobalConfig::trace_stream">trace_stream</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="204">204</th><td></td></tr>
+<tr><th id="205">205</th><td>  <a class="macro" href="../lib/memdebug.h.html#170" title="do { free((config-&gt;libcurl)); (config-&gt;libcurl) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col7 ref" href="#7config" title='config' data-ref="7config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::libcurl" title='GlobalConfig::libcurl' data-ref="GlobalConfig::libcurl">libcurl</a>);</td></tr>
+<tr><th id="206">206</th><td>}</td></tr>
+<tr><th id="207">207</th><td></td></tr>
+<tr><th id="208">208</th><td><i  data-doc="main_free">/*</i></td></tr>
+<tr><th id="209">209</th><td><i  data-doc="main_free"> * This is the main global destructor for the app. Call this after</i></td></tr>
+<tr><th id="210">210</th><td><i  data-doc="main_free"> * _all_ libcurl usage is done.</i></td></tr>
+<tr><th id="211">211</th><td><i  data-doc="main_free"> */</i></td></tr>
+<tr><th id="212">212</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="main_free" title='main_free' data-type='void main_free(struct GlobalConfig * config)' data-ref="main_free">main_free</dfn>(<b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col8 decl" id="8config" title='config' data-type='struct GlobalConfig *' data-ref="8config">config</dfn>)</td></tr>
+<tr><th id="213">213</th><td>{</td></tr>
+<tr><th id="214">214</th><td>  <i>/* Cleanup the easy handle */</i></td></tr>
+<tr><th id="215">215</th><td>  <a class="ref" href="../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="local col8 ref" href="#8config" title='config' data-ref="8config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::easy" title='GlobalConfig::easy' data-ref="GlobalConfig::easy">easy</a>);</td></tr>
+<tr><th id="216">216</th><td>  <a class="local col8 ref" href="#8config" title='config' data-ref="8config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::easy" title='GlobalConfig::easy' data-ref="GlobalConfig::easy">easy</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="217">217</th><td></td></tr>
+<tr><th id="218">218</th><td>  <i>/* Main cleanup */</i></td></tr>
+<tr><th id="219">219</th><td>  <a class="ref" href="../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="220">220</th><td>  <a class="macro" href="tool_convert.h.html#41" title="do { } while(0)" data-ref="_M/convert_cleanup">convert_cleanup</a>();</td></tr>
+<tr><th id="221">221</th><td>  <a class="macro" href="tool_metalink.h.html#163" title="do { } while(0)" data-ref="_M/metalink_cleanup">metalink_cleanup</a>();</td></tr>
+<tr><th id="222">222</th><td><u>#<span data-ppcond="222">ifdef</span> <span class="macro" data-ref="_M/USE_NSS">USE_NSS</span></u></td></tr>
+<tr><th id="223">223</th><td>  <b>if</b>(PR_Initialized()) {</td></tr>
+<tr><th id="224">224</th><td>    <i>/* prevent valgrind from reporting still reachable mem from NSRP arenas */</i></td></tr>
+<tr><th id="225">225</th><td>    PL_ArenaFinish();</td></tr>
+<tr><th id="226">226</th><td>    <i>/* prevent valgrind from reporting possibly lost memory (fd cache, ...) */</i></td></tr>
+<tr><th id="227">227</th><td>    PR_Cleanup();</td></tr>
+<tr><th id="228">228</th><td>  }</td></tr>
+<tr><th id="229">229</th><td><u>#<span data-ppcond="222">endif</span></u></td></tr>
+<tr><th id="230">230</th><td>  <a class="tu ref" href="#free_config_fields" title='free_config_fields' data-use='c' data-ref="free_config_fields">free_config_fields</a>(<a class="local col8 ref" href="#8config" title='config' data-ref="8config">config</a>);</td></tr>
+<tr><th id="231">231</th><td></td></tr>
+<tr><th id="232">232</th><td>  <i>/* Free the config structures */</i></td></tr>
+<tr><th id="233">233</th><td>  <a class="ref" href="tool_cfgable.h.html#config_free" title='config_free' data-ref="config_free">config_free</a>(<a class="local col8 ref" href="#8config" title='config' data-ref="8config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::last" title='GlobalConfig::last' data-ref="GlobalConfig::last">last</a>);</td></tr>
+<tr><th id="234">234</th><td>  <a class="local col8 ref" href="#8config" title='config' data-ref="8config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::first" title='GlobalConfig::first' data-ref="GlobalConfig::first">first</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="235">235</th><td>  <a class="local col8 ref" href="#8config" title='config' data-ref="8config">config</a>-&gt;<a class="ref" href="tool_cfgable.h.html#GlobalConfig::last" title='GlobalConfig::last' data-ref="GlobalConfig::last">last</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="236">236</th><td>}</td></tr>
+<tr><th id="237">237</th><td></td></tr>
+<tr><th id="238">238</th><td><i>/*</i></td></tr>
+<tr><th id="239">239</th><td><i>** curl tool main function.</i></td></tr>
+<tr><th id="240">240</th><td><i>*/</i></td></tr>
+<tr><th id="241">241</th><td><em>int</em> <dfn class="decl def" id="main" title='main' data-ref="main">main</dfn>(<em>int</em> <dfn class="local col9 decl" id="9argc" title='argc' data-type='int' data-ref="9argc">argc</dfn>, <em>char</em> *<dfn class="local col0 decl" id="10argv" title='argv' data-type='char **' data-ref="10argv">argv</dfn>[])</td></tr>
+<tr><th id="242">242</th><td>{</td></tr>
+<tr><th id="243">243</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col1 decl" id="11result" title='result' data-type='CURLcode' data-ref="11result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="244">244</th><td>  <b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> <dfn class="local col2 decl" id="12global" title='global' data-type='struct GlobalConfig' data-ref="12global">global</dfn>;</td></tr>
+<tr><th id="245">245</th><td>  <a class="ref" href="../../include/string.h.html#memset" title='memset' data-ref="memset">memset</a>(&amp;<a class="local col2 ref" href="#12global" title='global' data-ref="12global">global</a>, <var>0</var>, <b>sizeof</b>(<a class="local col2 ref" href="#12global" title='global' data-ref="12global">global</a>));</td></tr>
+<tr><th id="246">246</th><td></td></tr>
+<tr><th id="247">247</th><td>  <a class="tu ref" href="#main_checkfds" title='main_checkfds' data-use='c' data-ref="main_checkfds">main_checkfds</a>();</td></tr>
+<tr><th id="248">248</th><td></td></tr>
+<tr><th id="249">249</th><td><u>#<span data-ppcond="249">if</span> defined(<a class="macro" href="../lib/curl_config.h.html#555" data-ref="_M/HAVE_SIGNAL">HAVE_SIGNAL</a>) &amp;&amp; defined(<a class="macro" href="../../include/x86_64-linux-gnu/bits/signum.h.html#45" data-ref="_M/SIGPIPE">SIGPIPE</a>)</u></td></tr>
+<tr><th id="250">250</th><td>  (<em>void</em>)<a class="ref" href="../../include/signal.h.html#signal" title='signal' data-ref="signal">signal</a>(<a class="macro" href="../../include/x86_64-linux-gnu/bits/signum.h.html#45" title="13" data-ref="_M/SIGPIPE">SIGPIPE</a>, <a class="macro" href="../../include/x86_64-linux-gnu/bits/signum.h.html#24" title="((__sighandler_t) 1)" data-ref="_M/SIG_IGN">SIG_IGN</a>);</td></tr>
+<tr><th id="251">251</th><td><u>#<span data-ppcond="249">endif</span></u></td></tr>
+<tr><th id="252">252</th><td></td></tr>
+<tr><th id="253">253</th><td>  <i>/* Initialize memory tracking */</i></td></tr>
+<tr><th id="254">254</th><td>  <a class="macro" href="#130" title="do { } while(0)" data-ref="_M/memory_tracking_init">memory_tracking_init</a>();</td></tr>
+<tr><th id="255">255</th><td></td></tr>
+<tr><th id="256">256</th><td>  <i>/* Initialize the curl library - do not call any libcurl functions before</i></td></tr>
+<tr><th id="257">257</th><td><i>     this point */</i></td></tr>
+<tr><th id="258">258</th><td>  <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a> = <a class="tu ref" href="#main_init" title='main_init' data-use='c' data-ref="main_init">main_init</a>(&amp;<a class="local col2 ref" href="#12global" title='global' data-ref="12global">global</a>);</td></tr>
+<tr><th id="259">259</th><td>  <b>if</b>(!<a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a>) {</td></tr>
+<tr><th id="260">260</th><td>    <i>/* Start our curl operation */</i></td></tr>
+<tr><th id="261">261</th><td>    <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a> = <a class="ref" href="tool_operate.h.html#operate" title='operate' data-ref="operate">operate</a>(&amp;<a class="local col2 ref" href="#12global" title='global' data-ref="12global">global</a>, <a class="local col9 ref" href="#9argc" title='argc' data-ref="9argc">argc</a>, <a class="local col0 ref" href="#10argv" title='argv' data-ref="10argv">argv</a>);</td></tr>
+<tr><th id="262">262</th><td></td></tr>
+<tr><th id="263">263</th><td><u>#<span data-ppcond="263">ifdef</span> <span class="macro" data-ref="_M/__SYMBIAN32__">__SYMBIAN32__</span></u></td></tr>
+<tr><th id="264">264</th><td>    <b>if</b>(global.showerror)</td></tr>
+<tr><th id="265">265</th><td>      tool_pressanykey();</td></tr>
+<tr><th id="266">266</th><td><u>#<span data-ppcond="263">endif</span></u></td></tr>
+<tr><th id="267">267</th><td></td></tr>
+<tr><th id="268">268</th><td>    <i>/* Perform the main cleanup */</i></td></tr>
+<tr><th id="269">269</th><td>    <a class="tu ref" href="#main_free" title='main_free' data-use='c' data-ref="main_free">main_free</a>(&amp;<a class="local col2 ref" href="#12global" title='global' data-ref="12global">global</a>);</td></tr>
+<tr><th id="270">270</th><td>  }</td></tr>
+<tr><th id="271">271</th><td></td></tr>
+<tr><th id="272">272</th><td><u>#<span data-ppcond="272">ifdef</span> <span class="macro" data-ref="_M/__NOVELL_LIBC__">__NOVELL_LIBC__</span></u></td></tr>
+<tr><th id="273">273</th><td>  <b>if</b>(getenv(<q>"_IN_NETWARE_BASH_"</q>) == NULL)</td></tr>
+<tr><th id="274">274</th><td>    tool_pressanykey();</td></tr>
+<tr><th id="275">275</th><td><u>#<span data-ppcond="272">endif</span></u></td></tr>
+<tr><th id="276">276</th><td></td></tr>
+<tr><th id="277">277</th><td><u>#<span data-ppcond="277">ifdef</span> <span class="macro" data-ref="_M/__VMS">__VMS</span></u></td></tr>
+<tr><th id="278">278</th><td>  vms_special_exit(result, vms_show);</td></tr>
+<tr><th id="279">279</th><td><u>#<span data-ppcond="277">else</span></u></td></tr>
+<tr><th id="280">280</th><td>  <b>return</b> (<em>int</em>)<a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a>;</td></tr>
+<tr><th id="281">281</th><td><u>#<span data-ppcond="277">endif</span></u></td></tr>
+<tr><th id="282">282</th><td>}</td></tr>
+<tr><th id="283">283</th><td></td></tr>
+<tr><th id="284">284</th><td><u>#<span data-ppcond="75">endif</span> /* ndef UNITTESTS */</u></td></tr>
+<tr><th id="285">285</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,9 @@
+<dec f='codebrowser/include/curl/mprintf.h' l='35' type='int curl_msprintf(char * buffer, const char * format)'/>
+<def f='codebrowser/lib/mprintf.c' l='1125' ll='1134' type='int curl_msprintf(char * buffer, const char * format)'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='210' u='c' c='test_unsigned_short_formatting'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='380' u='c' c='test_signed_short_formatting'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='530' u='c' c='test_unsigned_int_formatting'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='758' u='c' c='test_signed_int_formatting'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='907' u='c' c='test_unsigned_long_formatting'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='1135' u='c' c='test_signed_long_formatting'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='1363' u='c' c='test_curl_off_t_formatting'/>

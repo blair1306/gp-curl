@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='511' type='X509_EXTENSION * OCSP_ONEREQ_get_ext(OCSP_ONEREQ * x, int loc)'/>

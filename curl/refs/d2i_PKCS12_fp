@@ -1,0 +1,2 @@
+<dec f='include/openssl/pkcs12.h' l='272' type='PKCS12 * d2i_PKCS12_fp(FILE * fp, PKCS12 ** p12)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='667' u='c' c='cert_stuff'/>

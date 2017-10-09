@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1432' type='37'/>
+<doc f='codebrowser/lib/urldata.h' l='1432'>/* crl file to check certificate */</doc>
+<use f='codebrowser/lib/url.c' l='2315' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6701' u='r' c='create_conn'/>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/multihandle.h' l='64'/>
+<use f='codebrowser/lib/urldata.h' l='1750' u='c'/>
+<doc f='codebrowser/lib/multihandle.h' l='62'>/* we support N sockets per easy handle. Set the corresponding bit to what
+   action we should wait for */</doc>
+<use f='codebrowser/lib/multi.c' l='929' u='c'/>
+<use f='codebrowser/lib/multi.c' l='939' u='c'/>
+<use f='codebrowser/lib/multi.c' l='941' u='c'/>
+<use f='codebrowser/lib/multi.c' l='976' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1000' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1002' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1047' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1049' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2326' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2333' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2338' u='c'/>
+<use f='codebrowser/lib/multi.c' l='2345' u='c'/>

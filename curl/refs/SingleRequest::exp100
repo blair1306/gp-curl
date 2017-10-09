@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='560' type='enum expect100'/>
+<offset>1600</offset>
+<doc f='codebrowser/lib/urldata.h' l='560'>/* expect 100 continue state */</doc>
+<use f='codebrowser/lib/http.c' l='2765' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3062' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3063' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3197' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3198' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3208' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='491' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='921' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='926' u='w' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1163' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1180' u='w' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='2051' u='w' c='Curl_setup_transfer'/>
+<use f='codebrowser/lib/transfer.c' l='2062' u='w' c='Curl_setup_transfer'/>

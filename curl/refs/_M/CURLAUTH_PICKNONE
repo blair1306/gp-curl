@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/http.h' l='98'/>
+<doc f='codebrowser/lib/http.h' l='94'>/* If only the PICKNONE bit is set, there has been a round-trip and we
+   selected to use no auth at all. Ie, we actively select no auth, as opposed
+   to not having one selected. The other CURLAUTH_* defines are present in the
+   public curl/curl.h header. */</doc>
+<use f='codebrowser/lib/http.c' l='338' u='c'/>

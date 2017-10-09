@@ -1,0 +1,9 @@
+<def f='codebrowser/lib/arpa_telnet.h' l='43' ll='55' type='const char *const [40]'/>
+<use f='codebrowser/lib/telnet.c' l='329' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='727' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='733' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='754' macro='1' u='r'/>
+<use f='codebrowser/lib/telnet.c' l='757' macro='1' u='r'/>
+<doc f='codebrowser/lib/arpa_telnet.h' l='40'>/*
+ * The telnet options represented as strings
+ */</doc>

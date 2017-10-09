@@ -1,0 +1,2 @@
+<dec f='codebrowser/include/curl/curl.h' l='180'/>
+<doc f='codebrowser/include/curl/curl.h' l='179'>/* contents is only stored pointer do not free in formfree */</doc>

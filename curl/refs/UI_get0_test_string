@@ -1,0 +1,4 @@
+<dec f='include/openssl/ui.h' l='366' type='const char * UI_get0_test_string(UI_STRING * uis)'/>
+<doc f='include/openssl/ui.h' l='363'>/*
+ * Return the string to test the result against.  Only useful with verifies.
+ */</doc>

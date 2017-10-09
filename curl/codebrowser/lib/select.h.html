@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>select.h source code [codebrowser/lib/select.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/select.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='select.h.html'>select.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_SELECT_H">HEADER_CURL_SELECT_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_SELECT_H" data-ref="_M/HEADER_CURL_SELECT_H">HEADER_CURL_SELECT_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">ifdef</span> <a class="macro" href="curl_config.h.html#483" data-ref="_M/HAVE_POLL_H">HAVE_POLL_H</a></u></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="../../include/poll.h.html">&lt;poll.h&gt;</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="27">elif</span> defined(HAVE_SYS_POLL_H)</u></td></tr>
+<tr><th id="30">30</th><td><u>#include &lt;sys/poll.h&gt;</u></td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="27">endif</span></u></td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><i>/*</i></td></tr>
+<tr><th id="34">34</th><td><i> * Definition of pollfd struct and constants for platforms lacking them.</i></td></tr>
+<tr><th id="35">35</th><td><i> */</i></td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="37">if</span> !defined(<span class="macro" data-ref="_M/HAVE_STRUCT_POLLFD">HAVE_STRUCT_POLLFD</span>) &amp;&amp; \</u></td></tr>
+<tr><th id="38">38</th><td><u>    !defined(<a class="macro" href="curl_config.h.html#660" data-ref="_M/HAVE_SYS_POLL_H">HAVE_SYS_POLL_H</a>) &amp;&amp; \</u></td></tr>
+<tr><th id="39">39</th><td><u>    !defined(<a class="macro" href="curl_config.h.html#483" data-ref="_M/HAVE_POLL_H">HAVE_POLL_H</a>) &amp;&amp; \</u></td></tr>
+<tr><th id="40">40</th><td><u>    !defined(<a class="macro" href="../../include/x86_64-linux-gnu/bits/poll.h.html#25" data-ref="_M/POLLIN">POLLIN</a>)</u></td></tr>
+<tr><th id="41">41</th><td></td></tr>
+<tr><th id="42">42</th><td><u>#define POLLIN      0x01</u></td></tr>
+<tr><th id="43">43</th><td><u>#define POLLPRI     0x02</u></td></tr>
+<tr><th id="44">44</th><td><u>#define POLLOUT     0x04</u></td></tr>
+<tr><th id="45">45</th><td><u>#define POLLERR     0x08</u></td></tr>
+<tr><th id="46">46</th><td><u>#define POLLHUP     0x10</u></td></tr>
+<tr><th id="47">47</th><td><u>#define POLLNVAL    0x20</u></td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td><b>struct</b> pollfd</td></tr>
+<tr><th id="50">50</th><td>{</td></tr>
+<tr><th id="51">51</th><td>    curl_socket_t fd;</td></tr>
+<tr><th id="52">52</th><td>    <em>short</em>   events;</td></tr>
+<tr><th id="53">53</th><td>    <em>short</em>   revents;</td></tr>
+<tr><th id="54">54</th><td>};</td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="37">endif</span></u></td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td><u>#<span data-ppcond="58">ifndef</span> <a class="macro" href="../../include/x86_64-linux-gnu/bits/poll.h.html#31" data-ref="_M/POLLRDNORM">POLLRDNORM</a></u></td></tr>
+<tr><th id="59">59</th><td><u>#define POLLRDNORM POLLIN</u></td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="58">endif</span></u></td></tr>
+<tr><th id="61">61</th><td></td></tr>
+<tr><th id="62">62</th><td><u>#<span data-ppcond="62">ifndef</span> <a class="macro" href="../../include/x86_64-linux-gnu/bits/poll.h.html#33" data-ref="_M/POLLWRNORM">POLLWRNORM</a></u></td></tr>
+<tr><th id="63">63</th><td><u>#define POLLWRNORM POLLOUT</u></td></tr>
+<tr><th id="64">64</th><td><u>#<span data-ppcond="62">endif</span></u></td></tr>
+<tr><th id="65">65</th><td></td></tr>
+<tr><th id="66">66</th><td><u>#<span data-ppcond="66">ifndef</span> <a class="macro" href="../../include/x86_64-linux-gnu/bits/poll.h.html#32" data-ref="_M/POLLRDBAND">POLLRDBAND</a></u></td></tr>
+<tr><th id="67">67</th><td><u>#define POLLRDBAND POLLPRI</u></td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="66">endif</span></u></td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td><i>/* there are three CSELECT defines that are defined in the public header that</i></td></tr>
+<tr><th id="71">71</th><td><i>   are exposed to users, but this *IN2 bit is only ever used internally and</i></td></tr>
+<tr><th id="72">72</th><td><i>   therefore defined here */</i></td></tr>
+<tr><th id="73">73</th><td><u>#define <dfn class="macro" id="_M/CURL_CSELECT_IN2" data-ref="_M/CURL_CSELECT_IN2">CURL_CSELECT_IN2</dfn> (CURL_CSELECT_ERR &lt;&lt; 1)</u></td></tr>
+<tr><th id="74">74</th><td></td></tr>
+<tr><th id="75">75</th><td><em>int</em> <dfn class="decl" id="Curl_socket_check" title='Curl_socket_check' data-ref="Curl_socket_check">Curl_socket_check</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col0 decl" id="30readfd" title='readfd' data-type='curl_socket_t' data-ref="30readfd">readfd</dfn>, <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col1 decl" id="31readfd2" title='readfd2' data-type='curl_socket_t' data-ref="31readfd2">readfd2</dfn>,</td></tr>
+<tr><th id="76">76</th><td>                      <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col2 decl" id="32writefd" title='writefd' data-type='curl_socket_t' data-ref="32writefd">writefd</dfn>,</td></tr>
+<tr><th id="77">77</th><td>                      <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col3 decl" id="33timeout_ms" title='timeout_ms' data-type='time_t' data-ref="33timeout_ms">timeout_ms</dfn>);</td></tr>
+<tr><th id="78">78</th><td></td></tr>
+<tr><th id="79">79</th><td><u>#define <dfn class="macro" id="_M/SOCKET_READABLE" data-ref="_M/SOCKET_READABLE">SOCKET_READABLE</dfn>(x,z) \</u></td></tr>
+<tr><th id="80">80</th><td><u>  Curl_socket_check(x, CURL_SOCKET_BAD, CURL_SOCKET_BAD, z)</u></td></tr>
+<tr><th id="81">81</th><td><u>#define <dfn class="macro" id="_M/SOCKET_WRITABLE" data-ref="_M/SOCKET_WRITABLE">SOCKET_WRITABLE</dfn>(x,z) \</u></td></tr>
+<tr><th id="82">82</th><td><u>  Curl_socket_check(CURL_SOCKET_BAD, CURL_SOCKET_BAD, x, z)</u></td></tr>
+<tr><th id="83">83</th><td></td></tr>
+<tr><th id="84">84</th><td><em>int</em> <dfn class="decl" id="Curl_poll" title='Curl_poll' data-ref="Curl_poll">Curl_poll</dfn>(<b>struct</b> <a class="type" href="../../include/x86_64-linux-gnu/sys/poll.h.html#pollfd" title='pollfd' data-ref="pollfd">pollfd</a> <dfn class="local col4 decl" id="34ufds" title='ufds' data-type='struct pollfd *' data-ref="34ufds">ufds</dfn>[], <em>unsigned</em> <em>int</em> <dfn class="local col5 decl" id="35nfds" title='nfds' data-type='unsigned int' data-ref="35nfds">nfds</dfn>, <em>int</em> <dfn class="local col6 decl" id="36timeout_ms" title='timeout_ms' data-type='int' data-ref="36timeout_ms">timeout_ms</dfn>);</td></tr>
+<tr><th id="85">85</th><td></td></tr>
+<tr><th id="86">86</th><td><i>/* On non-DOS and non-Winsock platforms, when Curl_ack_eintr is set,</i></td></tr>
+<tr><th id="87">87</th><td><i> * EINTR condition is honored and function might exit early without</i></td></tr>
+<tr><th id="88">88</th><td><i> * awaiting full timeout.  Otherwise EINTR will be ignored and full</i></td></tr>
+<tr><th id="89">89</th><td><i> * timeout will elapse. */</i></td></tr>
+<tr><th id="90">90</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="Curl_ack_eintr" title='Curl_ack_eintr' data-ref="Curl_ack_eintr">Curl_ack_eintr</dfn>;</td></tr>
+<tr><th id="91">91</th><td></td></tr>
+<tr><th id="92">92</th><td><em>int</em> <dfn class="decl" id="Curl_wait_ms" title='Curl_wait_ms' data-ref="Curl_wait_ms">Curl_wait_ms</dfn>(<em>int</em> <dfn class="local col7 decl" id="37timeout_ms" title='timeout_ms' data-type='int' data-ref="37timeout_ms">timeout_ms</dfn>);</td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td><u>#<span data-ppcond="94">ifdef</span> <span class="macro" data-ref="_M/TPF">TPF</span></u></td></tr>
+<tr><th id="95">95</th><td><em>int</em> tpf_select_libcurl(<em>int</em> maxfds, fd_set* reads, fd_set* writes,</td></tr>
+<tr><th id="96">96</th><td>                       fd_set* excepts, <b>struct</b> timeval* tv);</td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="94">endif</span></u></td></tr>
+<tr><th id="98">98</th><td></td></tr>
+<tr><th id="99">99</th><td><i>/* Winsock and TPF sockets are not in range [0..FD_SETSIZE-1], which</i></td></tr>
+<tr><th id="100">100</th><td><i>   unfortunately makes it impossible for us to easily check if they're valid</i></td></tr>
+<tr><th id="101">101</th><td><i>*/</i></td></tr>
+<tr><th id="102">102</th><td><u>#<span data-ppcond="102">if</span> defined(<span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span>) || defined(<span class="macro" data-ref="_M/TPF">TPF</span>)</u></td></tr>
+<tr><th id="103">103</th><td><u>#define VALID_SOCK(x) 1</u></td></tr>
+<tr><th id="104">104</th><td><u>#define VERIFY_SOCK(x) Curl_nop_stmt</u></td></tr>
+<tr><th id="105">105</th><td><u>#<span data-ppcond="102">else</span></u></td></tr>
+<tr><th id="106">106</th><td><u>#define <dfn class="macro" id="_M/VALID_SOCK" data-ref="_M/VALID_SOCK">VALID_SOCK</dfn>(s) (((s) &gt;= 0) &amp;&amp; ((s) &lt; FD_SETSIZE))</u></td></tr>
+<tr><th id="107">107</th><td><u>#define <dfn class="macro" id="_M/VERIFY_SOCK" data-ref="_M/VERIFY_SOCK">VERIFY_SOCK</dfn>(x) do { \</u></td></tr>
+<tr><th id="108">108</th><td><u>  if(!VALID_SOCK(x)) { \</u></td></tr>
+<tr><th id="109">109</th><td><u>    SET_SOCKERRNO(EINVAL); \</u></td></tr>
+<tr><th id="110">110</th><td><u>    return -1; \</u></td></tr>
+<tr><th id="111">111</th><td><u>  } \</u></td></tr>
+<tr><th id="112">112</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="113">113</th><td><u>#<span data-ppcond="102">endif</span></u></td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_SELECT_H */</u></td></tr>
+<tr><th id="116">116</th><td></td></tr>
+<tr><th id="117">117</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='connect.c.html'>codebrowser/lib/connect.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

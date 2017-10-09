@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/hash.h' l='55' type='int'/>
+<offset>256</offset>
+<use f='codebrowser/lib/hash.c' l='73' u='w' c='Curl_hash_init'/>
+<use f='codebrowser/lib/hash.c' l='81' u='w' c='Curl_hash_init'/>
+<use f='codebrowser/lib/hash.c' l='100' u='r' c='Curl_hash_add'/>
+<use f='codebrowser/lib/hash.c' l='100' u='r' c='Curl_hash_delete'/>
+<use f='codebrowser/lib/hash.c' l='100' u='r' c='Curl_hash_pick'/>
+<use f='codebrowser/lib/hash.c' l='212' u='r' c='Curl_hash_destroy'/>
+<use f='codebrowser/lib/hash.c' l='218' u='w' c='Curl_hash_destroy'/>
+<use f='codebrowser/lib/hash.c' l='244' u='r' c='Curl_hash_clean_with_criterium'/>
+<use f='codebrowser/lib/hash.c' l='303' u='r' c='Curl_hash_next_element'/>

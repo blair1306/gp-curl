@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='258' type='size_t'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/urldata.h' l='258'>/* if known, otherwise 0 */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='353' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='473' u='w' c='Curl_ssl_addsessionid'/>

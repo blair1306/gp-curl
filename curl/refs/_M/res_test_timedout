@@ -1,0 +1,5 @@
+<dec f='codebrowser/tests/libtest/test.h' l='395'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='49' u='c'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='70' u='c'/>
+<use f='codebrowser/tests/libtest/lib540.c' l='124' u='c'/>
+<use f='codebrowser/tests/libtest/lib540.c' l='179' u='c'/>

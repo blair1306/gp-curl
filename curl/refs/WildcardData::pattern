@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/wildcard.h' l='49' type='char *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/wildcard.h' l='49'>/* wildcard pattern */</doc>
+<use f='codebrowser/lib/ftp.c' l='3756' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3757' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3763' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3764' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3781' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3781' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3788' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3788' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3803' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3803' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3812' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3812' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftplistparser.c' l='307' u='r' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/wildcard.c' l='58' u='r' c='Curl_wildcard_dtor'/>
+<use f='codebrowser/lib/wildcard.c' l='59' u='w' c='Curl_wildcard_dtor'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='2441' type='1048577'/>
+<use f='codebrowser/lib/getinfo.c' l='96' c='getinfo_char'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='93' u='r' c='tool_header_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='1615' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1725' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_writeout.c' l='143' u='r' c='ourWriteOut'/>
+<use f='codebrowser/src/tool_xattr.c' l='47' u='r'/>
+<use f='codebrowser/src/tool_xattr.c' l='47' u='r'/>
+<use f='codebrowser/src/tool_xattr.c' l='47' u='r'/>
+<use f='codebrowser/src/tool_xattr.c' l='47' u='r'/>

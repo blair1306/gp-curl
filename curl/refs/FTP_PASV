@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='74' type='30'/>
+<doc f='codebrowser/lib/ftp.h' l='74'>/* generic state for PASV and EPSV, check count1 */</doc>
+<use f='codebrowser/lib/ftp.c' l='1343' u='r' c='ftp_state_use_pasv'/>
+<use f='codebrowser/lib/ftp.c' l='1802' u='r' c='ftp_epsv_disable'/>
+<use f='codebrowser/lib/ftp.c' l='3018' c='ftp_statemach_act'/>

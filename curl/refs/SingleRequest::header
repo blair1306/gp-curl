@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/urldata.h' l='538' type='_Bool'/>
+<offset>768</offset>
+<use f='codebrowser/lib/http.c' l='2979' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3012' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3058' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3076' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3088' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3094' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3100' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3226' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3495' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='462' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='527' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='572' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='2026' u='w' c='Curl_setup_transfer'/>
+<use f='codebrowser/lib/url.c' l='7084' u='w' c='Curl_init_do'/>

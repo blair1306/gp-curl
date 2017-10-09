@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/progress.h' l='71'/>
+<use f='codebrowser/lib/getinfo.c' l='269' u='c'/>
+<use f='codebrowser/lib/getinfo.c' l='318' u='c'/>
+<use f='codebrowser/lib/progress.c' l='326' u='c'/>
+<use f='codebrowser/lib/progress.c' l='330' u='c'/>
+<use f='codebrowser/lib/progress.c' l='514' u='c'/>
+<use f='codebrowser/lib/progress.c' l='539' u='c'/>

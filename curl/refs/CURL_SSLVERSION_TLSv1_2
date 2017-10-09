@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='1919' type='6'/>
+<use f='codebrowser/include/curl/curl.h' l='1930' u='r'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1977' c='set_ssl_version_min_max'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2077' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2225' c='ossl_connect_step1'/>
+<use f='codebrowser/src/tool_getparam.c' l='1129' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_setopt.c' l='96'/>
+<use f='codebrowser/src/tool_setopt.c' l='96'/>
+<use f='codebrowser/src/tool_setopt.c' l='96'/>
+<use f='codebrowser/src/tool_setopt.c' l='96'/>

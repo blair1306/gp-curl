@@ -1,0 +1,5 @@
+<dec f='include/openssl/ui_compat.h' l='75'/>
+<doc f='include/openssl/ui_compat.h' l='70'>/*
+ * The following functions were previously part of the DES section, and are
+ * provided here for backward compatibility reasons.
+ */</doc>

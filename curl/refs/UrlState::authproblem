@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='1292' type='_Bool'/>
+<offset>134464</offset>
+<use f='codebrowser/lib/http.c' l='487' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='495' u='w' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='502' u='w' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='817' u='w' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='844' u='w' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='868' u='w' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='883' u='w' c='Curl_http_input_auth'/>
+<use f='codebrowser/lib/http.c' l='968' u='r' c='http_should_fail'/>
+<use f='codebrowser/lib/http.c' l='3126' u='w' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_proxy.c' l='447' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/transfer.c' l='1351' u='w' c='Curl_pretransfer'/>

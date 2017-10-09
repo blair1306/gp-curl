@@ -1,0 +1,538 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>pingpong.c source code [codebrowser/lib/pingpong.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/pingpong.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='pingpong.c.html'>pingpong.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> *   'pingpong' is for generic back-and-forth support functions used by FTP,</i></td></tr>
+<tr><th id="22">22</th><td><i> *   IMAP, POP3, SMTP and whatever more that likes them.</i></td></tr>
+<tr><th id="23">23</th><td><i> *</i></td></tr>
+<tr><th id="24">24</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="select.h.html">"select.h"</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="progress.h.html">"progress.h"</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="speedcheck.h.html">"speedcheck.h"</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#include <a href="pingpong.h.html">"pingpong.h"</a></u></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="multiif.h.html">"multiif.h"</a></u></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="non-ascii.h.html">"non-ascii.h"</a></u></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="vtls/vtls.h.html">"vtls/vtls.h"</a></u></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="39">39</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="40">40</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="41">41</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="43">ifdef</span> <a class="macro" href="pingpong.h.html#29" data-ref="_M/USE_PINGPONG">USE_PINGPONG</a></u></td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><i>/* Returns timeout in ms. 0 or negative number means the timeout has already</i></td></tr>
+<tr><th id="46">46</th><td><i>   triggered */</i></td></tr>
+<tr><th id="47">47</th><td><a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="decl def" id="Curl_pp_state_timeout" title='Curl_pp_state_timeout' data-ref="Curl_pp_state_timeout">Curl_pp_state_timeout</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col1 decl" id="1pp" title='pp' data-type='struct pingpong *' data-ref="1pp">pp</dfn>)</td></tr>
+<tr><th id="48">48</th><td>{</td></tr>
+<tr><th id="49">49</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="2conn" title='conn' data-type='struct connectdata *' data-ref="2conn">conn</dfn> = <a class="local col1 ref" href="#1pp" title='pp' data-ref="1pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::conn" title='pingpong::conn' data-ref="pingpong::conn">conn</a>;</td></tr>
+<tr><th id="50">50</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="3data" title='data' data-type='struct Curl_easy *' data-ref="3data">data</dfn> = <a class="local col2 ref" href="#2conn" title='conn' data-ref="2conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="51">51</th><td>  <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col4 decl" id="4timeout_ms" title='timeout_ms' data-type='time_t' data-ref="4timeout_ms">timeout_ms</dfn>; <i>/* in milliseconds */</i></td></tr>
+<tr><th id="52">52</th><td>  <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col5 decl" id="5timeout2_ms" title='timeout2_ms' data-type='time_t' data-ref="5timeout2_ms">timeout2_ms</dfn>; <i>/* in milliseconds */</i></td></tr>
+<tr><th id="53">53</th><td>  <em>long</em> <dfn class="local col6 decl" id="6response_time" title='response_time' data-type='long' data-ref="6response_time">response_time</dfn> = (<a class="local col3 ref" href="#3data" title='data' data-ref="3data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::server_response_timeout" title='UserDefined::server_response_timeout' data-ref="UserDefined::server_response_timeout">server_response_timeout</a>)?</td></tr>
+<tr><th id="54">54</th><td>    <a class="local col3 ref" href="#3data" title='data' data-ref="3data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::server_response_timeout" title='UserDefined::server_response_timeout' data-ref="UserDefined::server_response_timeout">server_response_timeout</a>: <a class="local col1 ref" href="#1pp" title='pp' data-ref="1pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::response_time" title='pingpong::response_time' data-ref="pingpong::response_time">response_time</a>;</td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td>  <i>/* if CURLOPT_SERVER_RESPONSE_TIMEOUT is set, use that to determine</i></td></tr>
+<tr><th id="57">57</th><td><i>     remaining time, or use pp-&gt;response because SERVER_RESPONSE_TIMEOUT is</i></td></tr>
+<tr><th id="58">58</th><td><i>     supposed to govern the response for any given server response, not for</i></td></tr>
+<tr><th id="59">59</th><td><i>     the time from connect to the given server response. */</i></td></tr>
+<tr><th id="60">60</th><td></td></tr>
+<tr><th id="61">61</th><td>  <i>/* Without a requested timeout, we only wait 'response_time' seconds for the</i></td></tr>
+<tr><th id="62">62</th><td><i>     full response to arrive before we bail out */</i></td></tr>
+<tr><th id="63">63</th><td>  <a class="local col4 ref" href="#4timeout_ms" title='timeout_ms' data-ref="4timeout_ms">timeout_ms</a> = <a class="local col6 ref" href="#6response_time" title='response_time' data-ref="6response_time">response_time</a> -</td></tr>
+<tr><th id="64">64</th><td>    <a class="macro" href="timeval.h.html#58" title="curlx_tvdiff(curlx_tvnow(),pp-&gt;response)" data-ref="_M/Curl_tvdiff">Curl_tvdiff</a>(<a class="macro" href="timeval.h.html#57" title="curlx_tvnow()" data-ref="_M/Curl_tvnow">Curl_tvnow</a>(), <a class="local col1 ref" href="#1pp" title='pp' data-ref="1pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::response" title='pingpong::response' data-ref="pingpong::response">response</a>); <i>/* spent time */</i></td></tr>
+<tr><th id="65">65</th><td></td></tr>
+<tr><th id="66">66</th><td>  <b>if</b>(<a class="local col3 ref" href="#3data" title='data' data-ref="3data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::timeout" title='UserDefined::timeout' data-ref="UserDefined::timeout">timeout</a>) {</td></tr>
+<tr><th id="67">67</th><td>    <i>/* if timeout is requested, find out how much remaining time we have */</i></td></tr>
+<tr><th id="68">68</th><td>    <a class="local col5 ref" href="#5timeout2_ms" title='timeout2_ms' data-ref="5timeout2_ms">timeout2_ms</a> = <a class="local col3 ref" href="#3data" title='data' data-ref="3data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::timeout" title='UserDefined::timeout' data-ref="UserDefined::timeout">timeout</a> - <i>/* timeout time */</i></td></tr>
+<tr><th id="69">69</th><td>      <a class="macro" href="timeval.h.html#58" title="curlx_tvdiff(curlx_tvnow(),conn-&gt;now)" data-ref="_M/Curl_tvdiff">Curl_tvdiff</a>(<a class="macro" href="timeval.h.html#57" title="curlx_tvnow()" data-ref="_M/Curl_tvnow">Curl_tvnow</a>(), <a class="local col2 ref" href="#2conn" title='conn' data-ref="2conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::now" title='connectdata::now' data-ref="connectdata::now">now</a>); <i>/* spent time */</i></td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td>    <i>/* pick the lowest number */</i></td></tr>
+<tr><th id="72">72</th><td>    <a class="local col4 ref" href="#4timeout_ms" title='timeout_ms' data-ref="4timeout_ms">timeout_ms</a> = <a class="macro" href="urldata.h.html#153" title="((timeout_ms)&lt;(timeout2_ms)?(timeout_ms):(timeout2_ms))" data-ref="_M/CURLMIN">CURLMIN</a>(<a class="local col4 ref" href="#4timeout_ms" title='timeout_ms' data-ref="4timeout_ms">timeout_ms</a>, <a class="local col5 ref" href="#5timeout2_ms" title='timeout2_ms' data-ref="5timeout2_ms">timeout2_ms</a>);</td></tr>
+<tr><th id="73">73</th><td>  }</td></tr>
+<tr><th id="74">74</th><td></td></tr>
+<tr><th id="75">75</th><td>  <b>return</b> <a class="local col4 ref" href="#4timeout_ms" title='timeout_ms' data-ref="4timeout_ms">timeout_ms</a>;</td></tr>
+<tr><th id="76">76</th><td>}</td></tr>
+<tr><th id="77">77</th><td></td></tr>
+<tr><th id="78">78</th><td><i>/*</i></td></tr>
+<tr><th id="79">79</th><td><i> * Curl_pp_statemach()</i></td></tr>
+<tr><th id="80">80</th><td><i> */</i></td></tr>
+<tr><th id="81">81</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_pp_statemach" title='Curl_pp_statemach' data-ref="Curl_pp_statemach">Curl_pp_statemach</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col7 decl" id="7pp" title='pp' data-type='struct pingpong *' data-ref="7pp">pp</dfn>, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col8 decl" id="8block" title='block' data-type='_Bool' data-ref="8block">block</dfn>)</td></tr>
+<tr><th id="82">82</th><td>{</td></tr>
+<tr><th id="83">83</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col9 decl" id="9conn" title='conn' data-type='struct connectdata *' data-ref="9conn">conn</dfn> = <a class="local col7 ref" href="#7pp" title='pp' data-ref="7pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::conn" title='pingpong::conn' data-ref="pingpong::conn">conn</a>;</td></tr>
+<tr><th id="84">84</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col0 decl" id="10sock" title='sock' data-type='curl_socket_t' data-ref="10sock">sock</dfn> = <a class="local col9 ref" href="#9conn" title='conn' data-ref="9conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="macro" href="urldata.h.html#487" title="0" data-ref="_M/FIRSTSOCKET">FIRSTSOCKET</a>];</td></tr>
+<tr><th id="85">85</th><td>  <em>int</em> <dfn class="local col1 decl" id="11rc" title='rc' data-type='int' data-ref="11rc">rc</dfn>;</td></tr>
+<tr><th id="86">86</th><td>  <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col2 decl" id="12interval_ms" title='interval_ms' data-type='time_t' data-ref="12interval_ms">interval_ms</dfn>;</td></tr>
+<tr><th id="87">87</th><td>  <a class="typedef" href="../../include/time.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col3 decl" id="13timeout_ms" title='timeout_ms' data-type='time_t' data-ref="13timeout_ms">timeout_ms</dfn> = <a class="ref" href="#Curl_pp_state_timeout" title='Curl_pp_state_timeout' data-ref="Curl_pp_state_timeout">Curl_pp_state_timeout</a>(<a class="local col7 ref" href="#7pp" title='pp' data-ref="7pp">pp</a>);</td></tr>
+<tr><th id="88">88</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col4 decl" id="14data" title='data' data-type='struct Curl_easy *' data-ref="14data">data</dfn> = <a class="local col9 ref" href="#9conn" title='conn' data-ref="9conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="89">89</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col5 decl" id="15result" title='result' data-type='CURLcode' data-ref="15result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="90">90</th><td></td></tr>
+<tr><th id="91">91</th><td>  <b>if</b>(<a class="local col3 ref" href="#13timeout_ms" title='timeout_ms' data-ref="13timeout_ms">timeout_ms</a> &lt;= <var>0</var>) {</td></tr>
+<tr><th id="92">92</th><td>    <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col4 ref" href="#14data" title='data' data-ref="14data">data</a>, <q>"server response timeout"</q>);</td></tr>
+<tr><th id="93">93</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OPERATION_TIMEDOUT" title='CURLE_OPERATION_TIMEDOUT' data-ref="CURLE_OPERATION_TIMEDOUT">CURLE_OPERATION_TIMEDOUT</a>; <i>/* already too little time */</i></td></tr>
+<tr><th id="94">94</th><td>  }</td></tr>
+<tr><th id="95">95</th><td></td></tr>
+<tr><th id="96">96</th><td>  <b>if</b>(<a class="local col8 ref" href="#8block" title='block' data-ref="8block">block</a>) {</td></tr>
+<tr><th id="97">97</th><td>    <a class="local col2 ref" href="#12interval_ms" title='interval_ms' data-ref="12interval_ms">interval_ms</a> = <var>1000</var>;  <i>/* use 1 second timeout intervals */</i></td></tr>
+<tr><th id="98">98</th><td>    <b>if</b>(<a class="local col3 ref" href="#13timeout_ms" title='timeout_ms' data-ref="13timeout_ms">timeout_ms</a> &lt; <a class="local col2 ref" href="#12interval_ms" title='interval_ms' data-ref="12interval_ms">interval_ms</a>)</td></tr>
+<tr><th id="99">99</th><td>      <a class="local col2 ref" href="#12interval_ms" title='interval_ms' data-ref="12interval_ms">interval_ms</a> = <a class="local col3 ref" href="#13timeout_ms" title='timeout_ms' data-ref="13timeout_ms">timeout_ms</a>;</td></tr>
+<tr><th id="100">100</th><td>  }</td></tr>
+<tr><th id="101">101</th><td>  <b>else</b></td></tr>
+<tr><th id="102">102</th><td>    <a class="local col2 ref" href="#12interval_ms" title='interval_ms' data-ref="12interval_ms">interval_ms</a> = <var>0</var>; <i>/* immediate */</i></td></tr>
+<tr><th id="103">103</th><td></td></tr>
+<tr><th id="104">104</th><td>  <b>if</b>(<a class="ref" href="vtls/vtls.h.html#Curl_ssl_data_pending" title='Curl_ssl_data_pending' data-ref="Curl_ssl_data_pending">Curl_ssl_data_pending</a>(<a class="local col9 ref" href="#9conn" title='conn' data-ref="9conn">conn</a>, <a class="macro" href="urldata.h.html#487" title="0" data-ref="_M/FIRSTSOCKET">FIRSTSOCKET</a>))</td></tr>
+<tr><th id="105">105</th><td>    <a class="local col1 ref" href="#11rc" title='rc' data-ref="11rc">rc</a> = <var>1</var>;</td></tr>
+<tr><th id="106">106</th><td>  <b>else</b> <b>if</b>(<a class="ref" href="#Curl_pp_moredata" title='Curl_pp_moredata' data-ref="Curl_pp_moredata">Curl_pp_moredata</a>(<a class="local col7 ref" href="#7pp" title='pp' data-ref="7pp">pp</a>))</td></tr>
+<tr><th id="107">107</th><td>    <i>/* We are receiving and there is data in the cache so just read it */</i></td></tr>
+<tr><th id="108">108</th><td>    <a class="local col1 ref" href="#11rc" title='rc' data-ref="11rc">rc</a> = <var>1</var>;</td></tr>
+<tr><th id="109">109</th><td>  <b>else</b> <b>if</b>(!<a class="local col7 ref" href="#7pp" title='pp' data-ref="7pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a> &amp;&amp; <a class="ref" href="vtls/vtls.h.html#Curl_ssl_data_pending" title='Curl_ssl_data_pending' data-ref="Curl_ssl_data_pending">Curl_ssl_data_pending</a>(<a class="local col9 ref" href="#9conn" title='conn' data-ref="9conn">conn</a>, <a class="macro" href="urldata.h.html#487" title="0" data-ref="_M/FIRSTSOCKET">FIRSTSOCKET</a>))</td></tr>
+<tr><th id="110">110</th><td>    <i>/* We are receiving and there is data ready in the SSL library */</i></td></tr>
+<tr><th id="111">111</th><td>    <a class="local col1 ref" href="#11rc" title='rc' data-ref="11rc">rc</a> = <var>1</var>;</td></tr>
+<tr><th id="112">112</th><td>  <b>else</b></td></tr>
+<tr><th id="113">113</th><td>    <a class="local col1 ref" href="#11rc" title='rc' data-ref="11rc">rc</a> = <a class="ref" href="select.h.html#Curl_socket_check" title='Curl_socket_check' data-ref="Curl_socket_check">Curl_socket_check</a>(<a class="local col7 ref" href="#7pp" title='pp' data-ref="7pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a>?<a class="macro" href="../include/curl/curl.h.html#131" title="-1" data-ref="_M/CURL_SOCKET_BAD">CURL_SOCKET_BAD</a>:<a class="local col0 ref" href="#10sock" title='sock' data-ref="10sock">sock</a>, <i>/* reading */</i></td></tr>
+<tr><th id="114">114</th><td>                           <a class="macro" href="../include/curl/curl.h.html#131" title="-1" data-ref="_M/CURL_SOCKET_BAD">CURL_SOCKET_BAD</a>,</td></tr>
+<tr><th id="115">115</th><td>                           <a class="local col7 ref" href="#7pp" title='pp' data-ref="7pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a>?<a class="local col0 ref" href="#10sock" title='sock' data-ref="10sock">sock</a>:<a class="macro" href="../include/curl/curl.h.html#131" title="-1" data-ref="_M/CURL_SOCKET_BAD">CURL_SOCKET_BAD</a>, <i>/* writing */</i></td></tr>
+<tr><th id="116">116</th><td>                           <a class="local col2 ref" href="#12interval_ms" title='interval_ms' data-ref="12interval_ms">interval_ms</a>);</td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td>  <b>if</b>(<a class="local col8 ref" href="#8block" title='block' data-ref="8block">block</a>) {</td></tr>
+<tr><th id="119">119</th><td>    <i>/* if we didn't wait, we don't have to spend time on this now */</i></td></tr>
+<tr><th id="120">120</th><td>    <b>if</b>(<a class="ref" href="progress.h.html#Curl_pgrsUpdate" title='Curl_pgrsUpdate' data-ref="Curl_pgrsUpdate">Curl_pgrsUpdate</a>(<a class="local col9 ref" href="#9conn" title='conn' data-ref="9conn">conn</a>))</td></tr>
+<tr><th id="121">121</th><td>      <a class="local col5 ref" href="#15result" title='result' data-ref="15result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_ABORTED_BY_CALLBACK" title='CURLE_ABORTED_BY_CALLBACK' data-ref="CURLE_ABORTED_BY_CALLBACK">CURLE_ABORTED_BY_CALLBACK</a>;</td></tr>
+<tr><th id="122">122</th><td>    <b>else</b></td></tr>
+<tr><th id="123">123</th><td>      <a class="local col5 ref" href="#15result" title='result' data-ref="15result">result</a> = <a class="ref" href="speedcheck.h.html#Curl_speedcheck" title='Curl_speedcheck' data-ref="Curl_speedcheck">Curl_speedcheck</a>(<a class="local col4 ref" href="#14data" title='data' data-ref="14data">data</a>, <a class="macro" href="timeval.h.html#57" title="curlx_tvnow()" data-ref="_M/Curl_tvnow">Curl_tvnow</a>());</td></tr>
+<tr><th id="124">124</th><td></td></tr>
+<tr><th id="125">125</th><td>    <b>if</b>(<a class="local col5 ref" href="#15result" title='result' data-ref="15result">result</a>)</td></tr>
+<tr><th id="126">126</th><td>      <b>return</b> <a class="local col5 ref" href="#15result" title='result' data-ref="15result">result</a>;</td></tr>
+<tr><th id="127">127</th><td>  }</td></tr>
+<tr><th id="128">128</th><td></td></tr>
+<tr><th id="129">129</th><td>  <b>if</b>(<a class="local col1 ref" href="#11rc" title='rc' data-ref="11rc">rc</a> == -<var>1</var>) {</td></tr>
+<tr><th id="130">130</th><td>    <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col4 ref" href="#14data" title='data' data-ref="14data">data</a>, <q>"select/poll error"</q>);</td></tr>
+<tr><th id="131">131</th><td>    <a class="local col5 ref" href="#15result" title='result' data-ref="15result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="132">132</th><td>  }</td></tr>
+<tr><th id="133">133</th><td>  <b>else</b> <b>if</b>(<a class="local col1 ref" href="#11rc" title='rc' data-ref="11rc">rc</a>)</td></tr>
+<tr><th id="134">134</th><td>    <a class="local col5 ref" href="#15result" title='result' data-ref="15result">result</a> = <a class="local col7 ref" href="#7pp" title='pp' data-ref="7pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::statemach_act" title='pingpong::statemach_act' data-ref="pingpong::statemach_act">statemach_act</a>(<a class="local col9 ref" href="#9conn" title='conn' data-ref="9conn">conn</a>);</td></tr>
+<tr><th id="135">135</th><td></td></tr>
+<tr><th id="136">136</th><td>  <b>return</b> <a class="local col5 ref" href="#15result" title='result' data-ref="15result">result</a>;</td></tr>
+<tr><th id="137">137</th><td>}</td></tr>
+<tr><th id="138">138</th><td></td></tr>
+<tr><th id="139">139</th><td><i>/* initialize stuff to prepare for reading a fresh new response */</i></td></tr>
+<tr><th id="140">140</th><td><em>void</em> <dfn class="decl def" id="Curl_pp_init" title='Curl_pp_init' data-ref="Curl_pp_init">Curl_pp_init</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col6 decl" id="16pp" title='pp' data-type='struct pingpong *' data-ref="16pp">pp</dfn>)</td></tr>
+<tr><th id="141">141</th><td>{</td></tr>
+<tr><th id="142">142</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="17conn" title='conn' data-type='struct connectdata *' data-ref="17conn">conn</dfn> = <a class="local col6 ref" href="#16pp" title='pp' data-ref="16pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::conn" title='pingpong::conn' data-ref="pingpong::conn">conn</a>;</td></tr>
+<tr><th id="143">143</th><td>  <a class="local col6 ref" href="#16pp" title='pp' data-ref="16pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a> = <var>0</var>;</td></tr>
+<tr><th id="144">144</th><td>  <a class="local col6 ref" href="#16pp" title='pp' data-ref="16pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a> = <a class="local col7 ref" href="#17conn" title='conn' data-ref="17conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::buffer" title='UrlState::buffer' data-ref="UrlState::buffer">buffer</a>;</td></tr>
+<tr><th id="145">145</th><td>  <a class="local col6 ref" href="#16pp" title='pp' data-ref="16pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::pending_resp" title='pingpong::pending_resp' data-ref="pingpong::pending_resp">pending_resp</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="146">146</th><td>  <a class="local col6 ref" href="#16pp" title='pp' data-ref="16pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::response" title='pingpong::response' data-ref="pingpong::response">response</a> = <a class="macro" href="timeval.h.html#57" title="curlx_tvnow()" data-ref="_M/Curl_tvnow">Curl_tvnow</a>(); <i>/* start response time-out now! */</i></td></tr>
+<tr><th id="147">147</th><td>}</td></tr>
+<tr><th id="148">148</th><td></td></tr>
+<tr><th id="149">149</th><td></td></tr>
+<tr><th id="150">150</th><td></td></tr>
+<tr><th id="151">151</th><td><i>/***********************************************************************</i></td></tr>
+<tr><th id="152">152</th><td><i> *</i></td></tr>
+<tr><th id="153">153</th><td><i> * Curl_pp_vsendf()</i></td></tr>
+<tr><th id="154">154</th><td><i> *</i></td></tr>
+<tr><th id="155">155</th><td><i> * Send the formatted string as a command to a pingpong server. Note that</i></td></tr>
+<tr><th id="156">156</th><td><i> * the string should not have any CRLF appended, as this function will</i></td></tr>
+<tr><th id="157">157</th><td><i> * append the necessary things itself.</i></td></tr>
+<tr><th id="158">158</th><td><i> *</i></td></tr>
+<tr><th id="159">159</th><td><i> * made to never block</i></td></tr>
+<tr><th id="160">160</th><td><i> */</i></td></tr>
+<tr><th id="161">161</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_pp_vsendf" title='Curl_pp_vsendf' data-ref="Curl_pp_vsendf">Curl_pp_vsendf</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col8 decl" id="18pp" title='pp' data-type='struct pingpong *' data-ref="18pp">pp</dfn>,</td></tr>
+<tr><th id="162">162</th><td>                        <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="19fmt" title='fmt' data-type='const char *' data-ref="19fmt">fmt</dfn>,</td></tr>
+<tr><th id="163">163</th><td>                        <span class='typedef' title='va_list' data-type='__gnuc_va_list' data-ref="va_list">va_list</span> <dfn class="local col0 decl" id="20args" title='args' data-type='struct __va_list_tag *' data-ref="20args">args</dfn>)</td></tr>
+<tr><th id="164">164</th><td>{</td></tr>
+<tr><th id="165">165</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col1 decl" id="21bytes_written" title='bytes_written' data-type='ssize_t' data-ref="21bytes_written">bytes_written</dfn>;</td></tr>
+<tr><th id="166">166</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="22write_len" title='write_len' data-type='size_t' data-ref="22write_len">write_len</dfn>;</td></tr>
+<tr><th id="167">167</th><td>  <em>char</em> *<dfn class="local col3 decl" id="23fmt_crlf" title='fmt_crlf' data-type='char *' data-ref="23fmt_crlf">fmt_crlf</dfn>;</td></tr>
+<tr><th id="168">168</th><td>  <em>char</em> *<dfn class="local col4 decl" id="24s" title='s' data-type='char *' data-ref="24s">s</dfn>;</td></tr>
+<tr><th id="169">169</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col5 decl" id="25result" title='result' data-type='CURLcode' data-ref="25result">result</dfn>;</td></tr>
+<tr><th id="170">170</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="26conn" title='conn' data-type='struct connectdata *' data-ref="26conn">conn</dfn> = <a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::conn" title='pingpong::conn' data-ref="pingpong::conn">conn</a>;</td></tr>
+<tr><th id="171">171</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col7 decl" id="27data" title='data' data-type='struct Curl_easy *' data-ref="27data">data</dfn>;</td></tr>
+<tr><th id="172">172</th><td></td></tr>
+<tr><th id="173">173</th><td><u>#<span data-ppcond="173">ifdef</span> <span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span></u></td></tr>
+<tr><th id="174">174</th><td>  <b>enum</b> protection_level data_sec;</td></tr>
+<tr><th id="175">175</th><td><u>#<span data-ppcond="173">endif</span></u></td></tr>
+<tr><th id="176">176</th><td></td></tr>
+<tr><th id="177">177</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(pp-&gt;sendleft == <var>0</var>);</td></tr>
+<tr><th id="178">178</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(pp-&gt;sendsize == <var>0</var>);</td></tr>
+<tr><th id="179">179</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(pp-&gt;sendthis == NULL);</td></tr>
+<tr><th id="180">180</th><td></td></tr>
+<tr><th id="181">181</th><td>  <b>if</b>(!<a class="local col6 ref" href="#26conn" title='conn' data-ref="26conn">conn</a>)</td></tr>
+<tr><th id="182">182</th><td>    <i>/* can't send without a connection! */</i></td></tr>
+<tr><th id="183">183</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SEND_ERROR" title='CURLE_SEND_ERROR' data-ref="CURLE_SEND_ERROR">CURLE_SEND_ERROR</a>;</td></tr>
+<tr><th id="184">184</th><td></td></tr>
+<tr><th id="185">185</th><td>  <a class="local col7 ref" href="#27data" title='data' data-ref="27data">data</a> = <a class="local col6 ref" href="#26conn" title='conn' data-ref="26conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="186">186</th><td></td></tr>
+<tr><th id="187">187</th><td>  <a class="local col3 ref" href="#23fmt_crlf" title='fmt_crlf' data-ref="23fmt_crlf">fmt_crlf</a> = <a class="macro" href="curl_printf.h.html#46" title="curl_maprintf" data-ref="_M/aprintf">aprintf</a>(<q>"%s\r\n"</q>, <a class="local col9 ref" href="#19fmt" title='fmt' data-ref="19fmt">fmt</a>); <i>/* append a trailing CRLF */</i></td></tr>
+<tr><th id="188">188</th><td>  <b>if</b>(!<a class="local col3 ref" href="#23fmt_crlf" title='fmt_crlf' data-ref="23fmt_crlf">fmt_crlf</a>)</td></tr>
+<tr><th id="189">189</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="190">190</th><td></td></tr>
+<tr><th id="191">191</th><td>  <a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a> = <a class="macro" href="curl_printf.h.html#47" title="curl_mvaprintf" data-ref="_M/vaprintf">vaprintf</a>(<a class="local col3 ref" href="#23fmt_crlf" title='fmt_crlf' data-ref="23fmt_crlf">fmt_crlf</a>, <a class="local col0 ref" href="#20args" title='args' data-ref="20args">args</a>); <i>/* trailing CRLF appended */</i></td></tr>
+<tr><th id="192">192</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(fmt_crlf)" data-ref="_M/free">free</a>(<a class="local col3 ref" href="#23fmt_crlf" title='fmt_crlf' data-ref="23fmt_crlf">fmt_crlf</a>);</td></tr>
+<tr><th id="193">193</th><td>  <b>if</b>(!<a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a>)</td></tr>
+<tr><th id="194">194</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="195">195</th><td></td></tr>
+<tr><th id="196">196</th><td>  <a class="local col1 ref" href="#21bytes_written" title='bytes_written' data-ref="21bytes_written">bytes_written</a> = <var>0</var>;</td></tr>
+<tr><th id="197">197</th><td>  <a class="local col2 ref" href="#22write_len" title='write_len' data-ref="22write_len">write_len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a>);</td></tr>
+<tr><th id="198">198</th><td></td></tr>
+<tr><th id="199">199</th><td>  <a class="ref" href="#Curl_pp_init" title='Curl_pp_init' data-ref="Curl_pp_init">Curl_pp_init</a>(<a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>);</td></tr>
+<tr><th id="200">200</th><td></td></tr>
+<tr><th id="201">201</th><td>  <a class="local col5 ref" href="#25result" title='result' data-ref="25result">result</a> = <a class="macro" href="non-ascii.h.html#56" title="((void)data, CURLE_OK)" data-ref="_M/Curl_convert_to_network">Curl_convert_to_network</a>(<a class="local col7 ref" href="#27data" title='data' data-ref="27data">data</a>, s, write_len);</td></tr>
+<tr><th id="202">202</th><td>  <i>/* Curl_convert_to_network calls failf if unsuccessful */</i></td></tr>
+<tr><th id="203">203</th><td>  <b>if</b>(<a class="local col5 ref" href="#25result" title='result' data-ref="25result">result</a>) {</td></tr>
+<tr><th id="204">204</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(s)" data-ref="_M/free">free</a>(<a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a>);</td></tr>
+<tr><th id="205">205</th><td>    <b>return</b> <a class="local col5 ref" href="#25result" title='result' data-ref="25result">result</a>;</td></tr>
+<tr><th id="206">206</th><td>  }</td></tr>
+<tr><th id="207">207</th><td></td></tr>
+<tr><th id="208">208</th><td><u>#<span data-ppcond="208">ifdef</span> <span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span></u></td></tr>
+<tr><th id="209">209</th><td>  conn-&gt;data_prot = PROT_CMD;</td></tr>
+<tr><th id="210">210</th><td><u>#<span data-ppcond="208">endif</span></u></td></tr>
+<tr><th id="211">211</th><td>  <a class="local col5 ref" href="#25result" title='result' data-ref="25result">result</a> = <a class="ref" href="sendf.h.html#Curl_write" title='Curl_write' data-ref="Curl_write">Curl_write</a>(<a class="local col6 ref" href="#26conn" title='conn' data-ref="26conn">conn</a>, <a class="local col6 ref" href="#26conn" title='conn' data-ref="26conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="macro" href="urldata.h.html#487" title="0" data-ref="_M/FIRSTSOCKET">FIRSTSOCKET</a>], <a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a>, <a class="local col2 ref" href="#22write_len" title='write_len' data-ref="22write_len">write_len</a>,</td></tr>
+<tr><th id="212">212</th><td>                     &amp;<a class="local col1 ref" href="#21bytes_written" title='bytes_written' data-ref="21bytes_written">bytes_written</a>);</td></tr>
+<tr><th id="213">213</th><td><u>#<span data-ppcond="213">ifdef</span> <span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span></u></td></tr>
+<tr><th id="214">214</th><td>  data_sec = conn-&gt;data_prot;</td></tr>
+<tr><th id="215">215</th><td>  DEBUGASSERT(data_sec &gt; PROT_NONE &amp;&amp; data_sec &lt; PROT_LAST);</td></tr>
+<tr><th id="216">216</th><td>  conn-&gt;data_prot = data_sec;</td></tr>
+<tr><th id="217">217</th><td><u>#<span data-ppcond="213">endif</span></u></td></tr>
+<tr><th id="218">218</th><td></td></tr>
+<tr><th id="219">219</th><td>  <b>if</b>(<a class="local col5 ref" href="#25result" title='result' data-ref="25result">result</a>) {</td></tr>
+<tr><th id="220">220</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(s)" data-ref="_M/free">free</a>(<a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a>);</td></tr>
+<tr><th id="221">221</th><td>    <b>return</b> <a class="local col5 ref" href="#25result" title='result' data-ref="25result">result</a>;</td></tr>
+<tr><th id="222">222</th><td>  }</td></tr>
+<tr><th id="223">223</th><td></td></tr>
+<tr><th id="224">224</th><td>  <b>if</b>(<a class="local col6 ref" href="#26conn" title='conn' data-ref="26conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::verbose" title='UserDefined::verbose' data-ref="UserDefined::verbose">verbose</a>)</td></tr>
+<tr><th id="225">225</th><td>    <a class="ref" href="sendf.h.html#Curl_debug" title='Curl_debug' data-ref="Curl_debug">Curl_debug</a>(<a class="local col6 ref" href="#26conn" title='conn' data-ref="26conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HEADER_OUT" title='CURLINFO_HEADER_OUT' data-ref="CURLINFO_HEADER_OUT">CURLINFO_HEADER_OUT</a>,</td></tr>
+<tr><th id="226">226</th><td>               <a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a>, (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)<a class="local col1 ref" href="#21bytes_written" title='bytes_written' data-ref="21bytes_written">bytes_written</a>, <a class="local col6 ref" href="#26conn" title='conn' data-ref="26conn">conn</a>);</td></tr>
+<tr><th id="227">227</th><td></td></tr>
+<tr><th id="228">228</th><td>  <b>if</b>(<a class="local col1 ref" href="#21bytes_written" title='bytes_written' data-ref="21bytes_written">bytes_written</a> != (<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a>)<a class="local col2 ref" href="#22write_len" title='write_len' data-ref="22write_len">write_len</a>) {</td></tr>
+<tr><th id="229">229</th><td>    <i>/* the whole chunk was not sent, keep it around and adjust sizes */</i></td></tr>
+<tr><th id="230">230</th><td>    <a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendthis" title='pingpong::sendthis' data-ref="pingpong::sendthis">sendthis</a> = <a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a>;</td></tr>
+<tr><th id="231">231</th><td>    <a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendsize" title='pingpong::sendsize' data-ref="pingpong::sendsize">sendsize</a> = <a class="local col2 ref" href="#22write_len" title='write_len' data-ref="22write_len">write_len</a>;</td></tr>
+<tr><th id="232">232</th><td>    <a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a> = <a class="local col2 ref" href="#22write_len" title='write_len' data-ref="22write_len">write_len</a> - <a class="local col1 ref" href="#21bytes_written" title='bytes_written' data-ref="21bytes_written">bytes_written</a>;</td></tr>
+<tr><th id="233">233</th><td>  }</td></tr>
+<tr><th id="234">234</th><td>  <b>else</b> {</td></tr>
+<tr><th id="235">235</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(s)" data-ref="_M/free">free</a>(<a class="local col4 ref" href="#24s" title='s' data-ref="24s">s</a>);</td></tr>
+<tr><th id="236">236</th><td>    <a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendthis" title='pingpong::sendthis' data-ref="pingpong::sendthis">sendthis</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="237">237</th><td>    <a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a> = <a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendsize" title='pingpong::sendsize' data-ref="pingpong::sendsize">sendsize</a> = <var>0</var>;</td></tr>
+<tr><th id="238">238</th><td>    <a class="local col8 ref" href="#18pp" title='pp' data-ref="18pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::response" title='pingpong::response' data-ref="pingpong::response">response</a> = <a class="macro" href="timeval.h.html#57" title="curlx_tvnow()" data-ref="_M/Curl_tvnow">Curl_tvnow</a>();</td></tr>
+<tr><th id="239">239</th><td>  }</td></tr>
+<tr><th id="240">240</th><td></td></tr>
+<tr><th id="241">241</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="242">242</th><td>}</td></tr>
+<tr><th id="243">243</th><td></td></tr>
+<tr><th id="244">244</th><td></td></tr>
+<tr><th id="245">245</th><td><i>/***********************************************************************</i></td></tr>
+<tr><th id="246">246</th><td><i> *</i></td></tr>
+<tr><th id="247">247</th><td><i> * Curl_pp_sendf()</i></td></tr>
+<tr><th id="248">248</th><td><i> *</i></td></tr>
+<tr><th id="249">249</th><td><i> * Send the formatted string as a command to a pingpong server. Note that</i></td></tr>
+<tr><th id="250">250</th><td><i> * the string should not have any CRLF appended, as this function will</i></td></tr>
+<tr><th id="251">251</th><td><i> * append the necessary things itself.</i></td></tr>
+<tr><th id="252">252</th><td><i> *</i></td></tr>
+<tr><th id="253">253</th><td><i> * made to never block</i></td></tr>
+<tr><th id="254">254</th><td><i> */</i></td></tr>
+<tr><th id="255">255</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_pp_sendf" title='Curl_pp_sendf' data-ref="Curl_pp_sendf">Curl_pp_sendf</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col8 decl" id="28pp" title='pp' data-type='struct pingpong *' data-ref="28pp">pp</dfn>,</td></tr>
+<tr><th id="256">256</th><td>                       <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="29fmt" title='fmt' data-type='const char *' data-ref="29fmt">fmt</dfn>, ...)</td></tr>
+<tr><th id="257">257</th><td>{</td></tr>
+<tr><th id="258">258</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col0 decl" id="30result" title='result' data-type='CURLcode' data-ref="30result">result</dfn>;</td></tr>
+<tr><th id="259">259</th><td>  <span class='typedef' title='va_list' data-type='__gnuc_va_list' data-ref="va_list">va_list</span> <dfn class="local col1 decl" id="31ap" title='ap' data-type='va_list' data-ref="31ap">ap</dfn>;</td></tr>
+<tr><th id="260">260</th><td>  <span class="macro" title="__builtin_va_start(ap, fmt)" data-ref="_M/va_start">va_start</span>(<a class="local col1 ref" href="#31ap" title='ap' data-ref="31ap">ap</a>, <a class="local col9 ref" href="#29fmt" title='fmt' data-ref="29fmt">fmt</a>);</td></tr>
+<tr><th id="261">261</th><td></td></tr>
+<tr><th id="262">262</th><td>  <a class="local col0 ref" href="#30result" title='result' data-ref="30result">result</a> = <a class="ref" href="#Curl_pp_vsendf" title='Curl_pp_vsendf' data-ref="Curl_pp_vsendf">Curl_pp_vsendf</a>(<a class="local col8 ref" href="#28pp" title='pp' data-ref="28pp">pp</a>, <a class="local col9 ref" href="#29fmt" title='fmt' data-ref="29fmt">fmt</a>, <a class="local col1 ref" href="#31ap" title='ap' data-ref="31ap">ap</a>);</td></tr>
+<tr><th id="263">263</th><td></td></tr>
+<tr><th id="264">264</th><td>  <span class="macro" title="__builtin_va_end(ap)" data-ref="_M/va_end">va_end</span>(<a class="local col1 ref" href="#31ap" title='ap' data-ref="31ap">ap</a>);</td></tr>
+<tr><th id="265">265</th><td></td></tr>
+<tr><th id="266">266</th><td>  <b>return</b> <a class="local col0 ref" href="#30result" title='result' data-ref="30result">result</a>;</td></tr>
+<tr><th id="267">267</th><td>}</td></tr>
+<tr><th id="268">268</th><td></td></tr>
+<tr><th id="269">269</th><td><i>/*</i></td></tr>
+<tr><th id="270">270</th><td><i> * Curl_pp_readresp()</i></td></tr>
+<tr><th id="271">271</th><td><i> *</i></td></tr>
+<tr><th id="272">272</th><td><i> * Reads a piece of a server response.</i></td></tr>
+<tr><th id="273">273</th><td><i> */</i></td></tr>
+<tr><th id="274">274</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_pp_readresp" title='Curl_pp_readresp' data-ref="Curl_pp_readresp">Curl_pp_readresp</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col2 decl" id="32sockfd" title='sockfd' data-type='curl_socket_t' data-ref="32sockfd">sockfd</dfn>,</td></tr>
+<tr><th id="275">275</th><td>                          <b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col3 decl" id="33pp" title='pp' data-type='struct pingpong *' data-ref="33pp">pp</dfn>,</td></tr>
+<tr><th id="276">276</th><td>                          <em>int</em> *<dfn class="local col4 decl" id="34code" title='code' data-type='int *' data-ref="34code">code</dfn>, <i>/* return the server code if done */</i></td></tr>
+<tr><th id="277">277</th><td>                          <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col5 decl" id="35size" title='size' data-type='size_t *' data-ref="35size">size</dfn>) <i>/* size of the response */</i></td></tr>
+<tr><th id="278">278</th><td>{</td></tr>
+<tr><th id="279">279</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col6 decl" id="36perline" title='perline' data-type='ssize_t' data-ref="36perline">perline</dfn>; <i>/* count bytes per line */</i></td></tr>
+<tr><th id="280">280</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col7 decl" id="37keepon" title='keepon' data-type='_Bool' data-ref="37keepon">keepon</dfn> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="281">281</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col8 decl" id="38gotbytes" title='gotbytes' data-type='ssize_t' data-ref="38gotbytes">gotbytes</dfn>;</td></tr>
+<tr><th id="282">282</th><td>  <em>char</em> *<dfn class="local col9 decl" id="39ptr" title='ptr' data-type='char *' data-ref="39ptr">ptr</dfn>;</td></tr>
+<tr><th id="283">283</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col0 decl" id="40conn" title='conn' data-type='struct connectdata *' data-ref="40conn">conn</dfn> = <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::conn" title='pingpong::conn' data-ref="pingpong::conn">conn</a>;</td></tr>
+<tr><th id="284">284</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="41data" title='data' data-type='struct Curl_easy *' data-ref="41data">data</dfn> = <a class="local col0 ref" href="#40conn" title='conn' data-ref="40conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="285">285</th><td>  <em>char</em> * <em>const</em> <dfn class="local col2 decl" id="42buf" title='buf' data-type='char *const' data-ref="42buf">buf</dfn> = <a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::buffer" title='UrlState::buffer' data-ref="UrlState::buffer">buffer</a>;</td></tr>
+<tr><th id="286">286</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col3 decl" id="43result" title='result' data-type='CURLcode' data-ref="43result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="287">287</th><td></td></tr>
+<tr><th id="288">288</th><td>  *<a class="local col4 ref" href="#34code" title='code' data-ref="34code">code</a> = <var>0</var>; <i>/* 0 for errors or not done */</i></td></tr>
+<tr><th id="289">289</th><td>  *<a class="local col5 ref" href="#35size" title='size' data-ref="35size">size</a> = <var>0</var>;</td></tr>
+<tr><th id="290">290</th><td></td></tr>
+<tr><th id="291">291</th><td>  <a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a> = <a class="local col2 ref" href="#42buf" title='buf' data-ref="42buf">buf</a> + <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a>;</td></tr>
+<tr><th id="292">292</th><td></td></tr>
+<tr><th id="293">293</th><td>  <i>/* number of bytes in the current line, so far */</i></td></tr>
+<tr><th id="294">294</th><td>  <a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a> = (<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a>)(<a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a>-<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a>);</td></tr>
+<tr><th id="295">295</th><td></td></tr>
+<tr><th id="296">296</th><td>  <b>while</b>((<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a> &lt; (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)<a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::buffer_size" title='UserDefined::buffer_size' data-ref="UserDefined::buffer_size">buffer_size</a>) &amp;&amp;</td></tr>
+<tr><th id="297">297</th><td>        (<a class="local col7 ref" href="#37keepon" title='keepon' data-ref="37keepon">keepon</a> &amp;&amp; !<a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a>)) {</td></tr>
+<tr><th id="298">298</th><td></td></tr>
+<tr><th id="299">299</th><td>    <b>if</b>(<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a>) {</td></tr>
+<tr><th id="300">300</th><td>      <i>/* we had data in the "cache", copy that instead of doing an actual</i></td></tr>
+<tr><th id="301">301</th><td><i>       * read</i></td></tr>
+<tr><th id="302">302</th><td><i>       *</i></td></tr>
+<tr><th id="303">303</th><td><i>       * pp-&gt;cache_size is cast to ssize_t here.  This should be safe, because</i></td></tr>
+<tr><th id="304">304</th><td><i>       * it would have been populated with something of size int to begin</i></td></tr>
+<tr><th id="305">305</th><td><i>       * with, even though its datatype may be larger than an int.</i></td></tr>
+<tr><th id="306">306</th><td><i>       */</i></td></tr>
+<tr><th id="307">307</th><td>      <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>((ptr + pp-&gt;cache_size) &lt;= (buf + data-&gt;set.buffer_size + <var>1</var>));</td></tr>
+<tr><th id="308">308</th><td>      <a class="ref" href="../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a>, <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a>, <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache_size" title='pingpong::cache_size' data-ref="pingpong::cache_size">cache_size</a>);</td></tr>
+<tr><th id="309">309</th><td>      <a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a> = (<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a>)<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache_size" title='pingpong::cache_size' data-ref="pingpong::cache_size">cache_size</a>;</td></tr>
+<tr><th id="310">310</th><td>      <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(pp-&gt;cache)" data-ref="_M/free">free</a>(<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a>);    <i>/* free the cache */</i></td></tr>
+<tr><th id="311">311</th><td>      <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;   <i>/* clear the pointer */</i></td></tr>
+<tr><th id="312">312</th><td>      <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache_size" title='pingpong::cache_size' data-ref="pingpong::cache_size">cache_size</a> = <var>0</var>; <i>/* zero the size just in case */</i></td></tr>
+<tr><th id="313">313</th><td>    }</td></tr>
+<tr><th id="314">314</th><td>    <b>else</b> {</td></tr>
+<tr><th id="315">315</th><td><u>#<span data-ppcond="315">ifdef</span> <span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span></u></td></tr>
+<tr><th id="316">316</th><td>      <b>enum</b> protection_level prot = conn-&gt;data_prot;</td></tr>
+<tr><th id="317">317</th><td>      conn-&gt;data_prot = PROT_CLEAR;</td></tr>
+<tr><th id="318">318</th><td><u>#<span data-ppcond="315">endif</span></u></td></tr>
+<tr><th id="319">319</th><td>      <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>((ptr + data-&gt;set.buffer_size - pp-&gt;nread_resp) &lt;=</td></tr>
+<tr><th id="320">320</th><td>                  (buf + data-&gt;set.buffer_size + <var>1</var>));</td></tr>
+<tr><th id="321">321</th><td>      <a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a> = <a class="ref" href="sendf.h.html#Curl_read" title='Curl_read' data-ref="Curl_read">Curl_read</a>(<a class="local col0 ref" href="#40conn" title='conn' data-ref="40conn">conn</a>, <a class="local col2 ref" href="#32sockfd" title='sockfd' data-ref="32sockfd">sockfd</a>, <a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a>,</td></tr>
+<tr><th id="322">322</th><td>                         <a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::buffer_size" title='UserDefined::buffer_size' data-ref="UserDefined::buffer_size">buffer_size</a> - <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a>,</td></tr>
+<tr><th id="323">323</th><td>                         &amp;<a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a>);</td></tr>
+<tr><th id="324">324</th><td><u>#<span data-ppcond="324">ifdef</span> <span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span></u></td></tr>
+<tr><th id="325">325</th><td>      DEBUGASSERT(prot  &gt; PROT_NONE &amp;&amp; prot &lt; PROT_LAST);</td></tr>
+<tr><th id="326">326</th><td>      conn-&gt;data_prot = prot;</td></tr>
+<tr><th id="327">327</th><td><u>#<span data-ppcond="324">endif</span></u></td></tr>
+<tr><th id="328">328</th><td>      <b>if</b>(<a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a> == <a class="enum" href="../include/curl/curl.h.html#CURLE_AGAIN" title='CURLE_AGAIN' data-ref="CURLE_AGAIN">CURLE_AGAIN</a>)</td></tr>
+<tr><th id="329">329</th><td>        <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>; <i>/* return */</i></td></tr>
+<tr><th id="330">330</th><td></td></tr>
+<tr><th id="331">331</th><td>      <b>if</b>(!<a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a> &amp;&amp; (<a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a> &gt; <var>0</var>))</td></tr>
+<tr><th id="332">332</th><td>        <i>/* convert from the network encoding */</i></td></tr>
+<tr><th id="333">333</th><td>        <a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a> = <a class="macro" href="non-ascii.h.html#57" title="((void)data, CURLE_OK)" data-ref="_M/Curl_convert_from_network">Curl_convert_from_network</a>(<a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>, ptr, gotbytes);</td></tr>
+<tr><th id="334">334</th><td>      <i>/* Curl_convert_from_network calls failf if unsuccessful */</i></td></tr>
+<tr><th id="335">335</th><td></td></tr>
+<tr><th id="336">336</th><td>      <b>if</b>(<a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a>)</td></tr>
+<tr><th id="337">337</th><td>        <i>/* Set outer result variable to this error. */</i></td></tr>
+<tr><th id="338">338</th><td>        <a class="local col7 ref" href="#37keepon" title='keepon' data-ref="37keepon">keepon</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="339">339</th><td>    }</td></tr>
+<tr><th id="340">340</th><td></td></tr>
+<tr><th id="341">341</th><td>    <b>if</b>(!<a class="local col7 ref" href="#37keepon" title='keepon' data-ref="37keepon">keepon</a>)</td></tr>
+<tr><th id="342">342</th><td>      ;</td></tr>
+<tr><th id="343">343</th><td>    <b>else</b> <b>if</b>(<a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a> &lt;= <var>0</var>) {</td></tr>
+<tr><th id="344">344</th><td>      <a class="local col7 ref" href="#37keepon" title='keepon' data-ref="37keepon">keepon</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="345">345</th><td>      <a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_RECV_ERROR" title='CURLE_RECV_ERROR' data-ref="CURLE_RECV_ERROR">CURLE_RECV_ERROR</a>;</td></tr>
+<tr><th id="346">346</th><td>      <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>, <q>"response reading failed"</q>);</td></tr>
+<tr><th id="347">347</th><td>    }</td></tr>
+<tr><th id="348">348</th><td>    <b>else</b> {</td></tr>
+<tr><th id="349">349</th><td>      <i>/* we got a whole chunk of data, which can be anything from one</i></td></tr>
+<tr><th id="350">350</th><td><i>       * byte to a set of lines and possible just a piece of the last</i></td></tr>
+<tr><th id="351">351</th><td><i>       * line */</i></td></tr>
+<tr><th id="352">352</th><td>      <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col4 decl" id="44i" title='i' data-type='ssize_t' data-ref="44i">i</dfn>;</td></tr>
+<tr><th id="353">353</th><td>      <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col5 decl" id="45clipamount" title='clipamount' data-type='ssize_t' data-ref="45clipamount">clipamount</dfn> = <var>0</var>;</td></tr>
+<tr><th id="354">354</th><td>      <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col6 decl" id="46restart" title='restart' data-type='_Bool' data-ref="46restart">restart</dfn> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="355">355</th><td></td></tr>
+<tr><th id="356">356</th><td>      <a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>.<a class="ref" href="urldata.h.html#SingleRequest::headerbytecount" title='SingleRequest::headerbytecount' data-ref="SingleRequest::headerbytecount">headerbytecount</a> += (<em>long</em>)<a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a>;</td></tr>
+<tr><th id="357">357</th><td></td></tr>
+<tr><th id="358">358</th><td>      <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a> += <a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a>;</td></tr>
+<tr><th id="359">359</th><td>      <b>for</b>(<a class="local col4 ref" href="#44i" title='i' data-ref="44i">i</a> = <var>0</var>; <a class="local col4 ref" href="#44i" title='i' data-ref="44i">i</a> &lt; <a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a>; <a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a>++, <a class="local col4 ref" href="#44i" title='i' data-ref="44i">i</a>++) {</td></tr>
+<tr><th id="360">360</th><td>        <a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a>++;</td></tr>
+<tr><th id="361">361</th><td>        <b>if</b>(*<a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a> == <kbd>'\n'</kbd>) {</td></tr>
+<tr><th id="362">362</th><td>          <i>/* a newline is CRLF in pp-talk, so the CR is ignored as</i></td></tr>
+<tr><th id="363">363</th><td><i>             the line isn't really terminated until the LF comes */</i></td></tr>
+<tr><th id="364">364</th><td></td></tr>
+<tr><th id="365">365</th><td>          <i>/* output debug output if that is requested */</i></td></tr>
+<tr><th id="366">366</th><td><u>#<span data-ppcond="366">ifdef</span> <span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span></u></td></tr>
+<tr><th id="367">367</th><td>          <b>if</b>(!conn-&gt;sec_complete)</td></tr>
+<tr><th id="368">368</th><td><u>#<span data-ppcond="366">endif</span></u></td></tr>
+<tr><th id="369">369</th><td>            <b>if</b>(<a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::verbose" title='UserDefined::verbose' data-ref="UserDefined::verbose">verbose</a>)</td></tr>
+<tr><th id="370">370</th><td>              <a class="ref" href="sendf.h.html#Curl_debug" title='Curl_debug' data-ref="Curl_debug">Curl_debug</a>(<a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HEADER_IN" title='CURLINFO_HEADER_IN' data-ref="CURLINFO_HEADER_IN">CURLINFO_HEADER_IN</a>,</td></tr>
+<tr><th id="371">371</th><td>                         <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a>, (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)<a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a>, <a class="local col0 ref" href="#40conn" title='conn' data-ref="40conn">conn</a>);</td></tr>
+<tr><th id="372">372</th><td></td></tr>
+<tr><th id="373">373</th><td>          <i>/*</i></td></tr>
+<tr><th id="374">374</th><td><i>           * We pass all response-lines to the callback function registered</i></td></tr>
+<tr><th id="375">375</th><td><i>           * for "headers". The response lines can be seen as a kind of</i></td></tr>
+<tr><th id="376">376</th><td><i>           * headers.</i></td></tr>
+<tr><th id="377">377</th><td><i>           */</i></td></tr>
+<tr><th id="378">378</th><td>          <a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a> = <a class="ref" href="sendf.h.html#Curl_client_write" title='Curl_client_write' data-ref="Curl_client_write">Curl_client_write</a>(<a class="local col0 ref" href="#40conn" title='conn' data-ref="40conn">conn</a>, <a class="macro" href="sendf.h.html#51" title="(1&lt;&lt;1)" data-ref="_M/CLIENTWRITE_HEADER">CLIENTWRITE_HEADER</a>,</td></tr>
+<tr><th id="379">379</th><td>                                     <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a>, <a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a>);</td></tr>
+<tr><th id="380">380</th><td>          <b>if</b>(<a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a>)</td></tr>
+<tr><th id="381">381</th><td>            <b>return</b> <a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a>;</td></tr>
+<tr><th id="382">382</th><td></td></tr>
+<tr><th id="383">383</th><td>          <b>if</b>(<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::endofresp" title='pingpong::endofresp' data-ref="pingpong::endofresp">endofresp</a>(<a class="local col0 ref" href="#40conn" title='conn' data-ref="40conn">conn</a>, <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a>, <a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a>, <a class="local col4 ref" href="#34code" title='code' data-ref="34code">code</a>)) {</td></tr>
+<tr><th id="384">384</th><td>            <i>/* This is the end of the last line, copy the last line to the</i></td></tr>
+<tr><th id="385">385</th><td><i>               start of the buffer and zero terminate, for old times sake */</i></td></tr>
+<tr><th id="386">386</th><td>            <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="47n" title='n' data-type='size_t' data-ref="47n">n</dfn> = <a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a> - <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a>;</td></tr>
+<tr><th id="387">387</th><td>            <a class="ref" href="../../include/string.h.html#memmove" title='memmove' data-ref="memmove">memmove</a>(<a class="local col2 ref" href="#42buf" title='buf' data-ref="42buf">buf</a>, <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a>, <a class="local col7 ref" href="#47n" title='n' data-ref="47n">n</a>);</td></tr>
+<tr><th id="388">388</th><td>            <a class="local col2 ref" href="#42buf" title='buf' data-ref="42buf">buf</a>[<a class="local col7 ref" href="#47n" title='n' data-ref="47n">n</a>] = <var>0</var>; <i>/* zero terminate */</i></td></tr>
+<tr><th id="389">389</th><td>            <a class="local col7 ref" href="#37keepon" title='keepon' data-ref="37keepon">keepon</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="390">390</th><td>            <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a> = <a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a> + <var>1</var>; <i>/* advance pointer */</i></td></tr>
+<tr><th id="391">391</th><td>            <a class="local col4 ref" href="#44i" title='i' data-ref="44i">i</a>++; <i>/* skip this before getting out */</i></td></tr>
+<tr><th id="392">392</th><td></td></tr>
+<tr><th id="393">393</th><td>            *<a class="local col5 ref" href="#35size" title='size' data-ref="35size">size</a> = <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a>; <i>/* size of the response */</i></td></tr>
+<tr><th id="394">394</th><td>            <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a> = <var>0</var>; <i>/* restart */</i></td></tr>
+<tr><th id="395">395</th><td>            <b>break</b>;</td></tr>
+<tr><th id="396">396</th><td>          }</td></tr>
+<tr><th id="397">397</th><td>          <a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a> = <var>0</var>; <i>/* line starts over here */</i></td></tr>
+<tr><th id="398">398</th><td>          <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a> = <a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a> + <var>1</var>;</td></tr>
+<tr><th id="399">399</th><td>        }</td></tr>
+<tr><th id="400">400</th><td>      }</td></tr>
+<tr><th id="401">401</th><td></td></tr>
+<tr><th id="402">402</th><td>      <b>if</b>(!<a class="local col7 ref" href="#37keepon" title='keepon' data-ref="37keepon">keepon</a> &amp;&amp; (<a class="local col4 ref" href="#44i" title='i' data-ref="44i">i</a> != <a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a>)) {</td></tr>
+<tr><th id="403">403</th><td>        <i>/* We found the end of the response lines, but we didn't parse the</i></td></tr>
+<tr><th id="404">404</th><td><i>           full chunk of data we have read from the server. We therefore need</i></td></tr>
+<tr><th id="405">405</th><td><i>           to store the rest of the data to be checked on the next invoke as</i></td></tr>
+<tr><th id="406">406</th><td><i>           it may actually contain another end of response already! */</i></td></tr>
+<tr><th id="407">407</th><td>        <a class="local col5 ref" href="#45clipamount" title='clipamount' data-ref="45clipamount">clipamount</a> = <a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a> - <a class="local col4 ref" href="#44i" title='i' data-ref="44i">i</a>;</td></tr>
+<tr><th id="408">408</th><td>        <a class="local col6 ref" href="#46restart" title='restart' data-ref="46restart">restart</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="409">409</th><td>        <a class="macro" href="curl_setup_once.h.html#409" title="do { } while(0)" data-ref="_M/DEBUGF">DEBUGF</a>(infof(data, <q>"Curl_pp_readresp_ %d bytes of trailing "</q></td></tr>
+<tr><th id="410">410</th><td>                     <q>"server response left\n"</q>,</td></tr>
+<tr><th id="411">411</th><td>                     (<em>int</em>)clipamount));</td></tr>
+<tr><th id="412">412</th><td>      }</td></tr>
+<tr><th id="413">413</th><td>      <b>else</b> <b>if</b>(<a class="local col7 ref" href="#37keepon" title='keepon' data-ref="37keepon">keepon</a>) {</td></tr>
+<tr><th id="414">414</th><td></td></tr>
+<tr><th id="415">415</th><td>        <b>if</b>((<a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a> == <a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a>) &amp;&amp; (<a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a> &gt; <a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::buffer_size" title='UserDefined::buffer_size' data-ref="UserDefined::buffer_size">buffer_size</a>/<var>2</var>)) {</td></tr>
+<tr><th id="416">416</th><td>          <i>/* We got an excessive line without newlines and we need to deal</i></td></tr>
+<tr><th id="417">417</th><td><i>             with it. We keep the first bytes of the line then we throw</i></td></tr>
+<tr><th id="418">418</th><td><i>             away the rest. */</i></td></tr>
+<tr><th id="419">419</th><td>          <a class="macro" href="sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>, <q>"Excessive server response line length received, "</q></td></tr>
+<tr><th id="420">420</th><td>                <q>"%zd bytes. Stripping\n"</q>, <a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a>);</td></tr>
+<tr><th id="421">421</th><td>          <a class="local col6 ref" href="#46restart" title='restart' data-ref="46restart">restart</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="422">422</th><td></td></tr>
+<tr><th id="423">423</th><td>          <i>/* we keep 40 bytes since all our pingpong protocols are only</i></td></tr>
+<tr><th id="424">424</th><td><i>             interested in the first piece */</i></td></tr>
+<tr><th id="425">425</th><td>          <a class="local col5 ref" href="#45clipamount" title='clipamount' data-ref="45clipamount">clipamount</a> = <var>40</var>;</td></tr>
+<tr><th id="426">426</th><td>        }</td></tr>
+<tr><th id="427">427</th><td>        <b>else</b> <b>if</b>(<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a> &gt; (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)<a class="local col1 ref" href="#41data" title='data' data-ref="41data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::buffer_size" title='UserDefined::buffer_size' data-ref="UserDefined::buffer_size">buffer_size</a>/<var>2</var>) {</td></tr>
+<tr><th id="428">428</th><td>          <i>/* We got a large chunk of data and there's potentially still</i></td></tr>
+<tr><th id="429">429</th><td><i>             trailing data to take care of, so we put any such part in the</i></td></tr>
+<tr><th id="430">430</th><td><i>             "cache", clear the buffer to make space and restart. */</i></td></tr>
+<tr><th id="431">431</th><td>          <a class="local col5 ref" href="#45clipamount" title='clipamount' data-ref="45clipamount">clipamount</a> = <a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a>;</td></tr>
+<tr><th id="432">432</th><td>          <a class="local col6 ref" href="#46restart" title='restart' data-ref="46restart">restart</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="433">433</th><td>        }</td></tr>
+<tr><th id="434">434</th><td>      }</td></tr>
+<tr><th id="435">435</th><td>      <b>else</b> <b>if</b>(<a class="local col4 ref" href="#44i" title='i' data-ref="44i">i</a> == <a class="local col8 ref" href="#38gotbytes" title='gotbytes' data-ref="38gotbytes">gotbytes</a>)</td></tr>
+<tr><th id="436">436</th><td>        <a class="local col6 ref" href="#46restart" title='restart' data-ref="46restart">restart</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="437">437</th><td></td></tr>
+<tr><th id="438">438</th><td>      <b>if</b>(<a class="local col5 ref" href="#45clipamount" title='clipamount' data-ref="45clipamount">clipamount</a>) {</td></tr>
+<tr><th id="439">439</th><td>        <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache_size" title='pingpong::cache_size' data-ref="pingpong::cache_size">cache_size</a> = <a class="local col5 ref" href="#45clipamount" title='clipamount' data-ref="45clipamount">clipamount</a>;</td></tr>
+<tr><th id="440">440</th><td>        <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a> = <a class="macro" href="curl_memory.h.html#124" title="Curl_cmalloc(pp-&gt;cache_size)" data-ref="_M/malloc">malloc</a>(<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache_size" title='pingpong::cache_size' data-ref="pingpong::cache_size">cache_size</a>);</td></tr>
+<tr><th id="441">441</th><td>        <b>if</b>(<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a>)</td></tr>
+<tr><th id="442">442</th><td>          <a class="ref" href="../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a>, <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a>, <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache_size" title='pingpong::cache_size' data-ref="pingpong::cache_size">cache_size</a>);</td></tr>
+<tr><th id="443">443</th><td>        <b>else</b></td></tr>
+<tr><th id="444">444</th><td>          <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="445">445</th><td>      }</td></tr>
+<tr><th id="446">446</th><td>      <b>if</b>(<a class="local col6 ref" href="#46restart" title='restart' data-ref="46restart">restart</a>) {</td></tr>
+<tr><th id="447">447</th><td>        <i>/* now reset a few variables to start over nicely from the start of</i></td></tr>
+<tr><th id="448">448</th><td><i>           the big buffer */</i></td></tr>
+<tr><th id="449">449</th><td>        <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a> = <var>0</var>; <i>/* start over from scratch in the buffer */</i></td></tr>
+<tr><th id="450">450</th><td>        <a class="local col9 ref" href="#39ptr" title='ptr' data-ref="39ptr">ptr</a> = <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::linestart_resp" title='pingpong::linestart_resp' data-ref="pingpong::linestart_resp">linestart_resp</a> = <a class="local col2 ref" href="#42buf" title='buf' data-ref="42buf">buf</a>;</td></tr>
+<tr><th id="451">451</th><td>        <a class="local col6 ref" href="#36perline" title='perline' data-ref="36perline">perline</a> = <var>0</var>;</td></tr>
+<tr><th id="452">452</th><td>      }</td></tr>
+<tr><th id="453">453</th><td></td></tr>
+<tr><th id="454">454</th><td>    } <i>/* there was data */</i></td></tr>
+<tr><th id="455">455</th><td></td></tr>
+<tr><th id="456">456</th><td>  } <i>/* while there's buffer left and loop is requested */</i></td></tr>
+<tr><th id="457">457</th><td></td></tr>
+<tr><th id="458">458</th><td>  <a class="local col3 ref" href="#33pp" title='pp' data-ref="33pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::pending_resp" title='pingpong::pending_resp' data-ref="pingpong::pending_resp">pending_resp</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="459">459</th><td></td></tr>
+<tr><th id="460">460</th><td>  <b>return</b> <a class="local col3 ref" href="#43result" title='result' data-ref="43result">result</a>;</td></tr>
+<tr><th id="461">461</th><td>}</td></tr>
+<tr><th id="462">462</th><td></td></tr>
+<tr><th id="463">463</th><td><em>int</em> <dfn class="decl def" id="Curl_pp_getsock" title='Curl_pp_getsock' data-ref="Curl_pp_getsock">Curl_pp_getsock</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col8 decl" id="48pp" title='pp' data-type='struct pingpong *' data-ref="48pp">pp</dfn>,</td></tr>
+<tr><th id="464">464</th><td>                    <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> *<dfn class="local col9 decl" id="49socks" title='socks' data-type='curl_socket_t *' data-ref="49socks">socks</dfn>,</td></tr>
+<tr><th id="465">465</th><td>                    <em>int</em> <dfn class="local col0 decl" id="50numsocks" title='numsocks' data-type='int' data-ref="50numsocks">numsocks</dfn>)</td></tr>
+<tr><th id="466">466</th><td>{</td></tr>
+<tr><th id="467">467</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col1 decl" id="51conn" title='conn' data-type='struct connectdata *' data-ref="51conn">conn</dfn> = <a class="local col8 ref" href="#48pp" title='pp' data-ref="48pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::conn" title='pingpong::conn' data-ref="pingpong::conn">conn</a>;</td></tr>
+<tr><th id="468">468</th><td></td></tr>
+<tr><th id="469">469</th><td>  <b>if</b>(!<a class="local col0 ref" href="#50numsocks" title='numsocks' data-ref="50numsocks">numsocks</a>)</td></tr>
+<tr><th id="470">470</th><td>    <b>return</b> <a class="macro" href="multiif.h.html#42" title="0" data-ref="_M/GETSOCK_BLANK">GETSOCK_BLANK</a>;</td></tr>
+<tr><th id="471">471</th><td></td></tr>
+<tr><th id="472">472</th><td>  <a class="local col9 ref" href="#49socks" title='socks' data-ref="49socks">socks</a>[<var>0</var>] = <a class="local col1 ref" href="#51conn" title='conn' data-ref="51conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="macro" href="urldata.h.html#487" title="0" data-ref="_M/FIRSTSOCKET">FIRSTSOCKET</a>];</td></tr>
+<tr><th id="473">473</th><td></td></tr>
+<tr><th id="474">474</th><td>  <b>if</b>(<a class="local col8 ref" href="#48pp" title='pp' data-ref="48pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a>) {</td></tr>
+<tr><th id="475">475</th><td>    <i>/* write mode */</i></td></tr>
+<tr><th id="476">476</th><td>    <b>return</b> <a class="macro" href="multiif.h.html#45" title="(1 &lt;&lt; (16 + (0)))" data-ref="_M/GETSOCK_WRITESOCK">GETSOCK_WRITESOCK</a>(<var>0</var>);</td></tr>
+<tr><th id="477">477</th><td>  }</td></tr>
+<tr><th id="478">478</th><td></td></tr>
+<tr><th id="479">479</th><td>  <i>/* read mode */</i></td></tr>
+<tr><th id="480">480</th><td>  <b>return</b> <a class="macro" href="multiif.h.html#48" title="(1 &lt;&lt; (0))" data-ref="_M/GETSOCK_READSOCK">GETSOCK_READSOCK</a>(<var>0</var>);</td></tr>
+<tr><th id="481">481</th><td>}</td></tr>
+<tr><th id="482">482</th><td></td></tr>
+<tr><th id="483">483</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_pp_flushsend" title='Curl_pp_flushsend' data-ref="Curl_pp_flushsend">Curl_pp_flushsend</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col2 decl" id="52pp" title='pp' data-type='struct pingpong *' data-ref="52pp">pp</dfn>)</td></tr>
+<tr><th id="484">484</th><td>{</td></tr>
+<tr><th id="485">485</th><td>  <i>/* we have a piece of a command still left to send */</i></td></tr>
+<tr><th id="486">486</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col3 decl" id="53conn" title='conn' data-type='struct connectdata *' data-ref="53conn">conn</dfn> = <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::conn" title='pingpong::conn' data-ref="pingpong::conn">conn</a>;</td></tr>
+<tr><th id="487">487</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col4 decl" id="54written" title='written' data-type='ssize_t' data-ref="54written">written</dfn>;</td></tr>
+<tr><th id="488">488</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col5 decl" id="55sock" title='sock' data-type='curl_socket_t' data-ref="55sock">sock</dfn> = <a class="local col3 ref" href="#53conn" title='conn' data-ref="53conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="macro" href="urldata.h.html#487" title="0" data-ref="_M/FIRSTSOCKET">FIRSTSOCKET</a>];</td></tr>
+<tr><th id="489">489</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col6 decl" id="56result" title='result' data-type='CURLcode' data-ref="56result">result</dfn> = <a class="ref" href="sendf.h.html#Curl_write" title='Curl_write' data-ref="Curl_write">Curl_write</a>(<a class="local col3 ref" href="#53conn" title='conn' data-ref="53conn">conn</a>, <a class="local col5 ref" href="#55sock" title='sock' data-ref="55sock">sock</a>, <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendthis" title='pingpong::sendthis' data-ref="pingpong::sendthis">sendthis</a> + <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendsize" title='pingpong::sendsize' data-ref="pingpong::sendsize">sendsize</a> -</td></tr>
+<tr><th id="490">490</th><td>                               <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a>, <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a>, &amp;<a class="local col4 ref" href="#54written" title='written' data-ref="54written">written</a>);</td></tr>
+<tr><th id="491">491</th><td>  <b>if</b>(<a class="local col6 ref" href="#56result" title='result' data-ref="56result">result</a>)</td></tr>
+<tr><th id="492">492</th><td>    <b>return</b> <a class="local col6 ref" href="#56result" title='result' data-ref="56result">result</a>;</td></tr>
+<tr><th id="493">493</th><td></td></tr>
+<tr><th id="494">494</th><td>  <b>if</b>(<a class="local col4 ref" href="#54written" title='written' data-ref="54written">written</a> != (<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a>)<a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a>) {</td></tr>
+<tr><th id="495">495</th><td>    <i>/* only a fraction was sent */</i></td></tr>
+<tr><th id="496">496</th><td>    <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a> -= <a class="local col4 ref" href="#54written" title='written' data-ref="54written">written</a>;</td></tr>
+<tr><th id="497">497</th><td>  }</td></tr>
+<tr><th id="498">498</th><td>  <b>else</b> {</td></tr>
+<tr><th id="499">499</th><td>    <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(pp-&gt;sendthis)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendthis" title='pingpong::sendthis' data-ref="pingpong::sendthis">sendthis</a>);</td></tr>
+<tr><th id="500">500</th><td>    <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendthis" title='pingpong::sendthis' data-ref="pingpong::sendthis">sendthis</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="501">501</th><td>    <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a> = <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendsize" title='pingpong::sendsize' data-ref="pingpong::sendsize">sendsize</a> = <var>0</var>;</td></tr>
+<tr><th id="502">502</th><td>    <a class="local col2 ref" href="#52pp" title='pp' data-ref="52pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::response" title='pingpong::response' data-ref="pingpong::response">response</a> = <a class="macro" href="timeval.h.html#57" title="curlx_tvnow()" data-ref="_M/Curl_tvnow">Curl_tvnow</a>();</td></tr>
+<tr><th id="503">503</th><td>  }</td></tr>
+<tr><th id="504">504</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="505">505</th><td>}</td></tr>
+<tr><th id="506">506</th><td></td></tr>
+<tr><th id="507">507</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_pp_disconnect" title='Curl_pp_disconnect' data-ref="Curl_pp_disconnect">Curl_pp_disconnect</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col7 decl" id="57pp" title='pp' data-type='struct pingpong *' data-ref="57pp">pp</dfn>)</td></tr>
+<tr><th id="508">508</th><td>{</td></tr>
+<tr><th id="509">509</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(pp-&gt;cache)" data-ref="_M/free">free</a>(<a class="local col7 ref" href="#57pp" title='pp' data-ref="57pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a>);</td></tr>
+<tr><th id="510">510</th><td>  <a class="local col7 ref" href="#57pp" title='pp' data-ref="57pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="511">511</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="512">512</th><td>}</td></tr>
+<tr><th id="513">513</th><td></td></tr>
+<tr><th id="514">514</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_pp_moredata" title='Curl_pp_moredata' data-ref="Curl_pp_moredata">Curl_pp_moredata</dfn>(<b>struct</b> <a class="type" href="pingpong.h.html#pingpong" title='pingpong' data-ref="pingpong">pingpong</a> *<dfn class="local col8 decl" id="58pp" title='pp' data-type='struct pingpong *' data-ref="58pp">pp</dfn>)</td></tr>
+<tr><th id="515">515</th><td>{</td></tr>
+<tr><th id="516">516</th><td>  <b>return</b> (!<a class="local col8 ref" href="#58pp" title='pp' data-ref="58pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::sendleft" title='pingpong::sendleft' data-ref="pingpong::sendleft">sendleft</a> &amp;&amp; <a class="local col8 ref" href="#58pp" title='pp' data-ref="58pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache" title='pingpong::cache' data-ref="pingpong::cache">cache</a> &amp;&amp; <a class="local col8 ref" href="#58pp" title='pp' data-ref="58pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::nread_resp" title='pingpong::nread_resp' data-ref="pingpong::nread_resp">nread_resp</a> &lt; <a class="local col8 ref" href="#58pp" title='pp' data-ref="58pp">pp</a>-&gt;<a class="ref" href="pingpong.h.html#pingpong::cache_size" title='pingpong::cache_size' data-ref="pingpong::cache_size">cache_size</a>) ?</td></tr>
+<tr><th id="517">517</th><td>         <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a> : <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="518">518</th><td>}</td></tr>
+<tr><th id="519">519</th><td></td></tr>
+<tr><th id="520">520</th><td><u>#<span data-ppcond="43">endif</span></u></td></tr>
+<tr><th id="521">521</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

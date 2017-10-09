@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/hostip.h' l='248' type='CURLcode Curl_loadhostpairs(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/hostip.h' l='245'>/*
+ * Populate the cache with specified entries from CURLOPT_RESOLVE.
+ */</doc>
+<def f='codebrowser/lib/hostip.c' l='777' ll='884' type='CURLcode Curl_loadhostpairs(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/transfer.c' l='1371' u='c' c='Curl_pretransfer'/>

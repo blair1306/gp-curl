@@ -1,0 +1,45 @@
+<dec f='codebrowser/include/curl/curl.h' l='2389' type='struct curl_slist * curl_slist_append(struct curl_slist * , const char * )'/>
+<def f='codebrowser/lib/slist.c' l='89' ll='102' type='struct curl_slist * curl_slist_append(struct curl_slist * list, const char * data)'/>
+<use f='codebrowser/lib/slist.c' l='115' u='c' c='Curl_slist_duplicate'/>
+<doc f='codebrowser/lib/slist.c' l='82'>/*
+ * curl_slist_append() appends a string to the linked list. It always returns
+ * the address of the first record, so that you can use this function as an
+ * initialization function as well as an append function. If you find this
+ * bothersome, then simply create a separate _init function and call it
+ * appropriately from within the program.
+ */</doc>
+<use f='codebrowser/lib/telnet.c' l='836' u='c' c='check_telnet_options'/>
+<use f='codebrowser/lib/telnet.c' l='868' u='c' c='check_telnet_options'/>
+<use f='codebrowser/lib/url.c' l='1245' u='c' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1137' u='c' c='Curl_ossl_engines_list'/>
+<use f='codebrowser/src/slist_wc.c' l='39' u='c' c='slist_wc_append'/>
+<use f='codebrowser/src/tool_formparse.c' l='100' u='c' c='slist_append'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='488' u='c' c='add2list'/>
+<use f='codebrowser/tests/libtest/lib1502.c' l='59' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1506.c' l='52' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='62' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1510.c' l='50' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1512.c' l='55' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1515.c' l='63' u='c' c='do_one_request'/>
+<use f='codebrowser/tests/libtest/lib1520.c' l='91' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1525.c' l='66' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1526.c' l='64' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1526.c' l='65' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1526.c' l='69' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1527.c' l='65' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1527.c' l='69' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1528.c' l='47' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1528.c' l='48' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib505.c' l='97' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib505.c' l='105' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='123' u='c' c='sethost'/>
+<use f='codebrowser/tests/libtest/lib510.c' l='82' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib539.c' l='69' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib540.c' l='206' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib553.c' l='81' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib553.c' l='87' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib567.c' l='56' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib568.c' l='130' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib579.c' l='107' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='117' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='118' u='c' c='test'/>

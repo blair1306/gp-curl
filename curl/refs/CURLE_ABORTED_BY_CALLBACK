@@ -1,0 +1,28 @@
+<dec f='codebrowser/include/curl/curl.h' l='509' type='42'/>
+<doc f='codebrowser/include/curl/curl.h' l='509'>/* 42 */</doc>
+<use f='codebrowser/lib/connect.c' l='1028' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/file.c' l='405' u='r' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='410' u='r' c='file_upload'/>
+<use f='codebrowser/lib/file.c' l='590' u='r' c='file_do'/>
+<use f='codebrowser/lib/file.c' l='595' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='318' u='r' c='AcceptServerConnect'/>
+<use f='codebrowser/lib/ftp.c' l='698' u='r' c='Curl_GetFTPResponse'/>
+<use f='codebrowser/lib/http.c' l='2755' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http_proxy.c' l='348' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='565' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/multi.c' l='549' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='567' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='572' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='1832' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2114' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/pingpong.c' l='121' u='r' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/rtsp.c' l='615' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/strerror.c' l='176' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/telnet.c' l='1690' u='r' c='telnet_do'/>
+<use f='codebrowser/lib/tftp.c' l='891' u='r' c='tftp_translate_code'/>
+<use f='codebrowser/lib/tftp.c' l='1065' u='r' c='tftp_done'/>
+<use f='codebrowser/lib/tftp.c' l='1174' u='r' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1294' u='r' c='tftp_doing'/>
+<use f='codebrowser/lib/transfer.c' l='144' u='r' c='Curl_fillreadbuffer'/>
+<use f='codebrowser/lib/transfer.c' l='1189' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1247' u='r' c='Curl_readwrite'/>

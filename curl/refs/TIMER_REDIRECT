@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/progress.h' l='39' type='10'/>
+<use f='codebrowser/lib/progress.c' l='214' c='Curl_pgrsTime'/>
+<use f='codebrowser/lib/transfer.c' l='1927' u='r' c='Curl_follow'/>

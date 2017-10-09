@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/pingpong.h' l='135' type='CURLcode Curl_pp_disconnect(struct pingpong * pp)'/>
+<doc f='codebrowser/lib/pingpong.h' l='134'>/* call this when a pingpong connection is disconnected */</doc>
+<use f='codebrowser/lib/ftp.c' l='4116' u='c' c='ftp_disconnect'/>
+<use f='codebrowser/lib/imap.c' l='1616' u='c' c='imap_disconnect'/>
+<def f='codebrowser/lib/pingpong.c' l='507' ll='512' type='CURLcode Curl_pp_disconnect(struct pingpong * pp)'/>
+<use f='codebrowser/lib/pop3.c' l='1226' u='c' c='pop3_disconnect'/>
+<use f='codebrowser/lib/smtp.c' l='1354' u='c' c='smtp_disconnect'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1342' type='long'/>
+<offset>139968</offset>
+<doc f='codebrowser/lib/urldata.h' l='1342'>/* the session&apos;s next server CSeq */</doc>
+<use f='codebrowser/lib/getinfo.c' l='218' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/rtsp.c' l='199' u='r' c='rtsp_connect'/>
+<use f='codebrowser/lib/rtsp.c' l='200' u='w' c='rtsp_connect'/>

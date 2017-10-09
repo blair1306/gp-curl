@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/ftplistparser.c' l='114' type='1'/>
+<use f='codebrowser/lib/ftplistparser.c' l='766' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='769' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='789' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='802' u='r' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/ftplistparser.c' l='820' u='r' c='Curl_ftp_parselist'/>

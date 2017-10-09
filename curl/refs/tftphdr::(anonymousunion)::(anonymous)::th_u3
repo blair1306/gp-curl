@@ -1,0 +1,16 @@
+<dec f='include/arpa/tftp.h' l='57' type='union (anonymous union at /usr/include/arpa/tftp.h:54:4)'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1256' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1288' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1288' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1296' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1301' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1331' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1357' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1357' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1361' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1366' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1384' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1399' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1418' macro='1' u='m'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1424' macro='1' u='m'/>
+<offset>0</offset>

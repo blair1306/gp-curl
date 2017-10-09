@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='407' type='int OCSP_REQ_CTX_nbio_d2i(OCSP_REQ_CTX * rctx, ASN1_VALUE ** pval, const ASN1_ITEM * it)'/>

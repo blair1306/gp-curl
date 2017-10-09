@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='287'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='84' u='c'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='362' u='c'/>
+<use f='codebrowser/lib/parsedate.c' l='352' u='c'/>
+<use f='codebrowser/lib/url.c' l='5165' u='c'/>
+<use f='codebrowser/lib/url.c' l='5997' u='c'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='103' u='c'/>
+<use f='codebrowser/src/tool_urlglob.c' l='191' u='c'/>

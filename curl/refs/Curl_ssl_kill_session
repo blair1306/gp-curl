@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='221' type='void Curl_ssl_kill_session(struct curl_ssl_session * session)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='215'>/* Kill a single session ID entry in the cache
+ * Sessionid mutex must be locked (see Curl_ssl_sessionid_lock).
+ * This will call engine-specific curlssl_session_free function, which must
+ * take sessionid object ownership from sessionid cache
+ * (e.g. decrement refcount).
+ */</doc>
+<use f='codebrowser/lib/share.c' l='199' u='c' c='curl_share_cleanup'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='365' ll='381' type='void Curl_ssl_kill_session(struct curl_ssl_session * session)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='395' u='c' c='Curl_ssl_delsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='467' u='c' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='503' u='c' c='Curl_ssl_close_all'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='362'>/*
+ * Kill a single session ID entry in the cache.
+ */</doc>

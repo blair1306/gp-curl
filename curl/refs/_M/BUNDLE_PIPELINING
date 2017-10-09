@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/conncache.h' l='35'/>
+<use f='codebrowser/lib/http.c' l='3466' u='c'/>
+<use f='codebrowser/lib/http.c' l='3554' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='700' u='c'/>
+<use f='codebrowser/lib/url.c' l='3531' u='c'/>
+<use f='codebrowser/lib/url.c' l='3548' u='c'/>

@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='711'/>
+<use f='codebrowser/lib/dict.c' l='91' u='c'/>
+<use f='codebrowser/lib/file.c' l='114' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='185' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='213' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='131' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='159' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='131' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='159' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='198' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='187' u='c'/>
+<use f='codebrowser/lib/url.c' l='6515' u='c'/>

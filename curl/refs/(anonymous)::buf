@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/mime.h' l='77' type='char [256]'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/mime.h' l='77'>/* Input buffer. */</doc>
+<use f='codebrowser/lib/mime.c' l='364' u='r' c='encoder_nop_read'/>
+<use f='codebrowser/lib/mime.c' l='388' u='r' c='encoder_7bit_read'/>
+<use f='codebrowser/lib/mime.c' l='425' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='426' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='427' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='444' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='447' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='499' u='r' c='qp_lookahead_eol'/>
+<use f='codebrowser/lib/mime.c' l='500' u='r' c='qp_lookahead_eol'/>
+<use f='codebrowser/lib/mime.c' l='525' u='r' c='encoder_qp_read'/>
+<use f='codebrowser/lib/mime.c' l='530' u='r' c='encoder_qp_read'/>
+<use f='codebrowser/lib/mime.c' l='793' u='r' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='793' u='r' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='797' u='r' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='799' u='r' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='800' u='r' c='read_encoded_part_content'/>

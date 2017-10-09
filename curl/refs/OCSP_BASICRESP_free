@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='549' macro='1' type='void OCSP_BASICRESP_free(OCSP_BASICRESP * a)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1653' u='c' c='verifystatus'/>

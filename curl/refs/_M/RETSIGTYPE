@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/curl_config.h' l='844'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='397' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='843'>/* Define as the return type of signal handlers (`int&apos; or `void&apos;). */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='209' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='248' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='155' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='194' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='214' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='253' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='231' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='297' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='355' u='c'/>

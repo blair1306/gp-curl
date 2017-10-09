@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='1303' type='struct curl_llist'/>
+<offset>135232</offset>
+<doc f='codebrowser/lib/urldata.h' l='1303'>/* list of pending timeouts */</doc>
+<use f='codebrowser/lib/multi.c' l='378' u='a' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='737' u='a' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2508' u='a' c='add_next_timeout'/>
+<use f='codebrowser/lib/multi.c' l='2869' u='a' c='multi_deltimeout'/>
+<use f='codebrowser/lib/multi.c' l='2896' u='a' c='multi_addtimeout'/>
+<use f='codebrowser/lib/multi.c' l='3024' u='a' c='Curl_expire_clear'/>
+<use f='codebrowser/lib/url.c' l='429' u='a' c='Curl_close'/>

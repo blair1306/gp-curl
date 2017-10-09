@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/ftp.h' l='148' type='char *'/>
+<offset>1664</offset>
+<doc f='codebrowser/lib/ftp.h' l='148'>/* The target server operating system. */</doc>
+<use f='codebrowser/lib/ftp.c' l='2838' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2899' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2899' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2900' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2906' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2906' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2907' u='w' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='4113' u='r' c='ftp_disconnect'/>
+<use f='codebrowser/lib/ftp.c' l='4114' u='w' c='ftp_disconnect'/>

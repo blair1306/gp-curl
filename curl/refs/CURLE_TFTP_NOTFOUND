@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='539' type='68'/>
+<doc f='codebrowser/include/curl/curl.h' l='539'>/* 68 - file not found on server */</doc>
+<use f='codebrowser/lib/strerror.c' l='255' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/tftp.c' l='863' u='r' c='tftp_translate_code'/>

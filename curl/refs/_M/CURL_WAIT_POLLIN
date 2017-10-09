@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/multi.h' l='106'/>
+<doc f='codebrowser/include/curl/multi.h' l='103'>/* Based on poll(2) structure and values.
+ * We don&apos;t use pollfd and POLL* constants explicitly
+ * to cover platforms without poll(). */</doc>
+<use f='codebrowser/lib/multi.c' l='1077' u='c'/>
+<use f='codebrowser/lib/multi.c' l='1103' u='c'/>

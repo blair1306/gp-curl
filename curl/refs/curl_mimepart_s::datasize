@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/mime.h' l='114' type='curl_off_t'/>
+<offset>960</offset>
+<doc f='codebrowser/lib/mime.h' l='114'>/* Expected data size. */</doc>
+<use f='codebrowser/lib/mime.c' l='371' u='r' c='encoder_nop_size'/>
+<use f='codebrowser/lib/mime.c' l='474' u='r' c='encoder_base64_size'/>
+<use f='codebrowser/lib/mime.c' l='612' u='r' c='encoder_qp_size'/>
+<use f='codebrowser/lib/mime.c' l='622' u='r' c='mime_mem_read'/>
+<use f='codebrowser/lib/mime.c' l='645' u='r' c='mime_mem_seek'/>
+<use f='codebrowser/lib/mime.c' l='649' u='r' c='mime_mem_seek'/>
+<use f='codebrowser/lib/mime.c' l='1086' u='w' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1265' u='w' c='curl_mime_data'/>
+<use f='codebrowser/lib/mime.c' l='1301' u='w' c='curl_mime_filedata'/>
+<use f='codebrowser/lib/mime.c' l='1303' u='w' c='curl_mime_filedata'/>
+<use f='codebrowser/lib/mime.c' l='1404' u='w' c='curl_mime_data_cb'/>
+<use f='codebrowser/lib/mime.c' l='1451' u='w' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1526' u='r' c='Curl_mime_size'/>
+<use f='codebrowser/lib/mime.c' l='1527' u='w' c='Curl_mime_size'/>
+<use f='codebrowser/lib/mime.c' l='1529' u='r' c='Curl_mime_size'/>
+<use f='codebrowser/src/tool_setopt.c' l='483' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='483' u='r' c='libcurl_generate_mime'/>
+<use f='codebrowser/src/tool_setopt.c' l='485' u='r' c='libcurl_generate_mime'/>

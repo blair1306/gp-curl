@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/strtoofft.h' l='53' type='1'/>
+<use f='codebrowser/lib/cookie.c' l='616' u='r' c='Curl_cookie_add'/>
+<doc f='codebrowser/lib/strtoofft.h' l='53'>/* over or underflow */</doc>
+<use f='codebrowser/lib/file.c' l='145' u='r' c='file_range'/>
+<use f='codebrowser/lib/file.c' l='150' u='r' c='file_range'/>
+<use f='codebrowser/lib/ftp.c' l='3482' u='r' c='ftp_range'/>
+<use f='codebrowser/lib/ftp.c' l='3487' u='r' c='ftp_range'/>
+<use f='codebrowser/lib/strtoofft.c' l='237' u='r' c='curlx_strtoofft'/>

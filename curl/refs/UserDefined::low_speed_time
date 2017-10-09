@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1555' type='long'/>
+<offset>3072</offset>
+<doc f='codebrowser/lib/urldata.h' l='1555'>/* number of seconds */</doc>
+<use f='codebrowser/lib/speedcheck.c' l='42' u='r' c='Curl_speedcheck'/>
+<use f='codebrowser/lib/speedcheck.c' l='51' u='r' c='Curl_speedcheck'/>
+<use f='codebrowser/lib/speedcheck.c' l='57' u='r' c='Curl_speedcheck'/>
+<use f='codebrowser/lib/url.c' l='1702' u='w' c='Curl_setopt'/>

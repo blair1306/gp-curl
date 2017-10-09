@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/cookie.h' l='69'/>
+<doc f='codebrowser/lib/cookie.h' l='58'>/* This is the maximum line length we accept for a cookie line. RFC 2109
+   section 6.3 says:
+
+   &quot;at least 4096 bytes per cookie (as measured by the size of the characters
+   that comprise the cookie non-terminal in the syntax description of the
+   Set-Cookie header)&quot;
+
+   We allow max 5000 bytes cookie header. Max 4095 bytes length per cookie
+   name and value. Name + value may not exceed 4096 bytes.
+
+*/</doc>
+<use f='codebrowser/lib/cookie.c' l='405' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='1016' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='1019' u='c'/>

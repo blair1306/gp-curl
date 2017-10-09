@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1650' type='_Bool'/>
+<offset>11832</offset>
+<use f='codebrowser/lib/ftp.c' l='1754' u='r' c='ftp_state_quote'/>
+<use f='codebrowser/lib/http.c' l='3506' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/url.c' l='2505' u='w' c='Curl_setopt'/>

@@ -1,0 +1,3 @@
+<dec f='include/openssl/x509_vfy.h' l='425'/>
+<doc f='include/openssl/x509_vfy.h' l='424'>/* Use trusted store first */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='2395' u='a'/>

@@ -1,0 +1,2 @@
+<dec f='include/openssl/ocsp.h' l='227'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1639' u='c'/>

@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/url.h' l='73' type='CURLcode Curl_connected_proxy(struct connectdata * conn, int sockindex)'/>
+<use f='codebrowser/lib/connect.c' l='796' u='c' c='Curl_is_connected'/>
+<def f='codebrowser/lib/url.c' l='3910' ll='3954' type='CURLcode Curl_connected_proxy(struct connectdata * conn, int sockindex)'/>
+<doc f='codebrowser/lib/url.c' l='3904'>/* after a TCP connection to the proxy has been verified, this function does
+   the next magic step.
+
+   Note: this function&apos;s sub-functions call failf()
+
+*/</doc>

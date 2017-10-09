@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/urldata.h' l='1238' type='struct conncache *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/urldata.h' l='1237'>/* Points to the connection cache */</doc>
+<use f='codebrowser/lib/conncache.c' l='199' u='r' c='Curl_conncache_add_conn'/>
+<use f='codebrowser/lib/conncache.c' l='209' u='r' c='Curl_conncache_add_conn'/>
+<use f='codebrowser/lib/conncache.c' l='221' u='r' c='Curl_conncache_add_conn'/>
+<use f='codebrowser/lib/easy.c' l='895' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/multi.c' l='333' u='w' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='409' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='502' u='r' c='ConnectionDone'/>
+<use f='codebrowser/lib/multi.c' l='741' u='w' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2243' u='w' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/url.c' l='3137' u='r' c='Curl_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3301' u='r' c='Curl_oldest_idle_connection'/>
+<use f='codebrowser/lib/url.c' l='3459' u='r' c='prune_dead_connections'/>
+<use f='codebrowser/lib/url.c' l='3462' u='r' c='prune_dead_connections'/>
+<use f='codebrowser/lib/url.c' l='3464' u='r' c='prune_dead_connections'/>
+<use f='codebrowser/lib/url.c' l='3520' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='6654' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6762' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6812' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6835' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6866' u='r' c='create_conn'/>

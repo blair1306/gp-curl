@@ -1,0 +1,4 @@
+<def f='codebrowser/lib/multihandle.h' l='27' ll='31'/>
+<size>48</size>
+<mbr r='Curl_message::list' o='0' t='struct curl_llist_element'/>
+<mbr r='Curl_message::extmsg' o='192' t='struct CURLMsg'/>

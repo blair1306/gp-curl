@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/curl_ntlm_core.h' l='47'/>
+<use f='codebrowser/lib/curl_ntlm_core.h' l='53' u='a'/>
+<use f='codebrowser/lib/curl_ntlm_core.h' l='60' u='a'/>
+<use f='codebrowser/lib/curl_ntlm_core.h' l='72' u='a'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='526' u='a'/>
+<use f='codebrowser/lib/smb.c' l='451' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='401' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='516' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='559' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='595' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='635' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='640' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='666' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='726' u='a'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='773' u='a'/>

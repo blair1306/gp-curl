@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/multiif.h' l='68' type='curl_off_t Curl_multi_chunk_length_penalty_size(struct Curl_multi * multi)'/>
+<doc f='codebrowser/lib/multiif.h' l='67'>/* Return the value of the CURLMOPT_CHUNK_LENGTH_PENALTY_SIZE option */</doc>
+<def f='codebrowser/lib/multi.c' l='3078' ll='3081' type='curl_off_t Curl_multi_chunk_length_penalty_size(struct Curl_multi * multi)'/>
+<use f='codebrowser/lib/pipeline.c' l='67' u='c' c='Curl_pipeline_penalized'/>

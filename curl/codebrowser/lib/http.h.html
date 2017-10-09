@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>http.h source code [codebrowser/lib/http.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="Curl_send_buffer,HTTP,back,http_conn "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/http.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='http.h.html'>http.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_HTTP_H">HEADER_CURL_HTTP_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_HTTP_H" data-ref="_M/HEADER_CURL_HTTP_H">HEADER_CURL_HTTP_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#<span data-ppcond="26">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_HTTP">CURL_DISABLE_HTTP</span></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="28">ifdef</span> <span class="macro" data-ref="_M/USE_NGHTTP2">USE_NGHTTP2</span></u></td></tr>
+<tr><th id="29">29</th><td><u>#include &lt;nghttp2/nghttp2.h&gt;</u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="28">endif</span></u></td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_http" title='Curl_handler_http' data-ref="Curl_handler_http">Curl_handler_http</dfn>;</td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifdef</span> <a class="macro" href="curl_setup.h.html#613" data-ref="_M/USE_SSL">USE_SSL</a></u></td></tr>
+<tr><th id="35">35</th><td><b>extern</b> <em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#Curl_handler" title='Curl_handler' data-ref="Curl_handler">Curl_handler</a> <dfn class="decl" id="Curl_handler_https" title='Curl_handler_https' data-ref="Curl_handler_https">Curl_handler_https</dfn>;</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="34">endif</span></u></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><i>/* Header specific functions */</i></td></tr>
+<tr><th id="39">39</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_compareheader" title='Curl_compareheader' data-ref="Curl_compareheader">Curl_compareheader</dfn>(<em>const</em> <em>char</em> *<dfn class="local col8 decl" id="588headerline" title='headerline' data-type='const char *' data-ref="588headerline">headerline</dfn>,  <i>/* line to check */</i></td></tr>
+<tr><th id="40">40</th><td>                        <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="589header" title='header' data-type='const char *' data-ref="589header">header</dfn>,   <i>/* header keyword _with_ colon */</i></td></tr>
+<tr><th id="41">41</th><td>                        <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="590content" title='content' data-type='const char *' data-ref="590content">content</dfn>); <i>/* content string to find */</i></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><em>char</em> *<dfn class="decl" id="Curl_copy_header_value" title='Curl_copy_header_value' data-ref="Curl_copy_header_value">Curl_copy_header_value</dfn>(<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="591header" title='header' data-type='const char *' data-ref="591header">header</dfn>);</td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><em>char</em> *<dfn class="decl" id="Curl_checkProxyheaders" title='Curl_checkProxyheaders' data-ref="Curl_checkProxyheaders">Curl_checkProxyheaders</dfn>(<em>const</em> <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="592conn" title='conn' data-type='const struct connectdata *' data-ref="592conn">conn</dfn>,</td></tr>
+<tr><th id="46">46</th><td>                             <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="593thisheader" title='thisheader' data-type='const char *' data-ref="593thisheader">thisheader</dfn>);</td></tr>
+<tr><th id="47">47</th><td><i>/* ------------------------------------------------------------------------- */</i></td></tr>
+<tr><th id="48">48</th><td><i>/*</i></td></tr>
+<tr><th id="49">49</th><td><i> * The add_buffer series of functions are used to build one large memory chunk</i></td></tr>
+<tr><th id="50">50</th><td><i> * from repeated function invokes. Used so that the entire HTTP request can</i></td></tr>
+<tr><th id="51">51</th><td><i> * be sent in one go.</i></td></tr>
+<tr><th id="52">52</th><td><i> */</i></td></tr>
+<tr><th id="53">53</th><td><b>struct</b> <dfn class="type def" id="Curl_send_buffer" title='Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</dfn> {</td></tr>
+<tr><th id="54">54</th><td>  <em>char</em> *<dfn class="decl" id="Curl_send_buffer::buffer" title='Curl_send_buffer::buffer' data-ref="Curl_send_buffer::buffer">buffer</dfn>;</td></tr>
+<tr><th id="55">55</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="Curl_send_buffer::size_max" title='Curl_send_buffer::size_max' data-ref="Curl_send_buffer::size_max">size_max</dfn>;</td></tr>
+<tr><th id="56">56</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl" id="Curl_send_buffer::size_used" title='Curl_send_buffer::size_used' data-ref="Curl_send_buffer::size_used">size_used</dfn>;</td></tr>
+<tr><th id="57">57</th><td>};</td></tr>
+<tr><th id="58">58</th><td><b>typedef</b> <b>struct</b> <a class="type" href="#Curl_send_buffer" title='Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</a> <dfn class="typedef" id="Curl_send_buffer" title='Curl_send_buffer' data-type='struct Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</dfn>;</td></tr>
+<tr><th id="59">59</th><td></td></tr>
+<tr><th id="60">60</th><td><a class="typedef" href="#Curl_send_buffer" title='Curl_send_buffer' data-type='struct Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</a> *<dfn class="decl" id="Curl_add_buffer_init" title='Curl_add_buffer_init' data-ref="Curl_add_buffer_init">Curl_add_buffer_init</dfn>(<em>void</em>);</td></tr>
+<tr><th id="61">61</th><td><em>void</em> <dfn class="decl" id="Curl_add_buffer_free" title='Curl_add_buffer_free' data-ref="Curl_add_buffer_free">Curl_add_buffer_free</dfn>(<a class="typedef" href="#Curl_send_buffer" title='Curl_send_buffer' data-type='struct Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</a> *<dfn class="local col4 decl" id="594buff" title='buff' data-type='Curl_send_buffer *' data-ref="594buff">buff</dfn>);</td></tr>
+<tr><th id="62">62</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_add_bufferf" title='Curl_add_bufferf' data-ref="Curl_add_bufferf">Curl_add_bufferf</dfn>(<a class="typedef" href="#Curl_send_buffer" title='Curl_send_buffer' data-type='struct Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</a> *<dfn class="local col5 decl" id="595in" title='in' data-type='Curl_send_buffer *' data-ref="595in">in</dfn>, <em>const</em> <em>char</em> *<dfn class="local col6 decl" id="596fmt" title='fmt' data-type='const char *' data-ref="596fmt">fmt</dfn>, ...);</td></tr>
+<tr><th id="63">63</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_add_buffer" title='Curl_add_buffer' data-ref="Curl_add_buffer">Curl_add_buffer</dfn>(<a class="typedef" href="#Curl_send_buffer" title='Curl_send_buffer' data-type='struct Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</a> *<dfn class="local col7 decl" id="597in" title='in' data-type='Curl_send_buffer *' data-ref="597in">in</dfn>, <em>const</em> <em>void</em> *<dfn class="local col8 decl" id="598inptr" title='inptr' data-type='const void *' data-ref="598inptr">inptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="599size" title='size' data-type='size_t' data-ref="599size">size</dfn>);</td></tr>
+<tr><th id="64">64</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_add_buffer_send" title='Curl_add_buffer_send' data-ref="Curl_add_buffer_send">Curl_add_buffer_send</dfn>(<a class="typedef" href="#Curl_send_buffer" title='Curl_send_buffer' data-type='struct Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</a> *<dfn class="local col0 decl" id="600in" title='in' data-type='Curl_send_buffer *' data-ref="600in">in</dfn>,</td></tr>
+<tr><th id="65">65</th><td>                              <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col1 decl" id="601conn" title='conn' data-type='struct connectdata *' data-ref="601conn">conn</dfn>,</td></tr>
+<tr><th id="66">66</th><td>                              <em>long</em> *<dfn class="local col2 decl" id="602bytes_written" title='bytes_written' data-type='long *' data-ref="602bytes_written">bytes_written</dfn>,</td></tr>
+<tr><th id="67">67</th><td>                              <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="603included_body_bytes" title='included_body_bytes' data-type='size_t' data-ref="603included_body_bytes">included_body_bytes</dfn>,</td></tr>
+<tr><th id="68">68</th><td>                              <em>int</em> <dfn class="local col4 decl" id="604socketindex" title='socketindex' data-type='int' data-ref="604socketindex">socketindex</dfn>);</td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_add_timecondition" title='Curl_add_timecondition' data-ref="Curl_add_timecondition">Curl_add_timecondition</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="605data" title='data' data-type='struct Curl_easy *' data-ref="605data">data</dfn>,</td></tr>
+<tr><th id="71">71</th><td>                                <a class="typedef" href="#Curl_send_buffer" title='Curl_send_buffer' data-type='struct Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</a> *<dfn class="local col6 decl" id="606buf" title='buf' data-type='Curl_send_buffer *' data-ref="606buf">buf</dfn>);</td></tr>
+<tr><th id="72">72</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_add_custom_headers" title='Curl_add_custom_headers' data-ref="Curl_add_custom_headers">Curl_add_custom_headers</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="607conn" title='conn' data-type='struct connectdata *' data-ref="607conn">conn</dfn>,</td></tr>
+<tr><th id="73">73</th><td>                                 <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col8 decl" id="608is_connect" title='is_connect' data-type='_Bool' data-ref="608is_connect">is_connect</dfn>,</td></tr>
+<tr><th id="74">74</th><td>                                 <a class="typedef" href="#Curl_send_buffer" title='Curl_send_buffer' data-type='struct Curl_send_buffer' data-ref="Curl_send_buffer">Curl_send_buffer</a> *<dfn class="local col9 decl" id="609req_buffer" title='req_buffer' data-type='Curl_send_buffer *' data-ref="609req_buffer">req_buffer</dfn>);</td></tr>
+<tr><th id="75">75</th><td></td></tr>
+<tr><th id="76">76</th><td><i>/* protocol-specific functions set up to be called by the main engine */</i></td></tr>
+<tr><th id="77">77</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_http" title='Curl_http' data-ref="Curl_http">Curl_http</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col0 decl" id="610conn" title='conn' data-type='struct connectdata *' data-ref="610conn">conn</dfn>, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> *<dfn class="local col1 decl" id="611done" title='done' data-type='_Bool *' data-ref="611done">done</dfn>);</td></tr>
+<tr><th id="78">78</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_http_done" title='Curl_http_done' data-ref="Curl_http_done">Curl_http_done</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *, <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a>, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col2 decl" id="612premature" title='premature' data-type='_Bool' data-ref="612premature">premature</dfn>);</td></tr>
+<tr><th id="79">79</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_http_connect" title='Curl_http_connect' data-ref="Curl_http_connect">Curl_http_connect</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col3 decl" id="613conn" title='conn' data-type='struct connectdata *' data-ref="613conn">conn</dfn>, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> *<dfn class="local col4 decl" id="614done" title='done' data-type='_Bool *' data-ref="614done">done</dfn>);</td></tr>
+<tr><th id="80">80</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_http_setup_conn" title='Curl_http_setup_conn' data-ref="Curl_http_setup_conn">Curl_http_setup_conn</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col5 decl" id="615conn" title='conn' data-type='struct connectdata *' data-ref="615conn">conn</dfn>);</td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td><i>/* The following functions are defined in http_chunks.c */</i></td></tr>
+<tr><th id="83">83</th><td><em>void</em> <dfn class="decl" id="Curl_httpchunk_init" title='Curl_httpchunk_init' data-ref="Curl_httpchunk_init">Curl_httpchunk_init</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="616conn" title='conn' data-type='struct connectdata *' data-ref="616conn">conn</dfn>);</td></tr>
+<tr><th id="84">84</th><td><a class="typedef" href="http_chunks.h.html#CHUNKcode" title='CHUNKcode' data-type='enum CHUNKcode' data-ref="CHUNKcode">CHUNKcode</a> <dfn class="decl" id="Curl_httpchunk_read" title='Curl_httpchunk_read' data-ref="Curl_httpchunk_read">Curl_httpchunk_read</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="617conn" title='conn' data-type='struct connectdata *' data-ref="617conn">conn</dfn>, <em>char</em> *<dfn class="local col8 decl" id="618datap" title='datap' data-type='char *' data-ref="618datap">datap</dfn>,</td></tr>
+<tr><th id="85">85</th><td>                              <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col9 decl" id="619length" title='length' data-type='ssize_t' data-ref="619length">length</dfn>, <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> *<dfn class="local col0 decl" id="620wrote" title='wrote' data-type='ssize_t *' data-ref="620wrote">wrote</dfn>);</td></tr>
+<tr><th id="86">86</th><td></td></tr>
+<tr><th id="87">87</th><td><i>/* These functions are in http.c */</i></td></tr>
+<tr><th id="88">88</th><td><em>void</em> <dfn class="decl" id="Curl_http_auth_stage" title='Curl_http_auth_stage' data-ref="Curl_http_auth_stage">Curl_http_auth_stage</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="621data" title='data' data-type='struct Curl_easy *' data-ref="621data">data</dfn>, <em>int</em> <dfn class="local col2 decl" id="622stage" title='stage' data-type='int' data-ref="622stage">stage</dfn>);</td></tr>
+<tr><th id="89">89</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_http_input_auth" title='Curl_http_input_auth' data-ref="Curl_http_input_auth">Curl_http_input_auth</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col3 decl" id="623conn" title='conn' data-type='struct connectdata *' data-ref="623conn">conn</dfn>, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col4 decl" id="624proxy" title='proxy' data-type='_Bool' data-ref="624proxy">proxy</dfn>,</td></tr>
+<tr><th id="90">90</th><td>                              <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="625auth" title='auth' data-type='const char *' data-ref="625auth">auth</dfn>);</td></tr>
+<tr><th id="91">91</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_http_auth_act" title='Curl_http_auth_act' data-ref="Curl_http_auth_act">Curl_http_auth_act</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="626conn" title='conn' data-type='struct connectdata *' data-ref="626conn">conn</dfn>);</td></tr>
+<tr><th id="92">92</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_http_perhapsrewind" title='Curl_http_perhapsrewind' data-ref="Curl_http_perhapsrewind">Curl_http_perhapsrewind</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="627conn" title='conn' data-type='struct connectdata *' data-ref="627conn">conn</dfn>);</td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td><i>/* If only the PICKNONE bit is set, there has been a round-trip and we</i></td></tr>
+<tr><th id="95">95</th><td><i>   selected to use no auth at all. Ie, we actively select no auth, as opposed</i></td></tr>
+<tr><th id="96">96</th><td><i>   to not having one selected. The other CURLAUTH_* defines are present in the</i></td></tr>
+<tr><th id="97">97</th><td><i>   public curl/curl.h header. */</i></td></tr>
+<tr><th id="98">98</th><td><u>#define <dfn class="macro" id="_M/CURLAUTH_PICKNONE" data-ref="_M/CURLAUTH_PICKNONE">CURLAUTH_PICKNONE</dfn> (1&lt;&lt;30) /* don't use auth */</u></td></tr>
+<tr><th id="99">99</th><td></td></tr>
+<tr><th id="100">100</th><td><i>/* MAX_INITIAL_POST_SIZE indicates the number of bytes that will make the POST</i></td></tr>
+<tr><th id="101">101</th><td><i>   data get included in the initial data chunk sent to the server. If the</i></td></tr>
+<tr><th id="102">102</th><td><i>   data is larger than this, it will automatically get split up in multiple</i></td></tr>
+<tr><th id="103">103</th><td><i>   system calls.</i></td></tr>
+<tr><th id="104">104</th><td><i></i></td></tr>
+<tr><th id="105">105</th><td><i>   This value used to be fairly big (100K), but we must take into account that</i></td></tr>
+<tr><th id="106">106</th><td><i>   if the server rejects the POST due for authentication reasons, this data</i></td></tr>
+<tr><th id="107">107</th><td><i>   will always be uncondtionally sent and thus it may not be larger than can</i></td></tr>
+<tr><th id="108">108</th><td><i>   always be afforded to send twice.</i></td></tr>
+<tr><th id="109">109</th><td><i></i></td></tr>
+<tr><th id="110">110</th><td><i>   It must not be greater than 64K to work on VMS.</i></td></tr>
+<tr><th id="111">111</th><td><i>*/</i></td></tr>
+<tr><th id="112">112</th><td><u>#<span data-ppcond="112">ifndef</span> <span class="macro" data-ref="_M/MAX_INITIAL_POST_SIZE">MAX_INITIAL_POST_SIZE</span></u></td></tr>
+<tr><th id="113">113</th><td><u>#define <dfn class="macro" id="_M/MAX_INITIAL_POST_SIZE" data-ref="_M/MAX_INITIAL_POST_SIZE">MAX_INITIAL_POST_SIZE</dfn> (64*1024)</u></td></tr>
+<tr><th id="114">114</th><td><u>#<span data-ppcond="112">endif</span></u></td></tr>
+<tr><th id="115">115</th><td></td></tr>
+<tr><th id="116">116</th><td><i>/* EXPECT_100_THRESHOLD is the request body size limit for when libcurl will</i></td></tr>
+<tr><th id="117">117</th><td><i> * automatically add an "Expect: 100-continue" header in HTTP requests. When</i></td></tr>
+<tr><th id="118">118</th><td><i> * the size is unknown, it will always add it.</i></td></tr>
+<tr><th id="119">119</th><td><i> *</i></td></tr>
+<tr><th id="120">120</th><td><i> */</i></td></tr>
+<tr><th id="121">121</th><td><u>#<span data-ppcond="121">ifndef</span> <span class="macro" data-ref="_M/EXPECT_100_THRESHOLD">EXPECT_100_THRESHOLD</span></u></td></tr>
+<tr><th id="122">122</th><td><u>#define <dfn class="macro" id="_M/EXPECT_100_THRESHOLD" data-ref="_M/EXPECT_100_THRESHOLD">EXPECT_100_THRESHOLD</dfn> 1024</u></td></tr>
+<tr><th id="123">123</th><td><u>#<span data-ppcond="121">endif</span></u></td></tr>
+<tr><th id="124">124</th><td></td></tr>
+<tr><th id="125">125</th><td><u>#<span data-ppcond="26">endif</span> /* CURL_DISABLE_HTTP */</u></td></tr>
+<tr><th id="126">126</th><td></td></tr>
+<tr><th id="127">127</th><td><i>/****************************************************************************</i></td></tr>
+<tr><th id="128">128</th><td><i> * HTTP unique setup</i></td></tr>
+<tr><th id="129">129</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="130">130</th><td><b>struct</b> <dfn class="type def" id="HTTP" title='HTTP' data-ref="HTTP">HTTP</dfn> {</td></tr>
+<tr><th id="131">131</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> *<dfn class="decl" id="HTTP::sendit" title='HTTP::sendit' data-ref="HTTP::sendit">sendit</dfn>;</td></tr>
+<tr><th id="132">132</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="HTTP::postsize" title='HTTP::postsize' data-ref="HTTP::postsize">postsize</dfn>; <i>/* off_t to handle large file sizes */</i></td></tr>
+<tr><th id="133">133</th><td>  <em>const</em> <em>char</em> *<dfn class="decl" id="HTTP::postdata" title='HTTP::postdata' data-ref="HTTP::postdata">postdata</dfn>;</td></tr>
+<tr><th id="134">134</th><td></td></tr>
+<tr><th id="135">135</th><td>  <em>const</em> <em>char</em> *<dfn class="decl" id="HTTP::p_pragma" title='HTTP::p_pragma' data-ref="HTTP::p_pragma">p_pragma</dfn>;      <i>/* Pragma: string */</i></td></tr>
+<tr><th id="136">136</th><td>  <em>const</em> <em>char</em> *<dfn class="decl" id="HTTP::p_accept" title='HTTP::p_accept' data-ref="HTTP::p_accept">p_accept</dfn>;      <i>/* Accept: string */</i></td></tr>
+<tr><th id="137">137</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="HTTP::readbytecount" title='HTTP::readbytecount' data-ref="HTTP::readbytecount">readbytecount</dfn>;</td></tr>
+<tr><th id="138">138</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="HTTP::writebytecount" title='HTTP::writebytecount' data-ref="HTTP::writebytecount">writebytecount</dfn>;</td></tr>
+<tr><th id="139">139</th><td></td></tr>
+<tr><th id="140">140</th><td>  <i>/* For FORM posting */</i></td></tr>
+<tr><th id="141">141</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_mimepart" title='curl_mimepart' data-type='struct curl_mimepart_s' data-ref="curl_mimepart">curl_mimepart</a> <dfn class="decl" id="HTTP::form" title='HTTP::form' data-ref="HTTP::form">form</dfn>;</td></tr>
+<tr><th id="142">142</th><td></td></tr>
+<tr><th id="143">143</th><td>  <b>struct</b> <dfn class="type def" id="back" title='back' data-ref="back"><a class="type" href="#back" title='back' data-ref="back">back</a></dfn> {</td></tr>
+<tr><th id="144">144</th><td>    <a class="typedef" href="../include/curl/curl.h.html#curl_read_callback" title='curl_read_callback' data-type='size_t (*)(char *, size_t, size_t, void *)' data-ref="curl_read_callback">curl_read_callback</a> <dfn class="decl" id="back::fread_func" title='back::fread_func' data-ref="back::fread_func">fread_func</dfn>; <i>/* backup storage for fread pointer */</i></td></tr>
+<tr><th id="145">145</th><td>    <em>void</em> *<dfn class="decl" id="back::fread_in" title='back::fread_in' data-ref="back::fread_in">fread_in</dfn>;           <i>/* backup storage for fread_in pointer */</i></td></tr>
+<tr><th id="146">146</th><td>    <em>const</em> <em>char</em> *<dfn class="decl" id="back::postdata" title='back::postdata' data-ref="back::postdata">postdata</dfn>;</td></tr>
+<tr><th id="147">147</th><td>    <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="decl" id="back::postsize" title='back::postsize' data-ref="back::postsize">postsize</dfn>;</td></tr>
+<tr><th id="148">148</th><td>  } <dfn class="decl" id="HTTP::backup" title='HTTP::backup' data-ref="HTTP::backup">backup</dfn>;</td></tr>
+<tr><th id="149">149</th><td></td></tr>
+<tr><th id="150">150</th><td>  <b>enum</b> {</td></tr>
+<tr><th id="151">151</th><td>    <dfn class="enum" id="HTTP::HTTPSEND_NADA" title='HTTP::HTTPSEND_NADA' data-ref="HTTP::HTTPSEND_NADA">HTTPSEND_NADA</dfn>,    <i>/* init */</i></td></tr>
+<tr><th id="152">152</th><td>    <dfn class="enum" id="HTTP::HTTPSEND_REQUEST" title='HTTP::HTTPSEND_REQUEST' data-ref="HTTP::HTTPSEND_REQUEST">HTTPSEND_REQUEST</dfn>, <i>/* sending a request */</i></td></tr>
+<tr><th id="153">153</th><td>    <dfn class="enum" id="HTTP::HTTPSEND_BODY" title='HTTP::HTTPSEND_BODY' data-ref="HTTP::HTTPSEND_BODY">HTTPSEND_BODY</dfn>,    <i>/* sending body */</i></td></tr>
+<tr><th id="154">154</th><td>    <dfn class="enum" id="HTTP::HTTPSEND_LAST" title='HTTP::HTTPSEND_LAST' data-ref="HTTP::HTTPSEND_LAST">HTTPSEND_LAST</dfn>     <i>/* never use this */</i></td></tr>
+<tr><th id="155">155</th><td>  } <dfn class="decl" id="HTTP::sending" title='HTTP::sending' data-ref="HTTP::sending">sending</dfn>;</td></tr>
+<tr><th id="156">156</th><td></td></tr>
+<tr><th id="157">157</th><td>  <em>void</em> *<dfn class="decl" id="HTTP::send_buffer" title='HTTP::send_buffer' data-ref="HTTP::send_buffer">send_buffer</dfn>; <i>/* used if the request couldn't be sent in one chunk,</i></td></tr>
+<tr><th id="158">158</th><td><i>                        points to an allocated send_buffer struct */</i></td></tr>
+<tr><th id="159">159</th><td></td></tr>
+<tr><th id="160">160</th><td><u>#<span data-ppcond="160">ifdef</span> <span class="macro" data-ref="_M/USE_NGHTTP2">USE_NGHTTP2</span></u></td></tr>
+<tr><th id="161">161</th><td>  <i>/*********** for HTTP/2 we store stream-local data here *************/</i></td></tr>
+<tr><th id="162">162</th><td>  int32_t stream_id; <i>/* stream we are interested in */</i></td></tr>
+<tr><th id="163">163</th><td></td></tr>
+<tr><th id="164">164</th><td>  bool bodystarted;</td></tr>
+<tr><th id="165">165</th><td>  <i>/* We store non-final and final response headers here, per-stream */</i></td></tr>
+<tr><th id="166">166</th><td>  Curl_send_buffer *header_recvbuf;</td></tr>
+<tr><th id="167">167</th><td>  size_t nread_header_recvbuf; <i>/* number of bytes in header_recvbuf fed into</i></td></tr>
+<tr><th id="168">168</th><td><i>                                  upper layer */</i></td></tr>
+<tr><th id="169">169</th><td>  Curl_send_buffer *trailer_recvbuf;</td></tr>
+<tr><th id="170">170</th><td>  <em>int</em> status_code; <i>/* HTTP status code */</i></td></tr>
+<tr><th id="171">171</th><td>  <em>const</em> uint8_t *pausedata; <i>/* pointer to data received in on_data_chunk */</i></td></tr>
+<tr><th id="172">172</th><td>  size_t pauselen; <i>/* the number of bytes left in data */</i></td></tr>
+<tr><th id="173">173</th><td>  bool closed; <i>/* TRUE on HTTP2 stream close */</i></td></tr>
+<tr><th id="174">174</th><td>  bool close_handled; <i>/* TRUE if stream closure is handled by libcurl */</i></td></tr>
+<tr><th id="175">175</th><td>  uint32_t error_code; <i>/* HTTP/2 error code */</i></td></tr>
+<tr><th id="176">176</th><td></td></tr>
+<tr><th id="177">177</th><td>  <em>char</em> *mem;     <i>/* points to a buffer in memory to store received data */</i></td></tr>
+<tr><th id="178">178</th><td>  size_t len;    <i>/* size of the buffer 'mem' points to */</i></td></tr>
+<tr><th id="179">179</th><td>  size_t memlen; <i>/* size of data copied to mem */</i></td></tr>
+<tr><th id="180">180</th><td></td></tr>
+<tr><th id="181">181</th><td>  <em>const</em> uint8_t *upload_mem; <i>/* points to a buffer to read from */</i></td></tr>
+<tr><th id="182">182</th><td>  size_t upload_len; <i>/* size of the buffer 'upload_mem' points to */</i></td></tr>
+<tr><th id="183">183</th><td>  curl_off_t upload_left; <i>/* number of bytes left to upload */</i></td></tr>
+<tr><th id="184">184</th><td></td></tr>
+<tr><th id="185">185</th><td>  <em>char</em> **push_headers;       <i>/* allocated array */</i></td></tr>
+<tr><th id="186">186</th><td>  size_t push_headers_used;  <i>/* number of entries filled in */</i></td></tr>
+<tr><th id="187">187</th><td>  size_t push_headers_alloc; <i>/* number of entries allocated */</i></td></tr>
+<tr><th id="188">188</th><td><u>#<span data-ppcond="160">endif</span></u></td></tr>
+<tr><th id="189">189</th><td>};</td></tr>
+<tr><th id="190">190</th><td></td></tr>
+<tr><th id="191">191</th><td><b>typedef</b> <em>int</em> (*<dfn class="typedef" id="sending" title='sending' data-type='int (*)(void)' data-ref="sending">sending</dfn>)(<em>void</em>); <i>/* Curl_send */</i></td></tr>
+<tr><th id="192">192</th><td><b>typedef</b> <em>int</em> (*<dfn class="typedef" id="recving" title='recving' data-type='int (*)(void)' data-ref="recving">recving</dfn>)(<em>void</em>); <i>/* Curl_recv */</i></td></tr>
+<tr><th id="193">193</th><td></td></tr>
+<tr><th id="194">194</th><td><u>#<span data-ppcond="194">ifdef</span> <span class="macro" data-ref="_M/USE_NGHTTP2">USE_NGHTTP2</span></u></td></tr>
+<tr><th id="195">195</th><td><i>/* h2 settings for this connection */</i></td></tr>
+<tr><th id="196">196</th><td><b>struct</b> h2settings {</td></tr>
+<tr><th id="197">197</th><td>  uint32_t max_concurrent_streams;</td></tr>
+<tr><th id="198">198</th><td>  bool enable_push;</td></tr>
+<tr><th id="199">199</th><td>};</td></tr>
+<tr><th id="200">200</th><td><u>#<span data-ppcond="194">endif</span></u></td></tr>
+<tr><th id="201">201</th><td></td></tr>
+<tr><th id="202">202</th><td></td></tr>
+<tr><th id="203">203</th><td><b>struct</b> <dfn class="type def" id="http_conn" title='http_conn' data-ref="http_conn">http_conn</dfn> {</td></tr>
+<tr><th id="204">204</th><td><u>#<span data-ppcond="204">ifdef</span> <span class="macro" data-ref="_M/USE_NGHTTP2">USE_NGHTTP2</span></u></td></tr>
+<tr><th id="205">205</th><td><u>#define H2_BINSETTINGS_LEN 80</u></td></tr>
+<tr><th id="206">206</th><td>  nghttp2_session *h2;</td></tr>
+<tr><th id="207">207</th><td>  uint8_t binsettings[H2_BINSETTINGS_LEN];</td></tr>
+<tr><th id="208">208</th><td>  size_t  binlen; <i>/* length of the binsettings data */</i></td></tr>
+<tr><th id="209">209</th><td>  sending send_underlying; <i>/* underlying send Curl_send callback */</i></td></tr>
+<tr><th id="210">210</th><td>  recving recv_underlying; <i>/* underlying recv Curl_recv callback */</i></td></tr>
+<tr><th id="211">211</th><td>  <em>char</em> *inbuf; <i>/* buffer to receive data from underlying socket */</i></td></tr>
+<tr><th id="212">212</th><td>  size_t inbuflen; <i>/* number of bytes filled in inbuf */</i></td></tr>
+<tr><th id="213">213</th><td>  size_t nread_inbuf; <i>/* number of bytes read from in inbuf */</i></td></tr>
+<tr><th id="214">214</th><td>  <i>/* We need separate buffer for transmission and reception because we</i></td></tr>
+<tr><th id="215">215</th><td><i>     may call nghttp2_session_send() after the</i></td></tr>
+<tr><th id="216">216</th><td><i>     nghttp2_session_mem_recv() but mem buffer is still not full. In</i></td></tr>
+<tr><th id="217">217</th><td><i>     this case, we wrongly sends the content of mem buffer if we share</i></td></tr>
+<tr><th id="218">218</th><td><i>     them for both cases. */</i></td></tr>
+<tr><th id="219">219</th><td>  int32_t pause_stream_id; <i>/* stream ID which paused</i></td></tr>
+<tr><th id="220">220</th><td><i>                              nghttp2_session_mem_recv */</i></td></tr>
+<tr><th id="221">221</th><td>  size_t drain_total; <i>/* sum of all stream's UrlState.drain */</i></td></tr>
+<tr><th id="222">222</th><td></td></tr>
+<tr><th id="223">223</th><td>  <i>/* this is a hash of all individual streams (Curl_easy structs) */</i></td></tr>
+<tr><th id="224">224</th><td>  <b>struct</b> h2settings settings;</td></tr>
+<tr><th id="225">225</th><td></td></tr>
+<tr><th id="226">226</th><td>  <i>/* list of settings that will be sent */</i></td></tr>
+<tr><th id="227">227</th><td>  nghttp2_settings_entry local_settings[<var>3</var>];</td></tr>
+<tr><th id="228">228</th><td>  size_t local_settings_num;</td></tr>
+<tr><th id="229">229</th><td><u>#<span data-ppcond="204">else</span></u></td></tr>
+<tr><th id="230">230</th><td>  <em>int</em> <dfn class="decl" id="http_conn::unused" title='http_conn::unused' data-ref="http_conn::unused">unused</dfn>; <i>/* prevent a compiler warning */</i></td></tr>
+<tr><th id="231">231</th><td><u>#<span data-ppcond="204">endif</span></u></td></tr>
+<tr><th id="232">232</th><td>};</td></tr>
+<tr><th id="233">233</th><td></td></tr>
+<tr><th id="234">234</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_http_readwrite_headers" title='Curl_http_readwrite_headers' data-ref="Curl_http_readwrite_headers">Curl_http_readwrite_headers</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col8 decl" id="628data" title='data' data-type='struct Curl_easy *' data-ref="628data">data</dfn>,</td></tr>
+<tr><th id="235">235</th><td>                                     <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col9 decl" id="629conn" title='conn' data-type='struct connectdata *' data-ref="629conn">conn</dfn>,</td></tr>
+<tr><th id="236">236</th><td>                                     <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> *<dfn class="local col0 decl" id="630nread" title='nread' data-type='ssize_t *' data-ref="630nread">nread</dfn>,</td></tr>
+<tr><th id="237">237</th><td>                                     <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> *<dfn class="local col1 decl" id="631stop_reading" title='stop_reading' data-type='_Bool *' data-ref="631stop_reading">stop_reading</dfn>);</td></tr>
+<tr><th id="238">238</th><td></td></tr>
+<tr><th id="239">239</th><td><i class="doc">/**</i></td></tr>
+<tr><th id="240">240</th><td><i class="doc"> * Curl_http_output_auth() setups the authentication headers for the</i></td></tr>
+<tr><th id="241">241</th><td><i class="doc"> * host/proxy and the correct authentication</i></td></tr>
+<tr><th id="242">242</th><td><i class="doc"> * method. conn-&gt;data-&gt;state.authdone is set to TRUE when authentication is</i></td></tr>
+<tr><th id="243">243</th><td><i class="doc"> * done.</i></td></tr>
+<tr><th id="244">244</th><td><i class="doc"> *</i></td></tr>
+<tr><th id="245">245</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">conn</span> all information about the current connection</i></td></tr>
+<tr><th id="246">246</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">request</span> pointer to the request keyword</i></td></tr>
+<tr><th id="247">247</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">path</span> pointer to the requested path</i></td></tr>
+<tr><th id="248">248</th><td><i class="doc"> * <span class="command">@param</span> <span class="arg">proxytunnel</span> boolean if this is the request setting up a "proxy</i></td></tr>
+<tr><th id="249">249</th><td><i class="doc"> * tunnel"</i></td></tr>
+<tr><th id="250">250</th><td><i class="doc"> *</i></td></tr>
+<tr><th id="251">251</th><td><i class="doc"> * <span class="command">@returns</span> CURLcode</i></td></tr>
+<tr><th id="252">252</th><td><i class="doc"> */</i></td></tr>
+<tr><th id="253">253</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a></td></tr>
+<tr><th id="254">254</th><td><dfn class="decl" id="Curl_http_output_auth" title='Curl_http_output_auth' data-ref="Curl_http_output_auth">Curl_http_output_auth</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="632conn" title='conn' data-type='struct connectdata *' data-ref="632conn">conn</dfn>,</td></tr>
+<tr><th id="255">255</th><td>                      <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="633request" title='request' data-type='const char *' data-ref="633request">request</dfn>,</td></tr>
+<tr><th id="256">256</th><td>                      <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="634path" title='path' data-type='const char *' data-ref="634path">path</dfn>,</td></tr>
+<tr><th id="257">257</th><td>                      <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col5 decl" id="635proxytunnel" title='proxytunnel' data-type='_Bool' data-ref="635proxytunnel">proxytunnel</dfn>); <i>/* TRUE if this is the request setting</i></td></tr>
+<tr><th id="258">258</th><td><i>                                            up the proxy tunnel */</i></td></tr>
+<tr><th id="259">259</th><td></td></tr>
+<tr><th id="260">260</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_HTTP_H */</u></td></tr>
+<tr><th id="261">261</th><td></td></tr>
+<tr><th id="262">262</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='asyn-thread.c.html'>codebrowser/lib/asyn-thread.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

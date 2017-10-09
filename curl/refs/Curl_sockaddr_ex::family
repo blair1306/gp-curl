@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/connect.h' l='87' type='int'/>
+<offset>0</offset>
+<use f='codebrowser/lib/connect.c' l='1003' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1003' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1033' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1035' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1038' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1101' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/connect.c' l='1334' u='w' c='Curl_socket'/>
+<use f='codebrowser/lib/connect.c' l='1358' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/connect.c' l='1365' u='r' c='Curl_socket'/>

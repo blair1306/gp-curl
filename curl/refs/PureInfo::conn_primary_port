@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1078' type='long'/>
+<offset>1088</offset>
+<use f='codebrowser/lib/connect.c' l='606' u='w' c='Curl_persistconninfo'/>
+<use f='codebrowser/lib/getinfo.c' l='79' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='204' u='r' c='getinfo_long'/>

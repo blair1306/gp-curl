@@ -1,0 +1,3 @@
+<dec f='include/openssl/pkcs12.h' l='137' type='ASN1_TYPE *'/>
+<offset>0</offset>
+<doc f='include/openssl/pkcs12.h' l='137'>/* Secret or other bag */</doc>

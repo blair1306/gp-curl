@@ -1,0 +1,9 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='73' type='curl_off_t'/>
+<offset>256</offset>
+<use f='codebrowser/src/tool_cb_wrt.c' l='66' u='w' c='tool_create_output_file'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='147' u='r' c='tool_write_cb'/>
+<use f='codebrowser/src/tool_cb_wrt.c' l='162' u='w' c='tool_write_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='1564' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1674' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1681' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1711' u='w' c='operate_do'/>

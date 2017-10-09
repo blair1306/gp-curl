@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/urldata.h' l='229' type='char *'/>
+<offset>768</offset>
+<doc f='codebrowser/lib/urldata.h' l='229'>/* optional issuer certificate filename */</doc>
+<use f='codebrowser/lib/url.c' l='6703' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6704' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3095' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3095' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3096' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3096' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3100' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3100' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3110' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3110' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3122' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3122' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3130' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3130' u='r' c='servercert'/>

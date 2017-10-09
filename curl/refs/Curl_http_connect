@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/http.h' l='79' type='CURLcode Curl_http_connect(struct connectdata * conn, _Bool * done)'/>
+<use f='codebrowser/lib/http.c' l='114' u='r'/>
+<use f='codebrowser/lib/http.c' l='114' u='r'/>
+<use f='codebrowser/lib/http.c' l='139'/>
+<use f='codebrowser/lib/http.c' l='139'/>
+<def f='codebrowser/lib/http.c' l='1337' ll='1371' type='CURLcode Curl_http_connect(struct connectdata * conn, _Bool * done)'/>
+<doc f='codebrowser/lib/http.c' l='1333'>/*
+ * Curl_http_connect() performs HTTP stuff to do at connect-time, called from
+ * the generic Curl_connect().
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='1556' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/rtsp.c' l='194' u='c' c='rtsp_connect'/>

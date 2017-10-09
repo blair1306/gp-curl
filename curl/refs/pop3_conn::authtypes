@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/pop3.h' l='69' type='unsigned int'/>
+<offset>1344</offset>
+<doc f='codebrowser/lib/pop3.h' l='69'>/* Accepted authentication types */</doc>
+<use f='codebrowser/lib/pop3.c' l='511' u='r' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='522' u='r' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='527' u='r' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='639' u='w' c='pop3_state_servergreet_resp'/>
+<use f='codebrowser/lib/pop3.c' l='672' u='w' c='pop3_state_capa_resp'/>
+<use f='codebrowser/lib/pop3.c' l='676' u='w' c='pop3_state_capa_resp'/>
+<use f='codebrowser/lib/pop3.c' l='733' u='w' c='pop3_state_capa_resp'/>
+<use f='codebrowser/lib/pop3.c' l='785' u='r' c='pop3_state_auth_resp'/>
+<use f='codebrowser/lib/pop3.c' l='790' u='r' c='pop3_state_auth_resp'/>

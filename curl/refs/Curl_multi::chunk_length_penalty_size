@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/multihandle.h' l='138' type='long'/>
+<offset>3008</offset>
+<doc f='codebrowser/lib/multihandle.h' l='138'>/* a connection with a chunk length
+                                     bigger than this is not
+                                     considered for pipelining */</doc>
+<use f='codebrowser/lib/multi.c' l='2726' u='w' c='curl_multi_setopt'/>
+<use f='codebrowser/lib/multi.c' l='3080' u='r' c='Curl_multi_chunk_length_penalty_size'/>

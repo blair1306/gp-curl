@@ -1,0 +1,25 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='149' type='ssize_t send(int __fd, const void * __buf, size_t __n, int __flags)'/>
+<doc f='include/x86_64-linux-gnu/sys/socket.h' l='145'>/* Send N bytes of BUF to socket FD.  Returns the number sent or -1.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>
+<use f='codebrowser/lib/sendf.c' l='371' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='358' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='945' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='957' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='985' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='1040' macro='1' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='1049' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='924' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1075' macro='1' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1100' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1109' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1081' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1226' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1661' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1681' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1268' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1337' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1385' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1400' macro='1' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='1432' macro='1' u='c'/>

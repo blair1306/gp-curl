@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/urldata.h' l='923' type='char *'/>
+<offset>256</offset>
+<use f='codebrowser/lib/http.c' l='2241' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2242' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2249' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2255' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2265' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2274' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2278' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2332' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2333' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/rtsp.c' l='442' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='442' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='443' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='444' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='3056' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3056' u='w' c='conn_free'/>

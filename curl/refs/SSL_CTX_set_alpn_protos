@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='1300' type='int SSL_CTX_set_alpn_protos(SSL_CTX * ctx, const unsigned char * protos, unsigned int protos_len)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2286' u='c' c='ossl_connect_step1'/>

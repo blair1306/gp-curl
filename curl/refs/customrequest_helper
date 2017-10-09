@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_helpers.h' l='31' type='void customrequest_helper(struct OperationConfig * config, HttpReq req, char * method)'/>
+<def f='codebrowser/src/tool_helpers.c' l='97' ll='120' type='void customrequest_helper(struct OperationConfig * config, HttpReq req, char * method)'/>
+<use f='codebrowser/src/tool_operate.c' l='1237' u='c' c='operate_do'/>

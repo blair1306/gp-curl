@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/curl_config.h' l='480'/>
+<doc f='codebrowser/lib/curl_config.h' l='479'>/* If you have a fine poll */</doc>
+<use f='codebrowser/lib/select.c' l='29' u='a'/>
+<use f='codebrowser/lib/select.c' l='78' u='a'/>
+<use f='codebrowser/lib/select.c' l='101' u='a'/>
+<use f='codebrowser/lib/select.c' l='150' u='a'/>
+<use f='codebrowser/lib/select.c' l='190' u='a'/>
+<use f='codebrowser/lib/select.c' l='393' u='a'/>
+<use f='codebrowser/lib/select.c' l='431' u='a'/>
+<use f='codebrowser/src/tool_sleep.c' l='48' u='a'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='383' u='a'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='37' u='a'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='387' u='a'/>
+<use f='codebrowser/tests/server/util.c' l='213' u='a'/>
+<use f='codebrowser/tests/server/util.c' l='236' u='a'/>

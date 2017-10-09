@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/wildcard.h' l='48' type='char *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/wildcard.h' l='48'>/* path to the directory, where we trying wildcard-match */</doc>
+<use f='codebrowser/lib/ftp.c' l='3810' u='w' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3811' u='r' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3875' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/wildcard.c' l='56' u='r' c='Curl_wildcard_dtor'/>
+<use f='codebrowser/lib/wildcard.c' l='57' u='w' c='Curl_wildcard_dtor'/>

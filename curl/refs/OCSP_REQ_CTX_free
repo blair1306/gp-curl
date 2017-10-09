@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='403' type='void OCSP_REQ_CTX_free(OCSP_REQ_CTX * rctx)'/>

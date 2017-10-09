@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1417' type='22'/>
+<doc f='codebrowser/lib/urldata.h' l='1417'>/* pre socks proxy to use */</doc>
+<use f='codebrowser/lib/url.c' l='1537' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4261' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='4261' u='r' c='allocate_conn'/>
+<use f='codebrowser/lib/url.c' l='5344' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5345' u='r' c='create_conn_helper_init_proxy'/>

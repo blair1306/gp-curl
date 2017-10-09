@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/curl_setup_once.h' l='285'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='366' u='c'/>
+<use f='codebrowser/lib/escape.c' l='164' u='c'/>
+<use f='codebrowser/lib/escape.c' l='164' u='c'/>
+<use f='codebrowser/lib/url.c' l='5157' u='c'/>
+<use f='codebrowser/lib/url.c' l='5165' u='c'/>
+<use f='codebrowser/lib/url.c' l='5989' u='c'/>
+<use f='codebrowser/lib/url.c' l='5997' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='571' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='574' u='c'/>

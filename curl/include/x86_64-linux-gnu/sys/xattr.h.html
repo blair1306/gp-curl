@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>xattr.h source code [include/x86_64-linux-gnu/sys/xattr.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/sys/xattr.h'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>sys</a>/<a href='xattr.h.html'>xattr.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 2002-2016 Free Software Foundation, Inc.</i></td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i></td></tr>
+<tr><th id="3">3</th><td><i></i></td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i></td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i></td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i></td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i></td></tr>
+<tr><th id="8">8</th><td><i></i></td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i></td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i></td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i></td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i></td></tr>
+<tr><th id="13">13</th><td><i></i></td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i></td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i></td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.  */</i></td></tr>
+<tr><th id="17">17</th><td></td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">ifndef</span> <span class="macro" data-ref="_M/_SYS_XATTR_H">_SYS_XATTR_H</span></u></td></tr>
+<tr><th id="19">19</th><td><u>#define <dfn class="macro" id="_M/_SYS_XATTR_H" data-ref="_M/_SYS_XATTR_H">_SYS_XATTR_H</dfn>	1</u></td></tr>
+<tr><th id="20">20</th><td></td></tr>
+<tr><th id="21">21</th><td><u>#include <a href="../../features.h.html">&lt;features.h&gt;</a></u></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="types.h.html">&lt;sys/types.h&gt;</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><a class="macro" href="cdefs.h.html#101" title="" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><i>/* The following constants should be used for the fifth parameter of</i></td></tr>
+<tr><th id="28">28</th><td><i>   `*setxattr'.  */</i></td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">ifndef</span> <span class="macro" data-ref="_M/__USE_KERNEL_XATTR_DEFS">__USE_KERNEL_XATTR_DEFS</span></u></td></tr>
+<tr><th id="30">30</th><td><b>enum</b></td></tr>
+<tr><th id="31">31</th><td>{</td></tr>
+<tr><th id="32">32</th><td>  <dfn class="enum" id="XATTR_CREATE" title='XATTR_CREATE' data-ref="XATTR_CREATE">XATTR_CREATE</dfn> = <var>1</var>,	<i>/* set value, fail if attr already exists.  */</i></td></tr>
+<tr><th id="33">33</th><td><u>#define <dfn class="macro" id="_M/XATTR_CREATE" data-ref="_M/XATTR_CREATE">XATTR_CREATE</dfn>	XATTR_CREATE</u></td></tr>
+<tr><th id="34">34</th><td>  <dfn class="enum" id="XATTR_REPLACE" title='XATTR_REPLACE' data-ref="XATTR_REPLACE">XATTR_REPLACE</dfn> = <var>2</var>	<i>/* set value, fail if attr does not exist.  */</i></td></tr>
+<tr><th id="35">35</th><td><u>#define <dfn class="macro" id="_M/XATTR_REPLACE" data-ref="_M/XATTR_REPLACE">XATTR_REPLACE</dfn>	XATTR_REPLACE</u></td></tr>
+<tr><th id="36">36</th><td>};</td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="29">endif</span></u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><i>/* Set the attribute NAME of the file pointed to by PATH to VALUE (which</i></td></tr>
+<tr><th id="40">40</th><td><i>   is SIZE bytes long).  Return 0 on success, -1 for errors.  */</i></td></tr>
+<tr><th id="41">41</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="setxattr" title='setxattr' data-ref="setxattr">setxattr</dfn> (<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="1__path" title='__path' data-type='const char *' data-ref="1__path">__path</dfn>, <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="2__name" title='__name' data-type='const char *' data-ref="2__name">__name</dfn>,</td></tr>
+<tr><th id="42">42</th><td>		     <em>const</em> <em>void</em> *<dfn class="local col3 decl" id="3__value" title='__value' data-type='const void *' data-ref="3__value">__value</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="4__size" title='__size' data-type='size_t' data-ref="4__size">__size</dfn>, <em>int</em> <dfn class="local col5 decl" id="5__flags" title='__flags' data-type='int' data-ref="5__flags">__flags</dfn>)</td></tr>
+<tr><th id="43">43</th><td>	<a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><i>/* Set the attribute NAME of the file pointed to by PATH to VALUE (which is</i></td></tr>
+<tr><th id="46">46</th><td><i>   SIZE bytes long), not following symlinks for the last pathname component.</i></td></tr>
+<tr><th id="47">47</th><td><i>   Return 0 on success, -1 for errors.  */</i></td></tr>
+<tr><th id="48">48</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="lsetxattr" title='lsetxattr' data-ref="lsetxattr">lsetxattr</dfn> (<em>const</em> <em>char</em> *<dfn class="local col6 decl" id="6__path" title='__path' data-type='const char *' data-ref="6__path">__path</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="7__name" title='__name' data-type='const char *' data-ref="7__name">__name</dfn>,</td></tr>
+<tr><th id="49">49</th><td>		      <em>const</em> <em>void</em> *<dfn class="local col8 decl" id="8__value" title='__value' data-type='const void *' data-ref="8__value">__value</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="9__size" title='__size' data-type='size_t' data-ref="9__size">__size</dfn>, <em>int</em> <dfn class="local col0 decl" id="10__flags" title='__flags' data-type='int' data-ref="10__flags">__flags</dfn>)</td></tr>
+<tr><th id="50">50</th><td>	<a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td><i>/* Set the attribute NAME of the file descriptor FD to VALUE (which is SIZE</i></td></tr>
+<tr><th id="53">53</th><td><i>   bytes long).  Return 0 on success, -1 for errors.  */</i></td></tr>
+<tr><th id="54">54</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="fsetxattr" title='fsetxattr' data-ref="fsetxattr">fsetxattr</dfn> (<em>int</em> <dfn class="local col1 decl" id="11__fd" title='__fd' data-type='int' data-ref="11__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="12__name" title='__name' data-type='const char *' data-ref="12__name">__name</dfn>, <em>const</em> <em>void</em> *<dfn class="local col3 decl" id="13__value" title='__value' data-type='const void *' data-ref="13__value">__value</dfn>,</td></tr>
+<tr><th id="55">55</th><td>		      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="14__size" title='__size' data-type='size_t' data-ref="14__size">__size</dfn>, <em>int</em> <dfn class="local col5 decl" id="15__flags" title='__flags' data-type='int' data-ref="15__flags">__flags</dfn>) <a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="56">56</th><td></td></tr>
+<tr><th id="57">57</th><td><i>/* Get the attribute NAME of the file pointed to by PATH to VALUE (which is</i></td></tr>
+<tr><th id="58">58</th><td><i>   SIZE bytes long).  Return 0 on success, -1 for errors.  */</i></td></tr>
+<tr><th id="59">59</th><td><b>extern</b> <a class="typedef" href="types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl" id="getxattr" title='getxattr' data-ref="getxattr">getxattr</dfn> (<em>const</em> <em>char</em> *<dfn class="local col6 decl" id="16__path" title='__path' data-type='const char *' data-ref="16__path">__path</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="17__name" title='__name' data-type='const char *' data-ref="17__name">__name</dfn>,</td></tr>
+<tr><th id="60">60</th><td>			 <em>void</em> *<dfn class="local col8 decl" id="18__value" title='__value' data-type='void *' data-ref="18__value">__value</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="19__size" title='__size' data-type='size_t' data-ref="19__size">__size</dfn>) <a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="61">61</th><td></td></tr>
+<tr><th id="62">62</th><td><i>/* Get the attribute NAME of the file pointed to by PATH to VALUE (which is</i></td></tr>
+<tr><th id="63">63</th><td><i>   SIZE bytes long), not following symlinks for the last pathname component.</i></td></tr>
+<tr><th id="64">64</th><td><i>   Return 0 on success, -1 for errors.  */</i></td></tr>
+<tr><th id="65">65</th><td><b>extern</b> <a class="typedef" href="types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl" id="lgetxattr" title='lgetxattr' data-ref="lgetxattr">lgetxattr</dfn> (<em>const</em> <em>char</em> *<dfn class="local col0 decl" id="20__path" title='__path' data-type='const char *' data-ref="20__path">__path</dfn>, <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="21__name" title='__name' data-type='const char *' data-ref="21__name">__name</dfn>,</td></tr>
+<tr><th id="66">66</th><td>			  <em>void</em> *<dfn class="local col2 decl" id="22__value" title='__value' data-type='void *' data-ref="22__value">__value</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="23__size" title='__size' data-type='size_t' data-ref="23__size">__size</dfn>) <a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="67">67</th><td></td></tr>
+<tr><th id="68">68</th><td><i>/* Get the attribute NAME of the file descriptor FD to VALUE (which is SIZE</i></td></tr>
+<tr><th id="69">69</th><td><i>   bytes long).  Return 0 on success, -1 for errors.  */</i></td></tr>
+<tr><th id="70">70</th><td><b>extern</b> <a class="typedef" href="types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl" id="fgetxattr" title='fgetxattr' data-ref="fgetxattr">fgetxattr</dfn> (<em>int</em> <dfn class="local col4 decl" id="24__fd" title='__fd' data-type='int' data-ref="24__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="25__name" title='__name' data-type='const char *' data-ref="25__name">__name</dfn>, <em>void</em> *<dfn class="local col6 decl" id="26__value" title='__value' data-type='void *' data-ref="26__value">__value</dfn>,</td></tr>
+<tr><th id="71">71</th><td>			  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="27__size" title='__size' data-type='size_t' data-ref="27__size">__size</dfn>) <a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="72">72</th><td></td></tr>
+<tr><th id="73">73</th><td><i>/* List attributes of the file pointed to by PATH into the user-supplied</i></td></tr>
+<tr><th id="74">74</th><td><i>   buffer LIST (which is SIZE bytes big).  Return 0 on success, -1 for</i></td></tr>
+<tr><th id="75">75</th><td><i>   errors.  */</i></td></tr>
+<tr><th id="76">76</th><td><b>extern</b> <a class="typedef" href="types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl" id="listxattr" title='listxattr' data-ref="listxattr">listxattr</dfn> (<em>const</em> <em>char</em> *<dfn class="local col8 decl" id="28__path" title='__path' data-type='const char *' data-ref="28__path">__path</dfn>, <em>char</em> *<dfn class="local col9 decl" id="29__list" title='__list' data-type='char *' data-ref="29__list">__list</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="30__size" title='__size' data-type='size_t' data-ref="30__size">__size</dfn>)</td></tr>
+<tr><th id="77">77</th><td>	<a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="78">78</th><td></td></tr>
+<tr><th id="79">79</th><td><i>/* List attributes of the file pointed to by PATH into the user-supplied</i></td></tr>
+<tr><th id="80">80</th><td><i>   buffer LIST (which is SIZE bytes big), not following symlinks for the</i></td></tr>
+<tr><th id="81">81</th><td><i>   last pathname component.  Return 0 on success, -1 for errors.  */</i></td></tr>
+<tr><th id="82">82</th><td><b>extern</b> <a class="typedef" href="types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl" id="llistxattr" title='llistxattr' data-ref="llistxattr">llistxattr</dfn> (<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="31__path" title='__path' data-type='const char *' data-ref="31__path">__path</dfn>, <em>char</em> *<dfn class="local col2 decl" id="32__list" title='__list' data-type='char *' data-ref="32__list">__list</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="33__size" title='__size' data-type='size_t' data-ref="33__size">__size</dfn>)</td></tr>
+<tr><th id="83">83</th><td>	<a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="84">84</th><td></td></tr>
+<tr><th id="85">85</th><td><i>/* List attributes of the file descriptor FD into the user-supplied buffer</i></td></tr>
+<tr><th id="86">86</th><td><i>   LIST (which is SIZE bytes big).  Return 0 on success, -1 for errors.  */</i></td></tr>
+<tr><th id="87">87</th><td><b>extern</b> <a class="typedef" href="types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl" id="flistxattr" title='flistxattr' data-ref="flistxattr">flistxattr</dfn> (<em>int</em> <dfn class="local col4 decl" id="34__fd" title='__fd' data-type='int' data-ref="34__fd">__fd</dfn>, <em>char</em> *<dfn class="local col5 decl" id="35__list" title='__list' data-type='char *' data-ref="35__list">__list</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="36__size" title='__size' data-type='size_t' data-ref="36__size">__size</dfn>)</td></tr>
+<tr><th id="88">88</th><td>	<a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="89">89</th><td></td></tr>
+<tr><th id="90">90</th><td><i>/* Remove the attribute NAME from the file pointed to by PATH.  Return 0</i></td></tr>
+<tr><th id="91">91</th><td><i>   on success, -1 for errors.  */</i></td></tr>
+<tr><th id="92">92</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="removexattr" title='removexattr' data-ref="removexattr">removexattr</dfn> (<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="37__path" title='__path' data-type='const char *' data-ref="37__path">__path</dfn>, <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="38__name" title='__name' data-type='const char *' data-ref="38__name">__name</dfn>) <a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td><i>/* Remove the attribute NAME from the file pointed to by PATH, not</i></td></tr>
+<tr><th id="95">95</th><td><i>   following symlinks for the last pathname component.  Return 0 on</i></td></tr>
+<tr><th id="96">96</th><td><i>   success, -1 for errors.  */</i></td></tr>
+<tr><th id="97">97</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="lremovexattr" title='lremovexattr' data-ref="lremovexattr">lremovexattr</dfn> (<em>const</em> <em>char</em> *<dfn class="local col9 decl" id="39__path" title='__path' data-type='const char *' data-ref="39__path">__path</dfn>, <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="40__name" title='__name' data-type='const char *' data-ref="40__name">__name</dfn>) <a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="98">98</th><td></td></tr>
+<tr><th id="99">99</th><td><i>/* Remove the attribute NAME from the file descriptor FD.  Return 0 on</i></td></tr>
+<tr><th id="100">100</th><td><i>   success, -1 for errors.  */</i></td></tr>
+<tr><th id="101">101</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="fremovexattr" title='fremovexattr' data-ref="fremovexattr">fremovexattr</dfn> (<em>int</em> <dfn class="local col1 decl" id="41__fd" title='__fd' data-type='int' data-ref="41__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="42__name" title='__name' data-type='const char *' data-ref="42__name">__name</dfn>) <a class="macro" href="cdefs.h.html#55" title="__attribute__ ((__nothrow__ ))" data-ref="_M/__THROW">__THROW</a>;</td></tr>
+<tr><th id="102">102</th><td></td></tr>
+<tr><th id="103">103</th><td><a class="macro" href="cdefs.h.html#102" title="" data-ref="_M/__END_DECLS">__END_DECLS</a></td></tr>
+<tr><th id="104">104</th><td></td></tr>
+<tr><th id="105">105</th><td><u>#<span data-ppcond="18">endif</span>	/* sys/xattr.h  */</u></td></tr>
+<tr><th id="106">106</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../codebrowser/src/tool_xattr.c.html'>codebrowser/src/tool_xattr.c</a><br/>Generated on <em>2017-Oct-09</em> from project include<br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

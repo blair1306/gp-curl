@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='136' type='CURLcode Curl_sasl_start(struct SASL * sasl, struct connectdata * conn, _Bool force_ir, saslprogress * progress)'/>
+<doc f='codebrowser/lib/curl_sasl.h' l='135'>/* Calculate the required login details for SASL authentication  */</doc>
+<def f='codebrowser/lib/curl_sasl.c' l='254' ll='401' type='CURLcode Curl_sasl_start(struct SASL * sasl, struct connectdata * conn, _Bool force_ir, saslprogress * progress)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='598' u='c' c='Curl_sasl_continue'/>
+<doc f='codebrowser/lib/curl_sasl.c' l='249'>/*
+ * Curl_sasl_start()
+ *
+ * Calculate the required login details for SASL authentication.
+ */</doc>
+<use f='codebrowser/lib/imap.c' l='576' u='c' c='imap_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='513' u='c' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/smtp.c' l='449' u='c' c='smtp_perform_authentication'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='38' type='unsigned int'/>
+<offset>130</offset>
+<doc f='codebrowser/lib/vtls/vtls.h' l='38'>/* supports CURLOPT_PINNEDPUBLICKEY */</doc>
+<use f='codebrowser/lib/url.c' l='2247' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2260' u='r' c='Curl_setopt'/>

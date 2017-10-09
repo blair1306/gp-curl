@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1282' type='struct digestdata'/>
+<offset>133440</offset>
+<doc f='codebrowser/lib/urldata.h' l='1282'>/* state data for proxy Digest auth */</doc>
+<use f='codebrowser/lib/http_digest.c' l='54' u='a' c='Curl_input_digest'/>
+<use f='codebrowser/lib/http_digest.c' l='96' u='a' c='Curl_output_digest'/>
+<use f='codebrowser/lib/http_digest.c' l='177' u='a' c='Curl_digest_cleanup'/>

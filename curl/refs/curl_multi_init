@@ -1,0 +1,34 @@
+<dec f='codebrowser/include/curl/multi.h' l='123' type='CURLM * curl_multi_init()'/>
+<def f='codebrowser/lib/multi.c' l='355' ll='359' type='CURLM * curl_multi_init()'/>
+<use f='codebrowser/tests/libtest/lib1500.c' l='43' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1501.c' l='52' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1502.c' l='77' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1506.c' l='64' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='60' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1508.c' l='37' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1515.c' l='132' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1531.c' l='48' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1550.c' l='38' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1552.c' l='44' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1553.c' l='58' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='152' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib502.c' l='49' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib503.c' l='59' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib504.c' l='58' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib507.c' l='43' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib525.c' l='108' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib526.c' l='78' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib530.c' l='49' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib533.c' l='52' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='88' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib540.c' l='218' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib555.c' l='113' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib560.c' l='63' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib564.c' l='50' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib573.c' l='64' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib575.c' l='70' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='290' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib583.c' l='42' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib591.c' l='85' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/lib597.c' l='67' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/libntlmconnect.c' l='118' macro='1' u='c'/>

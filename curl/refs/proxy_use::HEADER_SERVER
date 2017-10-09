@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/http.c' l='1554' type='0'/>
+<use f='codebrowser/lib/http.c' l='1576' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='1579' c='Curl_add_custom_headers'/>
+<doc f='codebrowser/lib/http.c' l='1554'>/* direct to server */</doc>

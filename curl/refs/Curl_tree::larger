@@ -1,0 +1,34 @@
+<dec f='codebrowser/lib/splay.h' l='29' type='struct Curl_tree *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/splay.h' l='29'>/* larger node */</doc>
+<use f='codebrowser/lib/splay.c' l='48' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='58' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='59' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='69' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='71' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='71' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='71' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='71' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='72' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='73' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='76' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='79' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='81' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='87' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='88' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='89' u='r' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='90' u='w' c='Curl_splay'/>
+<use f='codebrowser/lib/splay.c' l='130' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='134' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='139' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='139' u='r' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='141' u='w' c='Curl_splayinsert'/>
+<use f='codebrowser/lib/splay.c' l='182' u='w' c='Curl_splaygetbest'/>
+<use f='codebrowser/lib/splay.c' l='182' u='r' c='Curl_splaygetbest'/>
+<use f='codebrowser/lib/splay.c' l='192' u='r' c='Curl_splaygetbest'/>
+<use f='codebrowser/lib/splay.c' l='259' u='w' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='259' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='267' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='270' u='w' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/lib/splay.c' l='270' u='r' c='Curl_splayremovebyaddr'/>
+<use f='codebrowser/tests/unit/unit1309.c' l='45' u='r' c='splayprint'/>

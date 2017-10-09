@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/pingpong.h' l='84' type='CURLcode Curl_pp_statemach(struct pingpong * pp, _Bool block)'/>
+<doc f='codebrowser/lib/pingpong.h' l='78'>/*
+ * Curl_pp_statemach()
+ *
+ * called repeatedly until done. Set &apos;wait&apos; to make it wait a while on the
+ * socket if there&apos;s no traffic.
+ */</doc>
+<use f='codebrowser/lib/ftp.c' l='3053' u='c' c='ftp_multi_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3070' u='c' c='ftp_block_statemach'/>
+<use f='codebrowser/lib/imap.c' l='1342' u='c' c='imap_multi_statemach'/>
+<use f='codebrowser/lib/imap.c' l='1354' u='c' c='imap_block_statemach'/>
+<def f='codebrowser/lib/pingpong.c' l='81' ll='137' type='CURLcode Curl_pp_statemach(struct pingpong * pp, _Bool block)'/>
+<doc f='codebrowser/lib/pingpong.c' l='78'>/*
+ * Curl_pp_statemach()
+ */</doc>
+<use f='codebrowser/lib/pop3.c' l='1013' u='c' c='pop3_multi_statemach'/>
+<use f='codebrowser/lib/pop3.c' l='1025' u='c' c='pop3_block_statemach'/>
+<use f='codebrowser/lib/smtp.c' l='1076' u='c' c='smtp_multi_statemach'/>
+<use f='codebrowser/lib/smtp.c' l='1088' u='c' c='smtp_block_statemach'/>

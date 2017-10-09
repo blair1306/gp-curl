@@ -1,0 +1,16 @@
+<def f='codebrowser/lib/http.h' l='130' ll='189'/>
+<size>552</size>
+<doc f='codebrowser/lib/http.h' l='127'>/****************************************************************************
+ * HTTP unique setup
+ ***************************************************************************/</doc>
+<mbr r='HTTP::sendit' o='0' t='curl_mimepart *'/>
+<mbr r='HTTP::postsize' o='64' t='curl_off_t'/>
+<mbr r='HTTP::postdata' o='128' t='const char *'/>
+<mbr r='HTTP::p_pragma' o='192' t='const char *'/>
+<mbr r='HTTP::p_accept' o='256' t='const char *'/>
+<mbr r='HTTP::readbytecount' o='320' t='curl_off_t'/>
+<mbr r='HTTP::writebytecount' o='384' t='curl_off_t'/>
+<mbr r='HTTP::form' o='448' t='curl_mimepart'/>
+<mbr r='HTTP::backup' o='4032' t='struct back'/>
+<mbr r='HTTP::sending' o='4288' t='enum (anonymous enum at /home/jon/workspace/curl/lib/http.h:150:3)'/>
+<mbr r='HTTP::send_buffer' o='4352' t='void *'/>

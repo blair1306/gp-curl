@@ -1,0 +1,49 @@
+<dec f='codebrowser/src/tool_formparse.h' l='26' type='int formparse(struct OperationConfig * config, const char * input, curl_mime ** mimepost, curl_mime ** mimecurrent, _Bool literal_value)'/>
+<def f='codebrowser/src/tool_formparse.c' l='435' ll='749' type='int formparse(struct OperationConfig * config, const char * input, curl_mime ** mimepost, curl_mime ** mimecurrent, _Bool literal_value)'/>
+<doc f='codebrowser/src/tool_formparse.c' l='388'>/***************************************************************************
+ *
+ * formparse()
+ *
+ * Reads a &apos;name=value&apos; parameter and builds the appropriate linked list.
+ *
+ * Specify files to upload with &apos;name=@filename&apos;, or &apos;name=@&quot;filename&quot;&apos;
+ * in case the filename contain &apos;,&apos; or &apos;;&apos;. Supports specified
+ * given Content-Type of the files. Such as &apos;;type=&lt;content-type&gt;&apos;.
+ *
+ * If literal_value is set, any initial &apos;@&apos; or &apos;&lt;&apos; in the value string
+ * loses its special meaning, as does any embedded &apos;;type=&apos;.
+ *
+ * You may specify more than one file for a single name (field). Specify
+ * multiple files by writing it like:
+ *
+ * &apos;name=@filename,filename2,filename3&apos;
+ *
+ * or use double-quotes quote the filename:
+ *
+ * &apos;name=@&quot;filename&quot;,&quot;filename2&quot;,&quot;filename3&quot;&apos;
+ *
+ * If you want content-types specified for each too, write them like:
+ *
+ * &apos;name=@filename;type=image/gif,filename2,filename3&apos;
+ *
+ * If you want custom headers added for a single part, write them in a separate
+ * file and do like this:
+ *
+ * &apos;name=foo;headers=@headerfile&apos; or why not
+ * &apos;name=@filemame;headers=@headerfile&apos;
+ *
+ * To upload a file, but to fake the file name that will be included in the
+ * formpost, do like this:
+ *
+ * &apos;name=@filename;filename=/dev/null&apos; or quote the faked filename like:
+ * &apos;name=@filename;filename=&quot;play, play, and play.txt&quot;&apos;
+ *
+ * If filename/path contains &apos;,&apos; or &apos;;&apos;, it must be quoted by double-quotes,
+ * else curl will fail to figure out the correct filename. if the filename
+ * tobe quoted contains &apos;&quot;&apos; or &apos;\&apos;, &apos;&quot;&apos; and &apos;\&apos; must be escaped by backslash.
+ *
+ * This function uses curl_formadd to fulfill it&apos;s job. Is heavily based on
+ * the old curl_formparse code.
+ *
+ ***************************************************************************/</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1607' u='c' c='getparameter'/>

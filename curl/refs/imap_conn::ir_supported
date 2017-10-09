@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/imap.h' l='81' type='_Bool'/>
+<offset>1336</offset>
+<use f='codebrowser/lib/imap.c' l='576' u='r' c='imap_perform_authentication'/>
+<use f='codebrowser/lib/imap.c' l='886' u='w' c='imap_state_capability_resp'/>

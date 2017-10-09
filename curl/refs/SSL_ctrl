@@ -1,0 +1,4 @@
+<dec f='include/openssl/ssl.h' l='2337' type='long SSL_ctrl(SSL * ssl, int cmd, long larg, void * parg)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1546' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2438' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2450' macro='1' u='c'/>

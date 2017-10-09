@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='1673' type='Curl_RtspReq'/>
+<offset>16224</offset>
+<doc f='codebrowser/lib/urldata.h' l='1672'>/* Common RTSP header options */</doc>
+<doc f='codebrowser/lib/urldata.h' l='1673'>/* RTSP request type */</doc>
+<use f='codebrowser/lib/http.c' l='3237' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/rtsp.c' l='225' u='r' c='rtsp_done'/>
+<use f='codebrowser/lib/rtsp.c' l='234' u='r' c='rtsp_done'/>
+<use f='codebrowser/lib/rtsp.c' l='240' u='r' c='rtsp_done'/>
+<use f='codebrowser/lib/rtsp.c' l='254' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='690' u='r' c='rtsp_rtp_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1954' u='r' c='Curl_retry_request'/>
+<use f='codebrowser/lib/url.c' l='536' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2764' u='w' c='Curl_setopt'/>

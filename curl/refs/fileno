@@ -1,0 +1,17 @@
+<dec f='include/stdio.h' l='858' type='int fileno(FILE * __stream)'/>
+<dec f='codebrowser/lib/curl_setup.h' l='476' type='int fileno(FILE * stream)'/>
+<doc f='include/stdio.h' l='857'>/* Return the system file descriptor for STREAM.  */</doc>
+<use f='codebrowser/lib/telnet.c' l='1596' u='c' c='telnet_do'/>
+<use f='codebrowser/src/tool_operate.c' l='790' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1685' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1810' u='c' c='operate_do'/>
+<use f='codebrowser/tests/libtest/lib505.c' l='64' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib525.c' l='64' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib541.c' l='56' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='253' u='c' c='test'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='450' u='c' c='read_stdin'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='467' u='c' c='write_stdout'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='955' u='c' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='955' u='c' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1037' u='c' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1037' u='c' c='juggle'/>

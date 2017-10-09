@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/smtp.h' l='70' type='struct SASL'/>
+<offset>1024</offset>
+<doc f='codebrowser/lib/smtp.h' l='70'>/* SASL-related storage */</doc>
+<use f='codebrowser/lib/smtp.c' l='304' u='m' c='smtp_perform_ehlo'/>
+<use f='codebrowser/lib/smtp.c' l='305' u='m' c='smtp_perform_ehlo'/>
+<use f='codebrowser/lib/smtp.c' l='330' u='m' c='smtp_perform_helo'/>
+<use f='codebrowser/lib/smtp.c' l='443' u='a' c='smtp_perform_authentication'/>
+<use f='codebrowser/lib/smtp.c' l='449' u='a' c='smtp_perform_authentication'/>
+<use f='codebrowser/lib/smtp.c' l='520' u='m' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='757' u='m' c='smtp_state_ehlo_resp'/>
+<use f='codebrowser/lib/smtp.c' l='818' u='a' c='smtp_state_auth_resp'/>
+<use f='codebrowser/lib/smtp.c' l='1143' u='a' c='smtp_connect'/>
+<use f='codebrowser/lib/smtp.c' l='1357' u='m' c='smtp_disconnect'/>
+<use f='codebrowser/lib/smtp.c' l='1460' u='m' c='smtp_parse_url_options'/>
+<use f='codebrowser/lib/smtp.c' l='1475' u='a' c='smtp_parse_url_options'/>

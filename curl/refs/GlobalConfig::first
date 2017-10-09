@@ -1,0 +1,16 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='274' type='struct OperationConfig *'/>
+<offset>640</offset>
+<use f='codebrowser/src/tool_getparam.c' l='2091' u='r' c='parse_args'/>
+<use f='codebrowser/src/tool_main.c' l='152' u='w' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='153' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='165' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='166' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='167' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='172' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='177' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='182' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='234' u='w' c='main_free'/>
+<use f='codebrowser/src/tool_operate.c' l='2012' u='r' c='operate'/>
+<use f='codebrowser/src/tool_operate.c' l='2052' u='r' c='operate'/>
+<use f='codebrowser/src/tool_operate.c' l='2062' u='r' c='operate'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='55' u='r' c='parseconfig'/>

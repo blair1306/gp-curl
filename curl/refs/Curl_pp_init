@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/pingpong.h' l='87' type='void Curl_pp_init(struct pingpong * pp)'/>
+<doc f='codebrowser/lib/pingpong.h' l='86'>/* initialize stuff to prepare for reading a fresh new response */</doc>
+<use f='codebrowser/lib/ftp.c' l='3110' u='c' c='ftp_connect'/>
+<use f='codebrowser/lib/imap.c' l='1413' u='c' c='imap_connect'/>
+<def f='codebrowser/lib/pingpong.c' l='140' ll='147' type='void Curl_pp_init(struct pingpong * pp)'/>
+<use f='codebrowser/lib/pingpong.c' l='199' u='c' c='Curl_pp_vsendf'/>
+<doc f='codebrowser/lib/pingpong.c' l='139'>/* initialize stuff to prepare for reading a fresh new response */</doc>
+<use f='codebrowser/lib/pop3.c' l='1084' u='c' c='pop3_connect'/>
+<use f='codebrowser/lib/smtp.c' l='1146' u='c' c='smtp_connect'/>

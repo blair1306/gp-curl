@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='133'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2053' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2054' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2058' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2195' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2292' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2292' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2293' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2456' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3095' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3096' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3100' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3110' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3122' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3130' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3193' u='c'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='323' u='c'/>

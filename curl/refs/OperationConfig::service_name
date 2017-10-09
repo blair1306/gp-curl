@@ -1,0 +1,13 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='195' type='char *'/>
+<offset>7168</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='195'>/* set authentication service name for DIGEST-MD5,
+                               Kerberos 5 and SPNEGO */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='155' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='155' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='1047' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1047' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1047' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1047' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1047' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1356' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1358' u='r' c='operate_do'/>

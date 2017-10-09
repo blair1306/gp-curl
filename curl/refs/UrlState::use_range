@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1333' type='_Bool'/>
+<offset>139720</offset>
+<use f='codebrowser/lib/file.c' l='141' u='r' c='file_range'/>
+<use f='codebrowser/lib/ftp.c' l='3478' u='r' c='ftp_range'/>
+<use f='codebrowser/lib/http.c' l='2232' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2332' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/rtsp.c' l='437' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='4861' u='w' c='setup_range'/>
+<use f='codebrowser/lib/url.c' l='4864' u='w' c='setup_range'/>

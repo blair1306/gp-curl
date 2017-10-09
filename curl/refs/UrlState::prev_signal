@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/urldata.h' l='1277' type='void (*)(int)'/>
+<offset>132800</offset>
+<doc f='codebrowser/lib/urldata.h' l='1276'>/* storage for the previous bag^H^H^HSIGPIPE signal handler :-) */</doc>

@@ -1,0 +1,12 @@
+<dec f='include/netinet/in.h' l='33' type='in_addr_t'/>
+<offset>0</offset>
+<use f='codebrowser/lib/socks.c' l='183' u='a' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='184' u='a' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='185' u='a' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='186' u='a' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='630' u='a' c='Curl_SOCKS5'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1313' u='w' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1251' u='w' c='sockdaemon'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1487' u='w' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2152' u='w' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='795' u='w' c='main'/>

@@ -1,0 +1,2 @@
+<dec f='include/libio.h' l='429' type='int _IO_getc(_IO_FILE * __fp)'/>
+<use f='codebrowser/src/tool_formparse.c' l='122' macro='1' u='c'/>

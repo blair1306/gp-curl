@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='1870' type='5'/>
+<doc f='codebrowser/include/curl/curl.h' l='1870'>/* please use HTTP 2 without HTTP/1.1
+                                           Upgrade */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1109' u='r' c='getparameter'/>

@@ -1,0 +1,2 @@
+<dec f='codebrowser/include/curl/curl.h' l='1305' macro='1' type='114'/>
+<use f='codebrowser/lib/url.c' l='2445' c='Curl_setopt'/>

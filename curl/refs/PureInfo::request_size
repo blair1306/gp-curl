@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1062' type='long'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/urldata.h' l='1062'>/* the amount of bytes sent in the request(s) */</doc>
+<use f='codebrowser/lib/getinfo.c' l='66' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='165' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/http.c' l='2473' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2495' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2564' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2719' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2737' u='a' c='Curl_http'/>
+<use f='codebrowser/lib/http_proxy.c' l='301' u='a' c='CONNECT'/>
+<use f='codebrowser/lib/rtsp.c' l='597' u='a' c='rtsp_do'/>

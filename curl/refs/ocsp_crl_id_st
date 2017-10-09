@@ -1,0 +1,11 @@
+<def f='include/openssl/ocsp.h' l='331' ll='335'/>
+<size>24</size>
+<doc f='include/openssl/ocsp.h' l='325'>/*-
+ * CrlID ::= SEQUENCE {
+ *     crlUrl               [0]     EXPLICIT IA5String OPTIONAL,
+ *     crlNum               [1]     EXPLICIT INTEGER OPTIONAL,
+ *     crlTime              [2]     EXPLICIT GeneralizedTime OPTIONAL }
+ */</doc>
+<mbr r='ocsp_crl_id_st::crlUrl' o='0' t='ASN1_IA5STRING *'/>
+<mbr r='ocsp_crl_id_st::crlNum' o='64' t='ASN1_INTEGER *'/>
+<mbr r='ocsp_crl_id_st::crlTime' o='128' t='ASN1_GENERALIZEDTIME *'/>

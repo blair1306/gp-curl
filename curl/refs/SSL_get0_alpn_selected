@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='1311' type='void SSL_get0_alpn_selected(const SSL * ssl, const unsigned char ** data, unsigned int * len)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2608' u='c' c='ossl_connect_step2'/>

@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/urldata.h' l='1674' type='long'/>
+<offset>16256</offset>
+<doc f='codebrowser/lib/urldata.h' l='1674'>/* like httpversion, for RTSP */</doc>

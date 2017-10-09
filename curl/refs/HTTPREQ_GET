@@ -1,0 +1,22 @@
+<dec f='codebrowser/lib/urldata.h' l='1141' type='1'/>
+<use f='codebrowser/lib/http.c' l='382' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/http.c' l='514' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='529' u='r' c='Curl_http_auth_act'/>
+<use f='codebrowser/lib/http.c' l='1851' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1876' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2238' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3429' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/transfer.c' l='603' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1873' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1898' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1905' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1907' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='535' u='r' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='839' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1053' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1356' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='3192' u='r' c='IsPipeliningPossible'/>
+<use f='codebrowser/lib/url.c' l='7080' u='r' c='Curl_init_do'/>
+<dec f='codebrowser/src/tool_sdecls.h' l='136' type='1'/>
+<use f='codebrowser/src/tool_getparam.c' l='1690' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='368' u='r' c='operate_do'/>

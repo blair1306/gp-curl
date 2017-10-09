@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/ftp.h' l='154' type='char *'/>
+<offset>1792</offset>
+<doc f='codebrowser/lib/ftp.h' l='152'>/* newhost is the (allocated) IP addr or host name to connect the data
+     connection to */</doc>
+<doc f='codebrowser/lib/ftp.h' l='154'>/* this is the pair to connect the DATA... */</doc>
+<use f='codebrowser/lib/ftp.c' l='253' u='r' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='253' u='w' c='freedirs'/>
+<use f='codebrowser/lib/ftp.c' l='1831' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1831' u='w' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1864' u='w' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1865' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1912' u='w' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1915' u='w' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1917' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1955' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1963' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1988' u='r' c='ftp_state_pasv_resp'/>
+<use f='codebrowser/lib/ftp.c' l='1994' u='r' c='ftp_state_pasv_resp'/>

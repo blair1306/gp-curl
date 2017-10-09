@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1676' type='curl_chunk_bgn_callback'/>
+<offset>16384</offset>
+<doc f='codebrowser/lib/urldata.h' l='1676'>/* called before part of transfer
+                                        starts */</doc>
+<use f='codebrowser/lib/ftp.c' l='3886' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3887' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/url.c' l='613' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2821' u='w' c='Curl_setopt'/>

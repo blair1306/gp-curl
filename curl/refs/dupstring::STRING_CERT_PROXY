@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1395' type='1'/>
+<doc f='codebrowser/lib/urldata.h' l='1395'>/* client certificate file name */</doc>
+<use f='codebrowser/lib/url.c' l='2017' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6706' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6716' u='r' c='create_conn'/>

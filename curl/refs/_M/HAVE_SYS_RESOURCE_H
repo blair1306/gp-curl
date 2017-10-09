@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='663'/>
+<doc f='codebrowser/lib/curl_config.h' l='662'>/* Define to 1 if you have the &lt;sys/resource.h&gt; header file. */</doc>
+<use f='codebrowser/tests/libtest/lib518.c' l='24' u='a'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='24' u='a'/>

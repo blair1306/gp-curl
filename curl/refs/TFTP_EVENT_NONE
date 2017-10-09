@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/tftp.c' l='91' type='-1'/>
+<use f='codebrowser/lib/tftp.c' l='1193' u='r' c='tftp_state_timeout'/>
+<use f='codebrowser/lib/tftp.c' l='1237' u='r' c='tftp_multi_statemach'/>

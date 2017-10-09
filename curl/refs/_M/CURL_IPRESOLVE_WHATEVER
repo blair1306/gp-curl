@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='1853'/>
+<doc f='codebrowser/include/curl/curl.h' l='1850'>/* Below here follows defines for the CURLOPT_IPRESOLVE option. If a host
+     name resolves addresses using more than one IP protocol version, this
+     option might be handy to force libcurl to use a specific IP version. */</doc>
+<use f='codebrowser/src/tool_operate.c' l='1321' u='c'/>

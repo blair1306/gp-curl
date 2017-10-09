@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/pop3.h' l='54' type='char *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/pop3.h' l='54'>/* Message ID */</doc>
+<use f='codebrowser/lib/pop3.c' l='554' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='557' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='565' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='568' u='r' c='pop3_perform_command'/>
+<use f='codebrowser/lib/pop3.c' l='1126' u='r' c='pop3_done'/>
+<use f='codebrowser/lib/pop3.c' l='1126' u='w' c='pop3_done'/>
+<use f='codebrowser/lib/pop3.c' l='1386' u='a' c='pop3_parse_url_path'/>

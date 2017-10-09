@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/file.h' l='37' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/file.c' l='96' ll='115' type='const struct Curl_handler'/>
+<doc f='codebrowser/lib/file.c' l='92'>/*
+ * FILE scheme handler.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='197' u='a'/>
+<use f='codebrowser/lib/url.c' l='197' u='a'/>

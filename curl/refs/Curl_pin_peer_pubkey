@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='238' type='CURLcode Curl_pin_peer_pubkey(struct Curl_easy * data, const char * pinnedpubkey, const unsigned char * pubkey, size_t pubkeylen)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='237'>/* Check pinned public key. */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='3006' u='c' c='pkp_pin_peer_pubkey'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='802' ll='950' type='CURLcode Curl_pin_peer_pubkey(struct Curl_easy * data, const char * pinnedpubkey, const unsigned char * pubkey, size_t pubkeylen)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='798'>/*
+ * Generic pinned public key check.
+ */</doc>

@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/tftp.c' l='143' type='tftp_packet_t'/>
+<use f='codebrowser/lib/tftp.c' l='598' u='a' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='724' u='a' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='954' u='m' c='tftp_disconnect'/>
+<use f='codebrowser/lib/tftp.c' l='954' u='m' c='tftp_disconnect'/>
+<use f='codebrowser/lib/tftp.c' l='987' u='m' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='988' u='m' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='990' u='m' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1111' u='m' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1129' u='a' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1136' u='a' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1138' u='m' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1150' u='a' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1152' u='m' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1159' u='m' c='tftp_receive_packet'/>
+<offset>2816</offset>

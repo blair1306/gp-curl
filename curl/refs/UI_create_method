@@ -1,0 +1,3 @@
+<dec f='include/openssl/ui.h' l='321' type='UI_METHOD * UI_create_method(char * name)'/>
+<doc f='include/openssl/ui.h' l='320'>/* Create and manipulate methods */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='776' u='c' c='cert_stuff'/>

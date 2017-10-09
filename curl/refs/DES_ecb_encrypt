@@ -1,0 +1,6 @@
+<dec f='include/openssl/des.h' l='152' type='void DES_ecb_encrypt(const_DES_cblock * input, DES_cblock * output, DES_key_schedule * ks, int enc)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='415' u='c' c='Curl_ntlm_core_lm_resp'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='419' u='c' c='Curl_ntlm_core_lm_resp'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='423' u='c' c='Curl_ntlm_core_lm_resp'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='490' u='c' c='Curl_ntlm_core_mk_lm_hash'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='494' u='c' c='Curl_ntlm_core_mk_lm_hash'/>

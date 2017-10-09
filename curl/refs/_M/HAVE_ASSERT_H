@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='122'/>
+<use f='codebrowser/lib/curl_setup.h' l='319' u='a'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='417' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='121'>/* Define to 1 if you have the &lt;assert.h&gt; header file. */</doc>

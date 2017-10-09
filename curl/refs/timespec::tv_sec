@@ -1,0 +1,5 @@
+<dec f='include/time.h' l='122' type='__time_t'/>
+<offset>0</offset>
+<use f='codebrowser/lib/file.c' l='464' macro='1' u='r'/>
+<use f='codebrowser/lib/file.c' l='494' macro='1' u='r'/>
+<use f='codebrowser/src/tool_getparam.c' l='2070' macro='1' u='r'/>

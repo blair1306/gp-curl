@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='217' type='char *'/>
+<offset>384</offset>
+<doc f='codebrowser/lib/urldata.h' l='217'>/* path to file containing &quot;random&quot; data */</doc>
+<use f='codebrowser/lib/url.c' l='6691' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6692' u='w' c='create_conn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='97' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='97' u='r' c='Curl_ssl_config_matches'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='119' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='119' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='119' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='119' u='r' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='119' u='w' c='Curl_clone_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='131' u='r' c='Curl_free_primary_ssl_config'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='131' u='w' c='Curl_free_primary_ssl_config'/>

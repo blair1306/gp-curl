@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='44'/>
+<use f='codebrowser/lib/curl_sasl.c' l='161' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='183' u='c'/>
+<use f='codebrowser/lib/imap.c' l='1913' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1361' u='c'/>

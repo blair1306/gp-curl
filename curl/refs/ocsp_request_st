@@ -1,0 +1,8 @@
+<def f='include/openssl/ocsp.h' l='151' ll='154'/>
+<size>16</size>
+<doc f='include/openssl/ocsp.h' l='147'>/*-  OCSPRequest     ::=     SEQUENCE {
+ *       tbsRequest                  TBSRequest,
+ *       optionalSignature   [0]     EXPLICIT Signature OPTIONAL }
+ */</doc>
+<mbr r='ocsp_request_st::tbsRequest' o='0' t='OCSP_REQINFO *'/>
+<mbr r='ocsp_request_st::optionalSignature' o='64' t='OCSP_SIGNATURE *'/>

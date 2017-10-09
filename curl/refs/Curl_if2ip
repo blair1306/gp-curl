@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/if2ip.h' l='43' type='if2ip_result_t Curl_if2ip(int af, unsigned int remote_scope, unsigned int remote_scope_id, const char * interf, char * buf, int buf_size)'/>
+<use f='codebrowser/lib/connect.c' l='288' u='c' c='bindlocal'/>
+<use f='codebrowser/lib/ftp.c' l='1043' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/if2ip.c' l='204' u='c' c='Curl_if_is_interface_name'/>
+<def f='codebrowser/lib/if2ip.c' l='208' ll='250' type='if2ip_result_t Curl_if2ip(int af, unsigned int remote_scope, unsigned int remote_scope_id, const char * interf, char * buf, int buf_size)'/>

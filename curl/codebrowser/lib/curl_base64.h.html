@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>curl_base64.h source code [codebrowser/lib/curl_base64.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/curl_base64.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='curl_base64.h.html'>curl_base64.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_BASE64_H">HEADER_CURL_BASE64_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_BASE64_H" data-ref="_M/HEADER_CURL_BASE64_H">HEADER_CURL_BASE64_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2014, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <a class="decl" href="base64.c.html#Curl_base64_encode" title='Curl_base64_encode' data-ref="Curl_base64_encode" id="Curl_base64_encode">Curl_base64_encode</a>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col8 decl" id="18data" title='data' data-type='struct Curl_easy *' data-ref="18data">data</dfn>,</td></tr>
+<tr><th id="26">26</th><td>                            <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="19inputbuff" title='inputbuff' data-type='const char *' data-ref="19inputbuff">inputbuff</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="20insize" title='insize' data-type='size_t' data-ref="20insize">insize</dfn>,</td></tr>
+<tr><th id="27">27</th><td>                            <em>char</em> **<dfn class="local col1 decl" id="21outptr" title='outptr' data-type='char **' data-ref="21outptr">outptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col2 decl" id="22outlen" title='outlen' data-type='size_t *' data-ref="22outlen">outlen</dfn>);</td></tr>
+<tr><th id="28">28</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <a class="decl" href="base64.c.html#Curl_base64url_encode" title='Curl_base64url_encode' data-ref="Curl_base64url_encode" id="Curl_base64url_encode">Curl_base64url_encode</a>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="23data" title='data' data-type='struct Curl_easy *' data-ref="23data">data</dfn>,</td></tr>
+<tr><th id="29">29</th><td>                               <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="24inputbuff" title='inputbuff' data-type='const char *' data-ref="24inputbuff">inputbuff</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="25insize" title='insize' data-type='size_t' data-ref="25insize">insize</dfn>,</td></tr>
+<tr><th id="30">30</th><td>                               <em>char</em> **<dfn class="local col6 decl" id="26outptr" title='outptr' data-type='char **' data-ref="26outptr">outptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col7 decl" id="27outlen" title='outlen' data-type='size_t *' data-ref="27outlen">outlen</dfn>);</td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <a class="decl" href="base64.c.html#Curl_base64_decode" title='Curl_base64_decode' data-ref="Curl_base64_decode" id="Curl_base64_decode">Curl_base64_decode</a>(<em>const</em> <em>char</em> *<dfn class="local col8 decl" id="28src" title='src' data-type='const char *' data-ref="28src">src</dfn>,</td></tr>
+<tr><th id="33">33</th><td>                            <em>unsigned</em> <em>char</em> **<dfn class="local col9 decl" id="29outptr" title='outptr' data-type='unsigned char **' data-ref="29outptr">outptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col0 decl" id="30outlen" title='outlen' data-type='size_t *' data-ref="30outlen">outlen</dfn>);</td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_BASE64_H */</u></td></tr>
+<tr><th id="36">36</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='base64.c.html'>codebrowser/lib/base64.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

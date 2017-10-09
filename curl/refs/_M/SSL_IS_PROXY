@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='130'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='127'>/* set of helper macros for the backends to access the correct fields. For the
+   proxy or for the remote host - to properly support HTTPS proxy */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='265' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='267' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='415' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='417' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1346' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1348' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2039' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2047' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2501' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2578' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2580' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3036' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3054' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3170' u='c'/>

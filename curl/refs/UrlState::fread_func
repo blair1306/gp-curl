@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/urldata.h' l='1355' type='curl_read_callback'/>
+<offset>140288</offset>
+<doc f='codebrowser/lib/urldata.h' l='1355'>/* read callback/function */</doc>
+<use f='codebrowser/lib/ftp.c' l='1638' u='r' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/http.c' l='1003' u='w' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1160' u='r' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1166' u='w' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1944' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2206' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2558' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2679' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='747' u='w' c='imap_perform_append'/>
+<use f='codebrowser/lib/smtp.c' l='562' u='w' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/telnet.c' l='1655' u='r' c='telnet_do'/>
+<use f='codebrowser/lib/transfer.c' l='138' u='r' c='Curl_fillreadbuffer'/>
+<use f='codebrowser/lib/transfer.c' l='326' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/transfer.c' l='1314' u='w' c='Curl_init_CONNECT'/>

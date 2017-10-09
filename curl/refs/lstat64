@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='266' type='int lstat(const char *restrict __file, struct stat *restrict __buf)'/>
+<use f='codebrowser/tests/server/sws.c' l='2192' u='c' c='main'/>

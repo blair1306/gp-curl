@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='438' type='void _ossl_old_des_string_to_key(char * str, _ossl_old_des_cblock * key)'/>

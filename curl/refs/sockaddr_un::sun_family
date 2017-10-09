@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/un.h' l='31' macro='1' type='sa_family_t'/>
+<offset>0</offset>
+<use f='codebrowser/lib/curl_addrinfo.c' l='506' u='w' c='Curl_unix2addr'/>
+<use f='codebrowser/tests/server/sws.c' l='2168' u='w' c='main'/>

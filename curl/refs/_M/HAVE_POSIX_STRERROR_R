@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_config.h' l='486'/>
+<doc f='codebrowser/lib/curl_config.h' l='485'>/* Define to 1 if you have a working POSIX-style strerror_r function. */</doc>
+<use f='codebrowser/lib/strerror.c' l='26' u='a'/>
+<use f='codebrowser/lib/strerror.c' l='29' u='a'/>
+<use f='codebrowser/lib/strerror.c' l='31' u='a'/>
+<use f='codebrowser/lib/strerror.c' l='687' u='a'/>

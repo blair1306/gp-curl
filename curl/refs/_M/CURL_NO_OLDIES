@@ -1,0 +1,54 @@
+<dec f='codebrowser/lib/curl_setup.h' l='26'/>
+<use f='codebrowser/include/curl/curl.h' l='33' u='a'/>
+<use f='codebrowser/include/curl/curl.h' l='583' u='a'/>
+<use f='codebrowser/include/curl/curl.h' l='789' u='a'/>
+<use f='codebrowser/include/curl/curl.h' l='1822' u='a'/>
+<dec f='codebrowser/src/tool_setup.h' l='25'/>
+<doc f='codebrowser/src/tool_setup.h' l='3'>/***************************************************************************
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ &lt;| |___
+ *                             \___|\___/|_| \_\_____|
+ *
+ * Copyright (C) 1998 - 2014, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.
+ *
+ * This software is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution. The terms
+ * are also available at https://curl.haxx.se/docs/copyright.html.
+ *
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the COPYING file.
+ *
+ * This software is distributed on an &quot;AS IS&quot; basis, WITHOUT WARRANTY OF ANY
+ * KIND, either express or implied.
+ *
+ ***************************************************************************/</doc>
+<dec f='codebrowser/tests/libtest/test.h' l='30'/>
+<doc f='codebrowser/tests/libtest/test.h' l='25'>/* Now include the curl_setup.h file from libcurl&apos;s private libdir (the source
+   version, but that might include &quot;curl_config.h&quot; from the build dir so we
+   need both of them in the include path), so that we get good in-depth
+   knowledge about the system we&apos;re building this on */</doc>
+<dec f='codebrowser/tests/server/server_setup.h' l='25'/>
+<doc f='codebrowser/tests/server/server_setup.h' l='3'>/***************************************************************************
+ *                                  _   _ ____  _
+ *  Project                     ___| | | |  _ \| |
+ *                             / __| | | | |_) | |
+ *                            | (__| |_| |  _ &lt;| |___
+ *                             \___|\___/|_| \_\_____|
+ *
+ * Copyright (C) 1998 - 2012, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.
+ *
+ * This software is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution. The terms
+ * are also available at https://curl.haxx.se/docs/copyright.html.
+ *
+ * You may opt to use, copy, modify, merge, publish, distribute and/or sell
+ * copies of the Software, and permit persons to whom the Software is
+ * furnished to do so, under the terms of the COPYING file.
+ *
+ * This software is distributed on an &quot;AS IS&quot; basis, WITHOUT WARRANTY OF ANY
+ * KIND, either express or implied.
+ *
+ ***************************************************************************/</doc>

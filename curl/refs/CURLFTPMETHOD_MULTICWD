@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='833' type='1'/>
+<doc f='codebrowser/include/curl/curl.h' l='833'>/* single CWD operation for each path part */</doc>
+<use f='codebrowser/src/tool_paramhlp.c' l='504' u='r' c='ftpfilemethod'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='509' u='r' c='ftpfilemethod'/>

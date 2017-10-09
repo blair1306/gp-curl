@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/smb.h' l='34' type='enum smb_conn_state'/>
+<offset>0</offset>
+<use f='codebrowser/lib/smb.c' l='209' u='w' c='conn_state'/>
+<use f='codebrowser/lib/smb.c' l='264' u='w' c='smb_connect'/>
+<use f='codebrowser/lib/smb.c' l='648' u='r' c='smb_connection_state'/>
+<use f='codebrowser/lib/smb.c' l='681' u='r' c='smb_connection_state'/>

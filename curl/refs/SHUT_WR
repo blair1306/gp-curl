@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='56' type='1'/>
+<doc f='include/x86_64-linux-gnu/sys/socket.h' l='56'>/* No more transmissions.  */</doc>
+<use f='codebrowser/tests/server/sws.c' l='1664' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1684' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1717' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sws.c' l='1730' macro='1' u='r'/>

@@ -1,0 +1,4 @@
+<def f='codebrowser/lib/timeval.h' l='32' ll='35'/>
+<size>16</size>
+<mbr r='curltime::tv_sec' o='0' t='time_t'/>
+<mbr r='curltime::tv_usec' o='64' t='unsigned int'/>

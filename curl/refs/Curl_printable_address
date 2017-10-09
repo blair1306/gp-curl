@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/hostip.h' l='170' type='const char * Curl_printable_address(const Curl_addrinfo * ip, char * buf, size_t bufsize)'/>
+<doc f='codebrowser/lib/hostip.h' l='165'>/*
+ * Curl_printable_address() returns a printable version of the 1st address
+ * given in the &apos;ip&apos; argument. The result will be stored in the buf that is
+ * bufsize bytes big.
+ */</doc>
+<use f='codebrowser/lib/connect.c' l='361' u='c' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='825' u='c' c='Curl_is_connected'/>
+<use f='codebrowser/lib/ftp.c' l='1202' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='3461' u='c' c='ftp_pasv_verbose'/>
+<def f='codebrowser/lib/hostip.c' l='165' ll='192' type='const char * Curl_printable_address(const Curl_addrinfo * ai, char * buf, size_t bufsize)'/>
+<doc f='codebrowser/lib/hostip.c' l='158'>/*
+ * Curl_printable_address() returns a printable version of the 1st address
+ * given in the &apos;ai&apos; argument. The result will be stored in the buf that is
+ * bufsize bytes big.
+ *
+ * If the conversion fails, it returns NULL.
+ */</doc>
+<use f='codebrowser/lib/socks.c' l='177' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='622' u='c' c='Curl_SOCKS5'/>

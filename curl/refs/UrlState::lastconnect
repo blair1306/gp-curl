@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='1248' type='struct connectdata *'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/urldata.h' l='1248'>/* The last connection, NULL if undefined */</doc>
+<use f='codebrowser/lib/connect.c' l='1222' u='r' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/connect.c' l='1223' u='r' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/connect.c' l='1225' u='r' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/connect.c' l='1233' u='w' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/easy.c' l='897' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/multi.c' l='632' u='w' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='642' u='w' c='multi_done'/>
+<use f='codebrowser/lib/url.c' l='691' u='w' c='Curl_open'/>

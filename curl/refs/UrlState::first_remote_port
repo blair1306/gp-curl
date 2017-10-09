@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1265' type='int'/>
+<offset>131840</offset>
+<doc f='codebrowser/lib/urldata.h' l='1265'>/* remote port of the first (not followed) request */</doc>
+<use f='codebrowser/lib/http.c' l='1821' u='w' c='Curl_http'/>

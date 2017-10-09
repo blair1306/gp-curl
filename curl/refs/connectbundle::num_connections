@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/conncache.h' l='40' type='size_t'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/conncache.h' l='40'>/* Number of connections in the bundle */</doc>
+<use f='codebrowser/lib/conncache.c' l='56' u='w' c='bundle_create'/>
+<use f='codebrowser/lib/conncache.c' l='80' u='w' c='bundle_add_conn'/>
+<use f='codebrowser/lib/conncache.c' l='94' u='w' c='bundle_remove_conn'/>
+<use f='codebrowser/lib/conncache.c' l='244' u='r' c='Curl_conncache_remove_conn'/>
+<use f='codebrowser/lib/url.c' l='6761' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6815' u='r' c='create_conn'/>

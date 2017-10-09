@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/mime.h' l='99' type='struct Curl_easy *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/mime.h' l='99'>/* The associated easy handle. */</doc>
+<use f='codebrowser/lib/mime.c' l='1124' u='r' c='Curl_mime_cleanpart'/>
+<use f='codebrowser/lib/mime.c' l='1183' u='w' c='Curl_mime_initpart'/>
+<use f='codebrowser/lib/mime.c' l='1428' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1428' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1441' u='r' c='Curl_mime_set_subparts'/>

@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/url.h' l='37' type='CURLcode Curl_close(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/url.h' l='37'>/* opposite of curl_open() */</doc>
+<use f='codebrowser/lib/easy.c' l='840' u='c' c='curl_easy_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='346' u='c' c='Curl_multi_handle'/>
+<use f='codebrowser/lib/multi.c' l='2260' u='c' c='curl_multi_cleanup'/>
+<def f='codebrowser/lib/url.c' l='405' ll='501' type='CURLcode Curl_close(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/url.c' l='396'>/*
+ * This is the internal function curl_easy_cleanup() calls. This should
+ * cleanup and free all resources associated with this sessionhandle.
+ *
+ * NOTE: if we ever add something that attempts to write to a socket or
+ * similar here, we must ignore SIGPIPE first. It is currently only done
+ * when curl_easy_perform() is invoked.
+ */</doc>

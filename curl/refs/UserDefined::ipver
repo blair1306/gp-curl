@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1596' type='long'/>
+<offset>11136</offset>
+<doc f='codebrowser/lib/urldata.h' l='1596'>/* the CURL_IPRESOLVE_* defines in the public header file
+                 0 - whatever, 1 - v2, 2 - v6 */</doc>
+<use f='codebrowser/lib/url.c' l='2481' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4284' u='r' c='allocate_conn'/>

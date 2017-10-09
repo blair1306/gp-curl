@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='199' type='int PKCS12_pack_authsafes(PKCS12 * p12, struct stack_st_PKCS7 * safes)'/>

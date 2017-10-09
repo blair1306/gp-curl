@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='88' type='int'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/curl_sasl.h' l='88'>/* Code to receive when continuation is expected */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='444' u='r' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/curl_sasl.c' l='579' u='r' c='Curl_sasl_continue'/>

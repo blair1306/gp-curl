@@ -1,0 +1,2 @@
+<dec f='include/asm-generic/ioctls.h' l='45'/>
+<use f='codebrowser/tests/server/tftpd.c' l='646' u='c'/>

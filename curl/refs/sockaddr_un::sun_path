@@ -1,0 +1,11 @@
+<dec f='include/x86_64-linux-gnu/sys/un.h' l='32' type='char [108]'/>
+<use f='codebrowser/lib/connect.c' l='648' c='getaddressinfo'/>
+<offset>16</offset>
+<doc f='include/x86_64-linux-gnu/sys/un.h' l='32'>/* Path name.  */</doc>
+<use f='codebrowser/lib/curl_addrinfo.c' l='510' u='r' c='Curl_unix2addr'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='524' u='r' c='Curl_unix2addr'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='526' u='r' c='Curl_unix2addr'/>
+<use f='codebrowser/tests/server/sws.c' l='2048' u='r' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2050' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2169' u='r' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2169' u='r' c='main'/>

@@ -1,0 +1,8 @@
+<def f='codebrowser/lib/rtsp.h' l='50' ll='63'/>
+<size>568</size>
+<doc f='codebrowser/lib/rtsp.h' l='47'>/****************************************************************************
+ * RTSP unique setup
+ ***************************************************************************/</doc>
+<mbr r='RTSP::http_wrapper' o='0' t='struct HTTP'/>
+<mbr r='RTSP::CSeq_sent' o='4416' t='long'/>
+<mbr r='RTSP::CSeq_recv' o='4480' t='long'/>

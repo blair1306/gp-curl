@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/bits/stropts.h' l='224' ll='228'/>
+<size>16</size>
+<mbr r='str_list::sl_nmods' o='0' t='int'/>
+<mbr r='str_list::sl_modlist' o='64' t='struct str_mlist *'/>

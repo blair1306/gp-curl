@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/smtp.h' l='58' type='size_t'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/smtp.h' l='58'>/* Number of bytes of the EOB (End Of Body) that
+                              have been received so far */</doc>
+<use f='codebrowser/lib/smtp.c' l='1563' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1568' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1569' u='w' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1572' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1572' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1577' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1579' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1580' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1584' u='w' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1586' u='w' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1595' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1600' u='w' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1603' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1607' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1609' u='r' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1610' u='r' c='Curl_smtp_escape_eob'/>

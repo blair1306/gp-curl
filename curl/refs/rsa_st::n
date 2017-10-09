@@ -1,0 +1,5 @@
+<dec f='include/openssl/rsa.h' l='142' type='BIGNUM *'/>
+<offset>256</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='2863' u='r' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2865' u='r' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2865' u='r' c='get_cert_chain'/>

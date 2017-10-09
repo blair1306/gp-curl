@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/mime.h' l='94' type='mime_state'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/mime.h' l='94'>/* Current readback state. */</doc>
+<use f='codebrowser/lib/mime.c' l='938' u='m' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='939' u='m' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='945' u='a' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='949' u='m' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='952' u='a' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='954' u='a' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='957' u='a' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='969' u='a' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='974' u='a' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='987' u='a' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='1059' u='m' c='mime_subparts_seek'/>
+<use f='codebrowser/lib/mime.c' l='1069' u='a' c='mime_subparts_seek'/>
+<use f='codebrowser/lib/mime.c' l='1173' u='a' c='curl_mime_init'/>

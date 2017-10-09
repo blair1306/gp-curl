@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>unit1600.c source code [codebrowser/tests/unit/unit1600.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/unit/unit1600.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>unit</a>/<a href='unit1600.c.html'>unit1600.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="curlcheck.h.html">"curlcheck.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../../lib/urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../../lib/curl_ntlm_core.h.html">"curl_ntlm_core.h"</a></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="tu decl def" id="easy" title='easy' data-type='CURL *' data-ref="easy">easy</dfn>;</td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="unit_setup" title='unit_setup' data-type='CURLcode unit_setup()' data-ref="unit_setup">unit_setup</dfn>(<em>void</em>)</td></tr>
+<tr><th id="30">30</th><td>{</td></tr>
+<tr><th id="31">31</th><td>  <em>int</em> <dfn class="local col1 decl" id="1res" title='res' data-type='int' data-ref="1res">res</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td>  <a class="macro" href="../libtest/test.h.html#431" title="do { do { CURLcode ec; if((ec = curl_global_init((((((1&lt;&lt;0)|(1&lt;&lt;1))))))) != CURLE_OK) { curl_mfprintf(stderr, &quot;%s:%d curl_global_init() failed, &quot; &quot;with code %d (%s)\n&quot;, (((&quot;/home/jon/workspace/curl/tests/unit/unit1600.c&quot;))), (((33))), (int)ec, curl_easy_strerror(ec)); res = (int)ec; } } while(0); if(res) return res; } while(0)" data-ref="_M/global_init">global_init</a>(<a class="macro" href="../../include/curl/curl.h.html#2519" title="((1&lt;&lt;0)|(1&lt;&lt;1))" data-ref="_M/CURL_GLOBAL_ALL">CURL_GLOBAL_ALL</a>);</td></tr>
+<tr><th id="34">34</th><td>  <a class="tu ref" href="#easy" title='easy' data-use='w' data-ref="easy">easy</a> = <a class="ref" href="../../include/curl/easy.h.html#curl_easy_init" title='curl_easy_init' data-ref="curl_easy_init">curl_easy_init</a>();</td></tr>
+<tr><th id="35">35</th><td>  <b>if</b>(!<a class="tu ref" href="#easy" title='easy' data-use='r' data-ref="easy">easy</a>)</td></tr>
+<tr><th id="36">36</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="37">37</th><td>  <b>return</b> <a class="local col1 ref" href="#1res" title='res' data-ref="1res">res</a>;</td></tr>
+<tr><th id="38">38</th><td>}</td></tr>
+<tr><th id="39">39</th><td></td></tr>
+<tr><th id="40">40</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="unit_stop" title='unit_stop' data-type='void unit_stop()' data-ref="unit_stop">unit_stop</dfn>(<em>void</em>)</td></tr>
+<tr><th id="41">41</th><td>{</td></tr>
+<tr><th id="42">42</th><td>  <a class="ref" href="../../include/curl/easy.h.html#curl_easy_cleanup" title='curl_easy_cleanup' data-ref="curl_easy_cleanup">curl_easy_cleanup</a>(<a class="tu ref" href="#easy" title='easy' data-use='r' data-ref="easy">easy</a>);</td></tr>
+<tr><th id="43">43</th><td>  <a class="ref" href="../../include/curl/curl.h.html#curl_global_cleanup" title='curl_global_cleanup' data-ref="curl_global_cleanup">curl_global_cleanup</a>();</td></tr>
+<tr><th id="44">44</th><td>}</td></tr>
+<tr><th id="45">45</th><td></td></tr>
+<tr><th id="46">46</th><td><a class="macro" href="curlcheck.h.html#86" title="int test(char *arg) { (void)arg; if(unit_setup()) { do { curl_mfprintf(stderr, &quot;%s:%d test failed: &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1600.c&quot;, 46, &quot;unit_setup() failure&quot;); unitfail++; } while(0); } else {" data-ref="_M/UNITTEST_START">UNITTEST_START</a></td></tr>
+<tr><th id="47">47</th><td></td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="48">if</span> defined(<a class="macro" href="../../lib/curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a>) &amp;&amp; (!defined(<span class="macro" data-ref="_M/USE_WINDOWS_SSPI">USE_WINDOWS_SSPI</span>) || \</u></td></tr>
+<tr><th id="49">49</th><td><u>                          defined(<span class="macro" data-ref="_M/USE_WIN32_CRYPTO">USE_WIN32_CRYPTO</span>))</u></td></tr>
+<tr><th id="50">50</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col2 decl" id="2output" title='output' data-type='unsigned char [21]' data-ref="2output">output</dfn>[<var>21</var>];</td></tr>
+<tr><th id="51">51</th><td>  <em>unsigned</em> <em>char</em> *<dfn class="local col3 decl" id="3testp" title='testp' data-type='unsigned char *' data-ref="3testp">testp</dfn> = <a class="local col2 ref" href="#2output" title='output' data-ref="2output">output</a>;</td></tr>
+<tr><th id="52">52</th><td>  <a class="ref" href="../../lib/curl_ntlm_core.h.html#Curl_ntlm_core_mk_nt_hash" title='Curl_ntlm_core_mk_nt_hash' data-ref="Curl_ntlm_core_mk_nt_hash">Curl_ntlm_core_mk_nt_hash</a>(<a class="tu ref" href="#easy" title='easy' data-use='r' data-ref="easy">easy</a>, <q>"1"</q>, <a class="local col2 ref" href="#2output" title='output' data-ref="2output">output</a>);</td></tr>
+<tr><th id="53">53</th><td></td></tr>
+<tr><th id="54">54</th><td>  <a class="macro" href="curlcheck.h.html#39" title="if(testp &amp;&amp; memcmp(testp, &quot;\x69\x94\x3c\x5e\x63\xb4\xd2\xc1\x04\xdb&quot; &quot;\xbc\xc1\x51\x38\xb7\x2b\x00\x00\x00\x00\x00&quot;, 21)) { curl_mfprintf(stderr, &quot;%s:%d Memory buffer mismatch size %d. &apos;%s&apos; is not\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1600.c&quot;, 56, 21, hexdump((const unsigned char *)&quot;\x69\x94\x3c\x5e\x63\xb4\xd2\xc1\x04\xdb&quot; &quot;\xbc\xc1\x51\x38\xb7\x2b\x00\x00\x00\x00\x00&quot;, 21)); curl_mfprintf(stderr, &quot;%s:%d the same as &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1600.c&quot;, 56, hexdump((const unsigned char *)testp, 21)); unitfail++; }" data-ref="_M/verify_memory">verify_memory</a>(<a class="local col3 ref" href="#3testp" title='testp' data-ref="3testp">testp</a>,</td></tr>
+<tr><th id="55">55</th><td>              <q>"\x69\x94\x3c\x5e\x63\xb4\xd2\xc1\x04\xdb"</q></td></tr>
+<tr><th id="56">56</th><td>              <q>"\xbc\xc1\x51\x38\xb7\x2b\x00\x00\x00\x00\x00"</q>, <var>21</var>);</td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td>  <a class="ref" href="../../lib/curl_ntlm_core.h.html#Curl_ntlm_core_mk_nt_hash" title='Curl_ntlm_core_mk_nt_hash' data-ref="Curl_ntlm_core_mk_nt_hash">Curl_ntlm_core_mk_nt_hash</a>(<a class="tu ref" href="#easy" title='easy' data-use='r' data-ref="easy">easy</a>, <q>"hello-you-fool"</q>, <a class="local col2 ref" href="#2output" title='output' data-ref="2output">output</a>);</td></tr>
+<tr><th id="59">59</th><td></td></tr>
+<tr><th id="60">60</th><td>  <a class="macro" href="curlcheck.h.html#39" title="if(testp &amp;&amp; memcmp(testp, &quot;\x39\xaf\x87\xa6\x75\x0a\x7a\x00\xba\xa0&quot; &quot;\xd3\x4f\x04\x9e\xc1\xd0\x00\x00\x00\x00\x00&quot;, 21)) { curl_mfprintf(stderr, &quot;%s:%d Memory buffer mismatch size %d. &apos;%s&apos; is not\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1600.c&quot;, 62, 21, hexdump((const unsigned char *)&quot;\x39\xaf\x87\xa6\x75\x0a\x7a\x00\xba\xa0&quot; &quot;\xd3\x4f\x04\x9e\xc1\xd0\x00\x00\x00\x00\x00&quot;, 21)); curl_mfprintf(stderr, &quot;%s:%d the same as &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1600.c&quot;, 62, hexdump((const unsigned char *)testp, 21)); unitfail++; }" data-ref="_M/verify_memory">verify_memory</a>(<a class="local col3 ref" href="#3testp" title='testp' data-ref="3testp">testp</a>,</td></tr>
+<tr><th id="61">61</th><td>              <q>"\x39\xaf\x87\xa6\x75\x0a\x7a\x00\xba\xa0"</q></td></tr>
+<tr><th id="62">62</th><td>              <q>"\xd3\x4f\x04\x9e\xc1\xd0\x00\x00\x00\x00\x00"</q>, <var>21</var>);</td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td><i>/* !checksrc! disable LONGLINE 2 */</i></td></tr>
+<tr><th id="65">65</th><td>  <a class="ref" href="../../lib/curl_ntlm_core.h.html#Curl_ntlm_core_mk_nt_hash" title='Curl_ntlm_core_mk_nt_hash' data-ref="Curl_ntlm_core_mk_nt_hash">Curl_ntlm_core_mk_nt_hash</a>(<a class="tu ref" href="#easy" title='easy' data-use='r' data-ref="easy">easy</a>, <q>"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"</q>, <a class="local col2 ref" href="#2output" title='output' data-ref="2output">output</a>);</td></tr>
+<tr><th id="66">66</th><td></td></tr>
+<tr><th id="67">67</th><td>  <a class="macro" href="curlcheck.h.html#39" title="if(testp &amp;&amp; memcmp(testp, &quot;\x36\x9d\xae\x06\x84\x7e\xe1\xc1\x4a\x94\x39\xea\x6f\x44\x8c\x65\x00\x00\x00\x00\x00&quot;, 21)) { curl_mfprintf(stderr, &quot;%s:%d Memory buffer mismatch size %d. &apos;%s&apos; is not\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1600.c&quot;, 68, 21, hexdump((const unsigned char *)&quot;\x36\x9d\xae\x06\x84\x7e\xe1\xc1\x4a\x94\x39\xea\x6f\x44\x8c\x65\x00\x00\x00\x00\x00&quot;, 21)); curl_mfprintf(stderr, &quot;%s:%d the same as &apos;%s&apos;\n&quot;, &quot;/home/jon/workspace/curl/tests/unit/unit1600.c&quot;, 68, hexdump((const unsigned char *)testp, 21)); unitfail++; }" data-ref="_M/verify_memory">verify_memory</a>(<a class="local col3 ref" href="#3testp" title='testp' data-ref="3testp">testp</a>,</td></tr>
+<tr><th id="68">68</th><td>                <q>"\x36\x9d\xae\x06\x84\x7e\xe1\xc1\x4a\x94\x39\xea\x6f\x44\x8c\x65\x00\x00\x00\x00\x00"</q>, <var>21</var>);</td></tr>
+<tr><th id="69">69</th><td><u>#<span data-ppcond="48">endif</span></u></td></tr>
+<tr><th id="70">70</th><td></td></tr>
+<tr><th id="71">71</th><td><a class="macro" href="curlcheck.h.html#95" title="goto unit_test_abort; unit_test_abort: unit_stop(); } return unitfail; }" data-ref="_M/UNITTEST_STOP">UNITTEST_STOP</a></td></tr>
+<tr><th id="72">72</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

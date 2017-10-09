@@ -1,0 +1,19 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='113' type='int socket(int __domain, int __type, int __protocol)'/>
+<doc f='include/x86_64-linux-gnu/sys/socket.h' l='110'>/* Create a new socket of type TYPE in domain DOMAIN, using
+   protocol PROTOCOL.  If PROTOCOL is zero, one is chosen automatically.
+   Returns a file descriptor for the new socket, or -1 for errors.  */</doc>
+<use f='codebrowser/lib/connect.c' l='1358' u='c' c='Curl_socket'/>
+<use f='codebrowser/lib/hostip6.c' l='106' u='c' c='Curl_ipv6works'/>
+<use f='codebrowser/lib/if2ip.c' l='228' u='c' c='Curl_if2ip'/>
+<use f='codebrowser/tests/server/resolve.c' l='113' u='c' c='main'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1286' u='c' c='main'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1289' u='c' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1464' u='c' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1467' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='1344' u='c' c='connect_to'/>
+<use f='codebrowser/tests/server/sws.c' l='2121' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2174' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='766' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='769' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='851' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='866' u='c' c='main'/>

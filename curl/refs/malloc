@@ -1,0 +1,34 @@
+<dec f='include/stdlib.h' l='466' type='void * malloc(size_t __size)'/>
+<doc f='include/stdlib.h' l='465'>/* Allocate SIZE bytes of memory.  */</doc>
+<use f='codebrowser/lib/easy.c' l='172' u='r'/>
+<use f='codebrowser/lib/easy.c' l='207' u='r' c='global_init'/>
+<use f='codebrowser/src/slist_wc.c' l='45' u='c' c='slist_wc_append'/>
+<use f='codebrowser/src/tool_cb_hdr.c' l='149' u='c' c='parse_filename'/>
+<use f='codebrowser/src/tool_dirhie.c' l='116' u='c' c='create_dir_hierarchy'/>
+<use f='codebrowser/src/tool_getparam.c' l='343' u='c' c='parse_cert_parameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1267' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1348' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='2116' u='c' c='parse_args'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10027' u='c' c='hugehelp'/>
+<use f='codebrowser/src/tool_main.c' l='152' u='c' c='main_init'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='176' u='c' c='parseconfig'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='230' u='c' c='parseconfig'/>
+<use f='codebrowser/src/tool_setopt.c' l='227' u='c' c='c_escape'/>
+<use f='codebrowser/src/tool_urlglob.c' l='47' u='c' c='glob_fixed'/>
+<use f='codebrowser/src/tool_urlglob.c' l='52' u='c' c='glob_fixed'/>
+<use f='codebrowser/src/tool_urlglob.c' l='132' u='c' c='glob_set'/>
+<use f='codebrowser/src/tool_urlglob.c' l='444' u='c' c='glob_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='617' u='c' c='glob_match_url'/>
+<use f='codebrowser/tests/libtest/lib509.c' l='67' u='c' c='custom_malloc'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='264' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib518.c' l='304' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='238' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='293' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib558.c' l='41' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='79' u='c' c='addFd'/>
+<use f='codebrowser/tests/libtest/libauthretry.c' l='35' u='c' c='send_request'/>
+<use f='codebrowser/tests/libtest/libntlmconnect.c' l='98' u='c' c='test'/>
+<use f='codebrowser/tests/server/fake_ntlm.c' l='73' u='c' c='printable'/>
+<use f='codebrowser/tests/server/getpart.c' l='56' u='r'/>
+<use f='codebrowser/tests/server/rtspd.c' l='491' u='c' c='ProcessRequest'/>
+<use f='codebrowser/tests/unit/unit1330.c' l='38' u='c' c='test'/>

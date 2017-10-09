@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='528'/>
+<doc f='codebrowser/lib/curl_config.h' l='527'>/* Define to 1 if you have the &lt;setjmp.h&gt; header file. */</doc>
+<use f='codebrowser/lib/hostip.h' l='30' u='a'/>
+<use f='codebrowser/lib/hostip.c' l='39' u='a'/>

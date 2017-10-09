@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1156' type='3'/>
+<use f='codebrowser/lib/rtsp.c' l='298' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='526' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='563' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='2726' u='r' c='Curl_setopt'/>

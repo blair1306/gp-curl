@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1482' type='58'/>
+<use f='codebrowser/lib/urldata.h' l='1663'/>
+<doc f='codebrowser/lib/urldata.h' l='1482'>/* not used, just an end-of-list marker */</doc>
+<use f='codebrowser/lib/url.c' l='288' u='r' c='Curl_freeset'/>
+<use f='codebrowser/lib/url.c' l='372' u='r' c='Curl_dupset'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1539' type='curl_conv_callback'/>
+<offset>2240</offset>
+<doc f='codebrowser/lib/urldata.h' l='1538'>/* function to convert from the network encoding: */</doc>
+<use f='codebrowser/lib/url.c' l='527' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1980' u='w' c='Curl_setopt'/>

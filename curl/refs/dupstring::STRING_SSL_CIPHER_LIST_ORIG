@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1427' type='32'/>
+<doc f='codebrowser/lib/urldata.h' l='1427'>/* list of ciphers to use */</doc>
+<use f='codebrowser/lib/url.c' l='739' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6697' u='r' c='create_conn'/>

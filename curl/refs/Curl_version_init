@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/easy.c' l='80' type='void Curl_version_init()'/>
+<use f='codebrowser/lib/easy.c' l='261' u='c' c='global_init'/>
+<dec f='codebrowser/lib/version.c' l='67' type='void Curl_version_init()'/>
+<def f='codebrowser/lib/version.c' l='71' ll='75' type='void Curl_version_init()'/>
+<doc f='codebrowser/lib/version.c' l='69'>/* For thread safety purposes this function is called by global_init so that
+   the static data in both version functions is initialized. */</doc>

@@ -1,0 +1,4 @@
+<dec f='include/openssl/ssl.h' l='2135' type='X509_STORE * SSL_CTX_get_cert_store(const SSL_CTX * )'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1577' u='c' c='verifystatus'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2373' u='c' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2382' u='c' c='ossl_connect_step1'/>

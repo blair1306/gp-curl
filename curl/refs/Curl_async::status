@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='482' type='int'/>
+<use f='codebrowser/lib/asyn-thread.c' l='395' u='w' c='init_resolve_thread'/>
+<offset>224</offset>
+<doc f='codebrowser/lib/urldata.h' l='482'>/* if done is TRUE, this is the status from the callback */</doc>
+<use f='codebrowser/lib/hostasyn.c' l='76' u='w' c='Curl_addrinfo_callback'/>

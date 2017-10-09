@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='51' type='_Bool'/>
+<offset>640</offset>
+<use f='codebrowser/src/tool_cb_prg.c' l='117' u='r' c='progressbarinit'/>
+<use f='codebrowser/src/tool_getparam.c' l='1193' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1069' u='r' c='operate_do'/>

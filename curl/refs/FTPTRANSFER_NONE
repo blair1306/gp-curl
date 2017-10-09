@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/pingpong.h' l='38' type='2'/>
+<doc f='codebrowser/lib/pingpong.h' l='38'>/* don&apos;t get anything and don&apos;t get info */</doc>
+<use f='codebrowser/lib/ftp.c' l='1662' u='r' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/ftp.c' l='2117' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2126' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2234' u='r' c='ftp_state_retr'/>
+<use f='codebrowser/lib/ftp.c' l='2483' u='r' c='ftp_state_get_resp'/>

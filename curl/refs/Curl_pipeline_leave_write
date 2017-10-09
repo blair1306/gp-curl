@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/pipeline.h' l='49' type='void Curl_pipeline_leave_write(struct connectdata * conn)'/>
+<use f='codebrowser/lib/http.c' l='1189' u='c' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/multi.c' l='1906' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2086' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/pipeline.c' l='115' u='c' c='Curl_add_handle_to_pipeline'/>
+<use f='codebrowser/lib/pipeline.c' l='146' u='c' c='Curl_move_handle_from_send_to_recv_pipe'/>
+<def f='codebrowser/lib/pipeline.c' l='366' ll='369' type='void Curl_pipeline_leave_write(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/pipeline.c' l='363'>/*
+ * The current user of the pipeline write channel gives it up.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='3261' u='c' c='Curl_getoff_all_pipelines'/>

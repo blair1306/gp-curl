@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/hostcheck.h' l='28'/>
+<use f='codebrowser/lib/hostcheck.c' l='84' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='105' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='123' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='139' u='c'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='67' type='_Bool'/>
+<offset>64</offset>
+<use f='codebrowser/src/tool_cb_hdr.c' l='123' u='w' c='tool_header_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='1876' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1987' u='r' c='operate_do'/>

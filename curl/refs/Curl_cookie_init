@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/cookie.h' l='101' type='struct CookieInfo * Curl_cookie_init(struct Curl_easy * data, const char * , struct CookieInfo * , _Bool )'/>
+<use f='codebrowser/lib/cookie.c' l='268' u='c' c='Curl_cookie_loadfiles'/>
+<def f='codebrowser/lib/cookie.c' l='974' ll='1053' type='struct CookieInfo * Curl_cookie_init(struct Curl_easy * data, const char * file, struct CookieInfo * inc, _Bool newsession)'/>
+<doc f='codebrowser/lib/cookie.c' l='963'>/*****************************************************************************
+ *
+ * Curl_cookie_init()
+ *
+ * Inits a cookie struct to read data from a local file. This is always
+ * called before any cookies are set. File may be NULL.
+ *
+ * If &apos;newsession&apos; is TRUE, discard all &quot;session cookies&quot; on read from file.
+ *
+ * Returns NULL on out of memory. Invalid cookies are ignored.
+ ****************************************************************************/</doc>
+<use f='codebrowser/lib/easy.c' l='905' u='c' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/share.c' l='80' u='c' c='curl_share_setopt'/>
+<use f='codebrowser/lib/url.c' l='1268' u='c' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1325' u='c' c='Curl_setopt'/>

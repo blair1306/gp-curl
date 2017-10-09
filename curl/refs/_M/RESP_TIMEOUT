@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='80'/>
+<doc f='codebrowser/lib/urldata.h' l='77'>/* Default FTP/IMAP etc response timeout in milliseconds.
+   Symbian OS panics when given a timeout much greater than 1/2 hour.
+*/</doc>
+<use f='codebrowser/lib/ftp.c' l='3098' u='c'/>
+<use f='codebrowser/lib/imap.c' l='1403' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1074' u='c'/>
+<use f='codebrowser/lib/smtp.c' l='1137' u='c'/>

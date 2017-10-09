@@ -1,0 +1,6 @@
+<def f='codebrowser/tests/server/tftpd.c' l='136' ll='139'/>
+<size>520</size>
+<doc f='codebrowser/tests/server/tftpd.c' l='131'>/*
+ * bf.counter values in range [-1 .. SEGSIZE] represents size of data in the
+ * bf.buf buffer. Additionally it can also hold flags BF_ALLOC or BF_FREE.
+ */</doc>

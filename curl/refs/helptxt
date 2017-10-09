@@ -1,0 +1,9 @@
+<def f='codebrowser/src/tool_help.c' l='43' ll='46'/>
+<size>16</size>
+<doc f='codebrowser/src/tool_help.c' l='35'>/*
+ * The help output is generated with the following command
+ ---------------------------------------------------------
+
+  cd $srcroot/docs/cmdline-opts
+  ./gen.pl listhelp
+ */</doc>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='541' type='70'/>
+<doc f='codebrowser/include/curl/curl.h' l='541'>/* 70 - out of disk space on server */</doc>
+<use f='codebrowser/lib/strerror.c' l='261' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/tftp.c' l='869' u='r' c='tftp_translate_code'/>

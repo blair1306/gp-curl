@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/multiif.h' l='40'/>
+<doc f='codebrowser/lib/multiif.h' l='39'>/* the write bits start at bit 16 for the *getsock() bitmap */</doc>

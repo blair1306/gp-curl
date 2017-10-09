@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='87' type='const char *'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/curl_sasl.h' l='87'>/* The service name */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='425' u='r' c='Curl_sasl_continue'/>

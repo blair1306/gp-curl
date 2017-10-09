@@ -1,0 +1,10 @@
+<dec f='include/x86_64-linux-gnu/bits/socket_type.h' l='31'/>
+<use f='codebrowser/lib/connect.c' l='671' u='c'/>
+<use f='codebrowser/lib/connect.c' l='1336' u='c'/>
+<use f='codebrowser/lib/hostip6.c' l='106' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='1373' u='c'/>
+<use f='codebrowser/tests/server/resolve.c' l='113' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='766' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='769' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='851' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='866' u='c'/>

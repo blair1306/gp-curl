@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/multihandle.h' l='57' type='17'/>
+<doc f='codebrowser/lib/multihandle.h' l='57'>/* 17 - operation complete */</doc>
+<use f='codebrowser/lib/multi.c' l='153' u='r' c='mstate'/>
+<use f='codebrowser/lib/multi.c' l='674' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='692' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='745' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='868' u='r' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1337' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1365' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1371' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2044' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2047' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2069' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2108' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2119' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2124' u='r' c='multi_runsingle'/>

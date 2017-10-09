@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/rtsp.c' l='84' type='_Bool rtsp_connisdead(struct connectdata * check)'/>
+<def f='codebrowser/lib/rtsp.c' l='150' ll='170' macro='1' type='_Bool rtsp_connisdead(struct connectdata * check)'/>
+<use f='codebrowser/lib/rtsp.c' l='181' u='c' c='rtsp_conncheck'/>

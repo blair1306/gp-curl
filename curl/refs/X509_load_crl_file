@@ -1,0 +1,2 @@
+<dec f='include/openssl/x509_vfy.h' l='508' type='int X509_load_crl_file(X509_LOOKUP * ctx, const char * file, int type)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2376' u='c' c='ossl_connect_step1'/>

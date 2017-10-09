@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/pipeline.h' l='36' type='CURLMcode Curl_pipeline_set_site_blacklist(char ** sites, struct curl_llist * list_ptr)'/>
+<use f='codebrowser/lib/multi.c' l='2271' u='c' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2729' u='c' c='curl_multi_setopt'/>
+<def f='codebrowser/lib/pipeline.c' l='192' ll='231' type='CURLMcode Curl_pipeline_set_site_blacklist(char ** sites, struct curl_llist * list)'/>

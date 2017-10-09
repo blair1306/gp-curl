@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='544' type='int OCSP_SINGLERESP_add_ext(OCSP_SINGLERESP * x, X509_EXTENSION * ex, int loc)'/>

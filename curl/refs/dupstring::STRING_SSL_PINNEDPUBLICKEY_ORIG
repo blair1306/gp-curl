@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1425' type='30'/>
+<doc f='codebrowser/lib/urldata.h' l='1425'>/* public key file to verify peer against */</doc>
+<use f='codebrowser/lib/url.c' l='2248' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3171' u='r' c='servercert'/>

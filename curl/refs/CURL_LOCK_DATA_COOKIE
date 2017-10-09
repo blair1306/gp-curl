@@ -1,0 +1,25 @@
+<dec f='codebrowser/include/curl/curl.h' l='2537' type='2'/>
+<use f='codebrowser/lib/cookie.c' l='266' u='r' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/cookie.c' l='283' u='r' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/cookie.c' l='1440' u='r' c='Curl_cookie_list'/>
+<use f='codebrowser/lib/cookie.c' l='1442' u='r' c='Curl_cookie_list'/>
+<use f='codebrowser/lib/cookie.c' l='1456' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1470' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/cookie.c' l='1476' u='r' c='Curl_flush_cookies'/>
+<use f='codebrowser/lib/http.c' l='2377' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2384' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3720' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3729' u='r' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/share.c' l='77' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='120' c='curl_share_setopt'/>
+<use f='codebrowser/lib/url.c' l='1303' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1305' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1309' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1311' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1333' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1343' u='r' c='Curl_setopt'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='62' c='my_lock'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='98' c='my_unlock'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='219' c='test'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='55' c='my_lock'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='82' c='my_unlock'/>

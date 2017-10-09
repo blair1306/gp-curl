@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='31'/>
+<doc f='codebrowser/lib/curl_sasl.h' l='30'>/* Authentication mechanism flags */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='58' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='364' u='c'/>
+<use f='codebrowser/lib/curl_sasl.c' l='368' u='c'/>

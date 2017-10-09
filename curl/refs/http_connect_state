@@ -1,0 +1,11 @@
+<def f='codebrowser/lib/urldata.h' l='768' ll='781'/>
+<size>16424</size>
+<doc f='codebrowser/lib/urldata.h' l='767'>/* struct for HTTP CONNECT state data */</doc>
+<mbr r='http_connect_state::connect_buffer' o='0' t='char [16384]'/>
+<mbr r='http_connect_state::perline' o='131072' t='int'/>
+<mbr r='http_connect_state::keepon' o='131104' t='int'/>
+<mbr r='http_connect_state::line_start' o='131136' t='char *'/>
+<mbr r='http_connect_state::ptr' o='131200' t='char *'/>
+<mbr r='http_connect_state::cl' o='131264' t='curl_off_t'/>
+<mbr r='http_connect_state::chunked_encoding' o='131328' t='_Bool'/>
+<mbr r='http_connect_state::tunnel_state' o='131360' t='enum (anonymous enum at /home/jon/workspace/curl/lib/urldata.h:776:3)'/>

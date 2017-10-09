@@ -1,0 +1,5 @@
+<def f='codebrowser/lib/vtls/openssl.c' l='192' ll='201'/>
+<size>24</size>
+<mbr r='ssl_backend_data::ctx' o='0' t='SSL_CTX *'/>
+<mbr r='ssl_backend_data::handle' o='64' t='SSL *'/>
+<mbr r='ssl_backend_data::server_cert' o='128' t='X509 *'/>

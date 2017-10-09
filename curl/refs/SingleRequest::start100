@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='559' type='struct curltime'/>
+<offset>1472</offset>
+<doc f='codebrowser/lib/urldata.h' l='559'>/* time stamp to wait for the 100 code from */</doc>
+<use f='codebrowser/lib/transfer.c' l='493' u='w' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='928' u='w' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1177' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='2052' u='w' c='Curl_setup_transfer'/>

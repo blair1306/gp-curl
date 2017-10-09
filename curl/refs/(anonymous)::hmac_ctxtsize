@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='40' type='unsigned int'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/curl_hmac.h' l='40'>/* Context structure size. */</doc>
+<use f='codebrowser/lib/hmac.c' l='61' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='71' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='77' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='122' u='r' c='Curl_HMAC_final'/>

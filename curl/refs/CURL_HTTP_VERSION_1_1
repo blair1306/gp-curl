@@ -1,0 +1,14 @@
+<dec f='codebrowser/include/curl/curl.h' l='1867' type='2'/>
+<doc f='codebrowser/include/curl/curl.h' l='1867'>/* please use HTTP 1.1 in the request */</doc>
+<use f='codebrowser/lib/getinfo.c' l='229' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/http.c' l='1506' u='r' c='use_http_1_1plus'/>
+<use f='codebrowser/lib/http.c' l='1785' c='Curl_http'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1907' u='r' c='select_next_proto_cb'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1914' u='r' c='select_next_proto_cb'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2621' u='r' c='ossl_connect_step2'/>
+<use f='codebrowser/src/tool_getparam.c' l='1101' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_setopt.c' l='83'/>
+<use f='codebrowser/src/tool_setopt.c' l='83'/>
+<use f='codebrowser/src/tool_setopt.c' l='83'/>
+<use f='codebrowser/src/tool_setopt.c' l='83'/>
+<use f='codebrowser/src/tool_writeout.c' l='307' c='ourWriteOut'/>

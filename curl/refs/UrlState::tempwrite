@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='1269' type='struct tempbuf [3]'/>
+<offset>132096</offset>
+<doc f='codebrowser/lib/urldata.h' l='1269'>/* BOTH, HEADER, BODY */</doc>
+<use f='codebrowser/lib/easy.c' l='1031' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/easy.c' l='1032' u='m' c='curl_easy_pause'/>
+<use f='codebrowser/lib/multi.c' l='596' u='m' c='multi_done'/>
+<use f='codebrowser/lib/sendf.c' l='484' u='m' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='499' u='m' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='501' u='m' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='505' u='m' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='508' u='m' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='509' u='m' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='517' u='m' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='518' u='m' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='519' u='m' c='pausewrite'/>

@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1268' type='unsigned int'/>
+<offset>132032</offset>
+<doc f='codebrowser/lib/urldata.h' l='1268'>/* number of entries in use in tempwrite, 0 - 3 */</doc>
+<use f='codebrowser/lib/easy.c' l='1022' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/easy.c' l='1026' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/easy.c' l='1030' u='r' c='curl_easy_pause'/>
+<use f='codebrowser/lib/easy.c' l='1034' u='w' c='curl_easy_pause'/>
+<use f='codebrowser/lib/multi.c' l='595' u='r' c='multi_done'/>
+<use f='codebrowser/lib/multi.c' l='598' u='w' c='multi_done'/>
+<use f='codebrowser/lib/sendf.c' l='482' u='r' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='483' u='r' c='pausewrite'/>
+<use f='codebrowser/lib/sendf.c' l='522' u='w' c='pausewrite'/>

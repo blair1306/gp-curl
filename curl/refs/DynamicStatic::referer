@@ -1,0 +1,27 @@
+<dec f='codebrowser/lib/urldata.h' l='1374' type='char *'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/urldata.h' l='1374'>/* referer string */</doc>
+<use f='codebrowser/lib/easy.c' l='928' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='929' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='929' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='930' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='958' u='r' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/easy.c' l='958' u='w' c='curl_easy_duphandle'/>
+<use f='codebrowser/lib/http.c' l='1886' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='1887' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2344' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/rtsp.c' l='424' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='425' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/transfer.c' l='1766' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1766' u='w' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1770' u='w' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1771' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='293' u='r' c='Curl_freeset'/>
+<use f='codebrowser/lib/url.c' l='293' u='w' c='Curl_freeset'/>
+<use f='codebrowser/lib/url.c' l='296' u='w' c='Curl_freeset'/>
+<use f='codebrowser/lib/url.c' l='456' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='456' u='w' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='459' u='w' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='1174' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1174' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1179' u='w' c='Curl_setopt'/>

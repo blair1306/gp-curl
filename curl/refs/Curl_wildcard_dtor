@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/wildcard.h' l='57' type='void Curl_wildcard_dtor(struct WildcardData * wc)'/>
+<use f='codebrowser/lib/multi.c' l='733' u='c' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/url.c' l='495' u='c' c='Curl_close'/>
+<def f='codebrowser/lib/wildcard.c' l='41' ll='63' type='void Curl_wildcard_dtor(struct WildcardData * wc)'/>

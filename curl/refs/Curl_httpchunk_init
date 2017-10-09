@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/http.h' l='83' type='void Curl_httpchunk_init(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/http.h' l='82'>/* The following functions are defined in http_chunks.c */</doc>
+<use f='codebrowser/lib/http.c' l='3631' u='c' c='Curl_http_readwrite_headers'/>
+<def f='codebrowser/lib/http_chunks.c' l='86' ll='92' type='void Curl_httpchunk_init(struct connectdata * conn)'/>
+<use f='codebrowser/lib/http_chunks.c' l='245' u='c' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_proxy.c' l='546' u='c' c='CONNECT'/>

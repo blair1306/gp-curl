@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1680' type='curl_fnmatch_callback'/>
+<offset>16512</offset>
+<doc f='codebrowser/lib/urldata.h' l='1680'>/* callback to decide which file corresponds
+                                    to pattern (e.g. if WILDCARDMATCH is on) */</doc>
+<use f='codebrowser/lib/ftplistparser.c' l='302' u='r' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/url.c' l='695' u='w' c='Curl_open'/>
+<use f='codebrowser/lib/url.c' l='2827' u='w' c='Curl_setopt'/>

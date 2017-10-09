@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/tftp.c' l='137' type='struct Curl_sockaddr_storage'/>
+<use f='codebrowser/lib/tftp.c' l='622' u='a' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='647' u='a' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='673' u='a' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='687' u='a' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='747' u='a' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='791' u='a' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='817' u='a' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='834' u='a' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='1117' u='a' c='tftp_receive_packet'/>
+<offset>1600</offset>

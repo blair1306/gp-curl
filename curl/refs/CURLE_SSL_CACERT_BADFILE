@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='552' type='77'/>
+<doc f='codebrowser/include/curl/curl.h' l='552'>/* 77 - could not load CACERT file, missing
+                                    or wrong format */</doc>
+<use f='codebrowser/lib/strerror.c' l='225' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2345' u='r' c='ossl_connect_step1'/>

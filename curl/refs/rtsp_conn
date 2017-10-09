@@ -1,0 +1,10 @@
+<def f='codebrowser/lib/rtsp.h' l='41' ll='45'/>
+<size>24</size>
+<doc f='codebrowser/lib/rtsp.h' l='36'>/*
+ * RTSP Connection data
+ *
+ * Currently, only used for tracking incomplete RTP data reads
+ */</doc>
+<mbr r='rtsp_conn::rtp_buf' o='0' t='char *'/>
+<mbr r='rtsp_conn::rtp_bufsize' o='64' t='ssize_t'/>
+<mbr r='rtsp_conn::rtp_channel' o='128' t='int'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/stropts.h' l='127'/>
+<doc f='include/x86_64-linux-gnu/bits/stropts.h' l='126'>/* Options for `I_SRDOPT&apos;.  */</doc>

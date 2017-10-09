@@ -1,0 +1,88 @@
+<def f='codebrowser/lib/urldata.h' l='787' ll='1043'/>
+<size>1880</size>
+<doc f='codebrowser/lib/urldata.h' l='783'>/*
+ * The connectdata struct contains all fields and variables that should be
+ * unique for an entire connection.
+ */</doc>
+<mbr r='connectdata::data' o='0' t='struct Curl_easy *'/>
+<mbr r='connectdata::bundle_node' o='64' t='struct curl_llist_element'/>
+<mbr r='connectdata::chunk' o='256' t='struct Curl_chunker'/>
+<mbr r='connectdata::fclosesocket' o='640' t='curl_closesocket_callback'/>
+<mbr r='connectdata::closesocket_client' o='704' t='void *'/>
+<mbr r='connectdata::inuse' o='768' t='_Bool'/>
+<mbr r='connectdata::connection_id' o='832' t='long'/>
+<mbr r='connectdata::dns_entry' o='896' t='struct Curl_dns_entry *'/>
+<mbr r='connectdata::ip_addr' o='960' t='Curl_addrinfo *'/>
+<mbr r='connectdata::tempaddr' o='1024' t='Curl_addrinfo *[2]'/>
+<mbr r='connectdata::ip_addr_str' o='1152' t='char [46]'/>
+<mbr r='connectdata::scope_id' o='1536' t='unsigned int'/>
+<mbr r='connectdata::socktype' o='1568' t='int'/>
+<mbr r='connectdata::host' o='1600' t='struct hostname'/>
+<mbr r='connectdata::secondaryhostname' o='1856' t='char *'/>
+<mbr r='connectdata::conn_to_host' o='1920' t='struct hostname'/>
+<mbr r='connectdata::socks_proxy' o='2176' t='struct proxy_info'/>
+<mbr r='connectdata::http_proxy' o='2688' t='struct proxy_info'/>
+<mbr r='connectdata::port' o='3200' t='long'/>
+<mbr r='connectdata::remote_port' o='3264' t='int'/>
+<mbr r='connectdata::conn_to_port' o='3296' t='int'/>
+<mbr r='connectdata::secondary_port' o='3328' t='unsigned short'/>
+<mbr r='connectdata::primary_ip' o='3344' t='char [46]'/>
+<mbr r='connectdata::primary_port' o='3712' t='long'/>
+<mbr r='connectdata::local_ip' o='3776' t='char [46]'/>
+<mbr r='connectdata::local_port' o='4160' t='long'/>
+<mbr r='connectdata::user' o='4224' t='char *'/>
+<mbr r='connectdata::passwd' o='4288' t='char *'/>
+<mbr r='connectdata::options' o='4352' t='char *'/>
+<mbr r='connectdata::oauth_bearer' o='4416' t='char *'/>
+<mbr r='connectdata::httpversion' o='4480' t='int'/>
+<mbr r='connectdata::rtspversion' o='4512' t='int'/>
+<mbr r='connectdata::now' o='4544' t='struct curltime'/>
+<mbr r='connectdata::created' o='4672' t='struct curltime'/>
+<mbr r='connectdata::sock' o='4800' t='curl_socket_t [2]'/>
+<mbr r='connectdata::tempsock' o='4864' t='curl_socket_t [2]'/>
+<mbr r='connectdata::sock_accepted' o='4928' t='_Bool [2]'/>
+<mbr r='connectdata::recv' o='4992' t='Curl_recv *[2]'/>
+<mbr r='connectdata::send' o='5120' t='Curl_send *[2]'/>
+<mbr r='connectdata::ssl' o='5248' t='struct ssl_connect_data [2]'/>
+<mbr r='connectdata::proxy_ssl' o='5632' t='struct ssl_connect_data [2]'/>
+<mbr r='connectdata::ssl_config' o='6016' t='struct ssl_primary_config'/>
+<mbr r='connectdata::proxy_ssl_config' o='6592' t='struct ssl_primary_config'/>
+<mbr r='connectdata::tls_upgraded' o='7168' t='_Bool'/>
+<mbr r='connectdata::bits' o='7176' t='struct ConnectBits'/>
+<mbr r='connectdata::connecttime' o='7488' t='struct curltime'/>
+<mbr r='connectdata::num_addr' o='7616' t='int'/>
+<mbr r='connectdata::timeoutms_per_addr' o='7680' t='time_t'/>
+<mbr r='connectdata::handler' o='7744' t='const struct Curl_handler *'/>
+<mbr r='connectdata::given' o='7808' t='const struct Curl_handler *'/>
+<mbr r='connectdata::ip_version' o='7872' t='long'/>
+<mbr r='connectdata::sockfd' o='7936' t='curl_socket_t'/>
+<mbr r='connectdata::writesockfd' o='7968' t='curl_socket_t'/>
+<mbr r='connectdata::allocptr' o='8000' t='struct dynamically_allocated_data'/>
+<mbr r='connectdata::readchannel_inuse' o='8640' t='_Bool'/>
+<mbr r='connectdata::writechannel_inuse' o='8648' t='_Bool'/>
+<mbr r='connectdata::send_pipe' o='8704' t='struct curl_llist'/>
+<mbr r='connectdata::recv_pipe' o='8960' t='struct curl_llist'/>
+<mbr r='connectdata::master_buffer' o='9216' t='char *'/>
+<mbr r='connectdata::read_pos' o='9280' t='size_t'/>
+<mbr r='connectdata::buf_len' o='9344' t='size_t'/>
+<mbr r='connectdata::seek_func' o='9408' t='curl_seek_callback'/>
+<mbr r='connectdata::seek_client' o='9472' t='void *'/>
+<mbr r='connectdata::ntlm' o='9536' t='struct ntlmdata'/>
+<mbr r='connectdata::proxyntlm' o='9792' t='struct ntlmdata'/>
+<mbr r='connectdata::syserr_buf' o='10048' t='char [256]'/>
+<mbr r='connectdata::async' o='12096' t='struct Curl_async'/>
+<mbr r='connectdata::trailer' o='12416' t='char *'/>
+<mbr r='connectdata::trlMax' o='12480' t='int'/>
+<mbr r='connectdata::trlPos' o='12512' t='int'/>
+<mbr r='connectdata::proto' o='12544' t='union (anonymous union at /home/jon/workspace/curl/lib/urldata.h:997:3)'/>
+<mbr r='connectdata::cselect_bits' o='14464' t='int'/>
+<mbr r='connectdata::waitfor' o='14496' t='int'/>
+<mbr r='connectdata::localdev' o='14528' t='char *'/>
+<mbr r='connectdata::localport' o='14592' t='unsigned short'/>
+<mbr r='connectdata::localportrange' o='14624' t='int'/>
+<mbr r='connectdata::connect_state' o='14656' t='struct http_connect_state *'/>
+<mbr r='connectdata::bundle' o='14720' t='struct connectbundle *'/>
+<mbr r='connectdata::negnpn' o='14784' t='int'/>
+<mbr r='connectdata::unix_domain_socket' o='14848' t='char *'/>
+<mbr r='connectdata::abstract_unix_socket' o='14912' t='_Bool'/>
+<mbr r='connectdata::align_data__do_not_use' o='14976' t='long long *'/>

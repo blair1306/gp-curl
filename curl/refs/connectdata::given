@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='905' type='const struct Curl_handler *'/>
+<offset>7808</offset>
+<doc f='codebrowser/lib/urldata.h' l='905'>/* The protocol first given */</doc>
+<use f='codebrowser/lib/connect.c' l='1082' u='r' c='singleipconnect'/>
+<use f='codebrowser/lib/http.c' l='1361' u='r' c='Curl_http_connect'/>
+<use f='codebrowser/lib/http.c' l='2063' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2065' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='4378' u='w' c='findprotocol'/>
+<use f='codebrowser/lib/url.c' l='5793' u='r' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='5844' u='r' c='parse_remote_port'/>
+<use f='codebrowser/lib/url.c' l='6515' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6560' u='r' c='create_conn'/>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/ftp.h' l='90' type='struct (anonymous struct at /home/jon/workspace/curl/lib/ftp.h:87:3)'/>
+<offset>64</offset>
+<use f='codebrowser/lib/ftp.c' l='3820' u='m' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3824' u='m' c='init_wc_data'/>
+<use f='codebrowser/lib/ftp.c' l='3851' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3852' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3853' u='m' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3854' u='m' c='wc_statemach'/>

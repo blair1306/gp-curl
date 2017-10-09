@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/tftp.c' l='128' type='curl_socket_t'/>
+<use f='codebrowser/lib/tftp.c' l='538' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='620' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='645' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='671' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='685' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='745' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='789' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='815' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='833' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='1006' u='w' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1031' u='r' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='1110' u='r' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1248' u='r' c='tftp_multi_statemach'/>
+<offset>192</offset>

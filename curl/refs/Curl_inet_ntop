@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/inet_ntop.h' l='27' type='char * Curl_inet_ntop(int af, const void * addr, char * buf, size_t size)'/>
+<use f='codebrowser/lib/connect.c' l='627' u='c' c='getaddressinfo'/>
+<use f='codebrowser/lib/connect.c' l='637' u='c' c='getaddressinfo'/>
+<use f='codebrowser/lib/ftp.c' l='1075' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1079' u='c' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/hostip.c' l='179' u='c' c='Curl_printable_address'/>
+<use f='codebrowser/lib/hostip.c' l='185' u='c' c='Curl_printable_address'/>
+<use f='codebrowser/lib/if2ip.c' l='246' u='c' c='Curl_if2ip'/>
+<def f='codebrowser/lib/inet_ntop.c' l='183' ll='196' type='char * Curl_inet_ntop(int af, const void * src, char * buf, size_t size)'/>
+<doc f='codebrowser/lib/inet_ntop.c' l='171'>/*
+ * Convert a network format address to presentation format.
+ *
+ * Returns pointer to presentation format address (`buf&apos;).
+ * Returns NULL on error and errno set with the specific
+ * error, EAFNOSUPPORT or ENOSPC.
+ *
+ * On Windows we store the error in the thread errno, not
+ * in the winsock error code. This is to avoid losing the
+ * actual last winsock error. So when this function returns
+ * NULL, check errno not SOCKERRNO.
+ */</doc>

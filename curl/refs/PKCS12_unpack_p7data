@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='192' type='struct stack_st_PKCS12_SAFEBAG * PKCS12_unpack_p7data(PKCS7 * p7)'/>

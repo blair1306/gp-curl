@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/http.h' l='148' type='struct back'/>
+<offset>4032</offset>
+<use f='codebrowser/lib/http.c' l='999' u='m' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1001' u='m' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1002' u='m' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1003' u='m' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1004' u='m' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1008' u='m' c='readmoredata'/>
+<use f='codebrowser/lib/http.c' l='1160' u='m' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1161' u='m' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1162' u='m' c='Curl_add_buffer_send'/>
+<use f='codebrowser/lib/http.c' l='1163' u='m' c='Curl_add_buffer_send'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_md5.h' l='37' type='Curl_MD5_init_func'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/curl_md5.h' l='37'>/* Initialize context procedure */</doc>
+<use f='codebrowser/lib/md5.c' l='539' u='r' c='Curl_MD5_init'/>

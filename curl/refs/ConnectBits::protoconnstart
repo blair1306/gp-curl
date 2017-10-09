@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='395' type='_Bool'/>
+<offset>112</offset>
+<use f='codebrowser/lib/http.c' l='396' u='r' c='http_perhapsrewind'/>
+<use f='codebrowser/lib/imap.c' l='1611' u='r' c='imap_disconnect'/>
+<use f='codebrowser/lib/pop3.c' l='1221' u='r' c='pop3_disconnect'/>
+<use f='codebrowser/lib/smtp.c' l='1349' u='r' c='smtp_disconnect'/>
+<use f='codebrowser/lib/url.c' l='3188' u='r' c='IsPipeliningPossible'/>
+<use f='codebrowser/lib/url.c' l='3579' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='4042' u='r' c='Curl_protocol_connect'/>
+<use f='codebrowser/lib/url.c' l='4055' u='r' c='Curl_protocol_connect'/>
+<use f='codebrowser/lib/url.c' l='4083' u='w' c='Curl_protocol_connect'/>

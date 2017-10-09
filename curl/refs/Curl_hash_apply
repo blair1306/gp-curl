@@ -1,0 +1,1 @@
+<dec f='codebrowser/lib/hash.h' l='81' type='void Curl_hash_apply(struct curl_hash * h, void * user, void (*)(void *, void *) cb)'/>

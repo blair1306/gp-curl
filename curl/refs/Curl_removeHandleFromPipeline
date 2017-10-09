@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/url.h' l='58' type='int Curl_removeHandleFromPipeline(struct Curl_easy * handle, struct curl_llist * pipeline)'/>
+<use f='codebrowser/lib/multi.c' l='1948' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2012' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2088' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2089' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/url.c' l='3205' ll='3222' type='int Curl_removeHandleFromPipeline(struct Curl_easy * handle, struct curl_llist * pipeline)'/>
+<use f='codebrowser/lib/url.c' l='3258' u='c' c='Curl_getoff_all_pipelines'/>
+<use f='codebrowser/lib/url.c' l='3260' u='c' c='Curl_getoff_all_pipelines'/>

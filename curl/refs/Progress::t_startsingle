@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/urldata.h' l='1119' type='struct curltime'/>
+<use f='codebrowser/lib/asyn-thread.c' l='538' u='r' c='Curl_resolver_is_resolved'/>
+<offset>1216</offset>
+<use f='codebrowser/lib/connect.c' l='228' u='r' c='Curl_timeleft'/>
+<use f='codebrowser/lib/multi.c' l='1383' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1386' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1393' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1399' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/progress.c' l='178' u='w' c='Curl_pgrsTime'/>
+<use f='codebrowser/lib/progress.c' l='219' u='r' c='Curl_pgrsTime'/>
+<use f='codebrowser/lib/transfer.c' l='1201' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='1207' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/tests/unit/unit1303.c' l='136' u='m' c='test'/>
+<use f='codebrowser/tests/unit/unit1303.c' l='137' u='m' c='test'/>

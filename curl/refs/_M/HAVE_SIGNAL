@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_config.h' l='555'/>
+<doc f='codebrowser/lib/curl_config.h' l='554'>/* Define to 1 if you have the signal function. */</doc>
+<use f='codebrowser/lib/urldata.h' l='1275' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='1379' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='1421' u='a'/>
+<use f='codebrowser/src/tool_main.c' l='249' u='a'/>

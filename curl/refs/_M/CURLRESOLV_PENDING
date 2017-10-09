@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/hostip.h' l='85'/>
+<use f='codebrowser/lib/connect.c' l='355' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='1088' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='1940' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='1956' u='c'/>
+<use f='codebrowser/lib/hostip.c' l='503' u='c'/>
+<use f='codebrowser/lib/socks.c' l='165' u='c'/>
+<use f='codebrowser/lib/socks.c' l='606' u='c'/>
+<use f='codebrowser/lib/url.c' l='6237' u='c'/>
+<use f='codebrowser/lib/url.c' l='6259' u='c'/>

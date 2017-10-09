@@ -1,0 +1,13 @@
+<def f='codebrowser/src/tool_sdecls.h' l='91' ll='94'/>
+<size>16</size>
+<doc f='codebrowser/src/tool_sdecls.h' l='81'>/*
+ * InStruct variables keep track of information relative to curl&apos;s
+ * input reading, which may take place from stdin or from some file.
+ *
+ * &apos;fd&apos; member is either &apos;stdin&apos; file descriptor number STDIN_FILENO
+ * or a file descriptor as returned from an &apos;open&apos; call for some file.
+ *
+ * &apos;config&apos; member is a pointer to associated &apos;OperationConfig&apos; struct.
+ */</doc>
+<mbr r='InStruct::fd' o='0' t='int'/>
+<mbr r='InStruct::config' o='64' t='struct OperationConfig *'/>

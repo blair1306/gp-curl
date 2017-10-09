@@ -1,0 +1,878 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ntlm.c source code [codebrowser/lib/vauth/ntlm.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/vauth/ntlm.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>lib</a>/<a href='./'>vauth</a>/<a href='ntlm.c.html'>ntlm.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="../curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">if</span> defined(<a class="macro" href="../curl_setup.h.html#635" data-ref="_M/USE_NTLM">USE_NTLM</a>) &amp;&amp; !defined(<span class="macro" data-ref="_M/USE_WINDOWS_SSPI">USE_WINDOWS_SSPI</span>)</u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><i>/*</i></td></tr>
+<tr><th id="28">28</th><td><i> * NTLM details:</i></td></tr>
+<tr><th id="29">29</th><td><i> *</i></td></tr>
+<tr><th id="30">30</th><td><i> * <a href="https://davenport.sourceforge.io/ntlm.html">https://davenport.sourceforge.io/ntlm.html</a></i></td></tr>
+<tr><th id="31">31</th><td><i> * <a href="https://www.innovation.ch/java/ntlm.html">https://www.innovation.ch/java/ntlm.html</a></i></td></tr>
+<tr><th id="32">32</th><td><i> */</i></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#define <dfn class="macro" id="_M/DEBUG_ME" data-ref="_M/DEBUG_ME">DEBUG_ME</dfn> 0</u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="../urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="37">37</th><td><u>#include <a href="../non-ascii.h.html">"non-ascii.h"</a></u></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="../sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="39">39</th><td><u>#include <a href="../curl_base64.h.html">"curl_base64.h"</a></u></td></tr>
+<tr><th id="40">40</th><td><u>#include <a href="../curl_ntlm_core.h.html">"curl_ntlm_core.h"</a></u></td></tr>
+<tr><th id="41">41</th><td><u>#include <a href="../curl_gethostname.h.html">"curl_gethostname.h"</a></u></td></tr>
+<tr><th id="42">42</th><td><u>#include <a href="../curl_multibyte.h.html">"curl_multibyte.h"</a></u></td></tr>
+<tr><th id="43">43</th><td><u>#include <a href="../warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="44">44</th><td><u>#include <a href="../rand.h.html">"rand.h"</a></u></td></tr>
+<tr><th id="45">45</th><td><u>#include <a href="../vtls/vtls.h.html">"vtls/vtls.h"</a></u></td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><i>/* SSL backend-specific #if branches in this file must be kept in the order</i></td></tr>
+<tr><th id="48">48</th><td><i>   documented in curl_ntlm_core. */</i></td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="49">if</span> defined(<span class="macro" data-ref="_M/NTLM_NEEDS_NSS_INIT">NTLM_NEEDS_NSS_INIT</span>)</u></td></tr>
+<tr><th id="50">50</th><td><u>#include "vtls/nssg.h" /* for Curl_nss_force_init() */</u></td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="49">endif</span></u></td></tr>
+<tr><th id="52">52</th><td></td></tr>
+<tr><th id="53">53</th><td><u>#define <dfn class="macro" id="_M/BUILDING_CURL_NTLM_MSGS_C" data-ref="_M/BUILDING_CURL_NTLM_MSGS_C">BUILDING_CURL_NTLM_MSGS_C</dfn></u></td></tr>
+<tr><th id="54">54</th><td><u>#include <a href="vauth.h.html">"vauth/vauth.h"</a></u></td></tr>
+<tr><th id="55">55</th><td><u>#include <a href="ntlm.h.html">"vauth/ntlm.h"</a></u></td></tr>
+<tr><th id="56">56</th><td><u>#include <a href="../curl_endian.h.html">"curl_endian.h"</a></u></td></tr>
+<tr><th id="57">57</th><td><u>#include <a href="../curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="58">58</th><td></td></tr>
+<tr><th id="59">59</th><td><i>/* The last #include files should be: */</i></td></tr>
+<tr><th id="60">60</th><td><u>#include <a href="../curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="61">61</th><td><u>#include <a href="../memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="62">62</th><td></td></tr>
+<tr><th id="63">63</th><td><i>/* "NTLMSSP" signature is always in ASCII regardless of the platform */</i></td></tr>
+<tr><th id="64">64</th><td><u>#define <dfn class="macro" id="_M/NTLMSSP_SIGNATURE" data-ref="_M/NTLMSSP_SIGNATURE">NTLMSSP_SIGNATURE</dfn> "\x4e\x54\x4c\x4d\x53\x53\x50"</u></td></tr>
+<tr><th id="65">65</th><td></td></tr>
+<tr><th id="66">66</th><td><u>#define <dfn class="macro" id="_M/SHORTPAIR" data-ref="_M/SHORTPAIR">SHORTPAIR</dfn>(x) ((x) &amp; 0xff), (((x) &gt;&gt; 8) &amp; 0xff)</u></td></tr>
+<tr><th id="67">67</th><td><u>#define <dfn class="macro" id="_M/LONGQUARTET" data-ref="_M/LONGQUARTET">LONGQUARTET</dfn>(x) ((x) &amp; 0xff), (((x) &gt;&gt; 8) &amp; 0xff), \</u></td></tr>
+<tr><th id="68">68</th><td><u>  (((x) &gt;&gt; 16) &amp; 0xff), (((x) &gt;&gt; 24) &amp; 0xff)</u></td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td><u>#<span data-ppcond="70">if</span> <a class="macro" href="#34" title="0" data-ref="_M/DEBUG_ME">DEBUG_ME</a></u></td></tr>
+<tr><th id="71">71</th><td><u># define DEBUG_OUT(x) x</u></td></tr>
+<tr><th id="72">72</th><td><em>static</em> <em>void</em> ntlm_print_flags(FILE *handle, <em>unsigned</em> <em>long</em> flags)</td></tr>
+<tr><th id="73">73</th><td>{</td></tr>
+<tr><th id="74">74</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_UNICODE)</td></tr>
+<tr><th id="75">75</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_UNICODE "</q>);</td></tr>
+<tr><th id="76">76</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_OEM)</td></tr>
+<tr><th id="77">77</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_OEM "</q>);</td></tr>
+<tr><th id="78">78</th><td>  <b>if</b>(flags &amp; NTLMFLAG_REQUEST_TARGET)</td></tr>
+<tr><th id="79">79</th><td>    fprintf(handle, <q>"NTLMFLAG_REQUEST_TARGET "</q>);</td></tr>
+<tr><th id="80">80</th><td>  <b>if</b>(flags &amp; (<var>1</var>&lt;&lt;<var>3</var>))</td></tr>
+<tr><th id="81">81</th><td>    fprintf(handle, <q>"NTLMFLAG_UNKNOWN_3 "</q>);</td></tr>
+<tr><th id="82">82</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_SIGN)</td></tr>
+<tr><th id="83">83</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_SIGN "</q>);</td></tr>
+<tr><th id="84">84</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_SEAL)</td></tr>
+<tr><th id="85">85</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_SEAL "</q>);</td></tr>
+<tr><th id="86">86</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_DATAGRAM_STYLE)</td></tr>
+<tr><th id="87">87</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_DATAGRAM_STYLE "</q>);</td></tr>
+<tr><th id="88">88</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_LM_KEY)</td></tr>
+<tr><th id="89">89</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_LM_KEY "</q>);</td></tr>
+<tr><th id="90">90</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_NETWARE)</td></tr>
+<tr><th id="91">91</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_NETWARE "</q>);</td></tr>
+<tr><th id="92">92</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_NTLM_KEY)</td></tr>
+<tr><th id="93">93</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_NTLM_KEY "</q>);</td></tr>
+<tr><th id="94">94</th><td>  <b>if</b>(flags &amp; (<var>1</var>&lt;&lt;<var>10</var>))</td></tr>
+<tr><th id="95">95</th><td>    fprintf(handle, <q>"NTLMFLAG_UNKNOWN_10 "</q>);</td></tr>
+<tr><th id="96">96</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_ANONYMOUS)</td></tr>
+<tr><th id="97">97</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_ANONYMOUS "</q>);</td></tr>
+<tr><th id="98">98</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_DOMAIN_SUPPLIED)</td></tr>
+<tr><th id="99">99</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_DOMAIN_SUPPLIED "</q>);</td></tr>
+<tr><th id="100">100</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_WORKSTATION_SUPPLIED)</td></tr>
+<tr><th id="101">101</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_WORKSTATION_SUPPLIED "</q>);</td></tr>
+<tr><th id="102">102</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_LOCAL_CALL)</td></tr>
+<tr><th id="103">103</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_LOCAL_CALL "</q>);</td></tr>
+<tr><th id="104">104</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_ALWAYS_SIGN)</td></tr>
+<tr><th id="105">105</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_ALWAYS_SIGN "</q>);</td></tr>
+<tr><th id="106">106</th><td>  <b>if</b>(flags &amp; NTLMFLAG_TARGET_TYPE_DOMAIN)</td></tr>
+<tr><th id="107">107</th><td>    fprintf(handle, <q>"NTLMFLAG_TARGET_TYPE_DOMAIN "</q>);</td></tr>
+<tr><th id="108">108</th><td>  <b>if</b>(flags &amp; NTLMFLAG_TARGET_TYPE_SERVER)</td></tr>
+<tr><th id="109">109</th><td>    fprintf(handle, <q>"NTLMFLAG_TARGET_TYPE_SERVER "</q>);</td></tr>
+<tr><th id="110">110</th><td>  <b>if</b>(flags &amp; NTLMFLAG_TARGET_TYPE_SHARE)</td></tr>
+<tr><th id="111">111</th><td>    fprintf(handle, <q>"NTLMFLAG_TARGET_TYPE_SHARE "</q>);</td></tr>
+<tr><th id="112">112</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_NTLM2_KEY)</td></tr>
+<tr><th id="113">113</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_NTLM2_KEY "</q>);</td></tr>
+<tr><th id="114">114</th><td>  <b>if</b>(flags &amp; NTLMFLAG_REQUEST_INIT_RESPONSE)</td></tr>
+<tr><th id="115">115</th><td>    fprintf(handle, <q>"NTLMFLAG_REQUEST_INIT_RESPONSE "</q>);</td></tr>
+<tr><th id="116">116</th><td>  <b>if</b>(flags &amp; NTLMFLAG_REQUEST_ACCEPT_RESPONSE)</td></tr>
+<tr><th id="117">117</th><td>    fprintf(handle, <q>"NTLMFLAG_REQUEST_ACCEPT_RESPONSE "</q>);</td></tr>
+<tr><th id="118">118</th><td>  <b>if</b>(flags &amp; NTLMFLAG_REQUEST_NONNT_SESSION_KEY)</td></tr>
+<tr><th id="119">119</th><td>    fprintf(handle, <q>"NTLMFLAG_REQUEST_NONNT_SESSION_KEY "</q>);</td></tr>
+<tr><th id="120">120</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_TARGET_INFO)</td></tr>
+<tr><th id="121">121</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_TARGET_INFO "</q>);</td></tr>
+<tr><th id="122">122</th><td>  <b>if</b>(flags &amp; (<var>1</var>&lt;&lt;<var>24</var>))</td></tr>
+<tr><th id="123">123</th><td>    fprintf(handle, <q>"NTLMFLAG_UNKNOWN_24 "</q>);</td></tr>
+<tr><th id="124">124</th><td>  <b>if</b>(flags &amp; (<var>1</var>&lt;&lt;<var>25</var>))</td></tr>
+<tr><th id="125">125</th><td>    fprintf(handle, <q>"NTLMFLAG_UNKNOWN_25 "</q>);</td></tr>
+<tr><th id="126">126</th><td>  <b>if</b>(flags &amp; (<var>1</var>&lt;&lt;<var>26</var>))</td></tr>
+<tr><th id="127">127</th><td>    fprintf(handle, <q>"NTLMFLAG_UNKNOWN_26 "</q>);</td></tr>
+<tr><th id="128">128</th><td>  <b>if</b>(flags &amp; (<var>1</var>&lt;&lt;<var>27</var>))</td></tr>
+<tr><th id="129">129</th><td>    fprintf(handle, <q>"NTLMFLAG_UNKNOWN_27 "</q>);</td></tr>
+<tr><th id="130">130</th><td>  <b>if</b>(flags &amp; (<var>1</var>&lt;&lt;<var>28</var>))</td></tr>
+<tr><th id="131">131</th><td>    fprintf(handle, <q>"NTLMFLAG_UNKNOWN_28 "</q>);</td></tr>
+<tr><th id="132">132</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_128)</td></tr>
+<tr><th id="133">133</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_128 "</q>);</td></tr>
+<tr><th id="134">134</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_KEY_EXCHANGE)</td></tr>
+<tr><th id="135">135</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_KEY_EXCHANGE "</q>);</td></tr>
+<tr><th id="136">136</th><td>  <b>if</b>(flags &amp; NTLMFLAG_NEGOTIATE_56)</td></tr>
+<tr><th id="137">137</th><td>    fprintf(handle, <q>"NTLMFLAG_NEGOTIATE_56 "</q>);</td></tr>
+<tr><th id="138">138</th><td>}</td></tr>
+<tr><th id="139">139</th><td></td></tr>
+<tr><th id="140">140</th><td><em>static</em> <em>void</em> ntlm_print_hex(FILE *handle, <em>const</em> <em>char</em> *buf, size_t len)</td></tr>
+<tr><th id="141">141</th><td>{</td></tr>
+<tr><th id="142">142</th><td>  <em>const</em> <em>char</em> *p = buf;</td></tr>
+<tr><th id="143">143</th><td></td></tr>
+<tr><th id="144">144</th><td>  (<em>void</em>) handle;</td></tr>
+<tr><th id="145">145</th><td></td></tr>
+<tr><th id="146">146</th><td>  fprintf(stderr, <q>"0x"</q>);</td></tr>
+<tr><th id="147">147</th><td>  <b>while</b>(len-- &gt; <var>0</var>)</td></tr>
+<tr><th id="148">148</th><td>    fprintf(stderr, <q>"%02.2x"</q>, (<em>unsigned</em> <em>int</em>)*p++);</td></tr>
+<tr><th id="149">149</th><td>}</td></tr>
+<tr><th id="150">150</th><td><u>#<span data-ppcond="70">else</span></u></td></tr>
+<tr><th id="151">151</th><td><u># define <dfn class="macro" id="_M/DEBUG_OUT" data-ref="_M/DEBUG_OUT">DEBUG_OUT</dfn>(x) Curl_nop_stmt</u></td></tr>
+<tr><th id="152">152</th><td><u>#<span data-ppcond="70">endif</span></u></td></tr>
+<tr><th id="153">153</th><td></td></tr>
+<tr><th id="154">154</th><td><i  data-doc="ntlm_decode_type2_target">/*</i></td></tr>
+<tr><th id="155">155</th><td><i  data-doc="ntlm_decode_type2_target"> * ntlm_decode_type2_target()</i></td></tr>
+<tr><th id="156">156</th><td><i  data-doc="ntlm_decode_type2_target"> *</i></td></tr>
+<tr><th id="157">157</th><td><i  data-doc="ntlm_decode_type2_target"> * This is used to decode the "target info" in the NTLM type-2 message</i></td></tr>
+<tr><th id="158">158</th><td><i  data-doc="ntlm_decode_type2_target"> * received.</i></td></tr>
+<tr><th id="159">159</th><td><i  data-doc="ntlm_decode_type2_target"> *</i></td></tr>
+<tr><th id="160">160</th><td><i  data-doc="ntlm_decode_type2_target"> * Parameters:</i></td></tr>
+<tr><th id="161">161</th><td><i  data-doc="ntlm_decode_type2_target"> *</i></td></tr>
+<tr><th id="162">162</th><td><i  data-doc="ntlm_decode_type2_target"> * data      [in]     - The session handle.</i></td></tr>
+<tr><th id="163">163</th><td><i  data-doc="ntlm_decode_type2_target"> * buffer    [in]     - The decoded type-2 message.</i></td></tr>
+<tr><th id="164">164</th><td><i  data-doc="ntlm_decode_type2_target"> * size      [in]     - The input buffer size, at least 32 bytes.</i></td></tr>
+<tr><th id="165">165</th><td><i  data-doc="ntlm_decode_type2_target"> * ntlm      [in/out] - The NTLM data struct being used and modified.</i></td></tr>
+<tr><th id="166">166</th><td><i  data-doc="ntlm_decode_type2_target"> *</i></td></tr>
+<tr><th id="167">167</th><td><i  data-doc="ntlm_decode_type2_target"> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="168">168</th><td><i  data-doc="ntlm_decode_type2_target"> */</i></td></tr>
+<tr><th id="169">169</th><td><em>static</em> <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="ntlm_decode_type2_target" title='ntlm_decode_type2_target' data-type='CURLcode ntlm_decode_type2_target(struct Curl_easy * data, unsigned char * buffer, size_t size, struct ntlmdata * ntlm)' data-ref="ntlm_decode_type2_target">ntlm_decode_type2_target</dfn>(<b>struct</b> <a class="type" href="../urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="1data" title='data' data-type='struct Curl_easy *' data-ref="1data">data</dfn>,</td></tr>
+<tr><th id="170">170</th><td>                                         <em>unsigned</em> <em>char</em> *<dfn class="local col2 decl" id="2buffer" title='buffer' data-type='unsigned char *' data-ref="2buffer">buffer</dfn>,</td></tr>
+<tr><th id="171">171</th><td>                                         <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="3size" title='size' data-type='size_t' data-ref="3size">size</dfn>,</td></tr>
+<tr><th id="172">172</th><td>                                         <b>struct</b> <a class="type" href="../urldata.h.html#ntlmdata" title='ntlmdata' data-ref="ntlmdata">ntlmdata</a> *<dfn class="local col4 decl" id="4ntlm" title='ntlm' data-type='struct ntlmdata *' data-ref="4ntlm">ntlm</dfn>)</td></tr>
+<tr><th id="173">173</th><td>{</td></tr>
+<tr><th id="174">174</th><td>  <em>unsigned</em> <em>short</em> <dfn class="local col5 decl" id="5target_info_len" title='target_info_len' data-type='unsigned short' data-ref="5target_info_len">target_info_len</dfn> = <var>0</var>;</td></tr>
+<tr><th id="175">175</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col6 decl" id="6target_info_offset" title='target_info_offset' data-type='unsigned int' data-ref="6target_info_offset">target_info_offset</dfn> = <var>0</var>;</td></tr>
+<tr><th id="176">176</th><td></td></tr>
+<tr><th id="177">177</th><td><u>#<span data-ppcond="177">if</span> defined(<span class="macro" data-ref="_M/CURL_DISABLE_VERBOSE_STRINGS">CURL_DISABLE_VERBOSE_STRINGS</span>)</u></td></tr>
+<tr><th id="178">178</th><td>  (<em>void</em>) data;</td></tr>
+<tr><th id="179">179</th><td><u>#<span data-ppcond="177">endif</span></u></td></tr>
+<tr><th id="180">180</th><td></td></tr>
+<tr><th id="181">181</th><td>  <b>if</b>(<a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a> &gt;= <var>48</var>) {</td></tr>
+<tr><th id="182">182</th><td>    <a class="local col5 ref" href="#5target_info_len" title='target_info_len' data-ref="5target_info_len">target_info_len</a> = <a class="ref" href="../curl_endian.h.html#Curl_read16_le" title='Curl_read16_le' data-ref="Curl_read16_le">Curl_read16_le</a>(&amp;<a class="local col2 ref" href="#2buffer" title='buffer' data-ref="2buffer">buffer</a>[<var>40</var>]);</td></tr>
+<tr><th id="183">183</th><td>    <a class="local col6 ref" href="#6target_info_offset" title='target_info_offset' data-ref="6target_info_offset">target_info_offset</a> = <a class="ref" href="../curl_endian.h.html#Curl_read32_le" title='Curl_read32_le' data-ref="Curl_read32_le">Curl_read32_le</a>(&amp;<a class="local col2 ref" href="#2buffer" title='buffer' data-ref="2buffer">buffer</a>[<var>44</var>]);</td></tr>
+<tr><th id="184">184</th><td>    <b>if</b>(<a class="local col5 ref" href="#5target_info_len" title='target_info_len' data-ref="5target_info_len">target_info_len</a> &gt; <var>0</var>) {</td></tr>
+<tr><th id="185">185</th><td>      <b>if</b>(((<a class="local col6 ref" href="#6target_info_offset" title='target_info_offset' data-ref="6target_info_offset">target_info_offset</a> + <a class="local col5 ref" href="#5target_info_len" title='target_info_len' data-ref="5target_info_len">target_info_len</a>) &gt; <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>) ||</td></tr>
+<tr><th id="186">186</th><td>         (<a class="local col6 ref" href="#6target_info_offset" title='target_info_offset' data-ref="6target_info_offset">target_info_offset</a> &lt; <var>48</var>)) {</td></tr>
+<tr><th id="187">187</th><td>        <a class="macro" href="../sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>, <q>"NTLM handshake failure (bad type-2 message). "</q></td></tr>
+<tr><th id="188">188</th><td>                    <q>"Target Info Offset Len is set incorrect by the peer\n"</q>);</td></tr>
+<tr><th id="189">189</th><td>        <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="190">190</th><td>      }</td></tr>
+<tr><th id="191">191</th><td></td></tr>
+<tr><th id="192">192</th><td>      <a class="local col4 ref" href="#4ntlm" title='ntlm' data-ref="4ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::target_info" title='ntlmdata::target_info' data-ref="ntlmdata::target_info">target_info</a> = <a class="macro" href="../curl_memory.h.html#124" title="Curl_cmalloc(target_info_len)" data-ref="_M/malloc">malloc</a>(<a class="local col5 ref" href="#5target_info_len" title='target_info_len' data-ref="5target_info_len">target_info_len</a>);</td></tr>
+<tr><th id="193">193</th><td>      <b>if</b>(!<a class="local col4 ref" href="#4ntlm" title='ntlm' data-ref="4ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::target_info" title='ntlmdata::target_info' data-ref="ntlmdata::target_info">target_info</a>)</td></tr>
+<tr><th id="194">194</th><td>        <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="195">195</th><td></td></tr>
+<tr><th id="196">196</th><td>      <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col4 ref" href="#4ntlm" title='ntlm' data-ref="4ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::target_info" title='ntlmdata::target_info' data-ref="ntlmdata::target_info">target_info</a>, &amp;<a class="local col2 ref" href="#2buffer" title='buffer' data-ref="2buffer">buffer</a>[<a class="local col6 ref" href="#6target_info_offset" title='target_info_offset' data-ref="6target_info_offset">target_info_offset</a>], <a class="local col5 ref" href="#5target_info_len" title='target_info_len' data-ref="5target_info_len">target_info_len</a>);</td></tr>
+<tr><th id="197">197</th><td>    }</td></tr>
+<tr><th id="198">198</th><td>  }</td></tr>
+<tr><th id="199">199</th><td></td></tr>
+<tr><th id="200">200</th><td>  <a class="local col4 ref" href="#4ntlm" title='ntlm' data-ref="4ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::target_info_len" title='ntlmdata::target_info_len' data-ref="ntlmdata::target_info_len">target_info_len</a> = <a class="local col5 ref" href="#5target_info_len" title='target_info_len' data-ref="5target_info_len">target_info_len</a>;</td></tr>
+<tr><th id="201">201</th><td></td></tr>
+<tr><th id="202">202</th><td>  <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="203">203</th><td>}</td></tr>
+<tr><th id="204">204</th><td></td></tr>
+<tr><th id="205">205</th><td><i>/*</i></td></tr>
+<tr><th id="206">206</th><td><i>  NTLM message structure notes:</i></td></tr>
+<tr><th id="207">207</th><td><i></i></td></tr>
+<tr><th id="208">208</th><td><i>  A 'short' is a 'network short', a little-endian 16-bit unsigned value.</i></td></tr>
+<tr><th id="209">209</th><td><i></i></td></tr>
+<tr><th id="210">210</th><td><i>  A 'long' is a 'network long', a little-endian, 32-bit unsigned value.</i></td></tr>
+<tr><th id="211">211</th><td><i></i></td></tr>
+<tr><th id="212">212</th><td><i>  A 'security buffer' represents a triplet used to point to a buffer,</i></td></tr>
+<tr><th id="213">213</th><td><i>  consisting of two shorts and one long:</i></td></tr>
+<tr><th id="214">214</th><td><i></i></td></tr>
+<tr><th id="215">215</th><td><i>    1. A 'short' containing the length of the buffer content in bytes.</i></td></tr>
+<tr><th id="216">216</th><td><i>    2. A 'short' containing the allocated space for the buffer in bytes.</i></td></tr>
+<tr><th id="217">217</th><td><i>    3. A 'long' containing the offset to the start of the buffer in bytes,</i></td></tr>
+<tr><th id="218">218</th><td><i>       from the beginning of the NTLM message.</i></td></tr>
+<tr><th id="219">219</th><td><i>*/</i></td></tr>
+<tr><th id="220">220</th><td></td></tr>
+<tr><th id="221">221</th><td><i>/*</i></td></tr>
+<tr><th id="222">222</th><td><i> * Curl_auth_is_ntlm_supported()</i></td></tr>
+<tr><th id="223">223</th><td><i> *</i></td></tr>
+<tr><th id="224">224</th><td><i> * This is used to evaluate if NTLM is supported.</i></td></tr>
+<tr><th id="225">225</th><td><i> *</i></td></tr>
+<tr><th id="226">226</th><td><i> * Parameters: None</i></td></tr>
+<tr><th id="227">227</th><td><i> *</i></td></tr>
+<tr><th id="228">228</th><td><i> * Returns TRUE as NTLM as handled by libcurl.</i></td></tr>
+<tr><th id="229">229</th><td><i> */</i></td></tr>
+<tr><th id="230">230</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_auth_is_ntlm_supported" title='Curl_auth_is_ntlm_supported' data-ref="Curl_auth_is_ntlm_supported">Curl_auth_is_ntlm_supported</dfn>(<em>void</em>)</td></tr>
+<tr><th id="231">231</th><td>{</td></tr>
+<tr><th id="232">232</th><td>  <b>return</b> <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="233">233</th><td>}</td></tr>
+<tr><th id="234">234</th><td></td></tr>
+<tr><th id="235">235</th><td><i>/*</i></td></tr>
+<tr><th id="236">236</th><td><i> * Curl_auth_decode_ntlm_type2_message()</i></td></tr>
+<tr><th id="237">237</th><td><i> *</i></td></tr>
+<tr><th id="238">238</th><td><i> * This is used to decode an already encoded NTLM type-2 message. The message</i></td></tr>
+<tr><th id="239">239</th><td><i> * is first decoded from a base64 string into a raw NTLM message and checked</i></td></tr>
+<tr><th id="240">240</th><td><i> * for validity before the appropriate data for creating a type-3 message is</i></td></tr>
+<tr><th id="241">241</th><td><i> * written to the given NTLM data structure.</i></td></tr>
+<tr><th id="242">242</th><td><i> *</i></td></tr>
+<tr><th id="243">243</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="244">244</th><td><i> *</i></td></tr>
+<tr><th id="245">245</th><td><i> * data     [in]     - The session handle.</i></td></tr>
+<tr><th id="246">246</th><td><i> * type2msg [in]     - The base64 encoded type-2 message.</i></td></tr>
+<tr><th id="247">247</th><td><i> * ntlm     [in/out] - The NTLM data struct being used and modified.</i></td></tr>
+<tr><th id="248">248</th><td><i> *</i></td></tr>
+<tr><th id="249">249</th><td><i> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="250">250</th><td><i> */</i></td></tr>
+<tr><th id="251">251</th><td><a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_auth_decode_ntlm_type2_message" title='Curl_auth_decode_ntlm_type2_message' data-ref="Curl_auth_decode_ntlm_type2_message">Curl_auth_decode_ntlm_type2_message</dfn>(<b>struct</b> <a class="type" href="../urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col7 decl" id="7data" title='data' data-type='struct Curl_easy *' data-ref="7data">data</dfn>,</td></tr>
+<tr><th id="252">252</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="8type2msg" title='type2msg' data-type='const char *' data-ref="8type2msg">type2msg</dfn>,</td></tr>
+<tr><th id="253">253</th><td>                                             <b>struct</b> <a class="type" href="../urldata.h.html#ntlmdata" title='ntlmdata' data-ref="ntlmdata">ntlmdata</a> *<dfn class="local col9 decl" id="9ntlm" title='ntlm' data-type='struct ntlmdata *' data-ref="9ntlm">ntlm</dfn>)</td></tr>
+<tr><th id="254">254</th><td>{</td></tr>
+<tr><th id="255">255</th><td>  <em>static</em> <em>const</em> <em>char</em> <dfn class="local col0 decl" id="10type2_marker" title='type2_marker' data-type='const char [4]' data-ref="10type2_marker">type2_marker</dfn>[] = { <var>0x02</var>, <var>0x00</var>, <var>0x00</var>, <var>0x00</var> };</td></tr>
+<tr><th id="256">256</th><td></td></tr>
+<tr><th id="257">257</th><td>  <i>/* NTLM type-2 message structure:</i></td></tr>
+<tr><th id="258">258</th><td><i></i></td></tr>
+<tr><th id="259">259</th><td><i>          Index  Description            Content</i></td></tr>
+<tr><th id="260">260</th><td><i>            0    NTLMSSP Signature      Null-terminated ASCII "NTLMSSP"</i></td></tr>
+<tr><th id="261">261</th><td><i>                                        (0x4e544c4d53535000)</i></td></tr>
+<tr><th id="262">262</th><td><i>            8    NTLM Message Type      long (0x02000000)</i></td></tr>
+<tr><th id="263">263</th><td><i>           12    Target Name            security buffer</i></td></tr>
+<tr><th id="264">264</th><td><i>           20    Flags                  long</i></td></tr>
+<tr><th id="265">265</th><td><i>           24    Challenge              8 bytes</i></td></tr>
+<tr><th id="266">266</th><td><i>          (32)   Context                8 bytes (two consecutive longs) (*)</i></td></tr>
+<tr><th id="267">267</th><td><i>          (40)   Target Information     security buffer (*)</i></td></tr>
+<tr><th id="268">268</th><td><i>          (48)   OS Version Structure   8 bytes (*)</i></td></tr>
+<tr><th id="269">269</th><td><i>  32 (48) (56)   Start of data block    (*)</i></td></tr>
+<tr><th id="270">270</th><td><i>                                        (*) -&gt; Optional</i></td></tr>
+<tr><th id="271">271</th><td><i>  */</i></td></tr>
+<tr><th id="272">272</th><td></td></tr>
+<tr><th id="273">273</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col1 decl" id="11result" title='result' data-type='CURLcode' data-ref="11result">result</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="274">274</th><td>  <em>unsigned</em> <em>char</em> *<dfn class="local col2 decl" id="12type2" title='type2' data-type='unsigned char *' data-ref="12type2">type2</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="275">275</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="13type2_len" title='type2_len' data-type='size_t' data-ref="13type2_len">type2_len</dfn> = <var>0</var>;</td></tr>
+<tr><th id="276">276</th><td></td></tr>
+<tr><th id="277">277</th><td><u>#<span data-ppcond="277">if</span> defined(<span class="macro" data-ref="_M/NTLM_NEEDS_NSS_INIT">NTLM_NEEDS_NSS_INIT</span>)</u></td></tr>
+<tr><th id="278">278</th><td>  <i>/* Make sure the crypto backend is initialized */</i></td></tr>
+<tr><th id="279">279</th><td>  result = Curl_nss_force_init(data);</td></tr>
+<tr><th id="280">280</th><td>  <b>if</b>(result)</td></tr>
+<tr><th id="281">281</th><td>    <b>return</b> result;</td></tr>
+<tr><th id="282">282</th><td><u>#<span data-ppcond="277">elif</span> defined(<span class="macro" data-ref="_M/CURL_DISABLE_VERBOSE_STRINGS">CURL_DISABLE_VERBOSE_STRINGS</span>)</u></td></tr>
+<tr><th id="283">283</th><td>  (<em>void</em>)data;</td></tr>
+<tr><th id="284">284</th><td><u>#<span data-ppcond="277">endif</span></u></td></tr>
+<tr><th id="285">285</th><td></td></tr>
+<tr><th id="286">286</th><td>  <i>/* Decode the base-64 encoded type-2 message */</i></td></tr>
+<tr><th id="287">287</th><td>  <b>if</b>(<a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col8 ref" href="#8type2msg" title='type2msg' data-ref="8type2msg">type2msg</a>) &amp;&amp; *<a class="local col8 ref" href="#8type2msg" title='type2msg' data-ref="8type2msg">type2msg</a> != <kbd>'='</kbd>) {</td></tr>
+<tr><th id="288">288</th><td>    <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a> = <a class="ref" href="../curl_base64.h.html#Curl_base64_decode" title='Curl_base64_decode' data-ref="Curl_base64_decode">Curl_base64_decode</a>(<a class="local col8 ref" href="#8type2msg" title='type2msg' data-ref="8type2msg">type2msg</a>, &amp;<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>, &amp;<a class="local col3 ref" href="#13type2_len" title='type2_len' data-ref="13type2_len">type2_len</a>);</td></tr>
+<tr><th id="289">289</th><td>    <b>if</b>(<a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a>)</td></tr>
+<tr><th id="290">290</th><td>      <b>return</b> <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a>;</td></tr>
+<tr><th id="291">291</th><td>  }</td></tr>
+<tr><th id="292">292</th><td></td></tr>
+<tr><th id="293">293</th><td>  <i>/* Ensure we have a valid type-2 message */</i></td></tr>
+<tr><th id="294">294</th><td>  <b>if</b>(!<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>) {</td></tr>
+<tr><th id="295">295</th><td>    <a class="macro" href="../sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col7 ref" href="#7data" title='data' data-ref="7data">data</a>, <q>"NTLM handshake failure (empty type-2 message)\n"</q>);</td></tr>
+<tr><th id="296">296</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="297">297</th><td>  }</td></tr>
+<tr><th id="298">298</th><td></td></tr>
+<tr><th id="299">299</th><td>  <a class="local col9 ref" href="#9ntlm" title='ntlm' data-ref="9ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::flags" title='ntlmdata::flags' data-ref="ntlmdata::flags">flags</a> = <var>0</var>;</td></tr>
+<tr><th id="300">300</th><td></td></tr>
+<tr><th id="301">301</th><td>  <b>if</b>((<a class="local col3 ref" href="#13type2_len" title='type2_len' data-ref="13type2_len">type2_len</a> &lt; <var>32</var>) ||</td></tr>
+<tr><th id="302">302</th><td>     (<a class="ref" href="../../../include/string.h.html#memcmp" title='memcmp' data-ref="memcmp">memcmp</a>(<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>, <a class="macro" href="#64" title="&quot;\x4e\x54\x4c\x4d\x53\x53\x50&quot;" data-ref="_M/NTLMSSP_SIGNATURE">NTLMSSP_SIGNATURE</a>, <var>8</var>) != <var>0</var>) ||</td></tr>
+<tr><th id="303">303</th><td>     (<a class="ref" href="../../../include/string.h.html#memcmp" title='memcmp' data-ref="memcmp">memcmp</a>(<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a> + <var>8</var>, <a class="local col0 ref" href="#10type2_marker" title='type2_marker' data-ref="10type2_marker">type2_marker</a>, <b>sizeof</b>(<a class="local col0 ref" href="#10type2_marker" title='type2_marker' data-ref="10type2_marker">type2_marker</a>)) != <var>0</var>)) {</td></tr>
+<tr><th id="304">304</th><td>    <i>/* This was not a good enough type-2 message */</i></td></tr>
+<tr><th id="305">305</th><td>    <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(type2)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>);</td></tr>
+<tr><th id="306">306</th><td>    <a class="macro" href="../sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col7 ref" href="#7data" title='data' data-ref="7data">data</a>, <q>"NTLM handshake failure (bad type-2 message)\n"</q>);</td></tr>
+<tr><th id="307">307</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_BAD_CONTENT_ENCODING" title='CURLE_BAD_CONTENT_ENCODING' data-ref="CURLE_BAD_CONTENT_ENCODING">CURLE_BAD_CONTENT_ENCODING</a>;</td></tr>
+<tr><th id="308">308</th><td>  }</td></tr>
+<tr><th id="309">309</th><td></td></tr>
+<tr><th id="310">310</th><td>  <a class="local col9 ref" href="#9ntlm" title='ntlm' data-ref="9ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::flags" title='ntlmdata::flags' data-ref="ntlmdata::flags">flags</a> = <a class="ref" href="../curl_endian.h.html#Curl_read32_le" title='Curl_read32_le' data-ref="Curl_read32_le">Curl_read32_le</a>(&amp;<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>[<var>20</var>]);</td></tr>
+<tr><th id="311">311</th><td>  <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col9 ref" href="#9ntlm" title='ntlm' data-ref="9ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::nonce" title='ntlmdata::nonce' data-ref="ntlmdata::nonce">nonce</a>, &amp;<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>[<var>24</var>], <var>8</var>);</td></tr>
+<tr><th id="312">312</th><td></td></tr>
+<tr><th id="313">313</th><td>  <b>if</b>(<a class="local col9 ref" href="#9ntlm" title='ntlm' data-ref="9ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::flags" title='ntlmdata::flags' data-ref="ntlmdata::flags">flags</a> &amp; <a class="macro" href="ntlm.h.html#119" title="(1&lt;&lt;23)" data-ref="_M/NTLMFLAG_NEGOTIATE_TARGET_INFO">NTLMFLAG_NEGOTIATE_TARGET_INFO</a>) {</td></tr>
+<tr><th id="314">314</th><td>    <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a> = <a class="tu ref" href="#ntlm_decode_type2_target" title='ntlm_decode_type2_target' data-use='c' data-ref="ntlm_decode_type2_target">ntlm_decode_type2_target</a>(<a class="local col7 ref" href="#7data" title='data' data-ref="7data">data</a>, <a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>, <a class="local col3 ref" href="#13type2_len" title='type2_len' data-ref="13type2_len">type2_len</a>, <a class="local col9 ref" href="#9ntlm" title='ntlm' data-ref="9ntlm">ntlm</a>);</td></tr>
+<tr><th id="315">315</th><td>    <b>if</b>(<a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a>) {</td></tr>
+<tr><th id="316">316</th><td>      <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(type2)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>);</td></tr>
+<tr><th id="317">317</th><td>      <a class="macro" href="../sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col7 ref" href="#7data" title='data' data-ref="7data">data</a>, <q>"NTLM handshake failure (bad type-2 message)\n"</q>);</td></tr>
+<tr><th id="318">318</th><td>      <b>return</b> <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a>;</td></tr>
+<tr><th id="319">319</th><td>    }</td></tr>
+<tr><th id="320">320</th><td>  }</td></tr>
+<tr><th id="321">321</th><td></td></tr>
+<tr><th id="322">322</th><td>  <a class="macro" href="#151" title="do { } while(0)" data-ref="_M/DEBUG_OUT">DEBUG_OUT</a>({</td></tr>
+<tr><th id="323">323</th><td>    fprintf(stderr, <q>"**** TYPE2 header flags=0x%08.8lx "</q>, ntlm-&gt;flags);</td></tr>
+<tr><th id="324">324</th><td>    ntlm_print_flags(stderr, ntlm-&gt;flags);</td></tr>
+<tr><th id="325">325</th><td>    fprintf(stderr, <q>"\n                  nonce="</q>);</td></tr>
+<tr><th id="326">326</th><td>    ntlm_print_hex(stderr, (<em>char</em> *)ntlm-&gt;nonce, <var>8</var>);</td></tr>
+<tr><th id="327">327</th><td>    fprintf(stderr, <q>"\n****\n"</q>);</td></tr>
+<tr><th id="328">328</th><td>    fprintf(stderr, <q>"**** Header %s\n "</q>, header);</td></tr>
+<tr><th id="329">329</th><td>  });</td></tr>
+<tr><th id="330">330</th><td></td></tr>
+<tr><th id="331">331</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(type2)" data-ref="_M/free">free</a>(<a class="local col2 ref" href="#12type2" title='type2' data-ref="12type2">type2</a>);</td></tr>
+<tr><th id="332">332</th><td></td></tr>
+<tr><th id="333">333</th><td>  <b>return</b> <a class="local col1 ref" href="#11result" title='result' data-ref="11result">result</a>;</td></tr>
+<tr><th id="334">334</th><td>}</td></tr>
+<tr><th id="335">335</th><td></td></tr>
+<tr><th id="336">336</th><td><i  data-doc="unicodecpy">/* copy the source to the destination and fill in zeroes in every</i></td></tr>
+<tr><th id="337">337</th><td><i  data-doc="unicodecpy">   other destination byte! */</i></td></tr>
+<tr><th id="338">338</th><td><em>static</em> <em>void</em> <dfn class="tu decl def" id="unicodecpy" title='unicodecpy' data-type='void unicodecpy(unsigned char * dest, const char * src, size_t length)' data-ref="unicodecpy">unicodecpy</dfn>(<em>unsigned</em> <em>char</em> *<dfn class="local col4 decl" id="14dest" title='dest' data-type='unsigned char *' data-ref="14dest">dest</dfn>, <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="15src" title='src' data-type='const char *' data-ref="15src">src</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="16length" title='length' data-type='size_t' data-ref="16length">length</dfn>)</td></tr>
+<tr><th id="339">339</th><td>{</td></tr>
+<tr><th id="340">340</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="17i" title='i' data-type='size_t' data-ref="17i">i</dfn>;</td></tr>
+<tr><th id="341">341</th><td>  <b>for</b>(<a class="local col7 ref" href="#17i" title='i' data-ref="17i">i</a> = <var>0</var>; <a class="local col7 ref" href="#17i" title='i' data-ref="17i">i</a> &lt; <a class="local col6 ref" href="#16length" title='length' data-ref="16length">length</a>; <a class="local col7 ref" href="#17i" title='i' data-ref="17i">i</a>++) {</td></tr>
+<tr><th id="342">342</th><td>    <a class="local col4 ref" href="#14dest" title='dest' data-ref="14dest">dest</a>[<var>2</var> * <a class="local col7 ref" href="#17i" title='i' data-ref="17i">i</a>] = (<em>unsigned</em> <em>char</em>)<a class="local col5 ref" href="#15src" title='src' data-ref="15src">src</a>[<a class="local col7 ref" href="#17i" title='i' data-ref="17i">i</a>];</td></tr>
+<tr><th id="343">343</th><td>    <a class="local col4 ref" href="#14dest" title='dest' data-ref="14dest">dest</a>[<var>2</var> * <a class="local col7 ref" href="#17i" title='i' data-ref="17i">i</a> + <var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="344">344</th><td>  }</td></tr>
+<tr><th id="345">345</th><td>}</td></tr>
+<tr><th id="346">346</th><td></td></tr>
+<tr><th id="347">347</th><td><i>/*</i></td></tr>
+<tr><th id="348">348</th><td><i> * Curl_auth_create_ntlm_type1_message()</i></td></tr>
+<tr><th id="349">349</th><td><i> *</i></td></tr>
+<tr><th id="350">350</th><td><i> * This is used to generate an already encoded NTLM type-1 message ready for</i></td></tr>
+<tr><th id="351">351</th><td><i> * sending to the recipient using the appropriate compile time crypto API.</i></td></tr>
+<tr><th id="352">352</th><td><i> *</i></td></tr>
+<tr><th id="353">353</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="354">354</th><td><i> *</i></td></tr>
+<tr><th id="355">355</th><td><i> * data    [in]     - The session handle.</i></td></tr>
+<tr><th id="356">356</th><td><i> * userp   [in]     - The user name in the format User or Domain\User.</i></td></tr>
+<tr><th id="357">357</th><td><i> * passdwp [in]     - The user's password.</i></td></tr>
+<tr><th id="358">358</th><td><i> * ntlm    [in/out] - The NTLM data struct being used and modified.</i></td></tr>
+<tr><th id="359">359</th><td><i> * outptr  [in/out] - The address where a pointer to newly allocated memory</i></td></tr>
+<tr><th id="360">360</th><td><i> *                    holding the result will be stored upon completion.</i></td></tr>
+<tr><th id="361">361</th><td><i> * outlen  [out]    - The length of the output message.</i></td></tr>
+<tr><th id="362">362</th><td><i> *</i></td></tr>
+<tr><th id="363">363</th><td><i> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="364">364</th><td><i> */</i></td></tr>
+<tr><th id="365">365</th><td><a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_auth_create_ntlm_type1_message" title='Curl_auth_create_ntlm_type1_message' data-ref="Curl_auth_create_ntlm_type1_message">Curl_auth_create_ntlm_type1_message</dfn>(<b>struct</b> <a class="type" href="../urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col8 decl" id="18data" title='data' data-type='struct Curl_easy *' data-ref="18data">data</dfn>,</td></tr>
+<tr><th id="366">366</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="19userp" title='userp' data-type='const char *' data-ref="19userp">userp</dfn>,</td></tr>
+<tr><th id="367">367</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="20passwdp" title='passwdp' data-type='const char *' data-ref="20passwdp">passwdp</dfn>,</td></tr>
+<tr><th id="368">368</th><td>                                             <b>struct</b> <a class="type" href="../urldata.h.html#ntlmdata" title='ntlmdata' data-ref="ntlmdata">ntlmdata</a> *<dfn class="local col1 decl" id="21ntlm" title='ntlm' data-type='struct ntlmdata *' data-ref="21ntlm">ntlm</dfn>,</td></tr>
+<tr><th id="369">369</th><td>                                             <em>char</em> **<dfn class="local col2 decl" id="22outptr" title='outptr' data-type='char **' data-ref="22outptr">outptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col3 decl" id="23outlen" title='outlen' data-type='size_t *' data-ref="23outlen">outlen</dfn>)</td></tr>
+<tr><th id="370">370</th><td>{</td></tr>
+<tr><th id="371">371</th><td>  <i>/* NTLM type-1 message structure:</i></td></tr>
+<tr><th id="372">372</th><td><i></i></td></tr>
+<tr><th id="373">373</th><td><i>       Index  Description            Content</i></td></tr>
+<tr><th id="374">374</th><td><i>         0    NTLMSSP Signature      Null-terminated ASCII "NTLMSSP"</i></td></tr>
+<tr><th id="375">375</th><td><i>                                     (0x4e544c4d53535000)</i></td></tr>
+<tr><th id="376">376</th><td><i>         8    NTLM Message Type      long (0x01000000)</i></td></tr>
+<tr><th id="377">377</th><td><i>        12    Flags                  long</i></td></tr>
+<tr><th id="378">378</th><td><i>       (16)   Supplied Domain        security buffer (*)</i></td></tr>
+<tr><th id="379">379</th><td><i>       (24)   Supplied Workstation   security buffer (*)</i></td></tr>
+<tr><th id="380">380</th><td><i>       (32)   OS Version Structure   8 bytes (*)</i></td></tr>
+<tr><th id="381">381</th><td><i>  (32) (40)   Start of data block    (*)</i></td></tr>
+<tr><th id="382">382</th><td><i>                                     (*) -&gt; Optional</i></td></tr>
+<tr><th id="383">383</th><td><i>  */</i></td></tr>
+<tr><th id="384">384</th><td></td></tr>
+<tr><th id="385">385</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="24size" title='size' data-type='size_t' data-ref="24size">size</dfn>;</td></tr>
+<tr><th id="386">386</th><td></td></tr>
+<tr><th id="387">387</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col5 decl" id="25ntlmbuf" title='ntlmbuf' data-type='unsigned char [1024]' data-ref="25ntlmbuf">ntlmbuf</dfn>[<a class="macro" href="ntlm.h.html#30" title="1024" data-ref="_M/NTLM_BUFSIZE">NTLM_BUFSIZE</a>];</td></tr>
+<tr><th id="388">388</th><td>  <em>const</em> <em>char</em> *<dfn class="local col6 decl" id="26host" title='host' data-type='const char *' data-ref="26host">host</dfn> = <q>""</q>;              <i>/* empty */</i></td></tr>
+<tr><th id="389">389</th><td>  <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="27domain" title='domain' data-type='const char *' data-ref="27domain">domain</dfn> = <q>""</q>;            <i>/* empty */</i></td></tr>
+<tr><th id="390">390</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="28hostlen" title='hostlen' data-type='size_t' data-ref="28hostlen">hostlen</dfn> = <var>0</var>;</td></tr>
+<tr><th id="391">391</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="29domlen" title='domlen' data-type='size_t' data-ref="29domlen">domlen</dfn> = <var>0</var>;</td></tr>
+<tr><th id="392">392</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="30hostoff" title='hostoff' data-type='size_t' data-ref="30hostoff">hostoff</dfn> = <var>0</var>;</td></tr>
+<tr><th id="393">393</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="31domoff" title='domoff' data-type='size_t' data-ref="31domoff">domoff</dfn> = <a class="local col0 ref" href="#30hostoff" title='hostoff' data-ref="30hostoff">hostoff</a> + <a class="local col8 ref" href="#28hostlen" title='hostlen' data-ref="28hostlen">hostlen</a>;  <i>/* This is 0: remember that host and</i></td></tr>
+<tr><th id="394">394</th><td><i>                                         domain are empty */</i></td></tr>
+<tr><th id="395">395</th><td>  (<em>void</em>)<a class="local col9 ref" href="#19userp" title='userp' data-ref="19userp">userp</a>;</td></tr>
+<tr><th id="396">396</th><td>  (<em>void</em>)<a class="local col0 ref" href="#20passwdp" title='passwdp' data-ref="20passwdp">passwdp</a>;</td></tr>
+<tr><th id="397">397</th><td></td></tr>
+<tr><th id="398">398</th><td>  <i>/* Clean up any former leftovers and initialise to defaults */</i></td></tr>
+<tr><th id="399">399</th><td>  <a class="ref" href="#Curl_auth_ntlm_cleanup" title='Curl_auth_ntlm_cleanup' data-ref="Curl_auth_ntlm_cleanup">Curl_auth_ntlm_cleanup</a>(<a class="local col1 ref" href="#21ntlm" title='ntlm' data-ref="21ntlm">ntlm</a>);</td></tr>
+<tr><th id="400">400</th><td></td></tr>
+<tr><th id="401">401</th><td><u>#<span data-ppcond="401">if</span> defined(<a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a>) &amp;&amp; defined(<a class="macro" href="../curl_ntlm_core.h.html#54" data-ref="_M/USE_NTLM2SESSION">USE_NTLM2SESSION</a>)</u></td></tr>
+<tr><th id="402">402</th><td><u>#define <dfn class="macro" id="_M/NTLM2FLAG" data-ref="_M/NTLM2FLAG">NTLM2FLAG</dfn> NTLMFLAG_NEGOTIATE_NTLM2_KEY</u></td></tr>
+<tr><th id="403">403</th><td><u>#<span data-ppcond="401">else</span></u></td></tr>
+<tr><th id="404">404</th><td><u>#define NTLM2FLAG 0</u></td></tr>
+<tr><th id="405">405</th><td><u>#<span data-ppcond="401">endif</span></u></td></tr>
+<tr><th id="406">406</th><td>  <a class="macro" href="../curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>((<em>char</em> *)<a class="local col5 ref" href="#25ntlmbuf" title='ntlmbuf' data-ref="25ntlmbuf">ntlmbuf</a>, <a class="macro" href="ntlm.h.html#30" title="1024" data-ref="_M/NTLM_BUFSIZE">NTLM_BUFSIZE</a>,</td></tr>
+<tr><th id="407">407</th><td>           <a class="macro" href="#64" title="&quot;\x4e\x54\x4c\x4d\x53\x53\x50&quot;" data-ref="_M/NTLMSSP_SIGNATURE">NTLMSSP_SIGNATURE</a> <q>"%c"</q></td></tr>
+<tr><th id="408">408</th><td>           <q>"\x01%c%c%c"</q> <i>/* 32-bit type = 1 */</i></td></tr>
+<tr><th id="409">409</th><td>           <q>"%c%c%c%c"</q>   <i>/* 32-bit NTLM flag field */</i></td></tr>
+<tr><th id="410">410</th><td>           <q>"%c%c"</q>       <i>/* domain length */</i></td></tr>
+<tr><th id="411">411</th><td>           <q>"%c%c"</q>       <i>/* domain allocated space */</i></td></tr>
+<tr><th id="412">412</th><td>           <q>"%c%c"</q>       <i>/* domain name offset */</i></td></tr>
+<tr><th id="413">413</th><td>           <q>"%c%c"</q>       <i>/* 2 zeroes */</i></td></tr>
+<tr><th id="414">414</th><td>           <q>"%c%c"</q>       <i>/* host length */</i></td></tr>
+<tr><th id="415">415</th><td>           <q>"%c%c"</q>       <i>/* host allocated space */</i></td></tr>
+<tr><th id="416">416</th><td>           <q>"%c%c"</q>       <i>/* host name offset */</i></td></tr>
+<tr><th id="417">417</th><td>           <q>"%c%c"</q>       <i>/* 2 zeroes */</i></td></tr>
+<tr><th id="418">418</th><td>           <q>"%s"</q>         <i>/* host name */</i></td></tr>
+<tr><th id="419">419</th><td>           <q>"%s"</q>,        <i>/* domain string */</i></td></tr>
+<tr><th id="420">420</th><td>           <var>0</var>,           <i>/* trailing zero */</i></td></tr>
+<tr><th id="421">421</th><td>           <var>0</var>, <var>0</var>, <var>0</var>,     <i>/* part of type-1 long */</i></td></tr>
+<tr><th id="422">422</th><td></td></tr>
+<tr><th id="423">423</th><td>           <a class="macro" href="#67" title="(((1&lt;&lt;1) | (1&lt;&lt;2) | (1&lt;&lt;9) | (1&lt;&lt;19) | (1&lt;&lt;15)) &amp; 0xff), ((((1&lt;&lt;1) | (1&lt;&lt;2) | (1&lt;&lt;9) | (1&lt;&lt;19) | (1&lt;&lt;15)) &gt;&gt; 8) &amp; 0xff), ((((1&lt;&lt;1) | (1&lt;&lt;2) | (1&lt;&lt;9) | (1&lt;&lt;19) | (1&lt;&lt;15)) &gt;&gt; 16) &amp; 0xff), ((((1&lt;&lt;1) | (1&lt;&lt;2) | (1&lt;&lt;9) | (1&lt;&lt;19) | (1&lt;&lt;15)) &gt;&gt; 24) &amp; 0xff)" data-ref="_M/LONGQUARTET">LONGQUARTET</a>(<a class="macro" href="ntlm.h.html#41" title="(1&lt;&lt;1)" data-ref="_M/NTLMFLAG_NEGOTIATE_OEM">NTLMFLAG_NEGOTIATE_OEM</a> |</td></tr>
+<tr><th id="424">424</th><td>                       <a class="macro" href="ntlm.h.html#44" title="(1&lt;&lt;2)" data-ref="_M/NTLMFLAG_REQUEST_TARGET">NTLMFLAG_REQUEST_TARGET</a> |</td></tr>
+<tr><th id="425">425</th><td>                       <a class="macro" href="ntlm.h.html#67" title="(1&lt;&lt;9)" data-ref="_M/NTLMFLAG_NEGOTIATE_NTLM_KEY">NTLMFLAG_NEGOTIATE_NTLM_KEY</a> |</td></tr>
+<tr><th id="426">426</th><td>                       <a class="macro" href="#402" title="(1&lt;&lt;19)" data-ref="_M/NTLM2FLAG">NTLM2FLAG</a> |</td></tr>
+<tr><th id="427">427</th><td>                       <a class="macro" href="ntlm.h.html#89" title="(1&lt;&lt;15)" data-ref="_M/NTLMFLAG_NEGOTIATE_ALWAYS_SIGN">NTLMFLAG_NEGOTIATE_ALWAYS_SIGN</a>),</td></tr>
+<tr><th id="428">428</th><td>           <a class="macro" href="#66" title="((domlen) &amp; 0xff), (((domlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col9 ref" href="#29domlen" title='domlen' data-ref="29domlen">domlen</a>),</td></tr>
+<tr><th id="429">429</th><td>           <a class="macro" href="#66" title="((domlen) &amp; 0xff), (((domlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col9 ref" href="#29domlen" title='domlen' data-ref="29domlen">domlen</a>),</td></tr>
+<tr><th id="430">430</th><td>           <a class="macro" href="#66" title="((domoff) &amp; 0xff), (((domoff) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col1 ref" href="#31domoff" title='domoff' data-ref="31domoff">domoff</a>),</td></tr>
+<tr><th id="431">431</th><td>           <var>0</var>, <var>0</var>,</td></tr>
+<tr><th id="432">432</th><td>           <a class="macro" href="#66" title="((hostlen) &amp; 0xff), (((hostlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col8 ref" href="#28hostlen" title='hostlen' data-ref="28hostlen">hostlen</a>),</td></tr>
+<tr><th id="433">433</th><td>           <a class="macro" href="#66" title="((hostlen) &amp; 0xff), (((hostlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col8 ref" href="#28hostlen" title='hostlen' data-ref="28hostlen">hostlen</a>),</td></tr>
+<tr><th id="434">434</th><td>           <a class="macro" href="#66" title="((hostoff) &amp; 0xff), (((hostoff) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col0 ref" href="#30hostoff" title='hostoff' data-ref="30hostoff">hostoff</a>),</td></tr>
+<tr><th id="435">435</th><td>           <var>0</var>, <var>0</var>,</td></tr>
+<tr><th id="436">436</th><td>           <a class="local col6 ref" href="#26host" title='host' data-ref="26host">host</a>,  <i>/* this is empty */</i></td></tr>
+<tr><th id="437">437</th><td>           <a class="local col7 ref" href="#27domain" title='domain' data-ref="27domain">domain</a> <i>/* this is empty */</i>);</td></tr>
+<tr><th id="438">438</th><td></td></tr>
+<tr><th id="439">439</th><td>  <i>/* Initial packet length */</i></td></tr>
+<tr><th id="440">440</th><td>  <a class="local col4 ref" href="#24size" title='size' data-ref="24size">size</a> = <var>32</var> + <a class="local col8 ref" href="#28hostlen" title='hostlen' data-ref="28hostlen">hostlen</a> + <a class="local col9 ref" href="#29domlen" title='domlen' data-ref="29domlen">domlen</a>;</td></tr>
+<tr><th id="441">441</th><td></td></tr>
+<tr><th id="442">442</th><td>  <a class="macro" href="#151" title="do { } while(0)" data-ref="_M/DEBUG_OUT">DEBUG_OUT</a>({</td></tr>
+<tr><th id="443">443</th><td>    fprintf(stderr, <q>"* TYPE1 header flags=0x%02.2x%02.2x%02.2x%02.2x "</q></td></tr>
+<tr><th id="444">444</th><td>            <q>"0x%08.8x "</q>,</td></tr>
+<tr><th id="445">445</th><td>            LONGQUARTET(NTLMFLAG_NEGOTIATE_OEM |</td></tr>
+<tr><th id="446">446</th><td>                        NTLMFLAG_REQUEST_TARGET |</td></tr>
+<tr><th id="447">447</th><td>                        NTLMFLAG_NEGOTIATE_NTLM_KEY |</td></tr>
+<tr><th id="448">448</th><td>                        NTLM2FLAG |</td></tr>
+<tr><th id="449">449</th><td>                        NTLMFLAG_NEGOTIATE_ALWAYS_SIGN),</td></tr>
+<tr><th id="450">450</th><td>            NTLMFLAG_NEGOTIATE_OEM |</td></tr>
+<tr><th id="451">451</th><td>            NTLMFLAG_REQUEST_TARGET |</td></tr>
+<tr><th id="452">452</th><td>            NTLMFLAG_NEGOTIATE_NTLM_KEY |</td></tr>
+<tr><th id="453">453</th><td>            NTLM2FLAG |</td></tr>
+<tr><th id="454">454</th><td>            NTLMFLAG_NEGOTIATE_ALWAYS_SIGN);</td></tr>
+<tr><th id="455">455</th><td>    ntlm_print_flags(stderr,</td></tr>
+<tr><th id="456">456</th><td>                     NTLMFLAG_NEGOTIATE_OEM |</td></tr>
+<tr><th id="457">457</th><td>                     NTLMFLAG_REQUEST_TARGET |</td></tr>
+<tr><th id="458">458</th><td>                     NTLMFLAG_NEGOTIATE_NTLM_KEY |</td></tr>
+<tr><th id="459">459</th><td>                     NTLM2FLAG |</td></tr>
+<tr><th id="460">460</th><td>                     NTLMFLAG_NEGOTIATE_ALWAYS_SIGN);</td></tr>
+<tr><th id="461">461</th><td>    fprintf(stderr, <q>"\n****\n"</q>);</td></tr>
+<tr><th id="462">462</th><td>  });</td></tr>
+<tr><th id="463">463</th><td></td></tr>
+<tr><th id="464">464</th><td>  <i>/* Return with binary blob encoded into base64 */</i></td></tr>
+<tr><th id="465">465</th><td>  <b>return</b> <a class="ref" href="../curl_base64.h.html#Curl_base64_encode" title='Curl_base64_encode' data-ref="Curl_base64_encode">Curl_base64_encode</a>(<a class="local col8 ref" href="#18data" title='data' data-ref="18data">data</a>, (<em>char</em> *)<a class="local col5 ref" href="#25ntlmbuf" title='ntlmbuf' data-ref="25ntlmbuf">ntlmbuf</a>, <a class="local col4 ref" href="#24size" title='size' data-ref="24size">size</a>, <a class="local col2 ref" href="#22outptr" title='outptr' data-ref="22outptr">outptr</a>, <a class="local col3 ref" href="#23outlen" title='outlen' data-ref="23outlen">outlen</a>);</td></tr>
+<tr><th id="466">466</th><td>}</td></tr>
+<tr><th id="467">467</th><td></td></tr>
+<tr><th id="468">468</th><td><i>/*</i></td></tr>
+<tr><th id="469">469</th><td><i> * Curl_auth_create_ntlm_type3_message()</i></td></tr>
+<tr><th id="470">470</th><td><i> *</i></td></tr>
+<tr><th id="471">471</th><td><i> * This is used to generate an already encoded NTLM type-3 message ready for</i></td></tr>
+<tr><th id="472">472</th><td><i> * sending to the recipient using the appropriate compile time crypto API.</i></td></tr>
+<tr><th id="473">473</th><td><i> *</i></td></tr>
+<tr><th id="474">474</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="475">475</th><td><i> *</i></td></tr>
+<tr><th id="476">476</th><td><i> * data    [in]     - The session handle.</i></td></tr>
+<tr><th id="477">477</th><td><i> * userp   [in]     - The user name in the format User or Domain\User.</i></td></tr>
+<tr><th id="478">478</th><td><i> * passdwp [in]     - The user's password.</i></td></tr>
+<tr><th id="479">479</th><td><i> * ntlm    [in/out] - The NTLM data struct being used and modified.</i></td></tr>
+<tr><th id="480">480</th><td><i> * outptr  [in/out] - The address where a pointer to newly allocated memory</i></td></tr>
+<tr><th id="481">481</th><td><i> *                    holding the result will be stored upon completion.</i></td></tr>
+<tr><th id="482">482</th><td><i> * outlen  [out]    - The length of the output message.</i></td></tr>
+<tr><th id="483">483</th><td><i> *</i></td></tr>
+<tr><th id="484">484</th><td><i> * Returns CURLE_OK on success.</i></td></tr>
+<tr><th id="485">485</th><td><i> */</i></td></tr>
+<tr><th id="486">486</th><td><a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_auth_create_ntlm_type3_message" title='Curl_auth_create_ntlm_type3_message' data-ref="Curl_auth_create_ntlm_type3_message">Curl_auth_create_ntlm_type3_message</dfn>(<b>struct</b> <a class="type" href="../urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col2 decl" id="32data" title='data' data-type='struct Curl_easy *' data-ref="32data">data</dfn>,</td></tr>
+<tr><th id="487">487</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="33userp" title='userp' data-type='const char *' data-ref="33userp">userp</dfn>,</td></tr>
+<tr><th id="488">488</th><td>                                             <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="34passwdp" title='passwdp' data-type='const char *' data-ref="34passwdp">passwdp</dfn>,</td></tr>
+<tr><th id="489">489</th><td>                                             <b>struct</b> <a class="type" href="../urldata.h.html#ntlmdata" title='ntlmdata' data-ref="ntlmdata">ntlmdata</a> *<dfn class="local col5 decl" id="35ntlm" title='ntlm' data-type='struct ntlmdata *' data-ref="35ntlm">ntlm</dfn>,</td></tr>
+<tr><th id="490">490</th><td>                                             <em>char</em> **<dfn class="local col6 decl" id="36outptr" title='outptr' data-type='char **' data-ref="36outptr">outptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col7 decl" id="37outlen" title='outlen' data-type='size_t *' data-ref="37outlen">outlen</dfn>)</td></tr>
+<tr><th id="491">491</th><td></td></tr>
+<tr><th id="492">492</th><td>{</td></tr>
+<tr><th id="493">493</th><td>  <i>/* NTLM type-3 message structure:</i></td></tr>
+<tr><th id="494">494</th><td><i></i></td></tr>
+<tr><th id="495">495</th><td><i>          Index  Description            Content</i></td></tr>
+<tr><th id="496">496</th><td><i>            0    NTLMSSP Signature      Null-terminated ASCII "NTLMSSP"</i></td></tr>
+<tr><th id="497">497</th><td><i>                                        (0x4e544c4d53535000)</i></td></tr>
+<tr><th id="498">498</th><td><i>            8    NTLM Message Type      long (0x03000000)</i></td></tr>
+<tr><th id="499">499</th><td><i>           12    LM/LMv2 Response       security buffer</i></td></tr>
+<tr><th id="500">500</th><td><i>           20    NTLM/NTLMv2 Response   security buffer</i></td></tr>
+<tr><th id="501">501</th><td><i>           28    Target Name            security buffer</i></td></tr>
+<tr><th id="502">502</th><td><i>           36    User Name              security buffer</i></td></tr>
+<tr><th id="503">503</th><td><i>           44    Workstation Name       security buffer</i></td></tr>
+<tr><th id="504">504</th><td><i>          (52)   Session Key            security buffer (*)</i></td></tr>
+<tr><th id="505">505</th><td><i>          (60)   Flags                  long (*)</i></td></tr>
+<tr><th id="506">506</th><td><i>          (64)   OS Version Structure   8 bytes (*)</i></td></tr>
+<tr><th id="507">507</th><td><i>  52 (64) (72)   Start of data block</i></td></tr>
+<tr><th id="508">508</th><td><i>                                          (*) -&gt; Optional</i></td></tr>
+<tr><th id="509">509</th><td><i>  */</i></td></tr>
+<tr><th id="510">510</th><td></td></tr>
+<tr><th id="511">511</th><td>  <a class="typedef" href="../../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col8 decl" id="38result" title='result' data-type='CURLcode' data-ref="38result">result</dfn> = <a class="enum" href="../../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="512">512</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="39size" title='size' data-type='size_t' data-ref="39size">size</dfn>;</td></tr>
+<tr><th id="513">513</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col0 decl" id="40ntlmbuf" title='ntlmbuf' data-type='unsigned char [1024]' data-ref="40ntlmbuf">ntlmbuf</dfn>[<a class="macro" href="ntlm.h.html#30" title="1024" data-ref="_M/NTLM_BUFSIZE">NTLM_BUFSIZE</a>];</td></tr>
+<tr><th id="514">514</th><td>  <em>int</em> <dfn class="local col1 decl" id="41lmrespoff" title='lmrespoff' data-type='int' data-ref="41lmrespoff">lmrespoff</dfn>;</td></tr>
+<tr><th id="515">515</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col2 decl" id="42lmresp" title='lmresp' data-type='unsigned char [24]' data-ref="42lmresp">lmresp</dfn>[<var>24</var>]; <i>/* fixed-size */</i></td></tr>
+<tr><th id="516">516</th><td><u>#<span data-ppcond="516">ifdef</span> <a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a></u></td></tr>
+<tr><th id="517">517</th><td>  <em>int</em> <dfn class="local col3 decl" id="43ntrespoff" title='ntrespoff' data-type='int' data-ref="43ntrespoff">ntrespoff</dfn>;</td></tr>
+<tr><th id="518">518</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col4 decl" id="44ntresplen" title='ntresplen' data-type='unsigned int' data-ref="44ntresplen">ntresplen</dfn> = <var>24</var>;</td></tr>
+<tr><th id="519">519</th><td>  <em>unsigned</em> <em>char</em> <dfn class="local col5 decl" id="45ntresp" title='ntresp' data-type='unsigned char [24]' data-ref="45ntresp">ntresp</dfn>[<var>24</var>]; <i>/* fixed-size */</i></td></tr>
+<tr><th id="520">520</th><td>  <em>unsigned</em> <em>char</em> *<dfn class="local col6 decl" id="46ptr_ntresp" title='ptr_ntresp' data-type='unsigned char *' data-ref="46ptr_ntresp">ptr_ntresp</dfn> = &amp;<a class="local col5 ref" href="#45ntresp" title='ntresp' data-ref="45ntresp">ntresp</a>[<var>0</var>];</td></tr>
+<tr><th id="521">521</th><td>  <em>unsigned</em> <em>char</em> *<dfn class="local col7 decl" id="47ntlmv2resp" title='ntlmv2resp' data-type='unsigned char *' data-ref="47ntlmv2resp">ntlmv2resp</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="522">522</th><td><u>#<span data-ppcond="516">endif</span></u></td></tr>
+<tr><th id="523">523</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col8 decl" id="48unicode" title='unicode' data-type='_Bool' data-ref="48unicode">unicode</dfn> = (<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::flags" title='ntlmdata::flags' data-ref="ntlmdata::flags">flags</a> &amp; <a class="macro" href="ntlm.h.html#37" title="(1&lt;&lt;0)" data-ref="_M/NTLMFLAG_NEGOTIATE_UNICODE">NTLMFLAG_NEGOTIATE_UNICODE</a>) ? <a class="macro" href="../curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a> : <a class="macro" href="../curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="524">524</th><td>  <em>char</em> <dfn class="local col9 decl" id="49host" title='host' data-type='char [1025]' data-ref="49host">host</dfn>[<a class="macro" href="../curl_gethostname.h.html#26" title="1024" data-ref="_M/HOSTNAME_MAX">HOSTNAME_MAX</a> + <var>1</var>] = <q>""</q>;</td></tr>
+<tr><th id="525">525</th><td>  <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="50user" title='user' data-type='const char *' data-ref="50user">user</dfn>;</td></tr>
+<tr><th id="526">526</th><td>  <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="51domain" title='domain' data-type='const char *' data-ref="51domain">domain</dfn> = <q>""</q>;</td></tr>
+<tr><th id="527">527</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="52hostoff" title='hostoff' data-type='size_t' data-ref="52hostoff">hostoff</dfn> = <var>0</var>;</td></tr>
+<tr><th id="528">528</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="53useroff" title='useroff' data-type='size_t' data-ref="53useroff">useroff</dfn> = <var>0</var>;</td></tr>
+<tr><th id="529">529</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="54domoff" title='domoff' data-type='size_t' data-ref="54domoff">domoff</dfn> = <var>0</var>;</td></tr>
+<tr><th id="530">530</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="55hostlen" title='hostlen' data-type='size_t' data-ref="55hostlen">hostlen</dfn> = <var>0</var>;</td></tr>
+<tr><th id="531">531</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="56userlen" title='userlen' data-type='size_t' data-ref="56userlen">userlen</dfn> = <var>0</var>;</td></tr>
+<tr><th id="532">532</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="57domlen" title='domlen' data-type='size_t' data-ref="57domlen">domlen</dfn> = <var>0</var>;</td></tr>
+<tr><th id="533">533</th><td></td></tr>
+<tr><th id="534">534</th><td>  <a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a> = <a class="ref" href="../../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(<a class="local col3 ref" href="#33userp" title='userp' data-ref="33userp">userp</a>, <kbd>'\\'</kbd>);</td></tr>
+<tr><th id="535">535</th><td>  <b>if</b>(!<a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a>)</td></tr>
+<tr><th id="536">536</th><td>    <a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a> = <a class="ref" href="../../../include/string.h.html#strchr" title='strchr' data-ref="strchr">strchr</a>(<a class="local col3 ref" href="#33userp" title='userp' data-ref="33userp">userp</a>, <kbd>'/'</kbd>);</td></tr>
+<tr><th id="537">537</th><td></td></tr>
+<tr><th id="538">538</th><td>  <b>if</b>(<a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a>) {</td></tr>
+<tr><th id="539">539</th><td>    <a class="local col1 ref" href="#51domain" title='domain' data-ref="51domain">domain</a> = <a class="local col3 ref" href="#33userp" title='userp' data-ref="33userp">userp</a>;</td></tr>
+<tr><th id="540">540</th><td>    <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a> = (<a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a> - <a class="local col1 ref" href="#51domain" title='domain' data-ref="51domain">domain</a>);</td></tr>
+<tr><th id="541">541</th><td>    <a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a>++;</td></tr>
+<tr><th id="542">542</th><td>  }</td></tr>
+<tr><th id="543">543</th><td>  <b>else</b></td></tr>
+<tr><th id="544">544</th><td>    <a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a> = <a class="local col3 ref" href="#33userp" title='userp' data-ref="33userp">userp</a>;</td></tr>
+<tr><th id="545">545</th><td></td></tr>
+<tr><th id="546">546</th><td>  <b>if</b>(<a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a>)</td></tr>
+<tr><th id="547">547</th><td>    <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a> = <a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a>);</td></tr>
+<tr><th id="548">548</th><td></td></tr>
+<tr><th id="549">549</th><td>  <i>/* Get the machine's un-qualified host name as NTLM doesn't like the fully</i></td></tr>
+<tr><th id="550">550</th><td><i>     qualified domain name */</i></td></tr>
+<tr><th id="551">551</th><td>  <b>if</b>(<a class="ref" href="../curl_gethostname.h.html#Curl_gethostname" title='Curl_gethostname' data-ref="Curl_gethostname">Curl_gethostname</a>(<a class="local col9 ref" href="#49host" title='host' data-ref="49host">host</a>, <b>sizeof</b>(<a class="local col9 ref" href="#49host" title='host' data-ref="49host">host</a>))) {</td></tr>
+<tr><th id="552">552</th><td>    <a class="macro" href="../sendf.h.html#44" title="Curl_infof" data-ref="_M/infof">infof</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <q>"gethostname() failed, continuing without!\n"</q>);</td></tr>
+<tr><th id="553">553</th><td>    <a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a> = <var>0</var>;</td></tr>
+<tr><th id="554">554</th><td>  }</td></tr>
+<tr><th id="555">555</th><td>  <b>else</b> {</td></tr>
+<tr><th id="556">556</th><td>    <a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a> = <a class="ref" href="../../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col9 ref" href="#49host" title='host' data-ref="49host">host</a>);</td></tr>
+<tr><th id="557">557</th><td>  }</td></tr>
+<tr><th id="558">558</th><td></td></tr>
+<tr><th id="559">559</th><td><u>#<span data-ppcond="559">if</span> defined(<a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a>) &amp;&amp; defined(<a class="macro" href="../curl_ntlm_core.h.html#61" data-ref="_M/USE_NTLM_V2">USE_NTLM_V2</a>)</u></td></tr>
+<tr><th id="560">560</th><td>  <b>if</b>(<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::target_info_len" title='ntlmdata::target_info_len' data-ref="ntlmdata::target_info_len">target_info_len</a>) {</td></tr>
+<tr><th id="561">561</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col8 decl" id="58ntbuffer" title='ntbuffer' data-type='unsigned char [24]' data-ref="58ntbuffer">ntbuffer</dfn>[<var>0x18</var>];</td></tr>
+<tr><th id="562">562</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col9 decl" id="59entropy" title='entropy' data-type='unsigned char [8]' data-ref="59entropy">entropy</dfn>[<var>8</var>];</td></tr>
+<tr><th id="563">563</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col0 decl" id="60ntlmv2hash" title='ntlmv2hash' data-type='unsigned char [24]' data-ref="60ntlmv2hash">ntlmv2hash</dfn>[<var>0x18</var>];</td></tr>
+<tr><th id="564">564</th><td></td></tr>
+<tr><th id="565">565</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../rand.h.html#Curl_rand" title='Curl_rand' data-ref="Curl_rand">Curl_rand</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <a class="local col9 ref" href="#59entropy" title='entropy' data-ref="59entropy">entropy</a>, <var>8</var>);</td></tr>
+<tr><th id="566">566</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="567">567</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="568">568</th><td></td></tr>
+<tr><th id="569">569</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_mk_nt_hash" title='Curl_ntlm_core_mk_nt_hash' data-ref="Curl_ntlm_core_mk_nt_hash">Curl_ntlm_core_mk_nt_hash</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <a class="local col4 ref" href="#34passwdp" title='passwdp' data-ref="34passwdp">passwdp</a>, <a class="local col8 ref" href="#58ntbuffer" title='ntbuffer' data-ref="58ntbuffer">ntbuffer</a>);</td></tr>
+<tr><th id="570">570</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="571">571</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="572">572</th><td></td></tr>
+<tr><th id="573">573</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_mk_ntlmv2_hash" title='Curl_ntlm_core_mk_ntlmv2_hash' data-ref="Curl_ntlm_core_mk_ntlmv2_hash">Curl_ntlm_core_mk_ntlmv2_hash</a>(<a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a>, <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a>, <a class="local col1 ref" href="#51domain" title='domain' data-ref="51domain">domain</a>, <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a>,</td></tr>
+<tr><th id="574">574</th><td>                                           <a class="local col8 ref" href="#58ntbuffer" title='ntbuffer' data-ref="58ntbuffer">ntbuffer</a>, <a class="local col0 ref" href="#60ntlmv2hash" title='ntlmv2hash' data-ref="60ntlmv2hash">ntlmv2hash</a>);</td></tr>
+<tr><th id="575">575</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="576">576</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="577">577</th><td></td></tr>
+<tr><th id="578">578</th><td>    <i>/* LMv2 response */</i></td></tr>
+<tr><th id="579">579</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_mk_lmv2_resp" title='Curl_ntlm_core_mk_lmv2_resp' data-ref="Curl_ntlm_core_mk_lmv2_resp">Curl_ntlm_core_mk_lmv2_resp</a>(<a class="local col0 ref" href="#60ntlmv2hash" title='ntlmv2hash' data-ref="60ntlmv2hash">ntlmv2hash</a>, <a class="local col9 ref" href="#59entropy" title='entropy' data-ref="59entropy">entropy</a>,</td></tr>
+<tr><th id="580">580</th><td>                                         &amp;<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::nonce" title='ntlmdata::nonce' data-ref="ntlmdata::nonce">nonce</a>[<var>0</var>], <a class="local col2 ref" href="#42lmresp" title='lmresp' data-ref="42lmresp">lmresp</a>);</td></tr>
+<tr><th id="581">581</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="582">582</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="583">583</th><td></td></tr>
+<tr><th id="584">584</th><td>    <i>/* NTLMv2 response */</i></td></tr>
+<tr><th id="585">585</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_mk_ntlmv2_resp" title='Curl_ntlm_core_mk_ntlmv2_resp' data-ref="Curl_ntlm_core_mk_ntlmv2_resp">Curl_ntlm_core_mk_ntlmv2_resp</a>(<a class="local col0 ref" href="#60ntlmv2hash" title='ntlmv2hash' data-ref="60ntlmv2hash">ntlmv2hash</a>, <a class="local col9 ref" href="#59entropy" title='entropy' data-ref="59entropy">entropy</a>,</td></tr>
+<tr><th id="586">586</th><td>                                           <a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>, &amp;<a class="local col7 ref" href="#47ntlmv2resp" title='ntlmv2resp' data-ref="47ntlmv2resp">ntlmv2resp</a>, &amp;<a class="local col4 ref" href="#44ntresplen" title='ntresplen' data-ref="44ntresplen">ntresplen</a>);</td></tr>
+<tr><th id="587">587</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="588">588</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="589">589</th><td></td></tr>
+<tr><th id="590">590</th><td>    <a class="local col6 ref" href="#46ptr_ntresp" title='ptr_ntresp' data-ref="46ptr_ntresp">ptr_ntresp</a> = <a class="local col7 ref" href="#47ntlmv2resp" title='ntlmv2resp' data-ref="47ntlmv2resp">ntlmv2resp</a>;</td></tr>
+<tr><th id="591">591</th><td>  }</td></tr>
+<tr><th id="592">592</th><td>  <b>else</b></td></tr>
+<tr><th id="593">593</th><td><u>#<span data-ppcond="559">endif</span></u></td></tr>
+<tr><th id="594">594</th><td></td></tr>
+<tr><th id="595">595</th><td><u>#<span data-ppcond="595">if</span> defined(<a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a>) &amp;&amp; defined(<a class="macro" href="../curl_ntlm_core.h.html#54" data-ref="_M/USE_NTLM2SESSION">USE_NTLM2SESSION</a>)</u></td></tr>
+<tr><th id="596">596</th><td>  <i>/* We don't support NTLM2 if we don't have USE_NTRESPONSES */</i></td></tr>
+<tr><th id="597">597</th><td>  <b>if</b>(<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::flags" title='ntlmdata::flags' data-ref="ntlmdata::flags">flags</a> &amp; <a class="macro" href="ntlm.h.html#106" title="(1&lt;&lt;19)" data-ref="_M/NTLMFLAG_NEGOTIATE_NTLM2_KEY">NTLMFLAG_NEGOTIATE_NTLM2_KEY</a>) {</td></tr>
+<tr><th id="598">598</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col1 decl" id="61ntbuffer" title='ntbuffer' data-type='unsigned char [24]' data-ref="61ntbuffer">ntbuffer</dfn>[<var>0x18</var>];</td></tr>
+<tr><th id="599">599</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col2 decl" id="62tmp" title='tmp' data-type='unsigned char [24]' data-ref="62tmp">tmp</dfn>[<var>0x18</var>];</td></tr>
+<tr><th id="600">600</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col3 decl" id="63md5sum" title='md5sum' data-type='unsigned char [16]' data-ref="63md5sum">md5sum</dfn>[<a class="macro" href="../vtls/vtls.h.html#116" title="16" data-ref="_M/MD5_DIGEST_LENGTH">MD5_DIGEST_LENGTH</a>];</td></tr>
+<tr><th id="601">601</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col4 decl" id="64entropy" title='entropy' data-type='unsigned char [8]' data-ref="64entropy">entropy</dfn>[<var>8</var>];</td></tr>
+<tr><th id="602">602</th><td></td></tr>
+<tr><th id="603">603</th><td>    <i>/* Need to create 8 bytes random data */</i></td></tr>
+<tr><th id="604">604</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../rand.h.html#Curl_rand" title='Curl_rand' data-ref="Curl_rand">Curl_rand</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <a class="local col4 ref" href="#64entropy" title='entropy' data-ref="64entropy">entropy</a>, <var>8</var>);</td></tr>
+<tr><th id="605">605</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="606">606</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="607">607</th><td></td></tr>
+<tr><th id="608">608</th><td>    <i>/* 8 bytes random data as challenge in lmresp */</i></td></tr>
+<tr><th id="609">609</th><td>    <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col2 ref" href="#42lmresp" title='lmresp' data-ref="42lmresp">lmresp</a>, <a class="local col4 ref" href="#64entropy" title='entropy' data-ref="64entropy">entropy</a>, <var>8</var>);</td></tr>
+<tr><th id="610">610</th><td></td></tr>
+<tr><th id="611">611</th><td>    <i>/* Pad with zeros */</i></td></tr>
+<tr><th id="612">612</th><td>    <a class="ref" href="../../../include/string.h.html#memset" title='memset' data-ref="memset">memset</a>(<a class="local col2 ref" href="#42lmresp" title='lmresp' data-ref="42lmresp">lmresp</a> + <var>8</var>, <var>0</var>, <var>0x10</var>);</td></tr>
+<tr><th id="613">613</th><td></td></tr>
+<tr><th id="614">614</th><td>    <i>/* Fill tmp with challenge(nonce?) + entropy */</i></td></tr>
+<tr><th id="615">615</th><td>    <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col2 ref" href="#62tmp" title='tmp' data-ref="62tmp">tmp</a>, &amp;<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::nonce" title='ntlmdata::nonce' data-ref="ntlmdata::nonce">nonce</a>[<var>0</var>], <var>8</var>);</td></tr>
+<tr><th id="616">616</th><td>    <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col2 ref" href="#62tmp" title='tmp' data-ref="62tmp">tmp</a> + <var>8</var>, <a class="local col4 ref" href="#64entropy" title='entropy' data-ref="64entropy">entropy</a>, <var>8</var>);</td></tr>
+<tr><th id="617">617</th><td></td></tr>
+<tr><th id="618">618</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../vtls/vtls.h.html#Curl_ssl_md5sum" title='Curl_ssl_md5sum' data-ref="Curl_ssl_md5sum">Curl_ssl_md5sum</a>(<a class="local col2 ref" href="#62tmp" title='tmp' data-ref="62tmp">tmp</a>, <var>16</var>, <a class="local col3 ref" href="#63md5sum" title='md5sum' data-ref="63md5sum">md5sum</a>, <a class="macro" href="../vtls/vtls.h.html#116" title="16" data-ref="_M/MD5_DIGEST_LENGTH">MD5_DIGEST_LENGTH</a>);</td></tr>
+<tr><th id="619">619</th><td>    <b>if</b>(!<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="620">620</th><td>      <i>/* We shall only use the first 8 bytes of md5sum, but the des code in</i></td></tr>
+<tr><th id="621">621</th><td><i>         Curl_ntlm_core_lm_resp only encrypt the first 8 bytes */</i></td></tr>
+<tr><th id="622">622</th><td>      <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_mk_nt_hash" title='Curl_ntlm_core_mk_nt_hash' data-ref="Curl_ntlm_core_mk_nt_hash">Curl_ntlm_core_mk_nt_hash</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <a class="local col4 ref" href="#34passwdp" title='passwdp' data-ref="34passwdp">passwdp</a>, <a class="local col1 ref" href="#61ntbuffer" title='ntbuffer' data-ref="61ntbuffer">ntbuffer</a>);</td></tr>
+<tr><th id="623">623</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="624">624</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="625">625</th><td></td></tr>
+<tr><th id="626">626</th><td>    <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_lm_resp" title='Curl_ntlm_core_lm_resp' data-ref="Curl_ntlm_core_lm_resp">Curl_ntlm_core_lm_resp</a>(<a class="local col1 ref" href="#61ntbuffer" title='ntbuffer' data-ref="61ntbuffer">ntbuffer</a>, <a class="local col3 ref" href="#63md5sum" title='md5sum' data-ref="63md5sum">md5sum</a>, <a class="local col5 ref" href="#45ntresp" title='ntresp' data-ref="45ntresp">ntresp</a>);</td></tr>
+<tr><th id="627">627</th><td></td></tr>
+<tr><th id="628">628</th><td>    <i>/* End of NTLM2 Session code */</i></td></tr>
+<tr><th id="629">629</th><td></td></tr>
+<tr><th id="630">630</th><td>  }</td></tr>
+<tr><th id="631">631</th><td>  <b>else</b></td></tr>
+<tr><th id="632">632</th><td><u>#<span data-ppcond="595">endif</span></u></td></tr>
+<tr><th id="633">633</th><td>  {</td></tr>
+<tr><th id="634">634</th><td></td></tr>
+<tr><th id="635">635</th><td><u>#<span data-ppcond="635">ifdef</span> <a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a></u></td></tr>
+<tr><th id="636">636</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col5 decl" id="65ntbuffer" title='ntbuffer' data-type='unsigned char [24]' data-ref="65ntbuffer">ntbuffer</dfn>[<var>0x18</var>];</td></tr>
+<tr><th id="637">637</th><td><u>#<span data-ppcond="635">endif</span></u></td></tr>
+<tr><th id="638">638</th><td>    <em>unsigned</em> <em>char</em> <dfn class="local col6 decl" id="66lmbuffer" title='lmbuffer' data-type='unsigned char [24]' data-ref="66lmbuffer">lmbuffer</dfn>[<var>0x18</var>];</td></tr>
+<tr><th id="639">639</th><td></td></tr>
+<tr><th id="640">640</th><td><u>#<span data-ppcond="640">ifdef</span> <a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a></u></td></tr>
+<tr><th id="641">641</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_mk_nt_hash" title='Curl_ntlm_core_mk_nt_hash' data-ref="Curl_ntlm_core_mk_nt_hash">Curl_ntlm_core_mk_nt_hash</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <a class="local col4 ref" href="#34passwdp" title='passwdp' data-ref="34passwdp">passwdp</a>, <a class="local col5 ref" href="#65ntbuffer" title='ntbuffer' data-ref="65ntbuffer">ntbuffer</a>);</td></tr>
+<tr><th id="642">642</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="643">643</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="644">644</th><td></td></tr>
+<tr><th id="645">645</th><td>    <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_lm_resp" title='Curl_ntlm_core_lm_resp' data-ref="Curl_ntlm_core_lm_resp">Curl_ntlm_core_lm_resp</a>(<a class="local col5 ref" href="#65ntbuffer" title='ntbuffer' data-ref="65ntbuffer">ntbuffer</a>, &amp;<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::nonce" title='ntlmdata::nonce' data-ref="ntlmdata::nonce">nonce</a>[<var>0</var>], <a class="local col5 ref" href="#45ntresp" title='ntresp' data-ref="45ntresp">ntresp</a>);</td></tr>
+<tr><th id="646">646</th><td><u>#<span data-ppcond="640">endif</span></u></td></tr>
+<tr><th id="647">647</th><td></td></tr>
+<tr><th id="648">648</th><td>    <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_mk_lm_hash" title='Curl_ntlm_core_mk_lm_hash' data-ref="Curl_ntlm_core_mk_lm_hash">Curl_ntlm_core_mk_lm_hash</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <a class="local col4 ref" href="#34passwdp" title='passwdp' data-ref="34passwdp">passwdp</a>, <a class="local col6 ref" href="#66lmbuffer" title='lmbuffer' data-ref="66lmbuffer">lmbuffer</a>);</td></tr>
+<tr><th id="649">649</th><td>    <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="650">650</th><td>      <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="651">651</th><td></td></tr>
+<tr><th id="652">652</th><td>    <a class="ref" href="../curl_ntlm_core.h.html#Curl_ntlm_core_lm_resp" title='Curl_ntlm_core_lm_resp' data-ref="Curl_ntlm_core_lm_resp">Curl_ntlm_core_lm_resp</a>(<a class="local col6 ref" href="#66lmbuffer" title='lmbuffer' data-ref="66lmbuffer">lmbuffer</a>, &amp;<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::nonce" title='ntlmdata::nonce' data-ref="ntlmdata::nonce">nonce</a>[<var>0</var>], <a class="local col2 ref" href="#42lmresp" title='lmresp' data-ref="42lmresp">lmresp</a>);</td></tr>
+<tr><th id="653">653</th><td></td></tr>
+<tr><th id="654">654</th><td>    <i>/* A safer but less compatible alternative is:</i></td></tr>
+<tr><th id="655">655</th><td><i>     *   Curl_ntlm_core_lm_resp(ntbuffer, &amp;ntlm-&gt;nonce[0], lmresp);</i></td></tr>
+<tr><th id="656">656</th><td><i>     * See <a href="https://davenport.sourceforge.io/ntlm.html#ntlmVersion2">https://davenport.sourceforge.io/ntlm.html#ntlmVersion2</a> */</i></td></tr>
+<tr><th id="657">657</th><td>  }</td></tr>
+<tr><th id="658">658</th><td></td></tr>
+<tr><th id="659">659</th><td>  <b>if</b>(<a class="local col8 ref" href="#48unicode" title='unicode' data-ref="48unicode">unicode</a>) {</td></tr>
+<tr><th id="660">660</th><td>    <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a> = <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a> * <var>2</var>;</td></tr>
+<tr><th id="661">661</th><td>    <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a> = <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a> * <var>2</var>;</td></tr>
+<tr><th id="662">662</th><td>    <a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a> = <a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a> * <var>2</var>;</td></tr>
+<tr><th id="663">663</th><td>  }</td></tr>
+<tr><th id="664">664</th><td></td></tr>
+<tr><th id="665">665</th><td>  <a class="local col1 ref" href="#41lmrespoff" title='lmrespoff' data-ref="41lmrespoff">lmrespoff</a> = <var>64</var>; <i>/* size of the message header */</i></td></tr>
+<tr><th id="666">666</th><td><u>#<span data-ppcond="666">ifdef</span> <a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a></u></td></tr>
+<tr><th id="667">667</th><td>  <a class="local col3 ref" href="#43ntrespoff" title='ntrespoff' data-ref="43ntrespoff">ntrespoff</a> = <a class="local col1 ref" href="#41lmrespoff" title='lmrespoff' data-ref="41lmrespoff">lmrespoff</a> + <var>0x18</var>;</td></tr>
+<tr><th id="668">668</th><td>  <a class="local col4 ref" href="#54domoff" title='domoff' data-ref="54domoff">domoff</a> = <a class="local col3 ref" href="#43ntrespoff" title='ntrespoff' data-ref="43ntrespoff">ntrespoff</a> + <a class="local col4 ref" href="#44ntresplen" title='ntresplen' data-ref="44ntresplen">ntresplen</a>;</td></tr>
+<tr><th id="669">669</th><td><u>#<span data-ppcond="666">else</span></u></td></tr>
+<tr><th id="670">670</th><td>  domoff = lmrespoff + <var>0x18</var>;</td></tr>
+<tr><th id="671">671</th><td><u>#<span data-ppcond="666">endif</span></u></td></tr>
+<tr><th id="672">672</th><td>  <a class="local col3 ref" href="#53useroff" title='useroff' data-ref="53useroff">useroff</a> = <a class="local col4 ref" href="#54domoff" title='domoff' data-ref="54domoff">domoff</a> + <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a>;</td></tr>
+<tr><th id="673">673</th><td>  <a class="local col2 ref" href="#52hostoff" title='hostoff' data-ref="52hostoff">hostoff</a> = <a class="local col3 ref" href="#53useroff" title='useroff' data-ref="53useroff">useroff</a> + <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a>;</td></tr>
+<tr><th id="674">674</th><td></td></tr>
+<tr><th id="675">675</th><td>  <i>/* Create the big type-3 message binary blob */</i></td></tr>
+<tr><th id="676">676</th><td>  <a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> = <a class="macro" href="../curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>((<em>char</em> *)<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>, <a class="macro" href="ntlm.h.html#30" title="1024" data-ref="_M/NTLM_BUFSIZE">NTLM_BUFSIZE</a>,</td></tr>
+<tr><th id="677">677</th><td>                  <a class="macro" href="#64" title="&quot;\x4e\x54\x4c\x4d\x53\x53\x50&quot;" data-ref="_M/NTLMSSP_SIGNATURE">NTLMSSP_SIGNATURE</a> <q>"%c"</q></td></tr>
+<tr><th id="678">678</th><td>                  <q>"\x03%c%c%c"</q>  <i>/* 32-bit type = 3 */</i></td></tr>
+<tr><th id="679">679</th><td></td></tr>
+<tr><th id="680">680</th><td>                  <q>"%c%c"</q>  <i>/* LanManager length */</i></td></tr>
+<tr><th id="681">681</th><td>                  <q>"%c%c"</q>  <i>/* LanManager allocated space */</i></td></tr>
+<tr><th id="682">682</th><td>                  <q>"%c%c"</q>  <i>/* LanManager offset */</i></td></tr>
+<tr><th id="683">683</th><td>                  <q>"%c%c"</q>  <i>/* 2 zeroes */</i></td></tr>
+<tr><th id="684">684</th><td></td></tr>
+<tr><th id="685">685</th><td>                  <q>"%c%c"</q>  <i>/* NT-response length */</i></td></tr>
+<tr><th id="686">686</th><td>                  <q>"%c%c"</q>  <i>/* NT-response allocated space */</i></td></tr>
+<tr><th id="687">687</th><td>                  <q>"%c%c"</q>  <i>/* NT-response offset */</i></td></tr>
+<tr><th id="688">688</th><td>                  <q>"%c%c"</q>  <i>/* 2 zeroes */</i></td></tr>
+<tr><th id="689">689</th><td></td></tr>
+<tr><th id="690">690</th><td>                  <q>"%c%c"</q>  <i>/* domain length */</i></td></tr>
+<tr><th id="691">691</th><td>                  <q>"%c%c"</q>  <i>/* domain allocated space */</i></td></tr>
+<tr><th id="692">692</th><td>                  <q>"%c%c"</q>  <i>/* domain name offset */</i></td></tr>
+<tr><th id="693">693</th><td>                  <q>"%c%c"</q>  <i>/* 2 zeroes */</i></td></tr>
+<tr><th id="694">694</th><td></td></tr>
+<tr><th id="695">695</th><td>                  <q>"%c%c"</q>  <i>/* user length */</i></td></tr>
+<tr><th id="696">696</th><td>                  <q>"%c%c"</q>  <i>/* user allocated space */</i></td></tr>
+<tr><th id="697">697</th><td>                  <q>"%c%c"</q>  <i>/* user offset */</i></td></tr>
+<tr><th id="698">698</th><td>                  <q>"%c%c"</q>  <i>/* 2 zeroes */</i></td></tr>
+<tr><th id="699">699</th><td></td></tr>
+<tr><th id="700">700</th><td>                  <q>"%c%c"</q>  <i>/* host length */</i></td></tr>
+<tr><th id="701">701</th><td>                  <q>"%c%c"</q>  <i>/* host allocated space */</i></td></tr>
+<tr><th id="702">702</th><td>                  <q>"%c%c"</q>  <i>/* host offset */</i></td></tr>
+<tr><th id="703">703</th><td>                  <q>"%c%c"</q>  <i>/* 2 zeroes */</i></td></tr>
+<tr><th id="704">704</th><td></td></tr>
+<tr><th id="705">705</th><td>                  <q>"%c%c"</q>  <i>/* session key length (unknown purpose) */</i></td></tr>
+<tr><th id="706">706</th><td>                  <q>"%c%c"</q>  <i>/* session key allocated space (unknown purpose) */</i></td></tr>
+<tr><th id="707">707</th><td>                  <q>"%c%c"</q>  <i>/* session key offset (unknown purpose) */</i></td></tr>
+<tr><th id="708">708</th><td>                  <q>"%c%c"</q>  <i>/* 2 zeroes */</i></td></tr>
+<tr><th id="709">709</th><td></td></tr>
+<tr><th id="710">710</th><td>                  <q>"%c%c%c%c"</q>,  <i>/* flags */</i></td></tr>
+<tr><th id="711">711</th><td></td></tr>
+<tr><th id="712">712</th><td>                  <i>/* domain string */</i></td></tr>
+<tr><th id="713">713</th><td>                  <i>/* user string */</i></td></tr>
+<tr><th id="714">714</th><td>                  <i>/* host string */</i></td></tr>
+<tr><th id="715">715</th><td>                  <i>/* LanManager response */</i></td></tr>
+<tr><th id="716">716</th><td>                  <i>/* NT response */</i></td></tr>
+<tr><th id="717">717</th><td></td></tr>
+<tr><th id="718">718</th><td>                  <var>0</var>,                <i>/* zero termination */</i></td></tr>
+<tr><th id="719">719</th><td>                  <var>0</var>, <var>0</var>, <var>0</var>,          <i>/* type-3 long, the 24 upper bits */</i></td></tr>
+<tr><th id="720">720</th><td></td></tr>
+<tr><th id="721">721</th><td>                  <a class="macro" href="#66" title="((0x18) &amp; 0xff), (((0x18) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<var>0x18</var>),  <i>/* LanManager response length, twice */</i></td></tr>
+<tr><th id="722">722</th><td>                  <a class="macro" href="#66" title="((0x18) &amp; 0xff), (((0x18) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<var>0x18</var>),</td></tr>
+<tr><th id="723">723</th><td>                  <a class="macro" href="#66" title="((lmrespoff) &amp; 0xff), (((lmrespoff) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col1 ref" href="#41lmrespoff" title='lmrespoff' data-ref="41lmrespoff">lmrespoff</a>),</td></tr>
+<tr><th id="724">724</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="725">725</th><td></td></tr>
+<tr><th id="726">726</th><td><u>#<span data-ppcond="726">ifdef</span> <a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a></u></td></tr>
+<tr><th id="727">727</th><td>                  <a class="macro" href="#66" title="((ntresplen) &amp; 0xff), (((ntresplen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col4 ref" href="#44ntresplen" title='ntresplen' data-ref="44ntresplen">ntresplen</a>),  <i>/* NT-response length, twice */</i></td></tr>
+<tr><th id="728">728</th><td>                  <a class="macro" href="#66" title="((ntresplen) &amp; 0xff), (((ntresplen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col4 ref" href="#44ntresplen" title='ntresplen' data-ref="44ntresplen">ntresplen</a>),</td></tr>
+<tr><th id="729">729</th><td>                  <a class="macro" href="#66" title="((ntrespoff) &amp; 0xff), (((ntrespoff) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col3 ref" href="#43ntrespoff" title='ntrespoff' data-ref="43ntrespoff">ntrespoff</a>),</td></tr>
+<tr><th id="730">730</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="731">731</th><td><u>#<span data-ppcond="726">else</span></u></td></tr>
+<tr><th id="732">732</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="733">733</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="734">734</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="735">735</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="736">736</th><td><u>#<span data-ppcond="726">endif</span></u></td></tr>
+<tr><th id="737">737</th><td>                  <a class="macro" href="#66" title="((domlen) &amp; 0xff), (((domlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a>),</td></tr>
+<tr><th id="738">738</th><td>                  <a class="macro" href="#66" title="((domlen) &amp; 0xff), (((domlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a>),</td></tr>
+<tr><th id="739">739</th><td>                  <a class="macro" href="#66" title="((domoff) &amp; 0xff), (((domoff) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col4 ref" href="#54domoff" title='domoff' data-ref="54domoff">domoff</a>),</td></tr>
+<tr><th id="740">740</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="741">741</th><td></td></tr>
+<tr><th id="742">742</th><td>                  <a class="macro" href="#66" title="((userlen) &amp; 0xff), (((userlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a>),</td></tr>
+<tr><th id="743">743</th><td>                  <a class="macro" href="#66" title="((userlen) &amp; 0xff), (((userlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a>),</td></tr>
+<tr><th id="744">744</th><td>                  <a class="macro" href="#66" title="((useroff) &amp; 0xff), (((useroff) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col3 ref" href="#53useroff" title='useroff' data-ref="53useroff">useroff</a>),</td></tr>
+<tr><th id="745">745</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="746">746</th><td></td></tr>
+<tr><th id="747">747</th><td>                  <a class="macro" href="#66" title="((hostlen) &amp; 0xff), (((hostlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a>),</td></tr>
+<tr><th id="748">748</th><td>                  <a class="macro" href="#66" title="((hostlen) &amp; 0xff), (((hostlen) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a>),</td></tr>
+<tr><th id="749">749</th><td>                  <a class="macro" href="#66" title="((hostoff) &amp; 0xff), (((hostoff) &gt;&gt; 8) &amp; 0xff)" data-ref="_M/SHORTPAIR">SHORTPAIR</a>(<a class="local col2 ref" href="#52hostoff" title='hostoff' data-ref="52hostoff">hostoff</a>),</td></tr>
+<tr><th id="750">750</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="751">751</th><td></td></tr>
+<tr><th id="752">752</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="753">753</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="754">754</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="755">755</th><td>                  <var>0x0</var>, <var>0x0</var>,</td></tr>
+<tr><th id="756">756</th><td></td></tr>
+<tr><th id="757">757</th><td>                  <a class="macro" href="#67" title="((ntlm-&gt;flags) &amp; 0xff), (((ntlm-&gt;flags) &gt;&gt; 8) &amp; 0xff), (((ntlm-&gt;flags) &gt;&gt; 16) &amp; 0xff), (((ntlm-&gt;flags) &gt;&gt; 24) &amp; 0xff)" data-ref="_M/LONGQUARTET">LONGQUARTET</a>(<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::flags" title='ntlmdata::flags' data-ref="ntlmdata::flags">flags</a>));</td></tr>
+<tr><th id="758">758</th><td></td></tr>
+<tr><th id="759">759</th><td>  <a class="macro" href="../curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(size == <var>64</var>);</td></tr>
+<tr><th id="760">760</th><td>  <a class="macro" href="../curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(size == (size_t)lmrespoff);</td></tr>
+<tr><th id="761">761</th><td></td></tr>
+<tr><th id="762">762</th><td>  <i>/* We append the binary hashes */</i></td></tr>
+<tr><th id="763">763</th><td>  <b>if</b>(<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> &lt; (<a class="macro" href="ntlm.h.html#30" title="1024" data-ref="_M/NTLM_BUFSIZE">NTLM_BUFSIZE</a> - <var>0x18</var>)) {</td></tr>
+<tr><th id="764">764</th><td>    <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(&amp;<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>[<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>], <a class="local col2 ref" href="#42lmresp" title='lmresp' data-ref="42lmresp">lmresp</a>, <var>0x18</var>);</td></tr>
+<tr><th id="765">765</th><td>    <a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> += <var>0x18</var>;</td></tr>
+<tr><th id="766">766</th><td>  }</td></tr>
+<tr><th id="767">767</th><td></td></tr>
+<tr><th id="768">768</th><td>  <a class="macro" href="#151" title="do { } while(0)" data-ref="_M/DEBUG_OUT">DEBUG_OUT</a>({</td></tr>
+<tr><th id="769">769</th><td>    fprintf(stderr, <q>"**** TYPE3 header lmresp="</q>);</td></tr>
+<tr><th id="770">770</th><td>    ntlm_print_hex(stderr, (<em>char</em> *)&amp;ntlmbuf[lmrespoff], <var>0x18</var>);</td></tr>
+<tr><th id="771">771</th><td>  });</td></tr>
+<tr><th id="772">772</th><td></td></tr>
+<tr><th id="773">773</th><td><u>#<span data-ppcond="773">ifdef</span> <a class="macro" href="../curl_ntlm_core.h.html#47" data-ref="_M/USE_NTRESPONSES">USE_NTRESPONSES</a></u></td></tr>
+<tr><th id="774">774</th><td>  <b>if</b>(<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> &lt; (<a class="macro" href="ntlm.h.html#30" title="1024" data-ref="_M/NTLM_BUFSIZE">NTLM_BUFSIZE</a> - <a class="local col4 ref" href="#44ntresplen" title='ntresplen' data-ref="44ntresplen">ntresplen</a>)) {</td></tr>
+<tr><th id="775">775</th><td>    <a class="macro" href="../curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(size == (size_t)ntrespoff);</td></tr>
+<tr><th id="776">776</th><td>    <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(&amp;<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>[<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>], <a class="local col6 ref" href="#46ptr_ntresp" title='ptr_ntresp' data-ref="46ptr_ntresp">ptr_ntresp</a>, <a class="local col4 ref" href="#44ntresplen" title='ntresplen' data-ref="44ntresplen">ntresplen</a>);</td></tr>
+<tr><th id="777">777</th><td>    <a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> += <a class="local col4 ref" href="#44ntresplen" title='ntresplen' data-ref="44ntresplen">ntresplen</a>;</td></tr>
+<tr><th id="778">778</th><td>  }</td></tr>
+<tr><th id="779">779</th><td></td></tr>
+<tr><th id="780">780</th><td>  <a class="macro" href="#151" title="do { } while(0)" data-ref="_M/DEBUG_OUT">DEBUG_OUT</a>({</td></tr>
+<tr><th id="781">781</th><td>    fprintf(stderr, <q>"\n   ntresp="</q>);</td></tr>
+<tr><th id="782">782</th><td>    ntlm_print_hex(stderr, (<em>char</em> *)&amp;ntlmbuf[ntrespoff], ntresplen);</td></tr>
+<tr><th id="783">783</th><td>  });</td></tr>
+<tr><th id="784">784</th><td></td></tr>
+<tr><th id="785">785</th><td>  <a class="macro" href="../curl_memory.h.html#130" title="Curl_cfree(ntlmv2resp)" data-ref="_M/free">free</a>(<a class="local col7 ref" href="#47ntlmv2resp" title='ntlmv2resp' data-ref="47ntlmv2resp">ntlmv2resp</a>);<i>/* Free the dynamic buffer allocated for NTLMv2 */</i></td></tr>
+<tr><th id="786">786</th><td></td></tr>
+<tr><th id="787">787</th><td><u>#<span data-ppcond="773">endif</span></u></td></tr>
+<tr><th id="788">788</th><td></td></tr>
+<tr><th id="789">789</th><td>  <a class="macro" href="#151" title="do { } while(0)" data-ref="_M/DEBUG_OUT">DEBUG_OUT</a>({</td></tr>
+<tr><th id="790">790</th><td>    fprintf(stderr, <q>"\n   flags=0x%02.2x%02.2x%02.2x%02.2x 0x%08.8x "</q>,</td></tr>
+<tr><th id="791">791</th><td>            LONGQUARTET(ntlm-&gt;flags), ntlm-&gt;flags);</td></tr>
+<tr><th id="792">792</th><td>    ntlm_print_flags(stderr, ntlm-&gt;flags);</td></tr>
+<tr><th id="793">793</th><td>    fprintf(stderr, <q>"\n****\n"</q>);</td></tr>
+<tr><th id="794">794</th><td>  });</td></tr>
+<tr><th id="795">795</th><td></td></tr>
+<tr><th id="796">796</th><td>  <i>/* Make sure that the domain, user and host strings fit in the</i></td></tr>
+<tr><th id="797">797</th><td><i>     buffer before we copy them there. */</i></td></tr>
+<tr><th id="798">798</th><td>  <b>if</b>(<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> + <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a> + <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a> + <a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a> &gt;= <a class="macro" href="ntlm.h.html#30" title="1024" data-ref="_M/NTLM_BUFSIZE">NTLM_BUFSIZE</a>) {</td></tr>
+<tr><th id="799">799</th><td>    <a class="macro" href="../sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, <q>"user + domain + host name too big"</q>);</td></tr>
+<tr><th id="800">800</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="801">801</th><td>  }</td></tr>
+<tr><th id="802">802</th><td></td></tr>
+<tr><th id="803">803</th><td>  <a class="macro" href="../curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(size == domoff);</td></tr>
+<tr><th id="804">804</th><td>  <b>if</b>(<a class="local col8 ref" href="#48unicode" title='unicode' data-ref="48unicode">unicode</a>)</td></tr>
+<tr><th id="805">805</th><td>    <a class="tu ref" href="#unicodecpy" title='unicodecpy' data-use='c' data-ref="unicodecpy">unicodecpy</a>(&amp;<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>[<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>], <a class="local col1 ref" href="#51domain" title='domain' data-ref="51domain">domain</a>, <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a> / <var>2</var>);</td></tr>
+<tr><th id="806">806</th><td>  <b>else</b></td></tr>
+<tr><th id="807">807</th><td>    <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(&amp;<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>[<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>], <a class="local col1 ref" href="#51domain" title='domain' data-ref="51domain">domain</a>, <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a>);</td></tr>
+<tr><th id="808">808</th><td></td></tr>
+<tr><th id="809">809</th><td>  <a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> += <a class="local col7 ref" href="#57domlen" title='domlen' data-ref="57domlen">domlen</a>;</td></tr>
+<tr><th id="810">810</th><td></td></tr>
+<tr><th id="811">811</th><td>  <a class="macro" href="../curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(size == useroff);</td></tr>
+<tr><th id="812">812</th><td>  <b>if</b>(<a class="local col8 ref" href="#48unicode" title='unicode' data-ref="48unicode">unicode</a>)</td></tr>
+<tr><th id="813">813</th><td>    <a class="tu ref" href="#unicodecpy" title='unicodecpy' data-use='c' data-ref="unicodecpy">unicodecpy</a>(&amp;<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>[<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>], <a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a>, <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a> / <var>2</var>);</td></tr>
+<tr><th id="814">814</th><td>  <b>else</b></td></tr>
+<tr><th id="815">815</th><td>    <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(&amp;<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>[<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>], <a class="local col0 ref" href="#50user" title='user' data-ref="50user">user</a>, <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a>);</td></tr>
+<tr><th id="816">816</th><td></td></tr>
+<tr><th id="817">817</th><td>  <a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> += <a class="local col6 ref" href="#56userlen" title='userlen' data-ref="56userlen">userlen</a>;</td></tr>
+<tr><th id="818">818</th><td></td></tr>
+<tr><th id="819">819</th><td>  <a class="macro" href="../curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(size == hostoff);</td></tr>
+<tr><th id="820">820</th><td>  <b>if</b>(<a class="local col8 ref" href="#48unicode" title='unicode' data-ref="48unicode">unicode</a>)</td></tr>
+<tr><th id="821">821</th><td>    <a class="tu ref" href="#unicodecpy" title='unicodecpy' data-use='c' data-ref="unicodecpy">unicodecpy</a>(&amp;<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>[<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>], <a class="local col9 ref" href="#49host" title='host' data-ref="49host">host</a>, <a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a> / <var>2</var>);</td></tr>
+<tr><th id="822">822</th><td>  <b>else</b></td></tr>
+<tr><th id="823">823</th><td>    <a class="ref" href="../../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(&amp;<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>[<a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>], <a class="local col9 ref" href="#49host" title='host' data-ref="49host">host</a>, <a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a>);</td></tr>
+<tr><th id="824">824</th><td></td></tr>
+<tr><th id="825">825</th><td>  <a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a> += <a class="local col5 ref" href="#55hostlen" title='hostlen' data-ref="55hostlen">hostlen</a>;</td></tr>
+<tr><th id="826">826</th><td></td></tr>
+<tr><th id="827">827</th><td>  <i>/* Convert domain, user, and host to ASCII but leave the rest as-is */</i></td></tr>
+<tr><th id="828">828</th><td>  <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="macro" href="../non-ascii.h.html#56" title="((void)data, CURLE_OK)" data-ref="_M/Curl_convert_to_network">Curl_convert_to_network</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, (<em>char</em> *)&amp;ntlmbuf[domoff],</td></tr>
+<tr><th id="829">829</th><td>                                   size - domoff);</td></tr>
+<tr><th id="830">830</th><td>  <b>if</b>(<a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>)</td></tr>
+<tr><th id="831">831</th><td>    <b>return</b> <a class="enum" href="../../include/curl/curl.h.html#CURLE_CONV_FAILED" title='CURLE_CONV_FAILED' data-ref="CURLE_CONV_FAILED">CURLE_CONV_FAILED</a>;</td></tr>
+<tr><th id="832">832</th><td></td></tr>
+<tr><th id="833">833</th><td>  <i>/* Return with binary blob encoded into base64 */</i></td></tr>
+<tr><th id="834">834</th><td>  <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a> = <a class="ref" href="../curl_base64.h.html#Curl_base64_encode" title='Curl_base64_encode' data-ref="Curl_base64_encode">Curl_base64_encode</a>(<a class="local col2 ref" href="#32data" title='data' data-ref="32data">data</a>, (<em>char</em> *)<a class="local col0 ref" href="#40ntlmbuf" title='ntlmbuf' data-ref="40ntlmbuf">ntlmbuf</a>, <a class="local col9 ref" href="#39size" title='size' data-ref="39size">size</a>, <a class="local col6 ref" href="#36outptr" title='outptr' data-ref="36outptr">outptr</a>, <a class="local col7 ref" href="#37outlen" title='outlen' data-ref="37outlen">outlen</a>);</td></tr>
+<tr><th id="835">835</th><td></td></tr>
+<tr><th id="836">836</th><td>  <a class="ref" href="#Curl_auth_ntlm_cleanup" title='Curl_auth_ntlm_cleanup' data-ref="Curl_auth_ntlm_cleanup">Curl_auth_ntlm_cleanup</a>(<a class="local col5 ref" href="#35ntlm" title='ntlm' data-ref="35ntlm">ntlm</a>);</td></tr>
+<tr><th id="837">837</th><td></td></tr>
+<tr><th id="838">838</th><td>  <b>return</b> <a class="local col8 ref" href="#38result" title='result' data-ref="38result">result</a>;</td></tr>
+<tr><th id="839">839</th><td>}</td></tr>
+<tr><th id="840">840</th><td></td></tr>
+<tr><th id="841">841</th><td><i>/*</i></td></tr>
+<tr><th id="842">842</th><td><i>* Curl_auth_ntlm_cleanup()</i></td></tr>
+<tr><th id="843">843</th><td><i>*</i></td></tr>
+<tr><th id="844">844</th><td><i>* This is used to clean up the NTLM specific data.</i></td></tr>
+<tr><th id="845">845</th><td><i>*</i></td></tr>
+<tr><th id="846">846</th><td><i>* Parameters:</i></td></tr>
+<tr><th id="847">847</th><td><i>*</i></td></tr>
+<tr><th id="848">848</th><td><i>* ntlm    [in/out] - The NTLM data struct being cleaned up.</i></td></tr>
+<tr><th id="849">849</th><td><i>*</i></td></tr>
+<tr><th id="850">850</th><td><i>*/</i></td></tr>
+<tr><th id="851">851</th><td><em>void</em> <dfn class="decl def" id="Curl_auth_ntlm_cleanup" title='Curl_auth_ntlm_cleanup' data-ref="Curl_auth_ntlm_cleanup">Curl_auth_ntlm_cleanup</dfn>(<b>struct</b> <a class="type" href="../urldata.h.html#ntlmdata" title='ntlmdata' data-ref="ntlmdata">ntlmdata</a> *<dfn class="local col7 decl" id="67ntlm" title='ntlm' data-type='struct ntlmdata *' data-ref="67ntlm">ntlm</dfn>)</td></tr>
+<tr><th id="852">852</th><td>{</td></tr>
+<tr><th id="853">853</th><td>  <i>/* Free the target info */</i></td></tr>
+<tr><th id="854">854</th><td>  <a class="macro" href="../memdebug.h.html#170" title="do { Curl_cfree((ntlm-&gt;target_info)); (ntlm-&gt;target_info) = ((void*)0);} while(0)" data-ref="_M/Curl_safefree">Curl_safefree</a>(<a class="local col7 ref" href="#67ntlm" title='ntlm' data-ref="67ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::target_info" title='ntlmdata::target_info' data-ref="ntlmdata::target_info">target_info</a>);</td></tr>
+<tr><th id="855">855</th><td></td></tr>
+<tr><th id="856">856</th><td>  <i>/* Reset any variables */</i></td></tr>
+<tr><th id="857">857</th><td>  <a class="local col7 ref" href="#67ntlm" title='ntlm' data-ref="67ntlm">ntlm</a>-&gt;<a class="ref" href="../urldata.h.html#ntlmdata::target_info_len" title='ntlmdata::target_info_len' data-ref="ntlmdata::target_info_len">target_info_len</a> = <var>0</var>;</td></tr>
+<tr><th id="858">858</th><td>}</td></tr>
+<tr><th id="859">859</th><td></td></tr>
+<tr><th id="860">860</th><td><u>#<span data-ppcond="25">endif</span> /* USE_NTLM &amp;&amp; !USE_WINDOWS_SSPI */</u></td></tr>
+<tr><th id="861">861</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

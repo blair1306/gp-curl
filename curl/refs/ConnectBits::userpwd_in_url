@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='421' type='_Bool'/>
+<offset>184</offset>
+<use f='codebrowser/lib/http.c' l='2154' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='5547' u='w' c='parse_url_login'/>

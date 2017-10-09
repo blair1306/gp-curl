@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='925' type='char *'/>
+<offset>384</offset>
+<use f='codebrowser/lib/http.c' l='1613' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='2010' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2010' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2051' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2052' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2057' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2069' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2074' u='w' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2080' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2328' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2328' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='3058' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3058' u='w' c='conn_free'/>

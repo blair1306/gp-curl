@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='534' type='int dup(int __fd)'/>
+<doc f='include/unistd.h' l='533'>/* Duplicate FD, returning a new file descriptor on the same file.  */</doc>
+<use f='codebrowser/tests/libtest/lib518.c' l='343' u='c' c='rlimit'/>
+<use f='codebrowser/tests/libtest/lib537.c' l='337' u='c' c='rlimit'/>

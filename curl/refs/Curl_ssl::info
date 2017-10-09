@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='34' type='curl_ssl_backend'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/vtls/vtls.h' l='30'>/*
+   * This *must* be the first entry to allow returning the list of available
+   * backends in curl_global_sslset().
+   */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='144' u='m' c='Curl_ssl_backend'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1283' u='m' c='multissl_init'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1301' u='m' c='curl_global_sslset'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1304' u='m' c='curl_global_sslset'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1305' u='m' c='curl_global_sslset'/>

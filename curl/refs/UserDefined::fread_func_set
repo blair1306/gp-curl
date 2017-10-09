@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1519' type='curl_read_callback'/>
+<offset>1408</offset>
+<doc f='codebrowser/lib/urldata.h' l='1519'>/* function that reads the input */</doc>
+<use f='codebrowser/lib/transfer.c' l='1314' u='r' c='Curl_init_CONNECT'/>
+<use f='codebrowser/lib/url.c' l='519' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1955' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1956' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1959' u='w' c='Curl_setopt'/>

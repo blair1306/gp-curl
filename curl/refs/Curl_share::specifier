@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/share.h' l='40' type='unsigned int'/>
+<offset>0</offset>
+<use f='codebrowser/lib/share.c' l='39' u='w' c='curl_share_init'/>
+<use f='codebrowser/lib/share.c' l='72' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='115' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='221' u='r' c='Curl_share_lock'/>
+<use f='codebrowser/lib/share.c' l='238' u='r' c='Curl_share_unlock'/>
+<use f='codebrowser/lib/url.c' l='2413' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='73' u='r' c='Curl_ssl_sessionid_lock'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='73' u='r' c='Curl_ssl_sessionid_unlock'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='73' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='73' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='73' u='r' c='Curl_ssl_close_all'/>

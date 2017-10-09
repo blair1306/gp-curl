@@ -1,0 +1,12 @@
+<dec f='include/openssl/ocsp.h' l='315'/>
+<doc f='include/openssl/ocsp.h' l='304'>/*-
+ *   CRLReason ::= ENUMERATED {
+ *        unspecified             (0),
+ *        keyCompromise           (1),
+ *        cACompromise            (2),
+ *        affiliationChanged      (3),
+ *        superseded              (4),
+ *        cessationOfOperation    (5),
+ *        certificateHold         (6),
+ *        removeFromCRL           (8) }
+ */</doc>

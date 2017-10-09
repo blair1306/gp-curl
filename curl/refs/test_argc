@@ -1,0 +1,5 @@
+<dec f='codebrowser/tests/libtest/test.h' l='57' type='int'/>
+<def f='codebrowser/tests/libtest/first.c' l='77' type='int'/>
+<use f='codebrowser/tests/libtest/first.c' l='161' u='w' c='main'/>
+<doc f='codebrowser/tests/libtest/test.h' l='56'>/* argc and argv as passed in to the main() function */</doc>
+<use f='codebrowser/tests/libtest/lib540.c' l='200' u='r' c='test'/>

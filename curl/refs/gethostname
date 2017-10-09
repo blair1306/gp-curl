@@ -1,0 +1,10 @@
+<dec f='include/unistd.h' l='882' type='int gethostname(char * __name, size_t __len)'/>
+<doc f='include/unistd.h' l='879'>/* Put the name of the current host in no more than LEN bytes of NAME.
+   The result is null-terminated if LEN is large enough for the full
+   name and the terminator.  */</doc>
+<use f='codebrowser/lib/curl_gethostname.c' l='83' u='c' c='Curl_gethostname'/>
+<dec f='codebrowser/tests/libtest/sethostname.h' l='40' type='int gethostname(char * name, size_t namelen)'/>
+<def f='codebrowser/tests/libtest/sethostname.c' l='30' ll='41' type='int gethostname(char * name, size_t namelen)'/>
+<doc f='codebrowser/tests/libtest/sethostname.c' l='26'>/*
+ * we force our own host name, in order to make some tests machine independent
+ */</doc>

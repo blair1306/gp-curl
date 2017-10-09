@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='862' type='char [46]'/>
+<offset>3776</offset>
+<doc f='codebrowser/lib/urldata.h' l='858'>/* &apos;local_ip&apos; and &apos;local_port&apos; get filled with local&apos;s numerical
+     ip address and port number whenever an outgoing connection is
+     **established** from the primary socket to a remote address. */</doc>
+<use f='codebrowser/lib/connect.c' l='603' u='r' c='Curl_persistconninfo'/>
+<use f='codebrowser/lib/connect.c' l='702' u='r' c='Curl_updateconninfo'/>

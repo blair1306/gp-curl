@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/wildcard.h' l='39' type='7'/>
+<doc f='codebrowser/lib/wildcard.h' l='39'>/* if is wildcard-&gt;state == CURLWC_DONE wildcard loop
+                   will end */</doc>
+<use f='codebrowser/lib/ftp.c' l='3938' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3941' c='wc_statemach'/>
+<use f='codebrowser/lib/ftp.c' l='3970' u='r' c='ftp_do'/>
+<use f='codebrowser/lib/multi.c' l='1666' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2034' u='r' c='multi_runsingle'/>

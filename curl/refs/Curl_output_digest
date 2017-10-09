@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/http_digest.h' l='31' type='CURLcode Curl_output_digest(struct connectdata * conn, _Bool proxy, const unsigned char * request, const unsigned char * uripath)'/>
+<use f='codebrowser/lib/http.c' l='606' u='c' c='output_auth_headers'/>
+<doc f='codebrowser/lib/http_digest.h' l='30'>/* this is for creating digest header output */</doc>
+<def f='codebrowser/lib/http_digest.c' l='70' ll='172' type='CURLcode Curl_output_digest(struct connectdata * conn, _Bool proxy, const unsigned char * request, const unsigned char * uripath)'/>

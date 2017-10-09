@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='406' type='int _ossl_old_des_enc_write(int fd, char * buf, int len, struct _ossl_old_des_ks_struct * sched, _ossl_old_des_cblock * iv)'/>

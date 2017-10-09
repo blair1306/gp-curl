@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1472' type='55'/>
+<doc f='codebrowser/lib/urldata.h' l='1472'>/* CURLOPT_REQUEST_TARGET */</doc>
+<use f='codebrowser/lib/http.c' l='2297' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2298' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/url.c' l='842' u='a' c='Curl_setopt'/>

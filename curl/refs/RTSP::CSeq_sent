@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/rtsp.h' l='61' type='long'/>
+<offset>4416</offset>
+<doc f='codebrowser/lib/rtsp.h' l='61'>/* CSeq of this request */</doc>
+<use f='codebrowser/lib/rtsp.c' l='232' u='r' c='rtsp_done'/>
+<use f='codebrowser/lib/rtsp.c' l='279' u='w' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='470' u='r' c='rtsp_do'/>

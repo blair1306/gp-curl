@@ -1,0 +1,10 @@
+<dec f='include/unistd.h' l='829' type='int unlink(const char * __name)'/>
+<doc f='include/unistd.h' l='828'>/* Remove the link NAME.  */</doc>
+<use f='codebrowser/tests/server/rtspd.c' l='1462' u='c' c='main'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1554' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2204' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2382' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='2391' u='c' c='main'/>
+<use f='codebrowser/tests/server/tftpd.c' l='330' u='c' c='timer'/>
+<use f='codebrowser/tests/server/tftpd.c' l='925' u='c' c='main'/>
+<use f='codebrowser/tests/server/util.c' l='310' u='c' c='clear_advisor_read_lock'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/mime.h' l='69' type='curl_off_t (*)(curl_mimepart *)'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/mime.h' l='69'>/* Encoded size. */</doc>
+<use f='codebrowser/lib/mime.c' l='1532' u='r' c='Curl_mime_size'/>

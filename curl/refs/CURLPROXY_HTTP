@@ -1,0 +1,15 @@
+<dec f='codebrowser/include/curl/curl.h' l='665' type='0'/>
+<doc f='codebrowser/include/curl/curl.h' l='665'>/* added in 7.10, new in 7.19.4 default is to use
+                           CONNECT HTTP/1.1 */</doc>
+<use f='codebrowser/lib/url.c' l='548' u='r' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='4254' u='r' c='allocate_conn'/>
+<use f='codebrowser/src/tool_getparam.c' l='2011' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_setopt.c' l='48' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='48' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='48' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='48' u='r'/>
+<use f='codebrowser/tests/libtest/lib1525.c' l='80' c='test'/>
+<use f='codebrowser/tests/libtest/lib1526.c' l='83' c='test'/>
+<use f='codebrowser/tests/libtest/lib1527.c' l='81' c='test'/>
+<use f='codebrowser/tests/libtest/lib1528.c' l='60' c='test'/>
+<use f='codebrowser/tests/libtest/lib1529.c' l='49' c='test'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/pop3.h' l='80'/>
+<use f='codebrowser/lib/pop3.c' l='522' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='639' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='785' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1344' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1356' u='c'/>

@@ -1,0 +1,4 @@
+<dec f='include/ctype.h' l='55' type='32768'/>
+<doc f='include/ctype.h' l='55'>/* Graphical.  */</doc>
+<use f='codebrowser/lib/curl_fnmatch.c' l='378' macro='1' u='r'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='499' macro='1' u='r'/>

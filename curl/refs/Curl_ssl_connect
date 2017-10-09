@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='151' type='CURLcode Curl_ssl_connect(struct connectdata * conn, int sockindex)'/>
+<use f='codebrowser/lib/ftp.c' l='454' u='c' c='InitiateTransfer'/>
+<use f='codebrowser/lib/ftp.c' l='2694' u='c' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3105' u='c' c='ftp_connect'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='230' ll='254' type='CURLcode Curl_ssl_connect(struct connectdata * conn, int sockindex)'/>

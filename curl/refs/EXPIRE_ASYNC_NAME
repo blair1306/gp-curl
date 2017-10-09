@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/urldata.h' l='1214' type='1'/>
+<use f='codebrowser/lib/asyn-thread.c' l='553' u='r' c='Curl_resolver_is_resolved'/>

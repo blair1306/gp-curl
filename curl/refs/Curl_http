@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/http.h' l='77' type='CURLcode Curl_http(struct connectdata * conn, _Bool * done)'/>
+<doc f='codebrowser/lib/http.h' l='76'>/* protocol-specific functions set up to be called by the main engine */</doc>
+<use f='codebrowser/lib/http.c' l='111' u='r'/>
+<use f='codebrowser/lib/http.c' l='111' u='r'/>
+<use f='codebrowser/lib/http.c' l='136'/>
+<use f='codebrowser/lib/http.c' l='136'/>
+<def f='codebrowser/lib/http.c' l='1748' ll='2776' type='CURLcode Curl_http(struct connectdata * conn, _Bool * done)'/>
+<doc f='codebrowser/lib/http.c' l='1743'>/*
+ * Curl_http() gets called from the generic multi_do() function when a HTTP
+ * request is to be performed. This creates and sends a properly constructed
+ * HTTP request.
+ */</doc>

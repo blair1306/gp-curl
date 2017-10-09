@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/imap.h' l='57' type='curl_pp_transfer'/>
+<offset>0</offset>
+<use f='codebrowser/lib/imap.c' l='1490' u='w' c='imap_done'/>
+<use f='codebrowser/lib/imap.c' l='1516' u='w' c='imap_perform'/>
+<use f='codebrowser/lib/imap.c' l='1635' u='r' c='imap_dophase_done'/>

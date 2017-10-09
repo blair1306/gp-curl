@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='194' type='void Curl_ssl_sessionid_unlock(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/vtls/vtls.h' l='193'>/* Unlock session cache mutex */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='2463' u='c' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2472' u='c' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3219' u='c' c='ossl_connect_step3'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3231' u='c' c='ossl_connect_step3'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='291' ll='295' type='void Curl_ssl_sessionid_unlock(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='288'>/*
+ * Unlock shared SSL session data
+ */</doc>

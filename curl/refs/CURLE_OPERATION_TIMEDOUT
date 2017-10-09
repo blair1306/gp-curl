@@ -1,0 +1,33 @@
+<dec f='codebrowser/include/curl/curl.h' l='495' type='28'/>
+<doc f='codebrowser/include/curl/curl.h' l='491'>/* Note: CURLE_OUT_OF_MEMORY may sometimes indicate a conversion error
+           instead of a memory allocation error if CURL_DOES_CONVERSIONS
+           is defined
+  */</doc>
+<doc f='codebrowser/include/curl/curl.h' l='495'>/* 28 - the timeout time was reached */</doc>
+<use f='codebrowser/lib/connect.c' l='748' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='1156' u='r' c='Curl_connecthost'/>
+<use f='codebrowser/lib/ftp.c' l='610' u='r' c='ftp_readresp'/>
+<use f='codebrowser/lib/ftp.c' l='660' u='r' c='Curl_GetFTPResponse'/>
+<use f='codebrowser/lib/ftp.c' l='3272' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/http_proxy.c' l='319' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/multi.c' l='1409' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2093' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/pingpong.c' l='93' u='r' c='Curl_pp_statemach'/>
+<use f='codebrowser/lib/socks.c' l='66' u='r' c='Curl_blockread_all'/>
+<use f='codebrowser/lib/socks.c' l='127' u='r' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='410' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='424' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='476' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/speedcheck.c' l='58' u='r' c='Curl_speedcheck'/>
+<use f='codebrowser/lib/strerror.c' l='143' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/telnet.c' l='1684' u='r' c='telnet_do'/>
+<use f='codebrowser/lib/tftp.c' l='214' u='r' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/tftp.c' l='885' u='r' c='tftp_translate_code'/>
+<use f='codebrowser/lib/tftp.c' l='1235' u='r' c='tftp_multi_statemach'/>
+<use f='codebrowser/lib/transfer.c' l='1209' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/url.c' l='6241' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6263' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3278' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3296' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3322' u='r' c='ossl_connect_common'/>
+<use f='codebrowser/src/tool_operate.c' l='1595' u='r' c='operate_do'/>

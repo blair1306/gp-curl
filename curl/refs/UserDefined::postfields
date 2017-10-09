@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/urldata.h' l='1508' type='void *'/>
+<offset>960</offset>
+<doc f='codebrowser/lib/urldata.h' l='1508'>/* if POST, set the fields&apos; values here */</doc>
+<use f='codebrowser/lib/http.c' l='2625' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2646' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2655' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2675' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/rtsp.c' l='538' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='538' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='589' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/transfer.c' l='290' u='r' c='Curl_readrewind'/>
+<use f='codebrowser/lib/transfer.c' l='1361' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1362' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='390' u='w' c='Curl_dupset'/>
+<use f='codebrowser/lib/url.c' l='1099' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1107' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1121' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1124' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1138' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1141' u='w' c='Curl_setopt'/>

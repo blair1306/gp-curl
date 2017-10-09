@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/asyn.h' l='63' type='CURLcode Curl_resolver_init(void ** resolver)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='107' ll='111' type='CURLcode Curl_resolver_init(void ** resolver)'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='101'>/*
+ * Curl_resolver_init()
+ * Called from curl_easy_init() -&gt; Curl_open() to initialize resolver
+ * URL-state specific environment (&apos;resolver&apos; member of the UrlState
+ * structure).  Does nothing here.
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='55'>/*
+ * Curl_resolver_init()
+ * Called from curl_easy_init() -&gt; Curl_open() to initialize resolver
+ * URL-state specific environment (&apos;resolver&apos; member of the UrlState
+ * structure).  Should fill the passed pointer by the initialized handler.
+ * Returning anything else than CURLE_OK fails curl_easy_init() with the
+ * correspondent code.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='659' u='c' c='Curl_open'/>

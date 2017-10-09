@@ -1,0 +1,1 @@
+<dec f='include/openssl/engine.h' l='561' type='int ENGINE_set_STORE(ENGINE * e, const STORE_METHOD * store_meth)'/>

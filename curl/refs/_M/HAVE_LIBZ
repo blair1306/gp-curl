@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/curl_config.h' l='399'/>
+<doc f='codebrowser/lib/curl_config.h' l='398'>/* if zlib is available */</doc>
+<use f='codebrowser/lib/urldata.h' l='466' u='a'/>
+<use f='codebrowser/lib/urldata.h' l='569' u='a'/>
+<use f='codebrowser/lib/content_encoding.c' l='25' u='a'/>
+<use f='codebrowser/lib/content_encoding.h' l='29' u='a'/>
+<use f='codebrowser/lib/http.c' l='1912' u='a'/>
+<use f='codebrowser/lib/http_chunks.c' l='190' u='a'/>
+<use f='codebrowser/lib/http_chunks.c' l='202' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='780' u='a'/>
+<use f='codebrowser/lib/transfer.c' l='799' u='a'/>
+<use f='codebrowser/lib/version.c' l='103' u='a'/>
+<use f='codebrowser/lib/version.c' l='296' u='a'/>
+<use f='codebrowser/lib/version.c' l='364' u='a'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='2' u='a'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/url.h' l='61' type='struct connectdata * Curl_oldest_idle_connection(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/multi.c' l='505' u='c' c='ConnectionDone'/>
+<def f='codebrowser/lib/url.c' l='3298' ll='3341' type='struct connectdata * Curl_oldest_idle_connection(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/url.c' l='6839' u='c' c='create_conn'/>
+<doc f='codebrowser/lib/url.c' l='3291'>/*
+ * This function finds the connection in the connection
+ * cache that has been unused for the longest time.
+ *
+ * Returns the pointer to the oldest idle connection, or NULL if none was
+ * found.
+ */</doc>

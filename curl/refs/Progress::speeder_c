@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='1136' type='int'/>
+<offset>3200</offset>
+<use f='codebrowser/lib/progress.c' l='148' u='w' c='Curl_pgrsDone'/>
+<use f='codebrowser/lib/progress.c' l='228' u='w' c='Curl_pgrsStartNow'/>
+<use f='codebrowser/lib/progress.c' l='362' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='405' u='w' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='411' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='412' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='421' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='422' u='r' c='Curl_pgrsUpdate'/>

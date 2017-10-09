@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='119' type='void Curl_sasl_cleanup(struct connectdata * conn, unsigned int authused)'/>
+<doc f='codebrowser/lib/curl_sasl.h' l='117'>/* This is used to cleanup any libraries or curl modules used by the sasl
+   functions */</doc>
+<def f='codebrowser/lib/curl_sasl.c' l='81' ll='102' type='void Curl_sasl_cleanup(struct connectdata * conn, unsigned int authused)'/>
+<doc f='codebrowser/lib/curl_sasl.c' l='70'>/*
+ * Curl_sasl_cleanup()
+ *
+ * This is used to cleanup any libraries or curl modules used by the sasl
+ * functions.
+ *
+ * Parameters:
+ *
+ * conn     [in]     - The connection data.
+ * authused [in]     - The authentication mechanism used.
+ */</doc>
+<use f='codebrowser/lib/imap.c' l='1619' u='c' c='imap_disconnect'/>
+<use f='codebrowser/lib/pop3.c' l='1229' u='c' c='pop3_disconnect'/>
+<use f='codebrowser/lib/smtp.c' l='1357' u='c' c='smtp_disconnect'/>

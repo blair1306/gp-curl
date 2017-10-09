@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/mime.h' l='82' type='enum mimestate'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/mime.h' l='82'>/* Current state token. */</doc>
+<use f='codebrowser/lib/mime.c' l='273' u='w' c='mimesetstate'/>
+<use f='codebrowser/lib/mime.c' l='834' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='856' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='939' u='r' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='1024' u='r' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1059' u='r' c='mime_subparts_seek'/>
+<use f='codebrowser/lib/mime.c' l='1631' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/lib/mime.c' l='1731' u='r' c='Curl_mime_prepare_headers'/>

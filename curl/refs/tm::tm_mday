@@ -1,0 +1,5 @@
+<dec f='include/time.h' l='138' type='int'/>
+<offset>96</offset>
+<use f='codebrowser/lib/file.c' l='503' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='2088' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/http.c' l='1731' u='r' c='Curl_add_timecondition'/>

@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='216' type='int stat(const char *restrict __file, struct stat *restrict __buf)'/>
+<use f='codebrowser/lib/mime.c' l='1294' u='c' c='curl_mime_filedata'/>
+<use f='codebrowser/src/tool_getparam.c' l='2060' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='653' u='c' c='operate_do'/>

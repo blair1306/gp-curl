@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/smtp.h' l='69' type='char *'/>
+<offset>960</offset>
+<doc f='codebrowser/lib/smtp.h' l='69'>/* Client address/name to send in the EHLO */</doc>
+<use f='codebrowser/lib/smtp.c' l='311' u='r' c='smtp_perform_ehlo'/>
+<use f='codebrowser/lib/smtp.c' l='334' u='r' c='smtp_perform_helo'/>
+<use f='codebrowser/lib/smtp.c' l='1360' u='r' c='smtp_disconnect'/>
+<use f='codebrowser/lib/smtp.c' l='1360' u='w' c='smtp_disconnect'/>
+<use f='codebrowser/lib/smtp.c' l='1510' u='a' c='smtp_parse_url_path'/>

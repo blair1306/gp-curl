@@ -1,0 +1,6 @@
+<dec f='include/openssl/buffer.h' l='79' type='char *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/vtls/openssl.c' l='892' u='r' c='x509_name_oneline'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2724' u='r' c='X509V3_ext'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2728' u='r' c='X509V3_ext'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2732' u='r' c='X509V3_ext'/>

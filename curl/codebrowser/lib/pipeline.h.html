@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>pipeline.h source code [codebrowser/lib/pipeline.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/pipeline.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='pipeline.h.html'>pipeline.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_PIPELINE_H">HEADER_CURL_PIPELINE_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_PIPELINE_H" data-ref="_M/HEADER_CURL_PIPELINE_H">HEADER_CURL_PIPELINE_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 2015 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> * Copyright (C) 2013 - 2014, Linus Nielsen Feltzing, &lt;linus@haxx.se&gt;</i></td></tr>
+<tr><th id="12">12</th><td><i> *</i></td></tr>
+<tr><th id="13">13</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="14">14</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="15">15</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="16">16</th><td><i> *</i></td></tr>
+<tr><th id="17">17</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="18">18</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="19">19</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="22">22</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="23">23</th><td><i> *</i></td></tr>
+<tr><th id="24">24</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="Curl_add_handle_to_pipeline" title='Curl_add_handle_to_pipeline' data-ref="Curl_add_handle_to_pipeline">Curl_add_handle_to_pipeline</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="15handle" title='handle' data-type='struct Curl_easy *' data-ref="15handle">handle</dfn>,</td></tr>
+<tr><th id="27">27</th><td>                                     <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="16conn" title='conn' data-type='struct connectdata *' data-ref="16conn">conn</dfn>);</td></tr>
+<tr><th id="28">28</th><td><em>void</em> <dfn class="decl" id="Curl_move_handle_from_send_to_recv_pipe" title='Curl_move_handle_from_send_to_recv_pipe' data-ref="Curl_move_handle_from_send_to_recv_pipe">Curl_move_handle_from_send_to_recv_pipe</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col7 decl" id="17handle" title='handle' data-type='struct Curl_easy *' data-ref="17handle">handle</dfn>,</td></tr>
+<tr><th id="29">29</th><td>                                             <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col8 decl" id="18conn" title='conn' data-type='struct connectdata *' data-ref="18conn">conn</dfn>);</td></tr>
+<tr><th id="30">30</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_pipeline_penalized" title='Curl_pipeline_penalized' data-ref="Curl_pipeline_penalized">Curl_pipeline_penalized</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col9 decl" id="19data" title='data' data-type='struct Curl_easy *' data-ref="19data">data</dfn>,</td></tr>
+<tr><th id="31">31</th><td>                             <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col0 decl" id="20conn" title='conn' data-type='struct connectdata *' data-ref="20conn">conn</dfn>);</td></tr>
+<tr><th id="32">32</th><td></td></tr>
+<tr><th id="33">33</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_pipeline_site_blacklisted" title='Curl_pipeline_site_blacklisted' data-ref="Curl_pipeline_site_blacklisted">Curl_pipeline_site_blacklisted</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="21handle" title='handle' data-type='struct Curl_easy *' data-ref="21handle">handle</dfn>,</td></tr>
+<tr><th id="34">34</th><td>                                    <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="22conn" title='conn' data-type='struct connectdata *' data-ref="22conn">conn</dfn>);</td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><a class="typedef" href="../include/curl/multi.h.html#CURLMcode" title='CURLMcode' data-type='enum CURLMcode' data-ref="CURLMcode">CURLMcode</a> <dfn class="decl" id="Curl_pipeline_set_site_blacklist" title='Curl_pipeline_set_site_blacklist' data-ref="Curl_pipeline_set_site_blacklist">Curl_pipeline_set_site_blacklist</dfn>(<em>char</em> **<dfn class="local col3 decl" id="23sites" title='sites' data-type='char **' data-ref="23sites">sites</dfn>,</td></tr>
+<tr><th id="37">37</th><td>                                           <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col4 decl" id="24list_ptr" title='list_ptr' data-type='struct curl_llist *' data-ref="24list_ptr">list_ptr</dfn>);</td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_pipeline_server_blacklisted" title='Curl_pipeline_server_blacklisted' data-ref="Curl_pipeline_server_blacklisted">Curl_pipeline_server_blacklisted</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="25handle" title='handle' data-type='struct Curl_easy *' data-ref="25handle">handle</dfn>,</td></tr>
+<tr><th id="40">40</th><td>                                      <em>char</em> *<dfn class="local col6 decl" id="26server_name" title='server_name' data-type='char *' data-ref="26server_name">server_name</dfn>);</td></tr>
+<tr><th id="41">41</th><td></td></tr>
+<tr><th id="42">42</th><td><a class="typedef" href="../include/curl/multi.h.html#CURLMcode" title='CURLMcode' data-type='enum CURLMcode' data-ref="CURLMcode">CURLMcode</a> <dfn class="decl" id="Curl_pipeline_set_server_blacklist" title='Curl_pipeline_set_server_blacklist' data-ref="Curl_pipeline_set_server_blacklist">Curl_pipeline_set_server_blacklist</dfn>(<em>char</em> **<dfn class="local col7 decl" id="27servers" title='servers' data-type='char **' data-ref="27servers">servers</dfn>,</td></tr>
+<tr><th id="43">43</th><td>                                             <b>struct</b> <a class="type" href="llist.h.html#curl_llist" title='curl_llist' data-ref="curl_llist">curl_llist</a> *<dfn class="local col8 decl" id="28list_ptr" title='list_ptr' data-type='struct curl_llist *' data-ref="28list_ptr">list_ptr</dfn>);</td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_pipeline_checkget_write" title='Curl_pipeline_checkget_write' data-ref="Curl_pipeline_checkget_write">Curl_pipeline_checkget_write</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col9 decl" id="29data" title='data' data-type='struct Curl_easy *' data-ref="29data">data</dfn>,</td></tr>
+<tr><th id="46">46</th><td>                                  <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col0 decl" id="30conn" title='conn' data-type='struct connectdata *' data-ref="30conn">conn</dfn>);</td></tr>
+<tr><th id="47">47</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_pipeline_checkget_read" title='Curl_pipeline_checkget_read' data-ref="Curl_pipeline_checkget_read">Curl_pipeline_checkget_read</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="31data" title='data' data-type='struct Curl_easy *' data-ref="31data">data</dfn>,</td></tr>
+<tr><th id="48">48</th><td>                                 <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="32conn" title='conn' data-type='struct connectdata *' data-ref="32conn">conn</dfn>);</td></tr>
+<tr><th id="49">49</th><td><em>void</em> <dfn class="decl" id="Curl_pipeline_leave_write" title='Curl_pipeline_leave_write' data-ref="Curl_pipeline_leave_write">Curl_pipeline_leave_write</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col3 decl" id="33conn" title='conn' data-type='struct connectdata *' data-ref="33conn">conn</dfn>);</td></tr>
+<tr><th id="50">50</th><td><em>void</em> <dfn class="decl" id="Curl_pipeline_leave_read" title='Curl_pipeline_leave_read' data-ref="Curl_pipeline_leave_read">Curl_pipeline_leave_read</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col4 decl" id="34conn" title='conn' data-type='struct connectdata *' data-ref="34conn">conn</dfn>);</td></tr>
+<tr><th id="51">51</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_recvpipe_head" title='Curl_recvpipe_head' data-ref="Curl_recvpipe_head">Curl_recvpipe_head</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="35data" title='data' data-type='struct Curl_easy *' data-ref="35data">data</dfn>,</td></tr>
+<tr><th id="52">52</th><td>                        <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="36conn" title='conn' data-type='struct connectdata *' data-ref="36conn">conn</dfn>);</td></tr>
+<tr><th id="53">53</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl" id="Curl_sendpipe_head" title='Curl_sendpipe_head' data-ref="Curl_sendpipe_head">Curl_sendpipe_head</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col7 decl" id="37data" title='data' data-type='struct Curl_easy *' data-ref="37data">data</dfn>,</td></tr>
+<tr><th id="54">54</th><td>                        <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col8 decl" id="38conn" title='conn' data-type='struct connectdata *' data-ref="38conn">conn</dfn>);</td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_PIPELINE_H */</u></td></tr>
+<tr><th id="57">57</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='http.c.html'>codebrowser/lib/http.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

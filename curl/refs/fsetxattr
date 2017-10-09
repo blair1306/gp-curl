@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/xattr.h' l='54' type='int fsetxattr(int __fd, const char * __name, const void * __value, size_t __size, int __flags)'/>
+<use f='codebrowser/src/tool_xattr.c' l='68' u='c' c='fwrite_xattr'/>
+<doc f='include/x86_64-linux-gnu/sys/xattr.h' l='52'>/* Set the attribute NAME of the file descriptor FD to VALUE (which is SIZE
+   bytes long).  Return 0 on success, -1 for errors.  */</doc>

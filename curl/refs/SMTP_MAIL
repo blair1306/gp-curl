@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/smtp.h' l='42' type='8'/>
+<doc f='codebrowser/lib/smtp.h' l='42'>/* MAIL FROM */</doc>
+<use f='codebrowser/lib/smtp.c' l='597' u='r' c='smtp_perform_mail'/>
+<use f='codebrowser/lib/smtp.c' l='1036' c='smtp_statemach_act'/>

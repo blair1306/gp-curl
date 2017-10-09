@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>curl_gssapi.c source code [codebrowser/lib/curl_gssapi.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/curl_gssapi.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='curl_gssapi.c.html'>curl_gssapi.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 2011 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifdef</span> <span class="macro" data-ref="_M/HAVE_GSSAPI">HAVE_GSSAPI</span></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#include "curl_gssapi.h"</u></td></tr>
+<tr><th id="28">28</th><td><u>#include "sendf.h"</u></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><em>static</em> <em>char</em> spnego_oid_bytes[] = <q>"\x2b\x06\x01\x05\x05\x02"</q>;</td></tr>
+<tr><th id="31">31</th><td>gss_OID_desc Curl_spnego_mech_oid = { <var>6</var>, &amp;spnego_oid_bytes };</td></tr>
+<tr><th id="32">32</th><td><em>static</em> <em>char</em> krb5_oid_bytes[] = <q>"\x2a\x86\x48\x86\xf7\x12\x01\x02\x02"</q>;</td></tr>
+<tr><th id="33">33</th><td>gss_OID_desc Curl_krb5_mech_oid = { <var>9</var>, &amp;krb5_oid_bytes };</td></tr>
+<tr><th id="34">34</th><td></td></tr>
+<tr><th id="35">35</th><td>OM_uint32 Curl_gss_init_sec_context(</td></tr>
+<tr><th id="36">36</th><td>    <b>struct</b> Curl_easy *data,</td></tr>
+<tr><th id="37">37</th><td>    OM_uint32 *minor_status,</td></tr>
+<tr><th id="38">38</th><td>    gss_ctx_id_t *context,</td></tr>
+<tr><th id="39">39</th><td>    gss_name_t target_name,</td></tr>
+<tr><th id="40">40</th><td>    gss_OID mech_type,</td></tr>
+<tr><th id="41">41</th><td>    gss_channel_bindings_t input_chan_bindings,</td></tr>
+<tr><th id="42">42</th><td>    gss_buffer_t input_token,</td></tr>
+<tr><th id="43">43</th><td>    gss_buffer_t output_token,</td></tr>
+<tr><th id="44">44</th><td>    <em>const</em> bool mutual_auth,</td></tr>
+<tr><th id="45">45</th><td>    OM_uint32 *ret_flags)</td></tr>
+<tr><th id="46">46</th><td>{</td></tr>
+<tr><th id="47">47</th><td>  OM_uint32 req_flags = GSS_C_REPLAY_FLAG;</td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td>  <b>if</b>(mutual_auth)</td></tr>
+<tr><th id="50">50</th><td>    req_flags |= GSS_C_MUTUAL_FLAG;</td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td>  <b>if</b>(data-&gt;set.gssapi_delegation &amp; CURLGSSAPI_DELEGATION_POLICY_FLAG) {</td></tr>
+<tr><th id="53">53</th><td><u>#ifdef GSS_C_DELEG_POLICY_FLAG</u></td></tr>
+<tr><th id="54">54</th><td>    req_flags |= GSS_C_DELEG_POLICY_FLAG;</td></tr>
+<tr><th id="55">55</th><td><u>#else</u></td></tr>
+<tr><th id="56">56</th><td>    infof(data, <q>"warning: support for CURLGSSAPI_DELEGATION_POLICY_FLAG not "</q></td></tr>
+<tr><th id="57">57</th><td>        <q>"compiled in\n"</q>);</td></tr>
+<tr><th id="58">58</th><td><u>#endif</u></td></tr>
+<tr><th id="59">59</th><td>  }</td></tr>
+<tr><th id="60">60</th><td></td></tr>
+<tr><th id="61">61</th><td>  <b>if</b>(data-&gt;set.gssapi_delegation &amp; CURLGSSAPI_DELEGATION_FLAG)</td></tr>
+<tr><th id="62">62</th><td>    req_flags |= GSS_C_DELEG_FLAG;</td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td>  <b>return</b> gss_init_sec_context(minor_status,</td></tr>
+<tr><th id="65">65</th><td>                              GSS_C_NO_CREDENTIAL, <i>/* cred_handle */</i></td></tr>
+<tr><th id="66">66</th><td>                              context,</td></tr>
+<tr><th id="67">67</th><td>                              target_name,</td></tr>
+<tr><th id="68">68</th><td>                              mech_type,</td></tr>
+<tr><th id="69">69</th><td>                              req_flags,</td></tr>
+<tr><th id="70">70</th><td>                              <var>0</var>, <i>/* time_req */</i></td></tr>
+<tr><th id="71">71</th><td>                              input_chan_bindings,</td></tr>
+<tr><th id="72">72</th><td>                              input_token,</td></tr>
+<tr><th id="73">73</th><td>                              NULL, <i>/* actual_mech_type */</i></td></tr>
+<tr><th id="74">74</th><td>                              output_token,</td></tr>
+<tr><th id="75">75</th><td>                              ret_flags,</td></tr>
+<tr><th id="76">76</th><td>                              NULL <i>/* time_rec */</i>);</td></tr>
+<tr><th id="77">77</th><td>}</td></tr>
+<tr><th id="78">78</th><td></td></tr>
+<tr><th id="79">79</th><td><u>#define GSS_LOG_BUFFER_LEN 1024</u></td></tr>
+<tr><th id="80">80</th><td><em>static</em> size_t display_gss_error(OM_uint32 status, <em>int</em> type,</td></tr>
+<tr><th id="81">81</th><td>                                <em>char</em> *buf, size_t len) {</td></tr>
+<tr><th id="82">82</th><td>  OM_uint32 maj_stat;</td></tr>
+<tr><th id="83">83</th><td>  OM_uint32 min_stat;</td></tr>
+<tr><th id="84">84</th><td>  OM_uint32 msg_ctx = <var>0</var>;</td></tr>
+<tr><th id="85">85</th><td>  gss_buffer_desc status_string;</td></tr>
+<tr><th id="86">86</th><td></td></tr>
+<tr><th id="87">87</th><td>  <b>do</b> {</td></tr>
+<tr><th id="88">88</th><td>    maj_stat = gss_display_status(&amp;min_stat,</td></tr>
+<tr><th id="89">89</th><td>                                  status,</td></tr>
+<tr><th id="90">90</th><td>                                  type,</td></tr>
+<tr><th id="91">91</th><td>                                  GSS_C_NO_OID,</td></tr>
+<tr><th id="92">92</th><td>                                  &amp;msg_ctx,</td></tr>
+<tr><th id="93">93</th><td>                                  &amp;status_string);</td></tr>
+<tr><th id="94">94</th><td>    <b>if</b>(GSS_LOG_BUFFER_LEN &gt; len + status_string.length + <var>3</var>) {</td></tr>
+<tr><th id="95">95</th><td>      len += snprintf(buf + len, GSS_LOG_BUFFER_LEN - len,</td></tr>
+<tr><th id="96">96</th><td>                      <q>"%.*s. "</q>, (<em>int</em>)status_string.length,</td></tr>
+<tr><th id="97">97</th><td>                      (<em>char</em> *)status_string.value);</td></tr>
+<tr><th id="98">98</th><td>    }</td></tr>
+<tr><th id="99">99</th><td>    gss_release_buffer(&amp;min_stat, &amp;status_string);</td></tr>
+<tr><th id="100">100</th><td>  } <b>while</b>(!GSS_ERROR(maj_stat) &amp;&amp; msg_ctx != <var>0</var>);</td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td>  <b>return</b> len;</td></tr>
+<tr><th id="103">103</th><td>}</td></tr>
+<tr><th id="104">104</th><td></td></tr>
+<tr><th id="105">105</th><td><i>/*</i></td></tr>
+<tr><th id="106">106</th><td><i> * Curl_gss_log_error()</i></td></tr>
+<tr><th id="107">107</th><td><i> *</i></td></tr>
+<tr><th id="108">108</th><td><i> * This is used to log a GSS-API error status.</i></td></tr>
+<tr><th id="109">109</th><td><i> *</i></td></tr>
+<tr><th id="110">110</th><td><i> * Parameters:</i></td></tr>
+<tr><th id="111">111</th><td><i> *</i></td></tr>
+<tr><th id="112">112</th><td><i> * data    [in] - The session handle.</i></td></tr>
+<tr><th id="113">113</th><td><i> * prefix  [in] - The prefix of the log message.</i></td></tr>
+<tr><th id="114">114</th><td><i> * major   [in] - The major status code.</i></td></tr>
+<tr><th id="115">115</th><td><i> * minor   [in] - The minor status code.</i></td></tr>
+<tr><th id="116">116</th><td><i> */</i></td></tr>
+<tr><th id="117">117</th><td><em>void</em> Curl_gss_log_error(<b>struct</b> Curl_easy *data, <em>const</em> <em>char</em> *prefix,</td></tr>
+<tr><th id="118">118</th><td>                        OM_uint32 major, OM_uint32 minor)</td></tr>
+<tr><th id="119">119</th><td>{</td></tr>
+<tr><th id="120">120</th><td>  <em>char</em> buf[GSS_LOG_BUFFER_LEN];</td></tr>
+<tr><th id="121">121</th><td>  size_t len = <var>0</var>;</td></tr>
+<tr><th id="122">122</th><td></td></tr>
+<tr><th id="123">123</th><td>  <b>if</b>(major != GSS_S_FAILURE)</td></tr>
+<tr><th id="124">124</th><td>    len = display_gss_error(major, GSS_C_GSS_CODE, buf, len);</td></tr>
+<tr><th id="125">125</th><td></td></tr>
+<tr><th id="126">126</th><td>  display_gss_error(minor, GSS_C_MECH_CODE, buf, len);</td></tr>
+<tr><th id="127">127</th><td></td></tr>
+<tr><th id="128">128</th><td>  infof(data, <q>"%s%s\n"</q>, prefix, buf);</td></tr>
+<tr><th id="129">129</th><td>}</td></tr>
+<tr><th id="130">130</th><td></td></tr>
+<tr><th id="131">131</th><td><u>#<span data-ppcond="25">endif</span> /* HAVE_GSSAPI */</u></td></tr>
+<tr><th id="132">132</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

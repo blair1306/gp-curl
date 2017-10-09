@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>first.c source code [codebrowser/tests/libtest/first.c] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="main "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/tests/libtest/first.c'; var root_path = '../../..'; var data_path = '../../../../data';</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='../..'>codebrowser</a>/<a href='..'>tests</a>/<a href='./'>libtest</a>/<a href='first.c.html'>first.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="test.h.html">"test.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#<span data-ppcond="24">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#408" data-ref="_M/HAVE_LOCALE_H">HAVE_LOCALE_H</a></u></td></tr>
+<tr><th id="25">25</th><td><u>#  include <a href="../../../include/locale.h.html">&lt;locale.h&gt;</a> /* for setlocale() */</u></td></tr>
+<tr><th id="26">26</th><td><u>#<span data-ppcond="24">endif</span></u></td></tr>
+<tr><th id="27">27</th><td></td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="28">ifdef</span> <span class="macro" data-ref="_M/HAVE_IO_H">HAVE_IO_H</span></u></td></tr>
+<tr><th id="29">29</th><td><u>#  include &lt;io.h&gt; /* for setmode() */</u></td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="28">endif</span></u></td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="32">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#161" data-ref="_M/HAVE_FCNTL_H">HAVE_FCNTL_H</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#  include <a href="../../../include/fcntl.h.html">&lt;fcntl.h&gt;</a> /* for setmode() */</u></td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="32">endif</span></u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">ifdef</span> <span class="macro" data-ref="_M/USE_NSS">USE_NSS</span></u></td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;nspr.h&gt;</u></td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="36">endif</span></u></td></tr>
+<tr><th id="39">39</th><td></td></tr>
+<tr><th id="40">40</th><td><u>#<span data-ppcond="40">ifdef</span> <span class="macro" data-ref="_M/CURLDEBUG">CURLDEBUG</span></u></td></tr>
+<tr><th id="41">41</th><td><u>#  define MEMDEBUG_NODEFINES</u></td></tr>
+<tr><th id="42">42</th><td><u>#  include "memdebug.h"</u></td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="40">endif</span></u></td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><em>int</em> <dfn class="decl def" id="select_wrapper" title='select_wrapper' data-ref="select_wrapper">select_wrapper</dfn>(<em>int</em> <dfn class="local col0 decl" id="10nfds" title='nfds' data-type='int' data-ref="10nfds">nfds</dfn>, <a class="typedef" href="../../../include/x86_64-linux-gnu/sys/select.h.html#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<dfn class="local col1 decl" id="11rd" title='rd' data-type='fd_set *' data-ref="11rd">rd</dfn>, <a class="typedef" href="../../../include/x86_64-linux-gnu/sys/select.h.html#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<dfn class="local col2 decl" id="12wr" title='wr' data-type='fd_set *' data-ref="12wr">wr</dfn>, <a class="typedef" href="../../../include/x86_64-linux-gnu/sys/select.h.html#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<dfn class="local col3 decl" id="13exc" title='exc' data-type='fd_set *' data-ref="13exc">exc</dfn>,</td></tr>
+<tr><th id="46">46</th><td>                   <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> *<dfn class="local col4 decl" id="14tv" title='tv' data-type='struct timeval *' data-ref="14tv">tv</dfn>)</td></tr>
+<tr><th id="47">47</th><td>{</td></tr>
+<tr><th id="48">48</th><td>  <b>if</b>(<a class="local col0 ref" href="#10nfds" title='nfds' data-ref="10nfds">nfds</a> &lt; <var>0</var>) {</td></tr>
+<tr><th id="49">49</th><td>    <a class="macro" href="../../lib/curl_setup_once.h.html#434" title="((*__errno_location ()) = (22))" data-ref="_M/SET_SOCKERRNO">SET_SOCKERRNO</a>(<a class="macro" href="../../../include/asm-generic/errno-base.h.html#25" title="22" data-ref="_M/EINVAL">EINVAL</a>);</td></tr>
+<tr><th id="50">50</th><td>    <b>return</b> -<var>1</var>;</td></tr>
+<tr><th id="51">51</th><td>  }</td></tr>
+<tr><th id="52">52</th><td><u>#<span data-ppcond="52">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="53">53</th><td>  <i>/*</i></td></tr>
+<tr><th id="54">54</th><td><i>   * Winsock select() requires that at least one of the three fd_set</i></td></tr>
+<tr><th id="55">55</th><td><i>   * pointers is not NULL and points to a non-empty fdset. IOW Winsock</i></td></tr>
+<tr><th id="56">56</th><td><i>   * select() can not be used to sleep without a single fd_set.</i></td></tr>
+<tr><th id="57">57</th><td><i>   */</i></td></tr>
+<tr><th id="58">58</th><td>  <b>if</b>(!nfds) {</td></tr>
+<tr><th id="59">59</th><td>    Sleep((<var>1000</var>*tv-&gt;tv_sec) + (DWORD)(((<em>double</em>)tv-&gt;tv_usec)/<var>1000.0</var>));</td></tr>
+<tr><th id="60">60</th><td>    <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="61">61</th><td>  }</td></tr>
+<tr><th id="62">62</th><td><u>#<span data-ppcond="52">endif</span></u></td></tr>
+<tr><th id="63">63</th><td>  <b>return</b> <a class="ref" href="../../../include/x86_64-linux-gnu/sys/select.h.html#select" title='select' data-ref="select">select</a>(<a class="local col0 ref" href="#10nfds" title='nfds' data-ref="10nfds">nfds</a>, <a class="local col1 ref" href="#11rd" title='rd' data-ref="11rd">rd</a>, <a class="local col2 ref" href="#12wr" title='wr' data-ref="12wr">wr</a>, <a class="local col3 ref" href="#13exc" title='exc' data-ref="13exc">exc</a>, <a class="local col4 ref" href="#14tv" title='tv' data-ref="14tv">tv</a>);</td></tr>
+<tr><th id="64">64</th><td>}</td></tr>
+<tr><th id="65">65</th><td></td></tr>
+<tr><th id="66">66</th><td><em>void</em> <dfn class="decl def" id="wait_ms" title='wait_ms' data-ref="wait_ms">wait_ms</dfn>(<em>int</em> <dfn class="local col5 decl" id="15ms" title='ms' data-type='int' data-ref="15ms">ms</dfn>)</td></tr>
+<tr><th id="67">67</th><td>{</td></tr>
+<tr><th id="68">68</th><td>  <b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col6 decl" id="16t" title='t' data-type='struct timeval' data-ref="16t">t</dfn>;</td></tr>
+<tr><th id="69">69</th><td>  <a class="local col6 ref" href="#16t" title='t' data-ref="16t">t</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a> = <a class="local col5 ref" href="#15ms" title='ms' data-ref="15ms">ms</a>/<var>1000</var>;</td></tr>
+<tr><th id="70">70</th><td>  <a class="local col5 ref" href="#15ms" title='ms' data-ref="15ms">ms</a> -= (<em>int</em>)<a class="local col6 ref" href="#16t" title='t' data-ref="16t">t</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</a> * <var>1000</var>;</td></tr>
+<tr><th id="71">71</th><td>  <a class="local col6 ref" href="#16t" title='t' data-ref="16t">t</a>.<a class="ref" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</a> = <a class="local col5 ref" href="#15ms" title='ms' data-ref="15ms">ms</a> * <var>1000</var>;</td></tr>
+<tr><th id="72">72</th><td>  <a class="ref" href="#select_wrapper" title='select_wrapper' data-ref="select_wrapper">select_wrapper</a>(<var>0</var>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>, &amp;<a class="local col6 ref" href="#16t" title='t' data-ref="16t">t</a>);</td></tr>
+<tr><th id="73">73</th><td>}</td></tr>
+<tr><th id="74">74</th><td></td></tr>
+<tr><th id="75">75</th><td><em>char</em> *<dfn class="decl def" id="libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="76">76</th><td><em>char</em> *<dfn class="decl def" id="libtest_arg3" title='libtest_arg3' data-ref="libtest_arg3">libtest_arg3</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="77">77</th><td><em>int</em> <dfn class="decl def" id="test_argc" title='test_argc' data-ref="test_argc">test_argc</dfn>;</td></tr>
+<tr><th id="78">78</th><td><em>char</em> **<dfn class="decl def" id="test_argv" title='test_argv' data-ref="test_argv">test_argv</dfn>;</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+<tr><th id="80">80</th><td><b>struct</b> <a class="type" href="../../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="decl def" id="tv_test_start" title='tv_test_start' data-ref="tv_test_start">tv_test_start</dfn>; <i>/* for test timing */</i></td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td><u>#<span data-ppcond="82">ifdef</span> <span class="macro" data-ref="_M/UNITTESTS">UNITTESTS</span></u></td></tr>
+<tr><th id="83">83</th><td><em>int</em> unitfail; <i>/* for unittests */</i></td></tr>
+<tr><th id="84">84</th><td><u>#<span data-ppcond="82">endif</span></u></td></tr>
+<tr><th id="85">85</th><td></td></tr>
+<tr><th id="86">86</th><td><u>#<span data-ppcond="86">ifdef</span> <span class="macro" data-ref="_M/CURLDEBUG">CURLDEBUG</span></u></td></tr>
+<tr><th id="87">87</th><td><em>static</em> <em>void</em> memory_tracking_init(<em>void</em>)</td></tr>
+<tr><th id="88">88</th><td>{</td></tr>
+<tr><th id="89">89</th><td>  <em>char</em> *env;</td></tr>
+<tr><th id="90">90</th><td>  <i>/* if CURL_MEMDEBUG is set, this starts memory tracking message logging */</i></td></tr>
+<tr><th id="91">91</th><td>  env = curl_getenv(<q>"CURL_MEMDEBUG"</q>);</td></tr>
+<tr><th id="92">92</th><td>  <b>if</b>(env) {</td></tr>
+<tr><th id="93">93</th><td>    <i>/* use the value as file name */</i></td></tr>
+<tr><th id="94">94</th><td>    <em>char</em> fname[CURL_MT_LOGFNAME_BUFSIZE];</td></tr>
+<tr><th id="95">95</th><td>    <b>if</b>(strlen(env) &gt;= CURL_MT_LOGFNAME_BUFSIZE)</td></tr>
+<tr><th id="96">96</th><td>      env[CURL_MT_LOGFNAME_BUFSIZE-<var>1</var>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="97">97</th><td>    strcpy(fname, env);</td></tr>
+<tr><th id="98">98</th><td>    curl_free(env);</td></tr>
+<tr><th id="99">99</th><td>    curl_memdebug(fname);</td></tr>
+<tr><th id="100">100</th><td>    <i>/* this weird stuff here is to make curl_free() get called</i></td></tr>
+<tr><th id="101">101</th><td><i>       before curl_memdebug() as otherwise memory tracking will</i></td></tr>
+<tr><th id="102">102</th><td><i>       log a free() without an alloc! */</i></td></tr>
+<tr><th id="103">103</th><td>  }</td></tr>
+<tr><th id="104">104</th><td>  <i>/* if CURL_MEMLIMIT is set, this enables fail-on-alloc-number-N feature */</i></td></tr>
+<tr><th id="105">105</th><td>  env = curl_getenv(<q>"CURL_MEMLIMIT"</q>);</td></tr>
+<tr><th id="106">106</th><td>  <b>if</b>(env) {</td></tr>
+<tr><th id="107">107</th><td>    <em>char</em> *endptr;</td></tr>
+<tr><th id="108">108</th><td>    <em>long</em> num = strtol(env, &amp;endptr, <var>10</var>);</td></tr>
+<tr><th id="109">109</th><td>    <b>if</b>((endptr != env) &amp;&amp; (endptr == env + strlen(env)) &amp;&amp; (num &gt; <var>0</var>))</td></tr>
+<tr><th id="110">110</th><td>      curl_memlimit(num);</td></tr>
+<tr><th id="111">111</th><td>    curl_free(env);</td></tr>
+<tr><th id="112">112</th><td>  }</td></tr>
+<tr><th id="113">113</th><td>}</td></tr>
+<tr><th id="114">114</th><td><u>#<span data-ppcond="86">else</span></u></td></tr>
+<tr><th id="115">115</th><td><u>#  define <dfn class="macro" id="_M/memory_tracking_init" data-ref="_M/memory_tracking_init">memory_tracking_init</dfn>() Curl_nop_stmt</u></td></tr>
+<tr><th id="116">116</th><td><u>#<span data-ppcond="86">endif</span></u></td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td><i>/* returns a hexdump in a static memory area */</i></td></tr>
+<tr><th id="119">119</th><td><em>char</em> *<dfn class="decl def" id="hexdump" title='hexdump' data-ref="hexdump">hexdump</dfn>(<em>const</em> <em>unsigned</em> <em>char</em> *<dfn class="local col7 decl" id="17buffer" title='buffer' data-type='const unsigned char *' data-ref="17buffer">buffer</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="18len" title='len' data-type='size_t' data-ref="18len">len</dfn>)</td></tr>
+<tr><th id="120">120</th><td>{</td></tr>
+<tr><th id="121">121</th><td>  <em>static</em> <em>char</em> <dfn class="local col9 decl" id="19dump" title='dump' data-type='char [601]' data-ref="19dump">dump</dfn>[<var>200</var> * <var>3</var> + <var>1</var>];</td></tr>
+<tr><th id="122">122</th><td>  <em>char</em> *<dfn class="local col0 decl" id="20p" title='p' data-type='char *' data-ref="20p">p</dfn> = <a class="local col9 ref" href="#19dump" title='dump' data-ref="19dump">dump</a>;</td></tr>
+<tr><th id="123">123</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="21i" title='i' data-type='size_t' data-ref="21i">i</dfn>;</td></tr>
+<tr><th id="124">124</th><td>  <b>if</b>(<a class="local col8 ref" href="#18len" title='len' data-ref="18len">len</a> &gt; <var>200</var>)</td></tr>
+<tr><th id="125">125</th><td>    <b>return</b> <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="126">126</th><td>  <b>for</b>(<a class="local col1 ref" href="#21i" title='i' data-ref="21i">i</a> = <var>0</var>; <a class="local col1 ref" href="#21i" title='i' data-ref="21i">i</a>&lt;<a class="local col8 ref" href="#18len" title='len' data-ref="18len">len</a>; <a class="local col1 ref" href="#21i" title='i' data-ref="21i">i</a>++, <a class="local col0 ref" href="#20p" title='p' data-ref="20p">p</a> += <var>3</var>)</td></tr>
+<tr><th id="127">127</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col0 ref" href="#20p" title='p' data-ref="20p">p</a>, <var>4</var>, <q>"%02x "</q>, <a class="local col7 ref" href="#17buffer" title='buffer' data-ref="17buffer">buffer</a>[<a class="local col1 ref" href="#21i" title='i' data-ref="21i">i</a>]);</td></tr>
+<tr><th id="128">128</th><td>  <b>return</b> <a class="local col9 ref" href="#19dump" title='dump' data-ref="19dump">dump</a>;</td></tr>
+<tr><th id="129">129</th><td>}</td></tr>
+<tr><th id="130">130</th><td></td></tr>
+<tr><th id="131">131</th><td></td></tr>
+<tr><th id="132">132</th><td><em>int</em> <dfn class="decl def" id="main" title='main' data-ref="main">main</dfn>(<em>int</em> <dfn class="local col2 decl" id="22argc" title='argc' data-type='int' data-ref="22argc">argc</dfn>, <em>char</em> **<dfn class="local col3 decl" id="23argv" title='argv' data-type='char **' data-ref="23argv">argv</dfn>)</td></tr>
+<tr><th id="133">133</th><td>{</td></tr>
+<tr><th id="134">134</th><td>  <em>char</em> *<dfn class="local col4 decl" id="24URL" title='URL' data-type='char *' data-ref="24URL">URL</dfn>;</td></tr>
+<tr><th id="135">135</th><td>  <em>int</em> <dfn class="local col5 decl" id="25result" title='result' data-type='int' data-ref="25result">result</dfn>;</td></tr>
+<tr><th id="136">136</th><td></td></tr>
+<tr><th id="137">137</th><td><u>#<span data-ppcond="137">ifdef</span> <span class="macro" data-ref="_M/O_BINARY">O_BINARY</span></u></td></tr>
+<tr><th id="138">138</th><td><u>#  ifdef __HIGHC__</u></td></tr>
+<tr><th id="139">139</th><td>  _setmode(stdout, O_BINARY);</td></tr>
+<tr><th id="140">140</th><td><u>#  else</u></td></tr>
+<tr><th id="141">141</th><td>  setmode(fileno(stdout), O_BINARY);</td></tr>
+<tr><th id="142">142</th><td><u>#  endif</u></td></tr>
+<tr><th id="143">143</th><td><u>#<span data-ppcond="137">endif</span></u></td></tr>
+<tr><th id="144">144</th><td></td></tr>
+<tr><th id="145">145</th><td>  <a class="macro" href="#115" title="do { } while(0)" data-ref="_M/memory_tracking_init">memory_tracking_init</a>();</td></tr>
+<tr><th id="146">146</th><td></td></tr>
+<tr><th id="147">147</th><td>  <i>/*</i></td></tr>
+<tr><th id="148">148</th><td><i>   * Setup proper locale from environment. This is needed to enable locale-</i></td></tr>
+<tr><th id="149">149</th><td><i>   * specific behaviour by the C library in order to test for undesired side</i></td></tr>
+<tr><th id="150">150</th><td><i>   * effects that could cause in libcurl.</i></td></tr>
+<tr><th id="151">151</th><td><i>   */</i></td></tr>
+<tr><th id="152">152</th><td><u>#<span data-ppcond="152">ifdef</span> <a class="macro" href="../../lib/curl_config.h.html#531" data-ref="_M/HAVE_SETLOCALE">HAVE_SETLOCALE</a></u></td></tr>
+<tr><th id="153">153</th><td>  <a class="ref" href="../../../include/locale.h.html#setlocale" title='setlocale' data-ref="setlocale">setlocale</a>(<a class="macro" href="../../../include/locale.h.html#41" title="6" data-ref="_M/LC_ALL">LC_ALL</a>, <q>""</q>);</td></tr>
+<tr><th id="154">154</th><td><u>#<span data-ppcond="152">endif</span></u></td></tr>
+<tr><th id="155">155</th><td></td></tr>
+<tr><th id="156">156</th><td>  <b>if</b>(<a class="local col2 ref" href="#22argc" title='argc' data-ref="22argc">argc</a>&lt; <var>2</var>) {</td></tr>
+<tr><th id="157">157</th><td>    <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"Pass URL as argument please\n"</q>);</td></tr>
+<tr><th id="158">158</th><td>    <b>return</b> <var>1</var>;</td></tr>
+<tr><th id="159">159</th><td>  }</td></tr>
+<tr><th id="160">160</th><td></td></tr>
+<tr><th id="161">161</th><td>  <a class="ref" href="test.h.html#test_argc" title='test_argc' data-ref="test_argc">test_argc</a> = <a class="local col2 ref" href="#22argc" title='argc' data-ref="22argc">argc</a>;</td></tr>
+<tr><th id="162">162</th><td>  <a class="ref" href="test.h.html#test_argv" title='test_argv' data-ref="test_argv">test_argv</a> = <a class="local col3 ref" href="#23argv" title='argv' data-ref="23argv">argv</a>;</td></tr>
+<tr><th id="163">163</th><td></td></tr>
+<tr><th id="164">164</th><td>  <b>if</b>(<a class="local col2 ref" href="#22argc" title='argc' data-ref="22argc">argc</a>&gt;<var>2</var>)</td></tr>
+<tr><th id="165">165</th><td>    <a class="ref" href="test.h.html#libtest_arg2" title='libtest_arg2' data-ref="libtest_arg2">libtest_arg2</a> = <a class="local col3 ref" href="#23argv" title='argv' data-ref="23argv">argv</a>[<var>2</var>];</td></tr>
+<tr><th id="166">166</th><td></td></tr>
+<tr><th id="167">167</th><td>  <b>if</b>(<a class="local col2 ref" href="#22argc" title='argc' data-ref="22argc">argc</a>&gt;<var>3</var>)</td></tr>
+<tr><th id="168">168</th><td>    <a class="ref" href="test.h.html#libtest_arg3" title='libtest_arg3' data-ref="libtest_arg3">libtest_arg3</a> = <a class="local col3 ref" href="#23argv" title='argv' data-ref="23argv">argv</a>[<var>3</var>];</td></tr>
+<tr><th id="169">169</th><td></td></tr>
+<tr><th id="170">170</th><td>  <a class="local col4 ref" href="#24URL" title='URL' data-ref="24URL">URL</a> = <a class="local col3 ref" href="#23argv" title='argv' data-ref="23argv">argv</a>[<var>1</var>]; <i>/* provide this to the rest */</i></td></tr>
+<tr><th id="171">171</th><td></td></tr>
+<tr><th id="172">172</th><td>  <a class="macro" href="../../lib/curl_printf.h.html#41" title="curl_mfprintf" data-ref="_M/fprintf">fprintf</a>(<a class="macro" href="../../../include/stdio.h.html#174" title="stderr" data-ref="_M/stderr">stderr</a>, <q>"URL: %s\n"</q>, <a class="local col4 ref" href="#24URL" title='URL' data-ref="24URL">URL</a>);</td></tr>
+<tr><th id="173">173</th><td></td></tr>
+<tr><th id="174">174</th><td>  <a class="local col5 ref" href="#25result" title='result' data-ref="25result">result</a> = <a class="ref" href="test.h.html#test" title='test' data-ref="test">test</a>(<a class="local col4 ref" href="#24URL" title='URL' data-ref="24URL">URL</a>);</td></tr>
+<tr><th id="175">175</th><td></td></tr>
+<tr><th id="176">176</th><td><u>#<span data-ppcond="176">ifdef</span> <span class="macro" data-ref="_M/USE_NSS">USE_NSS</span></u></td></tr>
+<tr><th id="177">177</th><td>  <b>if</b>(PR_Initialized())</td></tr>
+<tr><th id="178">178</th><td>    <i>/* prevent valgrind from reporting possibly lost memory (fd cache, ...) */</i></td></tr>
+<tr><th id="179">179</th><td>    PR_Cleanup();</td></tr>
+<tr><th id="180">180</th><td><u>#<span data-ppcond="176">endif</span></u></td></tr>
+<tr><th id="181">181</th><td></td></tr>
+<tr><th id="182">182</th><td>  <b>return</b> <a class="local col5 ref" href="#25result" title='result' data-ref="25result">result</a>;</td></tr>
+<tr><th id="183">183</th><td>}</td></tr>
+<tr><th id="184">184</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

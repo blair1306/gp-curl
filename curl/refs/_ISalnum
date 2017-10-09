@@ -1,0 +1,14 @@
+<dec f='include/ctype.h' l='59' type='8'/>
+<doc f='include/ctype.h' l='59'>/* Alphanumeric.  */</doc>
+<use f='codebrowser/lib/curl_fnmatch.c' l='138' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='218' macro='1' u='r'/>
+<use f='codebrowser/lib/curl_fnmatch.c' l='360' macro='1' u='r'/>
+<use f='codebrowser/lib/ftplistparser.c' l='636' macro='1' u='r'/>
+<use f='codebrowser/lib/ftplistparser.c' l='652' macro='1' u='r'/>
+<use f='codebrowser/lib/ftplistparser.c' l='660' macro='1' u='r'/>
+<use f='codebrowser/lib/ftplistparser.c' l='674' macro='1' u='r'/>
+<use f='codebrowser/lib/ftplistparser.c' l='682' macro='1' u='r'/>
+<use f='codebrowser/lib/ftplistparser.c' l='710' macro='1' u='r'/>
+<use f='codebrowser/lib/parsedate.c' l='263' macro='1' u='r'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='322' macro='1' u='r'/>
+<use f='codebrowser/src/tool_urlglob.c' l='338' macro='1' u='r'/>

@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/multihandle.h' l='49' type='9'/>
+<doc f='codebrowser/lib/multihandle.h' l='49'>/* 9 - start send off the request (part 1) */</doc>
+<use f='codebrowser/lib/multi.c' l='691' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='897' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1405' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1468' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1533' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1610' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1627' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1642' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1647' c='multi_runsingle'/>

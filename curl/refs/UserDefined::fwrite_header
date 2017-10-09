@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1517' type='curl_write_callback'/>
+<offset>1280</offset>
+<doc f='codebrowser/lib/urldata.h' l='1517'>/* function that stores headers */</doc>
+<use f='codebrowser/lib/sendf.c' l='560' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/sendf.c' l='566' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/sendf.c' l='566' u='r' c='Curl_client_chop_write'/>
+<use f='codebrowser/lib/url.c' l='1936' u='w' c='Curl_setopt'/>

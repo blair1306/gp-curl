@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/share.h' l='52' type='struct curl_ssl_session *'/>
+<offset>704</offset>
+<use f='codebrowser/lib/share.c' l='91' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='93' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='96' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='133' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='133' u='w' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='196' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='199' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/share.c' l='200' u='r' c='curl_share_cleanup'/>
+<use f='codebrowser/lib/url.c' l='2396' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2426' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2428' u='r' c='Curl_setopt'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/multi.h' l='69' type='5'/>
+<doc f='codebrowser/include/curl/multi.h' l='69'>/* the passed in socket argument did not match */</doc>
+<use f='codebrowser/lib/multi.c' l='3056' u='r' c='curl_multi_assign'/>
+<use f='codebrowser/lib/strerror.c' l='374' c='curl_multi_strerror'/>

@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/warnless.h' l='35' type='int curlx_uztosi(size_t uznum)'/>
+<use f='codebrowser/lib/escape.c' l='227' u='c' c='curl_easy_unescape'/>
+<use f='codebrowser/lib/multi.c' l='2311' u='c' c='curl_multi_info_read'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='371' u='c' c='passwd_callback'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1486' u='c' c='verifyhost'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3568' u='c' c='Curl_ossl_random'/>
+<def f='codebrowser/lib/warnless.c' l='203' ll='216' type='int curlx_uztosi(size_t uznum)'/>
+<doc f='codebrowser/lib/warnless.c' l='199'>/*
+** unsigned size_t to signed int
+*/</doc>
+<use f='codebrowser/tests/libtest/lib552.c' l='146' u='c' c='write_callback'/>
+<use f='codebrowser/tests/libtest/lib571.c' l='63' u='c' c='rtp_write'/>
+<use f='codebrowser/tests/server/getpart.c' l='130' u='c' c='readline'/>

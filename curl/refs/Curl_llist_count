@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/llist.h' l='48' type='size_t Curl_llist_count(struct curl_llist * )'/>
+<def f='codebrowser/lib/llist.c' l='138' ll='142' type='size_t Curl_llist_count(struct curl_llist * list)'/>
+<use f='codebrowser/lib/multi.c' l='2299' u='c' c='curl_multi_info_read'/>
+<use f='codebrowser/lib/multi.c' l='2311' u='c' c='curl_multi_info_read'/>
+<use f='codebrowser/lib/multi.c' l='2904' u='c' c='multi_addtimeout'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='64' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='95' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='151' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='155' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='175' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='245' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='247' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='252' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1300.c' l='255' u='c' c='test'/>

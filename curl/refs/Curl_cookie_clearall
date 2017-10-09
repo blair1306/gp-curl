@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/cookie.h' l='89' type='void Curl_cookie_clearall(struct CookieInfo * cookies)'/>
+<def f='codebrowser/lib/cookie.c' l='1235' ll='1242' type='void Curl_cookie_clearall(struct CookieInfo * cookies)'/>
+<doc f='codebrowser/lib/cookie.c' l='1228'>/*****************************************************************************
+ *
+ * Curl_cookie_clearall()
+ *
+ * Clear all existing cookies and reset the counter.
+ *
+ ****************************************************************************/</doc>
+<use f='codebrowser/lib/url.c' l='1304' u='c' c='Curl_setopt'/>

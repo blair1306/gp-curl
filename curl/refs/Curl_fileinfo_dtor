@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/fileinfo.h' l='35' type='void Curl_fileinfo_dtor(void * , void * )'/>
+<def f='codebrowser/lib/fileinfo.c' l='36' ll='46' type='void Curl_fileinfo_dtor(void * user, void * element)'/>
+<use f='codebrowser/lib/ftplistparser.c' l='272' u='c' c='PL_ERROR'/>
+<use f='codebrowser/lib/ftplistparser.c' l='323' u='c' c='ftp_pl_insert_finfo'/>
+<use f='codebrowser/lib/ftplistparser.c' l='390' u='c' c='Curl_ftp_parselist'/>
+<use f='codebrowser/lib/wildcard.c' l='35' u='r' c='Curl_wildcard_init'/>

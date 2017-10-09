@@ -1,0 +1,4 @@
+<dec f='include/string.h' l='310' type='char * strpbrk(const char * __s, const char * __accept)'/>
+<use f='codebrowser/lib/url.c' l='4420' u='c' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/vauth/vauth.c' l='134' u='c' c='Curl_auth_user_contains_domain'/>
+<use f='codebrowser/src/tool_getparam.c' l='338' u='c' c='parse_cert_parameter'/>

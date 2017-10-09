@@ -1,0 +1,3 @@
+<dec f='codebrowser/include/curl/curl.h' l='821' type='0'/>
+<doc f='codebrowser/include/curl/curl.h' l='821'>/* do NOT create missing dirs! */</doc>
+<use f='codebrowser/src/tool_operate.c' l='1309' c='operate_do'/>

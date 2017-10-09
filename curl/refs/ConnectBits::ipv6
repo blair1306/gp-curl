@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='389' type='_Bool'/>
+<offset>80</offset>
+<use f='codebrowser/lib/connect.c' l='1101' u='w' c='singleipconnect'/>
+<use f='codebrowser/lib/ftp.c' l='1205' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/ftp.c' l='1332' u='r' c='ftp_state_use_pasv'/>
+<use f='codebrowser/lib/ftp.c' l='1788' u='r' c='ftp_epsv_disable'/>

@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/urldata.h' l='1299' type='void *'/>
+<offset>134592</offset>
+<doc f='codebrowser/lib/urldata.h' l='1298'>/* void instead of ENGINE to avoid bleeding OpenSSL into this header */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='603' u='r' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='614' u='r' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='621' u='r' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='774' u='r' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='788' u='r' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1083' u='r' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1084' u='r' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1085' u='r' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1086' u='w' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1096' u='w' c='Curl_ossl_set_engine'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1110' u='r' c='Curl_ossl_set_engine_default'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1111' u='r' c='Curl_ossl_set_engine_default'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1113' u='r' c='Curl_ossl_set_engine_default'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1117' u='r' c='Curl_ossl_set_engine_default'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1289' u='r' c='Curl_ossl_close_all'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1290' u='r' c='Curl_ossl_close_all'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1291' u='r' c='Curl_ossl_close_all'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1292' u='w' c='Curl_ossl_close_all'/>

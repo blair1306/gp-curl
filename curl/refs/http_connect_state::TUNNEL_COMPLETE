@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='779' type='2'/>
+<doc f='codebrowser/lib/urldata.h' l='779'>/* CONNECT response received completely */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='141' u='r' c='Curl_connect_complete'/>
+<use f='codebrowser/lib/http_proxy.c' l='147' u='r' c='Curl_connect_ongoing'/>
+<use f='codebrowser/lib/http_proxy.c' l='176' u='r' c='connect_done'/>
+<use f='codebrowser/lib/http_proxy.c' l='380' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='398' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='482' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='496' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='595' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='627' u='r' c='CONNECT'/>

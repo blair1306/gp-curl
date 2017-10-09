@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='793' type='struct curl_llist_element'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/urldata.h' l='793'>/* conncache */</doc>
+<use f='codebrowser/lib/conncache.c' l='78' u='a' c='bundle_add_conn'/>

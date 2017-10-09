@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='163' type='struct curl_slist * Curl_ssl_engines_list(struct Curl_easy * data)'/>
+<use f='codebrowser/lib/getinfo.c' l='346' u='c' c='getinfo_slist'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='584' ll='587' type='struct curl_slist * Curl_ssl_engines_list(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/vtls/vtls.c' l='583'>/* Return list of OpenSSL crypto engine names. */</doc>

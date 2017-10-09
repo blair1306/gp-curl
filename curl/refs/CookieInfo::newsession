@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/cookie.h' l='55' type='_Bool'/>
+<offset>256</offset>
+<use f='codebrowser/lib/cookie.c' l='812' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1010' u='w' c='Curl_cookie_init'/>

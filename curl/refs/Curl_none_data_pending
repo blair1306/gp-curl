@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='91' type='_Bool Curl_none_data_pending(const struct connectdata * conn, int connindex)'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='1024' ll='1030' macro='1' type='_Bool Curl_none_data_pending(const struct connectdata * conn, int connindex)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1144'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1144'/>

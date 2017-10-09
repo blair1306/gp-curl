@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='242' type='unsigned char * OPENSSL_asc2uni(const char * asc, int asclen, unsigned char ** uni, int * unilen)'/>

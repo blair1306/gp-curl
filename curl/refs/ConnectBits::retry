@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='398' type='_Bool'/>
+<offset>120</offset>
+<use f='codebrowser/lib/http.c' l='1473' u='r' c='Curl_http_done'/>
+<use f='codebrowser/lib/transfer.c' l='1968' u='w' c='Curl_retry_request'/>

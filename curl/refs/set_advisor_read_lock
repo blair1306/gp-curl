@@ -1,0 +1,5 @@
+<dec f='codebrowser/tests/server/util.h' l='62' type='void set_advisor_read_lock(const char * filename)'/>
+<use f='codebrowser/tests/server/rtspd.c' l='1371' u='c' c='main'/>
+<use f='codebrowser/tests/server/sws.c' l='1880' u='c' c='accept_connection'/>
+<use f='codebrowser/tests/server/tftpd.c' l='844' u='c' c='main'/>
+<def f='codebrowser/tests/server/util.c' l='275' ll='296' type='void set_advisor_read_lock(const char * filename)'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/mprintf.c' l='139' type='8192'/>
+<use f='codebrowser/lib/mprintf.c' l='366' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='889' u='r' c='dprintf_formatf'/>
+<doc f='codebrowser/lib/mprintf.c' l='139'>/* &apos;*&apos; or &apos;*&lt;num&gt;$&apos; used */</doc>

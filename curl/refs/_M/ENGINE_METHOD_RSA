@@ -1,0 +1,5 @@
+<dec f='include/openssl/engine.h' l='109'/>
+<doc f='include/openssl/engine.h' l='105'>/*
+ * These flags are used to control combinations of algorithm (methods) by
+ * bitwise &quot;OR&quot;ing.
+ */</doc>

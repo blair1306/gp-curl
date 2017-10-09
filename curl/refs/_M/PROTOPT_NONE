@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='699'/>
+<use f='codebrowser/lib/dict.c' l='91' u='c'/>
+<use f='codebrowser/lib/gopher.c' l='71' u='c'/>
+<use f='codebrowser/lib/rtsp.c' l='126' u='c'/>
+<use f='codebrowser/lib/smb.c' l='91' u='c'/>
+<use f='codebrowser/lib/telnet.c' l='198' u='c'/>
+<use f='codebrowser/lib/tftp.c' l='187' u='c'/>
+<use f='codebrowser/lib/url.c' l='281' u='c'/>

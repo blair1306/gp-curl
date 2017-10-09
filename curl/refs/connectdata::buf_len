@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='962' type='size_t'/>
+<offset>9344</offset>
+<doc f='codebrowser/lib/urldata.h' l='962'>/* Length of the buffer?? */</doc>
+<use f='codebrowser/lib/sendf.c' l='711' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='711' u='r' c='Curl_read'/>
+<use f='codebrowser/lib/sendf.c' l='739' u='w' c='Curl_read'/>

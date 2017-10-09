@@ -1,0 +1,24 @@
+<dec f='include/arpa/inet.h' l='58' type='int inet_pton(int __af, const char *restrict __cp, void *restrict __buf)'/>
+<doc f='include/arpa/inet.h' l='55'>/* Convert from presentation format of an Internet number in buffer
+   starting at CP to the binary network format and store result for
+   interface type AF in buffer starting at BUF.  */</doc>
+<use f='codebrowser/lib/asyn-thread.c' l='618' macro='1' u='c'/>
+<use f='codebrowser/lib/asyn-thread.c' l='626' macro='1' u='c'/>
+<use f='codebrowser/lib/connect.c' l='385' macro='1' u='c'/>
+<use f='codebrowser/lib/connect.c' l='403' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='338' macro='1' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='340' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='468' macro='1' u='c'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='474' macro='1' u='c'/>
+<use f='codebrowser/lib/ftp.c' l='1001' macro='1' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='87' macro='1' u='c'/>
+<use f='codebrowser/lib/hostcheck.c' l='90' macro='1' u='c'/>
+<use f='codebrowser/lib/url.c' l='5761' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1353' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1359' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2445' macro='1' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2447' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1490' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1501' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1367' macro='1' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='1380' macro='1' u='c'/>

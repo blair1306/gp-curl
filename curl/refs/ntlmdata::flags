@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='336' type='unsigned int'/>
+<offset>32</offset>
+<use f='codebrowser/lib/vauth/ntlm.c' l='299' u='w' c='Curl_auth_decode_ntlm_type2_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='310' u='w' c='Curl_auth_decode_ntlm_type2_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='313' u='r' c='Curl_auth_decode_ntlm_type2_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='523' u='r' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='597' u='r' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='757' u='r' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='757' u='r' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='757' u='r' c='Curl_auth_create_ntlm_type3_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='757' u='r' c='Curl_auth_create_ntlm_type3_message'/>

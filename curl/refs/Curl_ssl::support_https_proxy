@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='41' type='unsigned int'/>
+<offset>132</offset>
+<doc f='codebrowser/lib/vtls/vtls.h' l='41'>/* supports access via HTTPS proxies */</doc>
+<use f='codebrowser/lib/url.c' l='5127' u='r' c='parse_proxy'/>
+<use f='codebrowser/lib/version.c' l='358' u='r' c='curl_version_info'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='214' u='r' c='ssl_connect_init_proxy'/>

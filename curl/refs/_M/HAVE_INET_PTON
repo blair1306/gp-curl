@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='302'/>
+<doc f='codebrowser/lib/curl_config.h' l='301'>/* Define to 1 if you have a IPv6 capable working inet_pton function. */</doc>
+<use f='codebrowser/lib/inet_pton.h' l='29' u='a'/>
+<use f='codebrowser/lib/inet_pton.c' l='21' u='a'/>

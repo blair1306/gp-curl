@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_setopt.h' l='120'/>
+<use f='codebrowser/src/tool_operate.c' l='1101' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1113' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1190' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1299' u='c'/>

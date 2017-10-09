@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='53' type='int'/>
+<offset>32</offset>
+<use f='codebrowser/lib/connect.c' l='363' u='r' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='560' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='566' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='575' u='r' c='trynextip'/>
+<use f='codebrowser/lib/connect.c' l='1334' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='161' u='w' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='326' u='w' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='336' u='r' c='Curl_he2ai'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='517' u='w' c='Curl_unix2addr'/>
+<use f='codebrowser/lib/ftp.c' l='1043' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/hostip.c' l='175' u='r' c='Curl_printable_address'/>
+<use f='codebrowser/lib/hostip.c' l='179' u='r' c='Curl_printable_address'/>
+<use f='codebrowser/lib/hostip.c' l='185' u='r' c='Curl_printable_address'/>
+<use f='codebrowser/lib/socks.c' l='179' u='r' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='624' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/socks.c' l='636' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/tftp.c' l='1013' u='r' c='tftp_connect'/>
+<use f='codebrowser/tests/unit/unit1305.c' l='97' u='w' c='fake_ai'/>

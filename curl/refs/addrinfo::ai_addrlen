@@ -1,0 +1,5 @@
+<dec f='include/netdb.h' l='573' type='socklen_t'/>
+<offset>128</offset>
+<doc f='include/netdb.h' l='573'>/* Length of socket address.  */</doc>
+<use f='codebrowser/lib/curl_addrinfo.c' l='144' u='r' c='Curl_getaddrinfo_ex'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='148' u='r' c='Curl_getaddrinfo_ex'/>

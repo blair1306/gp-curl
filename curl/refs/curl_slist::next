@@ -1,0 +1,36 @@
+<dec f='codebrowser/include/curl/curl.h' l='2337' type='struct curl_slist *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/cookie.c' l='279' u='r' c='Curl_cookie_loadfiles'/>
+<use f='codebrowser/lib/ftp.c' l='1720' u='r' c='ftp_state_quote'/>
+<use f='codebrowser/lib/ftp.c' l='3398' u='r' c='ftp_sendquote'/>
+<use f='codebrowser/lib/hostip.c' l='784' u='r' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/http.c' l='194' u='r' c='Curl_checkProxyheaders'/>
+<use f='codebrowser/lib/http.c' l='1677' u='r' c='Curl_add_custom_headers'/>
+<use f='codebrowser/lib/http.c' l='2525' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2809' u='r' c='checkhttpprefix'/>
+<use f='codebrowser/lib/mime.c' l='322' u='r' c='search_header'/>
+<use f='codebrowser/lib/mime.c' l='845' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='856' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='1488' u='r' c='slist_size'/>
+<use f='codebrowser/lib/slist.c' l='44' u='r' c='slist_get_last'/>
+<use f='codebrowser/lib/slist.c' l='45' u='r' c='slist_get_last'/>
+<use f='codebrowser/lib/slist.c' l='70' u='w' c='Curl_slist_append_nodup'/>
+<use f='codebrowser/lib/slist.c' l='78' u='w' c='Curl_slist_append_nodup'/>
+<use f='codebrowser/lib/slist.c' l='123' u='r' c='Curl_slist_duplicate'/>
+<use f='codebrowser/lib/slist.c' l='139' u='r' c='curl_slist_free_all'/>
+<use f='codebrowser/lib/smtp.c' l='862' u='r' c='smtp_state_command_resp'/>
+<use f='codebrowser/lib/smtp.c' l='916' u='r' c='smtp_state_rcpt_resp'/>
+<use f='codebrowser/lib/telnet.c' l='846' u='r' c='check_telnet_options'/>
+<use f='codebrowser/lib/telnet.c' l='970' u='r' c='suboption'/>
+<use f='codebrowser/lib/transfer.c' l='99' u='r' c='Curl_checkheaders'/>
+<use f='codebrowser/lib/url.c' l='6159' u='r' c='parse_connect_to_slist'/>
+<use f='codebrowser/src/slist_wc.c' l='57' u='w' c='slist_wc_append'/>
+<use f='codebrowser/src/slist_wc.c' l='58' u='r' c='slist_wc_append'/>
+<use f='codebrowser/src/tool_easysrc.c' l='148' u='r' c='easysrc_perform'/>
+<use f='codebrowser/src/tool_easysrc.c' l='197' u='r' c='dumpeasysrc'/>
+<use f='codebrowser/src/tool_easysrc.c' l='205' u='r' c='dumpeasysrc'/>
+<use f='codebrowser/src/tool_easysrc.c' l='211' u='r' c='dumpeasysrc'/>
+<use f='codebrowser/src/tool_easysrc.c' l='222' u='r' c='dumpeasysrc'/>
+<use f='codebrowser/src/tool_help.c' l='567' u='r' c='tool_list_engines'/>
+<use f='codebrowser/src/tool_setopt.c' l='395' u='r' c='libcurl_generate_slist'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='344' u='r' c='test'/>

@@ -1,0 +1,27 @@
+<dec f='codebrowser/include/curl/curl.h' l='2538' type='3'/>
+<use f='codebrowser/lib/hostasyn.c' l='83' u='r' c='Curl_addrinfo_callback'/>
+<use f='codebrowser/lib/hostasyn.c' l='95' u='r' c='Curl_addrinfo_callback'/>
+<use f='codebrowser/lib/hostip.c' l='267' u='r' c='Curl_hostcache_prune'/>
+<use f='codebrowser/lib/hostip.c' l='277' u='r' c='Curl_hostcache_prune'/>
+<use f='codebrowser/lib/hostip.c' l='352' u='r' c='Curl_fetch_addr'/>
+<use f='codebrowser/lib/hostip.c' l='360' u='r' c='Curl_fetch_addr'/>
+<use f='codebrowser/lib/hostip.c' l='457' u='r' c='Curl_resolv'/>
+<use f='codebrowser/lib/hostip.c' l='468' u='r' c='Curl_resolv'/>
+<use f='codebrowser/lib/hostip.c' l='508' u='r' c='Curl_resolv'/>
+<use f='codebrowser/lib/hostip.c' l='514' u='r' c='Curl_resolv'/>
+<use f='codebrowser/lib/hostip.c' l='725' u='r' c='Curl_resolv_unlock'/>
+<use f='codebrowser/lib/hostip.c' l='730' u='r' c='Curl_resolv_unlock'/>
+<use f='codebrowser/lib/hostip.c' l='768' u='r' c='Curl_hostcache_clean'/>
+<use f='codebrowser/lib/hostip.c' l='773' u='r' c='Curl_hostcache_clean'/>
+<use f='codebrowser/lib/hostip.c' l='807' u='r' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/hostip.c' l='813' u='r' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/hostip.c' l='848' u='r' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/hostip.c' l='871' u='r' c='Curl_loadhostpairs'/>
+<use f='codebrowser/lib/share.c' l='74' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='117' c='curl_share_setopt'/>
+<use f='codebrowser/lib/url.c' l='2413' u='r' c='Curl_setopt'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='58' c='my_lock'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='94' c='my_unlock'/>
+<use f='codebrowser/tests/libtest/lib506.c' l='223' c='test'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='52' c='my_lock'/>
+<use f='codebrowser/tests/libtest/lib586.c' l='79' c='my_unlock'/>

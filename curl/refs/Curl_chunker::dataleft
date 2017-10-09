@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/http_chunks.h' l='87' type='size_t'/>
+<offset>320</offset>
+<doc f='codebrowser/lib/http_chunks.h' l='87'>/* untouched data amount at the end of the last buffer */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='90' u='w' c='Curl_httpchunk_init'/>
+<use f='codebrowser/lib/http_chunks.c' l='348' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/transfer.c' l='695' u='r' c='readwrite_data'/>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='572' type='z_stream'/>
+<offset>1728</offset>
+<doc f='codebrowser/lib/urldata.h' l='572'>/* State structure for zlib. */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='94' u='a' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='171' u='a' c='Curl_unencode_deflate_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='281' u='a' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='426' u='a' c='Curl_unencode_cleanup'/>

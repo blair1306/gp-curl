@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/urldata.h' l='1217' type='4'/>
+<use f='codebrowser/lib/connect.c' l='1184' u='r' c='Curl_connecthost'/>

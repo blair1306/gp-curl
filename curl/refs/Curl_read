@@ -1,0 +1,16 @@
+<dec f='codebrowser/lib/sendf.h' l='73' type='CURLcode Curl_read(struct connectdata * conn, curl_socket_t sockfd, char * buf, size_t buffersize, ssize_t * n)'/>
+<doc f='codebrowser/lib/sendf.h' l='72'>/* internal read-function, does plain socket, SSL and krb4 */</doc>
+<use f='codebrowser/lib/easy.c' l='1102' u='c' c='curl_easy_recv'/>
+<use f='codebrowser/lib/http_proxy.c' l='342' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/pingpong.c' l='321' u='c' c='Curl_pp_readresp'/>
+<def f='codebrowser/lib/sendf.c' l='686' ll='746' type='CURLcode Curl_read(struct connectdata * conn, curl_socket_t sockfd, char * buf, size_t sizerequested, ssize_t * n)'/>
+<doc f='codebrowser/lib/sendf.c' l='680'>/*
+ * Internal read-from-socket function. This is meant to deal with plain
+ * sockets, SSL sockets and kerberos sockets.
+ *
+ * Returns a regular CURLcode value.
+ */</doc>
+<doc f='codebrowser/lib/sendf.c' l='686'>/* connection data */</doc>
+<use f='codebrowser/lib/smb.c' l='304' u='c' c='smb_recv_message'/>
+<use f='codebrowser/lib/telnet.c' l='1614' u='c' c='telnet_do'/>
+<use f='codebrowser/lib/transfer.c' l='473' u='c' c='readwrite_data'/>

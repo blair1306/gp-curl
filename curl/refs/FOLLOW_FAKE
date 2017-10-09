@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/transfer.h' l='37' type='1'/>
+<doc f='codebrowser/lib/transfer.h' l='37'>/* only records stuff, not actually following */</doc>
+<use f='codebrowser/lib/multi.c' l='1988' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/transfer.c' l='1751' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1806' u='r' c='Curl_follow'/>

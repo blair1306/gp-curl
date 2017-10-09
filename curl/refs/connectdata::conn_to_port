@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='843' type='int'/>
+<offset>3296</offset>
+<doc f='codebrowser/lib/urldata.h' l='843'>/* the remote port to connect to. valid only if
+                       bits.conn_to_port is set */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='122' u='r' c='Curl_proxy_connect'/>
+<use f='codebrowser/lib/url.c' l='3746' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3746' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3927' u='r' c='Curl_connected_proxy'/>
+<use f='codebrowser/lib/url.c' l='6149' u='w' c='parse_connect_to_slist'/>
+<use f='codebrowser/lib/url.c' l='6230' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6337' u='w' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6337' u='r' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6611' u='r' c='create_conn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='344' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='442' u='r' c='Curl_ssl_addsessionid'/>

@@ -1,0 +1,15 @@
+<dec f='codebrowser/src/tool_getparam.h' l='31' type='4'/>
+<use f='codebrowser/src/tool_getparam.c' l='597' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='624' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='887' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='894' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='984' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='989' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1433' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1612' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1614' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1692' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1698' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1856' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_helpers.c' l='53' c='param2text'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='609' u='r' c='str2tls_max'/>

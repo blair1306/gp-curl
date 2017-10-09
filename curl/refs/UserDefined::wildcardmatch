@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='1675' type='_Bool'/>
+<offset>16320</offset>
+<use f='codebrowser/lib/ftp.c' l='3182' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/ftp.c' l='3967' u='r' c='ftp_do'/>
+<use f='codebrowser/lib/multi.c' l='1664' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2033' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/transfer.c' l='1403' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='492' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='612' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='2818' u='w' c='Curl_setopt'/>

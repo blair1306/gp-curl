@@ -1,0 +1,13 @@
+<def f='codebrowser/lib/sigpipe.h' l='64' ll='69' type='void sigpipe_restore(struct sigpipe_ignore * ig)'/>
+<use f='codebrowser/lib/easy.c' l='800' u='c' c='easy_perform'/>
+<use f='codebrowser/lib/easy.c' l='841' u='c' c='curl_easy_cleanup'/>
+<doc f='codebrowser/lib/sigpipe.h' l='59'>/*
+ * sigpipe_restore() puts back the outside world&apos;s opinion of signal handler
+ * and SIGPIPE handling. It MUST only be called after a corresponding
+ * sigpipe_ignore() was used.
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='2162' u='c' c='curl_multi_perform'/>
+<use f='codebrowser/lib/multi.c' l='2211' u='c' c='close_all_connections'/>
+<use f='codebrowser/lib/multi.c' l='2276' u='c' c='curl_multi_cleanup'/>
+<use f='codebrowser/lib/multi.c' l='2614' u='c' c='multi_socket'/>
+<use f='codebrowser/lib/multi.c' l='2656' u='c' c='multi_socket'/>

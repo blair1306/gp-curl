@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/ssh.h' l='37' type='0'/>
+<doc f='codebrowser/lib/ssh.h' l='37'>/* do nothing state, stops the state machine */</doc>

@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1550' type='long'/>
+<offset>2752</offset>
+<doc f='codebrowser/lib/urldata.h' l='1550'>/* in milliseconds, 0 means no timeout */</doc>
+<use f='codebrowser/lib/multi.c' l='464' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='465' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/pingpong.c' l='53' u='r' c='Curl_pp_state_timeout'/>
+<use f='codebrowser/lib/pingpong.c' l='54' u='r' c='Curl_pp_state_timeout'/>
+<use f='codebrowser/lib/url.c' l='878' u='w' c='Curl_setopt'/>

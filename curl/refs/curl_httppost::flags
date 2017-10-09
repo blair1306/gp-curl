@@ -1,0 +1,12 @@
+<dec f='codebrowser/include/curl/curl.h' l='171' type='long'/>
+<offset>640</offset>
+<doc f='codebrowser/include/curl/curl.h' l='171'>/* as defined below */</doc>
+<use f='codebrowser/lib/formdata.c' l='95' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='814' u='r' c='curl_formfree'/>
+<use f='codebrowser/lib/formdata.c' l='816' u='r' c='curl_formfree'/>
+<use f='codebrowser/lib/formdata.c' l='921' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='926' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='939' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='942' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='945' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='962' u='r' c='Curl_getformdata'/>

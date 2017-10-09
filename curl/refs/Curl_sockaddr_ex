@@ -1,0 +1,14 @@
+<def f='codebrowser/lib/connect.h' l='86' ll='95'/>
+<size>144</size>
+<doc f='codebrowser/lib/connect.h' l='79'>/*
+ * The Curl_sockaddr_ex structure is basically libcurl&apos;s external API
+ * curl_sockaddr structure with enough space available to directly hold any
+ * protocol-specific address structures. The variable declared here will be
+ * used to pass / receive data to/from the fopensocket callback if this has
+ * been set, before that, it is initialized from parameters.
+ */</doc>
+<mbr r='Curl_sockaddr_ex::family' o='0' t='int'/>
+<mbr r='Curl_sockaddr_ex::socktype' o='32' t='int'/>
+<mbr r='Curl_sockaddr_ex::protocol' o='64' t='int'/>
+<mbr r='Curl_sockaddr_ex::addrlen' o='96' t='unsigned int'/>
+<mbr r='Curl_sockaddr_ex::_sa_ex_u' o='128' t='union (anonymous union at /home/jon/workspace/curl/lib/connect.h:91:3)'/>

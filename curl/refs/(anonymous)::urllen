@@ -1,0 +1,4 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='64' type='size_t'/>
+<offset>38464</offset>
+<use f='codebrowser/src/tool_urlglob.c' l='454' u='w' c='glob_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='510' u='r' c='glob_next_url'/>

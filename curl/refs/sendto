@@ -1,0 +1,16 @@
+<dec f='include/x86_64-linux-gnu/sys/socket.h' l='163' type='ssize_t sendto(int __fd, const void * __buf, size_t __n, int __flags, const struct sockaddr * __addr, socklen_t __addr_len)'/>
+<doc f='include/x86_64-linux-gnu/sys/socket.h' l='158'>/* Send N bytes of BUF on socket FD to peer at address ADDR (which is
+   ADDR_LEN bytes long).  Returns the number sent, or -1 for errors.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>
+<use f='codebrowser/lib/sendf.c' l='365' u='c' c='Curl_send_plain'/>
+<use f='codebrowser/lib/tftp.c' l='538' u='c' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='620' u='c' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='645' u='c' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='671' u='c' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='685' u='c' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='745' u='c' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='789' u='c' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='815' u='c' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='833' u='c' c='tftp_tx'/>

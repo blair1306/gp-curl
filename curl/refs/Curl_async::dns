@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='480' type='struct Curl_dns_entry *'/>
+<use f='codebrowser/lib/asyn-thread.c' l='396' u='w' c='init_resolve_thread'/>
+<use f='codebrowser/lib/asyn-thread.c' l='488' u='r' c='Curl_resolver_wait_resolv'/>
+<use f='codebrowser/lib/asyn-thread.c' l='490' u='r' c='Curl_resolver_wait_resolv'/>
+<use f='codebrowser/lib/asyn-thread.c' l='496' u='r' c='Curl_resolver_wait_resolv'/>
+<use f='codebrowser/lib/asyn-thread.c' l='528' u='r' c='Curl_resolver_is_resolved'/>
+<use f='codebrowser/lib/asyn-thread.c' l='534' u='r' c='Curl_resolver_is_resolved'/>
+<offset>128</offset>
+<use f='codebrowser/lib/hostasyn.c' l='102' u='w' c='Curl_addrinfo_callback'/>
+<use f='codebrowser/lib/hostasyn.c' l='124' u='r' c='Curl_async_resolved'/>
+<use f='codebrowser/lib/hostasyn.c' l='125' u='r' c='Curl_async_resolved'/>
+<use f='codebrowser/lib/hostasyn.c' l='126' u='w' c='Curl_async_resolved'/>
+<use f='codebrowser/lib/multi.c' l='1501' u='w' c='multi_runsingle'/>

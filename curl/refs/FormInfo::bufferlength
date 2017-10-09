@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/formdata.h' l='37' type='size_t'/>
+<offset>640</offset>
+<use f='codebrowser/lib/formdata.c' l='472' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='475' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='684' u='r' c='FormAdd'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/imap.h' l='90'/>
+<doc f='codebrowser/lib/imap.h' l='89'>/* Authentication type flags */</doc>
+<use f='codebrowser/lib/imap.c' l='581' u='c'/>
+<use f='codebrowser/lib/imap.c' l='971' u='c'/>

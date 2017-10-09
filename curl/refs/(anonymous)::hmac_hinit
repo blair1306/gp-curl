@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='37' type='HMAC_hinit_func'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/curl_hmac.h' l='37'>/* Initialize context procedure. */</doc>
+<use f='codebrowser/lib/hmac.c' l='75' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='84' u='r' c='Curl_HMAC_init'/>
+<use f='codebrowser/lib/hmac.c' l='85' u='r' c='Curl_HMAC_init'/>

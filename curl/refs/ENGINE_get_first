@@ -1,0 +1,3 @@
+<dec f='include/openssl/engine.h' l='383' type='ENGINE * ENGINE_get_first()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1136' u='c' c='Curl_ossl_engines_list'/>
+<doc f='include/openssl/engine.h' l='382'>/* Get the first/last &quot;ENGINE&quot; type available. */</doc>

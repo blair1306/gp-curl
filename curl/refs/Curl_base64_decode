@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/curl_base64.h' l='32' type='CURLcode Curl_base64_decode(const char * src, unsigned char ** outptr, size_t * outlen)'/>
+<def f='codebrowser/lib/base64.c' l='100' ll='169' type='CURLcode Curl_base64_decode(const char * src, unsigned char ** outptr, size_t * outlen)'/>
+<doc f='codebrowser/lib/base64.c' l='86'>/*
+ * Curl_base64_decode()
+ *
+ * Given a base64 NUL-terminated string at src, decode it and return a
+ * pointer in *outptr to a newly allocated memory area holding decoded
+ * data. Size of decoded data is returned in variable pointed by outlen.
+ *
+ * Returns CURLE_OK on success, otherwise specific error code. Function
+ * output shall not be considered valid unless CURLE_OK is returned.
+ *
+ * When decoded data length is 0, returns NULL in *outptr.
+ *
+ * @unittest: 1302
+ */</doc>
+<use f='codebrowser/lib/vauth/cram.c' l='68' u='c' c='Curl_auth_decode_cram_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='269' u='c' c='auth_decode_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='288' u='c' c='Curl_auth_decode_ntlm_type2_message'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='791' u='c' c='pubkey_pem_to_der'/>
+<use f='codebrowser/tests/server/getpart.c' l='230' u='c' c='decodedata'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='105' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='111' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='117' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='123' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='132' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='141' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='150' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='159' u='c' c='test'/>

@@ -1,0 +1,15 @@
+<dec f='codebrowser/lib/urldata.h' l='1180' type='unsigned long'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/urldata.h' l='1180'>/* Bitmask set to the authentication methods wanted by
+                          app (with CURLOPT_HTTPAUTH or CURLOPT_PROXYAUTH). */</doc>
+<use f='codebrowser/lib/http.c' l='322' u='r' c='pickoneauth'/>
+<use f='codebrowser/lib/http.c' l='685' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='689' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='691' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/http.c' l='695' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/transfer.c' l='1352' u='w' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1353' u='w' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1400' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1401' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='3501' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3505' u='r' c='ConnectionExists'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='255' type='char *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/urldata.h' l='255'>/* host name for the connection (may be NULL) */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='339' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='340' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='341' u='r' c='Curl_ssl_getsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='379' u='r' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='379' u='w' c='Curl_ssl_kill_session'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='477' u='r' c='Curl_ssl_addsessionid'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='479' u='w' c='Curl_ssl_addsessionid'/>

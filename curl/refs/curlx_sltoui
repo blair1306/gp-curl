@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/warnless.h' l='45' type='unsigned int curlx_sltoui(long slnum)'/>
+<use f='codebrowser/lib/url.c' l='2661' u='c' c='Curl_setopt'/>
+<def f='codebrowser/lib/warnless.c' l='286' ll='302' type='unsigned int curlx_sltoui(long slnum)'/>
+<doc f='codebrowser/lib/warnless.c' l='282'>/*
+** signed long to unsigned int
+*/</doc>

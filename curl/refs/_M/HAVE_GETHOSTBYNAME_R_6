@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/curl_config.h' l='215'/>
+<doc f='codebrowser/lib/curl_config.h' l='214'>/* gethostbyname_r() takes 6 args */</doc>

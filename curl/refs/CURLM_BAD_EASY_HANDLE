@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/multi.h' l='66' type='2'/>
+<doc f='codebrowser/include/curl/multi.h' l='66'>/* an easy handle was not good/valid */</doc>
+<use f='codebrowser/lib/multi.c' l='370' u='r' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='668' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='1323' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/strerror.c' l='365' c='curl_multi_strerror'/>

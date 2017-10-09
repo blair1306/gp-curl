@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/cookie.h' l='40' type='char *'/>
+<offset>576</offset>
+<doc f='codebrowser/lib/cookie.h' l='39'>/* RFC 2109 keywords. Version=1 means 2109-compliant cookie sending */</doc>
+<doc f='codebrowser/lib/cookie.h' l='40'>/* Version = &lt;value&gt; */</doc>
+<use f='codebrowser/lib/cookie.c' l='116' u='r' c='freecookie'/>
+<use f='codebrowser/lib/cookie.c' l='557' u='a' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='558' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='895' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1104' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1104' u='w' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1104' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1104' u='r' c='dup_cookie'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/tftp.c' l='97' type='5'/>
+<use f='codebrowser/lib/tftp.c' l='565' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='682' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='683' u='r' c='tftp_rx'/>
+<use f='codebrowser/lib/tftp.c' l='829' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='831' u='r' c='tftp_tx'/>
+<use f='codebrowser/lib/tftp.c' l='1141' u='r' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1148' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1173' u='r' c='tftp_receive_packet'/>
+<use f='codebrowser/lib/tftp.c' l='1254' u='r' c='tftp_multi_statemach'/>

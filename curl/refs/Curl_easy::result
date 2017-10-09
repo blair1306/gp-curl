@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1742' type='CURLcode'/>
+<offset>608</offset>
+<doc f='codebrowser/lib/urldata.h' l='1742'>/* previous result */</doc>
+<use f='codebrowser/lib/multi.c' l='719' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='2061' u='w' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2138' u='w' c='multi_runsingle'/>

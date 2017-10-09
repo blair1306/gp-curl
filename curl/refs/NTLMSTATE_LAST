@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='297' type='4'/>
+<use f='codebrowser/lib/http_ntlm.c' l='89' u='r' c='Curl_input_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='220' u='r' c='Curl_output_ntlm'/>
+<use f='codebrowser/lib/http_ntlm.c' l='222' c='Curl_output_ntlm'/>

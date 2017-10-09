@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='221' type='int'/>
+<offset>7968</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='221'>/* default flags to search for each &apos;node&apos;, which
+                               is basically each given URL to transfer */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='1766' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='54' u='r' c='new_getout'/>

@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/vauth/vauth.h' l='130' type='CURLcode Curl_auth_decode_ntlm_type2_message(struct Curl_easy * data, const char * type2msg, struct ntlmdata * ntlm)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='505' u='c' c='Curl_sasl_continue'/>
+<doc f='codebrowser/lib/vauth/vauth.h' l='129'>/* This is used to decode a base64 encoded NTLM type-2 message */</doc>
+<use f='codebrowser/lib/http_ntlm.c' l='82' u='c' c='Curl_input_ntlm'/>
+<def f='codebrowser/lib/vauth/ntlm.c' l='251' ll='334' type='CURLcode Curl_auth_decode_ntlm_type2_message(struct Curl_easy * data, const char * type2msg, struct ntlmdata * ntlm)'/>
+<doc f='codebrowser/lib/vauth/ntlm.c' l='235'>/*
+ * Curl_auth_decode_ntlm_type2_message()
+ *
+ * This is used to decode an already encoded NTLM type-2 message. The message
+ * is first decoded from a base64 string into a raw NTLM message and checked
+ * for validity before the appropriate data for creating a type-3 message is
+ * written to the given NTLM data structure.
+ *
+ * Parameters:
+ *
+ * data     [in]     - The session handle.
+ * type2msg [in]     - The base64 encoded type-2 message.
+ * ntlm     [in/out] - The NTLM data struct being used and modified.
+ *
+ * Returns CURLE_OK on success.
+ */</doc>

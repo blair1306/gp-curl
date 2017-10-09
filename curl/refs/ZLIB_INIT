@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='469' type='1'/>
+<doc f='codebrowser/lib/urldata.h' l='469'>/* initialized */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='181' u='r' c='Curl_unencode_deflate_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='301' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='331' c='Curl_unencode_gzip_write'/>

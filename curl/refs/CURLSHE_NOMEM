@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='2566' type='4'/>
+<doc f='codebrowser/include/curl/curl.h' l='2566'>/* 4 out of memory */</doc>
+<use f='codebrowser/lib/share.c' l='82' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/share.c' l='97' u='r' c='curl_share_setopt'/>
+<use f='codebrowser/lib/strerror.c' l='413' c='curl_share_strerror'/>

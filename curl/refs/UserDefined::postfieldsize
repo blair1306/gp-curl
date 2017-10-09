@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/urldata.h' l='1510' type='curl_off_t'/>
+<offset>1088</offset>
+<doc f='codebrowser/lib/urldata.h' l='1510'>/* if POST, this might have a size to use instead
+                               of strlen(), and then the data *may* be binary
+                               (contain zero bytes) */</doc>
+<use f='codebrowser/lib/transfer.c' l='1360' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/url.c' l='383' u='r' c='Curl_dupset'/>
+<use f='codebrowser/lib/url.c' l='386' u='r' c='Curl_dupset'/>
+<use f='codebrowser/lib/url.c' l='532' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1064' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1071' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1073' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1085' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1086' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1091' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1092' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1120' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1127' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1137' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1144' u='w' c='Curl_setopt'/>

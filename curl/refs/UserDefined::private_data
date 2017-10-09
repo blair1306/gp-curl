@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1592' type='void *'/>
+<offset>11008</offset>
+<doc f='codebrowser/lib/urldata.h' l='1592'>/* application-private data */</doc>
+<use f='codebrowser/lib/getinfo.c' l='103' u='r' c='getinfo_char'/>
+<use f='codebrowser/lib/url.c' l='2442' u='w' c='Curl_setopt'/>

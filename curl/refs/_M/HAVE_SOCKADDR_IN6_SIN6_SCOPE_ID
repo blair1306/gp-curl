@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='570'/>
+<doc f='codebrowser/lib/curl_config.h' l='569'>/* Define to 1 if struct sockaddr_in6 has the sin6_scope_id member */</doc>
+<use f='codebrowser/lib/connect.c' l='380' u='a'/>
+<use f='codebrowser/lib/connect.c' l='388' u='a'/>
+<use f='codebrowser/lib/connect.c' l='1364' u='a'/>

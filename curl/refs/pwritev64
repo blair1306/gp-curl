@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/sys/uio.h' l='84' type='ssize_t pwritev(int __fd, const struct iovec * __iovec, int __count, __off64_t __offset)'/>

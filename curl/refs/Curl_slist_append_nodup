@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/slist.h' l='36' type='struct curl_slist * Curl_slist_append_nodup(struct curl_slist * list, char * data)'/>
+<use f='codebrowser/lib/cookie.c' l='1425' u='c' c='cookie_list'/>
+<doc f='codebrowser/lib/slist.h' l='32'>/*
+ * Curl_slist_append_nodup() takes ownership of the given string and appends
+ * it to the list.
+ */</doc>
+<use f='codebrowser/lib/mime.c' l='1556' u='c' c='Curl_mime_add_header'/>
+<def f='codebrowser/lib/slist.c' l='59' ll='80' type='struct curl_slist * Curl_slist_append_nodup(struct curl_slist * list, char * data)'/>
+<use f='codebrowser/lib/slist.c' l='97' u='c' c='curl_slist_append'/>
+<doc f='codebrowser/lib/slist.c' l='50'>/*
+ * Curl_slist_append_nodup() appends a string to the linked list. Rather than
+ * copying the string in dynamic storage, it takes its ownership. The string
+ * should have been malloc()ated. Curl_slist_append_nodup always returns
+ * the address of the first record, so that you can use this function as an
+ * initialization function as well as an append function.
+ * If an error occurs, NULL is returned and the string argument is NOT
+ * released.
+ */</doc>
+<use f='codebrowser/lib/vtls/vtls.c' l='708' u='c' c='Curl_ssl_push_certinfo_len'/>

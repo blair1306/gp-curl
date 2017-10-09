@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='211' type='ASN1_TYPE * PKCS12_get_attr_gen(struct stack_st_X509_ATTRIBUTE * attrs, int attr_nid)'/>

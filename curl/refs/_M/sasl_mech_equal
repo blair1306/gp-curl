@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='113'/>
+<doc f='codebrowser/lib/curl_sasl.h' l='112'>/* This is used to test whether the line starts with the given mechanism */</doc>

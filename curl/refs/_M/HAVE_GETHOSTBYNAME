@@ -1,0 +1,2 @@
+<dec f='codebrowser/lib/curl_config.h' l='203'/>
+<doc f='codebrowser/lib/curl_config.h' l='202'>/* Define to 1 if you have the gethostbyname function. */</doc>

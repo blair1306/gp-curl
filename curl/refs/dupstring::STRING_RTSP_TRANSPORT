@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1445' type='49'/>
+<doc f='codebrowser/lib/urldata.h' l='1445'>/* Transport for this session */</doc>
+<use f='codebrowser/lib/rtsp.c' l='363' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='368' u='r' c='rtsp_do'/>
+<use f='codebrowser/lib/url.c' l='2791' u='a' c='Curl_setopt'/>

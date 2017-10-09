@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1031' type='_Bool'/>
+<offset>14912</offset>
+<use f='codebrowser/lib/url.c' l='3640' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='3640' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='6202' u='r' c='resolve_server'/>
+<use f='codebrowser/lib/url.c' l='6544' u='w' c='create_conn'/>

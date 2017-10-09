@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_config.h' l='173'/>
+<doc f='codebrowser/lib/curl_config.h' l='172'>/* Define to 1 if you have the freeaddrinfo function. */</doc>
+<use f='codebrowser/lib/curl_addrinfo.h' l='87' u='a'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='532' u='a'/>

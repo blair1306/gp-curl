@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/hostip.h' l='131' type='void Curl_hostcache_prune(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/hostip.h' l='130'>/* prune old entries from the DNS cache */</doc>
+<def f='codebrowser/lib/hostip.c' l='257' ll='278' type='void Curl_hostcache_prune(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/hostip.c' l='253'>/*
+ * Library-wide function for pruning the DNS cache. This function takes and
+ * returns the appropriate locks.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='3124' u='c' c='Curl_disconnect'/>

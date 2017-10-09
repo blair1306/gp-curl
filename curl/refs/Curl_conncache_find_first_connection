@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/conncache.h' l='64' type='struct connectdata * Curl_conncache_find_first_connection(struct conncache * connc)'/>
+<def f='codebrowser/lib/conncache.c' l='299' ll='322' type='struct connectdata * Curl_conncache_find_first_connection(struct conncache * connc)'/>
+<doc f='codebrowser/lib/conncache.c' l='297'>/* Return the first connection found in the cache. Used when closing all
+   connections */</doc>
+<use f='codebrowser/lib/multi.c' l='2200' u='c' c='close_all_connections'/>
+<use f='codebrowser/lib/multi.c' l='2213' u='c' c='close_all_connections'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='55' type='int'/>
+<offset>96</offset>
+<use f='codebrowser/lib/connect.c' l='1336' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/curl_addrinfo.c' l='163' u='w' c='Curl_getaddrinfo_ex'/>

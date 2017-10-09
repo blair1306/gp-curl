@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/urldata.h' l='684' type='CURLcode (*)(struct Curl_easy *, struct connectdata *, ssize_t *, _Bool *)'/>
+<offset>832</offset>
+<doc f='codebrowser/lib/urldata.h' l='682'>/* If used, this function gets called from transfer.c:readwrite_data() to
+     allow the protocol to do extra reads/writes */</doc>
+<use f='codebrowser/lib/transfer.c' l='516' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='517' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='534' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='536' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='831' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='837' u='r' c='readwrite_data'/>

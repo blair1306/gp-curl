@@ -1,0 +1,1 @@
+<dec f='include/openssl/des.h' l='239' type='void DES_string_to_2keys(const char * str, DES_cblock * key1, DES_cblock * key2)'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1589' type='curl_proxytype'/>
+<offset>10816</offset>
+<doc f='codebrowser/lib/urldata.h' l='1589'>/* what kind of proxy that is in use */</doc>
+<use f='codebrowser/lib/url.c' l='548' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1545' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4236' u='r' c='allocate_conn'/>

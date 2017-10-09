@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1426' type='31'/>
+<doc f='codebrowser/lib/urldata.h' l='1426'>/* public key file to verify proxy */</doc>
+<use f='codebrowser/lib/url.c' l='2261' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3170' u='r' c='servercert'/>

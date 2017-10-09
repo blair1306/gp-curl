@@ -1,0 +1,14 @@
+<dec f='include/x86_64-linux-gnu/bits/signum.h' l='24'/>
+<use f='codebrowser/lib/sigpipe.h' l='54' u='c'/>
+<use f='codebrowser/src/tool_main.c' l='250' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='263' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='269' u='c'/>
+<use f='codebrowser/tests/server/rtspd.c' l='275' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='209' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='215' u='c'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='221' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='268' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='274' u='c'/>
+<use f='codebrowser/tests/server/sws.c' l='280' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='370' u='c'/>
+<use f='codebrowser/tests/server/tftpd.c' l='376' u='c'/>

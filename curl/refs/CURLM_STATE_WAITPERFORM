@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/multihandle.h' l='53' type='13'/>
+<doc f='codebrowser/lib/multihandle.h' l='53'>/* 13 - wait for our turn to read the response */</doc>
+<use f='codebrowser/lib/multi.c' l='914' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1814' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1820' c='multi_runsingle'/>

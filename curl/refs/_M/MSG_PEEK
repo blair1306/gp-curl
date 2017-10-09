@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/socket.h' l='180'/>
+<use f='codebrowser/lib/connect.c' l='1260' u='a'/>
+<use f='codebrowser/lib/connect.c' l='1267' u='c'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1019' u='a'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1023' u='c'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='93' type='CURLcode Curl_none_set_engine(struct Curl_easy * data, const char * engine)'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='1037' ll='1043' type='CURLcode Curl_none_set_engine(struct Curl_easy * data, const char * engine)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1153'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1153'/>

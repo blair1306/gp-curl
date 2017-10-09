@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/mprintf.c' l='141' type='32768'/>
+<use f='codebrowser/lib/mprintf.c' l='316' u='r' c='dprintf_Pass1'/>
+<use f='codebrowser/lib/mprintf.c' l='680' u='r' c='dprintf_formatf'/>
+<use f='codebrowser/lib/mprintf.c' l='895' u='r' c='dprintf_formatf'/>
+<doc f='codebrowser/lib/mprintf.c' l='141'>/* precision was specified */</doc>

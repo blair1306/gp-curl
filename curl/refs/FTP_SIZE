@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='67' type='23'/>
+<doc f='codebrowser/lib/ftp.h' l='67'>/* get the remote file&apos;s size for head-like request */</doc>
+<use f='codebrowser/lib/ftp.c' l='1432' u='r' c='ftp_state_size'/>
+<use f='codebrowser/lib/ftp.c' l='2271' u='r' c='ftp_state_size_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2998' c='ftp_statemach_act'/>

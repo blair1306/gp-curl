@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/select.h' l='90' type='int'/>
+<doc f='codebrowser/lib/select.h' l='86'>/* On non-DOS and non-Winsock platforms, when Curl_ack_eintr is set,
+ * EINTR condition is honored and function might exit early without
+ * awaiting full timeout.  Otherwise EINTR will be ignored and full
+ * timeout will elapse. */</doc>
+<use f='codebrowser/lib/easy.c' l='257' u='w' c='global_init'/>
+<def f='codebrowser/lib/select.c' l='56' type='int'/>
+<use f='codebrowser/lib/select.c' l='57' u='r' c='Curl_wait_ms'/>
+<use f='codebrowser/lib/select.c' l='57' u='r' c='Curl_socket_check'/>
+<use f='codebrowser/lib/select.c' l='57' u='r' c='Curl_poll'/>

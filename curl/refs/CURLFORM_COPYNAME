@@ -1,0 +1,16 @@
+<dec f='codebrowser/include/curl/curl.h' l='2115' macro='1' type='1'/>
+<use f='codebrowser/lib/formdata.c' l='338' c='FormAdd'/>
+<use f='codebrowser/tests/libtest/lib554.c' l='85' c='once'/>
+<use f='codebrowser/tests/libtest/lib554.c' l='95' c='once'/>
+<use f='codebrowser/tests/libtest/lib554.c' l='114' c='once'/>
+<use f='codebrowser/tests/libtest/lib554.c' l='125' c='once'/>
+<use f='codebrowser/tests/libtest/lib554.c' l='142' c='once'/>
+<use f='codebrowser/tests/libtest/lib554.c' l='156' c='once'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='73' c='test'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='106' c='test'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='121' c='test'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='139' c='test'/>
+<use f='codebrowser/tests/libtest/lib650.c' l='146' c='test'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='50' c='test'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='59' c='test'/>
+<use f='codebrowser/tests/unit/unit1308.c' l='65' c='test'/>

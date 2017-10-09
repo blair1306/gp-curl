@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='2425' type='curl_sslbackend'/>
+<offset>0</offset>
+<use f='codebrowser/lib/getinfo.c' l='368' u='w' c='getinfo_slist'/>
+<use f='codebrowser/lib/getinfo.c' l='372' u='r' c='getinfo_slist'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/progress.h' l='33' type='4'/>
+<use f='codebrowser/lib/connect.c' l='804' u='r' c='Curl_is_connected'/>
+<use f='codebrowser/lib/progress.c' l='187' c='Curl_pgrsTime'/>
+<use f='codebrowser/lib/url.c' l='6983' u='r' c='Curl_setup_conn'/>

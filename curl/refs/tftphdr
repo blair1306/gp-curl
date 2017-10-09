@@ -1,0 +1,4 @@
+<def f='include/arpa/tftp.h' l='49' ll='62'/>
+<size>5</size>
+<mbr r='tftphdr::th_opcode' o='0' t='short'/>
+<mbr r='tftphdr::th_u1' o='16' t='union (anonymous union at /usr/include/arpa/tftp.h:51:2)'/>

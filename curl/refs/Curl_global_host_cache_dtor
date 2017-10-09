@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/hostip.h' l='64' type='void Curl_global_host_cache_dtor()'/>
+<use f='codebrowser/lib/easy.c' l='320' u='c' c='curl_global_cleanup'/>
+<def f='codebrowser/lib/hostip.c' l='137' ll='143' type='void Curl_global_host_cache_dtor()'/>
+<doc f='codebrowser/lib/hostip.c' l='134'>/*
+ * Destroy and cleanup the global DNS cache
+ */</doc>

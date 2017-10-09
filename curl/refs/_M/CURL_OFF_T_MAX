@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/strtoofft.h' l='47'/>
+<use f='codebrowser/lib/cookie.c' l='618' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='620' u='c'/>
+<use f='codebrowser/lib/cookie.c' l='622' u='c'/>
+<doc f='codebrowser/lib/strtoofft.h' l='46'>/* assume CURL_SIZEOF_CURL_OFF_T == 8 */</doc>
+<use f='codebrowser/lib/file.c' l='168' u='c'/>
+<use f='codebrowser/lib/ftplistparser.c' l='614' u='c'/>

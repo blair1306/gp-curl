@@ -1,0 +1,2 @@
+<dec f='include/openssl/pkcs12.h' l='254' type='void PKCS12_PBE_add()'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='675' u='c' c='cert_stuff'/>

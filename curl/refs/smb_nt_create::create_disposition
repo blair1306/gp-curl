@@ -1,0 +1,2 @@
+<use f='codebrowser/lib/smb.c' l='527' u='w' c='smb_send_open'/>
+<use f='codebrowser/lib/smb.c' l='531' u='w' c='smb_send_open'/>

@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/hostip.h' l='148' type='CURLcode Curl_async_resolved(struct connectdata * conn, _Bool * protocol_connect)'/>
+<def f='codebrowser/lib/hostasyn.c' l='119' ll='137' type='CURLcode Curl_async_resolved(struct connectdata * conn, _Bool * protocol_done)'/>
+<doc f='codebrowser/lib/hostasyn.c' l='114'>/* Call this function after Curl_connect() has returned async=TRUE and
+   then a successful name resolve has been received.
+
+   Note: this function disconnects and frees the conn data in case of
+   resolve failure */</doc>
+<use f='codebrowser/lib/multi.c' l='1215' u='c' c='multi_reconnect_request'/>
+<use f='codebrowser/lib/multi.c' l='1522' u='c' c='multi_runsingle'/>

@@ -1,0 +1,29 @@
+<dec f='codebrowser/lib/mime.h' l='75' type='size_t'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/mime.h' l='75'>/* Next data index in input buffer. */</doc>
+<use f='codebrowser/lib/mime.c' l='347' u='w' c='cleanup_encoder_state'/>
+<use f='codebrowser/lib/mime.c' l='357' u='r' c='encoder_nop_read'/>
+<use f='codebrowser/lib/mime.c' l='365' u='w' c='encoder_nop_read'/>
+<use f='codebrowser/lib/mime.c' l='380' u='r' c='encoder_7bit_read'/>
+<use f='codebrowser/lib/mime.c' l='388' u='r' c='encoder_7bit_read'/>
+<use f='codebrowser/lib/mime.c' l='391' u='w' c='encoder_7bit_read'/>
+<use f='codebrowser/lib/mime.c' l='407' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='421' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='425' u='w' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='426' u='w' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='427' u='w' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='442' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='444' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='447' u='r' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='450' u='w' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='452' u='w' c='encoder_base64_read'/>
+<use f='codebrowser/lib/mime.c' l='494' u='r' c='qp_lookahead_eol'/>
+<use f='codebrowser/lib/mime.c' l='522' u='r' c='encoder_qp_read'/>
+<use f='codebrowser/lib/mime.c' l='525' u='r' c='encoder_qp_read'/>
+<use f='codebrowser/lib/mime.c' l='530' u='r' c='encoder_qp_read'/>
+<use f='codebrowser/lib/mime.c' l='602' u='w' c='encoder_qp_read'/>
+<use f='codebrowser/lib/mime.c' l='768' u='r' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='789' u='r' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='790' u='r' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='793' u='r' c='read_encoded_part_content'/>
+<use f='codebrowser/lib/mime.c' l='794' u='w' c='read_encoded_part_content'/>

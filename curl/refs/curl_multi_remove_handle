@@ -1,0 +1,27 @@
+<dec f='codebrowser/include/curl/multi.h' l='142' type='CURLMcode curl_multi_remove_handle(CURLM * multi_handle, CURL * curl_handle)'/>
+<use f='codebrowser/lib/easy.c' l='798' u='c' c='easy_perform'/>
+<def f='codebrowser/lib/multi.c' l='654' ll='788' type='CURLMcode curl_multi_remove_handle(struct Curl_multi * multi, struct Curl_easy * data)'/>
+<use f='codebrowser/lib/url.c' l='419' u='c' c='Curl_close'/>
+<use f='codebrowser/tests/libtest/lib1502.c' l='137' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1506.c' l='127' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1507.c' l='143' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1515.c' l='108' u='c' c='do_one_request'/>
+<use f='codebrowser/tests/libtest/lib1553.c' l='100' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='205' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib502.c' l='85' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib503.c' l='95' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib504.c' l='107' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib525.c' l='145' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib526.c' l='108' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib530.c' l='114' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib533.c' l='74' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='110' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib536.c' l='129' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib540.c' l='166' u='c' c='loop'/>
+<use f='codebrowser/tests/libtest/lib540.c' l='238' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib555.c' l='153' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib573.c' l='107' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib582.c' l='343' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib583.c' l='68' u='c' c='test'/>
+<use f='codebrowser/tests/libtest/lib597.c' l='136' macro='1' u='c'/>
+<use f='codebrowser/tests/libtest/libntlmconnect.c' l='221' u='c' c='test'/>

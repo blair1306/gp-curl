@@ -1,0 +1,8 @@
+<dec f='codebrowser/tests/server/sockfilt.c' l='141' type='0'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='959' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1102' u='r' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1125' u='r' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1140' u='r' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1184' u='r' c='juggle'/>
+<use f='codebrowser/tests/server/sockfilt.c' l='1347' u='r' c='main'/>
+<doc f='codebrowser/tests/server/sockfilt.c' l='141'>/* as a server waiting for connections */</doc>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='473' type='int OCSP_request_is_signed(OCSP_REQUEST * req)'/>

@@ -1,0 +1,9 @@
+<dec f='include/openssl/engine.h' l='721' type='int ENGINE_set_default(ENGINE * e, unsigned int flags)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1111' u='c' c='Curl_ossl_set_engine_default'/>
+<doc f='include/openssl/engine.h' l='714'>/*
+ * The combination &quot;set&quot; - the flags are bitwise &quot;OR&quot;d from the
+ * ENGINE_METHOD_*** defines above. As with the &quot;ENGINE_register_complete()&quot;
+ * function, this function can result in unnecessary static linkage. If your
+ * application requires only specific functionality, consider using more
+ * selective functions.
+ */</doc>

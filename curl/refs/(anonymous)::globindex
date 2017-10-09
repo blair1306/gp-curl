@@ -1,0 +1,8 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='34' type='int'/>
+<offset>32</offset>
+<doc f='codebrowser/src/tool_urlglob.h' l='34'>/* the number of this particular glob or -1 if not used
+                    within {} or [] */</doc>
+<use f='codebrowser/src/tool_urlglob.c' l='45' u='w' c='glob_fixed'/>
+<use f='codebrowser/src/tool_urlglob.c' l='99' u='w' c='glob_set'/>
+<use f='codebrowser/src/tool_urlglob.c' l='189' u='w' c='glob_range'/>
+<use f='codebrowser/src/tool_urlglob.c' l='632' u='r' c='glob_match_url'/>

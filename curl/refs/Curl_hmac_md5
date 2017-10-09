@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/curl_ntlm_core.h' l='79' type='CURLcode Curl_hmac_md5(const unsigned char * key, unsigned int keylen, const unsigned char * data, unsigned int datalen, unsigned char * output)'/>
+<def f='codebrowser/lib/curl_ntlm_core.c' l='631' ll='647' type='CURLcode Curl_hmac_md5(const unsigned char * key, unsigned int keylen, const unsigned char * data, unsigned int datalen, unsigned char * output)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='668' u='c' c='Curl_ntlm_core_mk_ntlmv2_hash'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='758' u='c' c='Curl_ntlm_core_mk_ntlmv2_resp'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='801' u='c' c='Curl_ntlm_core_mk_lmv2_resp'/>
+<doc f='codebrowser/lib/curl_ntlm_core.c' l='630'>/* This returns the HMAC MD5 digest */</doc>

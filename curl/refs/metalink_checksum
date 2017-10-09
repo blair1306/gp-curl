@@ -1,0 +1,4 @@
+<def f='codebrowser/src/tool_metalink.h' l='66' ll='70'/>
+<size>16</size>
+<mbr r='metalink_checksum::digest_def' o='0' t='const metalink_digest_def *'/>
+<mbr r='metalink_checksum::digest' o='64' t='unsigned char *'/>

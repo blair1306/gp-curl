@@ -1,0 +1,397 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>http_chunks.c source code [codebrowser/lib/http_chunks.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/http_chunks.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='http_chunks.c.html'>http_chunks.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_HTTP">CURL_DISABLE_HTTP</span></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a> /* it includes http_chunks.h */</u></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a>   /* for the client write stuff */</u></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="content_encoding.h.html">"content_encoding.h"</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="http.h.html">"http.h"</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="non-ascii.h.html">"non-ascii.h"</a> /* for Curl_convert_to_network prototype */</u></td></tr>
+<tr><th id="33">33</th><td><u>#include <a href="strtoofft.h.html">"strtoofft.h"</a></u></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="warnless.h.html">"warnless.h"</a></u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><i>/* The last #include files should be: */</i></td></tr>
+<tr><th id="37">37</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="38">38</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="39">39</th><td></td></tr>
+<tr><th id="40">40</th><td><i>/*</i></td></tr>
+<tr><th id="41">41</th><td><i> * Chunk format (simplified):</i></td></tr>
+<tr><th id="42">42</th><td><i> *</i></td></tr>
+<tr><th id="43">43</th><td><i> * &lt;HEX SIZE&gt;[ chunk extension ] CRLF</i></td></tr>
+<tr><th id="44">44</th><td><i> * &lt;DATA&gt; CRLF</i></td></tr>
+<tr><th id="45">45</th><td><i> *</i></td></tr>
+<tr><th id="46">46</th><td><i> * Highlights from RFC2616 section 3.6 say:</i></td></tr>
+<tr><th id="47">47</th><td><i></i></td></tr>
+<tr><th id="48">48</th><td><i>   The chunked encoding modifies the body of a message in order to</i></td></tr>
+<tr><th id="49">49</th><td><i>   transfer it as a series of chunks, each with its own size indicator,</i></td></tr>
+<tr><th id="50">50</th><td><i>   followed by an OPTIONAL trailer containing entity-header fields. This</i></td></tr>
+<tr><th id="51">51</th><td><i>   allows dynamically produced content to be transferred along with the</i></td></tr>
+<tr><th id="52">52</th><td><i>   information necessary for the recipient to verify that it has</i></td></tr>
+<tr><th id="53">53</th><td><i>   received the full message.</i></td></tr>
+<tr><th id="54">54</th><td><i></i></td></tr>
+<tr><th id="55">55</th><td><i>       Chunked-Body   = *chunk</i></td></tr>
+<tr><th id="56">56</th><td><i>                        last-chunk</i></td></tr>
+<tr><th id="57">57</th><td><i>                        trailer</i></td></tr>
+<tr><th id="58">58</th><td><i>                        CRLF</i></td></tr>
+<tr><th id="59">59</th><td><i></i></td></tr>
+<tr><th id="60">60</th><td><i>       chunk          = chunk-size [ chunk-extension ] CRLF</i></td></tr>
+<tr><th id="61">61</th><td><i>                        chunk-data CRLF</i></td></tr>
+<tr><th id="62">62</th><td><i>       chunk-size     = 1*HEX</i></td></tr>
+<tr><th id="63">63</th><td><i>       last-chunk     = 1*("0") [ chunk-extension ] CRLF</i></td></tr>
+<tr><th id="64">64</th><td><i></i></td></tr>
+<tr><th id="65">65</th><td><i>       chunk-extension= *( ";" chunk-ext-name [ "=" chunk-ext-val ] )</i></td></tr>
+<tr><th id="66">66</th><td><i>       chunk-ext-name = token</i></td></tr>
+<tr><th id="67">67</th><td><i>       chunk-ext-val  = token | quoted-string</i></td></tr>
+<tr><th id="68">68</th><td><i>       chunk-data     = chunk-size(OCTET)</i></td></tr>
+<tr><th id="69">69</th><td><i>       trailer        = *(entity-header CRLF)</i></td></tr>
+<tr><th id="70">70</th><td><i></i></td></tr>
+<tr><th id="71">71</th><td><i>   The chunk-size field is a string of hex digits indicating the size of</i></td></tr>
+<tr><th id="72">72</th><td><i>   the chunk. The chunked encoding is ended by any chunk whose size is</i></td></tr>
+<tr><th id="73">73</th><td><i>   zero, followed by the trailer, which is terminated by an empty line.</i></td></tr>
+<tr><th id="74">74</th><td><i></i></td></tr>
+<tr><th id="75">75</th><td><i> */</i></td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td><i  data-doc="Curl_isxdigit">/* Check for an ASCII hex digit.</i></td></tr>
+<tr><th id="78">78</th><td><i  data-doc="Curl_isxdigit"> We avoid the use of isxdigit to accommodate non-ASCII hosts. */</i></td></tr>
+<tr><th id="79">79</th><td><em>static</em> <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="tu decl def" id="Curl_isxdigit" title='Curl_isxdigit' data-type='_Bool Curl_isxdigit(char digit)' data-ref="Curl_isxdigit">Curl_isxdigit</dfn>(<em>char</em> <dfn class="local col1 decl" id="1digit" title='digit' data-type='char' data-ref="1digit">digit</dfn>)</td></tr>
+<tr><th id="80">80</th><td>{</td></tr>
+<tr><th id="81">81</th><td>  <b>return</b> ( (<a class="local col1 ref" href="#1digit" title='digit' data-ref="1digit">digit</a> &gt;= <var>0x30</var> &amp;&amp; <a class="local col1 ref" href="#1digit" title='digit' data-ref="1digit">digit</a> &lt;= <var>0x39</var>) <i>/* 0-9 */</i></td></tr>
+<tr><th id="82">82</th><td>        || (<a class="local col1 ref" href="#1digit" title='digit' data-ref="1digit">digit</a> &gt;= <var>0x41</var> &amp;&amp; <a class="local col1 ref" href="#1digit" title='digit' data-ref="1digit">digit</a> &lt;= <var>0x46</var>) <i>/* A-F */</i></td></tr>
+<tr><th id="83">83</th><td>        || (<a class="local col1 ref" href="#1digit" title='digit' data-ref="1digit">digit</a> &gt;= <var>0x61</var> &amp;&amp; <a class="local col1 ref" href="#1digit" title='digit' data-ref="1digit">digit</a> &lt;= <var>0x66</var>) <i>/* a-f */</i>) ? <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a> : <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="84">84</th><td>}</td></tr>
+<tr><th id="85">85</th><td></td></tr>
+<tr><th id="86">86</th><td><em>void</em> <dfn class="decl def" id="Curl_httpchunk_init" title='Curl_httpchunk_init' data-ref="Curl_httpchunk_init">Curl_httpchunk_init</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="2conn" title='conn' data-type='struct connectdata *' data-ref="2conn">conn</dfn>)</td></tr>
+<tr><th id="87">87</th><td>{</td></tr>
+<tr><th id="88">88</th><td>  <b>struct</b> <a class="type" href="http_chunks.h.html#Curl_chunker" title='Curl_chunker' data-ref="Curl_chunker">Curl_chunker</a> *<dfn class="local col3 decl" id="3chunk" title='chunk' data-type='struct Curl_chunker *' data-ref="3chunk">chunk</dfn> = &amp;<a class="local col2 ref" href="#2conn" title='conn' data-ref="2conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::chunk" title='connectdata::chunk' data-ref="connectdata::chunk">chunk</a>;</td></tr>
+<tr><th id="89">89</th><td>  <a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexindex" title='Curl_chunker::hexindex' data-ref="Curl_chunker::hexindex">hexindex</a> = <var>0</var>;      <i>/* start at 0 */</i></td></tr>
+<tr><th id="90">90</th><td>  <a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::dataleft" title='Curl_chunker::dataleft' data-ref="Curl_chunker::dataleft">dataleft</a> = <var>0</var>;      <i>/* no data left yet! */</i></td></tr>
+<tr><th id="91">91</th><td>  <a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_HEX" title='CHUNK_HEX' data-ref="CHUNK_HEX">CHUNK_HEX</a>; <i>/* we get hex first! */</i></td></tr>
+<tr><th id="92">92</th><td>}</td></tr>
+<tr><th id="93">93</th><td></td></tr>
+<tr><th id="94">94</th><td><i>/*</i></td></tr>
+<tr><th id="95">95</th><td><i> * chunk_read() returns a OK for normal operations, or a positive return code</i></td></tr>
+<tr><th id="96">96</th><td><i> * for errors. STOP means this sequence of chunks is complete.  The 'wrote'</i></td></tr>
+<tr><th id="97">97</th><td><i> * argument is set to tell the caller how many bytes we actually passed to the</i></td></tr>
+<tr><th id="98">98</th><td><i> * client (for byte-counting and whatever).</i></td></tr>
+<tr><th id="99">99</th><td><i> *</i></td></tr>
+<tr><th id="100">100</th><td><i> * The states and the state-machine is further explained in the header file.</i></td></tr>
+<tr><th id="101">101</th><td><i> *</i></td></tr>
+<tr><th id="102">102</th><td><i> * This function always uses ASCII hex values to accommodate non-ASCII hosts.</i></td></tr>
+<tr><th id="103">103</th><td><i> * For example, 0x0d and 0x0a are used instead of '\r' and '\n'.</i></td></tr>
+<tr><th id="104">104</th><td><i> */</i></td></tr>
+<tr><th id="105">105</th><td><a class="typedef" href="http_chunks.h.html#CHUNKcode" title='CHUNKcode' data-type='enum CHUNKcode' data-ref="CHUNKcode">CHUNKcode</a> <dfn class="decl def" id="Curl_httpchunk_read" title='Curl_httpchunk_read' data-ref="Curl_httpchunk_read">Curl_httpchunk_read</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col4 decl" id="4conn" title='conn' data-type='struct connectdata *' data-ref="4conn">conn</dfn>,</td></tr>
+<tr><th id="106">106</th><td>                              <em>char</em> *<dfn class="local col5 decl" id="5datap" title='datap' data-type='char *' data-ref="5datap">datap</dfn>,</td></tr>
+<tr><th id="107">107</th><td>                              <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col6 decl" id="6datalen" title='datalen' data-type='ssize_t' data-ref="6datalen">datalen</dfn>,</td></tr>
+<tr><th id="108">108</th><td>                              <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> *<dfn class="local col7 decl" id="7wrotep" title='wrotep' data-type='ssize_t *' data-ref="7wrotep">wrotep</dfn>)</td></tr>
+<tr><th id="109">109</th><td>{</td></tr>
+<tr><th id="110">110</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col8 decl" id="8result" title='result' data-type='CURLcode' data-ref="8result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="111">111</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col9 decl" id="9data" title='data' data-type='struct Curl_easy *' data-ref="9data">data</dfn> = <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="112">112</th><td>  <b>struct</b> <a class="type" href="http_chunks.h.html#Curl_chunker" title='Curl_chunker' data-ref="Curl_chunker">Curl_chunker</a> *<dfn class="local col0 decl" id="10ch" title='ch' data-type='struct Curl_chunker *' data-ref="10ch">ch</dfn> = &amp;<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::chunk" title='connectdata::chunk' data-ref="connectdata::chunk">chunk</a>;</td></tr>
+<tr><th id="113">113</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#SingleRequest" title='SingleRequest' data-ref="SingleRequest">SingleRequest</a> *<dfn class="local col1 decl" id="11k" title='k' data-type='struct SingleRequest *' data-ref="11k">k</dfn> = &amp;<a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>;</td></tr>
+<tr><th id="114">114</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="12piece" title='piece' data-type='size_t' data-ref="12piece">piece</dfn>;</td></tr>
+<tr><th id="115">115</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col3 decl" id="13length" title='length' data-type='curl_off_t' data-ref="13length">length</dfn> = (<a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a>)<a class="local col6 ref" href="#6datalen" title='datalen' data-ref="6datalen">datalen</a>;</td></tr>
+<tr><th id="116">116</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col4 decl" id="14wrote" title='wrote' data-type='size_t *' data-ref="14wrote">wrote</dfn> = (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *)<a class="local col7 ref" href="#7wrotep" title='wrotep' data-ref="7wrotep">wrotep</a>;</td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td>  *<a class="local col4 ref" href="#14wrote" title='wrote' data-ref="14wrote">wrote</a> = <var>0</var>; <i>/* nothing's written yet */</i></td></tr>
+<tr><th id="119">119</th><td></td></tr>
+<tr><th id="120">120</th><td>  <i>/* the original data is written to the client, but we go on with the</i></td></tr>
+<tr><th id="121">121</th><td><i>     chunk read process, to properly calculate the content length*/</i></td></tr>
+<tr><th id="122">122</th><td>  <b>if</b>(<a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::http_te_skip" title='UserDefined::http_te_skip' data-ref="UserDefined::http_te_skip">http_te_skip</a> &amp;&amp; !<a class="local col1 ref" href="#11k" title='k' data-ref="11k">k</a>-&gt;<a class="ref" href="urldata.h.html#SingleRequest::ignorebody" title='SingleRequest::ignorebody' data-ref="SingleRequest::ignorebody">ignorebody</a>) {</td></tr>
+<tr><th id="123">123</th><td>    <a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a> = <a class="ref" href="sendf.h.html#Curl_client_write" title='Curl_client_write' data-ref="Curl_client_write">Curl_client_write</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>, <a class="macro" href="sendf.h.html#50" title="(1&lt;&lt;0)" data-ref="_M/CLIENTWRITE_BODY">CLIENTWRITE_BODY</a>, <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>, <a class="local col6 ref" href="#6datalen" title='datalen' data-ref="6datalen">datalen</a>);</td></tr>
+<tr><th id="124">124</th><td>    <b>if</b>(<a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a>)</td></tr>
+<tr><th id="125">125</th><td>      <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_WRITE_ERROR" title='CHUNKE_WRITE_ERROR' data-ref="CHUNKE_WRITE_ERROR">CHUNKE_WRITE_ERROR</a>;</td></tr>
+<tr><th id="126">126</th><td>  }</td></tr>
+<tr><th id="127">127</th><td></td></tr>
+<tr><th id="128">128</th><td>  <b>while</b>(<a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>) {</td></tr>
+<tr><th id="129">129</th><td>    <b>switch</b>(<a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a>) {</td></tr>
+<tr><th id="130">130</th><td>    <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNK_HEX" title='CHUNK_HEX' data-ref="CHUNK_HEX">CHUNK_HEX</a>:</td></tr>
+<tr><th id="131">131</th><td>      <b>if</b>(<a class="tu ref" href="#Curl_isxdigit" title='Curl_isxdigit' data-use='c' data-ref="Curl_isxdigit">Curl_isxdigit</a>(*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>)) {</td></tr>
+<tr><th id="132">132</th><td>        <b>if</b>(<a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexindex" title='Curl_chunker::hexindex' data-ref="Curl_chunker::hexindex">hexindex</a> &lt; <a class="macro" href="http_chunks.h.html#29" title="16" data-ref="_M/MAXNUM_SIZE">MAXNUM_SIZE</a>) {</td></tr>
+<tr><th id="133">133</th><td>          <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexbuffer" title='Curl_chunker::hexbuffer' data-ref="Curl_chunker::hexbuffer">hexbuffer</a>[<a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexindex" title='Curl_chunker::hexindex' data-ref="Curl_chunker::hexindex">hexindex</a>] = *<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>;</td></tr>
+<tr><th id="134">134</th><td>          <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>++;</td></tr>
+<tr><th id="135">135</th><td>          <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>--;</td></tr>
+<tr><th id="136">136</th><td>          <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexindex" title='Curl_chunker::hexindex' data-ref="Curl_chunker::hexindex">hexindex</a>++;</td></tr>
+<tr><th id="137">137</th><td>        }</td></tr>
+<tr><th id="138">138</th><td>        <b>else</b> {</td></tr>
+<tr><th id="139">139</th><td>          <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_TOO_LONG_HEX" title='CHUNKE_TOO_LONG_HEX' data-ref="CHUNKE_TOO_LONG_HEX">CHUNKE_TOO_LONG_HEX</a>; <i>/* longer hex than we support */</i></td></tr>
+<tr><th id="140">140</th><td>        }</td></tr>
+<tr><th id="141">141</th><td>      }</td></tr>
+<tr><th id="142">142</th><td>      <b>else</b> {</td></tr>
+<tr><th id="143">143</th><td>        <em>char</em> *<dfn class="local col5 decl" id="15endptr" title='endptr' data-type='char *' data-ref="15endptr">endptr</dfn>;</td></tr>
+<tr><th id="144">144</th><td>        <b>if</b>(<var>0</var> == <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexindex" title='Curl_chunker::hexindex' data-ref="Curl_chunker::hexindex">hexindex</a>)</td></tr>
+<tr><th id="145">145</th><td>          <i>/* This is illegal data, we received junk where we expected</i></td></tr>
+<tr><th id="146">146</th><td><i>             a hexadecimal digit. */</i></td></tr>
+<tr><th id="147">147</th><td>          <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_ILLEGAL_HEX" title='CHUNKE_ILLEGAL_HEX' data-ref="CHUNKE_ILLEGAL_HEX">CHUNKE_ILLEGAL_HEX</a>;</td></tr>
+<tr><th id="148">148</th><td></td></tr>
+<tr><th id="149">149</th><td>        <i>/* length and datap are unmodified */</i></td></tr>
+<tr><th id="150">150</th><td>        <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexbuffer" title='Curl_chunker::hexbuffer' data-ref="Curl_chunker::hexbuffer">hexbuffer</a>[<a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexindex" title='Curl_chunker::hexindex' data-ref="Curl_chunker::hexindex">hexindex</a>] = <var>0</var>;</td></tr>
+<tr><th id="151">151</th><td></td></tr>
+<tr><th id="152">152</th><td>        <i>/* convert to host encoding before calling strtoul */</i></td></tr>
+<tr><th id="153">153</th><td>        <a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a> = <a class="macro" href="non-ascii.h.html#57" title="((void)conn-&gt;data, CURLE_OK)" data-ref="_M/Curl_convert_from_network">Curl_convert_from_network</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>, ch-&gt;hexbuffer,</td></tr>
+<tr><th id="154">154</th><td>                                           ch-&gt;hexindex);</td></tr>
+<tr><th id="155">155</th><td>        <b>if</b>(<a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a>) {</td></tr>
+<tr><th id="156">156</th><td>          <i>/* Curl_convert_from_network calls failf if unsuccessful */</i></td></tr>
+<tr><th id="157">157</th><td>          <i>/* Treat it as a bad hex character */</i></td></tr>
+<tr><th id="158">158</th><td>          <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_ILLEGAL_HEX" title='CHUNKE_ILLEGAL_HEX' data-ref="CHUNKE_ILLEGAL_HEX">CHUNKE_ILLEGAL_HEX</a>;</td></tr>
+<tr><th id="159">159</th><td>        }</td></tr>
+<tr><th id="160">160</th><td></td></tr>
+<tr><th id="161">161</th><td>        <b>if</b>(<a class="ref" href="strtoofft.h.html#curlx_strtoofft" title='curlx_strtoofft' data-ref="curlx_strtoofft">curlx_strtoofft</a>(<a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::hexbuffer" title='Curl_chunker::hexbuffer' data-ref="Curl_chunker::hexbuffer">hexbuffer</a>, &amp;<a class="local col5 ref" href="#15endptr" title='endptr' data-ref="15endptr">endptr</a>, <var>16</var>, &amp;<a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::datasize" title='Curl_chunker::datasize' data-ref="Curl_chunker::datasize">datasize</a>))</td></tr>
+<tr><th id="162">162</th><td>          <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_ILLEGAL_HEX" title='CHUNKE_ILLEGAL_HEX' data-ref="CHUNKE_ILLEGAL_HEX">CHUNKE_ILLEGAL_HEX</a>;</td></tr>
+<tr><th id="163">163</th><td>        <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_LF" title='CHUNK_LF' data-ref="CHUNK_LF">CHUNK_LF</a>; <i>/* now wait for the CRLF */</i></td></tr>
+<tr><th id="164">164</th><td>      }</td></tr>
+<tr><th id="165">165</th><td>      <b>break</b>;</td></tr>
+<tr><th id="166">166</th><td></td></tr>
+<tr><th id="167">167</th><td>    <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNK_LF" title='CHUNK_LF' data-ref="CHUNK_LF">CHUNK_LF</a>:</td></tr>
+<tr><th id="168">168</th><td>      <i>/* waiting for the LF after a chunk size */</i></td></tr>
+<tr><th id="169">169</th><td>      <b>if</b>(*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> == <var>0x0a</var>) {</td></tr>
+<tr><th id="170">170</th><td>        <i>/* we're now expecting data to come, unless size was zero! */</i></td></tr>
+<tr><th id="171">171</th><td>        <b>if</b>(<var>0</var> == <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::datasize" title='Curl_chunker::datasize' data-ref="Curl_chunker::datasize">datasize</a>) {</td></tr>
+<tr><th id="172">172</th><td>          <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_TRAILER" title='CHUNK_TRAILER' data-ref="CHUNK_TRAILER">CHUNK_TRAILER</a>; <i>/* now check for trailers */</i></td></tr>
+<tr><th id="173">173</th><td>          <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a> = <var>0</var>;</td></tr>
+<tr><th id="174">174</th><td>        }</td></tr>
+<tr><th id="175">175</th><td>        <b>else</b></td></tr>
+<tr><th id="176">176</th><td>          <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_DATA" title='CHUNK_DATA' data-ref="CHUNK_DATA">CHUNK_DATA</a>;</td></tr>
+<tr><th id="177">177</th><td>      }</td></tr>
+<tr><th id="178">178</th><td></td></tr>
+<tr><th id="179">179</th><td>      <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>++;</td></tr>
+<tr><th id="180">180</th><td>      <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>--;</td></tr>
+<tr><th id="181">181</th><td>      <b>break</b>;</td></tr>
+<tr><th id="182">182</th><td></td></tr>
+<tr><th id="183">183</th><td>    <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNK_DATA" title='CHUNK_DATA' data-ref="CHUNK_DATA">CHUNK_DATA</a>:</td></tr>
+<tr><th id="184">184</th><td>      <i>/* We expect 'datasize' of data. We have 'length' right now, it can be</i></td></tr>
+<tr><th id="185">185</th><td><i>         more or less than 'datasize'. Get the smallest piece.</i></td></tr>
+<tr><th id="186">186</th><td><i>      */</i></td></tr>
+<tr><th id="187">187</th><td>      <a class="local col2 ref" href="#12piece" title='piece' data-ref="12piece">piece</a> = <a class="ref" href="warnless.h.html#curlx_sotouz" title='curlx_sotouz' data-ref="curlx_sotouz">curlx_sotouz</a>((<a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::datasize" title='Curl_chunker::datasize' data-ref="Curl_chunker::datasize">datasize</a> &gt;= <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>)?<a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>:<a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::datasize" title='Curl_chunker::datasize' data-ref="Curl_chunker::datasize">datasize</a>);</td></tr>
+<tr><th id="188">188</th><td></td></tr>
+<tr><th id="189">189</th><td>      <i>/* Write the data portion available */</i></td></tr>
+<tr><th id="190">190</th><td><u>#<span data-ppcond="190">ifdef</span> <a class="macro" href="curl_config.h.html#399" data-ref="_M/HAVE_LIBZ">HAVE_LIBZ</a></u></td></tr>
+<tr><th id="191">191</th><td>      <b>switch</b>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::http_ce_skip" title='UserDefined::http_ce_skip' data-ref="UserDefined::http_ce_skip">http_ce_skip</a>?</td></tr>
+<tr><th id="192">192</th><td>             <a class="macro" href="urldata.h.html#565" title="0" data-ref="_M/IDENTITY">IDENTITY</a> : <a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>.<a class="ref" href="urldata.h.html#SingleRequest::auto_decoding" title='SingleRequest::auto_decoding' data-ref="SingleRequest::auto_decoding">auto_decoding</a>) {</td></tr>
+<tr><th id="193">193</th><td>      <b>case</b> <a class="macro" href="urldata.h.html#565" title="0" data-ref="_M/IDENTITY">IDENTITY</a>:</td></tr>
+<tr><th id="194">194</th><td><u>#<span data-ppcond="190">endif</span></u></td></tr>
+<tr><th id="195">195</th><td>        <b>if</b>(!<a class="local col1 ref" href="#11k" title='k' data-ref="11k">k</a>-&gt;<a class="ref" href="urldata.h.html#SingleRequest::ignorebody" title='SingleRequest::ignorebody' data-ref="SingleRequest::ignorebody">ignorebody</a>) {</td></tr>
+<tr><th id="196">196</th><td>          <b>if</b>(!<a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::http_te_skip" title='UserDefined::http_te_skip' data-ref="UserDefined::http_te_skip">http_te_skip</a>)</td></tr>
+<tr><th id="197">197</th><td>            <a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a> = <a class="ref" href="sendf.h.html#Curl_client_write" title='Curl_client_write' data-ref="Curl_client_write">Curl_client_write</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>, <a class="macro" href="sendf.h.html#50" title="(1&lt;&lt;0)" data-ref="_M/CLIENTWRITE_BODY">CLIENTWRITE_BODY</a>, <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>,</td></tr>
+<tr><th id="198">198</th><td>                                       <a class="local col2 ref" href="#12piece" title='piece' data-ref="12piece">piece</a>);</td></tr>
+<tr><th id="199">199</th><td>          <b>else</b></td></tr>
+<tr><th id="200">200</th><td>            <a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="201">201</th><td>        }</td></tr>
+<tr><th id="202">202</th><td><u>#<span data-ppcond="202">ifdef</span> <a class="macro" href="curl_config.h.html#399" data-ref="_M/HAVE_LIBZ">HAVE_LIBZ</a></u></td></tr>
+<tr><th id="203">203</th><td>        <b>break</b>;</td></tr>
+<tr><th id="204">204</th><td></td></tr>
+<tr><th id="205">205</th><td>      <b>case</b> <a class="macro" href="urldata.h.html#566" title="1" data-ref="_M/DEFLATE">DEFLATE</a>:</td></tr>
+<tr><th id="206">206</th><td>        <i>/* update data-&gt;req.keep.str to point to the chunk data. */</i></td></tr>
+<tr><th id="207">207</th><td>        <a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>.<a class="ref" href="urldata.h.html#SingleRequest::str" title='SingleRequest::str' data-ref="SingleRequest::str">str</a> = <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>;</td></tr>
+<tr><th id="208">208</th><td>        <a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a> = <a class="ref" href="content_encoding.h.html#Curl_unencode_deflate_write" title='Curl_unencode_deflate_write' data-ref="Curl_unencode_deflate_write">Curl_unencode_deflate_write</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>, &amp;<a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>,</td></tr>
+<tr><th id="209">209</th><td>                                             (<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a>)<a class="local col2 ref" href="#12piece" title='piece' data-ref="12piece">piece</a>);</td></tr>
+<tr><th id="210">210</th><td>        <b>break</b>;</td></tr>
+<tr><th id="211">211</th><td></td></tr>
+<tr><th id="212">212</th><td>      <b>case</b> <a class="macro" href="urldata.h.html#567" title="2" data-ref="_M/GZIP">GZIP</a>:</td></tr>
+<tr><th id="213">213</th><td>        <i>/* update data-&gt;req.keep.str to point to the chunk data. */</i></td></tr>
+<tr><th id="214">214</th><td>        <a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>.<a class="ref" href="urldata.h.html#SingleRequest::str" title='SingleRequest::str' data-ref="SingleRequest::str">str</a> = <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>;</td></tr>
+<tr><th id="215">215</th><td>        <a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a> = <a class="ref" href="content_encoding.h.html#Curl_unencode_gzip_write" title='Curl_unencode_gzip_write' data-ref="Curl_unencode_gzip_write">Curl_unencode_gzip_write</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>, &amp;<a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>,</td></tr>
+<tr><th id="216">216</th><td>                                          (<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a>)<a class="local col2 ref" href="#12piece" title='piece' data-ref="12piece">piece</a>);</td></tr>
+<tr><th id="217">217</th><td>        <b>break</b>;</td></tr>
+<tr><th id="218">218</th><td></td></tr>
+<tr><th id="219">219</th><td>      <b>default</b>:</td></tr>
+<tr><th id="220">220</th><td>        <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>,</td></tr>
+<tr><th id="221">221</th><td>              <q>"Unrecognized content encoding type. "</q></td></tr>
+<tr><th id="222">222</th><td>              <q>"libcurl understands `identity', `deflate' and `gzip' "</q></td></tr>
+<tr><th id="223">223</th><td>              <q>"content encodings."</q>);</td></tr>
+<tr><th id="224">224</th><td>        <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_BAD_ENCODING" title='CHUNKE_BAD_ENCODING' data-ref="CHUNKE_BAD_ENCODING">CHUNKE_BAD_ENCODING</a>;</td></tr>
+<tr><th id="225">225</th><td>      }</td></tr>
+<tr><th id="226">226</th><td><u>#<span data-ppcond="202">endif</span></u></td></tr>
+<tr><th id="227">227</th><td></td></tr>
+<tr><th id="228">228</th><td>      <b>if</b>(<a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a>)</td></tr>
+<tr><th id="229">229</th><td>        <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_WRITE_ERROR" title='CHUNKE_WRITE_ERROR' data-ref="CHUNKE_WRITE_ERROR">CHUNKE_WRITE_ERROR</a>;</td></tr>
+<tr><th id="230">230</th><td></td></tr>
+<tr><th id="231">231</th><td>      *<a class="local col4 ref" href="#14wrote" title='wrote' data-ref="14wrote">wrote</a> += <a class="local col2 ref" href="#12piece" title='piece' data-ref="12piece">piece</a>;</td></tr>
+<tr><th id="232">232</th><td></td></tr>
+<tr><th id="233">233</th><td>      <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::datasize" title='Curl_chunker::datasize' data-ref="Curl_chunker::datasize">datasize</a> -= <a class="local col2 ref" href="#12piece" title='piece' data-ref="12piece">piece</a>; <i>/* decrease amount left to expect */</i></td></tr>
+<tr><th id="234">234</th><td>      <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> += <a class="local col2 ref" href="#12piece" title='piece' data-ref="12piece">piece</a>;    <i>/* move read pointer forward */</i></td></tr>
+<tr><th id="235">235</th><td>      <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a> -= <a class="local col2 ref" href="#12piece" title='piece' data-ref="12piece">piece</a>;   <i>/* decrease space left in this round */</i></td></tr>
+<tr><th id="236">236</th><td></td></tr>
+<tr><th id="237">237</th><td>      <b>if</b>(<var>0</var> == <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::datasize" title='Curl_chunker::datasize' data-ref="Curl_chunker::datasize">datasize</a>)</td></tr>
+<tr><th id="238">238</th><td>        <i>/* end of data this round, we now expect a trailing CRLF */</i></td></tr>
+<tr><th id="239">239</th><td>        <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_POSTLF" title='CHUNK_POSTLF' data-ref="CHUNK_POSTLF">CHUNK_POSTLF</a>;</td></tr>
+<tr><th id="240">240</th><td>      <b>break</b>;</td></tr>
+<tr><th id="241">241</th><td></td></tr>
+<tr><th id="242">242</th><td>    <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNK_POSTLF" title='CHUNK_POSTLF' data-ref="CHUNK_POSTLF">CHUNK_POSTLF</a>:</td></tr>
+<tr><th id="243">243</th><td>      <b>if</b>(*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> == <var>0x0a</var>) {</td></tr>
+<tr><th id="244">244</th><td>        <i>/* The last one before we go back to hex state and start all over. */</i></td></tr>
+<tr><th id="245">245</th><td>        <a class="ref" href="#Curl_httpchunk_init" title='Curl_httpchunk_init' data-ref="Curl_httpchunk_init">Curl_httpchunk_init</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>); <i>/* sets state back to CHUNK_HEX */</i></td></tr>
+<tr><th id="246">246</th><td>      }</td></tr>
+<tr><th id="247">247</th><td>      <b>else</b> <b>if</b>(*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> != <var>0x0d</var>)</td></tr>
+<tr><th id="248">248</th><td>        <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_BAD_CHUNK" title='CHUNKE_BAD_CHUNK' data-ref="CHUNKE_BAD_CHUNK">CHUNKE_BAD_CHUNK</a>;</td></tr>
+<tr><th id="249">249</th><td>      <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>++;</td></tr>
+<tr><th id="250">250</th><td>      <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>--;</td></tr>
+<tr><th id="251">251</th><td>      <b>break</b>;</td></tr>
+<tr><th id="252">252</th><td></td></tr>
+<tr><th id="253">253</th><td>    <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNK_TRAILER" title='CHUNK_TRAILER' data-ref="CHUNK_TRAILER">CHUNK_TRAILER</a>:</td></tr>
+<tr><th id="254">254</th><td>      <b>if</b>((*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> == <var>0x0d</var>) || (*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> == <var>0x0a</var>)) {</td></tr>
+<tr><th id="255">255</th><td>        <i>/* this is the end of a trailer, but if the trailer was zero bytes</i></td></tr>
+<tr><th id="256">256</th><td><i>           there was no trailer and we move on */</i></td></tr>
+<tr><th id="257">257</th><td></td></tr>
+<tr><th id="258">258</th><td>        <b>if</b>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a>) {</td></tr>
+<tr><th id="259">259</th><td>          <i>/* we allocate trailer with 3 bytes extra room to fit this */</i></td></tr>
+<tr><th id="260">260</th><td>          <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trailer" title='connectdata::trailer' data-ref="connectdata::trailer">trailer</a>[<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a>++] = <var>0x0d</var>;</td></tr>
+<tr><th id="261">261</th><td>          <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trailer" title='connectdata::trailer' data-ref="connectdata::trailer">trailer</a>[<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a>++] = <var>0x0a</var>;</td></tr>
+<tr><th id="262">262</th><td>          <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trailer" title='connectdata::trailer' data-ref="connectdata::trailer">trailer</a>[<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a>] = <var>0</var>;</td></tr>
+<tr><th id="263">263</th><td></td></tr>
+<tr><th id="264">264</th><td>          <i>/* Convert to host encoding before calling Curl_client_write */</i></td></tr>
+<tr><th id="265">265</th><td>          <a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a> = <a class="macro" href="non-ascii.h.html#57" title="((void)conn-&gt;data, CURLE_OK)" data-ref="_M/Curl_convert_from_network">Curl_convert_from_network</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>, conn-&gt;trailer,</td></tr>
+<tr><th id="266">266</th><td>                                             conn-&gt;trlPos);</td></tr>
+<tr><th id="267">267</th><td>          <b>if</b>(<a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a>)</td></tr>
+<tr><th id="268">268</th><td>            <i>/* Curl_convert_from_network calls failf if unsuccessful */</i></td></tr>
+<tr><th id="269">269</th><td>            <i>/* Treat it as a bad chunk */</i></td></tr>
+<tr><th id="270">270</th><td>            <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_BAD_CHUNK" title='CHUNKE_BAD_CHUNK' data-ref="CHUNKE_BAD_CHUNK">CHUNKE_BAD_CHUNK</a>;</td></tr>
+<tr><th id="271">271</th><td></td></tr>
+<tr><th id="272">272</th><td>          <b>if</b>(!<a class="local col9 ref" href="#9data" title='data' data-ref="9data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::http_te_skip" title='UserDefined::http_te_skip' data-ref="UserDefined::http_te_skip">http_te_skip</a>) {</td></tr>
+<tr><th id="273">273</th><td>            <a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a> = <a class="ref" href="sendf.h.html#Curl_client_write" title='Curl_client_write' data-ref="Curl_client_write">Curl_client_write</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>, <a class="macro" href="sendf.h.html#51" title="(1&lt;&lt;1)" data-ref="_M/CLIENTWRITE_HEADER">CLIENTWRITE_HEADER</a>,</td></tr>
+<tr><th id="274">274</th><td>                                       <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trailer" title='connectdata::trailer' data-ref="connectdata::trailer">trailer</a>, <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a>);</td></tr>
+<tr><th id="275">275</th><td>            <b>if</b>(<a class="local col8 ref" href="#8result" title='result' data-ref="8result">result</a>)</td></tr>
+<tr><th id="276">276</th><td>              <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_WRITE_ERROR" title='CHUNKE_WRITE_ERROR' data-ref="CHUNKE_WRITE_ERROR">CHUNKE_WRITE_ERROR</a>;</td></tr>
+<tr><th id="277">277</th><td>          }</td></tr>
+<tr><th id="278">278</th><td>          <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a> = <var>0</var>;</td></tr>
+<tr><th id="279">279</th><td>          <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_TRAILER_CR" title='CHUNK_TRAILER_CR' data-ref="CHUNK_TRAILER_CR">CHUNK_TRAILER_CR</a>;</td></tr>
+<tr><th id="280">280</th><td>          <b>if</b>(*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> == <var>0x0a</var>)</td></tr>
+<tr><th id="281">281</th><td>            <i>/* already on the LF */</i></td></tr>
+<tr><th id="282">282</th><td>            <b>break</b>;</td></tr>
+<tr><th id="283">283</th><td>        }</td></tr>
+<tr><th id="284">284</th><td>        <b>else</b> {</td></tr>
+<tr><th id="285">285</th><td>          <i>/* no trailer, we're on the final CRLF pair */</i></td></tr>
+<tr><th id="286">286</th><td>          <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_TRAILER_POSTCR" title='CHUNK_TRAILER_POSTCR' data-ref="CHUNK_TRAILER_POSTCR">CHUNK_TRAILER_POSTCR</a>;</td></tr>
+<tr><th id="287">287</th><td>          <b>break</b>; <i>/* don't advance the pointer */</i></td></tr>
+<tr><th id="288">288</th><td>        }</td></tr>
+<tr><th id="289">289</th><td>      }</td></tr>
+<tr><th id="290">290</th><td>      <b>else</b> {</td></tr>
+<tr><th id="291">291</th><td>        <i>/* conn-&gt;trailer is assumed to be freed in url.c on a</i></td></tr>
+<tr><th id="292">292</th><td><i>           connection basis */</i></td></tr>
+<tr><th id="293">293</th><td>        <b>if</b>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a> &gt;= <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlMax" title='connectdata::trlMax' data-ref="connectdata::trlMax">trlMax</a>) {</td></tr>
+<tr><th id="294">294</th><td>          <i>/* we always allocate three extra bytes, just because when the full</i></td></tr>
+<tr><th id="295">295</th><td><i>             header has been received we append CRLF\0 */</i></td></tr>
+<tr><th id="296">296</th><td>          <em>char</em> *<dfn class="local col6 decl" id="16ptr" title='ptr' data-type='char *' data-ref="16ptr">ptr</dfn>;</td></tr>
+<tr><th id="297">297</th><td>          <b>if</b>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlMax" title='connectdata::trlMax' data-ref="connectdata::trlMax">trlMax</a>) {</td></tr>
+<tr><th id="298">298</th><td>            <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlMax" title='connectdata::trlMax' data-ref="connectdata::trlMax">trlMax</a> *= <var>2</var>;</td></tr>
+<tr><th id="299">299</th><td>            <a class="local col6 ref" href="#16ptr" title='ptr' data-ref="16ptr">ptr</a> = <a class="macro" href="curl_memory.h.html#128" title="Curl_crealloc(conn-&gt;trailer, conn-&gt;trlMax + 3)" data-ref="_M/realloc">realloc</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trailer" title='connectdata::trailer' data-ref="connectdata::trailer">trailer</a>, <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlMax" title='connectdata::trlMax' data-ref="connectdata::trlMax">trlMax</a> + <var>3</var>);</td></tr>
+<tr><th id="300">300</th><td>          }</td></tr>
+<tr><th id="301">301</th><td>          <b>else</b> {</td></tr>
+<tr><th id="302">302</th><td>            <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlMax" title='connectdata::trlMax' data-ref="connectdata::trlMax">trlMax</a> = <var>128</var>;</td></tr>
+<tr><th id="303">303</th><td>            <a class="local col6 ref" href="#16ptr" title='ptr' data-ref="16ptr">ptr</a> = <a class="macro" href="curl_memory.h.html#124" title="Curl_cmalloc(conn-&gt;trlMax + 3)" data-ref="_M/malloc">malloc</a>(<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlMax" title='connectdata::trlMax' data-ref="connectdata::trlMax">trlMax</a> + <var>3</var>);</td></tr>
+<tr><th id="304">304</th><td>          }</td></tr>
+<tr><th id="305">305</th><td>          <b>if</b>(!<a class="local col6 ref" href="#16ptr" title='ptr' data-ref="16ptr">ptr</a>)</td></tr>
+<tr><th id="306">306</th><td>            <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_OUT_OF_MEMORY" title='CHUNKE_OUT_OF_MEMORY' data-ref="CHUNKE_OUT_OF_MEMORY">CHUNKE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="307">307</th><td>          <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trailer" title='connectdata::trailer' data-ref="connectdata::trailer">trailer</a> = <a class="local col6 ref" href="#16ptr" title='ptr' data-ref="16ptr">ptr</a>;</td></tr>
+<tr><th id="308">308</th><td>        }</td></tr>
+<tr><th id="309">309</th><td>        <a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trailer" title='connectdata::trailer' data-ref="connectdata::trailer">trailer</a>[<a class="local col4 ref" href="#4conn" title='conn' data-ref="4conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::trlPos" title='connectdata::trlPos' data-ref="connectdata::trlPos">trlPos</a>++]=*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>;</td></tr>
+<tr><th id="310">310</th><td>      }</td></tr>
+<tr><th id="311">311</th><td>      <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>++;</td></tr>
+<tr><th id="312">312</th><td>      <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>--;</td></tr>
+<tr><th id="313">313</th><td>      <b>break</b>;</td></tr>
+<tr><th id="314">314</th><td></td></tr>
+<tr><th id="315">315</th><td>    <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNK_TRAILER_CR" title='CHUNK_TRAILER_CR' data-ref="CHUNK_TRAILER_CR">CHUNK_TRAILER_CR</a>:</td></tr>
+<tr><th id="316">316</th><td>      <b>if</b>(*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> == <var>0x0a</var>) {</td></tr>
+<tr><th id="317">317</th><td>        <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_TRAILER_POSTCR" title='CHUNK_TRAILER_POSTCR' data-ref="CHUNK_TRAILER_POSTCR">CHUNK_TRAILER_POSTCR</a>;</td></tr>
+<tr><th id="318">318</th><td>        <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>++;</td></tr>
+<tr><th id="319">319</th><td>        <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>--;</td></tr>
+<tr><th id="320">320</th><td>      }</td></tr>
+<tr><th id="321">321</th><td>      <b>else</b></td></tr>
+<tr><th id="322">322</th><td>        <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_BAD_CHUNK" title='CHUNKE_BAD_CHUNK' data-ref="CHUNKE_BAD_CHUNK">CHUNKE_BAD_CHUNK</a>;</td></tr>
+<tr><th id="323">323</th><td>      <b>break</b>;</td></tr>
+<tr><th id="324">324</th><td></td></tr>
+<tr><th id="325">325</th><td>    <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNK_TRAILER_POSTCR" title='CHUNK_TRAILER_POSTCR' data-ref="CHUNK_TRAILER_POSTCR">CHUNK_TRAILER_POSTCR</a>:</td></tr>
+<tr><th id="326">326</th><td>      <i>/* We enter this state when a CR should arrive so we expect to</i></td></tr>
+<tr><th id="327">327</th><td><i>         have to first pass a CR before we wait for LF */</i></td></tr>
+<tr><th id="328">328</th><td>      <b>if</b>((*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> != <var>0x0d</var>) &amp;&amp; (*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> != <var>0x0a</var>)) {</td></tr>
+<tr><th id="329">329</th><td>        <i>/* not a CR then it must be another header in the trailer */</i></td></tr>
+<tr><th id="330">330</th><td>        <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_TRAILER" title='CHUNK_TRAILER' data-ref="CHUNK_TRAILER">CHUNK_TRAILER</a>;</td></tr>
+<tr><th id="331">331</th><td>        <b>break</b>;</td></tr>
+<tr><th id="332">332</th><td>      }</td></tr>
+<tr><th id="333">333</th><td>      <b>if</b>(*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> == <var>0x0d</var>) {</td></tr>
+<tr><th id="334">334</th><td>        <i>/* skip if CR */</i></td></tr>
+<tr><th id="335">335</th><td>        <a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a>++;</td></tr>
+<tr><th id="336">336</th><td>        <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>--;</td></tr>
+<tr><th id="337">337</th><td>      }</td></tr>
+<tr><th id="338">338</th><td>      <i>/* now wait for the final LF */</i></td></tr>
+<tr><th id="339">339</th><td>      <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::state" title='Curl_chunker::state' data-ref="Curl_chunker::state">state</a> = <a class="enum" href="http_chunks.h.html#CHUNK_STOP" title='CHUNK_STOP' data-ref="CHUNK_STOP">CHUNK_STOP</a>;</td></tr>
+<tr><th id="340">340</th><td>      <b>break</b>;</td></tr>
+<tr><th id="341">341</th><td></td></tr>
+<tr><th id="342">342</th><td>    <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNK_STOP" title='CHUNK_STOP' data-ref="CHUNK_STOP">CHUNK_STOP</a>:</td></tr>
+<tr><th id="343">343</th><td>      <b>if</b>(*<a class="local col5 ref" href="#5datap" title='datap' data-ref="5datap">datap</a> == <var>0x0a</var>) {</td></tr>
+<tr><th id="344">344</th><td>        <a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>--;</td></tr>
+<tr><th id="345">345</th><td></td></tr>
+<tr><th id="346">346</th><td>        <i>/* Record the length of any data left in the end of the buffer</i></td></tr>
+<tr><th id="347">347</th><td><i>           even if there's no more chunks to read */</i></td></tr>
+<tr><th id="348">348</th><td>        <a class="local col0 ref" href="#10ch" title='ch' data-ref="10ch">ch</a>-&gt;<a class="ref" href="http_chunks.h.html#Curl_chunker::dataleft" title='Curl_chunker::dataleft' data-ref="Curl_chunker::dataleft">dataleft</a> = <a class="ref" href="warnless.h.html#curlx_sotouz" title='curlx_sotouz' data-ref="curlx_sotouz">curlx_sotouz</a>(<a class="local col3 ref" href="#13length" title='length' data-ref="13length">length</a>);</td></tr>
+<tr><th id="349">349</th><td></td></tr>
+<tr><th id="350">350</th><td>        <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_STOP" title='CHUNKE_STOP' data-ref="CHUNKE_STOP">CHUNKE_STOP</a>; <i>/* return stop */</i></td></tr>
+<tr><th id="351">351</th><td>      }</td></tr>
+<tr><th id="352">352</th><td>      <b>else</b></td></tr>
+<tr><th id="353">353</th><td>        <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_BAD_CHUNK" title='CHUNKE_BAD_CHUNK' data-ref="CHUNKE_BAD_CHUNK">CHUNKE_BAD_CHUNK</a>;</td></tr>
+<tr><th id="354">354</th><td>    }</td></tr>
+<tr><th id="355">355</th><td>  }</td></tr>
+<tr><th id="356">356</th><td>  <b>return</b> <a class="enum" href="http_chunks.h.html#CHUNKE_OK" title='CHUNKE_OK' data-ref="CHUNKE_OK">CHUNKE_OK</a>;</td></tr>
+<tr><th id="357">357</th><td>}</td></tr>
+<tr><th id="358">358</th><td></td></tr>
+<tr><th id="359">359</th><td><em>const</em> <em>char</em> *<dfn class="decl def" id="Curl_chunked_strerror" title='Curl_chunked_strerror' data-ref="Curl_chunked_strerror">Curl_chunked_strerror</dfn>(<a class="typedef" href="http_chunks.h.html#CHUNKcode" title='CHUNKcode' data-type='enum CHUNKcode' data-ref="CHUNKcode">CHUNKcode</a> <dfn class="local col7 decl" id="17code" title='code' data-type='CHUNKcode' data-ref="17code">code</dfn>)</td></tr>
+<tr><th id="360">360</th><td>{</td></tr>
+<tr><th id="361">361</th><td>  <b>switch</b>(<a class="local col7 ref" href="#17code" title='code' data-ref="17code">code</a>) {</td></tr>
+<tr><th id="362">362</th><td>  <b>default</b>:</td></tr>
+<tr><th id="363">363</th><td>    <b>return</b> <q>"OK"</q>;</td></tr>
+<tr><th id="364">364</th><td>  <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNKE_TOO_LONG_HEX" title='CHUNKE_TOO_LONG_HEX' data-ref="CHUNKE_TOO_LONG_HEX">CHUNKE_TOO_LONG_HEX</a>:</td></tr>
+<tr><th id="365">365</th><td>    <b>return</b> <q>"Too long hexadecimal number"</q>;</td></tr>
+<tr><th id="366">366</th><td>  <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNKE_ILLEGAL_HEX" title='CHUNKE_ILLEGAL_HEX' data-ref="CHUNKE_ILLEGAL_HEX">CHUNKE_ILLEGAL_HEX</a>:</td></tr>
+<tr><th id="367">367</th><td>    <b>return</b> <q>"Illegal or missing hexadecimal sequence"</q>;</td></tr>
+<tr><th id="368">368</th><td>  <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNKE_BAD_CHUNK" title='CHUNKE_BAD_CHUNK' data-ref="CHUNKE_BAD_CHUNK">CHUNKE_BAD_CHUNK</a>:</td></tr>
+<tr><th id="369">369</th><td>    <b>return</b> <q>"Malformed encoding found"</q>;</td></tr>
+<tr><th id="370">370</th><td>  <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNKE_WRITE_ERROR" title='CHUNKE_WRITE_ERROR' data-ref="CHUNKE_WRITE_ERROR">CHUNKE_WRITE_ERROR</a>:</td></tr>
+<tr><th id="371">371</th><td>    <b>return</b> <q>"Write error"</q>;</td></tr>
+<tr><th id="372">372</th><td>  <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNKE_BAD_ENCODING" title='CHUNKE_BAD_ENCODING' data-ref="CHUNKE_BAD_ENCODING">CHUNKE_BAD_ENCODING</a>:</td></tr>
+<tr><th id="373">373</th><td>    <b>return</b> <q>"Bad content-encoding found"</q>;</td></tr>
+<tr><th id="374">374</th><td>  <b>case</b> <a class="enum" href="http_chunks.h.html#CHUNKE_OUT_OF_MEMORY" title='CHUNKE_OUT_OF_MEMORY' data-ref="CHUNKE_OUT_OF_MEMORY">CHUNKE_OUT_OF_MEMORY</a>:</td></tr>
+<tr><th id="375">375</th><td>    <b>return</b> <q>"Out of memory"</q>;</td></tr>
+<tr><th id="376">376</th><td>  }</td></tr>
+<tr><th id="377">377</th><td>}</td></tr>
+<tr><th id="378">378</th><td></td></tr>
+<tr><th id="379">379</th><td><u>#<span data-ppcond="25">endif</span> /* CURL_DISABLE_HTTP */</u></td></tr>
+<tr><th id="380">380</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

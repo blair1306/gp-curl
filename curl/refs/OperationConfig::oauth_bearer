@@ -1,0 +1,13 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='238' type='char *'/>
+<offset>8320</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='238'>/* OAuth 2.0 bearer token */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='130' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='130' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='546' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='546' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='546' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='546' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='546' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='919' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='920' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='554' u='r' c='get_args'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='90' type='size_t'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/curl_sasl.h' l='90'>/* Maximum initial response length */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='385' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/curl_sasl.c' l='386' u='r' c='Curl_sasl_start'/>

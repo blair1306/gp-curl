@@ -1,0 +1,30 @@
+<dec f='codebrowser/include/curl/curl.h' l='530' type='61'/>
+<doc f='codebrowser/include/curl/curl.h' l='530'>/* 61 - Unrecognized/bad encoding */</doc>
+<use f='codebrowser/lib/base64.c' l='118' u='r' c='Curl_base64_decode'/>
+<use f='codebrowser/lib/base64.c' l='133' u='r' c='Curl_base64_decode'/>
+<use f='codebrowser/lib/base64.c' l='154' u='r' c='Curl_base64_decode'/>
+<use f='codebrowser/lib/content_encoding.c' l='78' u='r' c='process_zlib_error'/>
+<use f='codebrowser/lib/curl_sasl.c' l='608' c='Curl_sasl_continue'/>
+<use f='codebrowser/lib/http_digest.c' l='61' u='r' c='Curl_input_digest'/>
+<use f='codebrowser/lib/strerror.c' l='228' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/transfer.c' l='818' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/vauth/digest.c' l='276' u='r' c='auth_decode_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='282' u='r' c='auth_decode_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='295' u='r' c='auth_decode_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='301' u='r' c='auth_decode_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='378' u='r' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='387' u='r' c='Curl_auth_create_digest_md5_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='606' u='r' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='628' u='r' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='632' u='r' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='189' u='r' c='ntlm_decode_type2_target'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='296' u='r' c='Curl_auth_decode_ntlm_type2_message'/>
+<use f='codebrowser/lib/vauth/ntlm.c' l='307' u='r' c='Curl_auth_decode_ntlm_type2_message'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='753' u='r' c='pubkey_pem_to_der'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='757' u='r' c='pubkey_pem_to_der'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='762' u='r' c='pubkey_pem_to_der'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='770' u='r' c='pubkey_pem_to_der'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='133' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='142' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='151' u='r' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='160' u='r' c='test'/>

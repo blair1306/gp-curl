@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_printf.h' l='45'/>
+<use f='codebrowser/lib/sendf.c' l='231' u='c'/>
+<use f='codebrowser/lib/sendf.c' l='249' u='c'/>
+<use f='codebrowser/src/tool_msgs.c' l='47' u='c'/>
+<use f='codebrowser/tests/server/util.c' l='127' u='c'/>

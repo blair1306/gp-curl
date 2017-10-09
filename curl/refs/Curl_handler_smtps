@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/smtp.h' l='78' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/smtp.c' l='140' ll='160' type='const struct Curl_handler'/>
+<use f='codebrowser/lib/smtp.c' l='178' u='a' c='smtp_to_smtps'/>
+<doc f='codebrowser/lib/smtp.c' l='136'>/*
+ * SMTPS protocol handler.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='235' u='a'/>
+<use f='codebrowser/lib/url.c' l='235' u='a'/>

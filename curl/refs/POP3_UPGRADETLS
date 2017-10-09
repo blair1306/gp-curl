@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/pop3.h' l='37' type='4'/>
+<doc f='codebrowser/lib/pop3.h' l='37'>/* asynchronously upgrade the connection to SSL/TLS
+                       (multi mode only) */</doc>
+<use f='codebrowser/lib/pop3.c' l='360' u='r' c='pop3_perform_upgrade_tls'/>
+<use f='codebrowser/lib/pop3.c' l='361' u='r' c='pop3_perform_upgrade_tls'/>
+<use f='codebrowser/lib/pop3.c' l='937' u='r' c='pop3_statemach_act'/>

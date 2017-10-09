@@ -1,0 +1,35 @@
+<dec f='codebrowser/lib/transfer.h' l='59' type='void Curl_setup_transfer(struct connectdata * data, int sockindex, curl_off_t size, _Bool getheader, curl_off_t * bytecountp, int writesockindex, curl_off_t * writecountp)'/>
+<use f='codebrowser/lib/dict.c' l='203' u='c' c='dict_do'/>
+<use f='codebrowser/lib/dict.c' l='250' u='c' c='dict_do'/>
+<use f='codebrowser/lib/dict.c' l='273' u='c' c='dict_do'/>
+<doc f='codebrowser/lib/transfer.h' l='57'>/* This sets up a forthcoming transfer */</doc>
+<use f='codebrowser/lib/ftp.c' l='470' u='c' c='InitiateTransfer'/>
+<use f='codebrowser/lib/ftp.c' l='475' u='c' c='InitiateTransfer'/>
+<use f='codebrowser/lib/ftp.c' l='1658' u='c' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/ftp.c' l='2229' u='c' c='ftp_state_retr'/>
+<use f='codebrowser/lib/ftp.c' l='3675' u='c' c='ftp_do_more'/>
+<use f='codebrowser/lib/ftp.c' l='4341' u='c' c='ftp_dophase_done'/>
+<use f='codebrowser/lib/gopher.c' l='163' u='c' c='gopher_do'/>
+<use f='codebrowser/lib/http.c' l='2478' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2500' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2569' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2725' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2743' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/imap.c' l='1157' u='c' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1161' u='c' c='imap_state_fetch_resp'/>
+<use f='codebrowser/lib/imap.c' l='1211' u='c' c='imap_state_append_resp'/>
+<use f='codebrowser/lib/imap.c' l='1637' u='c' c='imap_dophase_done'/>
+<use f='codebrowser/lib/pop3.c' l='900' u='c' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/rtsp.c' l='335' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/rtsp.c' l='603' u='c' c='rtsp_do'/>
+<use f='codebrowser/lib/smtp.c' l='951' u='c' c='smtp_state_data_resp'/>
+<use f='codebrowser/lib/smtp.c' l='1374' u='c' c='smtp_dophase_done'/>
+<use f='codebrowser/lib/telnet.c' l='1696' u='c' c='telnet_do'/>
+<use f='codebrowser/lib/tftp.c' l='1244' u='c' c='tftp_multi_statemach'/>
+<use f='codebrowser/lib/tftp.c' l='1266' u='c' c='tftp_multi_statemach'/>
+<def f='codebrowser/lib/transfer.c' l='1988' ll='2070' type='void Curl_setup_transfer(struct connectdata * conn, int sockindex, curl_off_t size, _Bool getheader, curl_off_t * bytecountp, int writesockindex, curl_off_t * writecountp)'/>
+<doc f='codebrowser/lib/transfer.c' l='1984'>/*
+ * Curl_setup_transfer() is called to setup some basic properties for the
+ * upcoming transfer.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='6667' u='c' c='create_conn'/>

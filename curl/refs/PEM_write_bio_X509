@@ -1,0 +1,2 @@
+<dec f='include/openssl/pem.h' l='451' macro='1' type='int PEM_write_bio_X509(BIO * bp, X509 * x)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2947' u='c' c='get_cert_chain'/>

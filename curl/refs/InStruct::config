@@ -1,0 +1,5 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='93' type='struct OperationConfig *'/>
+<offset>64</offset>
+<use f='codebrowser/src/tool_cb_rea.c' l='46' u='r' c='tool_read_cb'/>
+<use f='codebrowser/src/tool_cb_rea.c' l='52' u='r' c='tool_read_cb'/>
+<use f='codebrowser/src/tool_operate.c' l='880' u='w' c='operate_do'/>

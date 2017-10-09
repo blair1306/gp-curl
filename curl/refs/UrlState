@@ -1,0 +1,59 @@
+<def f='codebrowser/lib/urldata.h' l='1235' ll='1361'/>
+<size>17568</size>
+<mbr r='UrlState::conn_cache' o='0' t='struct conncache *'/>
+<mbr r='UrlState::multi_owned_by_easy' o='64' t='_Bool'/>
+<mbr r='UrlState::keeps_speed' o='128' t='struct curltime'/>
+<mbr r='UrlState::lastconnect' o='256' t='struct connectdata *'/>
+<mbr r='UrlState::headerbuff' o='320' t='char *'/>
+<mbr r='UrlState::headersize' o='384' t='size_t'/>
+<mbr r='UrlState::buffer' o='448' t='char *'/>
+<mbr r='UrlState::uploadbuffer' o='512' t='char [16385]'/>
+<mbr r='UrlState::current_speed' o='131648' t='curl_off_t'/>
+<mbr r='UrlState::this_is_a_follow' o='131712' t='_Bool'/>
+<mbr r='UrlState::first_host' o='131776' t='char *'/>
+<mbr r='UrlState::first_remote_port' o='131840' t='int'/>
+<mbr r='UrlState::session' o='131904' t='struct curl_ssl_session *'/>
+<mbr r='UrlState::sessionage' o='131968' t='long'/>
+<mbr r='UrlState::tempcount' o='132032' t='unsigned int'/>
+<mbr r='UrlState::tempwrite' o='132096' t='struct tempbuf [3]'/>
+<mbr r='UrlState::scratch' o='132672' t='char *'/>
+<mbr r='UrlState::errorbuf' o='132736' t='_Bool'/>
+<mbr r='UrlState::os_errno' o='132768' t='int'/>
+<mbr r='UrlState::prev_signal' o='132800' t='void (*)(int)'/>
+<mbr r='UrlState::allow_port' o='132864' t='_Bool'/>
+<mbr r='UrlState::digest' o='132928' t='struct digestdata'/>
+<mbr r='UrlState::proxydigest' o='133440' t='struct digestdata'/>
+<mbr r='UrlState::authhost' o='133952' t='struct auth'/>
+<mbr r='UrlState::authproxy' o='134208' t='struct auth'/>
+<mbr r='UrlState::authproblem' o='134464' t='_Bool'/>
+<mbr r='UrlState::resolver' o='134528' t='void *'/>
+<mbr r='UrlState::engine' o='134592' t='void *'/>
+<mbr r='UrlState::expiretime' o='134656' t='struct curltime'/>
+<mbr r='UrlState::timenode' o='134784' t='struct Curl_tree'/>
+<mbr r='UrlState::timeoutlist' o='135232' t='struct curl_llist'/>
+<mbr r='UrlState::expires' o='135488' t='struct time_node [10]'/>
+<mbr r='UrlState::most_recent_ftp_entrypath' o='139328' t='char *'/>
+<mbr r='UrlState::ftp_trying_alternative' o='139392' t='_Bool'/>
+<mbr r='UrlState::httpversion' o='139424' t='int'/>
+<mbr r='UrlState::expect100header' o='139456' t='_Bool'/>
+<mbr r='UrlState::pipe_broke' o='139464' t='_Bool'/>
+<mbr r='UrlState::prev_block_had_trailing_cr' o='139472' t='_Bool'/>
+<mbr r='UrlState::crlf_conversions' o='139520' t='curl_off_t'/>
+<mbr r='UrlState::pathbuffer' o='139584' t='char *'/>
+<mbr r='UrlState::path' o='139648' t='char *'/>
+<mbr r='UrlState::slash_removed' o='139712' t='_Bool'/>
+<mbr r='UrlState::use_range' o='139720' t='_Bool'/>
+<mbr r='UrlState::rangestringalloc' o='139728' t='_Bool'/>
+<mbr r='UrlState::range' o='139776' t='char *'/>
+<mbr r='UrlState::resume_from' o='139840' t='curl_off_t'/>
+<mbr r='UrlState::rtsp_next_client_CSeq' o='139904' t='long'/>
+<mbr r='UrlState::rtsp_next_server_CSeq' o='139968' t='long'/>
+<mbr r='UrlState::rtsp_CSeq_recv' o='140032' t='long'/>
+<mbr r='UrlState::infilesize' o='140096' t='curl_off_t'/>
+<mbr r='UrlState::drain' o='140160' t='size_t'/>
+<mbr r='UrlState::done' o='140224' t='_Bool'/>
+<mbr r='UrlState::fread_func' o='140288' t='curl_read_callback'/>
+<mbr r='UrlState::in' o='140352' t='void *'/>
+<mbr r='UrlState::stream_depends_on' o='140416' t='struct Curl_easy *'/>
+<mbr r='UrlState::stream_depends_e' o='140480' t='_Bool'/>
+<mbr r='UrlState::stream_weight' o='140512' t='int'/>

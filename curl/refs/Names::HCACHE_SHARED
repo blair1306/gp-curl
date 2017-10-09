@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1718' type='3'/>
+<doc f='codebrowser/lib/urldata.h' l='1718'>/* points to a shared one in a shared object */</doc>
+<use f='codebrowser/lib/url.c' l='2386' u='r' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='2416' u='r' c='Curl_setopt'/>

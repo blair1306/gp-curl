@@ -1,0 +1,1 @@
+<dec f='include/openssl/ui.h' l='338' type='int (*)(UI *) UI_method_get_flusher(UI_METHOD * method)'/>

@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/hostip.h' l='206' type='sigjmp_buf'/>
+<doc f='codebrowser/lib/hostip.h' l='201'>/* Forward-declaration of variable defined in hostip.c. Beware this
+ * is a global and unique instance. This is used to store the return
+ * address that we can jump back to from inside a signal handler.
+ * This is not thread-safe stuff.
+ */</doc>
+<def f='codebrowser/lib/hostip.c' l='284' type='sigjmp_buf'/>
+<doc f='codebrowser/lib/hostip.c' l='281'>/* Beware this is a global and unique instance. This is used to store the
+   return address that we can jump back to from inside a signal handler. This
+   is not thread-safe stuff. */</doc>

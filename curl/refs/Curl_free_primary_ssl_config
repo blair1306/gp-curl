@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='142' type='void Curl_free_primary_ssl_config(struct ssl_primary_config * sslc)'/>
+<use f='codebrowser/lib/url.c' l='3076' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3077' u='c' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='6294' u='c' c='reuse_conn'/>
+<use f='codebrowser/lib/url.c' l='6295' u='c' c='reuse_conn'/>
+<def f='codebrowser/lib/vtls/vtls.c' l='126' ll='134' type='void Curl_free_primary_ssl_config(struct ssl_primary_config * sslc)'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='376' u='c' c='Curl_ssl_kill_session'/>

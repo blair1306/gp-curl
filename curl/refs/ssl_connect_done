@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='182' type='5'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3180' u='r' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3245' u='r' c='ossl_connect_step3'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3348' u='r' c='ossl_connect_common'/>

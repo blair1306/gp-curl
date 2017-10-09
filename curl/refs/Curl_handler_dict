@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/dict.h' l='26' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/dict.c' l='73' ll='92' type='const struct Curl_handler'/>
+<doc f='codebrowser/lib/dict.c' l='69'>/*
+ * DICT protocol handler.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='184' u='a'/>
+<use f='codebrowser/lib/url.c' l='184' u='a'/>

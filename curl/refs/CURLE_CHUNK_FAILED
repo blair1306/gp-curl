@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='572' type='88'/>
+<doc f='codebrowser/include/curl/curl.h' l='572'>/* 88 - chunk callback reported error */</doc>
+<use f='codebrowser/lib/ftp.c' l='3896' u='r' c='wc_statemach'/>
+<use f='codebrowser/lib/strerror.c' l='300' c='curl_easy_strerror'/>

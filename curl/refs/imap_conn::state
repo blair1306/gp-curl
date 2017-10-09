@@ -1,0 +1,24 @@
+<dec f='codebrowser/lib/imap.h' l='72' type='imapstate'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/imap.h' l='72'>/* Always use imap.c:state() to change state! */</doc>
+<use f='codebrowser/lib/imap.c' l='268' u='r' c='imap_endofresp'/>
+<use f='codebrowser/lib/imap.c' l='320' u='r' c='imap_endofresp'/>
+<use f='codebrowser/lib/imap.c' l='403' u='w' c='state'/>
+<use f='codebrowser/lib/imap.c' l='465' u='r' c='imap_perform_upgrade_tls'/>
+<use f='codebrowser/lib/imap.c' l='1248' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1269' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1271' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1275' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1279' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1283' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1287' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1291' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1295' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1299' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1303' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1307' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1311' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1315' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1325' u='r' c='imap_statemach_act'/>
+<use f='codebrowser/lib/imap.c' l='1343' u='r' c='imap_multi_statemach'/>
+<use f='codebrowser/lib/imap.c' l='1353' u='r' c='imap_block_statemach'/>

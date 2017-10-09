@@ -1,0 +1,18 @@
+<dec f='codebrowser/lib/urldata.h' l='1618' type='_Bool'/>
+<offset>11488</offset>
+<use f='codebrowser/lib/ftp.c' l='1539' u='r' c='ftp_state_type'/>
+<use f='codebrowser/lib/ftp.c' l='1549' u='r' c='ftp_state_type'/>
+<use f='codebrowser/lib/ftp.c' l='2410' u='r' c='ftp_state_get_resp'/>
+<use f='codebrowser/lib/ftp.c' l='2449' u='r' c='ftp_state_get_resp'/>
+<use f='codebrowser/lib/ftp.c' l='3627' u='r' c='ftp_do_more'/>
+<use f='codebrowser/lib/ftp.c' l='3661' u='r' c='ftp_do_more'/>
+<use f='codebrowser/lib/ftp.c' l='4445' u='w' c='ftp_setup_connection'/>
+<use f='codebrowser/lib/ftp.c' l='4455' u='w' c='ftp_setup_connection'/>
+<use f='codebrowser/lib/http.c' l='2151' u='r' c='Curl_http'/>
+<use f='codebrowser/lib/tftp.c' l='459' u='r' c='tftp_send_first'/>
+<use f='codebrowser/lib/tftp.c' l='1389' u='w' c='tftp_setup_connection'/>
+<use f='codebrowser/lib/tftp.c' l='1396' u='w' c='tftp_setup_connection'/>
+<use f='codebrowser/lib/transfer.c' l='197' u='r' c='Curl_fillreadbuffer'/>
+<use f='codebrowser/lib/transfer.c' l='972' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/url.c' l='932' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='5785' u='r' c='parse_remote_port'/>

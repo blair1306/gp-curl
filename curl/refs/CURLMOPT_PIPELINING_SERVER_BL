@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/multi.h' l='372' macro='1' type='10012'/>
+<use f='codebrowser/lib/multi.c' l='2732' c='curl_multi_setopt'/>
+<use f='codebrowser/tests/libtest/lib1550.c' l='41' u='r' c='test'/>
+<use f='codebrowser/tests/libtest/lib1900.c' l='163' u='r' c='test'/>

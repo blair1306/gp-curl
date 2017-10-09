@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/asyn.h' l='91' type='void Curl_resolver_cancel(struct connectdata * conn)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='142' ll='145' type='void Curl_resolver_cancel(struct connectdata * conn)'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='139'>/*
+ * Cancel all possibly still on-going resolves for this connection.
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='84'>/*
+ * Curl_resolver_cancel().
+ *
+ * It is called from inside other functions to cancel currently performing
+ * resolver request. Should also free any temporary resources allocated to
+ * perform a request.
+ */</doc>
+<use f='codebrowser/lib/multi.c' l='586' u='c' c='multi_done'/>
+<use f='codebrowser/lib/url.c' l='3021' u='c' c='conn_free'/>

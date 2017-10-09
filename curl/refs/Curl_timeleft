@@ -1,0 +1,32 @@
+<dec f='codebrowser/lib/connect.h' l='38' type='time_t Curl_timeleft(struct Curl_easy * data, struct curltime * nowp, _Bool duringconnect)'/>
+<doc f='codebrowser/lib/connect.h' l='36'>/* generic function that returns how much time there&apos;s left to run, according
+   to the timeouts set */</doc>
+<def f='codebrowser/lib/connect.c' l='182' ll='237' type='time_t Curl_timeleft(struct Curl_easy * data, struct curltime * nowp, _Bool duringconnect)'/>
+<use f='codebrowser/lib/connect.c' l='743' u='c' c='Curl_is_connected'/>
+<use f='codebrowser/lib/connect.c' l='1151' u='c' c='Curl_connecthost'/>
+<doc f='codebrowser/lib/connect.c' l='168'>/*
+ * Curl_timeleft() returns the amount of milliseconds left allowed for the
+ * transfer/connection. If the value is negative, the timeout time has already
+ * elapsed.
+ *
+ * The start time is stored in progress.t_startsingle - as set with
+ * Curl_pgrsTime(..., TIMER_STARTSINGLE);
+ *
+ * If &apos;nowp&apos; is non-NULL, it points to the current time.
+ * &apos;duringconnect&apos; is FALSE if not during a connect, as then of course the
+ * connect timeout is not taken into account!
+ *
+ * @unittest: 1303
+ */</doc>
+<use f='codebrowser/lib/ftp.c' l='347' u='c' c='ftp_timeleft_accept'/>
+<use f='codebrowser/lib/http_proxy.c' l='316' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/multi.c' l='1375' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/socks.c' l='63' u='c' c='Curl_blockread_all'/>
+<use f='codebrowser/lib/socks.c' l='124' u='c' c='Curl_SOCKS4'/>
+<use f='codebrowser/lib/socks.c' l='405' u='c' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/tftp.c' l='209' u='c' c='tftp_set_timeouts'/>
+<use f='codebrowser/lib/transfer.c' l='1196' u='c' c='Curl_readwrite'/>
+<use f='codebrowser/lib/url.c' l='6173' u='c' c='resolve_server'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3273' u='c' c='ossl_connect_common'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3291' u='c' c='ossl_connect_common'/>
+<use f='codebrowser/tests/unit/unit1303.c' l='144' u='c' c='test'/>

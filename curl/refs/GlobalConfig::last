@@ -1,0 +1,8 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='276' type='struct OperationConfig *'/>
+<offset>768</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='276'>/* Always last in the struct */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='2128' u='w' c='parse_args'/>
+<use f='codebrowser/src/tool_main.c' l='152' u='w' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='233' u='r' c='main_free'/>
+<use f='codebrowser/src/tool_main.c' l='235' u='w' c='main_free'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='242' u='w' c='parseconfig'/>

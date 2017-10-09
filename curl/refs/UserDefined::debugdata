@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1487' type='void *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/urldata.h' l='1487'>/* the data that will be passed to fdebug */</doc>
+<use f='codebrowser/lib/sendf.c' l='794' u='r' c='showit'/>
+<use f='codebrowser/lib/url.c' l='1921' u='w' c='Curl_setopt'/>

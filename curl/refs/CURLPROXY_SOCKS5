@@ -1,0 +1,15 @@
+<dec f='codebrowser/include/curl/curl.h' l='672' type='5'/>
+<doc f='codebrowser/include/curl/curl.h' l='672'>/* added in 7.10 */</doc>
+<use f='codebrowser/lib/socks.c' l='387' u='r' c='Curl_SOCKS5'/>
+<use f='codebrowser/lib/url.c' l='3931' c='Curl_connected_proxy'/>
+<use f='codebrowser/lib/url.c' l='5110' u='r' c='parse_proxy'/>
+<use f='codebrowser/lib/url.c' l='5136' u='r' c='parse_proxy'/>
+<use f='codebrowser/src/tool_getparam.c' l='814' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_setopt.c' l='52' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='52' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='52' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='52' u='r'/>
+<use f='codebrowser/src/tool_setopt.c' l='60'/>
+<use f='codebrowser/src/tool_setopt.c' l='60'/>
+<use f='codebrowser/src/tool_setopt.c' l='60'/>
+<use f='codebrowser/src/tool_setopt.c' l='60'/>

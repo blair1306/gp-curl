@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/mime.h' l='83' type='void *'/>
+<offset>64</offset>
+<doc f='codebrowser/lib/mime.h' l='83'>/* State-dependent pointer. */</doc>
+<use f='codebrowser/lib/mime.c' l='274' u='w' c='mimesetstate'/>
+<use f='codebrowser/lib/mime.c' l='833' u='r' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='938' u='r' c='mime_subparts_read'/>

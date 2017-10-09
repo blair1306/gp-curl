@@ -1,0 +1,11 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='205' type='char *'/>
+<offset>7552</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='205'>/* for ACCT */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='157' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='157' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='865' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='865' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='865' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='865' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='865' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='1361' u='r' c='operate_do'/>

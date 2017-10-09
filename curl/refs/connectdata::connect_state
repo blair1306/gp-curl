@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/urldata.h' l='1025' type='struct http_connect_state *'/>
+<offset>14656</offset>
+<doc f='codebrowser/lib/urldata.h' l='1025'>/* for HTTP CONNECT */</doc>
+<use f='codebrowser/lib/http_proxy.c' l='140' u='r' c='Curl_connect_complete'/>
+<use f='codebrowser/lib/http_proxy.c' l='141' u='r' c='Curl_connect_complete'/>
+<use f='codebrowser/lib/http_proxy.c' l='146' u='r' c='Curl_connect_ongoing'/>
+<use f='codebrowser/lib/http_proxy.c' l='147' u='r' c='Curl_connect_ongoing'/>
+<use f='codebrowser/lib/http_proxy.c' l='159' u='w' c='connect_init'/>
+<use f='codebrowser/lib/http_proxy.c' l='163' u='r' c='connect_init'/>
+<use f='codebrowser/lib/http_proxy.c' l='175' u='r' c='connect_done'/>
+<use f='codebrowser/lib/http_proxy.c' l='192' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='648' u='r' c='Curl_connect_free'/>
+<use f='codebrowser/lib/http_proxy.c' l='651' u='w' c='Curl_connect_free'/>
+<use f='codebrowser/lib/http_proxy.c' l='667' u='r' c='Curl_proxyCONNECT'/>
+<use f='codebrowser/lib/multi.c' l='838' u='r' c='waitproxyconnect_getsock'/>
+<use f='codebrowser/lib/url.c' l='3068' u='r' c='conn_free'/>
+<use f='codebrowser/lib/url.c' l='3068' u='w' c='conn_free'/>

@@ -1,0 +1,22 @@
+<dec f='include/zlib.h' l='87' type='uInt'/>
+<offset>64</offset>
+<doc f='include/zlib.h' l='87'>/* number of bytes available at next_in */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='95' u='r' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='139' u='r' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='154' u='w' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='186' u='w' c='Curl_unencode_deflate_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='308' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='339' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='351' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='352' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='356' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='373' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='374' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='379' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='381' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='386' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='387' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='387' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='408' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='412' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/src/tool_hugehelp.c' l='10021' u='w' c='hugehelp'/>

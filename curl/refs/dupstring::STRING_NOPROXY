@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1441' type='46'/>
+<doc f='codebrowser/lib/urldata.h' l='1441'>/* List of hosts which should not use the proxy, if
+                             used */</doc>
+<use f='codebrowser/lib/url.c' l='1883' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='5354' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5360' u='r' c='create_conn_helper_init_proxy'/>
+<use f='codebrowser/lib/url.c' l='5361' u='r' c='create_conn_helper_init_proxy'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_md5.h' l='40' type='unsigned int'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/curl_md5.h' l='40'>/* Context structure size */</doc>
+<use f='codebrowser/lib/md5.c' l='530' u='r' c='Curl_MD5_init'/>

@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='995' type='int'/>
+<offset>12512</offset>
+<doc f='codebrowser/lib/urldata.h' l='995'>/* index of where to store data */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='173' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='258' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='260' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='261' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='262' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='274' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='278' u='w' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='293' u='r' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/http_chunks.c' l='309' u='w' c='Curl_httpchunk_read'/>

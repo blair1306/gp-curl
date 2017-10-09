@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1500' type='long'/>
+<offset>768</offset>
+<doc f='codebrowser/lib/urldata.h' l='1500'>/* as in HTTP Location: */</doc>
+<use f='codebrowser/lib/getinfo.c' l='174' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/transfer.c' l='1346' u='w' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1749' u='r' c='Curl_follow'/>
+<use f='codebrowser/lib/transfer.c' l='1758' u='w' c='Curl_follow'/>

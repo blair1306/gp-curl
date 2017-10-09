@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='521' type='53'/>
+<doc f='codebrowser/include/curl/curl.h' l='521'>/* 53 - SSL crypto engine not found */</doc>
+<use f='codebrowser/lib/strerror.c' l='200' c='curl_easy_strerror'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1080' u='r' c='Curl_ossl_set_engine'/>

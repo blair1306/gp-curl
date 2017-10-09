@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/vtls/vtls.h' l='59' type='CURLcode (*)(struct connectdata *, int)'/>
+<offset>768</offset>
+<use f='codebrowser/lib/vtls/vtls.c' l='248' u='r' c='Curl_ssl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='1102' u='r' c='Curl_multissl_connect'/>

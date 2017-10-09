@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/imap.h' l='87' type='const struct Curl_handler'/>
+<def f='codebrowser/lib/imap.c' l='144' ll='163' type='const struct Curl_handler'/>
+<use f='codebrowser/lib/imap.c' l='186' u='a' c='imap_to_imaps'/>
+<doc f='codebrowser/lib/imap.c' l='140'>/*
+ * IMAPS protocol handler.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='212' u='a'/>
+<use f='codebrowser/lib/url.c' l='212' u='a'/>

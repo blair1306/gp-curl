@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/urldata.h' l='772' type='char *'/>
+<offset>131136</offset>
+<use f='codebrowser/lib/http_proxy.c' l='167' u='w' c='connect_init'/>
+<use f='codebrowser/lib/http_proxy.c' l='168' u='r' c='connect_init'/>
+<use f='codebrowser/lib/http_proxy.c' l='422' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='431' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='443' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='444' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='468' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='471' u='w' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='476' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='500' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='501' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='503' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='507' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='518' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='527' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='531' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='533' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='541' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='549' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='552' u='r' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='561' u='w' c='CONNECT'/>

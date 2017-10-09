@@ -1,0 +1,14 @@
+<dec f='codebrowser/lib/pop3.h' l='70' type='unsigned int'/>
+<offset>1376</offset>
+<doc f='codebrowser/lib/pop3.h' l='70'>/* Preferred authentication type */</doc>
+<use f='codebrowser/lib/pop3.c' l='511' u='r' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='522' u='r' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='527' u='r' c='pop3_perform_authentication'/>
+<use f='codebrowser/lib/pop3.c' l='785' u='r' c='pop3_state_auth_resp'/>
+<use f='codebrowser/lib/pop3.c' l='790' u='r' c='pop3_state_auth_resp'/>
+<use f='codebrowser/lib/pop3.c' l='1080' u='w' c='pop3_connect'/>
+<use f='codebrowser/lib/pop3.c' l='1344' u='w' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1356' u='r' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1359' u='w' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1362' u='w' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1365' u='w' c='pop3_parse_url_options'/>

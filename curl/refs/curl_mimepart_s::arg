@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/mime.h' l='107' type='void *'/>
+<offset>512</offset>
+<doc f='codebrowser/lib/mime.h' l='107'>/* Argument to callback functions. */</doc>
+<use f='codebrowser/lib/mime.c' l='754' u='r' c='read_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1027' u='r' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1078' u='r' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1083' u='w' c='cleanup_part_content'/>
+<use f='codebrowser/lib/mime.c' l='1403' u='w' c='curl_mime_data_cb'/>
+<use f='codebrowser/lib/mime.c' l='1421' u='r' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1450' u='w' c='Curl_mime_set_subparts'/>
+<use f='codebrowser/lib/mime.c' l='1527' u='r' c='Curl_mime_size'/>
+<use f='codebrowser/lib/mime.c' l='1659' u='r' c='Curl_mime_prepare_headers'/>
+<use f='codebrowser/src/tool_setopt.c' l='499' u='r' c='libcurl_generate_mime'/>

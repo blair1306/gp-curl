@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/pop3.h' l='88'/>
+<doc f='codebrowser/lib/pop3.h' l='87'>/* This is the 5-bytes End-Of-Body marker for POP3 */</doc>
+<use f='codebrowser/lib/pop3.c' l='1501' u='c'/>
+<use f='codebrowser/lib/pop3.c' l='1517' u='c'/>

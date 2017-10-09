@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1279' type='_Bool'/>
+<offset>132864</offset>
+<use f='codebrowser/lib/transfer.c' l='1377' u='w' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1819' u='w' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='5772' u='r' c='parse_remote_port'/>

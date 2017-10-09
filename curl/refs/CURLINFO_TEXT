@@ -1,0 +1,11 @@
+<dec f='codebrowser/include/curl/curl.h' l='430' type='0'/>
+<use f='codebrowser/lib/sendf.c' l='234' u='r' c='Curl_infof'/>
+<use f='codebrowser/lib/sendf.c' l='259' u='r' c='Curl_failf'/>
+<use f='codebrowser/lib/sendf.c' l='797' c='showit'/>
+<use f='codebrowser/lib/sendf.c' l='848' u='r' c='Curl_debug'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1827' u='r' c='ssl_tls_trace'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='129' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='188' c='tool_debug_cb'/>
+<use f='codebrowser/tests/libtest/lib1515.c' l='48' u='r' c='debug_callback'/>
+<use f='codebrowser/tests/libtest/lib552.c' l='95' c='my_trace'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='116' c='libtest_debug_cb'/>

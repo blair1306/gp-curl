@@ -1,0 +1,12 @@
+<def f='codebrowser/lib/urldata.h' l='270' ll='290'/>
+<size>64</size>
+<doc f='codebrowser/lib/urldata.h' l='269'>/* Struct used for Digest challenge-response authentication */</doc>
+<mbr r='digestdata::nonce' o='0' t='char *'/>
+<mbr r='digestdata::cnonce' o='64' t='char *'/>
+<mbr r='digestdata::realm' o='128' t='char *'/>
+<mbr r='digestdata::algo' o='192' t='int'/>
+<mbr r='digestdata::stale' o='224' t='_Bool'/>
+<mbr r='digestdata::opaque' o='256' t='char *'/>
+<mbr r='digestdata::qop' o='320' t='char *'/>
+<mbr r='digestdata::algorithm' o='384' t='char *'/>
+<mbr r='digestdata::nc' o='448' t='int'/>

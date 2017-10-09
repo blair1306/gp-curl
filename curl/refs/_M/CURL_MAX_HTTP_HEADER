@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='236'/>
+<doc f='codebrowser/include/curl/curl.h' l='233'>/* The only reason to have a max limit for this is to avoid the risk of a bad
+   server feeding libcurl with a never-ending header that will cause reallocs
+   infinitely */</doc>
+<use f='codebrowser/lib/http.c' l='2880' u='c'/>
+<use f='codebrowser/lib/http.c' l='2885' u='c'/>

@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='105' type='unsigned int'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/curl_sasl.h' l='105'>/* Preferred authentication mechanism */</doc>
+<use f='codebrowser/lib/curl_sasl.c' l='157' u='w' c='Curl_sasl_parse_url_auth_option'/>
+<use f='codebrowser/lib/curl_sasl.c' l='161' u='w' c='Curl_sasl_parse_url_auth_option'/>
+<use f='codebrowser/lib/curl_sasl.c' l='165' u='w' c='Curl_sasl_parse_url_auth_option'/>
+<use f='codebrowser/lib/curl_sasl.c' l='183' u='w' c='Curl_sasl_init'/>
+<use f='codebrowser/lib/curl_sasl.c' l='243' u='r' c='Curl_sasl_can_authenticate'/>
+<use f='codebrowser/lib/curl_sasl.c' l='276' u='r' c='Curl_sasl_start'/>
+<use f='codebrowser/lib/imap.c' l='1909' u='r' c='imap_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1345' u='w' c='pop3_parse_url_options'/>
+<use f='codebrowser/lib/pop3.c' l='1357' u='r' c='pop3_parse_url_options'/>

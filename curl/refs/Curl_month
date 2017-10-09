@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/parsedate.h' l='26' type='const char *const [12]'/>
+<use f='codebrowser/lib/file.c' l='504' u='r' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='2089' u='r' c='ftp_state_mdtm_resp'/>
+<use f='codebrowser/lib/http.c' l='1732' u='r' c='Curl_add_timecondition'/>
+<def f='codebrowser/lib/parsedate.c' l='92' ll='94' type='const char *const [12]'/>
+<use f='codebrowser/lib/parsedate.c' l='229' u='a' c='checkmonth'/>

@@ -1,0 +1,4 @@
+<dec f='include/openssl/evp.h' l='141' type='struct dsa_st *'/>
+<offset>0</offset>
+<doc f='include/openssl/evp.h' l='141'>/* DSA */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='2878' u='r' c='get_cert_chain'/>

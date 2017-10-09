@@ -1,0 +1,6 @@
+<dec f='include/openssl/des.h' l='108'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='416' u='c'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='420' u='c'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='424' u='c'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='491' u='c'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='495' u='c'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_binmode.h' l='32'/>
+<use f='codebrowser/src/tool_getparam.c' l='1229' u='c'/>
+<use f='codebrowser/src/tool_getparam.c' l='1295' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='401' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='778' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='853' u='c'/>

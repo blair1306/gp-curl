@@ -1,0 +1,2 @@
+<dec f='include/openssl/md4.h' l='110' type='int MD4_Init(MD4_CTX * c)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='579' u='c' c='Curl_ntlm_core_mk_nt_hash'/>

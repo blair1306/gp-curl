@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_md5.h' l='50' type='const HMAC_params [1]'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='635' u='r' c='Curl_hmac_md5'/>
+<def f='codebrowser/lib/md5.c' l='487' ll='496' type='const HMAC_params [1]'/>
+<use f='codebrowser/lib/vauth/cram.c' l='107' u='r' c='Curl_auth_create_cram_md5_message'/>

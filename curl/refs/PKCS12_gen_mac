@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='234' type='int PKCS12_gen_mac(PKCS12 * p12, const char * pass, int passlen, unsigned char * mac, unsigned int * maclen)'/>

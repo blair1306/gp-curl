@@ -1,0 +1,21 @@
+<dec f='codebrowser/lib/curl_base64.h' l='28' type='CURLcode Curl_base64url_encode(struct Curl_easy * data, const char * inputbuff, size_t insize, char ** outptr, size_t * outlen)'/>
+<def f='codebrowser/lib/base64.c' l='315' ll='320' type='CURLcode Curl_base64url_encode(struct Curl_easy * data, const char * inputbuff, size_t insize, char ** outptr, size_t * outlen)'/>
+<doc f='codebrowser/lib/base64.c' l='298'>/*
+ * Curl_base64url_encode()
+ *
+ * Given a pointer to an input buffer and an input size, encode it and
+ * return a pointer in *outptr to a newly allocated memory area holding
+ * encoded data. Size of encoded data is returned in variable pointed by
+ * outlen.
+ *
+ * Input length of 0 indicates input buffer holds a NUL-terminated string.
+ *
+ * Returns CURLE_OK on success, otherwise specific error code. Function
+ * output shall not be considered valid unless CURLE_OK is returned.
+ *
+ * When encoded data length is 0, returns NULL in *outptr.
+ *
+ * @unittest: 1302
+ */</doc>
+<use f='codebrowser/tests/unit/unit1302.c' l='86' u='c' c='test'/>
+<use f='codebrowser/tests/unit/unit1302.c' l='92' u='c' c='test'/>

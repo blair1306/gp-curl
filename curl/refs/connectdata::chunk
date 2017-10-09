@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='798' type='struct Curl_chunker'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/urldata.h' l='795'>/* chunk is for HTTP chunked encoding, but is in the general connectdata
+     struct only because we can do just about any protocol through a HTTP proxy
+     and a HTTP proxy may in fact respond using chunked encoding */</doc>
+<use f='codebrowser/lib/http_chunks.c' l='88' u='a' c='Curl_httpchunk_init'/>
+<use f='codebrowser/lib/http_chunks.c' l='112' u='a' c='Curl_httpchunk_read'/>
+<use f='codebrowser/lib/pipeline.c' l='81' u='m' c='Curl_pipeline_penalized'/>
+<use f='codebrowser/lib/pipeline.c' l='87' u='m' c='Curl_pipeline_penalized'/>
+<use f='codebrowser/lib/transfer.c' l='695' u='m' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1233' u='m' c='Curl_readwrite'/>

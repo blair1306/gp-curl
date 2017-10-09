@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='420' type='_Bool'/>
+<offset>176</offset>
+<use f='codebrowser/lib/http.c' l='716' u='r' c='Curl_http_output_auth'/>
+<use f='codebrowser/lib/url.c' l='5878' u='w' c='override_login'/>
+<use f='codebrowser/lib/url.c' l='5895' u='w' c='override_login'/>

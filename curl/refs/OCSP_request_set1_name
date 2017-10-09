@@ -1,0 +1,1 @@
+<dec f='include/openssl/ocsp.h' l='431' type='int OCSP_request_set1_name(OCSP_REQUEST * req, X509_NAME * nm)'/>

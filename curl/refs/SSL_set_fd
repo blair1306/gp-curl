@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2156' type='int SSL_set_fd(SSL * s, int fd)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2484' u='c' c='ossl_connect_step1'/>

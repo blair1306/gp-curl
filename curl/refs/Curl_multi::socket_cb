@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/multihandle.h' l='90' type='curl_socket_callback'/>
+<offset>768</offset>
+<doc f='codebrowser/lib/multihandle.h' l='89'>/* callback function and user data pointer for the *socket() API */</doc>
+<use f='codebrowser/lib/multi.c' l='2375' u='r' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2376' u='r' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2446' u='r' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2447' u='r' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2480' u='r' c='Curl_multi_closed'/>
+<use f='codebrowser/lib/multi.c' l='2481' u='r' c='Curl_multi_closed'/>
+<use f='codebrowser/lib/multi.c' l='2693' u='w' c='curl_multi_setopt'/>

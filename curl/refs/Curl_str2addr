@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='80' type='Curl_addrinfo * Curl_str2addr(char * dotted, int port)'/>
+<def f='codebrowser/lib/curl_addrinfo.c' l='465' ll='480' type='Curl_addrinfo * Curl_str2addr(char * address, int port)'/>
+<doc f='codebrowser/lib/curl_addrinfo.c' l='461'>/*
+ * Given an IPv4 or IPv6 dotted string address, this converts it to a proper
+ * allocated Curl_addrinfo struct and returns it.
+ */</doc>
+<use f='codebrowser/lib/hostip.c' l='831' u='c' c='Curl_loadhostpairs'/>

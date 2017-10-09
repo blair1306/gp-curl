@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/mime.h' l='92' type='curl_mimepart *'/>
+<offset>192</offset>
+<doc f='codebrowser/lib/mime.h' l='92'>/* Last part. */</doc>
+<use f='codebrowser/lib/mime.c' l='1161' u='w' c='curl_mime_init'/>
+<use f='codebrowser/lib/mime.c' l='1201' u='r' c='curl_mime_addpart'/>
+<use f='codebrowser/lib/mime.c' l='1202' u='r' c='curl_mime_addpart'/>
+<use f='codebrowser/lib/mime.c' l='1206' u='w' c='curl_mime_addpart'/>

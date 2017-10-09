@@ -1,0 +1,3 @@
+<dec f='codebrowser/include/curl/curl.h' l='526' type='57'/>
+<doc f='codebrowser/include/curl/curl.h' l='526'>/* 57 - NOT IN USE */</doc>
+<use f='codebrowser/lib/strerror.c' l='324' c='curl_easy_strerror'/>

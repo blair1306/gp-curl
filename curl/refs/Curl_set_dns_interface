@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/hostip.h' l='218' type='CURLcode Curl_set_dns_interface(struct Curl_easy * data, const char * interf)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='694' ll='700' type='CURLcode Curl_set_dns_interface(struct Curl_easy * data, const char * interf)'/>
+<doc f='codebrowser/lib/hostip.h' l='214'>/*
+ * Function provided by the resolver backend to set
+ * outgoing interface to use for DNS requests
+ */</doc>
+<use f='codebrowser/lib/url.c' l='2883' u='c' c='Curl_setopt'/>

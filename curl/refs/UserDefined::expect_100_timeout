@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1699' type='long'/>
+<offset>17088</offset>
+<doc f='codebrowser/lib/urldata.h' l='1699'>/* in milliseconds */</doc>
+<use f='codebrowser/lib/transfer.c' l='932' u='r' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1178' u='r' c='Curl_readwrite'/>
+<use f='codebrowser/lib/transfer.c' l='2056' u='r' c='Curl_setup_transfer'/>
+<use f='codebrowser/lib/url.c' l='628' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1380' u='w' c='Curl_setopt'/>

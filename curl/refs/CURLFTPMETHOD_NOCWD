@@ -1,0 +1,4 @@
+<dec f='codebrowser/include/curl/curl.h' l='834' type='2'/>
+<doc f='codebrowser/include/curl/curl.h' l='834'>/* no CWD at all */</doc>
+<use f='codebrowser/src/tool_paramhlp.c' l='502' u='r' c='ftpfilemethod'/>
+<use f='codebrowser/tests/libtest/lib539.c' l='78' c='test'/>

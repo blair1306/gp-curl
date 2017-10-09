@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_dirhie.h' l='26' type='CURLcode create_dir_hierarchy(const char * outfile, FILE * errors)'/>
+<def f='codebrowser/src/tool_dirhie.c' l='102' ll='157' type='CURLcode create_dir_hierarchy(const char * outfile, FILE * errors)'/>
+<use f='codebrowser/src/tool_operate.c' l='633' u='c' c='operate_do'/>

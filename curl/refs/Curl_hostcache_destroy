@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/hostip.h' l='243' type='void Curl_hostcache_destroy(struct Curl_easy * data)'/>
+<doc f='codebrowser/lib/hostip.h' l='240'>/*
+ * Destroy the hostcache of this handle.
+ */</doc>

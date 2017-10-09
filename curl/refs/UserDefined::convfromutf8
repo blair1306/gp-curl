@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1543' type='curl_conv_callback'/>
+<offset>2368</offset>
+<doc f='codebrowser/lib/urldata.h' l='1542'>/* function to convert from UTF-8 encoding: */</doc>
+<use f='codebrowser/lib/url.c' l='529' u='w' c='Curl_init_userdefined'/>
+<use f='codebrowser/lib/url.c' l='1992' u='w' c='Curl_setopt'/>

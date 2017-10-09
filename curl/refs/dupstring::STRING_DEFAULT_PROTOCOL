@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1401' type='7'/>
+<doc f='codebrowser/lib/urldata.h' l='1401'>/* Protocol to use when the URL doesn&apos;t specify */</doc>
+<use f='codebrowser/lib/url.c' l='2682' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='4447' u='r' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4448' u='r' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4464' u='r' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4465' u='r' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4579' u='r' c='parseurlandfillconn'/>

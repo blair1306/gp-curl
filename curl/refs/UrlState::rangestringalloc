@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1334' type='_Bool'/>
+<offset>139728</offset>
+<use f='codebrowser/lib/url.c' l='435' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='4847' u='r' c='setup_range'/>
+<use f='codebrowser/lib/url.c' l='4855' u='w' c='setup_range'/>

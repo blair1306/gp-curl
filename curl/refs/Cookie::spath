@@ -1,0 +1,26 @@
+<dec f='codebrowser/lib/cookie.h' l='33' type='char *'/>
+<offset>256</offset>
+<doc f='codebrowser/lib/cookie.h' l='33'>/* sanitized cookie path */</doc>
+<use f='codebrowser/lib/cookie.c' l='112' u='r' c='freecookie'/>
+<use f='codebrowser/lib/cookie.c' l='502' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='503' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='504' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='669' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='670' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='756' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='757' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='767' u='w' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='768' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='860' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='860' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='861' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='861' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='867' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='867' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='893' u='r' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='1100' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1100' u='w' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1100' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1100' u='r' c='dup_cookie'/>
+<use f='codebrowser/lib/cookie.c' l='1168' u='r' c='Curl_cookie_getlist'/>
+<use f='codebrowser/lib/cookie.c' l='1168' u='r' c='Curl_cookie_getlist'/>

@@ -1,0 +1,12 @@
+<dec f='codebrowser/src/tool_setopt.h' l='91' type='CURLcode tool_setopt_slist(CURL * curl, struct GlobalConfig * config, const char * name, CURLoption tag, struct curl_slist * list)'/>
+<use f='codebrowser/src/tool_operate.c' l='1007' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1027' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1209' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1210' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1211' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1266' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1412' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1437' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1441' macro='1' u='c'/>
+<def f='codebrowser/src/tool_setopt.c' l='584' ll='602' type='CURLcode tool_setopt_slist(CURL * curl, struct GlobalConfig * config, const char * name, CURLoption tag, struct curl_slist * list)'/>
+<doc f='codebrowser/src/tool_setopt.c' l='583'>/* setopt wrapper for curl_slist options */</doc>

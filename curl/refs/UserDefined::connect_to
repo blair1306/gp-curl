@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1578' type='struct curl_slist *'/>
+<offset>7680</offset>
+<doc f='codebrowser/lib/urldata.h' l='1578'>/* list of host:port mappings to override
+                                    the hostname and port to connect to */</doc>
+<use f='codebrowser/lib/url.c' l='2960' u='w' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='6583' u='r' c='create_conn'/>

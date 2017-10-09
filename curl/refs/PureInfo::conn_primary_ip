@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1077' type='char [46]'/>
+<offset>704</offset>
+<doc f='codebrowser/lib/urldata.h' l='1069'>/* PureInfo members &apos;conn_primary_ip&apos;, &apos;conn_primary_port&apos;, &apos;conn_local_ip&apos;
+     and, &apos;conn_local_port&apos; are copied over from the connectdata struct in
+     order to allow curl_easy_getinfo() to return this information even when
+     the session handle is no longer associated with a connection, and also
+     allow curl_easy_reset() to clear this information from the session handle
+     without disturbing information which is still alive, and that might be
+     reused, in the connection cache. */</doc>
+<use f='codebrowser/lib/connect.c' l='602' u='r' c='Curl_persistconninfo'/>
+<use f='codebrowser/lib/getinfo.c' l='77' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='120' u='r' c='getinfo_char'/>

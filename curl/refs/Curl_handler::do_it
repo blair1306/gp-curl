@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='629' type='CURLcode (*)(struct connectdata *, _Bool *)'/>
+<offset>128</offset>
+<doc f='codebrowser/lib/urldata.h' l='628'>/* These two functions MUST be set to be protocol dependent */</doc>
+<use f='codebrowser/lib/multi.c' l='1245' u='r' c='multi_do'/>
+<use f='codebrowser/lib/multi.c' l='1247' u='r' c='multi_do'/>
+<use f='codebrowser/lib/multi.c' l='1263' u='r' c='multi_do'/>

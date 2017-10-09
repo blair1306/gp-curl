@@ -1,0 +1,873 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>sendf.c source code [codebrowser/lib/sendf.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/lib/sendf.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>lib</a>/<a href='sendf.c.html'>sendf.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td></td></tr>
+<tr><th id="23">23</th><td><u>#include <a href="curl_setup.h.html">"curl_setup.h"</a></u></td></tr>
+<tr><th id="24">24</th><td></td></tr>
+<tr><th id="25">25</th><td><u>#include <a href="../include/curl/curl.h.html">&lt;curl/curl.h&gt;</a></u></td></tr>
+<tr><th id="26">26</th><td></td></tr>
+<tr><th id="27">27</th><td><u>#include <a href="urldata.h.html">"urldata.h"</a></u></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="sendf.h.html">"sendf.h"</a></u></td></tr>
+<tr><th id="29">29</th><td><u>#include <a href="connect.h.html">"connect.h"</a></u></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="vtls/vtls.h.html">"vtls/vtls.h"</a></u></td></tr>
+<tr><th id="31">31</th><td><u>#include <a href="ssh.h.html">"ssh.h"</a></u></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="multiif.h.html">"multiif.h"</a></u></td></tr>
+<tr><th id="33">33</th><td><u>#include <a href="non-ascii.h.html">"non-ascii.h"</a></u></td></tr>
+<tr><th id="34">34</th><td><u>#include <a href="strerror.h.html">"strerror.h"</a></u></td></tr>
+<tr><th id="35">35</th><td><u>#include <a href="select.h.html">"select.h"</a></u></td></tr>
+<tr><th id="36">36</th><td><u>#include <a href="strdup.h.html">"strdup.h"</a></u></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><i>/* The last 3 #include files should be in this order */</i></td></tr>
+<tr><th id="39">39</th><td><u>#include <a href="curl_printf.h.html">"curl_printf.h"</a></u></td></tr>
+<tr><th id="40">40</th><td><u>#include <a href="curl_memory.h.html">"curl_memory.h"</a></u></td></tr>
+<tr><th id="41">41</th><td><u>#include <a href="memdebug.h.html">"memdebug.h"</a></u></td></tr>
+<tr><th id="42">42</th><td></td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="43">ifdef</span> <a class="macro" href="urldata.h.html#1322" data-ref="_M/CURL_DO_LINEEND_CONV">CURL_DO_LINEEND_CONV</a></u></td></tr>
+<tr><th id="44">44</th><td><i  data-doc="convert_lineends">/*</i></td></tr>
+<tr><th id="45">45</th><td><i  data-doc="convert_lineends"> * convert_lineends() changes CRLF (\r\n) end-of-line markers to a single LF</i></td></tr>
+<tr><th id="46">46</th><td><i  data-doc="convert_lineends"> * (\n), with special processing for CRLF sequences that are split between two</i></td></tr>
+<tr><th id="47">47</th><td><i  data-doc="convert_lineends"> * blocks of data.  Remaining, bare CRs are changed to LFs.  The possibly new</i></td></tr>
+<tr><th id="48">48</th><td><i  data-doc="convert_lineends"> * size of the data is returned.</i></td></tr>
+<tr><th id="49">49</th><td><i  data-doc="convert_lineends"> */</i></td></tr>
+<tr><th id="50">50</th><td><em>static</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="tu decl def" id="convert_lineends" title='convert_lineends' data-type='size_t convert_lineends(struct Curl_easy * data, char * startPtr, size_t size)' data-ref="convert_lineends">convert_lineends</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="1data" title='data' data-type='struct Curl_easy *' data-ref="1data">data</dfn>,</td></tr>
+<tr><th id="51">51</th><td>                               <em>char</em> *<dfn class="local col2 decl" id="2startPtr" title='startPtr' data-type='char *' data-ref="2startPtr">startPtr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="3size" title='size' data-type='size_t' data-ref="3size">size</dfn>)</td></tr>
+<tr><th id="52">52</th><td>{</td></tr>
+<tr><th id="53">53</th><td>  <em>char</em> *<dfn class="local col4 decl" id="4inPtr" title='inPtr' data-type='char *' data-ref="4inPtr">inPtr</dfn>, *<dfn class="local col5 decl" id="5outPtr" title='outPtr' data-type='char *' data-ref="5outPtr">outPtr</dfn>;</td></tr>
+<tr><th id="54">54</th><td></td></tr>
+<tr><th id="55">55</th><td>  <i>/* sanity check */</i></td></tr>
+<tr><th id="56">56</th><td>  <b>if</b>((<a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a> == <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>) || (<a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a> &lt; <var>1</var>)) {</td></tr>
+<tr><th id="57">57</th><td>    <b>return</b> <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>;</td></tr>
+<tr><th id="58">58</th><td>  }</td></tr>
+<tr><th id="59">59</th><td></td></tr>
+<tr><th id="60">60</th><td>  <b>if</b>(<a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::prev_block_had_trailing_cr" title='UrlState::prev_block_had_trailing_cr' data-ref="UrlState::prev_block_had_trailing_cr">prev_block_had_trailing_cr</a>) {</td></tr>
+<tr><th id="61">61</th><td>    <i>/* The previous block of incoming data</i></td></tr>
+<tr><th id="62">62</th><td><i>       had a trailing CR, which was turned into a LF. */</i></td></tr>
+<tr><th id="63">63</th><td>    <b>if</b>(*<a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a> == <kbd>'\n'</kbd>) {</td></tr>
+<tr><th id="64">64</th><td>      <i>/* This block of incoming data starts with the</i></td></tr>
+<tr><th id="65">65</th><td><i>         previous block's LF so get rid of it */</i></td></tr>
+<tr><th id="66">66</th><td>      <a class="ref" href="../../include/string.h.html#memmove" title='memmove' data-ref="memmove">memmove</a>(<a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a>, <a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a> + <var>1</var>, <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>-<var>1</var>);</td></tr>
+<tr><th id="67">67</th><td>      <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>--;</td></tr>
+<tr><th id="68">68</th><td>      <i>/* and it wasn't a bare CR but a CRLF conversion instead */</i></td></tr>
+<tr><th id="69">69</th><td>      <a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::crlf_conversions" title='UrlState::crlf_conversions' data-ref="UrlState::crlf_conversions">crlf_conversions</a>++;</td></tr>
+<tr><th id="70">70</th><td>    }</td></tr>
+<tr><th id="71">71</th><td>    <a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::prev_block_had_trailing_cr" title='UrlState::prev_block_had_trailing_cr' data-ref="UrlState::prev_block_had_trailing_cr">prev_block_had_trailing_cr</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>; <i>/* reset the flag */</i></td></tr>
+<tr><th id="72">72</th><td>  }</td></tr>
+<tr><th id="73">73</th><td></td></tr>
+<tr><th id="74">74</th><td>  <i>/* find 1st CR, if any */</i></td></tr>
+<tr><th id="75">75</th><td>  <a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a> = <a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> = <a class="ref" href="../../include/string.h.html#memchr" title='memchr' data-ref="memchr">memchr</a>(<a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a>, <kbd>'\r'</kbd>, <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>);</td></tr>
+<tr><th id="76">76</th><td>  <b>if</b>(<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a>) {</td></tr>
+<tr><th id="77">77</th><td>    <i>/* at least one CR, now look for CRLF */</i></td></tr>
+<tr><th id="78">78</th><td>    <b>while</b>(<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a> &lt; (<a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a> + <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>-<var>1</var>)) {</td></tr>
+<tr><th id="79">79</th><td>      <i>/* note that it's size-1, so we'll never look past the last byte */</i></td></tr>
+<tr><th id="80">80</th><td>      <b>if</b>(<a class="ref" href="../../include/string.h.html#memcmp" title='memcmp' data-ref="memcmp">memcmp</a>(<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a>, <q>"\r\n"</q>, <var>2</var>) == <var>0</var>) {</td></tr>
+<tr><th id="81">81</th><td>        <i>/* CRLF found, bump past the CR and copy the NL */</i></td></tr>
+<tr><th id="82">82</th><td>        <a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a>++;</td></tr>
+<tr><th id="83">83</th><td>        *<a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> = *<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a>;</td></tr>
+<tr><th id="84">84</th><td>        <i>/* keep track of how many CRLFs we converted */</i></td></tr>
+<tr><th id="85">85</th><td>        <a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::crlf_conversions" title='UrlState::crlf_conversions' data-ref="UrlState::crlf_conversions">crlf_conversions</a>++;</td></tr>
+<tr><th id="86">86</th><td>      }</td></tr>
+<tr><th id="87">87</th><td>      <b>else</b> {</td></tr>
+<tr><th id="88">88</th><td>        <b>if</b>(*<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a> == <kbd>'\r'</kbd>) {</td></tr>
+<tr><th id="89">89</th><td>          <i>/* lone CR, move LF instead */</i></td></tr>
+<tr><th id="90">90</th><td>          *<a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> = <kbd>'\n'</kbd>;</td></tr>
+<tr><th id="91">91</th><td>        }</td></tr>
+<tr><th id="92">92</th><td>        <b>else</b> {</td></tr>
+<tr><th id="93">93</th><td>          <i>/* not a CRLF nor a CR, just copy whatever it is */</i></td></tr>
+<tr><th id="94">94</th><td>          *<a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> = *<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a>;</td></tr>
+<tr><th id="95">95</th><td>        }</td></tr>
+<tr><th id="96">96</th><td>      }</td></tr>
+<tr><th id="97">97</th><td>      <a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a>++;</td></tr>
+<tr><th id="98">98</th><td>      <a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a>++;</td></tr>
+<tr><th id="99">99</th><td>    } <i>/* end of while loop */</i></td></tr>
+<tr><th id="100">100</th><td></td></tr>
+<tr><th id="101">101</th><td>    <b>if</b>(<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a> &lt; <a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a> + <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>) {</td></tr>
+<tr><th id="102">102</th><td>      <i>/* handle last byte */</i></td></tr>
+<tr><th id="103">103</th><td>      <b>if</b>(*<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a> == <kbd>'\r'</kbd>) {</td></tr>
+<tr><th id="104">104</th><td>        <i>/* deal with a CR at the end of the buffer */</i></td></tr>
+<tr><th id="105">105</th><td>        *<a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> = <kbd>'\n'</kbd>; <i>/* copy a NL instead */</i></td></tr>
+<tr><th id="106">106</th><td>        <i>/* note that a CRLF might be split across two blocks */</i></td></tr>
+<tr><th id="107">107</th><td>        <a class="local col1 ref" href="#1data" title='data' data-ref="1data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::prev_block_had_trailing_cr" title='UrlState::prev_block_had_trailing_cr' data-ref="UrlState::prev_block_had_trailing_cr">prev_block_had_trailing_cr</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="108">108</th><td>      }</td></tr>
+<tr><th id="109">109</th><td>      <b>else</b> {</td></tr>
+<tr><th id="110">110</th><td>        <i>/* copy last byte */</i></td></tr>
+<tr><th id="111">111</th><td>        *<a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> = *<a class="local col4 ref" href="#4inPtr" title='inPtr' data-ref="4inPtr">inPtr</a>;</td></tr>
+<tr><th id="112">112</th><td>      }</td></tr>
+<tr><th id="113">113</th><td>      <a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a>++;</td></tr>
+<tr><th id="114">114</th><td>    }</td></tr>
+<tr><th id="115">115</th><td>    <b>if</b>(<a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> &lt; <a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a> + <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>)</td></tr>
+<tr><th id="116">116</th><td>      <i>/* tidy up by null terminating the now shorter data */</i></td></tr>
+<tr><th id="117">117</th><td>      *<a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="118">118</th><td></td></tr>
+<tr><th id="119">119</th><td>    <b>return</b> (<a class="local col5 ref" href="#5outPtr" title='outPtr' data-ref="5outPtr">outPtr</a> - <a class="local col2 ref" href="#2startPtr" title='startPtr' data-ref="2startPtr">startPtr</a>);</td></tr>
+<tr><th id="120">120</th><td>  }</td></tr>
+<tr><th id="121">121</th><td>  <b>return</b> <a class="local col3 ref" href="#3size" title='size' data-ref="3size">size</a>;</td></tr>
+<tr><th id="122">122</th><td>}</td></tr>
+<tr><th id="123">123</th><td><u>#<span data-ppcond="43">endif</span> /* CURL_DO_LINEEND_CONV */</u></td></tr>
+<tr><th id="124">124</th><td></td></tr>
+<tr><th id="125">125</th><td><u>#<span data-ppcond="125">ifdef</span> <span class="macro" data-ref="_M/USE_RECV_BEFORE_SEND_WORKAROUND">USE_RECV_BEFORE_SEND_WORKAROUND</span></u></td></tr>
+<tr><th id="126">126</th><td>bool Curl_recv_has_postponed_data(<b>struct</b> connectdata *conn, <em>int</em> sockindex)</td></tr>
+<tr><th id="127">127</th><td>{</td></tr>
+<tr><th id="128">128</th><td>  <b>struct</b> postponed_data * <em>const</em> psnd = &amp;(conn-&gt;postponed[sockindex]);</td></tr>
+<tr><th id="129">129</th><td>  <b>return</b> psnd-&gt;buffer &amp;&amp; psnd-&gt;allocated_size &amp;&amp;</td></tr>
+<tr><th id="130">130</th><td>         psnd-&gt;recv_size &gt; psnd-&gt;recv_processed;</td></tr>
+<tr><th id="131">131</th><td>}</td></tr>
+<tr><th id="132">132</th><td></td></tr>
+<tr><th id="133">133</th><td><em>static</em> <em>void</em> pre_receive_plain(<b>struct</b> connectdata *conn, <em>int</em> num)</td></tr>
+<tr><th id="134">134</th><td>{</td></tr>
+<tr><th id="135">135</th><td>  <em>const</em> curl_socket_t sockfd = conn-&gt;sock[num];</td></tr>
+<tr><th id="136">136</th><td>  <b>struct</b> postponed_data * <em>const</em> psnd = &amp;(conn-&gt;postponed[num]);</td></tr>
+<tr><th id="137">137</th><td>  size_t bytestorecv = psnd-&gt;allocated_size - psnd-&gt;recv_size;</td></tr>
+<tr><th id="138">138</th><td>  <i>/* WinSock will destroy unread received data if send() is</i></td></tr>
+<tr><th id="139">139</th><td><i>     failed.</i></td></tr>
+<tr><th id="140">140</th><td><i>     To avoid lossage of received data, recv() must be</i></td></tr>
+<tr><th id="141">141</th><td><i>     performed before every send() if any incoming data is</i></td></tr>
+<tr><th id="142">142</th><td><i>     available. However, skip this, if buffer is already full. */</i></td></tr>
+<tr><th id="143">143</th><td>  <b>if</b>((conn-&gt;handler-&gt;protocol&amp;PROTO_FAMILY_HTTP) != <var>0</var> &amp;&amp;</td></tr>
+<tr><th id="144">144</th><td>     conn-&gt;recv[num] == Curl_recv_plain &amp;&amp;</td></tr>
+<tr><th id="145">145</th><td>     (!psnd-&gt;buffer || bytestorecv)) {</td></tr>
+<tr><th id="146">146</th><td>    <em>const</em> <em>int</em> readymask = Curl_socket_check(sockfd, CURL_SOCKET_BAD,</td></tr>
+<tr><th id="147">147</th><td>                                            CURL_SOCKET_BAD, <var>0</var>);</td></tr>
+<tr><th id="148">148</th><td>    <b>if</b>(readymask != -<var>1</var> &amp;&amp; (readymask &amp; CURL_CSELECT_IN) != <var>0</var>) {</td></tr>
+<tr><th id="149">149</th><td>      <i>/* Have some incoming data */</i></td></tr>
+<tr><th id="150">150</th><td>      <b>if</b>(!psnd-&gt;buffer) {</td></tr>
+<tr><th id="151">151</th><td>        <i>/* Use buffer double default size for intermediate buffer */</i></td></tr>
+<tr><th id="152">152</th><td>        psnd-&gt;allocated_size = <var>2</var> * conn-&gt;data-&gt;set.buffer_size;</td></tr>
+<tr><th id="153">153</th><td>        psnd-&gt;buffer = malloc(psnd-&gt;allocated_size);</td></tr>
+<tr><th id="154">154</th><td>        psnd-&gt;recv_size = <var>0</var>;</td></tr>
+<tr><th id="155">155</th><td>        psnd-&gt;recv_processed = <var>0</var>;</td></tr>
+<tr><th id="156">156</th><td><u>#ifdef DEBUGBUILD</u></td></tr>
+<tr><th id="157">157</th><td>        psnd-&gt;bindsock = sockfd; <i>/* Used only for DEBUGASSERT */</i></td></tr>
+<tr><th id="158">158</th><td><u>#endif /* DEBUGBUILD */</u></td></tr>
+<tr><th id="159">159</th><td>        bytestorecv = psnd-&gt;allocated_size;</td></tr>
+<tr><th id="160">160</th><td>      }</td></tr>
+<tr><th id="161">161</th><td>      <b>if</b>(psnd-&gt;buffer) {</td></tr>
+<tr><th id="162">162</th><td>        ssize_t recvedbytes;</td></tr>
+<tr><th id="163">163</th><td>        DEBUGASSERT(psnd-&gt;bindsock == sockfd);</td></tr>
+<tr><th id="164">164</th><td>        recvedbytes = sread(sockfd, psnd-&gt;buffer + psnd-&gt;recv_size,</td></tr>
+<tr><th id="165">165</th><td>                            bytestorecv);</td></tr>
+<tr><th id="166">166</th><td>        <b>if</b>(recvedbytes &gt; <var>0</var>)</td></tr>
+<tr><th id="167">167</th><td>          psnd-&gt;recv_size += recvedbytes;</td></tr>
+<tr><th id="168">168</th><td>      }</td></tr>
+<tr><th id="169">169</th><td>      <b>else</b></td></tr>
+<tr><th id="170">170</th><td>        psnd-&gt;allocated_size = <var>0</var>;</td></tr>
+<tr><th id="171">171</th><td>    }</td></tr>
+<tr><th id="172">172</th><td>  }</td></tr>
+<tr><th id="173">173</th><td>}</td></tr>
+<tr><th id="174">174</th><td></td></tr>
+<tr><th id="175">175</th><td><em>static</em> ssize_t get_pre_recved(<b>struct</b> connectdata *conn, <em>int</em> num, <em>char</em> *buf,</td></tr>
+<tr><th id="176">176</th><td>                              size_t len)</td></tr>
+<tr><th id="177">177</th><td>{</td></tr>
+<tr><th id="178">178</th><td>  <b>struct</b> postponed_data * <em>const</em> psnd = &amp;(conn-&gt;postponed[num]);</td></tr>
+<tr><th id="179">179</th><td>  size_t copysize;</td></tr>
+<tr><th id="180">180</th><td>  <b>if</b>(!psnd-&gt;buffer)</td></tr>
+<tr><th id="181">181</th><td>    <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="182">182</th><td></td></tr>
+<tr><th id="183">183</th><td>  DEBUGASSERT(psnd-&gt;allocated_size &gt; <var>0</var>);</td></tr>
+<tr><th id="184">184</th><td>  DEBUGASSERT(psnd-&gt;recv_size &lt;= psnd-&gt;allocated_size);</td></tr>
+<tr><th id="185">185</th><td>  DEBUGASSERT(psnd-&gt;recv_processed &lt;= psnd-&gt;recv_size);</td></tr>
+<tr><th id="186">186</th><td>  <i>/* Check and process data that already received and storied in internal</i></td></tr>
+<tr><th id="187">187</th><td><i>     intermediate buffer */</i></td></tr>
+<tr><th id="188">188</th><td>  <b>if</b>(psnd-&gt;recv_size &gt; psnd-&gt;recv_processed) {</td></tr>
+<tr><th id="189">189</th><td>    DEBUGASSERT(psnd-&gt;bindsock == conn-&gt;sock[num]);</td></tr>
+<tr><th id="190">190</th><td>    copysize = CURLMIN(len, psnd-&gt;recv_size - psnd-&gt;recv_processed);</td></tr>
+<tr><th id="191">191</th><td>    memcpy(buf, psnd-&gt;buffer + psnd-&gt;recv_processed, copysize);</td></tr>
+<tr><th id="192">192</th><td>    psnd-&gt;recv_processed += copysize;</td></tr>
+<tr><th id="193">193</th><td>  }</td></tr>
+<tr><th id="194">194</th><td>  <b>else</b></td></tr>
+<tr><th id="195">195</th><td>    copysize = <var>0</var>; <i>/* buffer was allocated, but nothing was received */</i></td></tr>
+<tr><th id="196">196</th><td></td></tr>
+<tr><th id="197">197</th><td>  <i>/* Free intermediate buffer if it has no unprocessed data */</i></td></tr>
+<tr><th id="198">198</th><td>  <b>if</b>(psnd-&gt;recv_processed == psnd-&gt;recv_size) {</td></tr>
+<tr><th id="199">199</th><td>    free(psnd-&gt;buffer);</td></tr>
+<tr><th id="200">200</th><td>    psnd-&gt;buffer = NULL;</td></tr>
+<tr><th id="201">201</th><td>    psnd-&gt;allocated_size = <var>0</var>;</td></tr>
+<tr><th id="202">202</th><td>    psnd-&gt;recv_size = <var>0</var>;</td></tr>
+<tr><th id="203">203</th><td>    psnd-&gt;recv_processed = <var>0</var>;</td></tr>
+<tr><th id="204">204</th><td><u>#ifdef DEBUGBUILD</u></td></tr>
+<tr><th id="205">205</th><td>    psnd-&gt;bindsock = CURL_SOCKET_BAD;</td></tr>
+<tr><th id="206">206</th><td><u>#endif /* DEBUGBUILD */</u></td></tr>
+<tr><th id="207">207</th><td>  }</td></tr>
+<tr><th id="208">208</th><td>  <b>return</b> (ssize_t)copysize;</td></tr>
+<tr><th id="209">209</th><td>}</td></tr>
+<tr><th id="210">210</th><td><u>#<span data-ppcond="125">else</span>  /* ! USE_RECV_BEFORE_SEND_WORKAROUND */</u></td></tr>
+<tr><th id="211">211</th><td><i>/* Use "do-nothing" macros instead of functions when workaround not used */</i></td></tr>
+<tr><th id="212">212</th><td><span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="decl def" id="Curl_recv_has_postponed_data" title='Curl_recv_has_postponed_data' data-ref="Curl_recv_has_postponed_data">Curl_recv_has_postponed_data</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="6conn" title='conn' data-type='struct connectdata *' data-ref="6conn">conn</dfn>, <em>int</em> <dfn class="local col7 decl" id="7sockindex" title='sockindex' data-type='int' data-ref="7sockindex">sockindex</dfn>)</td></tr>
+<tr><th id="213">213</th><td>{</td></tr>
+<tr><th id="214">214</th><td>  (<em>void</em>)<a class="local col6 ref" href="#6conn" title='conn' data-ref="6conn">conn</a>;</td></tr>
+<tr><th id="215">215</th><td>  (<em>void</em>)<a class="local col7 ref" href="#7sockindex" title='sockindex' data-ref="7sockindex">sockindex</a>;</td></tr>
+<tr><th id="216">216</th><td>  <b>return</b> <span class="macro" title="0" data-ref="_M/false">false</span>;</td></tr>
+<tr><th id="217">217</th><td>}</td></tr>
+<tr><th id="218">218</th><td><u>#define <dfn class="macro" id="_M/pre_receive_plain" data-ref="_M/pre_receive_plain">pre_receive_plain</dfn>(c,n) do {} WHILE_FALSE</u></td></tr>
+<tr><th id="219">219</th><td><u>#define <dfn class="macro" id="_M/get_pre_recved" data-ref="_M/get_pre_recved">get_pre_recved</dfn>(c,n,b,l) 0</u></td></tr>
+<tr><th id="220">220</th><td><u>#<span data-ppcond="125">endif</span> /* ! USE_RECV_BEFORE_SEND_WORKAROUND */</u></td></tr>
+<tr><th id="221">221</th><td></td></tr>
+<tr><th id="222">222</th><td><i>/* Curl_infof() is for info message along the way */</i></td></tr>
+<tr><th id="223">223</th><td></td></tr>
+<tr><th id="224">224</th><td><em>void</em> <dfn class="decl def" id="Curl_infof" title='Curl_infof' data-ref="Curl_infof">Curl_infof</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col8 decl" id="8data" title='data' data-type='struct Curl_easy *' data-ref="8data">data</dfn>, <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="9fmt" title='fmt' data-type='const char *' data-ref="9fmt">fmt</dfn>, ...)</td></tr>
+<tr><th id="225">225</th><td>{</td></tr>
+<tr><th id="226">226</th><td>  <b>if</b>(<a class="local col8 ref" href="#8data" title='data' data-ref="8data">data</a> &amp;&amp; <a class="local col8 ref" href="#8data" title='data' data-ref="8data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::verbose" title='UserDefined::verbose' data-ref="UserDefined::verbose">verbose</a>) {</td></tr>
+<tr><th id="227">227</th><td>    <span class='typedef' title='va_list' data-type='__gnuc_va_list' data-ref="va_list">va_list</span> <dfn class="local col0 decl" id="10ap" title='ap' data-type='va_list' data-ref="10ap">ap</dfn>;</td></tr>
+<tr><th id="228">228</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="11len" title='len' data-type='size_t' data-ref="11len">len</dfn>;</td></tr>
+<tr><th id="229">229</th><td>    <em>char</em> <dfn class="local col2 decl" id="12print_buffer" title='print_buffer' data-type='char [2049]' data-ref="12print_buffer">print_buffer</dfn>[<var>2048</var> + <var>1</var>];</td></tr>
+<tr><th id="230">230</th><td>    <span class="macro" title="__builtin_va_start(ap, fmt)" data-ref="_M/va_start">va_start</span>(<a class="local col0 ref" href="#10ap" title='ap' data-ref="10ap">ap</a>, <a class="local col9 ref" href="#9fmt" title='fmt' data-ref="9fmt">fmt</a>);</td></tr>
+<tr><th id="231">231</th><td>    <a class="macro" href="curl_printf.h.html#45" title="curl_mvsnprintf" data-ref="_M/vsnprintf">vsnprintf</a>(<a class="local col2 ref" href="#12print_buffer" title='print_buffer' data-ref="12print_buffer">print_buffer</a>, <b>sizeof</b>(<a class="local col2 ref" href="#12print_buffer" title='print_buffer' data-ref="12print_buffer">print_buffer</a>), <a class="local col9 ref" href="#9fmt" title='fmt' data-ref="9fmt">fmt</a>, <a class="local col0 ref" href="#10ap" title='ap' data-ref="10ap">ap</a>);</td></tr>
+<tr><th id="232">232</th><td>    <span class="macro" title="__builtin_va_end(ap)" data-ref="_M/va_end">va_end</span>(<a class="local col0 ref" href="#10ap" title='ap' data-ref="10ap">ap</a>);</td></tr>
+<tr><th id="233">233</th><td>    <a class="local col1 ref" href="#11len" title='len' data-ref="11len">len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col2 ref" href="#12print_buffer" title='print_buffer' data-ref="12print_buffer">print_buffer</a>);</td></tr>
+<tr><th id="234">234</th><td>    <a class="ref" href="#Curl_debug" title='Curl_debug' data-ref="Curl_debug">Curl_debug</a>(<a class="local col8 ref" href="#8data" title='data' data-ref="8data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_TEXT" title='CURLINFO_TEXT' data-ref="CURLINFO_TEXT">CURLINFO_TEXT</a>, <a class="local col2 ref" href="#12print_buffer" title='print_buffer' data-ref="12print_buffer">print_buffer</a>, <a class="local col1 ref" href="#11len" title='len' data-ref="11len">len</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="235">235</th><td>  }</td></tr>
+<tr><th id="236">236</th><td>}</td></tr>
+<tr><th id="237">237</th><td></td></tr>
+<tr><th id="238">238</th><td><i>/* Curl_failf() is for messages stating why we failed.</i></td></tr>
+<tr><th id="239">239</th><td><i> * The message SHALL NOT include any LF or CR.</i></td></tr>
+<tr><th id="240">240</th><td><i> */</i></td></tr>
+<tr><th id="241">241</th><td></td></tr>
+<tr><th id="242">242</th><td><em>void</em> <dfn class="decl def" id="Curl_failf" title='Curl_failf' data-ref="Curl_failf">Curl_failf</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="13data" title='data' data-type='struct Curl_easy *' data-ref="13data">data</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="14fmt" title='fmt' data-type='const char *' data-ref="14fmt">fmt</dfn>, ...)</td></tr>
+<tr><th id="243">243</th><td>{</td></tr>
+<tr><th id="244">244</th><td>  <b>if</b>(<a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::verbose" title='UserDefined::verbose' data-ref="UserDefined::verbose">verbose</a> || <a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::errorbuffer" title='UserDefined::errorbuffer' data-ref="UserDefined::errorbuffer">errorbuffer</a>) {</td></tr>
+<tr><th id="245">245</th><td>    <span class='typedef' title='va_list' data-type='__gnuc_va_list' data-ref="va_list">va_list</span> <dfn class="local col5 decl" id="15ap" title='ap' data-type='va_list' data-ref="15ap">ap</dfn>;</td></tr>
+<tr><th id="246">246</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="16len" title='len' data-type='size_t' data-ref="16len">len</dfn>;</td></tr>
+<tr><th id="247">247</th><td>    <em>char</em> <dfn class="local col7 decl" id="17error" title='error' data-type='char [258]' data-ref="17error">error</dfn>[<a class="macro" href="../include/curl/curl.h.html#724" title="256" data-ref="_M/CURL_ERROR_SIZE">CURL_ERROR_SIZE</a> + <var>2</var>];</td></tr>
+<tr><th id="248">248</th><td>    <span class="macro" title="__builtin_va_start(ap, fmt)" data-ref="_M/va_start">va_start</span>(<a class="local col5 ref" href="#15ap" title='ap' data-ref="15ap">ap</a>, <a class="local col4 ref" href="#14fmt" title='fmt' data-ref="14fmt">fmt</a>);</td></tr>
+<tr><th id="249">249</th><td>    <a class="macro" href="curl_printf.h.html#45" title="curl_mvsnprintf" data-ref="_M/vsnprintf">vsnprintf</a>(<a class="local col7 ref" href="#17error" title='error' data-ref="17error">error</a>, <a class="macro" href="../include/curl/curl.h.html#724" title="256" data-ref="_M/CURL_ERROR_SIZE">CURL_ERROR_SIZE</a>, <a class="local col4 ref" href="#14fmt" title='fmt' data-ref="14fmt">fmt</a>, <a class="local col5 ref" href="#15ap" title='ap' data-ref="15ap">ap</a>);</td></tr>
+<tr><th id="250">250</th><td>    <a class="local col6 ref" href="#16len" title='len' data-ref="16len">len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col7 ref" href="#17error" title='error' data-ref="17error">error</a>);</td></tr>
+<tr><th id="251">251</th><td></td></tr>
+<tr><th id="252">252</th><td>    <b>if</b>(<a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::errorbuffer" title='UserDefined::errorbuffer' data-ref="UserDefined::errorbuffer">errorbuffer</a> &amp;&amp; !<a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::errorbuf" title='UrlState::errorbuf' data-ref="UrlState::errorbuf">errorbuf</a>) {</td></tr>
+<tr><th id="253">253</th><td>      <a class="ref" href="../../include/string.h.html#strcpy" title='strcpy' data-ref="strcpy">strcpy</a>(<a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::errorbuffer" title='UserDefined::errorbuffer' data-ref="UserDefined::errorbuffer">errorbuffer</a>, <a class="local col7 ref" href="#17error" title='error' data-ref="17error">error</a>);</td></tr>
+<tr><th id="254">254</th><td>      <a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::errorbuf" title='UrlState::errorbuf' data-ref="UrlState::errorbuf">errorbuf</a> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>; <i>/* wrote error string */</i></td></tr>
+<tr><th id="255">255</th><td>    }</td></tr>
+<tr><th id="256">256</th><td>    <b>if</b>(<a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::verbose" title='UserDefined::verbose' data-ref="UserDefined::verbose">verbose</a>) {</td></tr>
+<tr><th id="257">257</th><td>      <a class="local col7 ref" href="#17error" title='error' data-ref="17error">error</a>[<a class="local col6 ref" href="#16len" title='len' data-ref="16len">len</a>] = <kbd>'\n'</kbd>;</td></tr>
+<tr><th id="258">258</th><td>      <a class="local col7 ref" href="#17error" title='error' data-ref="17error">error</a>[++<a class="local col6 ref" href="#16len" title='len' data-ref="16len">len</a>] = <kbd>'\0'</kbd>;</td></tr>
+<tr><th id="259">259</th><td>      <a class="ref" href="#Curl_debug" title='Curl_debug' data-ref="Curl_debug">Curl_debug</a>(<a class="local col3 ref" href="#13data" title='data' data-ref="13data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_TEXT" title='CURLINFO_TEXT' data-ref="CURLINFO_TEXT">CURLINFO_TEXT</a>, <a class="local col7 ref" href="#17error" title='error' data-ref="17error">error</a>, <a class="local col6 ref" href="#16len" title='len' data-ref="16len">len</a>, <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>);</td></tr>
+<tr><th id="260">260</th><td>    }</td></tr>
+<tr><th id="261">261</th><td>    <span class="macro" title="__builtin_va_end(ap)" data-ref="_M/va_end">va_end</span>(<a class="local col5 ref" href="#15ap" title='ap' data-ref="15ap">ap</a>);</td></tr>
+<tr><th id="262">262</th><td>  }</td></tr>
+<tr><th id="263">263</th><td>}</td></tr>
+<tr><th id="264">264</th><td></td></tr>
+<tr><th id="265">265</th><td><i>/* Curl_sendf() sends formatted data to the server */</i></td></tr>
+<tr><th id="266">266</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_sendf" title='Curl_sendf' data-ref="Curl_sendf">Curl_sendf</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col8 decl" id="18sockfd" title='sockfd' data-type='curl_socket_t' data-ref="18sockfd">sockfd</dfn>, <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col9 decl" id="19conn" title='conn' data-type='struct connectdata *' data-ref="19conn">conn</dfn>,</td></tr>
+<tr><th id="267">267</th><td>                    <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="20fmt" title='fmt' data-type='const char *' data-ref="20fmt">fmt</dfn>, ...)</td></tr>
+<tr><th id="268">268</th><td>{</td></tr>
+<tr><th id="269">269</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col1 decl" id="21data" title='data' data-type='struct Curl_easy *' data-ref="21data">data</dfn> = <a class="local col9 ref" href="#19conn" title='conn' data-ref="19conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="270">270</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col2 decl" id="22bytes_written" title='bytes_written' data-type='ssize_t' data-ref="22bytes_written">bytes_written</dfn>;</td></tr>
+<tr><th id="271">271</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="23write_len" title='write_len' data-type='size_t' data-ref="23write_len">write_len</dfn>;</td></tr>
+<tr><th id="272">272</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col4 decl" id="24result" title='result' data-type='CURLcode' data-ref="24result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="273">273</th><td>  <em>char</em> *<dfn class="local col5 decl" id="25s" title='s' data-type='char *' data-ref="25s">s</dfn>;</td></tr>
+<tr><th id="274">274</th><td>  <em>char</em> *<dfn class="local col6 decl" id="26sptr" title='sptr' data-type='char *' data-ref="26sptr">sptr</dfn>;</td></tr>
+<tr><th id="275">275</th><td>  <span class='typedef' title='va_list' data-type='__gnuc_va_list' data-ref="va_list">va_list</span> <dfn class="local col7 decl" id="27ap" title='ap' data-type='va_list' data-ref="27ap">ap</dfn>;</td></tr>
+<tr><th id="276">276</th><td>  <span class="macro" title="__builtin_va_start(ap, fmt)" data-ref="_M/va_start">va_start</span>(<a class="local col7 ref" href="#27ap" title='ap' data-ref="27ap">ap</a>, <a class="local col0 ref" href="#20fmt" title='fmt' data-ref="20fmt">fmt</a>);</td></tr>
+<tr><th id="277">277</th><td>  <a class="local col5 ref" href="#25s" title='s' data-ref="25s">s</a> = <a class="macro" href="curl_printf.h.html#47" title="curl_mvaprintf" data-ref="_M/vaprintf">vaprintf</a>(<a class="local col0 ref" href="#20fmt" title='fmt' data-ref="20fmt">fmt</a>, <a class="local col7 ref" href="#27ap" title='ap' data-ref="27ap">ap</a>); <i>/* returns an allocated string */</i></td></tr>
+<tr><th id="278">278</th><td>  <span class="macro" title="__builtin_va_end(ap)" data-ref="_M/va_end">va_end</span>(<a class="local col7 ref" href="#27ap" title='ap' data-ref="27ap">ap</a>);</td></tr>
+<tr><th id="279">279</th><td>  <b>if</b>(!<a class="local col5 ref" href="#25s" title='s' data-ref="25s">s</a>)</td></tr>
+<tr><th id="280">280</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>; <i>/* failure */</i></td></tr>
+<tr><th id="281">281</th><td></td></tr>
+<tr><th id="282">282</th><td>  <a class="local col2 ref" href="#22bytes_written" title='bytes_written' data-ref="22bytes_written">bytes_written</a> = <var>0</var>;</td></tr>
+<tr><th id="283">283</th><td>  <a class="local col3 ref" href="#23write_len" title='write_len' data-ref="23write_len">write_len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col5 ref" href="#25s" title='s' data-ref="25s">s</a>);</td></tr>
+<tr><th id="284">284</th><td>  <a class="local col6 ref" href="#26sptr" title='sptr' data-ref="26sptr">sptr</a> = <a class="local col5 ref" href="#25s" title='s' data-ref="25s">s</a>;</td></tr>
+<tr><th id="285">285</th><td></td></tr>
+<tr><th id="286">286</th><td>  <b>for</b>(;;) {</td></tr>
+<tr><th id="287">287</th><td>    <i>/* Write the buffer to the socket */</i></td></tr>
+<tr><th id="288">288</th><td>    <a class="local col4 ref" href="#24result" title='result' data-ref="24result">result</a> = <a class="ref" href="#Curl_write" title='Curl_write' data-ref="Curl_write">Curl_write</a>(<a class="local col9 ref" href="#19conn" title='conn' data-ref="19conn">conn</a>, <a class="local col8 ref" href="#18sockfd" title='sockfd' data-ref="18sockfd">sockfd</a>, <a class="local col6 ref" href="#26sptr" title='sptr' data-ref="26sptr">sptr</a>, <a class="local col3 ref" href="#23write_len" title='write_len' data-ref="23write_len">write_len</a>, &amp;<a class="local col2 ref" href="#22bytes_written" title='bytes_written' data-ref="22bytes_written">bytes_written</a>);</td></tr>
+<tr><th id="289">289</th><td></td></tr>
+<tr><th id="290">290</th><td>    <b>if</b>(<a class="local col4 ref" href="#24result" title='result' data-ref="24result">result</a>)</td></tr>
+<tr><th id="291">291</th><td>      <b>break</b>;</td></tr>
+<tr><th id="292">292</th><td></td></tr>
+<tr><th id="293">293</th><td>    <b>if</b>(<a class="local col1 ref" href="#21data" title='data' data-ref="21data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::verbose" title='UserDefined::verbose' data-ref="UserDefined::verbose">verbose</a>)</td></tr>
+<tr><th id="294">294</th><td>      <a class="ref" href="#Curl_debug" title='Curl_debug' data-ref="Curl_debug">Curl_debug</a>(<a class="local col1 ref" href="#21data" title='data' data-ref="21data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_DATA_OUT" title='CURLINFO_DATA_OUT' data-ref="CURLINFO_DATA_OUT">CURLINFO_DATA_OUT</a>, <a class="local col6 ref" href="#26sptr" title='sptr' data-ref="26sptr">sptr</a>, (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)<a class="local col2 ref" href="#22bytes_written" title='bytes_written' data-ref="22bytes_written">bytes_written</a>, <a class="local col9 ref" href="#19conn" title='conn' data-ref="19conn">conn</a>);</td></tr>
+<tr><th id="295">295</th><td></td></tr>
+<tr><th id="296">296</th><td>    <b>if</b>((<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)<a class="local col2 ref" href="#22bytes_written" title='bytes_written' data-ref="22bytes_written">bytes_written</a> != <a class="local col3 ref" href="#23write_len" title='write_len' data-ref="23write_len">write_len</a>) {</td></tr>
+<tr><th id="297">297</th><td>      <i>/* if not all was written at once, we must advance the pointer, decrease</i></td></tr>
+<tr><th id="298">298</th><td><i>         the size left and try again! */</i></td></tr>
+<tr><th id="299">299</th><td>      <a class="local col3 ref" href="#23write_len" title='write_len' data-ref="23write_len">write_len</a> -= <a class="local col2 ref" href="#22bytes_written" title='bytes_written' data-ref="22bytes_written">bytes_written</a>;</td></tr>
+<tr><th id="300">300</th><td>      <a class="local col6 ref" href="#26sptr" title='sptr' data-ref="26sptr">sptr</a> += <a class="local col2 ref" href="#22bytes_written" title='bytes_written' data-ref="22bytes_written">bytes_written</a>;</td></tr>
+<tr><th id="301">301</th><td>    }</td></tr>
+<tr><th id="302">302</th><td>    <b>else</b></td></tr>
+<tr><th id="303">303</th><td>      <b>break</b>;</td></tr>
+<tr><th id="304">304</th><td>  }</td></tr>
+<tr><th id="305">305</th><td></td></tr>
+<tr><th id="306">306</th><td>  <a class="macro" href="curl_memory.h.html#130" title="Curl_cfree(s)" data-ref="_M/free">free</a>(<a class="local col5 ref" href="#25s" title='s' data-ref="25s">s</a>); <i>/* free the output string */</i></td></tr>
+<tr><th id="307">307</th><td></td></tr>
+<tr><th id="308">308</th><td>  <b>return</b> <a class="local col4 ref" href="#24result" title='result' data-ref="24result">result</a>;</td></tr>
+<tr><th id="309">309</th><td>}</td></tr>
+<tr><th id="310">310</th><td></td></tr>
+<tr><th id="311">311</th><td><i>/*</i></td></tr>
+<tr><th id="312">312</th><td><i> * Curl_write() is an internal write function that sends data to the</i></td></tr>
+<tr><th id="313">313</th><td><i> * server. Works with plain sockets, SCP, SSL or kerberos.</i></td></tr>
+<tr><th id="314">314</th><td><i> *</i></td></tr>
+<tr><th id="315">315</th><td><i> * If the write would block (CURLE_AGAIN), we return CURLE_OK and</i></td></tr>
+<tr><th id="316">316</th><td><i> * (*written == 0). Otherwise we return regular CURLcode value.</i></td></tr>
+<tr><th id="317">317</th><td><i> */</i></td></tr>
+<tr><th id="318">318</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_write" title='Curl_write' data-ref="Curl_write">Curl_write</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col8 decl" id="28conn" title='conn' data-type='struct connectdata *' data-ref="28conn">conn</dfn>,</td></tr>
+<tr><th id="319">319</th><td>                    <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col9 decl" id="29sockfd" title='sockfd' data-type='curl_socket_t' data-ref="29sockfd">sockfd</dfn>,</td></tr>
+<tr><th id="320">320</th><td>                    <em>const</em> <em>void</em> *<dfn class="local col0 decl" id="30mem" title='mem' data-type='const void *' data-ref="30mem">mem</dfn>,</td></tr>
+<tr><th id="321">321</th><td>                    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="31len" title='len' data-type='size_t' data-ref="31len">len</dfn>,</td></tr>
+<tr><th id="322">322</th><td>                    <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> *<dfn class="local col2 decl" id="32written" title='written' data-type='ssize_t *' data-ref="32written">written</dfn>)</td></tr>
+<tr><th id="323">323</th><td>{</td></tr>
+<tr><th id="324">324</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col3 decl" id="33bytes_written" title='bytes_written' data-type='ssize_t' data-ref="33bytes_written">bytes_written</dfn>;</td></tr>
+<tr><th id="325">325</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col4 decl" id="34result" title='result' data-type='CURLcode' data-ref="34result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="326">326</th><td>  <em>int</em> <dfn class="local col5 decl" id="35num" title='num' data-type='int' data-ref="35num">num</dfn> = (<a class="local col9 ref" href="#29sockfd" title='sockfd' data-ref="29sockfd">sockfd</a> == <a class="local col8 ref" href="#28conn" title='conn' data-ref="28conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="macro" href="urldata.h.html#488" title="1" data-ref="_M/SECONDARYSOCKET">SECONDARYSOCKET</a>]);</td></tr>
+<tr><th id="327">327</th><td></td></tr>
+<tr><th id="328">328</th><td>  <a class="local col3 ref" href="#33bytes_written" title='bytes_written' data-ref="33bytes_written">bytes_written</a> = <a class="local col8 ref" href="#28conn" title='conn' data-ref="28conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::send" title='connectdata::send' data-ref="connectdata::send">send</a>[<a class="local col5 ref" href="#35num" title='num' data-ref="35num">num</a>](<a class="local col8 ref" href="#28conn" title='conn' data-ref="28conn">conn</a>, <a class="local col5 ref" href="#35num" title='num' data-ref="35num">num</a>, <a class="local col0 ref" href="#30mem" title='mem' data-ref="30mem">mem</a>, <a class="local col1 ref" href="#31len" title='len' data-ref="31len">len</a>, &amp;<a class="local col4 ref" href="#34result" title='result' data-ref="34result">result</a>);</td></tr>
+<tr><th id="329">329</th><td></td></tr>
+<tr><th id="330">330</th><td>  *<a class="local col2 ref" href="#32written" title='written' data-ref="32written">written</a> = <a class="local col3 ref" href="#33bytes_written" title='bytes_written' data-ref="33bytes_written">bytes_written</a>;</td></tr>
+<tr><th id="331">331</th><td>  <b>if</b>(<a class="local col3 ref" href="#33bytes_written" title='bytes_written' data-ref="33bytes_written">bytes_written</a> &gt;= <var>0</var>)</td></tr>
+<tr><th id="332">332</th><td>    <i>/* we completely ignore the curlcode value when subzero is not returned */</i></td></tr>
+<tr><th id="333">333</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="334">334</th><td></td></tr>
+<tr><th id="335">335</th><td>  <i>/* handle CURLE_AGAIN or a send failure */</i></td></tr>
+<tr><th id="336">336</th><td>  <b>switch</b>(<a class="local col4 ref" href="#34result" title='result' data-ref="34result">result</a>) {</td></tr>
+<tr><th id="337">337</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_AGAIN" title='CURLE_AGAIN' data-ref="CURLE_AGAIN">CURLE_AGAIN</a>:</td></tr>
+<tr><th id="338">338</th><td>    *<a class="local col2 ref" href="#32written" title='written' data-ref="32written">written</a> = <var>0</var>;</td></tr>
+<tr><th id="339">339</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="340">340</th><td></td></tr>
+<tr><th id="341">341</th><td>  <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>:</td></tr>
+<tr><th id="342">342</th><td>    <i>/* general send failure */</i></td></tr>
+<tr><th id="343">343</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_SEND_ERROR" title='CURLE_SEND_ERROR' data-ref="CURLE_SEND_ERROR">CURLE_SEND_ERROR</a>;</td></tr>
+<tr><th id="344">344</th><td></td></tr>
+<tr><th id="345">345</th><td>  <b>default</b>:</td></tr>
+<tr><th id="346">346</th><td>    <i>/* we got a specific curlcode, forward it */</i></td></tr>
+<tr><th id="347">347</th><td>    <b>return</b> <a class="local col4 ref" href="#34result" title='result' data-ref="34result">result</a>;</td></tr>
+<tr><th id="348">348</th><td>  }</td></tr>
+<tr><th id="349">349</th><td>}</td></tr>
+<tr><th id="350">350</th><td></td></tr>
+<tr><th id="351">351</th><td><a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl def" id="Curl_send_plain" title='Curl_send_plain' data-ref="Curl_send_plain">Curl_send_plain</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col6 decl" id="36conn" title='conn' data-type='struct connectdata *' data-ref="36conn">conn</dfn>, <em>int</em> <dfn class="local col7 decl" id="37num" title='num' data-type='int' data-ref="37num">num</dfn>,</td></tr>
+<tr><th id="352">352</th><td>                        <em>const</em> <em>void</em> *<dfn class="local col8 decl" id="38mem" title='mem' data-type='const void *' data-ref="38mem">mem</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="39len" title='len' data-type='size_t' data-ref="39len">len</dfn>, <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> *<dfn class="local col0 decl" id="40code" title='code' data-type='CURLcode *' data-ref="40code">code</dfn>)</td></tr>
+<tr><th id="353">353</th><td>{</td></tr>
+<tr><th id="354">354</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col1 decl" id="41sockfd" title='sockfd' data-type='curl_socket_t' data-ref="41sockfd">sockfd</dfn> = <a class="local col6 ref" href="#36conn" title='conn' data-ref="36conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="local col7 ref" href="#37num" title='num' data-ref="37num">num</a>];</td></tr>
+<tr><th id="355">355</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col2 decl" id="42bytes_written" title='bytes_written' data-type='ssize_t' data-ref="42bytes_written">bytes_written</dfn>;</td></tr>
+<tr><th id="356">356</th><td>  <i>/* WinSock will destroy unread received data if send() is</i></td></tr>
+<tr><th id="357">357</th><td><i>     failed.</i></td></tr>
+<tr><th id="358">358</th><td><i>     To avoid lossage of received data, recv() must be</i></td></tr>
+<tr><th id="359">359</th><td><i>     performed before every send() if any incoming data is</i></td></tr>
+<tr><th id="360">360</th><td><i>     available. */</i></td></tr>
+<tr><th id="361">361</th><td>  <a class="macro" href="#218" title="do {} while(0)" data-ref="_M/pre_receive_plain">pre_receive_plain</a>(conn, num);</td></tr>
+<tr><th id="362">362</th><td></td></tr>
+<tr><th id="363">363</th><td><u>#<span data-ppcond="363">ifdef</span> <a class="macro" href="../../include/x86_64-linux-gnu/bits/socket.h.html#217" data-ref="_M/MSG_FASTOPEN">MSG_FASTOPEN</a> /* Linux */</u></td></tr>
+<tr><th id="364">364</th><td>  <b>if</b>(<a class="local col6 ref" href="#36conn" title='conn' data-ref="36conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::bits" title='connectdata::bits' data-ref="connectdata::bits">bits</a>.<a class="ref" href="urldata.h.html#ConnectBits::tcp_fastopen" title='ConnectBits::tcp_fastopen' data-ref="ConnectBits::tcp_fastopen">tcp_fastopen</a>) {</td></tr>
+<tr><th id="365">365</th><td>    <a class="local col2 ref" href="#42bytes_written" title='bytes_written' data-ref="42bytes_written">bytes_written</a> = <a class="ref" href="../../include/x86_64-linux-gnu/sys/socket.h.html#sendto" title='sendto' data-ref="sendto">sendto</a>(<a class="local col1 ref" href="#41sockfd" title='sockfd' data-ref="41sockfd">sockfd</a>, <a class="local col8 ref" href="#38mem" title='mem' data-ref="38mem">mem</a>, <a class="local col9 ref" href="#39len" title='len' data-ref="39len">len</a>, <a class="macro" href="../../include/x86_64-linux-gnu/bits/socket.h.html#217" title="MSG_FASTOPEN" data-ref="_M/MSG_FASTOPEN">MSG_FASTOPEN</a>,</td></tr>
+<tr><th id="366">366</th><td>                           <a class="local col6 ref" href="#36conn" title='conn' data-ref="36conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::ip_addr" title='connectdata::ip_addr' data-ref="connectdata::ip_addr">ip_addr</a>-&gt;<a class="ref" href="curl_addrinfo.h.html#Curl_addrinfo::ai_addr" title='Curl_addrinfo::ai_addr' data-ref="Curl_addrinfo::ai_addr">ai_addr</a>, <a class="local col6 ref" href="#36conn" title='conn' data-ref="36conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::ip_addr" title='connectdata::ip_addr' data-ref="connectdata::ip_addr">ip_addr</a>-&gt;<a class="ref" href="curl_addrinfo.h.html#Curl_addrinfo::ai_addrlen" title='Curl_addrinfo::ai_addrlen' data-ref="Curl_addrinfo::ai_addrlen">ai_addrlen</a>);</td></tr>
+<tr><th id="367">367</th><td>    <a class="local col6 ref" href="#36conn" title='conn' data-ref="36conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::bits" title='connectdata::bits' data-ref="connectdata::bits">bits</a>.<a class="ref" href="urldata.h.html#ConnectBits::tcp_fastopen" title='ConnectBits::tcp_fastopen' data-ref="ConnectBits::tcp_fastopen">tcp_fastopen</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="368">368</th><td>  }</td></tr>
+<tr><th id="369">369</th><td>  <b>else</b></td></tr>
+<tr><th id="370">370</th><td><u>#<span data-ppcond="363">endif</span></u></td></tr>
+<tr><th id="371">371</th><td>    <a class="local col2 ref" href="#42bytes_written" title='bytes_written' data-ref="42bytes_written">bytes_written</a> = <a class="macro" href="curl_setup_once.h.html#198" title="(ssize_t)send((int)(sockfd), (const void *)(mem), (size_t)(len), (int)(MSG_NOSIGNAL))" data-ref="_M/swrite">swrite</a>(<a class="local col1 ref" href="#41sockfd" title='sockfd' data-ref="41sockfd">sockfd</a>, <a class="local col8 ref" href="#38mem" title='mem' data-ref="38mem">mem</a>, <a class="local col9 ref" href="#39len" title='len' data-ref="39len">len</a>);</td></tr>
+<tr><th id="372">372</th><td></td></tr>
+<tr><th id="373">373</th><td>  *<a class="local col0 ref" href="#40code" title='code' data-ref="40code">code</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="374">374</th><td>  <b>if</b>(-<var>1</var> == <a class="local col2 ref" href="#42bytes_written" title='bytes_written' data-ref="42bytes_written">bytes_written</a>) {</td></tr>
+<tr><th id="375">375</th><td>    <em>int</em> <dfn class="local col3 decl" id="43err" title='err' data-type='int' data-ref="43err">err</dfn> = <a class="macro" href="curl_setup_once.h.html#433" title="((*__errno_location ()))" data-ref="_M/SOCKERRNO">SOCKERRNO</a>;</td></tr>
+<tr><th id="376">376</th><td></td></tr>
+<tr><th id="377">377</th><td>    <b>if</b>(</td></tr>
+<tr><th id="378">378</th><td><u>#<span data-ppcond="378">ifdef</span> <span class="macro" data-ref="_M/WSAEWOULDBLOCK">WSAEWOULDBLOCK</span></u></td></tr>
+<tr><th id="379">379</th><td>      <i>/* This is how Windows does it */</i></td></tr>
+<tr><th id="380">380</th><td>      (WSAEWOULDBLOCK == err)</td></tr>
+<tr><th id="381">381</th><td><u>#<span data-ppcond="378">else</span></u></td></tr>
+<tr><th id="382">382</th><td>      <i>/* errno may be EWOULDBLOCK or on some systems EAGAIN when it returned</i></td></tr>
+<tr><th id="383">383</th><td><i>         due to its inability to send off data without blocking. We therefor</i></td></tr>
+<tr><th id="384">384</th><td><i>         treat both error codes the same here */</i></td></tr>
+<tr><th id="385">385</th><td>      (<a class="macro" href="../../include/asm-generic/errno.h.html#21" title="11" data-ref="_M/EWOULDBLOCK">EWOULDBLOCK</a> == <a class="local col3 ref" href="#43err" title='err' data-ref="43err">err</a>) || (<a class="macro" href="../../include/asm-generic/errno-base.h.html#14" title="11" data-ref="_M/EAGAIN">EAGAIN</a> == <a class="local col3 ref" href="#43err" title='err' data-ref="43err">err</a>) || (<a class="macro" href="../../include/asm-generic/errno-base.h.html#7" title="4" data-ref="_M/EINTR">EINTR</a> == <a class="local col3 ref" href="#43err" title='err' data-ref="43err">err</a>) ||</td></tr>
+<tr><th id="386">386</th><td>      (<a class="macro" href="../../include/asm-generic/errno.h.html#97" title="115" data-ref="_M/EINPROGRESS">EINPROGRESS</a> == <a class="local col3 ref" href="#43err" title='err' data-ref="43err">err</a>)</td></tr>
+<tr><th id="387">387</th><td><u>#<span data-ppcond="378">endif</span></u></td></tr>
+<tr><th id="388">388</th><td>      ) {</td></tr>
+<tr><th id="389">389</th><td>      <i>/* this is just a case of EWOULDBLOCK */</i></td></tr>
+<tr><th id="390">390</th><td>      <a class="local col2 ref" href="#42bytes_written" title='bytes_written' data-ref="42bytes_written">bytes_written</a> = <var>0</var>;</td></tr>
+<tr><th id="391">391</th><td>      *<a class="local col0 ref" href="#40code" title='code' data-ref="40code">code</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_AGAIN" title='CURLE_AGAIN' data-ref="CURLE_AGAIN">CURLE_AGAIN</a>;</td></tr>
+<tr><th id="392">392</th><td>    }</td></tr>
+<tr><th id="393">393</th><td>    <b>else</b> {</td></tr>
+<tr><th id="394">394</th><td>      <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col6 ref" href="#36conn" title='conn' data-ref="36conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>, <q>"Send failure: %s"</q>,</td></tr>
+<tr><th id="395">395</th><td>            <a class="ref" href="strerror.h.html#Curl_strerror" title='Curl_strerror' data-ref="Curl_strerror">Curl_strerror</a>(<a class="local col6 ref" href="#36conn" title='conn' data-ref="36conn">conn</a>, <a class="local col3 ref" href="#43err" title='err' data-ref="43err">err</a>));</td></tr>
+<tr><th id="396">396</th><td>      <a class="local col6 ref" href="#36conn" title='conn' data-ref="36conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::os_errno" title='UrlState::os_errno' data-ref="UrlState::os_errno">os_errno</a> = <a class="local col3 ref" href="#43err" title='err' data-ref="43err">err</a>;</td></tr>
+<tr><th id="397">397</th><td>      *<a class="local col0 ref" href="#40code" title='code' data-ref="40code">code</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_SEND_ERROR" title='CURLE_SEND_ERROR' data-ref="CURLE_SEND_ERROR">CURLE_SEND_ERROR</a>;</td></tr>
+<tr><th id="398">398</th><td>    }</td></tr>
+<tr><th id="399">399</th><td>  }</td></tr>
+<tr><th id="400">400</th><td>  <b>return</b> <a class="local col2 ref" href="#42bytes_written" title='bytes_written' data-ref="42bytes_written">bytes_written</a>;</td></tr>
+<tr><th id="401">401</th><td>}</td></tr>
+<tr><th id="402">402</th><td></td></tr>
+<tr><th id="403">403</th><td><i>/*</i></td></tr>
+<tr><th id="404">404</th><td><i> * Curl_write_plain() is an internal write function that sends data to the</i></td></tr>
+<tr><th id="405">405</th><td><i> * server using plain sockets only. Otherwise meant to have the exact same</i></td></tr>
+<tr><th id="406">406</th><td><i> * proto as Curl_write()</i></td></tr>
+<tr><th id="407">407</th><td><i> */</i></td></tr>
+<tr><th id="408">408</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_write_plain" title='Curl_write_plain' data-ref="Curl_write_plain">Curl_write_plain</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col4 decl" id="44conn" title='conn' data-type='struct connectdata *' data-ref="44conn">conn</dfn>,</td></tr>
+<tr><th id="409">409</th><td>                          <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col5 decl" id="45sockfd" title='sockfd' data-type='curl_socket_t' data-ref="45sockfd">sockfd</dfn>,</td></tr>
+<tr><th id="410">410</th><td>                          <em>const</em> <em>void</em> *<dfn class="local col6 decl" id="46mem" title='mem' data-type='const void *' data-ref="46mem">mem</dfn>,</td></tr>
+<tr><th id="411">411</th><td>                          <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="47len" title='len' data-type='size_t' data-ref="47len">len</dfn>,</td></tr>
+<tr><th id="412">412</th><td>                          <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> *<dfn class="local col8 decl" id="48written" title='written' data-type='ssize_t *' data-ref="48written">written</dfn>)</td></tr>
+<tr><th id="413">413</th><td>{</td></tr>
+<tr><th id="414">414</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col9 decl" id="49bytes_written" title='bytes_written' data-type='ssize_t' data-ref="49bytes_written">bytes_written</dfn>;</td></tr>
+<tr><th id="415">415</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col0 decl" id="50result" title='result' data-type='CURLcode' data-ref="50result">result</dfn>;</td></tr>
+<tr><th id="416">416</th><td>  <em>int</em> <dfn class="local col1 decl" id="51num" title='num' data-type='int' data-ref="51num">num</dfn> = (<a class="local col5 ref" href="#45sockfd" title='sockfd' data-ref="45sockfd">sockfd</a> == <a class="local col4 ref" href="#44conn" title='conn' data-ref="44conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="macro" href="urldata.h.html#488" title="1" data-ref="_M/SECONDARYSOCKET">SECONDARYSOCKET</a>]);</td></tr>
+<tr><th id="417">417</th><td></td></tr>
+<tr><th id="418">418</th><td>  <a class="local col9 ref" href="#49bytes_written" title='bytes_written' data-ref="49bytes_written">bytes_written</a> = <a class="ref" href="#Curl_send_plain" title='Curl_send_plain' data-ref="Curl_send_plain">Curl_send_plain</a>(<a class="local col4 ref" href="#44conn" title='conn' data-ref="44conn">conn</a>, <a class="local col1 ref" href="#51num" title='num' data-ref="51num">num</a>, <a class="local col6 ref" href="#46mem" title='mem' data-ref="46mem">mem</a>, <a class="local col7 ref" href="#47len" title='len' data-ref="47len">len</a>, &amp;<a class="local col0 ref" href="#50result" title='result' data-ref="50result">result</a>);</td></tr>
+<tr><th id="419">419</th><td></td></tr>
+<tr><th id="420">420</th><td>  *<a class="local col8 ref" href="#48written" title='written' data-ref="48written">written</a> = <a class="local col9 ref" href="#49bytes_written" title='bytes_written' data-ref="49bytes_written">bytes_written</a>;</td></tr>
+<tr><th id="421">421</th><td></td></tr>
+<tr><th id="422">422</th><td>  <b>return</b> <a class="local col0 ref" href="#50result" title='result' data-ref="50result">result</a>;</td></tr>
+<tr><th id="423">423</th><td>}</td></tr>
+<tr><th id="424">424</th><td></td></tr>
+<tr><th id="425">425</th><td><a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="decl def" id="Curl_recv_plain" title='Curl_recv_plain' data-ref="Curl_recv_plain">Curl_recv_plain</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col2 decl" id="52conn" title='conn' data-type='struct connectdata *' data-ref="52conn">conn</dfn>, <em>int</em> <dfn class="local col3 decl" id="53num" title='num' data-type='int' data-ref="53num">num</dfn>, <em>char</em> *<dfn class="local col4 decl" id="54buf" title='buf' data-type='char *' data-ref="54buf">buf</dfn>,</td></tr>
+<tr><th id="426">426</th><td>                        <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="55len" title='len' data-type='size_t' data-ref="55len">len</dfn>, <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> *<dfn class="local col6 decl" id="56code" title='code' data-type='CURLcode *' data-ref="56code">code</dfn>)</td></tr>
+<tr><th id="427">427</th><td>{</td></tr>
+<tr><th id="428">428</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col7 decl" id="57sockfd" title='sockfd' data-type='curl_socket_t' data-ref="57sockfd">sockfd</dfn> = <a class="local col2 ref" href="#52conn" title='conn' data-ref="52conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="local col3 ref" href="#53num" title='num' data-ref="53num">num</a>];</td></tr>
+<tr><th id="429">429</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col8 decl" id="58nread" title='nread' data-type='ssize_t' data-ref="58nread">nread</dfn>;</td></tr>
+<tr><th id="430">430</th><td>  <i>/* Check and return data that already received and storied in internal</i></td></tr>
+<tr><th id="431">431</th><td><i>     intermediate buffer */</i></td></tr>
+<tr><th id="432">432</th><td>  <a class="local col8 ref" href="#58nread" title='nread' data-ref="58nread">nread</a> = <a class="macro" href="#219" title="0" data-ref="_M/get_pre_recved">get_pre_recved</a>(conn, num, buf, len);</td></tr>
+<tr><th id="433">433</th><td>  <b>if</b>(<a class="local col8 ref" href="#58nread" title='nread' data-ref="58nread">nread</a> &gt; <var>0</var>) {</td></tr>
+<tr><th id="434">434</th><td>    *<a class="local col6 ref" href="#56code" title='code' data-ref="56code">code</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="435">435</th><td>    <b>return</b> <a class="local col8 ref" href="#58nread" title='nread' data-ref="58nread">nread</a>;</td></tr>
+<tr><th id="436">436</th><td>  }</td></tr>
+<tr><th id="437">437</th><td></td></tr>
+<tr><th id="438">438</th><td>  <a class="local col8 ref" href="#58nread" title='nread' data-ref="58nread">nread</a> = <a class="macro" href="curl_setup_once.h.html#167" title="(ssize_t)recv((int)(sockfd), (void *)(buf), (size_t)(len), (int)(0))" data-ref="_M/sread">sread</a>(<a class="local col7 ref" href="#57sockfd" title='sockfd' data-ref="57sockfd">sockfd</a>, <a class="local col4 ref" href="#54buf" title='buf' data-ref="54buf">buf</a>, <a class="local col5 ref" href="#55len" title='len' data-ref="55len">len</a>);</td></tr>
+<tr><th id="439">439</th><td></td></tr>
+<tr><th id="440">440</th><td>  *<a class="local col6 ref" href="#56code" title='code' data-ref="56code">code</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="441">441</th><td>  <b>if</b>(-<var>1</var> == <a class="local col8 ref" href="#58nread" title='nread' data-ref="58nread">nread</a>) {</td></tr>
+<tr><th id="442">442</th><td>    <em>int</em> <dfn class="local col9 decl" id="59err" title='err' data-type='int' data-ref="59err">err</dfn> = <a class="macro" href="curl_setup_once.h.html#433" title="((*__errno_location ()))" data-ref="_M/SOCKERRNO">SOCKERRNO</a>;</td></tr>
+<tr><th id="443">443</th><td></td></tr>
+<tr><th id="444">444</th><td>    <b>if</b>(</td></tr>
+<tr><th id="445">445</th><td><u>#<span data-ppcond="445">ifdef</span> <span class="macro" data-ref="_M/WSAEWOULDBLOCK">WSAEWOULDBLOCK</span></u></td></tr>
+<tr><th id="446">446</th><td>      <i>/* This is how Windows does it */</i></td></tr>
+<tr><th id="447">447</th><td>      (WSAEWOULDBLOCK == err)</td></tr>
+<tr><th id="448">448</th><td><u>#<span data-ppcond="445">else</span></u></td></tr>
+<tr><th id="449">449</th><td>      <i>/* errno may be EWOULDBLOCK or on some systems EAGAIN when it returned</i></td></tr>
+<tr><th id="450">450</th><td><i>         due to its inability to send off data without blocking. We therefor</i></td></tr>
+<tr><th id="451">451</th><td><i>         treat both error codes the same here */</i></td></tr>
+<tr><th id="452">452</th><td>      (<a class="macro" href="../../include/asm-generic/errno.h.html#21" title="11" data-ref="_M/EWOULDBLOCK">EWOULDBLOCK</a> == <a class="local col9 ref" href="#59err" title='err' data-ref="59err">err</a>) || (<a class="macro" href="../../include/asm-generic/errno-base.h.html#14" title="11" data-ref="_M/EAGAIN">EAGAIN</a> == <a class="local col9 ref" href="#59err" title='err' data-ref="59err">err</a>) || (<a class="macro" href="../../include/asm-generic/errno-base.h.html#7" title="4" data-ref="_M/EINTR">EINTR</a> == <a class="local col9 ref" href="#59err" title='err' data-ref="59err">err</a>)</td></tr>
+<tr><th id="453">453</th><td><u>#<span data-ppcond="445">endif</span></u></td></tr>
+<tr><th id="454">454</th><td>      ) {</td></tr>
+<tr><th id="455">455</th><td>      <i>/* this is just a case of EWOULDBLOCK */</i></td></tr>
+<tr><th id="456">456</th><td>      *<a class="local col6 ref" href="#56code" title='code' data-ref="56code">code</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_AGAIN" title='CURLE_AGAIN' data-ref="CURLE_AGAIN">CURLE_AGAIN</a>;</td></tr>
+<tr><th id="457">457</th><td>    }</td></tr>
+<tr><th id="458">458</th><td>    <b>else</b> {</td></tr>
+<tr><th id="459">459</th><td>      <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col2 ref" href="#52conn" title='conn' data-ref="52conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>, <q>"Recv failure: %s"</q>,</td></tr>
+<tr><th id="460">460</th><td>            <a class="ref" href="strerror.h.html#Curl_strerror" title='Curl_strerror' data-ref="Curl_strerror">Curl_strerror</a>(<a class="local col2 ref" href="#52conn" title='conn' data-ref="52conn">conn</a>, <a class="local col9 ref" href="#59err" title='err' data-ref="59err">err</a>));</td></tr>
+<tr><th id="461">461</th><td>      <a class="local col2 ref" href="#52conn" title='conn' data-ref="52conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>.<a class="ref" href="urldata.h.html#UrlState::os_errno" title='UrlState::os_errno' data-ref="UrlState::os_errno">os_errno</a> = <a class="local col9 ref" href="#59err" title='err' data-ref="59err">err</a>;</td></tr>
+<tr><th id="462">462</th><td>      *<a class="local col6 ref" href="#56code" title='code' data-ref="56code">code</a> = <a class="enum" href="../include/curl/curl.h.html#CURLE_RECV_ERROR" title='CURLE_RECV_ERROR' data-ref="CURLE_RECV_ERROR">CURLE_RECV_ERROR</a>;</td></tr>
+<tr><th id="463">463</th><td>    }</td></tr>
+<tr><th id="464">464</th><td>  }</td></tr>
+<tr><th id="465">465</th><td>  <b>return</b> <a class="local col8 ref" href="#58nread" title='nread' data-ref="58nread">nread</a>;</td></tr>
+<tr><th id="466">466</th><td>}</td></tr>
+<tr><th id="467">467</th><td></td></tr>
+<tr><th id="468">468</th><td><em>static</em> <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="tu decl def" id="pausewrite" title='pausewrite' data-type='CURLcode pausewrite(struct Curl_easy * data, int type, const char * ptr, size_t len)' data-ref="pausewrite">pausewrite</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col0 decl" id="60data" title='data' data-type='struct Curl_easy *' data-ref="60data">data</dfn>,</td></tr>
+<tr><th id="469">469</th><td>                           <em>int</em> <dfn class="local col1 decl" id="61type" title='type' data-type='int' data-ref="61type">type</dfn>, <i>/* what type of data */</i></td></tr>
+<tr><th id="470">470</th><td>                           <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="62ptr" title='ptr' data-type='const char *' data-ref="62ptr">ptr</dfn>,</td></tr>
+<tr><th id="471">471</th><td>                           <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col3 decl" id="63len" title='len' data-type='size_t' data-ref="63len">len</dfn>)</td></tr>
+<tr><th id="472">472</th><td>{</td></tr>
+<tr><th id="473">473</th><td>  <i>/* signalled to pause sending on this connection, but since we have data</i></td></tr>
+<tr><th id="474">474</th><td><i>     we want to send we need to dup it to save a copy for when the sending</i></td></tr>
+<tr><th id="475">475</th><td><i>     is again enabled */</i></td></tr>
+<tr><th id="476">476</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#SingleRequest" title='SingleRequest' data-ref="SingleRequest">SingleRequest</a> *<dfn class="local col4 decl" id="64k" title='k' data-type='struct SingleRequest *' data-ref="64k">k</dfn> = &amp;<a class="local col0 ref" href="#60data" title='data' data-ref="60data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>;</td></tr>
+<tr><th id="477">477</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#UrlState" title='UrlState' data-ref="UrlState">UrlState</a> *<dfn class="local col5 decl" id="65s" title='s' data-type='struct UrlState *' data-ref="65s">s</dfn> = &amp;<a class="local col0 ref" href="#60data" title='data' data-ref="60data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::state" title='Curl_easy::state' data-ref="Curl_easy::state">state</a>;</td></tr>
+<tr><th id="478">478</th><td>  <em>char</em> *<dfn class="local col6 decl" id="66dupl" title='dupl' data-type='char *' data-ref="66dupl">dupl</dfn>;</td></tr>
+<tr><th id="479">479</th><td>  <em>unsigned</em> <em>int</em> <dfn class="local col7 decl" id="67i" title='i' data-type='unsigned int' data-ref="67i">i</dfn>;</td></tr>
+<tr><th id="480">480</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col8 decl" id="68newtype" title='newtype' data-type='_Bool' data-ref="68newtype">newtype</dfn> = <a class="macro" href="curl_setup_once.h.html#344" title="1" data-ref="_M/TRUE">TRUE</a>;</td></tr>
+<tr><th id="481">481</th><td></td></tr>
+<tr><th id="482">482</th><td>  <b>if</b>(<a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempcount" title='UrlState::tempcount' data-ref="UrlState::tempcount">tempcount</a>) {</td></tr>
+<tr><th id="483">483</th><td>    <b>for</b>(<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a> = <var>0</var>; <a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>&lt; <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempcount" title='UrlState::tempcount' data-ref="UrlState::tempcount">tempcount</a>; <a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>++) {</td></tr>
+<tr><th id="484">484</th><td>      <b>if</b>(<a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::type" title='tempbuf::type' data-ref="tempbuf::type">type</a> == <a class="local col1 ref" href="#61type" title='type' data-ref="61type">type</a>) {</td></tr>
+<tr><th id="485">485</th><td>        <i>/* data for this type exists */</i></td></tr>
+<tr><th id="486">486</th><td>        <a class="local col8 ref" href="#68newtype" title='newtype' data-ref="68newtype">newtype</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="487">487</th><td>        <b>break</b>;</td></tr>
+<tr><th id="488">488</th><td>      }</td></tr>
+<tr><th id="489">489</th><td>    }</td></tr>
+<tr><th id="490">490</th><td>    <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(i &lt; <var>3</var>);</td></tr>
+<tr><th id="491">491</th><td>  }</td></tr>
+<tr><th id="492">492</th><td>  <b>else</b></td></tr>
+<tr><th id="493">493</th><td>    <a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a> = <var>0</var>;</td></tr>
+<tr><th id="494">494</th><td></td></tr>
+<tr><th id="495">495</th><td>  <b>if</b>(!<a class="local col8 ref" href="#68newtype" title='newtype' data-ref="68newtype">newtype</a>) {</td></tr>
+<tr><th id="496">496</th><td>    <i>/* append new data to old data */</i></td></tr>
+<tr><th id="497">497</th><td></td></tr>
+<tr><th id="498">498</th><td>    <i>/* figure out the new size of the data to save */</i></td></tr>
+<tr><th id="499">499</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="69newlen" title='newlen' data-type='size_t' data-ref="69newlen">newlen</dfn> = <a class="local col3 ref" href="#63len" title='len' data-ref="63len">len</a> + <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::len" title='tempbuf::len' data-ref="tempbuf::len">len</a>;</td></tr>
+<tr><th id="500">500</th><td>    <i>/* allocate the new memory area */</i></td></tr>
+<tr><th id="501">501</th><td>    <em>char</em> *<dfn class="local col0 decl" id="70newptr" title='newptr' data-type='char *' data-ref="70newptr">newptr</dfn> = <a class="macro" href="curl_memory.h.html#128" title="Curl_crealloc(s-&gt;tempwrite[i].buf, newlen)" data-ref="_M/realloc">realloc</a>(<a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::buf" title='tempbuf::buf' data-ref="tempbuf::buf">buf</a>, <a class="local col9 ref" href="#69newlen" title='newlen' data-ref="69newlen">newlen</a>);</td></tr>
+<tr><th id="502">502</th><td>    <b>if</b>(!<a class="local col0 ref" href="#70newptr" title='newptr' data-ref="70newptr">newptr</a>)</td></tr>
+<tr><th id="503">503</th><td>      <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="504">504</th><td>    <i>/* copy the new data to the end of the new area */</i></td></tr>
+<tr><th id="505">505</th><td>    <a class="ref" href="../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col0 ref" href="#70newptr" title='newptr' data-ref="70newptr">newptr</a> + <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::len" title='tempbuf::len' data-ref="tempbuf::len">len</a>, <a class="local col2 ref" href="#62ptr" title='ptr' data-ref="62ptr">ptr</a>, <a class="local col3 ref" href="#63len" title='len' data-ref="63len">len</a>);</td></tr>
+<tr><th id="506">506</th><td></td></tr>
+<tr><th id="507">507</th><td>    <i>/* update the pointer and the size */</i></td></tr>
+<tr><th id="508">508</th><td>    <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::buf" title='tempbuf::buf' data-ref="tempbuf::buf">buf</a> = <a class="local col0 ref" href="#70newptr" title='newptr' data-ref="70newptr">newptr</a>;</td></tr>
+<tr><th id="509">509</th><td>    <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::len" title='tempbuf::len' data-ref="tempbuf::len">len</a> = <a class="local col9 ref" href="#69newlen" title='newlen' data-ref="69newlen">newlen</a>;</td></tr>
+<tr><th id="510">510</th><td>  }</td></tr>
+<tr><th id="511">511</th><td>  <b>else</b> {</td></tr>
+<tr><th id="512">512</th><td>    <a class="local col6 ref" href="#66dupl" title='dupl' data-ref="66dupl">dupl</a> = <a class="ref" href="strdup.h.html#Curl_memdup" title='Curl_memdup' data-ref="Curl_memdup">Curl_memdup</a>(<a class="local col2 ref" href="#62ptr" title='ptr' data-ref="62ptr">ptr</a>, <a class="local col3 ref" href="#63len" title='len' data-ref="63len">len</a>);</td></tr>
+<tr><th id="513">513</th><td>    <b>if</b>(!<a class="local col6 ref" href="#66dupl" title='dupl' data-ref="66dupl">dupl</a>)</td></tr>
+<tr><th id="514">514</th><td>      <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OUT_OF_MEMORY" title='CURLE_OUT_OF_MEMORY' data-ref="CURLE_OUT_OF_MEMORY">CURLE_OUT_OF_MEMORY</a>;</td></tr>
+<tr><th id="515">515</th><td></td></tr>
+<tr><th id="516">516</th><td>    <i>/* store this information in the state struct for later use */</i></td></tr>
+<tr><th id="517">517</th><td>    <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::buf" title='tempbuf::buf' data-ref="tempbuf::buf">buf</a> = <a class="local col6 ref" href="#66dupl" title='dupl' data-ref="66dupl">dupl</a>;</td></tr>
+<tr><th id="518">518</th><td>    <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::len" title='tempbuf::len' data-ref="tempbuf::len">len</a> = <a class="local col3 ref" href="#63len" title='len' data-ref="63len">len</a>;</td></tr>
+<tr><th id="519">519</th><td>    <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempwrite" title='UrlState::tempwrite' data-ref="UrlState::tempwrite">tempwrite</a>[<a class="local col7 ref" href="#67i" title='i' data-ref="67i">i</a>].<a class="ref" href="urldata.h.html#tempbuf::type" title='tempbuf::type' data-ref="tempbuf::type">type</a> = <a class="local col1 ref" href="#61type" title='type' data-ref="61type">type</a>;</td></tr>
+<tr><th id="520">520</th><td></td></tr>
+<tr><th id="521">521</th><td>    <b>if</b>(<a class="local col8 ref" href="#68newtype" title='newtype' data-ref="68newtype">newtype</a>)</td></tr>
+<tr><th id="522">522</th><td>      <a class="local col5 ref" href="#65s" title='s' data-ref="65s">s</a>-&gt;<a class="ref" href="urldata.h.html#UrlState::tempcount" title='UrlState::tempcount' data-ref="UrlState::tempcount">tempcount</a>++;</td></tr>
+<tr><th id="523">523</th><td>  }</td></tr>
+<tr><th id="524">524</th><td></td></tr>
+<tr><th id="525">525</th><td>  <i>/* mark the connection as RECV paused */</i></td></tr>
+<tr><th id="526">526</th><td>  <a class="local col4 ref" href="#64k" title='k' data-ref="64k">k</a>-&gt;<a class="ref" href="urldata.h.html#SingleRequest::keepon" title='SingleRequest::keepon' data-ref="SingleRequest::keepon">keepon</a> |= <a class="macro" href="urldata.h.html#459" title="(1&lt;&lt;4)" data-ref="_M/KEEP_RECV_PAUSE">KEEP_RECV_PAUSE</a>;</td></tr>
+<tr><th id="527">527</th><td></td></tr>
+<tr><th id="528">528</th><td>  <a class="macro" href="curl_setup_once.h.html#409" title="do { } while(0)" data-ref="_M/DEBUGF">DEBUGF</a>(infof(data, <q>"Paused %zu bytes in buffer for type %02x\n"</q>,</td></tr>
+<tr><th id="529">529</th><td>               len, type));</td></tr>
+<tr><th id="530">530</th><td></td></tr>
+<tr><th id="531">531</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="532">532</th><td>}</td></tr>
+<tr><th id="533">533</th><td></td></tr>
+<tr><th id="534">534</th><td></td></tr>
+<tr><th id="535">535</th><td><i>/* Curl_client_chop_write() writes chunks of data not larger than</i></td></tr>
+<tr><th id="536">536</th><td><i> * CURL_MAX_WRITE_SIZE via client write callback(s) and</i></td></tr>
+<tr><th id="537">537</th><td><i> * takes care of pause requests from the callbacks.</i></td></tr>
+<tr><th id="538">538</th><td><i> */</i></td></tr>
+<tr><th id="539">539</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_client_chop_write" title='Curl_client_chop_write' data-ref="Curl_client_chop_write">Curl_client_chop_write</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col1 decl" id="71conn" title='conn' data-type='struct connectdata *' data-ref="71conn">conn</dfn>,</td></tr>
+<tr><th id="540">540</th><td>                                <em>int</em> <dfn class="local col2 decl" id="72type" title='type' data-type='int' data-ref="72type">type</dfn>,</td></tr>
+<tr><th id="541">541</th><td>                                <em>char</em> *<dfn class="local col3 decl" id="73ptr" title='ptr' data-type='char *' data-ref="73ptr">ptr</dfn>,</td></tr>
+<tr><th id="542">542</th><td>                                <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="74len" title='len' data-type='size_t' data-ref="74len">len</dfn>)</td></tr>
+<tr><th id="543">543</th><td>{</td></tr>
+<tr><th id="544">544</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="75data" title='data' data-type='struct Curl_easy *' data-ref="75data">data</dfn> = <a class="local col1 ref" href="#71conn" title='conn' data-ref="71conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="545">545</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_write_callback" title='curl_write_callback' data-type='size_t (*)(char *, size_t, size_t, void *)' data-ref="curl_write_callback">curl_write_callback</a> <dfn class="local col6 decl" id="76writeheader" title='writeheader' data-type='curl_write_callback' data-ref="76writeheader">writeheader</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="546">546</th><td>  <a class="typedef" href="../include/curl/curl.h.html#curl_write_callback" title='curl_write_callback' data-type='size_t (*)(char *, size_t, size_t, void *)' data-ref="curl_write_callback">curl_write_callback</a> <dfn class="local col7 decl" id="77writebody" title='writebody' data-type='curl_write_callback' data-ref="77writebody">writebody</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="547">547</th><td></td></tr>
+<tr><th id="548">548</th><td>  <b>if</b>(!<a class="local col4 ref" href="#74len" title='len' data-ref="74len">len</a>)</td></tr>
+<tr><th id="549">549</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="550">550</th><td></td></tr>
+<tr><th id="551">551</th><td>  <i>/* If reading is paused, append this data to the already held data for this</i></td></tr>
+<tr><th id="552">552</th><td><i>     type. */</i></td></tr>
+<tr><th id="553">553</th><td>  <b>if</b>(<a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::req" title='Curl_easy::req' data-ref="Curl_easy::req">req</a>.<a class="ref" href="urldata.h.html#SingleRequest::keepon" title='SingleRequest::keepon' data-ref="SingleRequest::keepon">keepon</a> &amp; <a class="macro" href="urldata.h.html#459" title="(1&lt;&lt;4)" data-ref="_M/KEEP_RECV_PAUSE">KEEP_RECV_PAUSE</a>)</td></tr>
+<tr><th id="554">554</th><td>    <b>return</b> <a class="tu ref" href="#pausewrite" title='pausewrite' data-use='c' data-ref="pausewrite">pausewrite</a>(<a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>, <a class="local col2 ref" href="#72type" title='type' data-ref="72type">type</a>, <a class="local col3 ref" href="#73ptr" title='ptr' data-ref="73ptr">ptr</a>, <a class="local col4 ref" href="#74len" title='len' data-ref="74len">len</a>);</td></tr>
+<tr><th id="555">555</th><td></td></tr>
+<tr><th id="556">556</th><td>  <i>/* Determine the callback(s) to use. */</i></td></tr>
+<tr><th id="557">557</th><td>  <b>if</b>(<a class="local col2 ref" href="#72type" title='type' data-ref="72type">type</a> &amp; <a class="macro" href="sendf.h.html#50" title="(1&lt;&lt;0)" data-ref="_M/CLIENTWRITE_BODY">CLIENTWRITE_BODY</a>)</td></tr>
+<tr><th id="558">558</th><td>    <a class="local col7 ref" href="#77writebody" title='writebody' data-ref="77writebody">writebody</a> = <a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::fwrite_func" title='UserDefined::fwrite_func' data-ref="UserDefined::fwrite_func">fwrite_func</a>;</td></tr>
+<tr><th id="559">559</th><td>  <b>if</b>((<a class="local col2 ref" href="#72type" title='type' data-ref="72type">type</a> &amp; <a class="macro" href="sendf.h.html#51" title="(1&lt;&lt;1)" data-ref="_M/CLIENTWRITE_HEADER">CLIENTWRITE_HEADER</a>) &amp;&amp;</td></tr>
+<tr><th id="560">560</th><td>     (<a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::fwrite_header" title='UserDefined::fwrite_header' data-ref="UserDefined::fwrite_header">fwrite_header</a> || <a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::writeheader" title='UserDefined::writeheader' data-ref="UserDefined::writeheader">writeheader</a>)) {</td></tr>
+<tr><th id="561">561</th><td>    <i>/*</i></td></tr>
+<tr><th id="562">562</th><td><i>     * Write headers to the same callback or to the especially setup</i></td></tr>
+<tr><th id="563">563</th><td><i>     * header callback function (added after version 7.7.1).</i></td></tr>
+<tr><th id="564">564</th><td><i>     */</i></td></tr>
+<tr><th id="565">565</th><td>    <a class="local col6 ref" href="#76writeheader" title='writeheader' data-ref="76writeheader">writeheader</a> =</td></tr>
+<tr><th id="566">566</th><td>      <a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::fwrite_header" title='UserDefined::fwrite_header' data-ref="UserDefined::fwrite_header">fwrite_header</a>? <a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::fwrite_header" title='UserDefined::fwrite_header' data-ref="UserDefined::fwrite_header">fwrite_header</a>: <a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::fwrite_func" title='UserDefined::fwrite_func' data-ref="UserDefined::fwrite_func">fwrite_func</a>;</td></tr>
+<tr><th id="567">567</th><td>  }</td></tr>
+<tr><th id="568">568</th><td></td></tr>
+<tr><th id="569">569</th><td>  <i>/* Chop data, write chunks. */</i></td></tr>
+<tr><th id="570">570</th><td>  <b>while</b>(<a class="local col4 ref" href="#74len" title='len' data-ref="74len">len</a>) {</td></tr>
+<tr><th id="571">571</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="78chunklen" title='chunklen' data-type='size_t' data-ref="78chunklen">chunklen</dfn> = <a class="local col4 ref" href="#74len" title='len' data-ref="74len">len</a> &lt;= <a class="macro" href="../include/curl/curl.h.html#229" title="16384" data-ref="_M/CURL_MAX_WRITE_SIZE">CURL_MAX_WRITE_SIZE</a>? <a class="local col4 ref" href="#74len" title='len' data-ref="74len">len</a>: <a class="macro" href="../include/curl/curl.h.html#229" title="16384" data-ref="_M/CURL_MAX_WRITE_SIZE">CURL_MAX_WRITE_SIZE</a>;</td></tr>
+<tr><th id="572">572</th><td></td></tr>
+<tr><th id="573">573</th><td>    <b>if</b>(<a class="local col7 ref" href="#77writebody" title='writebody' data-ref="77writebody">writebody</a>) {</td></tr>
+<tr><th id="574">574</th><td>      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="79wrote" title='wrote' data-type='size_t' data-ref="79wrote">wrote</dfn> = <a class="local col7 ref" href="#77writebody" title='writebody' data-ref="77writebody">writebody</a>(<a class="local col3 ref" href="#73ptr" title='ptr' data-ref="73ptr">ptr</a>, <var>1</var>, <a class="local col8 ref" href="#78chunklen" title='chunklen' data-ref="78chunklen">chunklen</a>, <a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::out" title='UserDefined::out' data-ref="UserDefined::out">out</a>);</td></tr>
+<tr><th id="575">575</th><td></td></tr>
+<tr><th id="576">576</th><td>      <b>if</b>(<a class="macro" href="../include/curl/curl.h.html#241" title="0x10000001" data-ref="_M/CURL_WRITEFUNC_PAUSE">CURL_WRITEFUNC_PAUSE</a> == <a class="local col9 ref" href="#79wrote" title='wrote' data-ref="79wrote">wrote</a>) {</td></tr>
+<tr><th id="577">577</th><td>        <b>if</b>(<a class="local col1 ref" href="#71conn" title='conn' data-ref="71conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::handler" title='connectdata::handler' data-ref="connectdata::handler">handler</a>-&gt;<a class="ref" href="urldata.h.html#Curl_handler::flags" title='Curl_handler::flags' data-ref="Curl_handler::flags">flags</a> &amp; <a class="macro" href="urldata.h.html#708" title="(1&lt;&lt;4)" data-ref="_M/PROTOPT_NONETWORK">PROTOPT_NONETWORK</a>) {</td></tr>
+<tr><th id="578">578</th><td>          <i>/* Protocols that work without network cannot be paused. This is</i></td></tr>
+<tr><th id="579">579</th><td><i>             actually only FILE:// just now, and it can't pause since the</i></td></tr>
+<tr><th id="580">580</th><td><i>             transfer isn't done using the "normal" procedure. */</i></td></tr>
+<tr><th id="581">581</th><td>          <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>, <q>"Write callback asked for PAUSE when not supported!"</q>);</td></tr>
+<tr><th id="582">582</th><td>          <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_WRITE_ERROR" title='CURLE_WRITE_ERROR' data-ref="CURLE_WRITE_ERROR">CURLE_WRITE_ERROR</a>;</td></tr>
+<tr><th id="583">583</th><td>        }</td></tr>
+<tr><th id="584">584</th><td>        <b>return</b> <a class="tu ref" href="#pausewrite" title='pausewrite' data-use='c' data-ref="pausewrite">pausewrite</a>(<a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>, <a class="local col2 ref" href="#72type" title='type' data-ref="72type">type</a>, <a class="local col3 ref" href="#73ptr" title='ptr' data-ref="73ptr">ptr</a>, <a class="local col4 ref" href="#74len" title='len' data-ref="74len">len</a>);</td></tr>
+<tr><th id="585">585</th><td>      }</td></tr>
+<tr><th id="586">586</th><td>      <b>if</b>(<a class="local col9 ref" href="#79wrote" title='wrote' data-ref="79wrote">wrote</a> != <a class="local col8 ref" href="#78chunklen" title='chunklen' data-ref="78chunklen">chunklen</a>) {</td></tr>
+<tr><th id="587">587</th><td>        <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>, <q>"Failed writing body (%zu != %zu)"</q>, <a class="local col9 ref" href="#79wrote" title='wrote' data-ref="79wrote">wrote</a>, <a class="local col8 ref" href="#78chunklen" title='chunklen' data-ref="78chunklen">chunklen</a>);</td></tr>
+<tr><th id="588">588</th><td>        <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_WRITE_ERROR" title='CURLE_WRITE_ERROR' data-ref="CURLE_WRITE_ERROR">CURLE_WRITE_ERROR</a>;</td></tr>
+<tr><th id="589">589</th><td>      }</td></tr>
+<tr><th id="590">590</th><td>    }</td></tr>
+<tr><th id="591">591</th><td></td></tr>
+<tr><th id="592">592</th><td>    <b>if</b>(<a class="local col6 ref" href="#76writeheader" title='writeheader' data-ref="76writeheader">writeheader</a>) {</td></tr>
+<tr><th id="593">593</th><td>      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="80wrote" title='wrote' data-type='size_t' data-ref="80wrote">wrote</dfn> = <a class="local col6 ref" href="#76writeheader" title='writeheader' data-ref="76writeheader">writeheader</a>(<a class="local col3 ref" href="#73ptr" title='ptr' data-ref="73ptr">ptr</a>, <var>1</var>, <a class="local col8 ref" href="#78chunklen" title='chunklen' data-ref="78chunklen">chunklen</a>, <a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::writeheader" title='UserDefined::writeheader' data-ref="UserDefined::writeheader">writeheader</a>);</td></tr>
+<tr><th id="594">594</th><td></td></tr>
+<tr><th id="595">595</th><td>      <b>if</b>(<a class="macro" href="../include/curl/curl.h.html#241" title="0x10000001" data-ref="_M/CURL_WRITEFUNC_PAUSE">CURL_WRITEFUNC_PAUSE</a> == <a class="local col0 ref" href="#80wrote" title='wrote' data-ref="80wrote">wrote</a>)</td></tr>
+<tr><th id="596">596</th><td>        <i>/* here we pass in the HEADER bit only since if this was body as well</i></td></tr>
+<tr><th id="597">597</th><td><i>           then it was passed already and clearly that didn't trigger the</i></td></tr>
+<tr><th id="598">598</th><td><i>           pause, so this is saved for later with the HEADER bit only */</i></td></tr>
+<tr><th id="599">599</th><td>        <b>return</b> <a class="tu ref" href="#pausewrite" title='pausewrite' data-use='c' data-ref="pausewrite">pausewrite</a>(<a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>, <a class="macro" href="sendf.h.html#51" title="(1&lt;&lt;1)" data-ref="_M/CLIENTWRITE_HEADER">CLIENTWRITE_HEADER</a>, <a class="local col3 ref" href="#73ptr" title='ptr' data-ref="73ptr">ptr</a>, <a class="local col4 ref" href="#74len" title='len' data-ref="74len">len</a>);</td></tr>
+<tr><th id="600">600</th><td></td></tr>
+<tr><th id="601">601</th><td>      <b>if</b>(<a class="local col0 ref" href="#80wrote" title='wrote' data-ref="80wrote">wrote</a> != <a class="local col8 ref" href="#78chunklen" title='chunklen' data-ref="78chunklen">chunklen</a>) {</td></tr>
+<tr><th id="602">602</th><td>        <a class="macro" href="sendf.h.html#48" title="Curl_failf" data-ref="_M/failf">failf</a>(<a class="local col5 ref" href="#75data" title='data' data-ref="75data">data</a>, <q>"Failed writing header"</q>);</td></tr>
+<tr><th id="603">603</th><td>        <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_WRITE_ERROR" title='CURLE_WRITE_ERROR' data-ref="CURLE_WRITE_ERROR">CURLE_WRITE_ERROR</a>;</td></tr>
+<tr><th id="604">604</th><td>      }</td></tr>
+<tr><th id="605">605</th><td>    }</td></tr>
+<tr><th id="606">606</th><td></td></tr>
+<tr><th id="607">607</th><td>    <a class="local col3 ref" href="#73ptr" title='ptr' data-ref="73ptr">ptr</a> += <a class="local col8 ref" href="#78chunklen" title='chunklen' data-ref="78chunklen">chunklen</a>;</td></tr>
+<tr><th id="608">608</th><td>    <a class="local col4 ref" href="#74len" title='len' data-ref="74len">len</a> -= <a class="local col8 ref" href="#78chunklen" title='chunklen' data-ref="78chunklen">chunklen</a>;</td></tr>
+<tr><th id="609">609</th><td>  }</td></tr>
+<tr><th id="610">610</th><td></td></tr>
+<tr><th id="611">611</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="612">612</th><td>}</td></tr>
+<tr><th id="613">613</th><td></td></tr>
+<tr><th id="614">614</th><td></td></tr>
+<tr><th id="615">615</th><td><i>/* Curl_client_write() sends data to the write callback(s)</i></td></tr>
+<tr><th id="616">616</th><td><i></i></td></tr>
+<tr><th id="617">617</th><td><i>   The bit pattern defines to what "streams" to write to. Body and/or header.</i></td></tr>
+<tr><th id="618">618</th><td><i>   The defines are in sendf.h of course.</i></td></tr>
+<tr><th id="619">619</th><td><i></i></td></tr>
+<tr><th id="620">620</th><td><i>   If CURL_DO_LINEEND_CONV is enabled, data is converted IN PLACE to the</i></td></tr>
+<tr><th id="621">621</th><td><i>   local character encoding.  This is a problem and should be changed in</i></td></tr>
+<tr><th id="622">622</th><td><i>   the future to leave the original data alone.</i></td></tr>
+<tr><th id="623">623</th><td><i> */</i></td></tr>
+<tr><th id="624">624</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_client_write" title='Curl_client_write' data-ref="Curl_client_write">Curl_client_write</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col1 decl" id="81conn" title='conn' data-type='struct connectdata *' data-ref="81conn">conn</dfn>,</td></tr>
+<tr><th id="625">625</th><td>                           <em>int</em> <dfn class="local col2 decl" id="82type" title='type' data-type='int' data-ref="82type">type</dfn>,</td></tr>
+<tr><th id="626">626</th><td>                           <em>char</em> *<dfn class="local col3 decl" id="83ptr" title='ptr' data-type='char *' data-ref="83ptr">ptr</dfn>,</td></tr>
+<tr><th id="627">627</th><td>                           <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col4 decl" id="84len" title='len' data-type='size_t' data-ref="84len">len</dfn>)</td></tr>
+<tr><th id="628">628</th><td>{</td></tr>
+<tr><th id="629">629</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col5 decl" id="85data" title='data' data-type='struct Curl_easy *' data-ref="85data">data</dfn> = <a class="local col1 ref" href="#81conn" title='conn' data-ref="81conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="630">630</th><td></td></tr>
+<tr><th id="631">631</th><td>  <b>if</b>(<var>0</var> == <a class="local col4 ref" href="#84len" title='len' data-ref="84len">len</a>)</td></tr>
+<tr><th id="632">632</th><td>    <a class="local col4 ref" href="#84len" title='len' data-ref="84len">len</a> = <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col3 ref" href="#83ptr" title='ptr' data-ref="83ptr">ptr</a>);</td></tr>
+<tr><th id="633">633</th><td></td></tr>
+<tr><th id="634">634</th><td>  <a class="macro" href="curl_setup_once.h.html#420" title="do { } while(0)" data-ref="_M/DEBUGASSERT">DEBUGASSERT</a>(type &lt;= <var>3</var>);</td></tr>
+<tr><th id="635">635</th><td></td></tr>
+<tr><th id="636">636</th><td>  <i>/* FTP data may need conversion. */</i></td></tr>
+<tr><th id="637">637</th><td>  <b>if</b>((<a class="local col2 ref" href="#82type" title='type' data-ref="82type">type</a> &amp; <a class="macro" href="sendf.h.html#50" title="(1&lt;&lt;0)" data-ref="_M/CLIENTWRITE_BODY">CLIENTWRITE_BODY</a>) &amp;&amp;</td></tr>
+<tr><th id="638">638</th><td>    (<a class="local col1 ref" href="#81conn" title='conn' data-ref="81conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::handler" title='connectdata::handler' data-ref="connectdata::handler">handler</a>-&gt;<a class="ref" href="urldata.h.html#Curl_handler::protocol" title='Curl_handler::protocol' data-ref="Curl_handler::protocol">protocol</a> &amp; <a class="macro" href="urldata.h.html#67" title="((1&lt;&lt;2)|(1&lt;&lt;3))" data-ref="_M/PROTO_FAMILY_FTP">PROTO_FAMILY_FTP</a>) &amp;&amp;</td></tr>
+<tr><th id="639">639</th><td>    <a class="local col1 ref" href="#81conn" title='conn' data-ref="81conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::proto" title='connectdata::proto' data-ref="connectdata::proto">proto</a>.<a class="ref" href="urldata.h.html#connectdata::(anonymous)::ftpc" title='connectdata::(anonymous union)::ftpc' data-ref="connectdata::(anonymous)::ftpc">ftpc</a>.<a class="ref" href="ftp.h.html#ftp_conn::transfertype" title='ftp_conn::transfertype' data-ref="ftp_conn::transfertype">transfertype</a> == <kbd>'A'</kbd>) {</td></tr>
+<tr><th id="640">640</th><td>    <i>/* convert from the network encoding */</i></td></tr>
+<tr><th id="641">641</th><td>    <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col6 decl" id="86result" title='result' data-type='CURLcode' data-ref="86result">result</dfn> = <a class="macro" href="non-ascii.h.html#57" title="((void)data, CURLE_OK)" data-ref="_M/Curl_convert_from_network">Curl_convert_from_network</a>(<a class="local col5 ref" href="#85data" title='data' data-ref="85data">data</a>, ptr, len);</td></tr>
+<tr><th id="642">642</th><td>    <i>/* Curl_convert_from_network calls failf if unsuccessful */</i></td></tr>
+<tr><th id="643">643</th><td>    <b>if</b>(<a class="local col6 ref" href="#86result" title='result' data-ref="86result">result</a>)</td></tr>
+<tr><th id="644">644</th><td>      <b>return</b> <a class="local col6 ref" href="#86result" title='result' data-ref="86result">result</a>;</td></tr>
+<tr><th id="645">645</th><td></td></tr>
+<tr><th id="646">646</th><td><u>#<span data-ppcond="646">ifdef</span> <a class="macro" href="urldata.h.html#1322" data-ref="_M/CURL_DO_LINEEND_CONV">CURL_DO_LINEEND_CONV</a></u></td></tr>
+<tr><th id="647">647</th><td>    <i>/* convert end-of-line markers */</i></td></tr>
+<tr><th id="648">648</th><td>    <a class="local col4 ref" href="#84len" title='len' data-ref="84len">len</a> = <a class="tu ref" href="#convert_lineends" title='convert_lineends' data-use='c' data-ref="convert_lineends">convert_lineends</a>(<a class="local col5 ref" href="#85data" title='data' data-ref="85data">data</a>, <a class="local col3 ref" href="#83ptr" title='ptr' data-ref="83ptr">ptr</a>, <a class="local col4 ref" href="#84len" title='len' data-ref="84len">len</a>);</td></tr>
+<tr><th id="649">649</th><td><u>#<span data-ppcond="646">endif</span> /* CURL_DO_LINEEND_CONV */</u></td></tr>
+<tr><th id="650">650</th><td>    }</td></tr>
+<tr><th id="651">651</th><td></td></tr>
+<tr><th id="652">652</th><td>  <b>return</b> <a class="ref" href="#Curl_client_chop_write" title='Curl_client_chop_write' data-ref="Curl_client_chop_write">Curl_client_chop_write</a>(<a class="local col1 ref" href="#81conn" title='conn' data-ref="81conn">conn</a>, <a class="local col2 ref" href="#82type" title='type' data-ref="82type">type</a>, <a class="local col3 ref" href="#83ptr" title='ptr' data-ref="83ptr">ptr</a>, <a class="local col4 ref" href="#84len" title='len' data-ref="84len">len</a>);</td></tr>
+<tr><th id="653">653</th><td>}</td></tr>
+<tr><th id="654">654</th><td></td></tr>
+<tr><th id="655">655</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_read_plain" title='Curl_read_plain' data-ref="Curl_read_plain">Curl_read_plain</dfn>(<a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col7 decl" id="87sockfd" title='sockfd' data-type='curl_socket_t' data-ref="87sockfd">sockfd</dfn>,</td></tr>
+<tr><th id="656">656</th><td>                         <em>char</em> *<dfn class="local col8 decl" id="88buf" title='buf' data-type='char *' data-ref="88buf">buf</dfn>,</td></tr>
+<tr><th id="657">657</th><td>                         <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="89bytesfromsocket" title='bytesfromsocket' data-type='size_t' data-ref="89bytesfromsocket">bytesfromsocket</dfn>,</td></tr>
+<tr><th id="658">658</th><td>                         <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> *<dfn class="local col0 decl" id="90n" title='n' data-type='ssize_t *' data-ref="90n">n</dfn>)</td></tr>
+<tr><th id="659">659</th><td>{</td></tr>
+<tr><th id="660">660</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col1 decl" id="91nread" title='nread' data-type='ssize_t' data-ref="91nread">nread</dfn> = <a class="macro" href="curl_setup_once.h.html#167" title="(ssize_t)recv((int)(sockfd), (void *)(buf), (size_t)(bytesfromsocket), (int)(0))" data-ref="_M/sread">sread</a>(<a class="local col7 ref" href="#87sockfd" title='sockfd' data-ref="87sockfd">sockfd</a>, <a class="local col8 ref" href="#88buf" title='buf' data-ref="88buf">buf</a>, <a class="local col9 ref" href="#89bytesfromsocket" title='bytesfromsocket' data-ref="89bytesfromsocket">bytesfromsocket</a>);</td></tr>
+<tr><th id="661">661</th><td></td></tr>
+<tr><th id="662">662</th><td>  <b>if</b>(-<var>1</var> == <a class="local col1 ref" href="#91nread" title='nread' data-ref="91nread">nread</a>) {</td></tr>
+<tr><th id="663">663</th><td>    <em>int</em> <dfn class="local col2 decl" id="92err" title='err' data-type='int' data-ref="92err">err</dfn> = <a class="macro" href="curl_setup_once.h.html#433" title="((*__errno_location ()))" data-ref="_M/SOCKERRNO">SOCKERRNO</a>;</td></tr>
+<tr><th id="664">664</th><td>    <em>int</em> <dfn class="local col3 decl" id="93return_error" title='return_error' data-type='int' data-ref="93return_error">return_error</dfn>;</td></tr>
+<tr><th id="665">665</th><td><u>#<span data-ppcond="665">ifdef</span> <span class="macro" data-ref="_M/USE_WINSOCK">USE_WINSOCK</span></u></td></tr>
+<tr><th id="666">666</th><td>    return_error = WSAEWOULDBLOCK == err;</td></tr>
+<tr><th id="667">667</th><td><u>#<span data-ppcond="665">else</span></u></td></tr>
+<tr><th id="668">668</th><td>    <a class="local col3 ref" href="#93return_error" title='return_error' data-ref="93return_error">return_error</a> = <a class="macro" href="../../include/asm-generic/errno.h.html#21" title="11" data-ref="_M/EWOULDBLOCK">EWOULDBLOCK</a> == <a class="local col2 ref" href="#92err" title='err' data-ref="92err">err</a> || <a class="macro" href="../../include/asm-generic/errno-base.h.html#14" title="11" data-ref="_M/EAGAIN">EAGAIN</a> == <a class="local col2 ref" href="#92err" title='err' data-ref="92err">err</a> || <a class="macro" href="../../include/asm-generic/errno-base.h.html#7" title="4" data-ref="_M/EINTR">EINTR</a> == <a class="local col2 ref" href="#92err" title='err' data-ref="92err">err</a>;</td></tr>
+<tr><th id="669">669</th><td><u>#<span data-ppcond="665">endif</span></u></td></tr>
+<tr><th id="670">670</th><td>    <b>if</b>(<a class="local col3 ref" href="#93return_error" title='return_error' data-ref="93return_error">return_error</a>)</td></tr>
+<tr><th id="671">671</th><td>      <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_AGAIN" title='CURLE_AGAIN' data-ref="CURLE_AGAIN">CURLE_AGAIN</a>;</td></tr>
+<tr><th id="672">672</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_RECV_ERROR" title='CURLE_RECV_ERROR' data-ref="CURLE_RECV_ERROR">CURLE_RECV_ERROR</a>;</td></tr>
+<tr><th id="673">673</th><td>  }</td></tr>
+<tr><th id="674">674</th><td></td></tr>
+<tr><th id="675">675</th><td>  <i>/* we only return number of bytes read when we return OK */</i></td></tr>
+<tr><th id="676">676</th><td>  *<a class="local col0 ref" href="#90n" title='n' data-ref="90n">n</a> = <a class="local col1 ref" href="#91nread" title='nread' data-ref="91nread">nread</a>;</td></tr>
+<tr><th id="677">677</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="678">678</th><td>}</td></tr>
+<tr><th id="679">679</th><td></td></tr>
+<tr><th id="680">680</th><td><i>/*</i></td></tr>
+<tr><th id="681">681</th><td><i> * Internal read-from-socket function. This is meant to deal with plain</i></td></tr>
+<tr><th id="682">682</th><td><i> * sockets, SSL sockets and kerberos sockets.</i></td></tr>
+<tr><th id="683">683</th><td><i> *</i></td></tr>
+<tr><th id="684">684</th><td><i> * Returns a regular CURLcode value.</i></td></tr>
+<tr><th id="685">685</th><td><i> */</i></td></tr>
+<tr><th id="686">686</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="Curl_read" title='Curl_read' data-ref="Curl_read">Curl_read</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col4 decl" id="94conn" title='conn' data-type='struct connectdata *' data-ref="94conn">conn</dfn>, <i>/* connection data */</i></td></tr>
+<tr><th id="687">687</th><td>                   <a class="typedef" href="../include/curl/curl.h.html#curl_socket_t" title='curl_socket_t' data-type='int' data-ref="curl_socket_t">curl_socket_t</a> <dfn class="local col5 decl" id="95sockfd" title='sockfd' data-type='curl_socket_t' data-ref="95sockfd">sockfd</dfn>,     <i>/* read from this socket */</i></td></tr>
+<tr><th id="688">688</th><td>                   <em>char</em> *<dfn class="local col6 decl" id="96buf" title='buf' data-type='char *' data-ref="96buf">buf</dfn>,                <i>/* store read data here */</i></td></tr>
+<tr><th id="689">689</th><td>                   <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="97sizerequested" title='sizerequested' data-type='size_t' data-ref="97sizerequested">sizerequested</dfn>,     <i>/* max amount to read */</i></td></tr>
+<tr><th id="690">690</th><td>                   <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> *<dfn class="local col8 decl" id="98n" title='n' data-type='ssize_t *' data-ref="98n">n</dfn>)               <i>/* amount bytes read */</i></td></tr>
+<tr><th id="691">691</th><td>{</td></tr>
+<tr><th id="692">692</th><td>  <a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="local col9 decl" id="99result" title='result' data-type='CURLcode' data-ref="99result">result</dfn> = <a class="enum" href="../include/curl/curl.h.html#CURLE_RECV_ERROR" title='CURLE_RECV_ERROR' data-ref="CURLE_RECV_ERROR">CURLE_RECV_ERROR</a>;</td></tr>
+<tr><th id="693">693</th><td>  <a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a> <dfn class="local col0 decl" id="100nread" title='nread' data-type='ssize_t' data-ref="100nread">nread</dfn> = <var>0</var>;</td></tr>
+<tr><th id="694">694</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="101bytesfromsocket" title='bytesfromsocket' data-type='size_t' data-ref="101bytesfromsocket">bytesfromsocket</dfn> = <var>0</var>;</td></tr>
+<tr><th id="695">695</th><td>  <em>char</em> *<dfn class="local col2 decl" id="102buffertofill" title='buffertofill' data-type='char *' data-ref="102buffertofill">buffertofill</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="696">696</th><td>  <b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="103data" title='data' data-type='struct Curl_easy *' data-ref="103data">data</dfn> = <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::data" title='connectdata::data' data-ref="connectdata::data">data</a>;</td></tr>
+<tr><th id="697">697</th><td></td></tr>
+<tr><th id="698">698</th><td>  <i>/* if HTTP/1 pipelining is both wanted and possible */</i></td></tr>
+<tr><th id="699">699</th><td>  <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col4 decl" id="104pipelining" title='pipelining' data-type='_Bool' data-ref="104pipelining">pipelining</dfn> = <a class="ref" href="multiif.h.html#Curl_pipeline_wanted" title='Curl_pipeline_wanted' data-ref="Curl_pipeline_wanted">Curl_pipeline_wanted</a>(<a class="local col3 ref" href="#103data" title='data' data-ref="103data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::multi" title='Curl_easy::multi' data-ref="Curl_easy::multi">multi</a>, <a class="macro" href="../include/curl/multi.h.html#83" title="1L" data-ref="_M/CURLPIPE_HTTP1">CURLPIPE_HTTP1</a>) &amp;&amp;</td></tr>
+<tr><th id="700">700</th><td>    (<a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::bundle" title='connectdata::bundle' data-ref="connectdata::bundle">bundle</a>-&gt;<a class="ref" href="conncache.h.html#connectbundle::multiuse" title='connectbundle::multiuse' data-ref="connectbundle::multiuse">multiuse</a> == <a class="macro" href="conncache.h.html#35" title="1" data-ref="_M/BUNDLE_PIPELINING">BUNDLE_PIPELINING</a>);</td></tr>
+<tr><th id="701">701</th><td></td></tr>
+<tr><th id="702">702</th><td>  <i>/* Set 'num' to 0 or 1, depending on which socket that has been sent here.</i></td></tr>
+<tr><th id="703">703</th><td><i>     If it is the second socket, we set num to 1. Otherwise to 0. This lets</i></td></tr>
+<tr><th id="704">704</th><td><i>     us use the correct ssl handle. */</i></td></tr>
+<tr><th id="705">705</th><td>  <em>int</em> <dfn class="local col5 decl" id="105num" title='num' data-type='int' data-ref="105num">num</dfn> = (<a class="local col5 ref" href="#95sockfd" title='sockfd' data-ref="95sockfd">sockfd</a> == <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::sock" title='connectdata::sock' data-ref="connectdata::sock">sock</a>[<a class="macro" href="urldata.h.html#488" title="1" data-ref="_M/SECONDARYSOCKET">SECONDARYSOCKET</a>]);</td></tr>
+<tr><th id="706">706</th><td></td></tr>
+<tr><th id="707">707</th><td>  *<a class="local col8 ref" href="#98n" title='n' data-ref="98n">n</a> = <var>0</var>; <i>/* reset amount to zero */</i></td></tr>
+<tr><th id="708">708</th><td></td></tr>
+<tr><th id="709">709</th><td>  <i>/* If session can pipeline, check connection buffer  */</i></td></tr>
+<tr><th id="710">710</th><td>  <b>if</b>(<a class="local col4 ref" href="#104pipelining" title='pipelining' data-ref="104pipelining">pipelining</a>) {</td></tr>
+<tr><th id="711">711</th><td>    <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="106bytestocopy" title='bytestocopy' data-type='size_t' data-ref="106bytestocopy">bytestocopy</dfn> = <a class="macro" href="urldata.h.html#153" title="((conn-&gt;buf_len - conn-&gt;read_pos)&lt;(sizerequested)?(conn-&gt;buf_len - conn-&gt;read_pos):(sizerequested))" data-ref="_M/CURLMIN">CURLMIN</a>(<a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::buf_len" title='connectdata::buf_len' data-ref="connectdata::buf_len">buf_len</a> - <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::read_pos" title='connectdata::read_pos' data-ref="connectdata::read_pos">read_pos</a>,</td></tr>
+<tr><th id="712">712</th><td>                                 <a class="local col7 ref" href="#97sizerequested" title='sizerequested' data-ref="97sizerequested">sizerequested</a>);</td></tr>
+<tr><th id="713">713</th><td></td></tr>
+<tr><th id="714">714</th><td>    <i>/* Copy from our master buffer first if we have some unread data there*/</i></td></tr>
+<tr><th id="715">715</th><td>    <b>if</b>(<a class="local col6 ref" href="#106bytestocopy" title='bytestocopy' data-ref="106bytestocopy">bytestocopy</a> &gt; <var>0</var>) {</td></tr>
+<tr><th id="716">716</th><td>      <a class="ref" href="../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col6 ref" href="#96buf" title='buf' data-ref="96buf">buf</a>, <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::master_buffer" title='connectdata::master_buffer' data-ref="connectdata::master_buffer">master_buffer</a> + <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::read_pos" title='connectdata::read_pos' data-ref="connectdata::read_pos">read_pos</a>, <a class="local col6 ref" href="#106bytestocopy" title='bytestocopy' data-ref="106bytestocopy">bytestocopy</a>);</td></tr>
+<tr><th id="717">717</th><td>      <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::read_pos" title='connectdata::read_pos' data-ref="connectdata::read_pos">read_pos</a> += <a class="local col6 ref" href="#106bytestocopy" title='bytestocopy' data-ref="106bytestocopy">bytestocopy</a>;</td></tr>
+<tr><th id="718">718</th><td>      <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::bits" title='connectdata::bits' data-ref="connectdata::bits">bits</a>.<a class="ref" href="urldata.h.html#ConnectBits::stream_was_rewound" title='ConnectBits::stream_was_rewound' data-ref="ConnectBits::stream_was_rewound">stream_was_rewound</a> = <a class="macro" href="curl_setup_once.h.html#347" title="0" data-ref="_M/FALSE">FALSE</a>;</td></tr>
+<tr><th id="719">719</th><td></td></tr>
+<tr><th id="720">720</th><td>      *<a class="local col8 ref" href="#98n" title='n' data-ref="98n">n</a> = (<a class="typedef" href="../../include/x86_64-linux-gnu/sys/types.h.html#ssize_t" title='ssize_t' data-type='__ssize_t' data-ref="ssize_t">ssize_t</a>)<a class="local col6 ref" href="#106bytestocopy" title='bytestocopy' data-ref="106bytestocopy">bytestocopy</a>;</td></tr>
+<tr><th id="721">721</th><td>      <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="722">722</th><td>    }</td></tr>
+<tr><th id="723">723</th><td>    <i>/* If we come here, it means that there is no data to read from the buffer,</i></td></tr>
+<tr><th id="724">724</th><td><i>     * so we read from the socket */</i></td></tr>
+<tr><th id="725">725</th><td>    <a class="local col1 ref" href="#101bytesfromsocket" title='bytesfromsocket' data-ref="101bytesfromsocket">bytesfromsocket</a> = <a class="macro" href="urldata.h.html#153" title="((sizerequested)&lt;(16384)?(sizerequested):(16384))" data-ref="_M/CURLMIN">CURLMIN</a>(<a class="local col7 ref" href="#97sizerequested" title='sizerequested' data-ref="97sizerequested">sizerequested</a>, <a class="macro" href="urldata.h.html#140" title="16384" data-ref="_M/MASTERBUF_SIZE">MASTERBUF_SIZE</a>);</td></tr>
+<tr><th id="726">726</th><td>    <a class="local col2 ref" href="#102buffertofill" title='buffertofill' data-ref="102buffertofill">buffertofill</a> = <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::master_buffer" title='connectdata::master_buffer' data-ref="connectdata::master_buffer">master_buffer</a>;</td></tr>
+<tr><th id="727">727</th><td>  }</td></tr>
+<tr><th id="728">728</th><td>  <b>else</b> {</td></tr>
+<tr><th id="729">729</th><td>    <a class="local col1 ref" href="#101bytesfromsocket" title='bytesfromsocket' data-ref="101bytesfromsocket">bytesfromsocket</a> = <a class="macro" href="urldata.h.html#153" title="((sizerequested)&lt;((size_t)data-&gt;set.buffer_size)?(sizerequested):((size_t)data-&gt;set.buffer_size))" data-ref="_M/CURLMIN">CURLMIN</a>(<a class="local col7 ref" href="#97sizerequested" title='sizerequested' data-ref="97sizerequested">sizerequested</a>, (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)<a class="local col3 ref" href="#103data" title='data' data-ref="103data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::buffer_size" title='UserDefined::buffer_size' data-ref="UserDefined::buffer_size">buffer_size</a>);</td></tr>
+<tr><th id="730">730</th><td>    <a class="local col2 ref" href="#102buffertofill" title='buffertofill' data-ref="102buffertofill">buffertofill</a> = <a class="local col6 ref" href="#96buf" title='buf' data-ref="96buf">buf</a>;</td></tr>
+<tr><th id="731">731</th><td>  }</td></tr>
+<tr><th id="732">732</th><td></td></tr>
+<tr><th id="733">733</th><td>  <a class="local col0 ref" href="#100nread" title='nread' data-ref="100nread">nread</a> = <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::recv" title='connectdata::recv' data-ref="connectdata::recv">recv</a>[<a class="local col5 ref" href="#105num" title='num' data-ref="105num">num</a>](<a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>, <a class="local col5 ref" href="#105num" title='num' data-ref="105num">num</a>, <a class="local col2 ref" href="#102buffertofill" title='buffertofill' data-ref="102buffertofill">buffertofill</a>, <a class="local col1 ref" href="#101bytesfromsocket" title='bytesfromsocket' data-ref="101bytesfromsocket">bytesfromsocket</a>, &amp;<a class="local col9 ref" href="#99result" title='result' data-ref="99result">result</a>);</td></tr>
+<tr><th id="734">734</th><td>  <b>if</b>(<a class="local col0 ref" href="#100nread" title='nread' data-ref="100nread">nread</a> &lt; <var>0</var>)</td></tr>
+<tr><th id="735">735</th><td>    <b>return</b> <a class="local col9 ref" href="#99result" title='result' data-ref="99result">result</a>;</td></tr>
+<tr><th id="736">736</th><td></td></tr>
+<tr><th id="737">737</th><td>  <b>if</b>(<a class="local col4 ref" href="#104pipelining" title='pipelining' data-ref="104pipelining">pipelining</a>) {</td></tr>
+<tr><th id="738">738</th><td>    <a class="ref" href="../../include/string.h.html#memcpy" title='memcpy' data-ref="memcpy">memcpy</a>(<a class="local col6 ref" href="#96buf" title='buf' data-ref="96buf">buf</a>, <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::master_buffer" title='connectdata::master_buffer' data-ref="connectdata::master_buffer">master_buffer</a>, <a class="local col0 ref" href="#100nread" title='nread' data-ref="100nread">nread</a>);</td></tr>
+<tr><th id="739">739</th><td>    <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::buf_len" title='connectdata::buf_len' data-ref="connectdata::buf_len">buf_len</a> = <a class="local col0 ref" href="#100nread" title='nread' data-ref="100nread">nread</a>;</td></tr>
+<tr><th id="740">740</th><td>    <a class="local col4 ref" href="#94conn" title='conn' data-ref="94conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::read_pos" title='connectdata::read_pos' data-ref="connectdata::read_pos">read_pos</a> = <a class="local col0 ref" href="#100nread" title='nread' data-ref="100nread">nread</a>;</td></tr>
+<tr><th id="741">741</th><td>  }</td></tr>
+<tr><th id="742">742</th><td></td></tr>
+<tr><th id="743">743</th><td>  *<a class="local col8 ref" href="#98n" title='n' data-ref="98n">n</a> += <a class="local col0 ref" href="#100nread" title='nread' data-ref="100nread">nread</a>;</td></tr>
+<tr><th id="744">744</th><td></td></tr>
+<tr><th id="745">745</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="746">746</th><td>}</td></tr>
+<tr><th id="747">747</th><td></td></tr>
+<tr><th id="748">748</th><td><i  data-doc="showit">/* return 0 on success */</i></td></tr>
+<tr><th id="749">749</th><td><em>static</em> <em>int</em> <dfn class="tu decl def" id="showit" title='showit' data-type='int showit(struct Curl_easy * data, curl_infotype type, char * ptr, size_t size)' data-ref="showit">showit</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col7 decl" id="107data" title='data' data-type='struct Curl_easy *' data-ref="107data">data</dfn>, <a class="typedef" href="../include/curl/curl.h.html#curl_infotype" title='curl_infotype' data-type='enum curl_infotype' data-ref="curl_infotype">curl_infotype</a> <dfn class="local col8 decl" id="108type" title='type' data-type='curl_infotype' data-ref="108type">type</dfn>,</td></tr>
+<tr><th id="750">750</th><td>                  <em>char</em> *<dfn class="local col9 decl" id="109ptr" title='ptr' data-type='char *' data-ref="109ptr">ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="110size" title='size' data-type='size_t' data-ref="110size">size</dfn>)</td></tr>
+<tr><th id="751">751</th><td>{</td></tr>
+<tr><th id="752">752</th><td>  <em>static</em> <em>const</em> <em>char</em> <dfn class="local col1 decl" id="111s_infotype" title='s_infotype' data-type='const char [7][3]' data-ref="111s_infotype">s_infotype</dfn>[<a class="enum" href="../include/curl/curl.h.html#CURLINFO_END" title='CURLINFO_END' data-ref="CURLINFO_END">CURLINFO_END</a>][<var>3</var>] = {</td></tr>
+<tr><th id="753">753</th><td>    <q>"* "</q>, <q>"&lt; "</q>, <q>"&gt; "</q>, <q>"{ "</q>, <q>"} "</q>, <q>"{ "</q>, <q>"} "</q> };</td></tr>
+<tr><th id="754">754</th><td>  <em>int</em> <dfn class="local col2 decl" id="112rc" title='rc' data-type='int' data-ref="112rc">rc</dfn> = <var>0</var>;</td></tr>
+<tr><th id="755">755</th><td></td></tr>
+<tr><th id="756">756</th><td><u>#<span data-ppcond="756">ifdef</span> <span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span></u></td></tr>
+<tr><th id="757">757</th><td>  <em>char</em> *buf = NULL;</td></tr>
+<tr><th id="758">758</th><td>  size_t conv_size = <var>0</var>;</td></tr>
+<tr><th id="759">759</th><td></td></tr>
+<tr><th id="760">760</th><td>  <b>switch</b>(type) {</td></tr>
+<tr><th id="761">761</th><td>  <b>case</b> CURLINFO_HEADER_OUT:</td></tr>
+<tr><th id="762">762</th><td>    buf = Curl_memdup(ptr, size);</td></tr>
+<tr><th id="763">763</th><td>    <b>if</b>(!buf)</td></tr>
+<tr><th id="764">764</th><td>      <b>return</b> <var>1</var>;</td></tr>
+<tr><th id="765">765</th><td>    conv_size = size;</td></tr>
+<tr><th id="766">766</th><td></td></tr>
+<tr><th id="767">767</th><td>    <i>/* Special processing is needed for this block if it</i></td></tr>
+<tr><th id="768">768</th><td><i>     * contains both headers and data (separated by CRLFCRLF).</i></td></tr>
+<tr><th id="769">769</th><td><i>     * We want to convert just the headers, leaving the data as-is.</i></td></tr>
+<tr><th id="770">770</th><td><i>     */</i></td></tr>
+<tr><th id="771">771</th><td>    <b>if</b>(size &gt; <var>4</var>) {</td></tr>
+<tr><th id="772">772</th><td>      size_t i;</td></tr>
+<tr><th id="773">773</th><td>      <b>for</b>(i = <var>0</var>; i &lt; size-<var>4</var>; i++) {</td></tr>
+<tr><th id="774">774</th><td>        <b>if</b>(memcmp(&amp;buf[i], <q>"\x0d\x0a\x0d\x0a"</q>, <var>4</var>) == <var>0</var>) {</td></tr>
+<tr><th id="775">775</th><td>          <i>/* convert everything through this CRLFCRLF but no further */</i></td></tr>
+<tr><th id="776">776</th><td>          conv_size = i + <var>4</var>;</td></tr>
+<tr><th id="777">777</th><td>          <b>break</b>;</td></tr>
+<tr><th id="778">778</th><td>        }</td></tr>
+<tr><th id="779">779</th><td>      }</td></tr>
+<tr><th id="780">780</th><td>    }</td></tr>
+<tr><th id="781">781</th><td></td></tr>
+<tr><th id="782">782</th><td>    Curl_convert_from_network(data, buf, conv_size);</td></tr>
+<tr><th id="783">783</th><td>    <i>/* Curl_convert_from_network calls failf if unsuccessful */</i></td></tr>
+<tr><th id="784">784</th><td>    <i>/* we might as well continue even if it fails...   */</i></td></tr>
+<tr><th id="785">785</th><td>    ptr = buf; <i>/* switch pointer to use my buffer instead */</i></td></tr>
+<tr><th id="786">786</th><td>    <b>break</b>;</td></tr>
+<tr><th id="787">787</th><td>  <b>default</b>:</td></tr>
+<tr><th id="788">788</th><td>    <i>/* leave everything else as-is */</i></td></tr>
+<tr><th id="789">789</th><td>    <b>break</b>;</td></tr>
+<tr><th id="790">790</th><td>  }</td></tr>
+<tr><th id="791">791</th><td><u>#<span data-ppcond="756">endif</span> /* CURL_DOES_CONVERSIONS */</u></td></tr>
+<tr><th id="792">792</th><td></td></tr>
+<tr><th id="793">793</th><td>  <b>if</b>(<a class="local col7 ref" href="#107data" title='data' data-ref="107data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::fdebug" title='UserDefined::fdebug' data-ref="UserDefined::fdebug">fdebug</a>)</td></tr>
+<tr><th id="794">794</th><td>    <a class="local col2 ref" href="#112rc" title='rc' data-ref="112rc">rc</a> = (*<a class="local col7 ref" href="#107data" title='data' data-ref="107data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::fdebug" title='UserDefined::fdebug' data-ref="UserDefined::fdebug">fdebug</a>)(<a class="local col7 ref" href="#107data" title='data' data-ref="107data">data</a>, <a class="local col8 ref" href="#108type" title='type' data-ref="108type">type</a>, <a class="local col9 ref" href="#109ptr" title='ptr' data-ref="109ptr">ptr</a>, <a class="local col0 ref" href="#110size" title='size' data-ref="110size">size</a>, <a class="local col7 ref" href="#107data" title='data' data-ref="107data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::debugdata" title='UserDefined::debugdata' data-ref="UserDefined::debugdata">debugdata</a>);</td></tr>
+<tr><th id="795">795</th><td>  <b>else</b> {</td></tr>
+<tr><th id="796">796</th><td>    <b>switch</b>(<a class="local col8 ref" href="#108type" title='type' data-ref="108type">type</a>) {</td></tr>
+<tr><th id="797">797</th><td>    <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLINFO_TEXT" title='CURLINFO_TEXT' data-ref="CURLINFO_TEXT">CURLINFO_TEXT</a>:</td></tr>
+<tr><th id="798">798</th><td>    <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HEADER_OUT" title='CURLINFO_HEADER_OUT' data-ref="CURLINFO_HEADER_OUT">CURLINFO_HEADER_OUT</a>:</td></tr>
+<tr><th id="799">799</th><td>    <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HEADER_IN" title='CURLINFO_HEADER_IN' data-ref="CURLINFO_HEADER_IN">CURLINFO_HEADER_IN</a>:</td></tr>
+<tr><th id="800">800</th><td>      <a class="ref" href="../../include/stdio.h.html#fwrite" title='fwrite' data-ref="fwrite">fwrite</a>(<a class="local col1 ref" href="#111s_infotype" title='s_infotype' data-ref="111s_infotype">s_infotype</a>[<a class="local col8 ref" href="#108type" title='type' data-ref="108type">type</a>], <var>2</var>, <var>1</var>, <a class="local col7 ref" href="#107data" title='data' data-ref="107data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::err" title='UserDefined::err' data-ref="UserDefined::err">err</a>);</td></tr>
+<tr><th id="801">801</th><td>      <a class="ref" href="../../include/stdio.h.html#fwrite" title='fwrite' data-ref="fwrite">fwrite</a>(<a class="local col9 ref" href="#109ptr" title='ptr' data-ref="109ptr">ptr</a>, <a class="local col0 ref" href="#110size" title='size' data-ref="110size">size</a>, <var>1</var>, <a class="local col7 ref" href="#107data" title='data' data-ref="107data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::err" title='UserDefined::err' data-ref="UserDefined::err">err</a>);</td></tr>
+<tr><th id="802">802</th><td><u>#<span data-ppcond="802">ifdef</span> <span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span></u></td></tr>
+<tr><th id="803">803</th><td>      <b>if</b>(size != conv_size) {</td></tr>
+<tr><th id="804">804</th><td>        <i>/* we had untranslated data so we need an explicit newline */</i></td></tr>
+<tr><th id="805">805</th><td>        fwrite(<q>"\n"</q>, <var>1</var>, <var>1</var>, data-&gt;set.err);</td></tr>
+<tr><th id="806">806</th><td>      }</td></tr>
+<tr><th id="807">807</th><td><u>#<span data-ppcond="802">endif</span></u></td></tr>
+<tr><th id="808">808</th><td>      <b>break</b>;</td></tr>
+<tr><th id="809">809</th><td>    <b>default</b>: <i>/* nada */</i></td></tr>
+<tr><th id="810">810</th><td>      <b>break</b>;</td></tr>
+<tr><th id="811">811</th><td>    }</td></tr>
+<tr><th id="812">812</th><td>  }</td></tr>
+<tr><th id="813">813</th><td><u>#<span data-ppcond="813">ifdef</span> <span class="macro" data-ref="_M/CURL_DOES_CONVERSIONS">CURL_DOES_CONVERSIONS</span></u></td></tr>
+<tr><th id="814">814</th><td>  free(buf);</td></tr>
+<tr><th id="815">815</th><td><u>#<span data-ppcond="813">endif</span></u></td></tr>
+<tr><th id="816">816</th><td>  <b>return</b> <a class="local col2 ref" href="#112rc" title='rc' data-ref="112rc">rc</a>;</td></tr>
+<tr><th id="817">817</th><td>}</td></tr>
+<tr><th id="818">818</th><td></td></tr>
+<tr><th id="819">819</th><td><em>int</em> <dfn class="decl def" id="Curl_debug" title='Curl_debug' data-ref="Curl_debug">Curl_debug</dfn>(<b>struct</b> <a class="type" href="urldata.h.html#Curl_easy" title='Curl_easy' data-ref="Curl_easy">Curl_easy</a> *<dfn class="local col3 decl" id="113data" title='data' data-type='struct Curl_easy *' data-ref="113data">data</dfn>, <a class="typedef" href="../include/curl/curl.h.html#curl_infotype" title='curl_infotype' data-type='enum curl_infotype' data-ref="curl_infotype">curl_infotype</a> <dfn class="local col4 decl" id="114type" title='type' data-type='curl_infotype' data-ref="114type">type</dfn>,</td></tr>
+<tr><th id="820">820</th><td>               <em>char</em> *<dfn class="local col5 decl" id="115ptr" title='ptr' data-type='char *' data-ref="115ptr">ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="116size" title='size' data-type='size_t' data-ref="116size">size</dfn>,</td></tr>
+<tr><th id="821">821</th><td>               <b>struct</b> <a class="type" href="urldata.h.html#connectdata" title='connectdata' data-ref="connectdata">connectdata</a> *<dfn class="local col7 decl" id="117conn" title='conn' data-type='struct connectdata *' data-ref="117conn">conn</dfn>)</td></tr>
+<tr><th id="822">822</th><td>{</td></tr>
+<tr><th id="823">823</th><td>  <em>int</em> <dfn class="local col8 decl" id="118rc" title='rc' data-type='int' data-ref="118rc">rc</dfn>;</td></tr>
+<tr><th id="824">824</th><td>  <b>if</b>(<a class="local col3 ref" href="#113data" title='data' data-ref="113data">data</a>-&gt;<a class="ref" href="urldata.h.html#Curl_easy::set" title='Curl_easy::set' data-ref="Curl_easy::set">set</a>.<a class="ref" href="urldata.h.html#UserDefined::printhost" title='UserDefined::printhost' data-ref="UserDefined::printhost">printhost</a> &amp;&amp; <a class="local col7 ref" href="#117conn" title='conn' data-ref="117conn">conn</a> &amp;&amp; <a class="local col7 ref" href="#117conn" title='conn' data-ref="117conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::host" title='connectdata::host' data-ref="connectdata::host">host</a>.<a class="ref" href="urldata.h.html#hostname::dispname" title='hostname::dispname' data-ref="hostname::dispname">dispname</a>) {</td></tr>
+<tr><th id="825">825</th><td>    <em>char</em> <dfn class="local col9 decl" id="119buffer" title='buffer' data-type='char [160]' data-ref="119buffer">buffer</dfn>[<var>160</var>];</td></tr>
+<tr><th id="826">826</th><td>    <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="120t" title='t' data-type='const char *' data-ref="120t">t</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="827">827</th><td>    <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="121w" title='w' data-type='const char *' data-ref="121w">w</dfn> = <q>"Data"</q>;</td></tr>
+<tr><th id="828">828</th><td>    <b>switch</b>(<a class="local col4 ref" href="#114type" title='type' data-ref="114type">type</a>) {</td></tr>
+<tr><th id="829">829</th><td>    <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HEADER_IN" title='CURLINFO_HEADER_IN' data-ref="CURLINFO_HEADER_IN">CURLINFO_HEADER_IN</a>:</td></tr>
+<tr><th id="830">830</th><td>      <a class="local col1 ref" href="#121w" title='w' data-ref="121w">w</a> = <q>"Header"</q>;</td></tr>
+<tr><th id="831">831</th><td>      <i>/* FALLTHROUGH */</i></td></tr>
+<tr><th id="832">832</th><td>    <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLINFO_DATA_IN" title='CURLINFO_DATA_IN' data-ref="CURLINFO_DATA_IN">CURLINFO_DATA_IN</a>:</td></tr>
+<tr><th id="833">833</th><td>      <a class="local col0 ref" href="#120t" title='t' data-ref="120t">t</a> = <q>"from"</q>;</td></tr>
+<tr><th id="834">834</th><td>      <b>break</b>;</td></tr>
+<tr><th id="835">835</th><td>    <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLINFO_HEADER_OUT" title='CURLINFO_HEADER_OUT' data-ref="CURLINFO_HEADER_OUT">CURLINFO_HEADER_OUT</a>:</td></tr>
+<tr><th id="836">836</th><td>      <a class="local col1 ref" href="#121w" title='w' data-ref="121w">w</a> = <q>"Header"</q>;</td></tr>
+<tr><th id="837">837</th><td>      <i>/* FALLTHROUGH */</i></td></tr>
+<tr><th id="838">838</th><td>    <b>case</b> <a class="enum" href="../include/curl/curl.h.html#CURLINFO_DATA_OUT" title='CURLINFO_DATA_OUT' data-ref="CURLINFO_DATA_OUT">CURLINFO_DATA_OUT</a>:</td></tr>
+<tr><th id="839">839</th><td>      <a class="local col0 ref" href="#120t" title='t' data-ref="120t">t</a> = <q>"to"</q>;</td></tr>
+<tr><th id="840">840</th><td>      <b>break</b>;</td></tr>
+<tr><th id="841">841</th><td>    <b>default</b>:</td></tr>
+<tr><th id="842">842</th><td>      <b>break</b>;</td></tr>
+<tr><th id="843">843</th><td>    }</td></tr>
+<tr><th id="844">844</th><td></td></tr>
+<tr><th id="845">845</th><td>    <b>if</b>(<a class="local col0 ref" href="#120t" title='t' data-ref="120t">t</a>) {</td></tr>
+<tr><th id="846">846</th><td>      <a class="macro" href="curl_printf.h.html#42" title="curl_msnprintf" data-ref="_M/snprintf">snprintf</a>(<a class="local col9 ref" href="#119buffer" title='buffer' data-ref="119buffer">buffer</a>, <b>sizeof</b>(<a class="local col9 ref" href="#119buffer" title='buffer' data-ref="119buffer">buffer</a>), <q>"[%s %s %s]"</q>, <a class="local col1 ref" href="#121w" title='w' data-ref="121w">w</a>, <a class="local col0 ref" href="#120t" title='t' data-ref="120t">t</a>,</td></tr>
+<tr><th id="847">847</th><td>               <a class="local col7 ref" href="#117conn" title='conn' data-ref="117conn">conn</a>-&gt;<a class="ref" href="urldata.h.html#connectdata::host" title='connectdata::host' data-ref="connectdata::host">host</a>.<a class="ref" href="urldata.h.html#hostname::dispname" title='hostname::dispname' data-ref="hostname::dispname">dispname</a>);</td></tr>
+<tr><th id="848">848</th><td>      <a class="local col8 ref" href="#118rc" title='rc' data-ref="118rc">rc</a> = <a class="tu ref" href="#showit" title='showit' data-use='c' data-ref="showit">showit</a>(<a class="local col3 ref" href="#113data" title='data' data-ref="113data">data</a>, <a class="enum" href="../include/curl/curl.h.html#CURLINFO_TEXT" title='CURLINFO_TEXT' data-ref="CURLINFO_TEXT">CURLINFO_TEXT</a>, <a class="local col9 ref" href="#119buffer" title='buffer' data-ref="119buffer">buffer</a>, <a class="ref" href="../../include/string.h.html#strlen" title='strlen' data-ref="strlen">strlen</a>(<a class="local col9 ref" href="#119buffer" title='buffer' data-ref="119buffer">buffer</a>));</td></tr>
+<tr><th id="849">849</th><td>      <b>if</b>(<a class="local col8 ref" href="#118rc" title='rc' data-ref="118rc">rc</a>)</td></tr>
+<tr><th id="850">850</th><td>        <b>return</b> <a class="local col8 ref" href="#118rc" title='rc' data-ref="118rc">rc</a>;</td></tr>
+<tr><th id="851">851</th><td>    }</td></tr>
+<tr><th id="852">852</th><td>  }</td></tr>
+<tr><th id="853">853</th><td>  <a class="local col8 ref" href="#118rc" title='rc' data-ref="118rc">rc</a> = <a class="tu ref" href="#showit" title='showit' data-use='c' data-ref="showit">showit</a>(<a class="local col3 ref" href="#113data" title='data' data-ref="113data">data</a>, <a class="local col4 ref" href="#114type" title='type' data-ref="114type">type</a>, <a class="local col5 ref" href="#115ptr" title='ptr' data-ref="115ptr">ptr</a>, <a class="local col6 ref" href="#116size" title='size' data-ref="116size">size</a>);</td></tr>
+<tr><th id="854">854</th><td>  <b>return</b> <a class="local col8 ref" href="#118rc" title='rc' data-ref="118rc">rc</a>;</td></tr>
+<tr><th id="855">855</th><td>}</td></tr>
+<tr><th id="856">856</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

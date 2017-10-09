@@ -1,0 +1,3 @@
+<dec f='include/openssl/conf.h' l='117'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='927' u='a'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='932' u='c'/>

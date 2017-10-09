@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='1735' type='struct Curl_easy *'/>
+<offset>64</offset>
+<use f='codebrowser/lib/multi.c' l='421' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='426' u='w' c='curl_multi_add_handle'/>
+<use f='codebrowser/lib/multi.c' l='771' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='772' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='778' u='w' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='778' u='r' c='curl_multi_remove_handle'/>
+<use f='codebrowser/lib/multi.c' l='780' u='r' c='curl_multi_remove_handle'/>

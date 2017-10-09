@@ -1,0 +1,19 @@
+<dec f='codebrowser/lib/progress.h' l='51' type='void Curl_pgrsTime(struct Curl_easy * data, timerid timer)'/>
+<use f='codebrowser/lib/connect.c' l='804' u='c' c='Curl_is_connected'/>
+<use f='codebrowser/lib/file.c' l='558' u='c' c='file_do'/>
+<use f='codebrowser/lib/ftp.c' l='505' u='c' c='AllowServerConnect'/>
+<use f='codebrowser/lib/multi.c' l='1236' u='c' c='do_complete'/>
+<use f='codebrowser/lib/multi.c' l='1424' u='c' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1436' u='c' c='multi_runsingle'/>
+<def f='codebrowser/lib/progress.c' l='162' ll='224' type='void Curl_pgrsTime(struct Curl_easy * data, timerid timer)'/>
+<doc f='codebrowser/lib/progress.c' l='159'>/*
+ * @unittest: 1399
+ */</doc>
+<use f='codebrowser/lib/transfer.c' l='490' u='c' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='903' u='c' c='readwrite_upload'/>
+<use f='codebrowser/lib/transfer.c' l='1927' u='c' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='6938' u='c' c='Curl_setup_conn'/>
+<use f='codebrowser/lib/url.c' l='6983' u='c' c='Curl_setup_conn'/>
+<use f='codebrowser/lib/url.c' l='6984' u='c' c='Curl_setup_conn'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='251' u='c' c='Curl_ssl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='274' u='c' c='Curl_ssl_connect_nonblocking'/>

@@ -1,0 +1,7 @@
+<dec f='codebrowser/include/curl/curl.h' l='166' type='char *'/>
+<offset>448</offset>
+<doc f='codebrowser/include/curl/curl.h' l='166'>/* Content-Type */</doc>
+<use f='codebrowser/lib/formdata.c' l='91' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='820' u='r' c='curl_formfree'/>
+<use f='codebrowser/lib/formdata.c' l='910' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='911' u='r' c='Curl_getformdata'/>

@@ -1,0 +1,2 @@
+<dec f='codebrowser/tests/unit/curlcheck.h' l='59'/>
+<doc f='codebrowser/tests/unit/curlcheck.h' l='58'>/* The abort macros mark the current test step as failed, and exit the test */</doc>

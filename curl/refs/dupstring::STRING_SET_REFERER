@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1419' type='24'/>
+<doc f='codebrowser/lib/urldata.h' l='1419'>/* custom string for the HTTP referer field */</doc>
+<use f='codebrowser/lib/url.c' l='1177' u='a' c='Curl_setopt'/>
+<use f='codebrowser/lib/url.c' l='1179' u='r' c='Curl_setopt'/>

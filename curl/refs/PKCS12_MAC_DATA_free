@@ -1,0 +1,1 @@
+<dec f='include/openssl/pkcs12.h' l='247' macro='1' type='void PKCS12_MAC_DATA_free(PKCS12_MAC_DATA * a)'/>

@@ -1,0 +1,5 @@
+<dec f='include/stropts.h' l='51' type='int getmsg(int __fildes, struct strbuf *restrict __ctlptr, struct strbuf *restrict __dataptr, int *restrict __flagsp)'/>
+<doc f='include/stropts.h' l='47'>/* Receive next message from a STREAMS file.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

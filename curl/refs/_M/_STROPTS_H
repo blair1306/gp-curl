@@ -1,0 +1,3 @@
+<dec f='include/stropts.h' l='19'/>
+<use f='include/x86_64-linux-gnu/bits/xtitypes.h' l='19' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/stropts.h' l='18' u='a'/>

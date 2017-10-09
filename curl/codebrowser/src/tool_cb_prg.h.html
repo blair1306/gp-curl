@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_cb_prg.h source code [codebrowser/src/tool_cb_prg.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="ProgressData "/>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_cb_prg.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_cb_prg.h.html'>tool_cb_prg.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_TOOL_CB_PRG_H">HEADER_CURL_TOOL_CB_PRG_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_TOOL_CB_PRG_H" data-ref="_M/HEADER_CURL_TOOL_CB_PRG_H">HEADER_CURL_TOOL_CB_PRG_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2014, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/CURL_PROGRESS_STATS" data-ref="_M/CURL_PROGRESS_STATS">CURL_PROGRESS_STATS</dfn> 0 /* default progress display */</u></td></tr>
+<tr><th id="27">27</th><td><u>#define <dfn class="macro" id="_M/CURL_PROGRESS_BAR" data-ref="_M/CURL_PROGRESS_BAR">CURL_PROGRESS_BAR</dfn>   1</u></td></tr>
+<tr><th id="28">28</th><td></td></tr>
+<tr><th id="29">29</th><td><b>struct</b> <dfn class="type def" id="ProgressData" title='ProgressData' data-ref="ProgressData">ProgressData</dfn> {</td></tr>
+<tr><th id="30">30</th><td>  <em>int</em>         <dfn class="decl" id="ProgressData::calls" title='ProgressData::calls' data-ref="ProgressData::calls">calls</dfn>;</td></tr>
+<tr><th id="31">31</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a>  <dfn class="decl" id="ProgressData::prev" title='ProgressData::prev' data-ref="ProgressData::prev">prev</dfn>;</td></tr>
+<tr><th id="32">32</th><td>  <b>struct</b> <a class="type" href="../../include/x86_64-linux-gnu/bits/time.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="decl" id="ProgressData::prevtime" title='ProgressData::prevtime' data-ref="ProgressData::prevtime">prevtime</dfn>;</td></tr>
+<tr><th id="33">33</th><td>  <em>int</em>         <dfn class="decl" id="ProgressData::width" title='ProgressData::width' data-ref="ProgressData::width">width</dfn>;</td></tr>
+<tr><th id="34">34</th><td>  <a class="typedef" href="../../include/stdio.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a>       *<dfn class="decl" id="ProgressData::out" title='ProgressData::out' data-ref="ProgressData::out">out</dfn>;  <i>/* where to write everything to */</i></td></tr>
+<tr><th id="35">35</th><td>  <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a>  <dfn class="decl" id="ProgressData::initial_size" title='ProgressData::initial_size' data-ref="ProgressData::initial_size">initial_size</dfn>;</td></tr>
+<tr><th id="36">36</th><td>};</td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><em>void</em> <a class="decl" href="tool_cb_prg.c.html#progressbarinit" title='progressbarinit' data-ref="progressbarinit" id="progressbarinit">progressbarinit</a>(<b>struct</b> <a class="type" href="#ProgressData" title='ProgressData' data-ref="ProgressData">ProgressData</a> *<dfn class="local col1 decl" id="1bar" title='bar' data-type='struct ProgressData *' data-ref="1bar">bar</dfn>,</td></tr>
+<tr><th id="39">39</th><td>                     <b>struct</b> <a class="type" href="tool_cfgable.h.html#OperationConfig" title='OperationConfig' data-ref="OperationConfig">OperationConfig</a> *<dfn class="local col2 decl" id="2config" title='config' data-type='struct OperationConfig *' data-ref="2config">config</dfn>);</td></tr>
+<tr><th id="40">40</th><td></td></tr>
+<tr><th id="41">41</th><td><i>/*</i></td></tr>
+<tr><th id="42">42</th><td><i>** callback for CURLOPT_PROGRESSFUNCTION</i></td></tr>
+<tr><th id="43">43</th><td><i>*/</i></td></tr>
+<tr><th id="44">44</th><td></td></tr>
+<tr><th id="45">45</th><td><em>int</em> <a class="decl" href="tool_cb_prg.c.html#tool_progress_cb" title='tool_progress_cb' data-ref="tool_progress_cb" id="tool_progress_cb">tool_progress_cb</a>(<em>void</em> *<dfn class="local col3 decl" id="3clientp" title='clientp' data-type='void *' data-ref="3clientp">clientp</dfn>,</td></tr>
+<tr><th id="46">46</th><td>                     <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col4 decl" id="4dltotal" title='dltotal' data-type='curl_off_t' data-ref="4dltotal">dltotal</dfn>, <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col5 decl" id="5dlnow" title='dlnow' data-type='curl_off_t' data-ref="5dlnow">dlnow</dfn>,</td></tr>
+<tr><th id="47">47</th><td>                     <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col6 decl" id="6ultotal" title='ultotal' data-type='curl_off_t' data-ref="6ultotal">ultotal</dfn>, <a class="typedef" href="../include/curl/system.h.html#curl_off_t" title='curl_off_t' data-type='long' data-ref="curl_off_t">curl_off_t</a> <dfn class="local col7 decl" id="7ulnow" title='ulnow' data-type='curl_off_t' data-ref="7ulnow">ulnow</dfn>);</td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_TOOL_CB_PRG_H */</u></td></tr>
+<tr><th id="50">50</th><td></td></tr>
+<tr><th id="51">51</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='tool_cb_prg.c.html'>codebrowser/src/tool_cb_prg.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

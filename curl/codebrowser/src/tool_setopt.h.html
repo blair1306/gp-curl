@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_setopt.h source code [codebrowser/src/tool_setopt.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_setopt.h'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_setopt.h.html'>tool_setopt.h</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/HEADER_CURL_TOOL_SETOPT_H">HEADER_CURL_TOOL_SETOPT_H</span></u></td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/HEADER_CURL_TOOL_SETOPT_H" data-ref="_M/HEADER_CURL_TOOL_SETOPT_H">HEADER_CURL_TOOL_SETOPT_H</dfn></u></td></tr>
+<tr><th id="3">3</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="4">4</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="5">5</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="7">7</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="8">8</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * Copyright (C) 1998 - 2017, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="11">11</th><td><i> *</i></td></tr>
+<tr><th id="12">12</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="13">13</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="14">14</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="15">15</th><td><i> *</i></td></tr>
+<tr><th id="16">16</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="17">17</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="18">18</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="19">19</th><td><i> *</i></td></tr>
+<tr><th id="20">20</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="21">21</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="22">22</th><td><i> *</i></td></tr>
+<tr><th id="23">23</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><i>/*</i></td></tr>
+<tr><th id="27">27</th><td><i> * Macros used in operate()</i></td></tr>
+<tr><th id="28">28</th><td><i> */</i></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/SETOPT_CHECK" data-ref="_M/SETOPT_CHECK">SETOPT_CHECK</dfn>(v) do { \</u></td></tr>
+<tr><th id="31">31</th><td><u>  result = (v); \</u></td></tr>
+<tr><th id="32">32</th><td><u>  if(result) \</u></td></tr>
+<tr><th id="33">33</th><td><u>    goto show_error; \</u></td></tr>
+<tr><th id="34">34</th><td><u>} WHILE_FALSE</u></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">ifndef</span> <span class="macro" data-ref="_M/CURL_DISABLE_LIBCURL_OPTION">CURL_DISABLE_LIBCURL_OPTION</span></u></td></tr>
+<tr><th id="37">37</th><td></td></tr>
+<tr><th id="38">38</th><td><i>/* Associate symbolic names with option values */</i></td></tr>
+<tr><th id="39">39</th><td><b>typedef</b> <b>struct</b> {</td></tr>
+<tr><th id="40">40</th><td>  <em>const</em> <em>char</em> *<dfn class="decl" id="(anonymous)::name" title='(anonymous struct)::name' data-ref="(anonymous)::name">name</dfn>;</td></tr>
+<tr><th id="41">41</th><td>  <em>long</em> <dfn class="decl" id="(anonymous)::value" title='(anonymous struct)::value' data-ref="(anonymous)::value">value</dfn>;</td></tr>
+<tr><th id="42">42</th><td>} <dfn class="typedef" id="NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</dfn>;</td></tr>
+<tr><th id="43">43</th><td></td></tr>
+<tr><th id="44">44</th><td><b>typedef</b> <b>struct</b> {</td></tr>
+<tr><th id="45">45</th><td>  <em>const</em> <em>char</em> *<dfn class="decl" id="(anonymous)::name" title='(anonymous struct)::name' data-ref="(anonymous)::name">name</dfn>;</td></tr>
+<tr><th id="46">46</th><td>  <em>unsigned</em> <em>long</em> <dfn class="decl" id="(anonymous)::value" title='(anonymous struct)::value' data-ref="(anonymous)::value">value</dfn>;</td></tr>
+<tr><th id="47">47</th><td>} <dfn class="typedef" id="NameValueUnsigned" title='NameValueUnsigned' data-type='struct NameValueUnsigned' data-ref="NameValueUnsigned">NameValueUnsigned</dfn>;</td></tr>
+<tr><th id="48">48</th><td></td></tr>
+<tr><th id="49">49</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURLPROXY" title='setopt_nv_CURLPROXY' data-ref="setopt_nv_CURLPROXY">setopt_nv_CURLPROXY</dfn>[];</td></tr>
+<tr><th id="50">50</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURL_SOCKS_PROXY" title='setopt_nv_CURL_SOCKS_PROXY' data-ref="setopt_nv_CURL_SOCKS_PROXY">setopt_nv_CURL_SOCKS_PROXY</dfn>[];</td></tr>
+<tr><th id="51">51</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURL_HTTP_VERSION" title='setopt_nv_CURL_HTTP_VERSION' data-ref="setopt_nv_CURL_HTTP_VERSION">setopt_nv_CURL_HTTP_VERSION</dfn>[];</td></tr>
+<tr><th id="52">52</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURL_SSLVERSION" title='setopt_nv_CURL_SSLVERSION' data-ref="setopt_nv_CURL_SSLVERSION">setopt_nv_CURL_SSLVERSION</dfn>[];</td></tr>
+<tr><th id="53">53</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURL_TIMECOND" title='setopt_nv_CURL_TIMECOND' data-ref="setopt_nv_CURL_TIMECOND">setopt_nv_CURL_TIMECOND</dfn>[];</td></tr>
+<tr><th id="54">54</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURLFTPSSL_CCC" title='setopt_nv_CURLFTPSSL_CCC' data-ref="setopt_nv_CURLFTPSSL_CCC">setopt_nv_CURLFTPSSL_CCC</dfn>[];</td></tr>
+<tr><th id="55">55</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURLUSESSL" title='setopt_nv_CURLUSESSL' data-ref="setopt_nv_CURLUSESSL">setopt_nv_CURLUSESSL</dfn>[];</td></tr>
+<tr><th id="56">56</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValueUnsigned" title='NameValueUnsigned' data-type='struct NameValueUnsigned' data-ref="NameValueUnsigned">NameValueUnsigned</a> <dfn class="decl" id="setopt_nv_CURLSSLOPT" title='setopt_nv_CURLSSLOPT' data-ref="setopt_nv_CURLSSLOPT">setopt_nv_CURLSSLOPT</dfn>[];</td></tr>
+<tr><th id="57">57</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURL_NETRC" title='setopt_nv_CURL_NETRC' data-ref="setopt_nv_CURL_NETRC">setopt_nv_CURL_NETRC</dfn>[];</td></tr>
+<tr><th id="58">58</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> <dfn class="decl" id="setopt_nv_CURLPROTO" title='setopt_nv_CURLPROTO' data-ref="setopt_nv_CURLPROTO">setopt_nv_CURLPROTO</dfn>[];</td></tr>
+<tr><th id="59">59</th><td><b>extern</b> <em>const</em> <a class="typedef" href="#NameValueUnsigned" title='NameValueUnsigned' data-type='struct NameValueUnsigned' data-ref="NameValueUnsigned">NameValueUnsigned</a> <dfn class="decl" id="setopt_nv_CURLAUTH" title='setopt_nv_CURLAUTH' data-ref="setopt_nv_CURLAUTH">setopt_nv_CURLAUTH</dfn>[];</td></tr>
+<tr><th id="60">60</th><td></td></tr>
+<tr><th id="61">61</th><td><i>/* Map options to NameValue sets */</i></td></tr>
+<tr><th id="62">62</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_HTTP_VERSION" data-ref="_M/setopt_nv_CURLOPT_HTTP_VERSION">setopt_nv_CURLOPT_HTTP_VERSION</dfn> setopt_nv_CURL_HTTP_VERSION</u></td></tr>
+<tr><th id="63">63</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_HTTPAUTH" data-ref="_M/setopt_nv_CURLOPT_HTTPAUTH">setopt_nv_CURLOPT_HTTPAUTH</dfn> setopt_nv_CURLAUTH</u></td></tr>
+<tr><th id="64">64</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_SSLVERSION" data-ref="_M/setopt_nv_CURLOPT_SSLVERSION">setopt_nv_CURLOPT_SSLVERSION</dfn> setopt_nv_CURL_SSLVERSION</u></td></tr>
+<tr><th id="65">65</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_PROXY_SSLVERSION" data-ref="_M/setopt_nv_CURLOPT_PROXY_SSLVERSION">setopt_nv_CURLOPT_PROXY_SSLVERSION</dfn> setopt_nv_CURL_SSLVERSION</u></td></tr>
+<tr><th id="66">66</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_TIMECONDITION" data-ref="_M/setopt_nv_CURLOPT_TIMECONDITION">setopt_nv_CURLOPT_TIMECONDITION</dfn> setopt_nv_CURL_TIMECOND</u></td></tr>
+<tr><th id="67">67</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_FTP_SSL_CCC" data-ref="_M/setopt_nv_CURLOPT_FTP_SSL_CCC">setopt_nv_CURLOPT_FTP_SSL_CCC</dfn> setopt_nv_CURLFTPSSL_CCC</u></td></tr>
+<tr><th id="68">68</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_USE_SSL" data-ref="_M/setopt_nv_CURLOPT_USE_SSL">setopt_nv_CURLOPT_USE_SSL</dfn> setopt_nv_CURLUSESSL</u></td></tr>
+<tr><th id="69">69</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_SSL_OPTIONS" data-ref="_M/setopt_nv_CURLOPT_SSL_OPTIONS">setopt_nv_CURLOPT_SSL_OPTIONS</dfn> setopt_nv_CURLSSLOPT</u></td></tr>
+<tr><th id="70">70</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_NETRC" data-ref="_M/setopt_nv_CURLOPT_NETRC">setopt_nv_CURLOPT_NETRC</dfn> setopt_nv_CURL_NETRC</u></td></tr>
+<tr><th id="71">71</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_PROTOCOLS" data-ref="_M/setopt_nv_CURLOPT_PROTOCOLS">setopt_nv_CURLOPT_PROTOCOLS</dfn> setopt_nv_CURLPROTO</u></td></tr>
+<tr><th id="72">72</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_REDIR_PROTOCOLS" data-ref="_M/setopt_nv_CURLOPT_REDIR_PROTOCOLS">setopt_nv_CURLOPT_REDIR_PROTOCOLS</dfn> setopt_nv_CURLPROTO</u></td></tr>
+<tr><th id="73">73</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_PROXYTYPE" data-ref="_M/setopt_nv_CURLOPT_PROXYTYPE">setopt_nv_CURLOPT_PROXYTYPE</dfn> setopt_nv_CURLPROXY</u></td></tr>
+<tr><th id="74">74</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_PROXYAUTH" data-ref="_M/setopt_nv_CURLOPT_PROXYAUTH">setopt_nv_CURLOPT_PROXYAUTH</dfn> setopt_nv_CURLAUTH</u></td></tr>
+<tr><th id="75">75</th><td><u>#define <dfn class="macro" id="_M/setopt_nv_CURLOPT_SOCKS5_AUTH" data-ref="_M/setopt_nv_CURLOPT_SOCKS5_AUTH">setopt_nv_CURLOPT_SOCKS5_AUTH</dfn> setopt_nv_CURLAUTH</u></td></tr>
+<tr><th id="76">76</th><td></td></tr>
+<tr><th id="77">77</th><td><i>/* Intercept setopt calls for --libcurl */</i></td></tr>
+<tr><th id="78">78</th><td></td></tr>
+<tr><th id="79">79</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="tool_setopt_enum" title='tool_setopt_enum' data-ref="tool_setopt_enum">tool_setopt_enum</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col0 decl" id="20curl" title='curl' data-type='CURL *' data-ref="20curl">curl</dfn>, <b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col1 decl" id="21config" title='config' data-type='struct GlobalConfig *' data-ref="21config">config</dfn>,</td></tr>
+<tr><th id="80">80</th><td>                          <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="22name" title='name' data-type='const char *' data-ref="22name">name</dfn>, <a class="typedef" href="../include/curl/curl.h.html#CURLoption" title='CURLoption' data-type='enum CURLoption' data-ref="CURLoption">CURLoption</a> <dfn class="local col3 decl" id="23tag" title='tag' data-type='CURLoption' data-ref="23tag">tag</dfn>,</td></tr>
+<tr><th id="81">81</th><td>                          <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> *<dfn class="local col4 decl" id="24nv" title='nv' data-type='const NameValue *' data-ref="24nv">nv</dfn>, <em>long</em> <dfn class="local col5 decl" id="25lval" title='lval' data-type='long' data-ref="25lval">lval</dfn>);</td></tr>
+<tr><th id="82">82</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="tool_setopt_flags" title='tool_setopt_flags' data-ref="tool_setopt_flags">tool_setopt_flags</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col6 decl" id="26curl" title='curl' data-type='CURL *' data-ref="26curl">curl</dfn>, <b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col7 decl" id="27config" title='config' data-type='struct GlobalConfig *' data-ref="27config">config</dfn>,</td></tr>
+<tr><th id="83">83</th><td>                           <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="28name" title='name' data-type='const char *' data-ref="28name">name</dfn>, <a class="typedef" href="../include/curl/curl.h.html#CURLoption" title='CURLoption' data-type='enum CURLoption' data-ref="CURLoption">CURLoption</a> <dfn class="local col9 decl" id="29tag" title='tag' data-type='CURLoption' data-ref="29tag">tag</dfn>,</td></tr>
+<tr><th id="84">84</th><td>                           <em>const</em> <a class="typedef" href="#NameValue" title='NameValue' data-type='struct NameValue' data-ref="NameValue">NameValue</a> *<dfn class="local col0 decl" id="30nv" title='nv' data-type='const NameValue *' data-ref="30nv">nv</dfn>, <em>long</em> <dfn class="local col1 decl" id="31lval" title='lval' data-type='long' data-ref="31lval">lval</dfn>);</td></tr>
+<tr><th id="85">85</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="tool_setopt_bitmask" title='tool_setopt_bitmask' data-ref="tool_setopt_bitmask">tool_setopt_bitmask</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col2 decl" id="32curl" title='curl' data-type='CURL *' data-ref="32curl">curl</dfn>, <b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col3 decl" id="33config" title='config' data-type='struct GlobalConfig *' data-ref="33config">config</dfn>,</td></tr>
+<tr><th id="86">86</th><td>                             <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="34name" title='name' data-type='const char *' data-ref="34name">name</dfn>, <a class="typedef" href="../include/curl/curl.h.html#CURLoption" title='CURLoption' data-type='enum CURLoption' data-ref="CURLoption">CURLoption</a> <dfn class="local col5 decl" id="35tag" title='tag' data-type='CURLoption' data-ref="35tag">tag</dfn>,</td></tr>
+<tr><th id="87">87</th><td>                             <em>const</em> <a class="typedef" href="#NameValueUnsigned" title='NameValueUnsigned' data-type='struct NameValueUnsigned' data-ref="NameValueUnsigned">NameValueUnsigned</a> *<dfn class="local col6 decl" id="36nv" title='nv' data-type='const NameValueUnsigned *' data-ref="36nv">nv</dfn>, <em>long</em> <dfn class="local col7 decl" id="37lval" title='lval' data-type='long' data-ref="37lval">lval</dfn>);</td></tr>
+<tr><th id="88">88</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="tool_setopt_mimepost" title='tool_setopt_mimepost' data-ref="tool_setopt_mimepost">tool_setopt_mimepost</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col8 decl" id="38curl" title='curl' data-type='CURL *' data-ref="38curl">curl</dfn>, <b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col9 decl" id="39config" title='config' data-type='struct GlobalConfig *' data-ref="39config">config</dfn>,</td></tr>
+<tr><th id="89">89</th><td>                              <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="40name" title='name' data-type='const char *' data-ref="40name">name</dfn>, <a class="typedef" href="../include/curl/curl.h.html#CURLoption" title='CURLoption' data-type='enum CURLoption' data-ref="CURLoption">CURLoption</a> <dfn class="local col1 decl" id="41tag" title='tag' data-type='CURLoption' data-ref="41tag">tag</dfn>,</td></tr>
+<tr><th id="90">90</th><td>                              <a class="typedef" href="../include/curl/curl.h.html#curl_mime" title='curl_mime' data-type='struct curl_mime_s' data-ref="curl_mime">curl_mime</a> *<dfn class="local col2 decl" id="42mimepost" title='mimepost' data-type='curl_mime *' data-ref="42mimepost">mimepost</dfn>);</td></tr>
+<tr><th id="91">91</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="tool_setopt_slist" title='tool_setopt_slist' data-ref="tool_setopt_slist">tool_setopt_slist</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col3 decl" id="43curl" title='curl' data-type='CURL *' data-ref="43curl">curl</dfn>, <b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col4 decl" id="44config" title='config' data-type='struct GlobalConfig *' data-ref="44config">config</dfn>,</td></tr>
+<tr><th id="92">92</th><td>                           <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="45name" title='name' data-type='const char *' data-ref="45name">name</dfn>, <a class="typedef" href="../include/curl/curl.h.html#CURLoption" title='CURLoption' data-type='enum CURLoption' data-ref="CURLoption">CURLoption</a> <dfn class="local col6 decl" id="46tag" title='tag' data-type='CURLoption' data-ref="46tag">tag</dfn>,</td></tr>
+<tr><th id="93">93</th><td>                           <b>struct</b> <a class="type" href="../include/curl/curl.h.html#curl_slist" title='curl_slist' data-ref="curl_slist">curl_slist</a> *<dfn class="local col7 decl" id="47list" title='list' data-type='struct curl_slist *' data-ref="47list">list</dfn>);</td></tr>
+<tr><th id="94">94</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl" id="tool_setopt" title='tool_setopt' data-ref="tool_setopt">tool_setopt</dfn>(<a class="typedef" href="../include/curl/curl.h.html#CURL" title='CURL' data-type='struct Curl_easy' data-ref="CURL">CURL</a> *<dfn class="local col8 decl" id="48curl" title='curl' data-type='CURL *' data-ref="48curl">curl</dfn>, <span class="macro" title="_Bool" data-ref="_M/bool">bool</span> <dfn class="local col9 decl" id="49str" title='str' data-type='_Bool' data-ref="49str">str</dfn>, <b>struct</b> <a class="type" href="tool_cfgable.h.html#GlobalConfig" title='GlobalConfig' data-ref="GlobalConfig">GlobalConfig</a> *<dfn class="local col0 decl" id="50config" title='config' data-type='struct GlobalConfig *' data-ref="50config">config</dfn>,</td></tr>
+<tr><th id="95">95</th><td>                     <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="51name" title='name' data-type='const char *' data-ref="51name">name</dfn>, <a class="typedef" href="../include/curl/curl.h.html#CURLoption" title='CURLoption' data-type='enum CURLoption' data-ref="CURLoption">CURLoption</a> <dfn class="local col2 decl" id="52tag" title='tag' data-type='CURLoption' data-ref="52tag">tag</dfn>, ...);</td></tr>
+<tr><th id="96">96</th><td></td></tr>
+<tr><th id="97">97</th><td><u>#define <dfn class="macro" id="_M/my_setopt" data-ref="_M/my_setopt">my_setopt</dfn>(x,y,z) \</u></td></tr>
+<tr><th id="98">98</th><td><u>  SETOPT_CHECK(tool_setopt(x, FALSE, global, #y, y, z))</u></td></tr>
+<tr><th id="99">99</th><td></td></tr>
+<tr><th id="100">100</th><td><u>#define <dfn class="macro" id="_M/my_setopt_str" data-ref="_M/my_setopt_str">my_setopt_str</dfn>(x,y,z) \</u></td></tr>
+<tr><th id="101">101</th><td><u>  SETOPT_CHECK(tool_setopt(x, TRUE, global, #y, y, z))</u></td></tr>
+<tr><th id="102">102</th><td></td></tr>
+<tr><th id="103">103</th><td><u>#define <dfn class="macro" id="_M/my_setopt_enum" data-ref="_M/my_setopt_enum">my_setopt_enum</dfn>(x,y,z) \</u></td></tr>
+<tr><th id="104">104</th><td><u>  SETOPT_CHECK(tool_setopt_enum(x, global, #y, y, setopt_nv_ ## y, z))</u></td></tr>
+<tr><th id="105">105</th><td></td></tr>
+<tr><th id="106">106</th><td><u>#define <dfn class="macro" id="_M/my_setopt_flags" data-ref="_M/my_setopt_flags">my_setopt_flags</dfn>(x,y,z) \</u></td></tr>
+<tr><th id="107">107</th><td><u>  SETOPT_CHECK(tool_setopt_flags(x, global, #y, y, setopt_nv_ ## y, z))</u></td></tr>
+<tr><th id="108">108</th><td></td></tr>
+<tr><th id="109">109</th><td><u>#define <dfn class="macro" id="_M/my_setopt_bitmask" data-ref="_M/my_setopt_bitmask">my_setopt_bitmask</dfn>(x,y,z) \</u></td></tr>
+<tr><th id="110">110</th><td><u>  SETOPT_CHECK(tool_setopt_bitmask(x, global, #y, y, setopt_nv_ ## y, z))</u></td></tr>
+<tr><th id="111">111</th><td></td></tr>
+<tr><th id="112">112</th><td><u>#define <dfn class="macro" id="_M/my_setopt_mimepost" data-ref="_M/my_setopt_mimepost">my_setopt_mimepost</dfn>(x,y,z) \</u></td></tr>
+<tr><th id="113">113</th><td><u>  SETOPT_CHECK(tool_setopt_mimepost(x, global, #y, y, z))</u></td></tr>
+<tr><th id="114">114</th><td></td></tr>
+<tr><th id="115">115</th><td><u>#define <dfn class="macro" id="_M/my_setopt_slist" data-ref="_M/my_setopt_slist">my_setopt_slist</dfn>(x,y,z) \</u></td></tr>
+<tr><th id="116">116</th><td><u>  SETOPT_CHECK(tool_setopt_slist(x, global, #y, y, z))</u></td></tr>
+<tr><th id="117">117</th><td></td></tr>
+<tr><th id="118">118</th><td><u>#define <dfn class="macro" id="_M/res_setopt" data-ref="_M/res_setopt">res_setopt</dfn>(x,y,z) tool_setopt(x, FALSE, global, #y, y, z)</u></td></tr>
+<tr><th id="119">119</th><td></td></tr>
+<tr><th id="120">120</th><td><u>#define <dfn class="macro" id="_M/res_setopt_str" data-ref="_M/res_setopt_str">res_setopt_str</dfn>(x,y,z) tool_setopt(x, TRUE, global, #y, y, z)</u></td></tr>
+<tr><th id="121">121</th><td></td></tr>
+<tr><th id="122">122</th><td><u>#<span data-ppcond="36">else</span> /* CURL_DISABLE_LIBCURL_OPTION */</u></td></tr>
+<tr><th id="123">123</th><td></td></tr>
+<tr><th id="124">124</th><td><i>/* No --libcurl, so pass options directly to library */</i></td></tr>
+<tr><th id="125">125</th><td></td></tr>
+<tr><th id="126">126</th><td><u>#define my_setopt(x,y,z) \</u></td></tr>
+<tr><th id="127">127</th><td><u>  SETOPT_CHECK(curl_easy_setopt(x, y, z))</u></td></tr>
+<tr><th id="128">128</th><td></td></tr>
+<tr><th id="129">129</th><td><u>#define my_setopt_str(x,y,z) \</u></td></tr>
+<tr><th id="130">130</th><td><u>  SETOPT_CHECK(curl_easy_setopt(x, y, z))</u></td></tr>
+<tr><th id="131">131</th><td></td></tr>
+<tr><th id="132">132</th><td><u>#define my_setopt_enum(x,y,z) \</u></td></tr>
+<tr><th id="133">133</th><td><u>  SETOPT_CHECK(curl_easy_setopt(x, y, z))</u></td></tr>
+<tr><th id="134">134</th><td></td></tr>
+<tr><th id="135">135</th><td><u>#define my_setopt_flags(x,y,z) \</u></td></tr>
+<tr><th id="136">136</th><td><u>  SETOPT_CHECK(curl_easy_setopt(x, y, z))</u></td></tr>
+<tr><th id="137">137</th><td></td></tr>
+<tr><th id="138">138</th><td><u>#define my_setopt_bitmask(x,y,z) \</u></td></tr>
+<tr><th id="139">139</th><td><u>  SETOPT_CHECK(curl_easy_setopt(x, y, z))</u></td></tr>
+<tr><th id="140">140</th><td></td></tr>
+<tr><th id="141">141</th><td><u>#define my_setopt_mimepost(x,y,z) \</u></td></tr>
+<tr><th id="142">142</th><td><u>  SETOPT_CHECK(curl_easy_setopt(x, y, z))</u></td></tr>
+<tr><th id="143">143</th><td></td></tr>
+<tr><th id="144">144</th><td><u>#define my_setopt_slist(x,y,z) \</u></td></tr>
+<tr><th id="145">145</th><td><u>  SETOPT_CHECK(curl_easy_setopt(x, y, z))</u></td></tr>
+<tr><th id="146">146</th><td></td></tr>
+<tr><th id="147">147</th><td><u>#define res_setopt(x,y,z) curl_easy_setopt(x,y,z)</u></td></tr>
+<tr><th id="148">148</th><td></td></tr>
+<tr><th id="149">149</th><td><u>#define res_setopt_str(x,y,z) curl_easy_setopt(x,y,z)</u></td></tr>
+<tr><th id="150">150</th><td></td></tr>
+<tr><th id="151">151</th><td><u>#<span data-ppcond="36">endif</span> /* CURL_DISABLE_LIBCURL_OPTION */</u></td></tr>
+<tr><th id="152">152</th><td></td></tr>
+<tr><th id="153">153</th><td><u>#<span data-ppcond="1">endif</span> /* HEADER_CURL_TOOL_SETOPT_H */</u></td></tr>
+<tr><th id="154">154</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='tool_operate.c.html'>codebrowser/src/tool_operate.c</a><br/>Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

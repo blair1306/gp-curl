@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='130' type='void Curl_sasl_init(struct SASL * sasl, const struct SASLproto * params)'/>
+<doc f='codebrowser/lib/curl_sasl.h' l='129'>/* Initializes an SASL structure */</doc>
+<def f='codebrowser/lib/curl_sasl.c' l='178' ll='188' type='void Curl_sasl_init(struct SASL * sasl, const struct SASLproto * params)'/>
+<doc f='codebrowser/lib/curl_sasl.c' l='173'>/*
+ * Curl_sasl_init()
+ *
+ * Initializes the SASL structure.
+ */</doc>
+<use f='codebrowser/lib/imap.c' l='1410' u='c' c='imap_connect'/>
+<use f='codebrowser/lib/pop3.c' l='1081' u='c' c='pop3_connect'/>
+<use f='codebrowser/lib/smtp.c' l='1143' u='c' c='smtp_connect'/>

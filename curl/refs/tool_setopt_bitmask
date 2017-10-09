@@ -1,0 +1,11 @@
+<dec f='codebrowser/src/tool_setopt.h' l='85' type='CURLcode tool_setopt_bitmask(CURL * curl, struct GlobalConfig * config, const char * name, CURLoption tag, const NameValueUnsigned * nv, long lval)'/>
+<use f='codebrowser/src/tool_operate.c' l='942' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='945' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='948' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='951' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='954' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1005' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1347' macro='1' u='c'/>
+<use f='codebrowser/src/tool_operate.c' l='1475' macro='1' u='c'/>
+<def f='codebrowser/src/tool_setopt.c' l='340' ll='380' type='CURLcode tool_setopt_bitmask(CURL * curl, struct GlobalConfig * config, const char * name, CURLoption tag, const NameValueUnsigned * nvlist, long lval)'/>
+<doc f='codebrowser/src/tool_setopt.c' l='339'>/* setopt wrapper for bitmasks */</doc>

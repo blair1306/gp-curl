@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/curl_config.h' l='886'/>
+<doc f='codebrowser/lib/curl_config.h' l='885'>/* The size of `long&apos;, as computed by sizeof. */</doc>
+<use f='codebrowser/lib/mprintf.c' l='347' u='c'/>
+<use f='codebrowser/lib/mprintf.c' l='354' u='c'/>
+<use f='codebrowser/lib/strtoofft.c' l='36' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='72' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='75' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='78' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='110' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='229' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='272' u='c'/>
+<use f='codebrowser/lib/warnless.c' l='294' u='c'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='404' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='40' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='785' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='806' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='840' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='934' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='977' u='c'/>
+<use f='codebrowser/tests/libtest/lib557.c' l='1044' u='c'/>

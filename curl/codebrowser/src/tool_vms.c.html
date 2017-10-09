@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_vms.c source code [codebrowser/src/tool_vms.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_vms.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_vms.c.html'>tool_vms.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#<span data-ppcond="24">ifdef</span> <span class="macro" data-ref="_M/__VMS">__VMS</span></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#if defined(__DECC) &amp;&amp; !defined(__VAX) &amp;&amp; \</u></td></tr>
+<tr><th id="27">27</th><td><u>    defined(__CRTL_VER) &amp;&amp; (__CRTL_VER &gt;= 70301000)</u></td></tr>
+<tr><th id="28">28</th><td><u>#include &lt;unixlib.h&gt;</u></td></tr>
+<tr><th id="29">29</th><td><u>#endif</u></td></tr>
+<tr><th id="30">30</th><td></td></tr>
+<tr><th id="31">31</th><td><u>#define ENABLE_CURLX_PRINTF</u></td></tr>
+<tr><th id="32">32</th><td><u>#include "curlx.h"</u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><u>#include "curlmsg_vms.h"</u></td></tr>
+<tr><th id="35">35</th><td><u>#include "tool_vms.h"</u></td></tr>
+<tr><th id="36">36</th><td></td></tr>
+<tr><th id="37">37</th><td><u>#include "memdebug.h" /* keep this as LAST include */</u></td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><em>void</em> decc$__posix_exit(<em>int</em> __status);</td></tr>
+<tr><th id="40">40</th><td><em>void</em> decc$exit(<em>int</em> __status);</td></tr>
+<tr><th id="41">41</th><td></td></tr>
+<tr><th id="42">42</th><td><em>static</em> <em>int</em> vms_shell = -<var>1</var>;</td></tr>
+<tr><th id="43">43</th><td></td></tr>
+<tr><th id="44">44</th><td><i>/* VMS has a DCL shell and and also has Unix shells ported to it.</i></td></tr>
+<tr><th id="45">45</th><td><i> * When curl is running under a Unix shell, we want it to be as much</i></td></tr>
+<tr><th id="46">46</th><td><i> * like Unix as possible.</i></td></tr>
+<tr><th id="47">47</th><td><i> */</i></td></tr>
+<tr><th id="48">48</th><td><em>int</em> is_vms_shell(<em>void</em>)</td></tr>
+<tr><th id="49">49</th><td>{</td></tr>
+<tr><th id="50">50</th><td>  <em>char</em> *shell;</td></tr>
+<tr><th id="51">51</th><td></td></tr>
+<tr><th id="52">52</th><td>  <i>/* Have we checked the shell yet? */</i></td></tr>
+<tr><th id="53">53</th><td>  <b>if</b>(vms_shell &gt;= <var>0</var>)</td></tr>
+<tr><th id="54">54</th><td>    <b>return</b> vms_shell;</td></tr>
+<tr><th id="55">55</th><td></td></tr>
+<tr><th id="56">56</th><td>  shell = getenv(<q>"SHELL"</q>);</td></tr>
+<tr><th id="57">57</th><td></td></tr>
+<tr><th id="58">58</th><td>  <i>/* No shell, means DCL */</i></td></tr>
+<tr><th id="59">59</th><td>  <b>if</b>(shell == NULL) {</td></tr>
+<tr><th id="60">60</th><td>    vms_shell = <var>1</var>;</td></tr>
+<tr><th id="61">61</th><td>    <b>return</b> <var>1</var>;</td></tr>
+<tr><th id="62">62</th><td>  }</td></tr>
+<tr><th id="63">63</th><td></td></tr>
+<tr><th id="64">64</th><td>  <i>/* Have to make sure some one did not set shell to DCL */</i></td></tr>
+<tr><th id="65">65</th><td>  <b>if</b>(strcmp(shell, <q>"DCL"</q>) == <var>0</var>) {</td></tr>
+<tr><th id="66">66</th><td>    vms_shell = <var>1</var>;</td></tr>
+<tr><th id="67">67</th><td>    <b>return</b> <var>1</var>;</td></tr>
+<tr><th id="68">68</th><td>  }</td></tr>
+<tr><th id="69">69</th><td></td></tr>
+<tr><th id="70">70</th><td>  vms_shell = <var>0</var>;</td></tr>
+<tr><th id="71">71</th><td>  <b>return</b> <var>0</var>;</td></tr>
+<tr><th id="72">72</th><td>}</td></tr>
+<tr><th id="73">73</th><td></td></tr>
+<tr><th id="74">74</th><td><i>/*</i></td></tr>
+<tr><th id="75">75</th><td><i> * VMS has two exit() routines.  When running under a Unix style shell, then</i></td></tr>
+<tr><th id="76">76</th><td><i> * Unix style and the __posix_exit() routine is used.</i></td></tr>
+<tr><th id="77">77</th><td><i> *</i></td></tr>
+<tr><th id="78">78</th><td><i> * When running under the DCL shell, then the VMS encoded codes and decc$exit()</i></td></tr>
+<tr><th id="79">79</th><td><i> * is used.</i></td></tr>
+<tr><th id="80">80</th><td><i> *</i></td></tr>
+<tr><th id="81">81</th><td><i> * We can not use exit() or return a code from main() because the actual</i></td></tr>
+<tr><th id="82">82</th><td><i> * routine called depends on both the compiler version, compile options, and</i></td></tr>
+<tr><th id="83">83</th><td><i> * feature macro settings, and one of the exit routines is hidden at compile</i></td></tr>
+<tr><th id="84">84</th><td><i> * time.</i></td></tr>
+<tr><th id="85">85</th><td><i> *</i></td></tr>
+<tr><th id="86">86</th><td><i> * Since we want Curl to work properly under the VMS DCL shell and Unix</i></td></tr>
+<tr><th id="87">87</th><td><i> * shells under VMS, this routine should compile correctly regardless of</i></td></tr>
+<tr><th id="88">88</th><td><i> * the settings.</i></td></tr>
+<tr><th id="89">89</th><td><i> */</i></td></tr>
+<tr><th id="90">90</th><td></td></tr>
+<tr><th id="91">91</th><td><em>void</em> vms_special_exit(<em>int</em> code, <em>int</em> vms_show)</td></tr>
+<tr><th id="92">92</th><td>{</td></tr>
+<tr><th id="93">93</th><td>  <em>int</em> vms_code;</td></tr>
+<tr><th id="94">94</th><td></td></tr>
+<tr><th id="95">95</th><td>  <i>/* The Posix exit mode is only available after VMS 7.0 */</i></td></tr>
+<tr><th id="96">96</th><td><u>#if __CRTL_VER &gt;= 70000000</u></td></tr>
+<tr><th id="97">97</th><td>  <b>if</b>(is_vms_shell() == <var>0</var>) {</td></tr>
+<tr><th id="98">98</th><td>    decc$__posix_exit(code);</td></tr>
+<tr><th id="99">99</th><td>  }</td></tr>
+<tr><th id="100">100</th><td><u>#endif</u></td></tr>
+<tr><th id="101">101</th><td></td></tr>
+<tr><th id="102">102</th><td>  <b>if</b>(code &gt; CURL_LAST) {   <i>/* If CURL_LAST exceeded then */</i></td></tr>
+<tr><th id="103">103</th><td>    vms_code = CURL_LAST;  <i>/* curlmsg.h is out of sync.  */</i></td></tr>
+<tr><th id="104">104</th><td>  }</td></tr>
+<tr><th id="105">105</th><td>  <b>else</b> {</td></tr>
+<tr><th id="106">106</th><td>    vms_code = vms_cond[code] | vms_show;</td></tr>
+<tr><th id="107">107</th><td>  }</td></tr>
+<tr><th id="108">108</th><td>  decc$exit(vms_code);</td></tr>
+<tr><th id="109">109</th><td>}</td></tr>
+<tr><th id="110">110</th><td></td></tr>
+<tr><th id="111">111</th><td><u>#if defined(__DECC) &amp;&amp; !defined(__VAX) &amp;&amp; \</u></td></tr>
+<tr><th id="112">112</th><td><u>    defined(__CRTL_VER) &amp;&amp; (__CRTL_VER &gt;= 70301000)</u></td></tr>
+<tr><th id="113">113</th><td></td></tr>
+<tr><th id="114">114</th><td><i>/*</i></td></tr>
+<tr><th id="115">115</th><td><i> * 2004-09-19 SMS.</i></td></tr>
+<tr><th id="116">116</th><td><i> *</i></td></tr>
+<tr><th id="117">117</th><td><i> * decc_init()</i></td></tr>
+<tr><th id="118">118</th><td><i> *</i></td></tr>
+<tr><th id="119">119</th><td><i> * On non-VAX systems, use LIB$INITIALIZE to set a collection of C</i></td></tr>
+<tr><th id="120">120</th><td><i> * RTL features without using the DECC$* logical name method, nor</i></td></tr>
+<tr><th id="121">121</th><td><i> * requiring the user to define the corresponding logical names.</i></td></tr>
+<tr><th id="122">122</th><td><i> */</i></td></tr>
+<tr><th id="123">123</th><td></td></tr>
+<tr><th id="124">124</th><td><i>/* Structure to hold a DECC$* feature name and its desired value. */</i></td></tr>
+<tr><th id="125">125</th><td><b>typedef</b> <b>struct</b> {</td></tr>
+<tr><th id="126">126</th><td>  <em>char</em> *name;</td></tr>
+<tr><th id="127">127</th><td>  <em>int</em> value;</td></tr>
+<tr><th id="128">128</th><td>} decc_feat_t;</td></tr>
+<tr><th id="129">129</th><td></td></tr>
+<tr><th id="130">130</th><td><i>/* Array of DECC$* feature names and their desired values. */</i></td></tr>
+<tr><th id="131">131</th><td><em>static</em> decc_feat_t decc_feat_array[] = {</td></tr>
+<tr><th id="132">132</th><td>  <i>/* Preserve command-line case with SET PROCESS/PARSE_STYLE=EXTENDED */</i></td></tr>
+<tr><th id="133">133</th><td>  { <q>"DECC$ARGV_PARSE_STYLE"</q>, <var>1</var> },</td></tr>
+<tr><th id="134">134</th><td>  <i>/* Preserve case for file names on ODS5 disks. */</i></td></tr>
+<tr><th id="135">135</th><td>  { <q>"DECC$EFS_CASE_PRESERVE"</q>, <var>1</var> },</td></tr>
+<tr><th id="136">136</th><td>  <i>/* Enable multiple dots (and most characters) in ODS5 file names,</i></td></tr>
+<tr><th id="137">137</th><td><i>     while preserving VMS-ness of ";version". */</i></td></tr>
+<tr><th id="138">138</th><td>  { <q>"DECC$EFS_CHARSET"</q>, <var>1</var> },</td></tr>
+<tr><th id="139">139</th><td>  <i>/* List terminator. */</i></td></tr>
+<tr><th id="140">140</th><td>  { (<em>char</em> *)NULL, <var>0</var> }</td></tr>
+<tr><th id="141">141</th><td>};</td></tr>
+<tr><th id="142">142</th><td></td></tr>
+<tr><th id="143">143</th><td><i>/* Flag to sense if decc_init() was called. */</i></td></tr>
+<tr><th id="144">144</th><td><em>static</em> <em>int</em> decc_init_done = -<var>1</var>;</td></tr>
+<tr><th id="145">145</th><td></td></tr>
+<tr><th id="146">146</th><td><i>/* LIB$INITIALIZE initialization function. */</i></td></tr>
+<tr><th id="147">147</th><td><em>static</em> <em>void</em> decc_init(<em>void</em>)</td></tr>
+<tr><th id="148">148</th><td>{</td></tr>
+<tr><th id="149">149</th><td>  <em>int</em> feat_index;</td></tr>
+<tr><th id="150">150</th><td>  <em>int</em> feat_value;</td></tr>
+<tr><th id="151">151</th><td>  <em>int</em> feat_value_max;</td></tr>
+<tr><th id="152">152</th><td>  <em>int</em> feat_value_min;</td></tr>
+<tr><th id="153">153</th><td>  <em>int</em> i;</td></tr>
+<tr><th id="154">154</th><td>  <em>int</em> sts;</td></tr>
+<tr><th id="155">155</th><td></td></tr>
+<tr><th id="156">156</th><td>  <i>/* Set the global flag to indicate that LIB$INITIALIZE worked. */</i></td></tr>
+<tr><th id="157">157</th><td>  decc_init_done = <var>1</var>;</td></tr>
+<tr><th id="158">158</th><td></td></tr>
+<tr><th id="159">159</th><td>  <i>/* Loop through all items in the decc_feat_array[]. */</i></td></tr>
+<tr><th id="160">160</th><td>  <b>for</b>(i = <var>0</var>; decc_feat_array[i].name != NULL; i++) {</td></tr>
+<tr><th id="161">161</th><td></td></tr>
+<tr><th id="162">162</th><td>    <i>/* Get the feature index. */</i></td></tr>
+<tr><th id="163">163</th><td>    feat_index = decc$feature_get_index(decc_feat_array[i].name);</td></tr>
+<tr><th id="164">164</th><td></td></tr>
+<tr><th id="165">165</th><td>    <b>if</b>(feat_index &gt;= <var>0</var>) {</td></tr>
+<tr><th id="166">166</th><td>      <i>/* Valid item.  Collect its properties. */</i></td></tr>
+<tr><th id="167">167</th><td>      feat_value = decc$feature_get_value(feat_index, <var>1</var>);</td></tr>
+<tr><th id="168">168</th><td>      feat_value_min = decc$feature_get_value(feat_index, <var>2</var>);</td></tr>
+<tr><th id="169">169</th><td>      feat_value_max = decc$feature_get_value(feat_index, <var>3</var>);</td></tr>
+<tr><th id="170">170</th><td></td></tr>
+<tr><th id="171">171</th><td>      <b>if</b>((decc_feat_array[i].value &gt;= feat_value_min) &amp;&amp;</td></tr>
+<tr><th id="172">172</th><td>         (decc_feat_array[i].value &lt;= feat_value_max)) {</td></tr>
+<tr><th id="173">173</th><td>        <i>/* Valid value.  Set it if necessary. */</i></td></tr>
+<tr><th id="174">174</th><td>        <b>if</b>(feat_value != decc_feat_array[i].value) {</td></tr>
+<tr><th id="175">175</th><td>          sts = decc$feature_set_value(feat_index, <var>1</var>,</td></tr>
+<tr><th id="176">176</th><td>                                       decc_feat_array[i].value);</td></tr>
+<tr><th id="177">177</th><td>        }</td></tr>
+<tr><th id="178">178</th><td>      }</td></tr>
+<tr><th id="179">179</th><td>      <b>else</b> {</td></tr>
+<tr><th id="180">180</th><td>        <i>/* Invalid DECC feature value. */</i></td></tr>
+<tr><th id="181">181</th><td>        printf(<q>" INVALID DECC FEATURE VALUE, %d: %d &lt;= %s &lt;= %d.\n"</q>,</td></tr>
+<tr><th id="182">182</th><td>               feat_value,</td></tr>
+<tr><th id="183">183</th><td>               feat_value_min, decc_feat_array[i].name, feat_value_max);</td></tr>
+<tr><th id="184">184</th><td>      }</td></tr>
+<tr><th id="185">185</th><td>    }</td></tr>
+<tr><th id="186">186</th><td>    <b>else</b> {</td></tr>
+<tr><th id="187">187</th><td>      <i>/* Invalid DECC feature name. */</i></td></tr>
+<tr><th id="188">188</th><td>      printf(<q>" UNKNOWN DECC FEATURE: %s.\n"</q>, decc_feat_array[i].name);</td></tr>
+<tr><th id="189">189</th><td>    }</td></tr>
+<tr><th id="190">190</th><td></td></tr>
+<tr><th id="191">191</th><td>  }</td></tr>
+<tr><th id="192">192</th><td>}</td></tr>
+<tr><th id="193">193</th><td></td></tr>
+<tr><th id="194">194</th><td><i>/* Get "decc_init()" into a valid, loaded LIB$INITIALIZE PSECT. */</i></td></tr>
+<tr><th id="195">195</th><td></td></tr>
+<tr><th id="196">196</th><td><u>#pragma nostandard</u></td></tr>
+<tr><th id="197">197</th><td></td></tr>
+<tr><th id="198">198</th><td><i>/* Establish the LIB$INITIALIZE PSECTs, with proper alignment and</i></td></tr>
+<tr><th id="199">199</th><td><i>   other attributes.  Note that "nopic" is significant only on VAX. */</i></td></tr>
+<tr><th id="200">200</th><td><u>#pragma extern_model save</u></td></tr>
+<tr><th id="201">201</th><td><u>#pragma extern_model strict_refdef "LIB$INITIALIZ" 2, nopic, nowrt</u></td></tr>
+<tr><th id="202">202</th><td><em>const</em> <em>int</em> spare[<var>8</var>] = {<var>0</var>};</td></tr>
+<tr><th id="203">203</th><td><u>#pragma extern_model strict_refdef "LIB$INITIALIZE" 2, nopic, nowrt</u></td></tr>
+<tr><th id="204">204</th><td><em>void</em> (*<em>const</em> x_decc_init)() = decc_init;</td></tr>
+<tr><th id="205">205</th><td><u>#pragma extern_model restore</u></td></tr>
+<tr><th id="206">206</th><td></td></tr>
+<tr><th id="207">207</th><td><i>/* Fake reference to ensure loading the LIB$INITIALIZE PSECT. */</i></td></tr>
+<tr><th id="208">208</th><td><u>#pragma extern_model save</u></td></tr>
+<tr><th id="209">209</th><td><em>int</em> LIB$INITIALIZE(<em>void</em>);</td></tr>
+<tr><th id="210">210</th><td><u>#pragma extern_model strict_refdef</u></td></tr>
+<tr><th id="211">211</th><td><em>int</em> dmy_lib$initialize = (<em>int</em>) LIB$INITIALIZE;</td></tr>
+<tr><th id="212">212</th><td><u>#pragma extern_model restore</u></td></tr>
+<tr><th id="213">213</th><td></td></tr>
+<tr><th id="214">214</th><td><u>#pragma standard</u></td></tr>
+<tr><th id="215">215</th><td></td></tr>
+<tr><th id="216">216</th><td><u>#endif /* __DECC &amp;&amp; !__VAX &amp;&amp; __CRTL_VER &amp;&amp; __CRTL_VER &gt;= 70301000 */</u></td></tr>
+<tr><th id="217">217</th><td></td></tr>
+<tr><th id="218">218</th><td><u>#<span data-ppcond="24">endif</span> /* __VMS */</u></td></tr>
+<tr><th id="219">219</th><td></td></tr>
+<tr><th id="220">220</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

@@ -1,0 +1,23 @@
+<dec f='codebrowser/lib/smtp.h' l='67' type='smtpstate'/>
+<offset>896</offset>
+<doc f='codebrowser/lib/smtp.h' l='67'>/* Always use smtp.c:state() to change state! */</doc>
+<use f='codebrowser/lib/smtp.c' l='219' u='r' c='smtp_endofresp'/>
+<use f='codebrowser/lib/smtp.c' l='219' u='r' c='smtp_endofresp'/>
+<use f='codebrowser/lib/smtp.c' l='289' u='w' c='state'/>
+<use f='codebrowser/lib/smtp.c' l='376' u='r' c='smtp_perform_upgrade_tls'/>
+<use f='codebrowser/lib/smtp.c' l='990' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1004' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1011' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1013' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1017' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1021' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1025' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1029' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1033' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1037' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1041' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1045' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1049' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1059' u='r' c='smtp_statemach_act'/>
+<use f='codebrowser/lib/smtp.c' l='1077' u='r' c='smtp_multi_statemach'/>
+<use f='codebrowser/lib/smtp.c' l='1087' u='r' c='smtp_block_statemach'/>

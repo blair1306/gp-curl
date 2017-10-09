@@ -1,0 +1,3 @@
+<dec f='codebrowser/lib/curl_config.h' l='868'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='190' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='867'>/* Define to the type of arg 2 for send. */</doc>

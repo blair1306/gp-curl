@@ -1,0 +1,6 @@
+<dec f='codebrowser/include/curl/curl.h' l='160' type='long'/>
+<offset>128</offset>
+<doc f='codebrowser/include/curl/curl.h' l='160'>/* length of name length */</doc>
+<use f='codebrowser/lib/formdata.c' l='86' u='w' c='AddHttpPost'/>
+<use f='codebrowser/lib/formdata.c' l='888' u='r' c='Curl_getformdata'/>
+<use f='codebrowser/lib/formdata.c' l='915' u='r' c='Curl_getformdata'/>

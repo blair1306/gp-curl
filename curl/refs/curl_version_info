@@ -1,0 +1,5 @@
+<dec f='codebrowser/include/curl/curl.h' l='2670' type='curl_version_info_data * curl_version_info(CURLversion )'/>
+<use f='codebrowser/lib/version.c' l='74' u='c' c='Curl_version_init'/>
+<def f='codebrowser/lib/version.c' l='342' ll='403' type='curl_version_info_data * curl_version_info(CURLversion stamp)'/>
+<use f='codebrowser/src/tool_libinfo.c' l='83' u='c' c='get_libcurl_info'/>
+<use f='codebrowser/src/tool_paramhlp.c' l='379' u='c' c='check_protocol'/>

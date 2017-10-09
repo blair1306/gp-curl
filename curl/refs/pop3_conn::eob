@@ -1,0 +1,25 @@
+<dec f='codebrowser/lib/pop3.h' l='64' type='size_t'/>
+<offset>960</offset>
+<doc f='codebrowser/lib/pop3.h' l='64'>/* Number of bytes of the EOB (End Of Body) that
+                             have been received so far */</doc>
+<use f='codebrowser/lib/pop3.c' l='892' u='w' c='pop3_state_command_resp'/>
+<use f='codebrowser/lib/pop3.c' l='1434' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1438' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1439' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1452' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1453' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1457' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1461' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1461' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1462' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1466' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1470' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1471' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1472' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1475' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1480' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1484' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1489' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1513' u='r' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1520' u='w' c='Curl_pop3_write'/>
+<use f='codebrowser/lib/pop3.c' l='1525' u='r' c='Curl_pop3_write'/>

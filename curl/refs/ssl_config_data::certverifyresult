@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/urldata.h' l='227' type='long'/>
+<offset>640</offset>
+<doc f='codebrowser/lib/urldata.h' l='227'>/* result from the certificate verification */</doc>
+<use f='codebrowser/lib/getinfo.c' l='168' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/getinfo.c' l='171' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2048' u='a' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2048' u='a' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2502' u='a' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2502' u='a' c='ossl_connect_step2'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3037' u='a' c='servercert'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='3037' u='a' c='servercert'/>

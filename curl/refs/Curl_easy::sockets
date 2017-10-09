@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/urldata.h' l='1750' type='curl_socket_t [5]'/>
+<offset>1024</offset>
+<doc f='codebrowser/lib/urldata.h' l='1746'>/* Array with the plain socket numbers this handle takes care of, in no
+     particular order. Note that all sockets are added to the sockhash, where
+     the state etc are also kept. This array is mostly used to detect when a
+     socket is to be removed from the hash. See singlesocket(). */</doc>
+<use f='codebrowser/lib/multi.c' l='2391' u='r' c='singlesocket'/>
+<use f='codebrowser/lib/multi.c' l='2457' u='r' c='singlesocket'/>

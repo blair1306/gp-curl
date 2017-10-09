@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/multiif.h' l='62' type='size_t Curl_multi_max_host_connections(struct Curl_multi * multi)'/>
+<doc f='codebrowser/lib/multiif.h' l='61'>/* Return the value of the CURLMOPT_MAX_HOST_CONNECTIONS option */</doc>
+<def f='codebrowser/lib/multi.c' l='3063' ll='3066' type='size_t Curl_multi_max_host_connections(struct Curl_multi * multi)'/>
+<use f='codebrowser/lib/url.c' l='6398' u='c' c='create_conn'/>

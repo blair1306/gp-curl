@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tool_libinfo.c source code [codebrowser/src/tool_libinfo.c] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'codebrowser/src/tool_libinfo.c'; var root_path = '../..'; var data_path = '../../../data';</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Browse the source code of </span><a href='..'>codebrowser</a>/<a href='./'>src</a>/<a href='tool_libinfo.c.html'>tool_libinfo.c</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/***************************************************************************</i></td></tr>
+<tr><th id="2">2</th><td><i> *                                  _   _ ____  _</i></td></tr>
+<tr><th id="3">3</th><td><i> *  Project                     ___| | | |  _ \| |</i></td></tr>
+<tr><th id="4">4</th><td><i> *                             / __| | | | |_) | |</i></td></tr>
+<tr><th id="5">5</th><td><i> *                            | (__| |_| |  _ &lt;| |___</i></td></tr>
+<tr><th id="6">6</th><td><i> *                             \___|\___/|_| \_\_____|</i></td></tr>
+<tr><th id="7">7</th><td><i> *</i></td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (C) 1998 - 2016, Daniel Stenberg, &lt;daniel@haxx.se&gt;, et al.</i></td></tr>
+<tr><th id="9">9</th><td><i> *</i></td></tr>
+<tr><th id="10">10</th><td><i> * This software is licensed as described in the file COPYING, which</i></td></tr>
+<tr><th id="11">11</th><td><i> * you should have received as part of this distribution. The terms</i></td></tr>
+<tr><th id="12">12</th><td><i> * are also available at <a href="https://curl.haxx.se/docs/copyright.html">https://curl.haxx.se/docs/copyright.html</a>.</i></td></tr>
+<tr><th id="13">13</th><td><i> *</i></td></tr>
+<tr><th id="14">14</th><td><i> * You may opt to use, copy, modify, merge, publish, distribute and/or sell</i></td></tr>
+<tr><th id="15">15</th><td><i> * copies of the Software, and permit persons to whom the Software is</i></td></tr>
+<tr><th id="16">16</th><td><i> * furnished to do so, under the terms of the COPYING file.</i></td></tr>
+<tr><th id="17">17</th><td><i> *</i></td></tr>
+<tr><th id="18">18</th><td><i> * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY</i></td></tr>
+<tr><th id="19">19</th><td><i> * KIND, either express or implied.</i></td></tr>
+<tr><th id="20">20</th><td><i> *</i></td></tr>
+<tr><th id="21">21</th><td><i> ***************************************************************************/</i></td></tr>
+<tr><th id="22">22</th><td><u>#include <a href="tool_setup.h.html">"tool_setup.h"</a></u></td></tr>
+<tr><th id="23">23</th><td></td></tr>
+<tr><th id="24">24</th><td><u>#include <a href="../lib/strcase.h.html">"strcase.h"</a></u></td></tr>
+<tr><th id="25">25</th><td></td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/ENABLE_CURLX_PRINTF" data-ref="_M/ENABLE_CURLX_PRINTF">ENABLE_CURLX_PRINTF</dfn></u></td></tr>
+<tr><th id="27">27</th><td><i>/* use our own printf() functions */</i></td></tr>
+<tr><th id="28">28</th><td><u>#include <a href="../lib/curlx.h.html">"curlx.h"</a></u></td></tr>
+<tr><th id="29">29</th><td></td></tr>
+<tr><th id="30">30</th><td><u>#include <a href="tool_libinfo.h.html">"tool_libinfo.h"</a></u></td></tr>
+<tr><th id="31">31</th><td></td></tr>
+<tr><th id="32">32</th><td><u>#include <a href="../lib/memdebug.h.html">"memdebug.h"</a> /* keep this as LAST include */</u></td></tr>
+<tr><th id="33">33</th><td></td></tr>
+<tr><th id="34">34</th><td><i>/* global variable definitions, for libcurl run-time info */</i></td></tr>
+<tr><th id="35">35</th><td></td></tr>
+<tr><th id="36">36</th><td><a class="typedef" href="../include/curl/curl.h.html#curl_version_info_data" title='curl_version_info_data' data-type='struct curl_version_info_data' data-ref="curl_version_info_data">curl_version_info_data</a> *<dfn class="decl def" id="curlinfo" title='curlinfo' data-ref="curlinfo">curlinfo</dfn> = <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>;</td></tr>
+<tr><th id="37">37</th><td><em>long</em> <dfn class="decl def" id="built_in_protos" title='built_in_protos' data-ref="built_in_protos">built_in_protos</dfn> = <var>0</var>;</td></tr>
+<tr><th id="38">38</th><td></td></tr>
+<tr><th id="39">39</th><td><i>/*</i></td></tr>
+<tr><th id="40">40</th><td><i> * libcurl_info_init: retrieves run-time information about libcurl,</i></td></tr>
+<tr><th id="41">41</th><td><i> * setting a global pointer 'curlinfo' to libcurl's run-time info</i></td></tr>
+<tr><th id="42">42</th><td><i> * struct, and a global bit pattern 'built_in_protos' composed of</i></td></tr>
+<tr><th id="43">43</th><td><i> * CURLPROTO_* bits indicating which protocols are actually built</i></td></tr>
+<tr><th id="44">44</th><td><i> * into library being used.</i></td></tr>
+<tr><th id="45">45</th><td><i> */</i></td></tr>
+<tr><th id="46">46</th><td></td></tr>
+<tr><th id="47">47</th><td><a class="typedef" href="../include/curl/curl.h.html#CURLcode" title='CURLcode' data-type='enum CURLcode' data-ref="CURLcode">CURLcode</a> <dfn class="decl def" id="get_libcurl_info" title='get_libcurl_info' data-ref="get_libcurl_info">get_libcurl_info</dfn>(<em>void</em>)</td></tr>
+<tr><th id="48">48</th><td>{</td></tr>
+<tr><th id="49">49</th><td>  <em>static</em> <b>struct</b> <dfn class="local col1 type" id="1proto_name_pattern" title='proto_name_pattern' data-ref="1proto_name_pattern"><a class="local col1 type" href="#1proto_name_pattern" title='proto_name_pattern' data-ref="1proto_name_pattern">proto_name_pattern</a></dfn> {</td></tr>
+<tr><th id="50">50</th><td>    <em>const</em> <em>char</em> *<dfn class="local col2 decl" id="2proto_name" title='proto_name' data-type='const char *' data-ref="2proto_name">proto_name</dfn>;</td></tr>
+<tr><th id="51">51</th><td>    <em>long</em>        <dfn class="local col3 decl" id="3proto_pattern" title='proto_pattern' data-type='long' data-ref="3proto_pattern">proto_pattern</dfn>;</td></tr>
+<tr><th id="52">52</th><td>  } <em>const</em> <dfn class="local col4 decl" id="4possibly_built_in" title='possibly_built_in' data-type='const struct proto_name_pattern [24]' data-ref="4possibly_built_in">possibly_built_in</dfn>[] = {</td></tr>
+<tr><th id="53">53</th><td>    { <q>"dict"</q>,   <a class="macro" href="../include/curl/curl.h.html#853" title="(1&lt;&lt;9)" data-ref="_M/CURLPROTO_DICT">CURLPROTO_DICT</a>   },</td></tr>
+<tr><th id="54">54</th><td>    { <q>"file"</q>,   <a class="macro" href="../include/curl/curl.h.html#854" title="(1&lt;&lt;10)" data-ref="_M/CURLPROTO_FILE">CURLPROTO_FILE</a>   },</td></tr>
+<tr><th id="55">55</th><td>    { <q>"ftp"</q>,    <a class="macro" href="../include/curl/curl.h.html#846" title="(1&lt;&lt;2)" data-ref="_M/CURLPROTO_FTP">CURLPROTO_FTP</a>    },</td></tr>
+<tr><th id="56">56</th><td>    { <q>"ftps"</q>,   <a class="macro" href="../include/curl/curl.h.html#847" title="(1&lt;&lt;3)" data-ref="_M/CURLPROTO_FTPS">CURLPROTO_FTPS</a>   },</td></tr>
+<tr><th id="57">57</th><td>    { <q>"gopher"</q>, <a class="macro" href="../include/curl/curl.h.html#869" title="(1&lt;&lt;25)" data-ref="_M/CURLPROTO_GOPHER">CURLPROTO_GOPHER</a> },</td></tr>
+<tr><th id="58">58</th><td>    { <q>"http"</q>,   <a class="macro" href="../include/curl/curl.h.html#844" title="(1&lt;&lt;0)" data-ref="_M/CURLPROTO_HTTP">CURLPROTO_HTTP</a>   },</td></tr>
+<tr><th id="59">59</th><td>    { <q>"https"</q>,  <a class="macro" href="../include/curl/curl.h.html#845" title="(1&lt;&lt;1)" data-ref="_M/CURLPROTO_HTTPS">CURLPROTO_HTTPS</a>  },</td></tr>
+<tr><th id="60">60</th><td>    { <q>"imap"</q>,   <a class="macro" href="../include/curl/curl.h.html#856" title="(1&lt;&lt;12)" data-ref="_M/CURLPROTO_IMAP">CURLPROTO_IMAP</a>   },</td></tr>
+<tr><th id="61">61</th><td>    { <q>"imaps"</q>,  <a class="macro" href="../include/curl/curl.h.html#857" title="(1&lt;&lt;13)" data-ref="_M/CURLPROTO_IMAPS">CURLPROTO_IMAPS</a>  },</td></tr>
+<tr><th id="62">62</th><td>    { <q>"ldap"</q>,   <a class="macro" href="../include/curl/curl.h.html#851" title="(1&lt;&lt;7)" data-ref="_M/CURLPROTO_LDAP">CURLPROTO_LDAP</a>   },</td></tr>
+<tr><th id="63">63</th><td>    { <q>"ldaps"</q>,  <a class="macro" href="../include/curl/curl.h.html#852" title="(1&lt;&lt;8)" data-ref="_M/CURLPROTO_LDAPS">CURLPROTO_LDAPS</a>  },</td></tr>
+<tr><th id="64">64</th><td>    { <q>"pop3"</q>,   <a class="macro" href="../include/curl/curl.h.html#858" title="(1&lt;&lt;14)" data-ref="_M/CURLPROTO_POP3">CURLPROTO_POP3</a>   },</td></tr>
+<tr><th id="65">65</th><td>    { <q>"pop3s"</q>,  <a class="macro" href="../include/curl/curl.h.html#859" title="(1&lt;&lt;15)" data-ref="_M/CURLPROTO_POP3S">CURLPROTO_POP3S</a>  },</td></tr>
+<tr><th id="66">66</th><td>    { <q>"rtmp"</q>,   <a class="macro" href="../include/curl/curl.h.html#863" title="(1&lt;&lt;19)" data-ref="_M/CURLPROTO_RTMP">CURLPROTO_RTMP</a>   },</td></tr>
+<tr><th id="67">67</th><td>    { <q>"rtsp"</q>,   <a class="macro" href="../include/curl/curl.h.html#862" title="(1&lt;&lt;18)" data-ref="_M/CURLPROTO_RTSP">CURLPROTO_RTSP</a>   },</td></tr>
+<tr><th id="68">68</th><td>    { <q>"scp"</q>,    <a class="macro" href="../include/curl/curl.h.html#848" title="(1&lt;&lt;4)" data-ref="_M/CURLPROTO_SCP">CURLPROTO_SCP</a>    },</td></tr>
+<tr><th id="69">69</th><td>    { <q>"sftp"</q>,   <a class="macro" href="../include/curl/curl.h.html#849" title="(1&lt;&lt;5)" data-ref="_M/CURLPROTO_SFTP">CURLPROTO_SFTP</a>   },</td></tr>
+<tr><th id="70">70</th><td>    { <q>"smb"</q>,    <a class="macro" href="../include/curl/curl.h.html#870" title="(1&lt;&lt;26)" data-ref="_M/CURLPROTO_SMB">CURLPROTO_SMB</a>    },</td></tr>
+<tr><th id="71">71</th><td>    { <q>"smbs"</q>,   <a class="macro" href="../include/curl/curl.h.html#871" title="(1&lt;&lt;27)" data-ref="_M/CURLPROTO_SMBS">CURLPROTO_SMBS</a>   },</td></tr>
+<tr><th id="72">72</th><td>    { <q>"smtp"</q>,   <a class="macro" href="../include/curl/curl.h.html#860" title="(1&lt;&lt;16)" data-ref="_M/CURLPROTO_SMTP">CURLPROTO_SMTP</a>   },</td></tr>
+<tr><th id="73">73</th><td>    { <q>"smtps"</q>,  <a class="macro" href="../include/curl/curl.h.html#861" title="(1&lt;&lt;17)" data-ref="_M/CURLPROTO_SMTPS">CURLPROTO_SMTPS</a>  },</td></tr>
+<tr><th id="74">74</th><td>    { <q>"telnet"</q>, <a class="macro" href="../include/curl/curl.h.html#850" title="(1&lt;&lt;6)" data-ref="_M/CURLPROTO_TELNET">CURLPROTO_TELNET</a> },</td></tr>
+<tr><th id="75">75</th><td>    { <q>"tftp"</q>,   <a class="macro" href="../include/curl/curl.h.html#855" title="(1&lt;&lt;11)" data-ref="_M/CURLPROTO_TFTP">CURLPROTO_TFTP</a>   },</td></tr>
+<tr><th id="76">76</th><td>    {  <span class="macro" title="((void*)0)" data-ref="_M/NULL">NULL</span>,    <var>0</var>                }</td></tr>
+<tr><th id="77">77</th><td>  };</td></tr>
+<tr><th id="78">78</th><td></td></tr>
+<tr><th id="79">79</th><td>  <b>struct</b> <a class="local col1 type" href="#1proto_name_pattern" title='proto_name_pattern' data-ref="1proto_name_pattern">proto_name_pattern</a> <em>const</em> *<dfn class="local col5 decl" id="5p" title='p' data-type='const struct proto_name_pattern *' data-ref="5p">p</dfn>;</td></tr>
+<tr><th id="80">80</th><td>  <em>const</em> <em>char</em> *<em>const</em> *<dfn class="local col6 decl" id="6proto" title='proto' data-type='const char *const *' data-ref="6proto">proto</dfn>;</td></tr>
+<tr><th id="81">81</th><td></td></tr>
+<tr><th id="82">82</th><td>  <i>/* Pointer to libcurl's run-time version information */</i></td></tr>
+<tr><th id="83">83</th><td>  <a class="ref" href="tool_libinfo.h.html#curlinfo" title='curlinfo' data-ref="curlinfo">curlinfo</a> = <a class="ref" href="../include/curl/curl.h.html#curl_version_info" title='curl_version_info' data-ref="curl_version_info">curl_version_info</a>(<a class="macro" href="../include/curl/curl.h.html#2603" title="CURLVERSION_FOURTH" data-ref="_M/CURLVERSION_NOW">CURLVERSION_NOW</a>);</td></tr>
+<tr><th id="84">84</th><td>  <b>if</b>(!<a class="ref" href="tool_libinfo.h.html#curlinfo" title='curlinfo' data-ref="curlinfo">curlinfo</a>)</td></tr>
+<tr><th id="85">85</th><td>    <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_FAILED_INIT" title='CURLE_FAILED_INIT' data-ref="CURLE_FAILED_INIT">CURLE_FAILED_INIT</a>;</td></tr>
+<tr><th id="86">86</th><td></td></tr>
+<tr><th id="87">87</th><td>  <i>/* Build CURLPROTO_* bit pattern with libcurl's built-in protocols */</i></td></tr>
+<tr><th id="88">88</th><td>  <a class="ref" href="tool_libinfo.h.html#built_in_protos" title='built_in_protos' data-ref="built_in_protos">built_in_protos</a> = <var>0</var>;</td></tr>
+<tr><th id="89">89</th><td>  <b>if</b>(<a class="ref" href="tool_libinfo.h.html#curlinfo" title='curlinfo' data-ref="curlinfo">curlinfo</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#(anonymous)::protocols" title='(anonymous struct)::protocols' data-ref="(anonymous)::protocols">protocols</a>) {</td></tr>
+<tr><th id="90">90</th><td>    <b>for</b>(<a class="local col6 ref" href="#6proto" title='proto' data-ref="6proto">proto</a> = <a class="ref" href="tool_libinfo.h.html#curlinfo" title='curlinfo' data-ref="curlinfo">curlinfo</a>-&gt;<a class="ref" href="../include/curl/curl.h.html#(anonymous)::protocols" title='(anonymous struct)::protocols' data-ref="(anonymous)::protocols">protocols</a>; *<a class="local col6 ref" href="#6proto" title='proto' data-ref="6proto">proto</a>; <a class="local col6 ref" href="#6proto" title='proto' data-ref="6proto">proto</a>++) {</td></tr>
+<tr><th id="91">91</th><td>      <b>for</b>(<a class="local col5 ref" href="#5p" title='p' data-ref="5p">p</a> = <a class="local col4 ref" href="#4possibly_built_in" title='possibly_built_in' data-ref="4possibly_built_in">possibly_built_in</a>; <a class="local col5 ref" href="#5p" title='p' data-ref="5p">p</a>-&gt;<a class="local col2 ref" href="#2proto_name" title='proto_name' data-ref="2proto_name">proto_name</a>; <a class="local col5 ref" href="#5p" title='p' data-ref="5p">p</a>++) {</td></tr>
+<tr><th id="92">92</th><td>        <b>if</b>(<a class="ref" href="../include/curl/curl.h.html#curl_strequal" title='curl_strequal' data-ref="curl_strequal">curl_strequal</a>(*<a class="local col6 ref" href="#6proto" title='proto' data-ref="6proto">proto</a>, <a class="local col5 ref" href="#5p" title='p' data-ref="5p">p</a>-&gt;<a class="local col2 ref" href="#2proto_name" title='proto_name' data-ref="2proto_name">proto_name</a>)) {</td></tr>
+<tr><th id="93">93</th><td>          <a class="ref" href="tool_libinfo.h.html#built_in_protos" title='built_in_protos' data-ref="built_in_protos">built_in_protos</a> |= <a class="local col5 ref" href="#5p" title='p' data-ref="5p">p</a>-&gt;<a class="local col3 ref" href="#3proto_pattern" title='proto_pattern' data-ref="3proto_pattern">proto_pattern</a>;</td></tr>
+<tr><th id="94">94</th><td>          <b>break</b>;</td></tr>
+<tr><th id="95">95</th><td>        }</td></tr>
+<tr><th id="96">96</th><td>      }</td></tr>
+<tr><th id="97">97</th><td>    }</td></tr>
+<tr><th id="98">98</th><td>  }</td></tr>
+<tr><th id="99">99</th><td></td></tr>
+<tr><th id="100">100</th><td>  <b>return</b> <a class="enum" href="../include/curl/curl.h.html#CURLE_OK" title='CURLE_OK' data-ref="CURLE_OK">CURLE_OK</a>;</td></tr>
+<tr><th id="101">101</th><td>}</td></tr>
+<tr><th id="102">102</th><td></td></tr>
+<tr><th id="103">103</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2017-Oct-09</em> from project codebrowser revision <em>curl-7_56_0-29-g06cb8ad</em><br />Powered by <a href='https://woboq.com'><img alt='Woboq' src='https://code.woboq.org/woboq-16.png' width='41' height='16' /></a> <a href='https://code.woboq.org'>Code Browser</a> 2.1
+<br/>Generator usage only permitted with license.</p>
+</div></body></html>

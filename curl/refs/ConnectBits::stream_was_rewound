@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='422' type='_Bool'/>
+<offset>192</offset>
+<use f='codebrowser/lib/sendf.c' l='718' u='w' c='Curl_read'/>
+<use f='codebrowser/lib/transfer.c' l='366' u='w' c='read_rewind'/>
+<use f='codebrowser/lib/transfer.c' l='832' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='1137' u='r' c='Curl_readwrite'/>

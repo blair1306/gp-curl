@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/curl_config.h' l='128'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='72' u='a'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='303' u='a'/>
+<use f='codebrowser/lib/curl_setup_once.h' l='318' u='a'/>
+<doc f='codebrowser/lib/curl_config.h' l='127'>/* Define to 1 if bool is an available type. */</doc>

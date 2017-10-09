@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1093' type='time_t'/>
+<offset>0</offset>
+<doc f='codebrowser/lib/urldata.h' l='1093'>/* time() of the last displayed progress meter or NULL to
+                      force redraw at next call */</doc>
+<use f='codebrowser/lib/progress.c' l='137' u='w' c='Curl_pgrsDone'/>
+<use f='codebrowser/lib/progress.c' l='390' u='r' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='393' u='w' c='Curl_pgrsUpdate'/>

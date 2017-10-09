@@ -1,0 +1,10 @@
+<def f='codebrowser/lib/http.h' l='53' ll='57'/>
+<size>24</size>
+<doc f='codebrowser/lib/http.h' l='48'>/*
+ * The add_buffer series of functions are used to build one large memory chunk
+ * from repeated function invokes. Used so that the entire HTTP request can
+ * be sent in one go.
+ */</doc>
+<mbr r='Curl_send_buffer::buffer' o='0' t='char *'/>
+<mbr r='Curl_send_buffer::size_max' o='64' t='size_t'/>
+<mbr r='Curl_send_buffer::size_used' o='128' t='size_t'/>

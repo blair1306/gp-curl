@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/urldata.h' l='1316' type='_Bool'/>
+<offset>139464</offset>
+<use f='codebrowser/lib/multi.c' l='864' u='r' c='multi_getsock'/>
+<use f='codebrowser/lib/multi.c' l='1333' u='r' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='1344' u='w' c='multi_runsingle'/>
+<use f='codebrowser/lib/multi.c' l='2079' u='w' c='multi_runsingle'/>
+<use f='codebrowser/lib/url.c' l='3284' u='w' c='signalPipeClose'/>

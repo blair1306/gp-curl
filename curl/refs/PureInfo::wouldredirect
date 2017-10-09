@@ -1,0 +1,12 @@
+<dec f='codebrowser/lib/urldata.h' l='1067' type='char *'/>
+<offset>640</offset>
+<doc f='codebrowser/lib/urldata.h' l='1067'>/* URL this would&apos;ve been redirected to if asked to */</doc>
+<use f='codebrowser/lib/getinfo.c' l='74' u='r' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='75' u='w' c='Curl_initinfo'/>
+<use f='codebrowser/lib/getinfo.c' l='116' u='r' c='getinfo_char'/>
+<use f='codebrowser/lib/transfer.c' l='1354' u='r' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1354' u='w' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1355' u='w' c='Curl_pretransfer'/>
+<use f='codebrowser/lib/transfer.c' l='1809' u='w' c='Curl_follow'/>
+<use f='codebrowser/lib/url.c' l='475' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='475' u='w' c='Curl_close'/>

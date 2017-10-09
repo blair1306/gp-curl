@@ -1,0 +1,4 @@
+<dec f='include/openssl/x509.h' l='997' type='int X509_NAME_print_ex(BIO * out, X509_NAME * nm, int indent, unsigned long flags)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='884' u='c' c='x509_name_oneline'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2776' u='c' c='get_cert_chain'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2779' u='c' c='get_cert_chain'/>

@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/urldata.h' l='199' type='_Bool'/>
+<offset>0</offset>
+<use f='codebrowser/lib/connect.c' l='1254' u='r' c='Curl_connalive'/>
+<use f='codebrowser/lib/ftp.c' l='2502' u='r' c='ftp_state_loggedin'/>
+<use f='codebrowser/lib/ftp.c' l='2649' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='2651' u='r' c='ftp_statemach_act'/>
+<use f='codebrowser/lib/ftp.c' l='3244' u='r' c='ftp_done'/>
+<use f='codebrowser/lib/getinfo.c' l='375' u='r' c='getinfo_slist'/>
+<use f='codebrowser/lib/imap.c' l='906' u='r' c='imap_state_capability_resp'/>
+<use f='codebrowser/lib/pop3.c' l='715' u='r' c='pop3_state_capa_resp'/>
+<use f='codebrowser/lib/smtp.c' l='705' u='r' c='smtp_state_ehlo_resp'/>
+<use f='codebrowser/lib/smtp.c' l='765' u='r' c='smtp_state_ehlo_resp'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2475' u='r' c='ossl_connect_step1'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='211' u='r' c='ssl_connect_init_proxy'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='245' u='w' c='Curl_ssl_connect'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='271' u='w' c='Curl_ssl_connect_nonblocking'/>
+<use f='codebrowser/lib/vtls/vtls.c' l='560' u='w' c='Curl_ssl_shutdown'/>

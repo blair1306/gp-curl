@@ -1,0 +1,11 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='257' type='CURL *'/>
+<offset>0</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='257'>/* Once we have one, we keep it here */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='2122' u='r' c='parse_args'/>
+<use f='codebrowser/src/tool_main.c' l='162' u='w' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='163' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='166' u='r' c='main_init'/>
+<use f='codebrowser/src/tool_main.c' l='215' u='r' c='main_free'/>
+<use f='codebrowser/src/tool_main.c' l='216' u='w' c='main_free'/>
+<use f='codebrowser/src/tool_operate.c' l='2035' u='r' c='operate'/>
+<use f='codebrowser/src/tool_parsecfg.c' l='236' u='r' c='parseconfig'/>

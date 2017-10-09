@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='1551' type='long'/>
+<offset>2816</offset>
+<doc f='codebrowser/lib/urldata.h' l='1551'>/* in bytes, 0 means use default */</doc>
+<use f='codebrowser/lib/tftp.c' l='981' u='r' c='tftp_connect'/>
+<use f='codebrowser/lib/tftp.c' l='982' u='r' c='tftp_connect'/>
+<use f='codebrowser/lib/url.c' l='891' u='w' c='Curl_setopt'/>

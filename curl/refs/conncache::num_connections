@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/conncache.h' l='28' type='size_t'/>
+<offset>384</offset>
+<use f='codebrowser/lib/conncache.c' l='226' u='w' c='Curl_conncache_add_conn'/>
+<use f='codebrowser/lib/conncache.c' l='249' u='w' c='Curl_conncache_remove_conn'/>
+<use f='codebrowser/lib/multi.c' l='502' u='r' c='ConnectionDone'/>
+<use f='codebrowser/lib/url.c' l='6762' u='r' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6835' u='r' c='create_conn'/>

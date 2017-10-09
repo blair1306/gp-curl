@@ -1,0 +1,9 @@
+<dec f='codebrowser/src/tool_urlglob.h' l='40' type='int'/>
+<offset>96</offset>
+<use f='codebrowser/src/tool_urlglob.c' l='44' u='w' c='glob_fixed'/>
+<use f='codebrowser/src/tool_urlglob.c' l='97' u='w' c='glob_set'/>
+<use f='codebrowser/src/tool_urlglob.c' l='528' u='w' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='529' u='w' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='566' u='r' c='glob_next_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='643' u='r' c='glob_match_url'/>
+<use f='codebrowser/src/tool_urlglob.c' l='645' u='r' c='glob_match_url'/>

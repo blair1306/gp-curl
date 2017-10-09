@@ -1,0 +1,11 @@
+<dec f='codebrowser/lib/telnet.c' l='141' type='0'/>
+<use f='codebrowser/lib/telnet.c' l='253' u='r' c='init_telnet'/>
+<use f='codebrowser/lib/telnet.c' l='1093' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1101' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1133' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1140' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1150' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1157' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1164' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1171' u='r' c='telrcv'/>
+<use f='codebrowser/lib/telnet.c' l='1213' u='r' c='telrcv'/>

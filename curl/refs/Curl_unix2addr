@@ -1,0 +1,8 @@
+<dec f='codebrowser/lib/curl_addrinfo.h' l='83' type='Curl_addrinfo * Curl_unix2addr(const char * path, _Bool * longpath, _Bool abstract)'/>
+<def f='codebrowser/lib/curl_addrinfo.c' l='488' ll='529' type='Curl_addrinfo * Curl_unix2addr(const char * path, _Bool * longpath, _Bool abstract)'/>
+<doc f='codebrowser/lib/curl_addrinfo.c' l='483'>/**
+ * Given a path to a Unix domain socket, return a newly allocated Curl_addrinfo
+ * struct initialized with this path.
+ * Set &apos;*longpath&apos; to TRUE if the error is a too long path.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='6201' u='c' c='resolve_server'/>

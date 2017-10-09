@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/ftp.h' l='77' type='33'/>
+<doc f='codebrowser/lib/ftp.h' l='77'>/* generic state for STOR and APPE */</doc>
+<use f='codebrowser/lib/ftp.c' l='459' u='r' c='InitiateTransfer'/>
+<use f='codebrowser/lib/ftp.c' l='1674' u='r' c='ftp_state_ul_setup'/>
+<use f='codebrowser/lib/ftp.c' l='3031' c='ftp_statemach_act'/>

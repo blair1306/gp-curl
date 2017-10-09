@@ -1,0 +1,5 @@
+<dec f='include/openssl/ssl.h' l='2331' type='void SSL_free(SSL * ssl)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='854' u='c' c='cert_stuff'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1156' u='c' c='ossl_close'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='1270' u='c' c='Curl_ossl_shutdown'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='2428' u='c' c='ossl_connect_step1'/>

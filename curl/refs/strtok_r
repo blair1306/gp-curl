@@ -1,0 +1,9 @@
+<dec f='include/string.h' l='354' type='char * strtok_r(char *restrict __s, const char *restrict __delim, char **restrict __save_ptr)'/>
+<use f='codebrowser/lib/cookie.c' l='719' u='c' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/cookie.c' l='724' u='c' c='Curl_cookie_add'/>
+<use f='codebrowser/lib/netrc.c' l='122' u='c' c='Curl_parsenetrc'/>
+<use f='codebrowser/lib/netrc.c' l='196' u='c' c='Curl_parsenetrc'/>
+<use f='codebrowser/lib/vauth/digest.c' l='219' u='c' c='auth_digest_get_qop_values'/>
+<use f='codebrowser/lib/vauth/digest.c' l='228' u='c' c='auth_digest_get_qop_values'/>
+<use f='codebrowser/lib/vauth/digest.c' l='568' u='c' c='Curl_auth_decode_digest_http_message'/>
+<use f='codebrowser/lib/vauth/digest.c' l='576' u='c' c='Curl_auth_decode_digest_http_message'/>

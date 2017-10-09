@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2412' type='int SSL_CTX_add_client_CA(SSL_CTX * ctx, X509 * x)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='721' u='c' c='cert_stuff'/>

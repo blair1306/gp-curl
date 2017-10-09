@@ -1,0 +1,7 @@
+<dec f='codebrowser/lib/formdata.h' l='28' type='_Bool'/>
+<offset>64</offset>
+<use f='codebrowser/lib/formdata.c' l='582' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='584' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='664' u='w' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='705' u='r' c='FormAdd'/>
+<use f='codebrowser/lib/formdata.c' l='707' u='w' c='FormAdd'/>

@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/urldata.h' l='481' type='_Bool'/>
+<use f='codebrowser/lib/asyn-thread.c' l='394' u='w' c='init_resolve_thread'/>
+<use f='codebrowser/lib/asyn-thread.c' l='485' u='w' c='Curl_resolver_wait_resolv'/>
+<offset>192</offset>
+<use f='codebrowser/lib/hostasyn.c' l='107' u='w' c='Curl_addrinfo_callback'/>
+<use f='codebrowser/lib/multi.c' l='1502' u='w' c='multi_runsingle'/>

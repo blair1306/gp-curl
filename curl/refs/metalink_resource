@@ -1,0 +1,4 @@
+<def f='codebrowser/src/tool_metalink.h' l='72' ll='75'/>
+<size>16</size>
+<mbr r='metalink_resource::next' o='0' t='struct metalink_resource *'/>
+<mbr r='metalink_resource::url' o='64' t='char *'/>

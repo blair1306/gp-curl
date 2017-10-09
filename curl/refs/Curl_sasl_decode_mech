@@ -1,0 +1,20 @@
+<dec f='codebrowser/lib/curl_sasl.h' l='122' type='unsigned int Curl_sasl_decode_mech(const char * ptr, size_t maxlen, size_t * len)'/>
+<doc f='codebrowser/lib/curl_sasl.h' l='121'>/* Convert a mechanism name to a token */</doc>
+<def f='codebrowser/lib/curl_sasl.c' l='117' ll='138' type='unsigned int Curl_sasl_decode_mech(const char * ptr, size_t maxlen, size_t * len)'/>
+<use f='codebrowser/lib/curl_sasl.c' l='163' u='c' c='Curl_sasl_parse_url_auth_option'/>
+<doc f='codebrowser/lib/curl_sasl.c' l='104'>/*
+ * Curl_sasl_decode_mech()
+ *
+ * Convert a SASL mechanism name into a token.
+ *
+ * Parameters:
+ *
+ * ptr    [in]     - The mechanism string.
+ * maxlen [in]     - Maximum mechanism string length.
+ * len    [out]    - If not NULL, effective name length.
+ *
+ * Returns the SASL mechanism token or 0 if no match.
+ */</doc>
+<use f='codebrowser/lib/imap.c' l='897' u='c' c='imap_state_capability_resp'/>
+<use f='codebrowser/lib/pop3.c' l='705' u='c' c='pop3_state_capa_resp'/>
+<use f='codebrowser/lib/smtp.c' l='755' u='c' c='smtp_state_ehlo_resp'/>

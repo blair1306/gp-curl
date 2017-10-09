@@ -1,0 +1,2 @@
+<def f='codebrowser/lib/netrc.c' l='41' ll='45'/>
+<doc f='codebrowser/lib/netrc.c' l='39'>/* Get user and password from .netrc when given a machine name */</doc>

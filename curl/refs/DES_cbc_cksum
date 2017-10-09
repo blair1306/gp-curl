@@ -1,0 +1,1 @@
+<dec f='include/openssl/des.h' l='135' type='unsigned int DES_cbc_cksum(const unsigned char * input, DES_cblock * output, long length, DES_key_schedule * schedule, const_DES_cblock * ivec)'/>

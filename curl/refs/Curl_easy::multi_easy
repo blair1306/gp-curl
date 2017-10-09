@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/urldata.h' l='1757' type='struct Curl_multi *'/>
+<offset>1408</offset>
+<doc f='codebrowser/lib/urldata.h' l='1757'>/* if non-NULL, points to the multi handle
+                                    struct to which this &quot;belongs&quot; when used
+                                    by the easy interface */</doc>
+<use f='codebrowser/lib/connect.c' l='1222' u='r' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/connect.c' l='1228' u='r' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/connect.c' l='1229' u='r' c='Curl_getconnectinfo'/>
+<use f='codebrowser/lib/easy.c' l='765' u='r' c='easy_perform'/>
+<use f='codebrowser/lib/easy.c' l='766' u='r' c='easy_perform'/>
+<use f='codebrowser/lib/easy.c' l='773' u='w' c='easy_perform'/>
+<use f='codebrowser/lib/url.c' l='421' u='r' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='424' u='r' c='Curl_close'/>

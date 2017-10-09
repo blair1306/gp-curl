@@ -1,0 +1,13 @@
+<dec f='codebrowser/lib/http.h' l='39' type='_Bool Curl_compareheader(const char * headerline, const char * header, const char * content)'/>
+<def f='codebrowser/lib/http.c' l='1284' ll='1331' macro='1' type='_Bool Curl_compareheader(const char * headerline, const char * header, const char * content)'/>
+<use f='codebrowser/lib/http.c' l='1540' u='c' c='expect100'/>
+<use f='codebrowser/lib/http.c' l='1982' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2539' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='2615' u='c' c='Curl_http'/>
+<use f='codebrowser/lib/http.c' l='3563' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3576' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3586' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http.c' l='3596' u='c' c='Curl_http_readwrite_headers'/>
+<use f='codebrowser/lib/http_proxy.c' l='531' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='541' u='c' c='CONNECT'/>
+<use f='codebrowser/lib/http_proxy.c' l='549' u='c' c='CONNECT'/>

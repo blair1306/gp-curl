@@ -1,0 +1,2 @@
+<dec f='include/openssl/ssl.h' l='2200' type='int SSL_CTX_use_certificate_file(SSL_CTX * ctx, const char * file, int type)'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='588' u='c' c='cert_stuff'/>

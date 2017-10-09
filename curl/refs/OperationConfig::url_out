@@ -1,0 +1,22 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='116' type='struct getout *'/>
+<offset>3648</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='116'>/* point to the node to fill in outfile */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='102' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='1774' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1775' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1776' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1779' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1779' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1780' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1780' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1785' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1787' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1915' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1916' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1917' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1920' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1920' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1921' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1921' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1926' u='r' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1928' u='r' c='getparameter'/>

@@ -1,0 +1,4 @@
+<dec f='include/openssl/ui.h' l='313' type='1'/>
+<doc f='include/openssl/ui.h' l='313'>/* Prompt for a string */</doc>
+<use f='codebrowser/lib/vtls/openssl.c' l='509' c='ssl_ui_reader'/>
+<use f='codebrowser/lib/vtls/openssl.c' l='528' c='ssl_ui_writer'/>

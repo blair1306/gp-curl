@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/http.h' l='80' type='CURLcode Curl_http_setup_conn(struct connectdata * conn)'/>
+<use f='codebrowser/lib/http.c' l='110' u='r'/>
+<use f='codebrowser/lib/http.c' l='110' u='r'/>
+<use f='codebrowser/lib/http.c' l='135'/>
+<use f='codebrowser/lib/http.c' l='135'/>
+<def f='codebrowser/lib/http.c' l='155' ll='173' type='CURLcode Curl_http_setup_conn(struct connectdata * conn)'/>

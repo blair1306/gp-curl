@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/urldata.h' l='1135' type='struct curltime [6]'/>
+<offset>2432</offset>
+<use f='codebrowser/lib/progress.c' l='401' u='w' c='Curl_pgrsUpdate'/>
+<use f='codebrowser/lib/progress.c' l='426' u='r' c='Curl_pgrsUpdate'/>

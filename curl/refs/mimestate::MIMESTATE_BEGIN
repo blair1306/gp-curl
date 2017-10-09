@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/mime.h' l='45' type='0'/>
+<doc f='codebrowser/lib/mime.h' l='45'>/* Readback has not yet started. */</doc>
+<use f='codebrowser/lib/mime.c' l='835' c='readback_part'/>
+<use f='codebrowser/lib/mime.c' l='940' c='mime_subparts_read'/>
+<use f='codebrowser/lib/mime.c' l='1019' u='r' c='mime_part_rewind'/>
+<use f='codebrowser/lib/mime.c' l='1059' u='r' c='mime_subparts_seek'/>
+<use f='codebrowser/lib/mime.c' l='1069' u='r' c='mime_subparts_seek'/>
+<use f='codebrowser/lib/mime.c' l='1173' u='r' c='curl_mime_init'/>
+<use f='codebrowser/lib/mime.c' l='1184' u='r' c='Curl_mime_initpart'/>

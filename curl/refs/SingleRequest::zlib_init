@@ -1,0 +1,26 @@
+<dec f='codebrowser/lib/urldata.h' l='570' type='zlibInitState'/>
+<offset>1696</offset>
+<doc f='codebrowser/lib/urldata.h' l='570'>/* possible zlib init state;
+                                   undefined if Content-Encoding header. */</doc>
+<use f='codebrowser/lib/content_encoding.c' l='105' u='a' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='124' u='a' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='132' u='a' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='133' u='a' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='151' u='a' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='160' u='a' c='inflate_stream'/>
+<use f='codebrowser/lib/content_encoding.c' l='174' u='r' c='Curl_unencode_deflate_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='181' u='w' c='Curl_unencode_deflate_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='284' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='294' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='301' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='305' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='329' u='r' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='340' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='354' u='a' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='357' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='363' u='a' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='376' u='a' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='388' u='w' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='398' u='a' c='Curl_unencode_gzip_write'/>
+<use f='codebrowser/lib/content_encoding.c' l='427' u='r' c='Curl_unencode_cleanup'/>
+<use f='codebrowser/lib/content_encoding.c' l='428' u='a' c='Curl_unencode_cleanup'/>

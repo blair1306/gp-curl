@@ -1,0 +1,17 @@
+<dec f='codebrowser/lib/asyn.h' l='72' type='void Curl_resolver_cleanup(void * resolver)'/>
+<def f='codebrowser/lib/asyn-thread.c' l='119' ll='122' type='void Curl_resolver_cleanup(void * resolver)'/>
+<doc f='codebrowser/lib/asyn-thread.c' l='113'>/*
+ * Curl_resolver_cleanup()
+ * Called from curl_easy_cleanup() -&gt; Curl_close() to cleanup resolver
+ * URL-state specific environment (&apos;resolver&apos; member of the UrlState
+ * structure).  Does nothing here.
+ */</doc>
+<doc f='codebrowser/lib/asyn.h' l='65'>/*
+ * Curl_resolver_cleanup()
+ * Called from curl_easy_cleanup() -&gt; Curl_close() to cleanup resolver
+ * URL-state specific environment (&apos;resolver&apos; member of the UrlState
+ * structure).  Should destroy the handler and free all resources connected to
+ * it.
+ */</doc>
+<use f='codebrowser/lib/url.c' l='478' u='c' c='Curl_close'/>
+<use f='codebrowser/lib/url.c' l='702' u='c' c='Curl_open'/>

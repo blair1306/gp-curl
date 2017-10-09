@@ -1,0 +1,10 @@
+<dec f='codebrowser/src/tool_cfgable.h' l='92' type='int'/>
+<offset>2944</offset>
+<doc f='codebrowser/src/tool_cfgable.h' l='92'>/* set to CURLPROXY_HTTP* define */</doc>
+<use f='codebrowser/src/tool_getparam.c' l='814' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='818' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='822' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='827' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='962' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='2011' u='w' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='929' u='r' c='operate_do'/>

@@ -1,0 +1,1 @@
+<dec f='include/openssl/des_old.h' l='412' type='char * _ossl_old_crypt(const char * buf, const char * salt)'/>

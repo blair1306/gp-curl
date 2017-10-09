@@ -1,0 +1,10 @@
+<dec f='codebrowser/include/curl/curl.h' l='433' type='3'/>
+<doc f='codebrowser/include/curl/curl.h' l='433'>/* 3 */</doc>
+<use f='codebrowser/lib/sendf.c' l='832' c='Curl_debug'/>
+<use f='codebrowser/lib/transfer.c' l='653' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='656' u='r' c='readwrite_data'/>
+<use f='codebrowser/lib/transfer.c' l='660' u='r' c='readwrite_data'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='138' c='tool_debug_cb'/>
+<use f='codebrowser/src/tool_cb_dbg.c' l='203' c='tool_debug_cb'/>
+<use f='codebrowser/tests/libtest/lib552.c' l='113' c='my_trace'/>
+<use f='codebrowser/tests/libtest/testtrace.c' l='134' c='libtest_debug_cb'/>

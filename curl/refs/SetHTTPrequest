@@ -1,0 +1,6 @@
+<dec f='codebrowser/src/tool_helpers.h' l='28' type='int SetHTTPrequest(struct OperationConfig * config, HttpReq req, HttpReq * store)'/>
+<use f='codebrowser/src/tool_getparam.c' l='1613' u='c' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1689' u='c' c='getparameter'/>
+<def f='codebrowser/src/tool_helpers.c' l='74' ll='95' type='int SetHTTPrequest(struct OperationConfig * config, HttpReq req, HttpReq * store)'/>
+<use f='codebrowser/src/tool_operate.c' l='367' u='c' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='375' u='c' c='operate_do'/>

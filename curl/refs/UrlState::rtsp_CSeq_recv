@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1343' type='long'/>
+<offset>140032</offset>
+<doc f='codebrowser/lib/urldata.h' l='1343'>/* most recent CSeq received */</doc>
+<use f='codebrowser/lib/getinfo.c' l='221' u='r' c='getinfo_long'/>
+<use f='codebrowser/lib/rtsp.c' l='800' u='w' c='Curl_rtsp_parseheader'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/curl_hmac.h' l='60' type='int Curl_HMAC_update(HMAC_context * context, const unsigned char * data, unsigned int len)'/>
+<use f='codebrowser/lib/curl_ntlm_core.c' l='641' u='c' c='Curl_hmac_md5'/>
+<def f='codebrowser/lib/hmac.c' l='103' ll='110' type='int Curl_HMAC_update(HMAC_context * ctxt, const unsigned char * data, unsigned int len)'/>
+<use f='codebrowser/lib/vauth/cram.c' l='115' u='c' c='Curl_auth_create_cram_md5_message'/>

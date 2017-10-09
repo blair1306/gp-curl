@@ -1,0 +1,3 @@
+<dec f='codebrowser/src/tool_writeout.h' l='26' type='void ourWriteOut(CURL * curl, struct OutStruct * outs, const char * writeinfo)'/>
+<use f='codebrowser/src/tool_operate.c' l='1764' u='c' c='operate_do'/>
+<def f='codebrowser/src/tool_writeout.c' l='107' ll='369' type='void ourWriteOut(CURL * curl, struct OutStruct * outs, const char * writeinfo)'/>

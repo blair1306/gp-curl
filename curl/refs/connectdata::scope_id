@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='829' type='unsigned int'/>
+<offset>1536</offset>
+<doc f='codebrowser/lib/urldata.h' l='829'>/* Scope id for IPv6 */</doc>
+<use f='codebrowser/lib/connect.c' l='288' u='r' c='bindlocal'/>
+<use f='codebrowser/lib/connect.c' l='1365' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/connect.c' l='1367' u='r' c='Curl_socket'/>
+<use f='codebrowser/lib/ftp.c' l='1045' u='r' c='ftp_state_use_port'/>
+<use f='codebrowser/lib/url.c' l='4775' u='w' c='parseurlandfillconn'/>
+<use f='codebrowser/lib/url.c' l='4812' u='w' c='parseurlandfillconn'/>

@@ -1,0 +1,5 @@
+<dec f='codebrowser/lib/urldata.h' l='1684' type='long'/>
+<offset>16640</offset>
+<doc f='codebrowser/lib/urldata.h' l='1684'>/* GSS-API credential delegation, see the
+                             documentation of CURLOPT_GSSAPI_DELEGATION */</doc>
+<use f='codebrowser/lib/url.c' l='2136' u='w' c='Curl_setopt'/>

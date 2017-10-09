@@ -1,0 +1,14 @@
+<def f='include/openssl/ocsp.h' l='297' ll='302'/>
+<size>32</size>
+<doc f='include/openssl/ocsp.h' l='289'>/*
+   * Note 2: It seems that the mentioned passage from RFC 2560 (section
+   * 4.2.1) is open for interpretation.  I&apos;ve done tests against another
+   * responder, and found that it doesn&apos;t do the double hashing that the RFC
+   * seems to say one should.  Therefore, all relevant functions take a flag
+   * saying which variant should be used.  -- Richard Levitte, OpenSSL team
+   * and CeloCom
+   */</doc>
+<mbr r='ocsp_basic_response_st::tbsResponseData' o='0' t='OCSP_RESPDATA *'/>
+<mbr r='ocsp_basic_response_st::signatureAlgorithm' o='64' t='X509_ALGOR *'/>
+<mbr r='ocsp_basic_response_st::signature' o='128' t='ASN1_BIT_STRING *'/>
+<mbr r='ocsp_basic_response_st::certs' o='192' t='struct stack_st_X509 *'/>

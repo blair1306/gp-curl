@@ -1,0 +1,14 @@
+<def f='codebrowser/lib/urldata.h' l='207' ll='220'/>
+<size>72</size>
+<mbr r='ssl_primary_config::version' o='0' t='long'/>
+<mbr r='ssl_primary_config::version_max' o='64' t='long'/>
+<mbr r='ssl_primary_config::verifypeer' o='128' t='_Bool'/>
+<mbr r='ssl_primary_config::verifyhost' o='136' t='_Bool'/>
+<mbr r='ssl_primary_config::verifystatus' o='144' t='_Bool'/>
+<mbr r='ssl_primary_config::sessionid' o='152' t='_Bool'/>
+<mbr r='ssl_primary_config::CApath' o='192' t='char *'/>
+<mbr r='ssl_primary_config::CAfile' o='256' t='char *'/>
+<mbr r='ssl_primary_config::clientcert' o='320' t='char *'/>
+<mbr r='ssl_primary_config::random_file' o='384' t='char *'/>
+<mbr r='ssl_primary_config::egdsocket' o='448' t='char *'/>
+<mbr r='ssl_primary_config::cipher_list' o='512' t='char *'/>

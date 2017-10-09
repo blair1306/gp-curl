@@ -1,0 +1,9 @@
+<dec f='codebrowser/lib/urldata.h' l='803' type='_Bool'/>
+<offset>768</offset>
+<use f='codebrowser/lib/multi.c' l='499' u='w' c='ConnectionDone'/>
+<use f='codebrowser/lib/url.c' l='3325' u='r' c='Curl_oldest_idle_connection'/>
+<use f='codebrowser/lib/url.c' l='3382' u='r' c='find_oldest_idle_connection_in_bundle'/>
+<use f='codebrowser/lib/url.c' l='3407' u='r' c='disconnect_if_dead'/>
+<use f='codebrowser/lib/url.c' l='3700' u='r' c='ConnectionExists'/>
+<use f='codebrowser/lib/url.c' l='6778' u='w' c='create_conn'/>
+<use f='codebrowser/lib/url.c' l='6890' u='w' c='create_conn'/>

@@ -1,0 +1,4 @@
+<dec f='codebrowser/lib/sigpipe.h' l='31' type='_Bool'/>
+<use f='codebrowser/lib/sigpipe.h' l='46' u='w' c='sigpipe_ignore'/>
+<use f='codebrowser/lib/sigpipe.h' l='66' u='r' c='sigpipe_restore'/>
+<offset>1216</offset>

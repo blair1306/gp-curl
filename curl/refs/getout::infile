@@ -1,0 +1,17 @@
+<dec f='codebrowser/src/tool_sdecls.h' l='107' type='char *'/>
+<offset>192</offset>
+<doc f='codebrowser/src/tool_sdecls.h' l='107'>/* file to upload, if GETOUT_UPLOAD is set */</doc>
+<use f='codebrowser/src/tool_cfgable.c' l='95' u='r' c='free_config_fields'/>
+<use f='codebrowser/src/tool_cfgable.c' l='95' u='w' c='free_config_fields'/>
+<use f='codebrowser/src/tool_getparam.c' l='1941' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1941' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1941' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1941' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_getparam.c' l='1941' u='a' c='getparameter'/>
+<use f='codebrowser/src/tool_operate.c' l='447' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='447' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='462' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1954' u='r' c='operate_do'/>
+<use f='codebrowser/src/tool_operate.c' l='1954' u='w' c='operate_do'/>
+<use f='codebrowser/src/tool_operhlp.c' l='47' u='r' c='clean_getout'/>
+<use f='codebrowser/src/tool_operhlp.c' l='47' u='w' c='clean_getout'/>

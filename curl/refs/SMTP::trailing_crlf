@@ -1,0 +1,6 @@
+<dec f='codebrowser/lib/smtp.h' l='60' type='_Bool'/>
+<offset>256</offset>
+<use f='codebrowser/lib/smtp.c' l='1205' u='r' c='smtp_done'/>
+<use f='codebrowser/lib/smtp.c' l='1573' u='w' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1575' u='w' c='Curl_smtp_escape_eob'/>
+<use f='codebrowser/lib/smtp.c' l='1591' u='w' c='Curl_smtp_escape_eob'/>

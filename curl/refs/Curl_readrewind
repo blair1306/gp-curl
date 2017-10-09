@@ -1,0 +1,10 @@
+<dec f='codebrowser/lib/transfer.h' l='52' type='CURLcode Curl_readrewind(struct connectdata * conn)'/>
+<use f='codebrowser/lib/http.c' l='464' u='c' c='http_perhapsrewind'/>
+<def f='codebrowser/lib/transfer.c' l='268' ll='338' type='CURLcode Curl_readrewind(struct connectdata * conn)'/>
+<use f='codebrowser/lib/transfer.c' l='880' u='c' c='done_sending'/>
+<use f='codebrowser/lib/transfer.c' l='1978' u='c' c='Curl_retry_request'/>
+<doc f='codebrowser/lib/transfer.c' l='263'>/*
+ * Curl_readrewind() rewinds the read stream. This is typically used for HTTP
+ * POST/PUT with multi-pass authentication when a sending was denied and a
+ * resend is necessary.
+ */</doc>
